@@ -1,0 +1,39 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "request": "launch",
+            "name": "Launch Program",
+            "type": "node",
+            "program": "${workspaceFolder}/test.ts",
+            "cwd": "${workspaceFolder}",
+            "env": {},
+            "console": "integratedTerminal",
+            "runtimeExecutable": "Deno",
+            "runtimeArgs": [
+                "run",
+                "--unstable-ffi",
+                "--inspect-wait",
+                "--allow-all"
+            ],
+            "attachSimplePort": 9229,
+            "preLaunchTask": "BuildOVRTSBindings"
+        },
+        {
+            "request": "launch",
+            "name": "build",
+            "type": "node",
+            "program": "${workspaceFolder}/bindgen.ts",
+            "cwd": "${workspaceFolder}",
+            "env": {},
+            "runtimeExecutable": "Deno",
+            "runtimeArgs": [
+                "run",
+                "--unstable-ffi",
+                "--inspect-wait",
+                "--allow-all"
+            ],
+            "attachSimplePort": 9229
+        }
+    ]
+}

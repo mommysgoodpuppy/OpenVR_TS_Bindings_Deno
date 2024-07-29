@@ -1,0 +1,18 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+	  {
+		"type": "deno",
+		"command": "run",
+		"args": [
+			"-A",
+		  "bindgen.ts"
+		],
+		"problemMatcher": [
+		  "$deno"
+		],
+		"label": "BuildOVRTSBindings"
+	  }
+	]
+  }
+  
