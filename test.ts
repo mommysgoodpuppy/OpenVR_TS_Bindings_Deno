@@ -2,40 +2,87 @@ import * as OpenVR from "./openvr_bindings.ts";
 let _void = null
 let pose: OpenVR.TrackedDevicePose_t = new OpenVR.TrackedDevicePose_t();
 
-function GetControllerPositions(pVRSystem: OpenVR.IVRSystem): OpenVR.HmdMatrix34_t | null {
-    [_void, pose] = pVRSystem.GetDeviceToAbsoluteTrackingPose(OpenVR.ETrackingUniverseOrigin.TrackingUniverseStanding, 0.0, pose, OpenVR.k_unMaxTrackedDeviceCount);
-    console.log(pose.mDeviceToAbsoluteTracking.m)
-    for (let Device: OpenVR.TrackedDeviceIndex_t = 0; Device < OpenVR.k_unMaxTrackedDeviceCount; ++Device) {
-        const deviceClass = pVRSystem.GetTrackedDeviceClass(Device);
-        if (deviceClass === OpenVR.ETrackedDeviceClass.TrackedDeviceClass_Controller) {
-            let state: OpenVR.VRControllerState_t = new OpenVR.VRControllerState001_t
-            const sizeofState = OpenVR.VRControllerState001_t.byteLength
-            let enabled
-            [enabled, state] = pVRSystem.GetControllerState(Device, state, sizeofState)
-            const a = OpenVR.VRControllerState001_t.fromBuffer(state as unknown as ArrayBuffer, 1)
-            if (enabled) {
-                //console.log(a)
-                for (let i = 0; i < OpenVR.EVRButtonId.k_EButton_Max; i++) {
-                    //OpenVR.EVRButtonId.k_EButton_SteamVR_Trigger
-                    if (a?.ulButtonPressed != null) {
-                        return pose.mDeviceToAbsoluteTracking;
-                    }
-                }
-            }
-        }
+const manifestPath = Deno.realPathSync("c:/GIT/OpenVRDenoBindgen/action.json");
+
+function GetControllerPositions(pVRInput: OpenVR.IVRInput, poseAction: OpenVR.VRActionHandle_t): OpenVR.InputPoseActionData_t | null {
+    // Update action state
+    let actionSet: OpenVR.VRActiveActionSet_t = {
+        ulActionSet: 0, // Your action set handle
+        ulRestrictedToDevice: OpenVR.k_ulInvalidInputValueHandle,
+        ulSecondaryActionSet: 0,
+        unPadding: 0,
+        nPriority: 0
+    };
+
+    let error
+
+    [error, actionSet] = pVRInput.UpdateActionState(actionSet, OpenVR.VRActiveActionSet_t.byteLength, 1);
+    if (error !== OpenVR.EVRInputError.VRInputError_None) {
+        console.error(`Failed to update action state: ${OpenVR.EVRInputError[error]}`);
+        return null;
     }
+
+    // Get pose data
+    let poseData = new OpenVR.InputPoseActionData_t();
+    [error, poseData] = pVRInput.GetPoseActionDataForNextFrame(
+        poseAction,
+        OpenVR.ETrackingUniverseOrigin.TrackingUniverseStanding,
+        poseData,
+        OpenVR.InputPoseActionData_t.byteLength,
+        OpenVR.k_ulInvalidInputValueHandle
+    );
+
+    if (error !== OpenVR.EVRInputError.VRInputError_None) {
+        console.error(`Failed to get pose data: ${OpenVR.EVRInputError[error]}`);
+        return null;
+    }
+
+    // Check if the pose is valid
+    if (poseData.bActive && poseData.pose.bPoseIsValid) {
+        return poseData;
+    }
+
     return null;
 }
 
 async function main() {
-    const error = new Int32Array(1);
-    OpenVR.OpenVR.VR_Init(Deno.UnsafePointer.of(error), OpenVR.EVRApplicationType.VRApplication_Overlay);
+    let error
+
+    
+    const errorX = new Int32Array(1);
+    OpenVR.OpenVR.VR_Init(Deno.UnsafePointer.of(errorX), OpenVR.EVRApplicationType.VRApplication_Overlay);
+    
+
+    
+    
+    
     const overlayHandle2: OpenVR.VROverlayHandle_t = 0n;
     const overlayPtr = OpenVR.getGenericInterface(OpenVR.IVROverlay_Version);
     const IVRPtr = OpenVR.getGenericInterface(OpenVR.IVRSystem_Version);
+    const IVRInputPtr = OpenVR.getGenericInterface(OpenVR.IVRInput_Version);
+
+
     const overlay = new OpenVR.IVROverlay(overlayPtr);
     const vrSystem = new OpenVR.IVRSystem(IVRPtr);
+    const vrInput = new OpenVR.IVRInput(IVRInputPtr);
 
+    error = vrInput.SetActionManifestPath(manifestPath);
+    if (error !== OpenVR.EVRInputError.VRInputError_None) {
+        console.error(`Failed to set action manifest path: ${OpenVR.EVRInputError[error]}`);
+        throw new Error("Failed to set action manifest path");
+        return;
+    }
+
+
+
+    let actionSetHandle: OpenVR.VRActionHandle_t = 0n;
+
+    [error, actionSetHandle] = vrInput.GetActionHandle("/actions/main", actionSetHandle);
+    if (error !== OpenVR.EVRInputError.VRInputError_None) {
+        console.error(`Failed to get pose action: ${OpenVR.EVRInputError[error]}`);
+        throw new Error("Failed to set action manifest path");
+        return null;
+    }
     const [_errorX, xbuffer] = overlay.CreateOverlay("image", "image", overlayHandle2);
     const buffer = xbuffer as unknown as Array<ArrayBuffer>
     const overlayHandle = buffer[0] as unknown as bigint;
@@ -59,11 +106,11 @@ async function main() {
     console.log("Overlay created and shown. Press Ctrl+C to exit.");
 
     while (true) {
-        const controllerPosition = GetControllerPositions(vrSystem);
+        const controllerPosition = GetControllerPositions(vrInput, actionSetHandle);
         if (controllerPosition) {
             overlay.SetOverlayTransformAbsolute(overlayHandle, OpenVR.ETrackingUniverseOrigin.TrackingUniverseStanding, controllerPosition);
         }
-        await new Promise(resolve => setTimeout(resolve, 1600));
+        await new Promise(resolve => setTimeout(resolve, 300));
     }
 }
 

@@ -873,6 +873,10 @@ function generateFromBufferCode(fieldName: string, fieldType: string, objectName
                 code += `    ${objectName}.${fieldName} = view.getInt32(${offsetVar}, true);\n`;
                 code += `    ${offsetVar} += 4;\n`;
                 break;
+            case "uint64_t":
+                code += `    ${objectName}.${fieldName} = view.getBigUint64(${offsetVar}, true);\n`;
+                code += `    ${offsetVar} += 8;\n`;
+                break;
             case "_Bool":
                 code += `    ${objectName}.${fieldName} = view.getUint8(${offsetVar}) !== 0;\n`;
                 code += `    ${offsetVar} += 1;\n`;

@@ -2417,7 +2417,8 @@ export class VRVulkanTextureData_t {
     const result = new VRVulkanTextureData_t();
     let currentOffset = 0;
 
-    // Unknown type uint64_t for field m_nImage
+    result.m_nImage = view.getBigUint64(currentOffset, true);
+    currentOffset += 8;
     // Unknown type VkDevice_T * for field m_pDevice
     // Unknown type VkPhysicalDevice_T * for field m_pPhysicalDevice
     // Unknown type VkInstance_T * for field m_pInstance
@@ -2630,7 +2631,8 @@ export class VREvent_Notification_t {
     const result = new VREvent_Notification_t();
     let currentOffset = 0;
 
-    // Unknown type uint64_t for field ulUserValue
+    result.ulUserValue = view.getBigUint64(currentOffset, true);
+    currentOffset += 8;
     result.notificationId = view.getInt32(currentOffset, true);
     currentOffset += 4;
     return result;
@@ -2689,9 +2691,12 @@ export class VREvent_Overlay_t {
     const result = new VREvent_Overlay_t();
     let currentOffset = 0;
 
-    // Unknown type uint64_t for field overlayHandle
-    // Unknown type uint64_t for field devicePath
-    // Unknown type uint64_t for field memoryBlockId
+    result.overlayHandle = view.getBigUint64(currentOffset, true);
+    currentOffset += 8;
+    result.devicePath = view.getBigUint64(currentOffset, true);
+    currentOffset += 8;
+    result.memoryBlockId = view.getBigUint64(currentOffset, true);
+    currentOffset += 8;
     result.cursorIndex = view.getInt32(currentOffset, true);
     currentOffset += 4;
     return result;
@@ -2740,8 +2745,10 @@ export class VREvent_Keyboard_t {
     for (let i0 = 0; i0 < 8; i0++) {
     // Unknown type char for field cNewInput[i0]
     }
-    // Unknown type uint64_t for field uUserValue
-    // Unknown type uint64_t for field overlayHandle
+    result.uUserValue = view.getBigUint64(currentOffset, true);
+    currentOffset += 8;
+    result.overlayHandle = view.getBigUint64(currentOffset, true);
+    currentOffset += 8;
     return result;
   }
 }
@@ -2782,8 +2789,10 @@ export class VREvent_Chaperone_t {
     const result = new VREvent_Chaperone_t();
     let currentOffset = 0;
 
-    // Unknown type uint64_t for field m_nPreviousUniverse
-    // Unknown type uint64_t for field m_nCurrentUniverse
+    result.m_nPreviousUniverse = view.getBigUint64(currentOffset, true);
+    currentOffset += 8;
+    result.m_nCurrentUniverse = view.getBigUint64(currentOffset, true);
+    currentOffset += 8;
     return result;
   }
 }
@@ -2812,12 +2821,18 @@ export class VREvent_Reserved_t {
     const result = new VREvent_Reserved_t();
     let currentOffset = 0;
 
-    // Unknown type uint64_t for field reserved0
-    // Unknown type uint64_t for field reserved1
-    // Unknown type uint64_t for field reserved2
-    // Unknown type uint64_t for field reserved3
-    // Unknown type uint64_t for field reserved4
-    // Unknown type uint64_t for field reserved5
+    result.reserved0 = view.getBigUint64(currentOffset, true);
+    currentOffset += 8;
+    result.reserved1 = view.getBigUint64(currentOffset, true);
+    currentOffset += 8;
+    result.reserved2 = view.getBigUint64(currentOffset, true);
+    currentOffset += 8;
+    result.reserved3 = view.getBigUint64(currentOffset, true);
+    currentOffset += 8;
+    result.reserved4 = view.getBigUint64(currentOffset, true);
+    currentOffset += 8;
+    result.reserved5 = view.getBigUint64(currentOffset, true);
+    currentOffset += 8;
     return result;
   }
 }
@@ -2946,7 +2961,8 @@ export class VREvent_EditingCameraSurface_t {
     const result = new VREvent_EditingCameraSurface_t();
     let currentOffset = 0;
 
-    // Unknown type uint64_t for field overlayHandle
+    result.overlayHandle = view.getBigUint64(currentOffset, true);
+    currentOffset += 8;
     result.nVisualMode = view.getInt32(currentOffset, true);
     currentOffset += 4;
     return result;
@@ -3017,8 +3033,10 @@ export class VREvent_HapticVibration_t {
     const result = new VREvent_HapticVibration_t();
     let currentOffset = 0;
 
-    // Unknown type uint64_t for field containerHandle
-    // Unknown type uint64_t for field componentHandle
+    result.containerHandle = view.getBigUint64(currentOffset, true);
+    currentOffset += 8;
+    result.componentHandle = view.getBigUint64(currentOffset, true);
+    currentOffset += 8;
     result.fDurationSeconds = view.getFloat32(currentOffset, true);
     currentOffset += 4;
     result.fFrequency = view.getFloat32(currentOffset, true);
@@ -3069,9 +3087,12 @@ export class VREvent_InputBindingLoad_t {
     let currentOffset = 0;
 
     // Unknown type PropertyContainerHandle_t for field ulAppContainer
-    // Unknown type uint64_t for field pathMessage
-    // Unknown type uint64_t for field pathUrl
-    // Unknown type uint64_t for field pathControllerType
+    result.pathMessage = view.getBigUint64(currentOffset, true);
+    currentOffset += 8;
+    result.pathUrl = view.getBigUint64(currentOffset, true);
+    currentOffset += 8;
+    result.pathControllerType = view.getBigUint64(currentOffset, true);
+    currentOffset += 8;
     return result;
   }
 }
@@ -3096,10 +3117,14 @@ export class VREvent_InputActionManifestLoad_t {
     const result = new VREvent_InputActionManifestLoad_t();
     let currentOffset = 0;
 
-    // Unknown type uint64_t for field pathAppKey
-    // Unknown type uint64_t for field pathMessage
-    // Unknown type uint64_t for field pathMessageParam
-    // Unknown type uint64_t for field pathManifestPath
+    result.pathAppKey = view.getBigUint64(currentOffset, true);
+    currentOffset += 8;
+    result.pathMessage = view.getBigUint64(currentOffset, true);
+    currentOffset += 8;
+    result.pathMessageParam = view.getBigUint64(currentOffset, true);
+    currentOffset += 8;
+    result.pathManifestPath = view.getBigUint64(currentOffset, true);
+    currentOffset += 8;
     return result;
   }
 }
@@ -3147,11 +3172,16 @@ export class VREvent_ProgressUpdate_t {
     const result = new VREvent_ProgressUpdate_t();
     let currentOffset = 0;
 
-    // Unknown type uint64_t for field ulApplicationPropertyContainer
-    // Unknown type uint64_t for field pathDevice
-    // Unknown type uint64_t for field pathInputSource
-    // Unknown type uint64_t for field pathProgressAction
-    // Unknown type uint64_t for field pathIcon
+    result.ulApplicationPropertyContainer = view.getBigUint64(currentOffset, true);
+    currentOffset += 8;
+    result.pathDevice = view.getBigUint64(currentOffset, true);
+    currentOffset += 8;
+    result.pathInputSource = view.getBigUint64(currentOffset, true);
+    currentOffset += 8;
+    result.pathProgressAction = view.getBigUint64(currentOffset, true);
+    currentOffset += 8;
+    result.pathIcon = view.getBigUint64(currentOffset, true);
+    currentOffset += 8;
     result.fProgress = view.getFloat32(currentOffset, true);
     currentOffset += 4;
     return result;
@@ -3521,8 +3551,10 @@ export class VRControllerState001_t {
 
     result.unPacketNum = view.getInt32(currentOffset, true);
     currentOffset += 4;
-    // Unknown type uint64_t for field ulButtonPressed
-    // Unknown type uint64_t for field ulButtonTouched
+    result.ulButtonPressed = view.getBigUint64(currentOffset, true);
+    currentOffset += 8;
+    result.ulButtonTouched = view.getBigUint64(currentOffset, true);
+    currentOffset += 8;
     result.rAxis = [];
     for (let i0 = 0; i0 < 5; i0++) {
     result.rAxis[i0] = VRControllerAxis_t.fromBuffer(buffer, offset + currentOffset);
@@ -3569,7 +3601,8 @@ export class CameraVideoStreamFrameHeader_t {
     currentOffset += 4;
     result.trackedDevicePose = TrackedDevicePose_t.fromBuffer(buffer, offset + currentOffset);
     currentOffset += TrackedDevicePose_t.byteLength;
-    // Unknown type uint64_t for field ulFrameExposureTime
+    result.ulFrameExposureTime = view.getBigUint64(currentOffset, true);
+    currentOffset += 8;
     return result;
   }
 }

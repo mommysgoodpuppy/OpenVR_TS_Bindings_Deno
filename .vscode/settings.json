@@ -1,3 +1,7 @@
 {
     "deno.enable": true,
+    "files.associations": {
+        "*.jsontestset": "json",
+        "string.h": "c"
+    },
 }
