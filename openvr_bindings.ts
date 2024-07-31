@@ -2203,16 +2203,16 @@ export class DistortionCoordinates_t {
 }
 
 export class Texture_t {
-  static readonly byteLength = 0;
+  static readonly byteLength = 16;
 
-  handle: any;
-  eType: any;
-  eColorSpace: any;
+  handle: Uint8Array;
+  eType: ETextureType;
+  eColorSpace: EColorSpace;
 
   constructor() {
     this.handle = null;
-    this.eType = null;
-    this.eColorSpace = null;
+    this.eType = 0;
+    this.eColorSpace = 0;
   }
 
   static fromBuffer(buffer: ArrayBuffer, offset: number): Texture_t {
@@ -2220,9 +2220,12 @@ export class Texture_t {
     const result = new Texture_t();
     let currentOffset = 0;
 
-    // Unknown type void * for field handle
-    // Unknown type enum ETextureType for field eType
-    // Unknown type enum EColorSpace for field eColorSpace
+    result.handle = view.getBigUint64(currentOffset, true);
+    currentOffset += 8;
+    result.eType = view.getInt32(currentOffset, true);
+    currentOffset += 4;
+    result.eColorSpace = view.getInt32(currentOffset, true);
+    currentOffset += 4;
     return result;
   }
 }
@@ -2280,9 +2283,9 @@ export class VRTextureWithPose_t {
 }
 
 export class VRTextureDepthInfo_t {
-  static readonly byteLength = 72;
+  static readonly byteLength = 80;
 
-  handle: any;
+  handle: Uint8Array;
   mProjection: HmdMatrix44_t;
   vRange: HmdVector2_t;
 
@@ -2297,7 +2300,8 @@ export class VRTextureDepthInfo_t {
     const result = new VRTextureDepthInfo_t();
     let currentOffset = 0;
 
-    // Unknown type void * for field handle
+    result.handle = view.getBigUint64(currentOffset, true);
+    currentOffset += 8;
     result.mProjection = HmdMatrix44_t.fromBuffer(buffer, offset + currentOffset);
     currentOffset += HmdMatrix44_t.byteLength;
     result.vRange = HmdVector2_t.fromBuffer(buffer, offset + currentOffset);
@@ -2307,7 +2311,7 @@ export class VRTextureDepthInfo_t {
 }
 
 export class VRTextureWithDepth_t {
-  static readonly byteLength = 72;
+  static readonly byteLength = 80;
 
   depth: VRTextureDepthInfo_t;
 
@@ -2327,7 +2331,7 @@ export class VRTextureWithDepth_t {
 }
 
 export class VRTextureWithPoseAndDepth_t {
-  static readonly byteLength = 72;
+  static readonly byteLength = 80;
 
   depth: VRTextureDepthInfo_t;
 
@@ -2347,12 +2351,12 @@ export class VRTextureWithPoseAndDepth_t {
 }
 
 export class TrackedDevicePose_t {
-  static readonly byteLength = 74;
+  static readonly byteLength = 78;
 
   mDeviceToAbsoluteTracking: HmdMatrix34_t;
   vVelocity: HmdVector3_t;
   vAngularVelocity: HmdVector3_t;
-  eTrackingResult: any;
+  eTrackingResult: ETrackingResult;
   bPoseIsValid: boolean;
   bDeviceIsConnected: boolean;
 
@@ -2360,7 +2364,7 @@ export class TrackedDevicePose_t {
     this.mDeviceToAbsoluteTracking = new HmdMatrix34_t();
     this.vVelocity = new HmdVector3_t();
     this.vAngularVelocity = new HmdVector3_t();
-    this.eTrackingResult = null;
+    this.eTrackingResult = ETrackingResult.TrackingResult_Uninitialized;
     this.bPoseIsValid = false;
     this.bDeviceIsConnected = false;
   }
@@ -2376,23 +2380,51 @@ export class TrackedDevicePose_t {
     currentOffset += HmdVector3_t.byteLength;
     result.vAngularVelocity = HmdVector3_t.fromBuffer(buffer, offset + currentOffset);
     currentOffset += HmdVector3_t.byteLength;
-    // Unknown type enum ETrackingResult for field eTrackingResult
+    result.eTrackingResult = view.getInt32(currentOffset, true);
+    currentOffset += 4;
     result.bPoseIsValid = view.getUint8(currentOffset) !== 0;
     currentOffset += 1;
     result.bDeviceIsConnected = view.getUint8(currentOffset) !== 0;
     currentOffset += 1;
     return result;
   }
+
+  toBuffer(): ArrayBuffer {
+    const buffer = new ArrayBuffer(TrackedDevicePose_t.byteLength);
+    const view = new DataView(buffer);
+    let currentOffset = 0;
+
+    const mDeviceToAbsoluteTrackingBuffer = this.mDeviceToAbsoluteTracking.toBuffer();
+    new Uint8Array(buffer, currentOffset).set(new Uint8Array(mDeviceToAbsoluteTrackingBuffer));
+    currentOffset += HmdMatrix34_t.byteLength;
+
+    const vVelocityBuffer = this.vVelocity.toBuffer();
+    new Uint8Array(buffer, currentOffset).set(new Uint8Array(vVelocityBuffer));
+    currentOffset += HmdVector3_t.byteLength;
+
+    const vAngularVelocityBuffer = this.vAngularVelocity.toBuffer();
+    new Uint8Array(buffer, currentOffset).set(new Uint8Array(vAngularVelocityBuffer));
+    currentOffset += HmdVector3_t.byteLength;
+
+    view.setInt32(currentOffset, this.eTrackingResult, true);
+    currentOffset += 4;
+    view.setUint8(currentOffset, this.bPoseIsValid ? 1 : 0);
+    currentOffset += 1;
+    view.setUint8(currentOffset, this.bDeviceIsConnected ? 1 : 0);
+    currentOffset += 1;
+
+    return buffer;
+  }
 }
 
 export class VRVulkanTextureData_t {
-  static readonly byteLength = 20;
+  static readonly byteLength = 60;
 
-  m_nImage: any;
-  m_pDevice: any;
-  m_pPhysicalDevice: any;
-  m_pInstance: any;
-  m_pQueue: any;
+  m_nImage: bigint;
+  m_pDevice: Uint8Array;
+  m_pPhysicalDevice: Uint8Array;
+  m_pInstance: Uint8Array;
+  m_pQueue: Uint8Array;
   m_nQueueFamilyIndex: number;
   m_nWidth: number;
   m_nHeight: number;
@@ -2400,7 +2432,7 @@ export class VRVulkanTextureData_t {
   m_nSampleCount: number;
 
   constructor() {
-    this.m_nImage = null;
+    this.m_nImage = 0n;
     this.m_pDevice = null;
     this.m_pPhysicalDevice = null;
     this.m_pInstance = null;
@@ -2419,10 +2451,14 @@ export class VRVulkanTextureData_t {
 
     result.m_nImage = view.getBigUint64(currentOffset, true);
     currentOffset += 8;
-    // Unknown type VkDevice_T * for field m_pDevice
-    // Unknown type VkPhysicalDevice_T * for field m_pPhysicalDevice
-    // Unknown type VkInstance_T * for field m_pInstance
-    // Unknown type VkQueue_T * for field m_pQueue
+    result.m_pDevice = view.getBigUint64(currentOffset, true);
+    currentOffset += 8;
+    result.m_pPhysicalDevice = view.getBigUint64(currentOffset, true);
+    currentOffset += 8;
+    result.m_pInstance = view.getBigUint64(currentOffset, true);
+    currentOffset += 8;
+    result.m_pQueue = view.getBigUint64(currentOffset, true);
+    currentOffset += 8;
     result.m_nQueueFamilyIndex = view.getInt32(currentOffset, true);
     currentOffset += 4;
     result.m_nWidth = view.getInt32(currentOffset, true);
@@ -2462,10 +2498,10 @@ export class VRVulkanTextureArrayData_t {
 }
 
 export class D3D12TextureData_t {
-  static readonly byteLength = 4;
+  static readonly byteLength = 20;
 
-  m_pResource: any;
-  m_pCommandQueue: any;
+  m_pResource: Uint8Array;
+  m_pCommandQueue: Uint8Array;
   m_nNodeMask: number;
 
   constructor() {
@@ -2479,8 +2515,10 @@ export class D3D12TextureData_t {
     const result = new D3D12TextureData_t();
     let currentOffset = 0;
 
-    // Unknown type ID3D12Resource * for field m_pResource
-    // Unknown type ID3D12CommandQueue * for field m_pCommandQueue
+    result.m_pResource = view.getBigUint64(currentOffset, true);
+    currentOffset += 8;
+    result.m_pCommandQueue = view.getBigUint64(currentOffset, true);
+    currentOffset += 8;
     result.m_nNodeMask = view.getInt32(currentOffset, true);
     currentOffset += 4;
     return result;
@@ -2616,13 +2654,13 @@ export class VREvent_TouchPadMove_t {
 }
 
 export class VREvent_Notification_t {
-  static readonly byteLength = 4;
+  static readonly byteLength = 12;
 
-  ulUserValue: any;
+  ulUserValue: bigint;
   notificationId: number;
 
   constructor() {
-    this.ulUserValue = null;
+    this.ulUserValue = 0n;
     this.notificationId = 0;
   }
 
@@ -2672,17 +2710,17 @@ export class VREvent_Process_t {
 }
 
 export class VREvent_Overlay_t {
-  static readonly byteLength = 4;
+  static readonly byteLength = 28;
 
-  overlayHandle: any;
-  devicePath: any;
-  memoryBlockId: any;
+  overlayHandle: bigint;
+  devicePath: bigint;
+  memoryBlockId: bigint;
   cursorIndex: number;
 
   constructor() {
-    this.overlayHandle = null;
-    this.devicePath = null;
-    this.memoryBlockId = null;
+    this.overlayHandle = 0n;
+    this.devicePath = 0n;
+    this.memoryBlockId = 0n;
     this.cursorIndex = 0;
   }
 
@@ -2724,16 +2762,16 @@ export class VREvent_Status_t {
 }
 
 export class VREvent_Keyboard_t {
-  static readonly byteLength = 0;
+  static readonly byteLength = 16;
 
   cNewInput: any[];
-  uUserValue: any;
-  overlayHandle: any;
+  uUserValue: bigint;
+  overlayHandle: bigint;
 
   constructor() {
     this.cNewInput = Array(8).fill(null).map(() => null);
-    this.uUserValue = null;
-    this.overlayHandle = null;
+    this.uUserValue = 0n;
+    this.overlayHandle = 0n;
   }
 
   static fromBuffer(buffer: ArrayBuffer, offset: number): VREvent_Keyboard_t {
@@ -2774,14 +2812,14 @@ export class VREvent_Ipd_t {
 }
 
 export class VREvent_Chaperone_t {
-  static readonly byteLength = 0;
+  static readonly byteLength = 16;
 
-  m_nPreviousUniverse: any;
-  m_nCurrentUniverse: any;
+  m_nPreviousUniverse: bigint;
+  m_nCurrentUniverse: bigint;
 
   constructor() {
-    this.m_nPreviousUniverse = null;
-    this.m_nCurrentUniverse = null;
+    this.m_nPreviousUniverse = 0n;
+    this.m_nCurrentUniverse = 0n;
   }
 
   static fromBuffer(buffer: ArrayBuffer, offset: number): VREvent_Chaperone_t {
@@ -2798,22 +2836,22 @@ export class VREvent_Chaperone_t {
 }
 
 export class VREvent_Reserved_t {
-  static readonly byteLength = 0;
+  static readonly byteLength = 48;
 
-  reserved0: any;
-  reserved1: any;
-  reserved2: any;
-  reserved3: any;
-  reserved4: any;
-  reserved5: any;
+  reserved0: bigint;
+  reserved1: bigint;
+  reserved2: bigint;
+  reserved3: bigint;
+  reserved4: bigint;
+  reserved5: bigint;
 
   constructor() {
-    this.reserved0 = null;
-    this.reserved1 = null;
-    this.reserved2 = null;
-    this.reserved3 = null;
-    this.reserved4 = null;
-    this.reserved5 = null;
+    this.reserved0 = 0n;
+    this.reserved1 = 0n;
+    this.reserved2 = 0n;
+    this.reserved3 = 0n;
+    this.reserved4 = 0n;
+    this.reserved5 = 0n;
   }
 
   static fromBuffer(buffer: ArrayBuffer, offset: number): VREvent_Reserved_t {
@@ -2946,13 +2984,13 @@ export class VREvent_ApplicationLaunch_t {
 }
 
 export class VREvent_EditingCameraSurface_t {
-  static readonly byteLength = 4;
+  static readonly byteLength = 12;
 
-  overlayHandle: any;
+  overlayHandle: bigint;
   nVisualMode: number;
 
   constructor() {
-    this.overlayHandle = null;
+    this.overlayHandle = 0n;
     this.nVisualMode = 0;
   }
 
@@ -2990,14 +3028,14 @@ export class VREvent_MessageOverlay_t {
 }
 
 export class VREvent_Property_t {
-  static readonly byteLength = 0;
+  static readonly byteLength = 12;
 
-  container: any;
-  prop: any;
+  container: bigint;
+  prop: ETrackedDeviceProperty;
 
   constructor() {
-    this.container = null;
-    this.prop = null;
+    this.container = 0n;
+    this.prop = 0;
   }
 
   static fromBuffer(buffer: ArrayBuffer, offset: number): VREvent_Property_t {
@@ -3005,24 +3043,26 @@ export class VREvent_Property_t {
     const result = new VREvent_Property_t();
     let currentOffset = 0;
 
-    // Unknown type PropertyContainerHandle_t for field container
-    // Unknown type enum ETrackedDeviceProperty for field prop
+    result.container = view.getBigUint64(currentOffset, true);
+    currentOffset += 8;
+    result.prop = view.getInt32(currentOffset, true);
+    currentOffset += 4;
     return result;
   }
 }
 
 export class VREvent_HapticVibration_t {
-  static readonly byteLength = 12;
+  static readonly byteLength = 28;
 
-  containerHandle: any;
-  componentHandle: any;
+  containerHandle: bigint;
+  componentHandle: bigint;
   fDurationSeconds: number;
   fFrequency: number;
   fAmplitude: number;
 
   constructor() {
-    this.containerHandle = null;
-    this.componentHandle = null;
+    this.containerHandle = 0n;
+    this.componentHandle = 0n;
     this.fDurationSeconds = 0;
     this.fFrequency = 0;
     this.fAmplitude = 0;
@@ -3048,12 +3088,12 @@ export class VREvent_HapticVibration_t {
 }
 
 export class VREvent_WebConsole_t {
-  static readonly byteLength = 0;
+  static readonly byteLength = 8;
 
-  webConsoleHandle: any;
+  webConsoleHandle: bigint;
 
   constructor() {
-    this.webConsoleHandle = null;
+    this.webConsoleHandle = 0n;
   }
 
   static fromBuffer(buffer: ArrayBuffer, offset: number): VREvent_WebConsole_t {
@@ -3061,24 +3101,25 @@ export class VREvent_WebConsole_t {
     const result = new VREvent_WebConsole_t();
     let currentOffset = 0;
 
-    // Unknown type WebConsoleHandle_t for field webConsoleHandle
+    result.webConsoleHandle = view.getBigUint64(currentOffset, true);
+    currentOffset += 8;
     return result;
   }
 }
 
 export class VREvent_InputBindingLoad_t {
-  static readonly byteLength = 0;
+  static readonly byteLength = 32;
 
-  ulAppContainer: any;
-  pathMessage: any;
-  pathUrl: any;
-  pathControllerType: any;
+  ulAppContainer: bigint;
+  pathMessage: bigint;
+  pathUrl: bigint;
+  pathControllerType: bigint;
 
   constructor() {
-    this.ulAppContainer = null;
-    this.pathMessage = null;
-    this.pathUrl = null;
-    this.pathControllerType = null;
+    this.ulAppContainer = 0n;
+    this.pathMessage = 0n;
+    this.pathUrl = 0n;
+    this.pathControllerType = 0n;
   }
 
   static fromBuffer(buffer: ArrayBuffer, offset: number): VREvent_InputBindingLoad_t {
@@ -3086,7 +3127,8 @@ export class VREvent_InputBindingLoad_t {
     const result = new VREvent_InputBindingLoad_t();
     let currentOffset = 0;
 
-    // Unknown type PropertyContainerHandle_t for field ulAppContainer
+    result.ulAppContainer = view.getBigUint64(currentOffset, true);
+    currentOffset += 8;
     result.pathMessage = view.getBigUint64(currentOffset, true);
     currentOffset += 8;
     result.pathUrl = view.getBigUint64(currentOffset, true);
@@ -3098,18 +3140,18 @@ export class VREvent_InputBindingLoad_t {
 }
 
 export class VREvent_InputActionManifestLoad_t {
-  static readonly byteLength = 0;
+  static readonly byteLength = 32;
 
-  pathAppKey: any;
-  pathMessage: any;
-  pathMessageParam: any;
-  pathManifestPath: any;
+  pathAppKey: bigint;
+  pathMessage: bigint;
+  pathMessageParam: bigint;
+  pathManifestPath: bigint;
 
   constructor() {
-    this.pathAppKey = null;
-    this.pathMessage = null;
-    this.pathMessageParam = null;
-    this.pathManifestPath = null;
+    this.pathAppKey = 0n;
+    this.pathMessage = 0n;
+    this.pathMessageParam = 0n;
+    this.pathManifestPath = 0n;
   }
 
   static fromBuffer(buffer: ArrayBuffer, offset: number): VREvent_InputActionManifestLoad_t {
@@ -3130,12 +3172,12 @@ export class VREvent_InputActionManifestLoad_t {
 }
 
 export class VREvent_SpatialAnchor_t {
-  static readonly byteLength = 0;
+  static readonly byteLength = 4;
 
-  unHandle: any;
+  unHandle: number;
 
   constructor() {
-    this.unHandle = null;
+    this.unHandle = 0;
   }
 
   static fromBuffer(buffer: ArrayBuffer, offset: number): VREvent_SpatialAnchor_t {
@@ -3143,27 +3185,28 @@ export class VREvent_SpatialAnchor_t {
     const result = new VREvent_SpatialAnchor_t();
     let currentOffset = 0;
 
-    // Unknown type SpatialAnchorHandle_t for field unHandle
+    result.unHandle = view.getFloat64(currentOffset, true);
+    currentOffset += 8;
     return result;
   }
 }
 
 export class VREvent_ProgressUpdate_t {
-  static readonly byteLength = 4;
+  static readonly byteLength = 44;
 
-  ulApplicationPropertyContainer: any;
-  pathDevice: any;
-  pathInputSource: any;
-  pathProgressAction: any;
-  pathIcon: any;
+  ulApplicationPropertyContainer: bigint;
+  pathDevice: bigint;
+  pathInputSource: bigint;
+  pathProgressAction: bigint;
+  pathIcon: bigint;
   fProgress: number;
 
   constructor() {
-    this.ulApplicationPropertyContainer = null;
-    this.pathDevice = null;
-    this.pathInputSource = null;
-    this.pathProgressAction = null;
-    this.pathIcon = null;
+    this.ulApplicationPropertyContainer = 0n;
+    this.pathDevice = 0n;
+    this.pathInputSource = 0n;
+    this.pathProgressAction = 0n;
+    this.pathIcon = 0n;
     this.fProgress = 0;
   }
 
@@ -3189,12 +3232,12 @@ export class VREvent_ProgressUpdate_t {
 }
 
 export class VREvent_ShowUI_t {
-  static readonly byteLength = 0;
+  static readonly byteLength = 4;
 
-  eType: any;
+  eType: EShowUIType;
 
   constructor() {
-    this.eType = null;
+    this.eType = 0;
   }
 
   static fromBuffer(buffer: ArrayBuffer, offset: number): VREvent_ShowUI_t {
@@ -3202,18 +3245,19 @@ export class VREvent_ShowUI_t {
     const result = new VREvent_ShowUI_t();
     let currentOffset = 0;
 
-    // Unknown type enum EShowUIType for field eType
+    result.eType = view.getInt32(currentOffset, true);
+    currentOffset += 4;
     return result;
   }
 }
 
 export class VREvent_ShowDevTools_t {
-  static readonly byteLength = 0;
+  static readonly byteLength = 4;
 
-  nBrowserIdentifier: any;
+  nBrowserIdentifier: number;
 
   constructor() {
-    this.nBrowserIdentifier = null;
+    this.nBrowserIdentifier = 0;
   }
 
   static fromBuffer(buffer: ArrayBuffer, offset: number): VREvent_ShowDevTools_t {
@@ -3221,18 +3265,19 @@ export class VREvent_ShowDevTools_t {
     const result = new VREvent_ShowDevTools_t();
     let currentOffset = 0;
 
-    // Unknown type int32_t for field nBrowserIdentifier
+    result.nBrowserIdentifier = view.getInt32(currentOffset, true);
+    currentOffset += 4;
     return result;
   }
 }
 
 export class VREvent_HDCPError_t {
-  static readonly byteLength = 0;
+  static readonly byteLength = 4;
 
-  eCode: any;
+  eCode: EHDCPError;
 
   constructor() {
-    this.eCode = null;
+    this.eCode = 0;
   }
 
   static fromBuffer(buffer: ArrayBuffer, offset: number): VREvent_HDCPError_t {
@@ -3240,7 +3285,8 @@ export class VREvent_HDCPError_t {
     const result = new VREvent_HDCPError_t();
     let currentOffset = 0;
 
-    // Unknown type enum EHDCPError for field eCode
+    result.eCode = view.getInt32(currentOffset, true);
+    currentOffset += 4;
     return result;
   }
 }
@@ -3286,7 +3332,7 @@ export class VREvent_AudioMuteControl_t {
 }
 
 export class AnonymousStruct_1 {
-  static readonly byteLength = 141;
+  static readonly byteLength = 417;
 
   reserved: VREvent_Reserved_t;
   controller: VREvent_Controller_t;
@@ -3426,16 +3472,16 @@ export class AnonymousStruct_1 {
 }
 
 export class VREvent_t {
-  static readonly byteLength = 8;
+  static readonly byteLength = 12;
 
   eventType: number;
-  trackedDeviceIndex: any;
+  trackedDeviceIndex: number;
   eventAgeSeconds: number;
   data: any;
 
   constructor() {
     this.eventType = 0;
-    this.trackedDeviceIndex = null;
+    this.trackedDeviceIndex = 0;
     this.eventAgeSeconds = 0;
     this.data = null;
   }
@@ -3447,7 +3493,8 @@ export class VREvent_t {
 
     result.eventType = view.getInt32(currentOffset, true);
     currentOffset += 4;
-    // Unknown type TrackedDeviceIndex_t for field trackedDeviceIndex
+    result.trackedDeviceIndex = view.getFloat64(currentOffset, true);
+    currentOffset += 8;
     result.eventAgeSeconds = view.getFloat32(currentOffset, true);
     currentOffset += 4;
     // Unknown type VREvent_Data_t for field data
@@ -3456,16 +3503,16 @@ export class VREvent_t {
 }
 
 export class RenderModel_ComponentState_t {
-  static readonly byteLength = 96;
+  static readonly byteLength = 100;
 
   mTrackingToComponentRenderModel: HmdMatrix34_t;
   mTrackingToComponentLocal: HmdMatrix34_t;
-  uProperties: any;
+  uProperties: number;
 
   constructor() {
     this.mTrackingToComponentRenderModel = new HmdMatrix34_t();
     this.mTrackingToComponentLocal = new HmdMatrix34_t();
-    this.uProperties = null;
+    this.uProperties = 0;
   }
 
   static fromBuffer(buffer: ArrayBuffer, offset: number): RenderModel_ComponentState_t {
@@ -3477,15 +3524,16 @@ export class RenderModel_ComponentState_t {
     currentOffset += HmdMatrix34_t.byteLength;
     result.mTrackingToComponentLocal = HmdMatrix34_t.fromBuffer(buffer, offset + currentOffset);
     currentOffset += HmdMatrix34_t.byteLength;
-    // Unknown type VRComponentProperties for field uProperties
+    result.uProperties = view.getFloat64(currentOffset, true);
+    currentOffset += 8;
     return result;
   }
 }
 
 export class HiddenAreaMesh_t {
-  static readonly byteLength = 4;
+  static readonly byteLength = 12;
 
-  pVertexData: any;
+  pVertexData: Uint8Array;
   unTriangleCount: number;
 
   constructor() {
@@ -3498,7 +3546,8 @@ export class HiddenAreaMesh_t {
     const result = new HiddenAreaMesh_t();
     let currentOffset = 0;
 
-    // Unknown type const struct HmdVector2_t * for field pVertexData
+    result.pVertexData = view.getBigUint64(currentOffset, true);
+    currentOffset += 8;
     result.unTriangleCount = view.getInt32(currentOffset, true);
     currentOffset += 4;
     return result;
@@ -3530,17 +3579,17 @@ export class VRControllerAxis_t {
 }
 
 export class VRControllerState001_t {
-  static readonly byteLength = 44;
+  static readonly byteLength = 60;
 
   unPacketNum: number;
-  ulButtonPressed: any;
-  ulButtonTouched: any;
+  ulButtonPressed: bigint;
+  ulButtonTouched: bigint;
   rAxis: VRControllerAxis_t[];
 
   constructor() {
     this.unPacketNum = 0;
-    this.ulButtonPressed = null;
-    this.ulButtonTouched = null;
+    this.ulButtonPressed = 0n;
+    this.ulButtonTouched = 0n;
     this.rAxis = Array(5).fill(null).map(() => new VRControllerAxis_t());
   }
 
@@ -3565,24 +3614,24 @@ export class VRControllerState001_t {
 }
 
 export class CameraVideoStreamFrameHeader_t {
-  static readonly byteLength = 90;
+  static readonly byteLength = 106;
 
-  eFrameType: any;
+  eFrameType: EVRTrackedCameraFrameType;
   nWidth: number;
   nHeight: number;
   nBytesPerPixel: number;
   nFrameSequence: number;
   trackedDevicePose: TrackedDevicePose_t;
-  ulFrameExposureTime: any;
+  ulFrameExposureTime: bigint;
 
   constructor() {
-    this.eFrameType = null;
+    this.eFrameType = 0;
     this.nWidth = 0;
     this.nHeight = 0;
     this.nBytesPerPixel = 0;
     this.nFrameSequence = 0;
     this.trackedDevicePose = new TrackedDevicePose_t();
-    this.ulFrameExposureTime = null;
+    this.ulFrameExposureTime = 0n;
   }
 
   static fromBuffer(buffer: ArrayBuffer, offset: number): CameraVideoStreamFrameHeader_t {
@@ -3590,7 +3639,8 @@ export class CameraVideoStreamFrameHeader_t {
     const result = new CameraVideoStreamFrameHeader_t();
     let currentOffset = 0;
 
-    // Unknown type enum EVRTrackedCameraFrameType for field eFrameType
+    result.eFrameType = view.getInt32(currentOffset, true);
+    currentOffset += 4;
     result.nWidth = view.getInt32(currentOffset, true);
     currentOffset += 4;
     result.nHeight = view.getInt32(currentOffset, true);
@@ -3608,7 +3658,7 @@ export class CameraVideoStreamFrameHeader_t {
 }
 
 export class Compositor_FrameTiming {
-  static readonly byteLength = 182;
+  static readonly byteLength = 186;
 
   m_nSize: number;
   m_nFrameIndex: number;
@@ -3824,10 +3874,10 @@ export class ImuSample_t {
 }
 
 export class AppOverrideKeys_t {
-  static readonly byteLength = 0;
+  static readonly byteLength = 16;
 
-  pchKey: any;
-  pchValue: any;
+  pchKey: Uint8Array;
+  pchValue: Uint8Array;
 
   constructor() {
     this.pchKey = null;
@@ -3839,14 +3889,16 @@ export class AppOverrideKeys_t {
     const result = new AppOverrideKeys_t();
     let currentOffset = 0;
 
-    // Unknown type const char * for field pchKey
-    // Unknown type const char * for field pchValue
+    result.pchKey = view.getBigUint64(currentOffset, true);
+    currentOffset += 8;
+    result.pchValue = view.getBigUint64(currentOffset, true);
+    currentOffset += 8;
     return result;
   }
 }
 
 export class Compositor_CumulativeStats {
-  static readonly byteLength = 68;
+  static readonly byteLength = 88;
 
   m_nPid: number;
   m_nNumFramePresents: number;
@@ -3864,11 +3916,11 @@ export class Compositor_CumulativeStats {
   m_nNumDroppedFramesTimedOut: number;
   m_nNumReprojectedFramesTimedOut: number;
   m_nNumFrameSubmits: number;
-  m_flSumCompositorCPUTimeMS: any;
-  m_flSumCompositorGPUTimeMS: any;
-  m_flSumTargetFrameTimes: any;
-  m_flSumApplicationCPUTimeMS: any;
-  m_flSumApplicationGPUTimeMS: any;
+  m_flSumCompositorCPUTimeMS: number;
+  m_flSumCompositorGPUTimeMS: number;
+  m_flSumTargetFrameTimes: number;
+  m_flSumApplicationCPUTimeMS: number;
+  m_flSumApplicationGPUTimeMS: number;
   m_nNumFramesWithDepth: number;
 
   constructor() {
@@ -3888,11 +3940,11 @@ export class Compositor_CumulativeStats {
     this.m_nNumDroppedFramesTimedOut = 0;
     this.m_nNumReprojectedFramesTimedOut = 0;
     this.m_nNumFrameSubmits = 0;
-    this.m_flSumCompositorCPUTimeMS = null;
-    this.m_flSumCompositorGPUTimeMS = null;
-    this.m_flSumTargetFrameTimes = null;
-    this.m_flSumApplicationCPUTimeMS = null;
-    this.m_flSumApplicationGPUTimeMS = null;
+    this.m_flSumCompositorCPUTimeMS = 0;
+    this.m_flSumCompositorGPUTimeMS = 0;
+    this.m_flSumTargetFrameTimes = 0;
+    this.m_flSumApplicationCPUTimeMS = 0;
+    this.m_flSumApplicationGPUTimeMS = 0;
     this.m_nNumFramesWithDepth = 0;
   }
 
@@ -3933,11 +3985,16 @@ export class Compositor_CumulativeStats {
     currentOffset += 4;
     result.m_nNumFrameSubmits = view.getInt32(currentOffset, true);
     currentOffset += 4;
-    // Unknown type vrshared_double for field m_flSumCompositorCPUTimeMS
-    // Unknown type vrshared_double for field m_flSumCompositorGPUTimeMS
-    // Unknown type vrshared_double for field m_flSumTargetFrameTimes
-    // Unknown type vrshared_double for field m_flSumApplicationCPUTimeMS
-    // Unknown type vrshared_double for field m_flSumApplicationGPUTimeMS
+    result.m_flSumCompositorCPUTimeMS = view.getFloat64(currentOffset, true);
+    currentOffset += 8;
+    result.m_flSumCompositorGPUTimeMS = view.getFloat64(currentOffset, true);
+    currentOffset += 8;
+    result.m_flSumTargetFrameTimes = view.getFloat64(currentOffset, true);
+    currentOffset += 8;
+    result.m_flSumApplicationCPUTimeMS = view.getFloat64(currentOffset, true);
+    currentOffset += 8;
+    result.m_flSumApplicationGPUTimeMS = view.getFloat64(currentOffset, true);
+    currentOffset += 8;
     result.m_nNumFramesWithDepth = view.getInt32(currentOffset, true);
     currentOffset += 4;
     return result;
@@ -3993,16 +4050,16 @@ export class Compositor_StageRenderSettings {
 }
 
 export class VROverlayIntersectionParams_t {
-  static readonly byteLength = 24;
+  static readonly byteLength = 28;
 
   vSource: HmdVector3_t;
   vDirection: HmdVector3_t;
-  eOrigin: any;
+  eOrigin: ETrackingUniverseOrigin;
 
   constructor() {
     this.vSource = new HmdVector3_t();
     this.vDirection = new HmdVector3_t();
-    this.eOrigin = null;
+    this.eOrigin = 0;
   }
 
   static fromBuffer(buffer: ArrayBuffer, offset: number): VROverlayIntersectionParams_t {
@@ -4014,7 +4071,8 @@ export class VROverlayIntersectionParams_t {
     currentOffset += HmdVector3_t.byteLength;
     result.vDirection = HmdVector3_t.fromBuffer(buffer, offset + currentOffset);
     currentOffset += HmdVector3_t.byteLength;
-    // Unknown type enum ETrackingUniverseOrigin for field eOrigin
+    result.eOrigin = view.getInt32(currentOffset, true);
+    currentOffset += 4;
     return result;
   }
 }
@@ -4136,13 +4194,13 @@ export class AnonymousStruct_2 {
 }
 
 export class VROverlayIntersectionMaskPrimitive_t {
-  static readonly byteLength = 0;
+  static readonly byteLength = 4;
 
-  m_nPrimitiveType: any;
+  m_nPrimitiveType: EVROverlayIntersectionMaskPrimitiveType;
   m_Primitive: any;
 
   constructor() {
-    this.m_nPrimitiveType = null;
+    this.m_nPrimitiveType = 0;
     this.m_Primitive = null;
   }
 
@@ -4151,7 +4209,8 @@ export class VROverlayIntersectionMaskPrimitive_t {
     const result = new VROverlayIntersectionMaskPrimitive_t();
     let currentOffset = 0;
 
-    // Unknown type enum EVROverlayIntersectionMaskPrimitiveType for field m_nPrimitiveType
+    result.m_nPrimitiveType = view.getInt32(currentOffset, true);
+    currentOffset += 4;
     // Unknown type VROverlayIntersectionMaskPrimitive_Data_t for field m_Primitive
     return result;
   }
@@ -4190,14 +4249,14 @@ export class VROverlayProjection_t {
 }
 
 export class VROverlayView_t {
-  static readonly byteLength = 16;
+  static readonly byteLength = 40;
 
-  overlayHandle: any;
+  overlayHandle: bigint;
   texture: Texture_t;
   textureBounds: VRTextureBounds_t;
 
   constructor() {
-    this.overlayHandle = null;
+    this.overlayHandle = 0n;
     this.texture = new Texture_t();
     this.textureBounds = new VRTextureBounds_t();
   }
@@ -4207,7 +4266,8 @@ export class VROverlayView_t {
     const result = new VROverlayView_t();
     let currentOffset = 0;
 
-    // Unknown type VROverlayHandle_t for field overlayHandle
+    result.overlayHandle = view.getBigUint64(currentOffset, true);
+    currentOffset += 8;
     result.texture = Texture_t.fromBuffer(buffer, offset + currentOffset);
     currentOffset += Texture_t.byteLength;
     result.textureBounds = VRTextureBounds_t.fromBuffer(buffer, offset + currentOffset);
@@ -4217,12 +4277,12 @@ export class VROverlayView_t {
 }
 
 export class VRVulkanDevice_t {
-  static readonly byteLength = 4;
+  static readonly byteLength = 36;
 
-  m_pInstance: any;
-  m_pDevice: any;
-  m_pPhysicalDevice: any;
-  m_pQueue: any;
+  m_pInstance: Uint8Array;
+  m_pDevice: Uint8Array;
+  m_pPhysicalDevice: Uint8Array;
+  m_pQueue: Uint8Array;
   m_uQueueFamilyIndex: number;
 
   constructor() {
@@ -4238,10 +4298,14 @@ export class VRVulkanDevice_t {
     const result = new VRVulkanDevice_t();
     let currentOffset = 0;
 
-    // Unknown type VkInstance_T * for field m_pInstance
-    // Unknown type VkDevice_T * for field m_pDevice
-    // Unknown type VkPhysicalDevice_T * for field m_pPhysicalDevice
-    // Unknown type VkQueue_T * for field m_pQueue
+    result.m_pInstance = view.getBigUint64(currentOffset, true);
+    currentOffset += 8;
+    result.m_pDevice = view.getBigUint64(currentOffset, true);
+    currentOffset += 8;
+    result.m_pPhysicalDevice = view.getBigUint64(currentOffset, true);
+    currentOffset += 8;
+    result.m_pQueue = view.getBigUint64(currentOffset, true);
+    currentOffset += 8;
     result.m_uQueueFamilyIndex = view.getInt32(currentOffset, true);
     currentOffset += 4;
     return result;
@@ -4249,14 +4313,14 @@ export class VRVulkanDevice_t {
 }
 
 export class VRNativeDevice_t {
-  static readonly byteLength = 0;
+  static readonly byteLength = 12;
 
-  handle: any;
-  eType: any;
+  handle: Uint8Array;
+  eType: EDeviceType;
 
   constructor() {
     this.handle = null;
-    this.eType = null;
+    this.eType = 0;
   }
 
   static fromBuffer(buffer: ArrayBuffer, offset: number): VRNativeDevice_t {
@@ -4264,8 +4328,10 @@ export class VRNativeDevice_t {
     const result = new VRNativeDevice_t();
     let currentOffset = 0;
 
-    // Unknown type void * for field handle
-    // Unknown type enum EDeviceType for field eType
+    result.handle = view.getBigUint64(currentOffset, true);
+    currentOffset += 8;
+    result.eType = view.getInt32(currentOffset, true);
+    currentOffset += 4;
     return result;
   }
 }
@@ -4302,20 +4368,20 @@ export class RenderModel_Vertex_t {
 }
 
 export class RenderModel_TextureMap_t {
-  static readonly byteLength = 0;
+  static readonly byteLength = 18;
 
-  unWidth: any;
-  unHeight: any;
-  rubTextureMapData: any;
-  format: any;
-  unMipLevels: any;
+  unWidth: number;
+  unHeight: number;
+  rubTextureMapData: Uint8Array;
+  format: EVRRenderModelTextureFormat;
+  unMipLevels: number;
 
   constructor() {
-    this.unWidth = null;
-    this.unHeight = null;
+    this.unWidth = 0;
+    this.unHeight = 0;
     this.rubTextureMapData = null;
-    this.format = null;
-    this.unMipLevels = null;
+    this.format = 0;
+    this.unMipLevels = 0;
   }
 
   static fromBuffer(buffer: ArrayBuffer, offset: number): RenderModel_TextureMap_t {
@@ -4323,30 +4389,35 @@ export class RenderModel_TextureMap_t {
     const result = new RenderModel_TextureMap_t();
     let currentOffset = 0;
 
-    // Unknown type uint16_t for field unWidth
-    // Unknown type uint16_t for field unHeight
-    // Unknown type const uint8_t * for field rubTextureMapData
-    // Unknown type enum EVRRenderModelTextureFormat for field format
-    // Unknown type uint16_t for field unMipLevels
+    result.unWidth = view.getUint16(currentOffset, true);
+    currentOffset += 2;
+    result.unHeight = view.getUint16(currentOffset, true);
+    currentOffset += 2;
+    result.rubTextureMapData = view.getBigUint64(currentOffset, true);
+    currentOffset += 8;
+    result.format = view.getInt32(currentOffset, true);
+    currentOffset += 4;
+    result.unMipLevels = view.getUint16(currentOffset, true);
+    currentOffset += 2;
     return result;
   }
 }
 
 export class RenderModel_t {
-  static readonly byteLength = 8;
+  static readonly byteLength = 28;
 
-  rVertexData: any;
+  rVertexData: Uint8Array;
   unVertexCount: number;
-  rIndexData: any;
+  rIndexData: Uint8Array;
   unTriangleCount: number;
-  diffuseTextureId: any;
+  diffuseTextureId: number;
 
   constructor() {
     this.rVertexData = null;
     this.unVertexCount = 0;
     this.rIndexData = null;
     this.unTriangleCount = 0;
-    this.diffuseTextureId = null;
+    this.diffuseTextureId = 0;
   }
 
   static fromBuffer(buffer: ArrayBuffer, offset: number): RenderModel_t {
@@ -4354,13 +4425,16 @@ export class RenderModel_t {
     const result = new RenderModel_t();
     let currentOffset = 0;
 
-    // Unknown type const struct RenderModel_Vertex_t * for field rVertexData
+    result.rVertexData = view.getBigUint64(currentOffset, true);
+    currentOffset += 8;
     result.unVertexCount = view.getInt32(currentOffset, true);
     currentOffset += 4;
-    // Unknown type const uint16_t * for field rIndexData
+    result.rIndexData = view.getBigUint64(currentOffset, true);
+    currentOffset += 8;
     result.unTriangleCount = view.getInt32(currentOffset, true);
     currentOffset += 4;
-    // Unknown type TextureID_t for field diffuseTextureId
+    result.diffuseTextureId = view.getFloat64(currentOffset, true);
+    currentOffset += 8;
     return result;
   }
 }
@@ -4386,18 +4460,18 @@ export class RenderModel_ControllerMode_State_t {
 }
 
 export class NotificationBitmap_t {
-  static readonly byteLength = 0;
+  static readonly byteLength = 20;
 
-  m_pImageData: any;
-  m_nWidth: any;
-  m_nHeight: any;
-  m_nBytesPerPixel: any;
+  m_pImageData: Uint8Array;
+  m_nWidth: number;
+  m_nHeight: number;
+  m_nBytesPerPixel: number;
 
   constructor() {
     this.m_pImageData = null;
-    this.m_nWidth = null;
-    this.m_nHeight = null;
-    this.m_nBytesPerPixel = null;
+    this.m_nWidth = 0;
+    this.m_nHeight = 0;
+    this.m_nBytesPerPixel = 0;
   }
 
   static fromBuffer(buffer: ArrayBuffer, offset: number): NotificationBitmap_t {
@@ -4405,18 +4479,22 @@ export class NotificationBitmap_t {
     const result = new NotificationBitmap_t();
     let currentOffset = 0;
 
-    // Unknown type void * for field m_pImageData
-    // Unknown type int32_t for field m_nWidth
-    // Unknown type int32_t for field m_nHeight
-    // Unknown type int32_t for field m_nBytesPerPixel
+    result.m_pImageData = view.getBigUint64(currentOffset, true);
+    currentOffset += 8;
+    result.m_nWidth = view.getInt32(currentOffset, true);
+    currentOffset += 4;
+    result.m_nHeight = view.getInt32(currentOffset, true);
+    currentOffset += 4;
+    result.m_nBytesPerPixel = view.getInt32(currentOffset, true);
+    currentOffset += 4;
     return result;
   }
 }
 
 export class CVRSettingHelper {
-  static readonly byteLength = 0;
+  static readonly byteLength = 8;
 
-  m_pSettings: any;
+  m_pSettings: Uint8Array;
 
   constructor() {
     this.m_pSettings = null;
@@ -4427,16 +4505,17 @@ export class CVRSettingHelper {
     const result = new CVRSettingHelper();
     let currentOffset = 0;
 
-    // Unknown type class IVRSettings * for field m_pSettings
+    result.m_pSettings = view.getBigUint64(currentOffset, true);
+    currentOffset += 8;
     return result;
   }
 }
 
 export class InputAnalogActionData_t {
-  static readonly byteLength = 29;
+  static readonly byteLength = 37;
 
   bActive: boolean;
-  activeOrigin: any;
+  activeOrigin: bigint;
   x: number;
   y: number;
   z: number;
@@ -4447,7 +4526,7 @@ export class InputAnalogActionData_t {
 
   constructor() {
     this.bActive = false;
-    this.activeOrigin = null;
+    this.activeOrigin = 0n;
     this.x = 0;
     this.y = 0;
     this.z = 0;
@@ -4464,7 +4543,8 @@ export class InputAnalogActionData_t {
 
     result.bActive = view.getUint8(currentOffset) !== 0;
     currentOffset += 1;
-    // Unknown type VRInputValueHandle_t for field activeOrigin
+    result.activeOrigin = view.getBigUint64(currentOffset, true);
+    currentOffset += 8;
     result.x = view.getFloat32(currentOffset, true);
     currentOffset += 4;
     result.y = view.getFloat32(currentOffset, true);
@@ -4484,17 +4564,17 @@ export class InputAnalogActionData_t {
 }
 
 export class InputDigitalActionData_t {
-  static readonly byteLength = 7;
+  static readonly byteLength = 15;
 
   bActive: boolean;
-  activeOrigin: any;
+  activeOrigin: bigint;
   bState: boolean;
   bChanged: boolean;
   fUpdateTime: number;
 
   constructor() {
     this.bActive = false;
-    this.activeOrigin = null;
+    this.activeOrigin = 0n;
     this.bState = false;
     this.bChanged = false;
     this.fUpdateTime = 0;
@@ -4507,7 +4587,8 @@ export class InputDigitalActionData_t {
 
     result.bActive = view.getUint8(currentOffset) !== 0;
     currentOffset += 1;
-    // Unknown type VRInputValueHandle_t for field activeOrigin
+    result.activeOrigin = view.getBigUint64(currentOffset, true);
+    currentOffset += 8;
     result.bState = view.getUint8(currentOffset) !== 0;
     currentOffset += 1;
     result.bChanged = view.getUint8(currentOffset) !== 0;
@@ -4519,15 +4600,15 @@ export class InputDigitalActionData_t {
 }
 
 export class InputPoseActionData_t {
-  static readonly byteLength = 75;
+  static readonly byteLength = 1 + 8 + TrackedDevicePose_t.byteLength;
 
   bActive: boolean;
-  activeOrigin: any;
+  activeOrigin: bigint;
   pose: TrackedDevicePose_t;
 
   constructor() {
     this.bActive = false;
-    this.activeOrigin = null;
+    this.activeOrigin = 0n;
     this.pose = new TrackedDevicePose_t();
   }
 
@@ -4538,22 +4619,39 @@ export class InputPoseActionData_t {
 
     result.bActive = view.getUint8(currentOffset) !== 0;
     currentOffset += 1;
-    // Unknown type VRInputValueHandle_t for field activeOrigin
+    result.activeOrigin = view.getBigUint64(currentOffset, true);
+    currentOffset += 8;
     result.pose = TrackedDevicePose_t.fromBuffer(buffer, offset + currentOffset);
-    currentOffset += TrackedDevicePose_t.byteLength;
+
     return result;
+  }
+
+  toBuffer(): ArrayBuffer {
+    const buffer = new ArrayBuffer(InputPoseActionData_t.byteLength);
+    const view = new DataView(buffer);
+    let currentOffset = 0;
+
+    view.setUint8(currentOffset, this.bActive ? 1 : 0);
+    currentOffset += 1;
+    view.setBigUint64(currentOffset, this.activeOrigin, true);
+    currentOffset += 8;
+
+    const poseBuffer = this.pose.toBuffer();
+    new Uint8Array(buffer, currentOffset).set(new Uint8Array(poseBuffer));
+
+    return buffer;
   }
 }
 
 export class InputSkeletalActionData_t {
-  static readonly byteLength = 1;
+  static readonly byteLength = 9;
 
   bActive: boolean;
-  activeOrigin: any;
+  activeOrigin: bigint;
 
   constructor() {
     this.bActive = false;
-    this.activeOrigin = null;
+    this.activeOrigin = 0n;
   }
 
   static fromBuffer(buffer: ArrayBuffer, offset: number): InputSkeletalActionData_t {
@@ -4563,21 +4661,22 @@ export class InputSkeletalActionData_t {
 
     result.bActive = view.getUint8(currentOffset) !== 0;
     currentOffset += 1;
-    // Unknown type VRInputValueHandle_t for field activeOrigin
+    result.activeOrigin = view.getBigUint64(currentOffset, true);
+    currentOffset += 8;
     return result;
   }
 }
 
 export class InputOriginInfo_t {
-  static readonly byteLength = 0;
+  static readonly byteLength = 12;
 
-  devicePath: any;
-  trackedDeviceIndex: any;
+  devicePath: bigint;
+  trackedDeviceIndex: number;
   rchRenderModelComponentName: any[];
 
   constructor() {
-    this.devicePath = null;
-    this.trackedDeviceIndex = null;
+    this.devicePath = 0n;
+    this.trackedDeviceIndex = 0;
     this.rchRenderModelComponentName = Array(128).fill(null).map(() => null);
   }
 
@@ -4586,8 +4685,10 @@ export class InputOriginInfo_t {
     const result = new InputOriginInfo_t();
     let currentOffset = 0;
 
-    // Unknown type VRInputValueHandle_t for field devicePath
-    // Unknown type TrackedDeviceIndex_t for field trackedDeviceIndex
+    result.devicePath = view.getBigUint64(currentOffset, true);
+    currentOffset += 8;
+    result.trackedDeviceIndex = view.getFloat64(currentOffset, true);
+    currentOffset += 8;
     result.rchRenderModelComponentName = [];
     for (let i0 = 0; i0 < 128; i0++) {
     // Unknown type char for field rchRenderModelComponentName[i0]
@@ -4643,20 +4744,20 @@ export class InputBindingInfo_t {
 }
 
 export class VRActiveActionSet_t {
-  static readonly byteLength = 4;
+  static readonly byteLength = 32;
 
-  ulActionSet: any;
-  ulRestrictedToDevice: any;
-  ulSecondaryActionSet: any;
+  ulActionSet: bigint;
+  ulRestrictedToDevice: bigint;
+  ulSecondaryActionSet: bigint;
   unPadding: number;
-  nPriority: any;
+  nPriority: number;
 
   constructor() {
-    this.ulActionSet = null;
-    this.ulRestrictedToDevice = null;
-    this.ulSecondaryActionSet = null;
+    this.ulActionSet = 0n;
+    this.ulRestrictedToDevice = 0n;
+    this.ulSecondaryActionSet = 0n;
     this.unPadding = 0;
-    this.nPriority = null;
+    this.nPriority = 0;
   }
 
   static fromBuffer(buffer: ArrayBuffer, offset: number): VRActiveActionSet_t {
@@ -4664,12 +4765,16 @@ export class VRActiveActionSet_t {
     const result = new VRActiveActionSet_t();
     let currentOffset = 0;
 
-    // Unknown type VRActionSetHandle_t for field ulActionSet
-    // Unknown type VRInputValueHandle_t for field ulRestrictedToDevice
-    // Unknown type VRActionSetHandle_t for field ulSecondaryActionSet
+    result.ulActionSet = view.getBigUint64(currentOffset, true);
+    currentOffset += 8;
+    result.ulRestrictedToDevice = view.getBigUint64(currentOffset, true);
+    currentOffset += 8;
+    result.ulSecondaryActionSet = view.getBigUint64(currentOffset, true);
+    currentOffset += 8;
     result.unPadding = view.getInt32(currentOffset, true);
     currentOffset += 4;
-    // Unknown type int32_t for field nPriority
+    result.nPriority = view.getInt32(currentOffset, true);
+    currentOffset += 4;
     return result;
   }
 }
@@ -4725,28 +4830,28 @@ export class SpatialAnchorPose_t {
 }
 
 export class COpenVRContext {
-  static readonly byteLength = 0;
+  static readonly byteLength = 160;
 
-  m_pVRSystem: any;
-  m_pVRChaperone: any;
-  m_pVRChaperoneSetup: any;
-  m_pVRCompositor: any;
-  m_pVRHeadsetView: any;
-  m_pVROverlay: any;
-  m_pVROverlayView: any;
-  m_pVRResources: any;
-  m_pVRRenderModels: any;
-  m_pVRExtendedDisplay: any;
-  m_pVRSettings: any;
-  m_pVRApplications: any;
-  m_pVRTrackedCamera: any;
-  m_pVRScreenshots: any;
-  m_pVRDriverManager: any;
-  m_pVRInput: any;
-  m_pVRIOBuffer: any;
-  m_pVRSpatialAnchors: any;
-  m_pVRDebug: any;
-  m_pVRNotifications: any;
+  m_pVRSystem: Uint8Array;
+  m_pVRChaperone: Uint8Array;
+  m_pVRChaperoneSetup: Uint8Array;
+  m_pVRCompositor: Uint8Array;
+  m_pVRHeadsetView: Uint8Array;
+  m_pVROverlay: Uint8Array;
+  m_pVROverlayView: Uint8Array;
+  m_pVRResources: Uint8Array;
+  m_pVRRenderModels: Uint8Array;
+  m_pVRExtendedDisplay: Uint8Array;
+  m_pVRSettings: Uint8Array;
+  m_pVRApplications: Uint8Array;
+  m_pVRTrackedCamera: Uint8Array;
+  m_pVRScreenshots: Uint8Array;
+  m_pVRDriverManager: Uint8Array;
+  m_pVRInput: Uint8Array;
+  m_pVRIOBuffer: Uint8Array;
+  m_pVRSpatialAnchors: Uint8Array;
+  m_pVRDebug: Uint8Array;
+  m_pVRNotifications: Uint8Array;
 
   constructor() {
     this.m_pVRSystem = null;
@@ -4776,49 +4881,69 @@ export class COpenVRContext {
     const result = new COpenVRContext();
     let currentOffset = 0;
 
-    // Unknown type class IVRSystem * for field m_pVRSystem
-    // Unknown type class IVRChaperone * for field m_pVRChaperone
-    // Unknown type class IVRChaperoneSetup * for field m_pVRChaperoneSetup
-    // Unknown type class IVRCompositor * for field m_pVRCompositor
-    // Unknown type class IVRHeadsetView * for field m_pVRHeadsetView
-    // Unknown type class IVROverlay * for field m_pVROverlay
-    // Unknown type class IVROverlayView * for field m_pVROverlayView
-    // Unknown type class IVRResources * for field m_pVRResources
-    // Unknown type class IVRRenderModels * for field m_pVRRenderModels
-    // Unknown type class IVRExtendedDisplay * for field m_pVRExtendedDisplay
-    // Unknown type class IVRSettings * for field m_pVRSettings
-    // Unknown type class IVRApplications * for field m_pVRApplications
-    // Unknown type class IVRTrackedCamera * for field m_pVRTrackedCamera
-    // Unknown type class IVRScreenshots * for field m_pVRScreenshots
-    // Unknown type class IVRDriverManager * for field m_pVRDriverManager
-    // Unknown type class IVRInput * for field m_pVRInput
-    // Unknown type class IVRIOBuffer * for field m_pVRIOBuffer
-    // Unknown type class IVRSpatialAnchors * for field m_pVRSpatialAnchors
-    // Unknown type class IVRDebug * for field m_pVRDebug
-    // Unknown type class IVRNotifications * for field m_pVRNotifications
+    result.m_pVRSystem = view.getBigUint64(currentOffset, true);
+    currentOffset += 8;
+    result.m_pVRChaperone = view.getBigUint64(currentOffset, true);
+    currentOffset += 8;
+    result.m_pVRChaperoneSetup = view.getBigUint64(currentOffset, true);
+    currentOffset += 8;
+    result.m_pVRCompositor = view.getBigUint64(currentOffset, true);
+    currentOffset += 8;
+    result.m_pVRHeadsetView = view.getBigUint64(currentOffset, true);
+    currentOffset += 8;
+    result.m_pVROverlay = view.getBigUint64(currentOffset, true);
+    currentOffset += 8;
+    result.m_pVROverlayView = view.getBigUint64(currentOffset, true);
+    currentOffset += 8;
+    result.m_pVRResources = view.getBigUint64(currentOffset, true);
+    currentOffset += 8;
+    result.m_pVRRenderModels = view.getBigUint64(currentOffset, true);
+    currentOffset += 8;
+    result.m_pVRExtendedDisplay = view.getBigUint64(currentOffset, true);
+    currentOffset += 8;
+    result.m_pVRSettings = view.getBigUint64(currentOffset, true);
+    currentOffset += 8;
+    result.m_pVRApplications = view.getBigUint64(currentOffset, true);
+    currentOffset += 8;
+    result.m_pVRTrackedCamera = view.getBigUint64(currentOffset, true);
+    currentOffset += 8;
+    result.m_pVRScreenshots = view.getBigUint64(currentOffset, true);
+    currentOffset += 8;
+    result.m_pVRDriverManager = view.getBigUint64(currentOffset, true);
+    currentOffset += 8;
+    result.m_pVRInput = view.getBigUint64(currentOffset, true);
+    currentOffset += 8;
+    result.m_pVRIOBuffer = view.getBigUint64(currentOffset, true);
+    currentOffset += 8;
+    result.m_pVRSpatialAnchors = view.getBigUint64(currentOffset, true);
+    currentOffset += 8;
+    result.m_pVRDebug = view.getBigUint64(currentOffset, true);
+    currentOffset += 8;
+    result.m_pVRNotifications = view.getBigUint64(currentOffset, true);
+    currentOffset += 8;
     return result;
   }
 }
 
 export class PropertyWrite_t {
-  static readonly byteLength = 4;
+  static readonly byteLength = 32;
 
-  prop: any;
-  writeType: any;
-  eSetError: any;
-  pvBuffer: any;
+  prop: ETrackedDeviceProperty;
+  writeType: EPropertyWriteType;
+  eSetError: ETrackedPropertyError;
+  pvBuffer: Uint8Array;
   unBufferSize: number;
-  unTag: any;
-  eError: any;
+  unTag: number;
+  eError: ETrackedPropertyError;
 
   constructor() {
-    this.prop = null;
-    this.writeType = null;
-    this.eSetError = null;
+    this.prop = 0;
+    this.writeType = 0;
+    this.eSetError = 0;
     this.pvBuffer = null;
     this.unBufferSize = 0;
-    this.unTag = null;
-    this.eError = null;
+    this.unTag = 0;
+    this.eError = 0;
   }
 
   static fromBuffer(buffer: ArrayBuffer, offset: number): PropertyWrite_t {
@@ -4826,35 +4951,41 @@ export class PropertyWrite_t {
     const result = new PropertyWrite_t();
     let currentOffset = 0;
 
-    // Unknown type enum ETrackedDeviceProperty for field prop
-    // Unknown type enum EPropertyWriteType for field writeType
-    // Unknown type enum ETrackedPropertyError for field eSetError
-    // Unknown type void * for field pvBuffer
+    result.prop = view.getInt32(currentOffset, true);
+    currentOffset += 4;
+    result.writeType = view.getInt32(currentOffset, true);
+    currentOffset += 4;
+    result.eSetError = view.getInt32(currentOffset, true);
+    currentOffset += 4;
+    result.pvBuffer = view.getBigUint64(currentOffset, true);
+    currentOffset += 8;
     result.unBufferSize = view.getInt32(currentOffset, true);
     currentOffset += 4;
-    // Unknown type PropertyTypeTag_t for field unTag
-    // Unknown type enum ETrackedPropertyError for field eError
+    result.unTag = view.getFloat64(currentOffset, true);
+    currentOffset += 8;
+    result.eError = view.getInt32(currentOffset, true);
+    currentOffset += 4;
     return result;
   }
 }
 
 export class PropertyRead_t {
-  static readonly byteLength = 8;
+  static readonly byteLength = 28;
 
-  prop: any;
-  pvBuffer: any;
+  prop: ETrackedDeviceProperty;
+  pvBuffer: Uint8Array;
   unBufferSize: number;
-  unTag: any;
+  unTag: number;
   unRequiredBufferSize: number;
-  eError: any;
+  eError: ETrackedPropertyError;
 
   constructor() {
-    this.prop = null;
+    this.prop = 0;
     this.pvBuffer = null;
     this.unBufferSize = 0;
-    this.unTag = null;
+    this.unTag = 0;
     this.unRequiredBufferSize = 0;
-    this.eError = null;
+    this.eError = 0;
   }
 
   static fromBuffer(buffer: ArrayBuffer, offset: number): PropertyRead_t {
@@ -4862,22 +4993,26 @@ export class PropertyRead_t {
     const result = new PropertyRead_t();
     let currentOffset = 0;
 
-    // Unknown type enum ETrackedDeviceProperty for field prop
-    // Unknown type void * for field pvBuffer
+    result.prop = view.getInt32(currentOffset, true);
+    currentOffset += 4;
+    result.pvBuffer = view.getBigUint64(currentOffset, true);
+    currentOffset += 8;
     result.unBufferSize = view.getInt32(currentOffset, true);
     currentOffset += 4;
-    // Unknown type PropertyTypeTag_t for field unTag
+    result.unTag = view.getFloat64(currentOffset, true);
+    currentOffset += 8;
     result.unRequiredBufferSize = view.getInt32(currentOffset, true);
     currentOffset += 4;
-    // Unknown type enum ETrackedPropertyError for field eError
+    result.eError = view.getInt32(currentOffset, true);
+    currentOffset += 4;
     return result;
   }
 }
 
 export class CVRPropertyHelpers {
-  static readonly byteLength = 0;
+  static readonly byteLength = 8;
 
-  m_pProperties: any;
+  m_pProperties: Uint8Array;
 
   constructor() {
     this.m_pProperties = null;
@@ -4888,31 +5023,32 @@ export class CVRPropertyHelpers {
     const result = new CVRPropertyHelpers();
     let currentOffset = 0;
 
-    // Unknown type class IVRProperties * for field m_pProperties
+    result.m_pProperties = view.getBigUint64(currentOffset, true);
+    currentOffset += 8;
     return result;
   }
 }
 
 export class PathWrite_t {
-  static readonly byteLength = 4;
+  static readonly byteLength = 44;
 
-  ulPath: any;
-  writeType: any;
-  eSetError: any;
-  pvBuffer: any;
+  ulPath: bigint;
+  writeType: EPropertyWriteType;
+  eSetError: ETrackedPropertyError;
+  pvBuffer: Uint8Array;
   unBufferSize: number;
-  unTag: any;
-  eError: any;
-  pszPath: any;
+  unTag: number;
+  eError: ETrackedPropertyError;
+  pszPath: Uint8Array;
 
   constructor() {
-    this.ulPath = null;
-    this.writeType = null;
-    this.eSetError = null;
+    this.ulPath = 0n;
+    this.writeType = 0;
+    this.eSetError = 0;
     this.pvBuffer = null;
     this.unBufferSize = 0;
-    this.unTag = null;
-    this.eError = null;
+    this.unTag = 0;
+    this.eError = 0;
     this.pszPath = null;
   }
 
@@ -4921,37 +5057,44 @@ export class PathWrite_t {
     const result = new PathWrite_t();
     let currentOffset = 0;
 
-    // Unknown type PathHandle_t for field ulPath
-    // Unknown type enum EPropertyWriteType for field writeType
-    // Unknown type enum ETrackedPropertyError for field eSetError
-    // Unknown type void * for field pvBuffer
+    result.ulPath = view.getBigUint64(currentOffset, true);
+    currentOffset += 8;
+    result.writeType = view.getInt32(currentOffset, true);
+    currentOffset += 4;
+    result.eSetError = view.getInt32(currentOffset, true);
+    currentOffset += 4;
+    result.pvBuffer = view.getBigUint64(currentOffset, true);
+    currentOffset += 8;
     result.unBufferSize = view.getInt32(currentOffset, true);
     currentOffset += 4;
-    // Unknown type PropertyTypeTag_t for field unTag
-    // Unknown type enum ETrackedPropertyError for field eError
-    // Unknown type const char * for field pszPath
+    result.unTag = view.getFloat64(currentOffset, true);
+    currentOffset += 8;
+    result.eError = view.getInt32(currentOffset, true);
+    currentOffset += 4;
+    result.pszPath = view.getBigUint64(currentOffset, true);
+    currentOffset += 8;
     return result;
   }
 }
 
 export class PathRead_t {
-  static readonly byteLength = 8;
+  static readonly byteLength = 40;
 
-  ulPath: any;
-  pvBuffer: any;
+  ulPath: bigint;
+  pvBuffer: Uint8Array;
   unBufferSize: number;
-  unTag: any;
+  unTag: number;
   unRequiredBufferSize: number;
-  eError: any;
-  pszPath: any;
+  eError: ETrackedPropertyError;
+  pszPath: Uint8Array;
 
   constructor() {
-    this.ulPath = null;
+    this.ulPath = 0n;
     this.pvBuffer = null;
     this.unBufferSize = 0;
-    this.unTag = null;
+    this.unTag = 0;
     this.unRequiredBufferSize = 0;
-    this.eError = null;
+    this.eError = 0;
     this.pszPath = null;
   }
 
@@ -4960,15 +5103,20 @@ export class PathRead_t {
     const result = new PathRead_t();
     let currentOffset = 0;
 
-    // Unknown type PathHandle_t for field ulPath
-    // Unknown type void * for field pvBuffer
+    result.ulPath = view.getBigUint64(currentOffset, true);
+    currentOffset += 8;
+    result.pvBuffer = view.getBigUint64(currentOffset, true);
+    currentOffset += 8;
     result.unBufferSize = view.getInt32(currentOffset, true);
     currentOffset += 4;
-    // Unknown type PropertyTypeTag_t for field unTag
+    result.unTag = view.getFloat64(currentOffset, true);
+    currentOffset += 8;
     result.unRequiredBufferSize = view.getInt32(currentOffset, true);
     currentOffset += 4;
-    // Unknown type enum ETrackedPropertyError for field eError
-    // Unknown type const char * for field pszPath
+    result.eError = view.getInt32(currentOffset, true);
+    currentOffset += 4;
+    result.pszPath = view.getBigUint64(currentOffset, true);
+    currentOffset += 8;
     return result;
   }
 }
@@ -5823,7 +5971,7 @@ export class IVRSystem {
     }
   ]
 }*/
-  GetDeviceToAbsoluteTrackingPose(eOrigin: ETrackingUniverseOrigin, fPredictedSecondsToPhotonsFromNow: number, pTrackedDevicePoseArray: TrackedDevicePose_t, unTrackedDevicePoseArrayCount: number): [void, TrackedDevicePose_t] {
+  GetDeviceToAbsoluteTrackingPose(eOrigin: ETrackingUniverseOrigin, fPredictedSecondsToPhotonsFromNow: number, pTrackedDevicePoseArray: TrackedDevicePose_t[], unTrackedDevicePoseArrayCount: number): [void, TrackedDevicePose_t] {
     if (this.ptr === null) throw new Error("Invalid pointer");
     const vr = new Deno.UnsafePointerView(this.ptr);
     const vtablePtr = Deno.UnsafePointer.create(vr.getBigUint64(0));
@@ -5910,7 +6058,7 @@ export class IVRSystem {
     }
   ]
 }*/
-  GetSortedTrackedDeviceIndicesOfClass(eTrackedDeviceClass: ETrackedDeviceClass, punTrackedDeviceIndexArray: TrackedDeviceIndex_t, unTrackedDeviceIndexArrayCount: number, unRelativeToTrackedDeviceIndex: TrackedDeviceIndex_t): [number, TrackedDeviceIndex_t] {
+  GetSortedTrackedDeviceIndicesOfClass(eTrackedDeviceClass: ETrackedDeviceClass, punTrackedDeviceIndexArray: TrackedDeviceIndex_t[], unTrackedDeviceIndexArrayCount: number, unRelativeToTrackedDeviceIndex: TrackedDeviceIndex_t): [number, TrackedDeviceIndex_t] {
     if (this.ptr === null) throw new Error("Invalid pointer");
     const vr = new Deno.UnsafePointerView(this.ptr);
     const vtablePtr = Deno.UnsafePointer.create(vr.getBigUint64(0));
@@ -7796,7 +7944,7 @@ export class IVRApplications {
     }
   ]
 }*/
-  LaunchTemplateApplication(pchTemplateAppKey: string, pchNewAppKey: string, pKeys: AppOverrideKeys_t, unKeys: number): EVRApplicationError {
+  LaunchTemplateApplication(pchTemplateAppKey: string, pchNewAppKey: string, pKeys: AppOverrideKeys_t[], unKeys: number): EVRApplicationError {
     if (this.ptr === null) throw new Error("Invalid pointer");
     const vr = new Deno.UnsafePointerView(this.ptr);
     const vtablePtr = Deno.UnsafePointer.create(vr.getBigUint64(0));
@@ -9042,7 +9190,7 @@ export class IVRChaperoneSetup {
     }
   ]
 }*/
-  SetWorkingCollisionBoundsInfo(pQuadsBuffer: HmdQuad_t, unQuadsCount: number): [void, HmdQuad_t] {
+  SetWorkingCollisionBoundsInfo(pQuadsBuffer: HmdQuad_t[], unQuadsCount: number): [void, HmdQuad_t] {
     if (this.ptr === null) throw new Error("Invalid pointer");
     const vr = new Deno.UnsafePointerView(this.ptr);
     const vtablePtr = Deno.UnsafePointer.create(vr.getBigUint64(0));
@@ -9080,7 +9228,7 @@ export class IVRChaperoneSetup {
     }
   ]
 }*/
-  SetWorkingPerimeter(pPointBuffer: HmdVector2_t, unPointCount: number): [void, HmdVector2_t] {
+  SetWorkingPerimeter(pPointBuffer: HmdVector2_t[], unPointCount: number): [void, HmdVector2_t] {
     if (this.ptr === null) throw new Error("Invalid pointer");
     const vr = new Deno.UnsafePointerView(this.ptr);
     const vtablePtr = Deno.UnsafePointer.create(vr.getBigUint64(0));
@@ -9413,7 +9561,7 @@ export class IVRCompositor {
     }
   ]
 }*/
-  WaitGetPoses(pRenderPoseArray: TrackedDevicePose_t, unRenderPoseArrayCount: number, pGamePoseArray: TrackedDevicePose_t, unGamePoseArrayCount: number): [EVRCompositorError, TrackedDevicePose_t, TrackedDevicePose_t] {
+  WaitGetPoses(pRenderPoseArray: TrackedDevicePose_t[], unRenderPoseArrayCount: number, pGamePoseArray: TrackedDevicePose_t[], unGamePoseArrayCount: number): [EVRCompositorError, TrackedDevicePose_t, TrackedDevicePose_t] {
     if (this.ptr === null) throw new Error("Invalid pointer");
     const vr = new Deno.UnsafePointerView(this.ptr);
     const vtablePtr = Deno.UnsafePointer.create(vr.getBigUint64(0));
@@ -9463,7 +9611,7 @@ export class IVRCompositor {
     }
   ]
 }*/
-  GetLastPoses(pRenderPoseArray: TrackedDevicePose_t, unRenderPoseArrayCount: number, pGamePoseArray: TrackedDevicePose_t, unGamePoseArrayCount: number): [EVRCompositorError, TrackedDevicePose_t, TrackedDevicePose_t] {
+  GetLastPoses(pRenderPoseArray: TrackedDevicePose_t[], unRenderPoseArrayCount: number, pGamePoseArray: TrackedDevicePose_t[], unGamePoseArrayCount: number): [EVRCompositorError, TrackedDevicePose_t, TrackedDevicePose_t] {
     if (this.ptr === null) throw new Error("Invalid pointer");
     const vr = new Deno.UnsafePointerView(this.ptr);
     const vtablePtr = Deno.UnsafePointer.create(vr.getBigUint64(0));
@@ -9703,7 +9851,7 @@ export class IVRCompositor {
     }
   ]
 }*/
-  GetFrameTimings(pTiming: Compositor_FrameTiming, nFrames: number): [number, Compositor_FrameTiming] {
+  GetFrameTimings(pTiming: Compositor_FrameTiming[], nFrames: number): [number, Compositor_FrameTiming] {
     if (this.ptr === null) throw new Error("Invalid pointer");
     const vr = new Deno.UnsafePointerView(this.ptr);
     const vtablePtr = Deno.UnsafePointer.create(vr.getBigUint64(0));
@@ -9927,7 +10075,7 @@ export class IVRCompositor {
     }
   ]
 }*/
-  SetSkyboxOverride(pTextures: Texture_t, unTextureCount: number): EVRCompositorError {
+  SetSkyboxOverride(pTextures: Texture_t[], unTextureCount: number): EVRCompositorError {
     if (this.ptr === null) throw new Error("Invalid pointer");
     const vr = new Deno.UnsafePointerView(this.ptr);
     const vtablePtr = Deno.UnsafePointer.create(vr.getBigUint64(0));
@@ -10745,7 +10893,7 @@ export class IVRCompositor {
     }
   ]
 }*/
-  GetPosesForFrame(unPosePredictionID: number, pPoseArray: TrackedDevicePose_t, unPoseArrayCount: number): [EVRCompositorError, TrackedDevicePose_t] {
+  GetPosesForFrame(unPosePredictionID: number, pPoseArray: TrackedDevicePose_t[], unPoseArrayCount: number): [EVRCompositorError, TrackedDevicePose_t] {
     if (this.ptr === null) throw new Error("Invalid pointer");
     const vr = new Deno.UnsafePointerView(this.ptr);
     const vtablePtr = Deno.UnsafePointer.create(vr.getBigUint64(0));
@@ -15210,7 +15358,7 @@ export class IVRScreenshots {
     }
   ]
 }*/
-  HookScreenshot(pSupportedTypes: EVRScreenshotType, numTypes: number): EVRScreenshotError {
+  HookScreenshot(pSupportedTypes: EVRScreenshotType[], numTypes: number): EVRScreenshotError {
     if (this.ptr === null) throw new Error("Invalid pointer");
     const vr = new Deno.UnsafePointerView(this.ptr);
     const vtablePtr = Deno.UnsafePointer.create(vr.getBigUint64(0));
@@ -15763,7 +15911,7 @@ export class IVRInput {
     }
   ]
 }*/
-  UpdateActionState(pSets: VRActiveActionSet_t, unSizeOfVRSelectedActionSet_t: number, unSetCount: number): [EVRInputError, VRActiveActionSet_t] {
+  UpdateActionState(pSets: VRActiveActionSet_t[], unSizeOfVRSelectedActionSet_t: number, unSetCount: number): [EVRInputError, VRActiveActionSet_t] {
     if (this.ptr === null) throw new Error("Invalid pointer");
     const vr = new Deno.UnsafePointerView(this.ptr);
     const vtablePtr = Deno.UnsafePointer.create(vr.getBigUint64(0));
@@ -16117,7 +16265,7 @@ export class IVRInput {
     }
   ]
 }*/
-  GetBoneHierarchy(action: VRActionHandle_t, pParentIndices: BoneIndex_t, unIndexArayCount: number): [EVRInputError, BoneIndex_t] {
+  GetBoneHierarchy(action: VRActionHandle_t, pParentIndices: BoneIndex_t[], unIndexArayCount: number): [EVRInputError, BoneIndex_t] {
     if (this.ptr === null) throw new Error("Invalid pointer");
     const vr = new Deno.UnsafePointerView(this.ptr);
     const vtablePtr = Deno.UnsafePointer.create(vr.getBigUint64(0));
@@ -16209,7 +16357,7 @@ export class IVRInput {
     }
   ]
 }*/
-  GetSkeletalReferenceTransforms(action: VRActionHandle_t, eTransformSpace: EVRSkeletalTransformSpace, eReferencePose: EVRSkeletalReferencePose, pTransformArray: VRBoneTransform_t, unTransformArrayCount: number): [EVRInputError, VRBoneTransform_t] {
+  GetSkeletalReferenceTransforms(action: VRActionHandle_t, eTransformSpace: EVRSkeletalTransformSpace, eReferencePose: EVRSkeletalReferencePose, pTransformArray: VRBoneTransform_t[], unTransformArrayCount: number): [EVRInputError, VRBoneTransform_t] {
     if (this.ptr === null) throw new Error("Invalid pointer");
     const vr = new Deno.UnsafePointerView(this.ptr);
     const vtablePtr = Deno.UnsafePointer.create(vr.getBigUint64(0));
@@ -16288,7 +16436,7 @@ export class IVRInput {
     }
   ]
 }*/
-  GetSkeletalBoneData(action: VRActionHandle_t, eTransformSpace: EVRSkeletalTransformSpace, eMotionRange: EVRSkeletalMotionRange, pTransformArray: VRBoneTransform_t, unTransformArrayCount: number): [EVRInputError, VRBoneTransform_t] {
+  GetSkeletalBoneData(action: VRActionHandle_t, eTransformSpace: EVRSkeletalTransformSpace, eMotionRange: EVRSkeletalMotionRange, pTransformArray: VRBoneTransform_t[], unTransformArrayCount: number): [EVRInputError, VRBoneTransform_t] {
     if (this.ptr === null) throw new Error("Invalid pointer");
     const vr = new Deno.UnsafePointerView(this.ptr);
     const vtablePtr = Deno.UnsafePointer.create(vr.getBigUint64(0));
@@ -16428,7 +16576,7 @@ export class IVRInput {
     }
   ]
 }*/
-  DecompressSkeletalBoneData(pvCompressedBuffer: Uint8Array, unCompressedBufferSize: number, eTransformSpace: EVRSkeletalTransformSpace, pTransformArray: VRBoneTransform_t, unTransformArrayCount: number): [EVRInputError, Uint8Array, VRBoneTransform_t] {
+  DecompressSkeletalBoneData(pvCompressedBuffer: Uint8Array, unCompressedBufferSize: number, eTransformSpace: EVRSkeletalTransformSpace, pTransformArray: VRBoneTransform_t[], unTransformArrayCount: number): [EVRInputError, Uint8Array, VRBoneTransform_t] {
     if (this.ptr === null) throw new Error("Invalid pointer");
     const vr = new Deno.UnsafePointerView(this.ptr);
     const vtablePtr = Deno.UnsafePointer.create(vr.getBigUint64(0));
@@ -16530,7 +16678,7 @@ export class IVRInput {
     }
   ]
 }*/
-  GetActionOrigins(actionSetHandle: VRActionSetHandle_t, digitalActionHandle: VRActionHandle_t, originsOut: VRInputValueHandle_t, originOutCount: number): [EVRInputError, VRInputValueHandle_t] {
+  GetActionOrigins(actionSetHandle: VRActionSetHandle_t, digitalActionHandle: VRActionHandle_t, originsOut: VRInputValueHandle_t[], originOutCount: number): [EVRInputError, VRInputValueHandle_t] {
     if (this.ptr === null) throw new Error("Invalid pointer");
     const vr = new Deno.UnsafePointerView(this.ptr);
     const vtablePtr = Deno.UnsafePointer.create(vr.getBigUint64(0));
@@ -16666,7 +16814,7 @@ export class IVRInput {
     }
   ]
 }*/
-  GetActionBindingInfo(action: VRActionHandle_t, pOriginInfo: InputBindingInfo_t, unBindingInfoSize: number, unBindingInfoCount: number, punReturnedBindingInfoCount: number): [EVRInputError, InputBindingInfo_t, number] {
+  GetActionBindingInfo(action: VRActionHandle_t, pOriginInfo: InputBindingInfo_t[], unBindingInfoSize: number, unBindingInfoCount: number, punReturnedBindingInfoCount: number): [EVRInputError, InputBindingInfo_t, number] {
     if (this.ptr === null) throw new Error("Invalid pointer");
     const vr = new Deno.UnsafePointerView(this.ptr);
     const vtablePtr = Deno.UnsafePointer.create(vr.getBigUint64(0));
@@ -16762,7 +16910,7 @@ export class IVRInput {
     }
   ]
 }*/
-  ShowBindingsForActionSet(pSets: VRActiveActionSet_t, unSizeOfVRSelectedActionSet_t: number, unSetCount: number, originToHighlight: VRInputValueHandle_t): [EVRInputError, VRActiveActionSet_t] {
+  ShowBindingsForActionSet(pSets: VRActiveActionSet_t[], unSizeOfVRSelectedActionSet_t: number, unSetCount: number, originToHighlight: VRInputValueHandle_t): [EVRInputError, VRActiveActionSet_t] {
     if (this.ptr === null) throw new Error("Invalid pointer");
     const vr = new Deno.UnsafePointerView(this.ptr);
     const vtablePtr = Deno.UnsafePointer.create(vr.getBigUint64(0));

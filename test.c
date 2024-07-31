@@ -20,12 +20,12 @@ void VR_ShutdownInternal();
 intptr_t VR_GetGenericInterface(const char *pchInterfaceVersion, EVRInitError *peError);
 
 // Function to get OpenVR function table
-void * CNOVRGetOpenVRFunctionTable(const char * interfacename)
+void *CNOVRGetOpenVRFunctionTable(const char *interfacename)
 {
     EVRInitError e;
     char fnTableName[128];
     snprintf(fnTableName, sizeof(fnTableName), "FnTable:%s", interfacename);
-    void * ret = (void *)VR_GetGenericInterface(fnTableName, &e);
+    void *ret = (void *)VR_GetGenericInterface(fnTableName, &e);
     printf("Getting System FnTable: %s = %p (%d)\n", fnTableName, ret, e);
     if (!ret)
     {
@@ -36,12 +36,15 @@ void * CNOVRGetOpenVRFunctionTable(const char * interfacename)
 }
 
 // OpenVR interfaces
-struct VR_IVRSystem_FnTable * oSystem;
-struct VR_IVRInput_FnTable * oInput;
+struct VR_IVRSystem_FnTable *oSystem;
+struct VR_IVRInput_FnTable *oInput;
 
-void PrintMatrix34(const struct HmdMatrix34_t* matrix) {
-    for (int i = 0; i < 3; i++) {
-        for (int j = 0; j < 4; j++) {
+void PrintMatrix34(const struct HmdMatrix34_t *matrix)
+{
+    for (int i = 0; i < 3; i++)
+    {
+        for (int j = 0; j < 4; j++)
+        {
             printf("%f ", matrix->m[i][j]);
         }
         printf("\n");
@@ -107,7 +110,10 @@ int main()
         // Get pose data
         InputPoseActionData_t poseDataLeft = {0};
         InputPoseActionData_t poseDataRight = {0};
-        
+        printf("handle = %d\n", handPoseLeftHandle);
+        printf("sizeof = %d\n", sizeof(InputPoseActionData_t));
+        printf("invalid = %d\n", k_ulInvalidInputValueHandle);
+        printf("posedata = %d\n", &poseDataLeft);
         oInput->GetPoseActionDataRelativeToNow(handPoseLeftHandle, ETrackingUniverseOrigin_TrackingUniverseStanding, 0, &poseDataLeft, sizeof(InputPoseActionData_t), k_ulInvalidInputValueHandle);
         oInput->GetPoseActionDataRelativeToNow(handPoseRightHandle, ETrackingUniverseOrigin_TrackingUniverseStanding, 0, &poseDataRight, sizeof(InputPoseActionData_t), k_ulInvalidInputValueHandle);
 
@@ -133,7 +139,7 @@ int main()
         printf("Left trigger: %s\n", triggerDataLeft.bState ? "Pressed" : "Released");
         printf("Right trigger: %s\n", triggerDataRight.bState ? "Pressed" : "Released");
 
-        Sleep(100);  // Sleep for 100ms
+        Sleep(100); // Sleep for 100ms
     }
 
     VR_ShutdownInternal();

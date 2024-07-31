@@ -1,3 +1,4 @@
+// deno-lint-ignore-file no-case-declarations
 // codegen.ts
 
 let globalStructs: any[] = [];
@@ -106,17 +107,29 @@ function getTypeByteLength(fieldType: string, structMap: Map<string, any>): numb
             return size;
         }
     }
+    if (definedTypes.has(fieldType)) {
+        return getTypeByteLength(definedTypes.get(fieldType)!, structMap);
+    }
 
     switch (fieldType) {
         case "float": return 4;
         case "double": return 8;
+        case "number": return 4;
         case "int": return 4;
+        case "bigint": return 8;
+        case "int32_t": return 4;
+        case "uint16_t": return 2;
         case "uint32_t": return 4;
+        case "uint64_t": return 8;
         case "_Bool": return 1;
         case "enum vr::ETrackingResult": return 4;
         default:
             // Assume it's a custom struct
-            return structMap.has(fieldType) ? calculateByteLength(structMap.get(fieldType).fields, structMap) : 0;
+            if (fieldType.startsWith("enum ")) return 4;
+            if (fieldType.endsWith("*")) return 8;
+            const a = structMap.has(fieldType) ? calculateByteLength(structMap.get(fieldType).fields, structMap) : 0;
+            if (a == 0) debugger;
+            return a
     }
 }
 function getInitialValue(fieldType: string, structMap: Map<string, any>): string {
@@ -133,13 +146,31 @@ function getInitialValue(fieldType: string, structMap: Map<string, any>): string
         case "float":
         case "double":
         case "int":
+        case "number":
+            return "0";
+        case "bigint": 
+            return "0n";
+        case "uint16_t":
+            return "0";
+        case "int16_t":
+            return "0";
+        case "int32_t":
+            return "0";
         case "uint32_t":
             return "0";
+        case "uint64_t":
+            return "0n";
         case "_Bool":
             return "false";
         case "enum vr::ETrackingResult":
             return "0";
         default:
+            if (definedTypes.has(fieldType)) {
+                return `${getInitialValue(definedTypes.get(fieldType)!, new Map())}`;
+            }
+            if (fieldType.startsWith("enum")) return "0";
+            const a = structMap.has(fieldType) ? `new ${fieldType}()` : "null";
+            if (a == "null") debugger;
             return structMap.has(fieldType) ? `new ${fieldType}()` : "null";
     }
 }
@@ -467,18 +498,35 @@ function convertDefinedType(fieldType: string, structMap: Map<string, any>): str
             return `${baseType}${'[]'.repeat(dimensions.length)}`;
         }
     }
+    if (definedTypes.has(fieldType)) {
+        return definedTypes.get(fieldType)!;
+    }
 
     switch (fieldType) {
         case "float":
         case "double":
         case "int":
+        case "int32_t":
+            return "number";
+        case "uint16_t":
+            return "number";
         case "uint32_t":
             return "number";
+        case "uint64_t":
+            return "bigint";
         case "_Bool":
             return "boolean";
         case "enum vr::ETrackingResult":
             return "ETrackingResult";
         default:
+            if (fieldType.startsWith("enum")) {
+                return fieldType.replace("enum ", "").replace("vr::", "");
+            }
+            if (fieldType.endsWith("*")) {
+                return "Uint8Array";
+            }
+            const a = structMap.has(fieldType) ? fieldType : "any";
+            if (a == "any") debugger;
             return structMap.has(fieldType) ? fieldType : "any";
     }
 }
@@ -859,40 +907,70 @@ function generateFromBufferCode(fieldName: string, fieldType: string, objectName
             code += generateNestedArrayFromBufferCode(fieldName, baseType, dimensions, objectName, offsetVar, structMap);
         }
     } else {
-        switch (fieldType) {
-            case "float":
-                code += `    ${objectName}.${fieldName} = view.getFloat32(${offsetVar}, true);\n`;
-                code += `    ${offsetVar} += 4;\n`;
-                break;
-            case "double":
-                code += `    ${objectName}.${fieldName} = view.getFloat64(${offsetVar}, true);\n`;
-                code += `    ${offsetVar} += 8;\n`;
-                break;
-            case "int":
-            case "uint32_t":
-                code += `    ${objectName}.${fieldName} = view.getInt32(${offsetVar}, true);\n`;
-                code += `    ${offsetVar} += 4;\n`;
-                break;
-            case "uint64_t":
-                code += `    ${objectName}.${fieldName} = view.getBigUint64(${offsetVar}, true);\n`;
-                code += `    ${offsetVar} += 8;\n`;
-                break;
-            case "_Bool":
-                code += `    ${objectName}.${fieldName} = view.getUint8(${offsetVar}) !== 0;\n`;
-                code += `    ${offsetVar} += 1;\n`;
-                break;
-            case "enum vr::ETrackingResult":
-                code += `    ${objectName}.${fieldName} = view.getInt32(${offsetVar}, true);\n`;
-                code += `    ${offsetVar} += 4;\n`;
-                break;
-            default:
-                if (structMap.has(fieldType)) {
-                    code += `    ${objectName}.${fieldName} = ${fieldType}.fromBuffer(buffer, offset + ${offsetVar});\n`;
-                    code += `    ${offsetVar} += ${fieldType}.byteLength;\n`;
-                } else {
-                    code += `    // Unknown type ${fieldType} for field ${fieldName}\n`;
-                }
-                break;
+        if (fieldType.startsWith("enum ")) {
+            code += `    ${objectName}.${fieldName} = view.getInt32(${offsetVar}, true);\n`;
+            code += `    ${offsetVar} += 4;\n`;
+        }
+        else if (fieldType.endsWith("*")) {
+            code += `    ${objectName}.${fieldName} = view.getBigUint64(${offsetVar}, true);\n`;
+            code += `    ${offsetVar} += 8;\n`;
+        }
+        else {
+            switch (fieldType) {
+                case "float":
+                    code += `    ${objectName}.${fieldName} = view.getFloat32(${offsetVar}, true);\n`;
+                    code += `    ${offsetVar} += 4;\n`;
+                    break;
+                case "bigint":
+                    code += `    ${objectName}.${fieldName} = view.getBigUint64(${offsetVar}, true);\n`;
+                    code += `    ${offsetVar} += 8;\n`;
+                    break;
+                case "number":
+                    code += `    ${objectName}.${fieldName} = view.getFloat64(${offsetVar}, true);\n`;
+                    code += `    ${offsetVar} += 8;\n`;
+                    break;
+                case "double":
+                    code += `    ${objectName}.${fieldName} = view.getFloat64(${offsetVar}, true);\n`;
+                    code += `    ${offsetVar} += 8;\n`;
+                    break;
+                case "uint16_t":
+                    code += `    ${objectName}.${fieldName} = view.getUint16(${offsetVar}, true);\n`;
+                    code += `    ${offsetVar} += 2;\n`;
+                    break;
+                case "int32_t":
+                    code += `    ${objectName}.${fieldName} = view.getInt32(${offsetVar}, true);\n`;
+                    code += `    ${offsetVar} += 4;\n`;
+                    break;
+                case "uint32_t":
+                    code += `    ${objectName}.${fieldName} = view.getInt32(${offsetVar}, true);\n`;
+                    code += `    ${offsetVar} += 4;\n`;
+                    break;
+                case "uint64_t":
+                    code += `    ${objectName}.${fieldName} = view.getBigUint64(${offsetVar}, true);\n`;
+                    code += `    ${offsetVar} += 8;\n`;
+                    break;
+                case "_Bool":
+                    code += `    ${objectName}.${fieldName} = view.getUint8(${offsetVar}) !== 0;\n`;
+                    code += `    ${offsetVar} += 1;\n`;
+                    break;
+                default:
+                    if (structMap.has(fieldType)) {
+                        code += `    ${objectName}.${fieldName} = ${fieldType}.fromBuffer(buffer, offset + ${offsetVar});\n`;
+                        code += `    ${offsetVar} += ${fieldType}.byteLength;\n`;
+                    }
+                    else if (definedTypes.has(fieldType)) {
+                        code += `${generateFromBufferCode(fieldName, definedTypes.get(fieldType),objectName, offsetVar, structMap)}`;
+                    }
+                    else if (customTypes[fieldType]) {
+                        code += `    ${objectName}.${fieldName} = ${customTypes[fieldType]!}.fromBuffer(buffer, offset + ${offsetVar});\n`;
+                        code += `    ${offsetVar} += ${customTypes[fieldType]!}.byteLength;\n`;
+                    }
+                    else {
+                        code += `    // Unknown type ${fieldType} for field ${fieldName}\n`;
+                        console.log(`Unknown type: ${fieldType}`);
+                    }
+                    break;
+            }
         }
     }
 
@@ -1255,7 +1333,10 @@ function outputWrapperClasses(data: any): string {
         const params = method.params
             ? method.params.map((param: any) => {
                 const paramType = resolveType(param.paramtype, param.paramtype.includes("*"));
-                return `${param.paramname}: ${paramType}`;
+                if (param.array_count)
+                    return `${param.paramname}: ${paramType}[]`;
+                else return `${param.paramname}: ${paramType}`;
+                
             }).join(", ")
             : "";
         let returnsMultipleValues = false
@@ -1406,6 +1487,7 @@ function outputWrapperClasses(data: any): string {
             if (matches && matches[1]) {
                 const types = matches[1].split(',').map(t => t.trim());
                 const outParamTypes = types.slice(1);
+
 
                 output += `    return [result, ${outParams.map((param, index) => {
                     const paramType = outParamTypes[index];
