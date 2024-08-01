@@ -115,6 +115,7 @@ function getTypeByteLength(fieldType: string, structMap: Map<string, any>): numb
         case "float": return 4;
         case "double": return 8;
         case "number": return 4;
+        case "char": return 1;
         case "int": return 4;
         case "bigint": return 8;
         case "int32_t": return 4;
@@ -127,6 +128,9 @@ function getTypeByteLength(fieldType: string, structMap: Map<string, any>): numb
             // Assume it's a custom struct
             if (fieldType.startsWith("enum ")) return 4;
             if (fieldType.endsWith("*")) return 8;
+            if (fieldType == 'VREvent_Data_t') return 0;
+            if (fieldType == 'VROverlayIntersectionMaskPrimitive_Data_t') return 0;
+
             const a = structMap.has(fieldType) ? calculateByteLength(structMap.get(fieldType).fields, structMap) : 0;
             if (a == 0) debugger;
             return a
@@ -146,9 +150,10 @@ function getInitialValue(fieldType: string, structMap: Map<string, any>): string
         case "float":
         case "double":
         case "int":
+        case "char":
         case "number":
             return "0";
-        case "bigint": 
+        case "bigint":
             return "0n";
         case "uint16_t":
             return "0";
@@ -168,7 +173,10 @@ function getInitialValue(fieldType: string, structMap: Map<string, any>): string
             if (definedTypes.has(fieldType)) {
                 return `${getInitialValue(definedTypes.get(fieldType)!, new Map())}`;
             }
-            if (fieldType.startsWith("enum")) return "0";
+            if (fieldType.endsWith("*")) return "0n";
+            if (fieldType.startsWith("enum")) return `Object.values(${fieldType.replace("enum ", "").replace("vr::", "")})[0] as ${fieldType.replace("enum ", "").replace("vr::", "")}`;
+            if (fieldType == 'VREvent_Data_t') return "new VREvent_Data_t()";
+            if (fieldType == 'VROverlayIntersectionMaskPrimitive_Data_t') return "new VROverlayIntersectionMaskPrimitive_Data_t()";
             const a = structMap.has(fieldType) ? `new ${fieldType}()` : "null";
             if (a == "null") debugger;
             return structMap.has(fieldType) ? `new ${fieldType}()` : "null";
@@ -506,6 +514,7 @@ function convertDefinedType(fieldType: string, structMap: Map<string, any>): str
         case "float":
         case "double":
         case "int":
+        case "char":
         case "int32_t":
             return "number";
         case "uint16_t":
@@ -523,10 +532,56 @@ function convertDefinedType(fieldType: string, structMap: Map<string, any>): str
                 return fieldType.replace("enum ", "").replace("vr::", "");
             }
             if (fieldType.endsWith("*")) {
-                return "Uint8Array";
+                return "bigint";
             }
+            if (fieldType == 'VREvent_Data_t') return "VREvent_Data_t";
+            if (fieldType == 'VROverlayIntersectionMaskPrimitive_Data_t') return "VROverlayIntersectionMaskPrimitive_Data_t";
             const a = structMap.has(fieldType) ? fieldType : "any";
             if (a == "any") debugger;
+            return structMap.has(fieldType) ? fieldType : "any";
+    }
+}
+function convertBasicFFiTypeToTS(fieldType: string, structMap: Map<string, any>): string {
+    if (fieldType.includes("[")) {
+        const arrayMatch = fieldType.match(/(\w+)\s*(\[.*\])/);
+        if (arrayMatch) {
+            const baseType = convertDefinedType(arrayMatch[1], structMap);
+            const dimensions = arrayMatch[2].match(/\[(\d+)\]/g) || [];
+            return `${baseType}${'[]'.repeat(dimensions.length)}`;
+        }
+    }
+    if (definedTypes.has(fieldType)) {
+        return fieldType;
+    }
+
+    switch (fieldType) {
+        case "float":
+        case "double":
+        case "int":
+        case "char":
+        case "int32_t":
+            return "number";
+        case "uint16_t":
+            return "number";
+        case "uint32_t":
+            return "number";
+        case "uint64_t":
+            return "bigint";
+        case "_Bool":
+            return "boolean";
+        case "enum vr::ETrackingResult":
+            return "ETrackingResult";
+        default:
+            if (fieldType.startsWith("enum")) {
+                return fieldType.replace("enum ", "").replace("vr::", "");
+            }
+            if (fieldType.endsWith("*")) {
+                return "bigint";
+            }
+            if (fieldType == 'VREvent_Data_t') return "VREvent_Data_t";
+            if (fieldType == 'VROverlayIntersectionMaskPrimitive_Data_t') return "VROverlayIntersectionMaskPrimitive_Data_t";
+            const a = structMap.has(fieldType) ? fieldType : "any";
+            //if (a == "any") debugger;
             return structMap.has(fieldType) ? fieldType : "any";
     }
 }
@@ -694,6 +749,9 @@ function convertConstType(type: string): string {
         return "Deno.PointerValue";
     }
 
+    const a = typeMap[type] || "any"
+    if (a === "any") debugger
+
     return typeMap[type] || "any"; // Default to any for unknown types
 }
 function calculateStructSize(structName: string): number {
@@ -848,7 +906,10 @@ function outputStructs(data: any): string {
     return output;
 }
 function outputStructs_generateClassDefinition(structName: string, structDef: any, structMap: Map<string, any>): string {
-    let output = `export class ${structName} {\n`;
+    let output = ""
+
+    output += `/*${JSON.stringify(structDef, null, 2)}*/\n`;
+    output += `export class ${structName} {\n`;
 
     // Static byteLength
     output += `  static readonly byteLength = ${calculateByteLength(structDef.fields, structMap)};\n\n`;
@@ -856,7 +917,7 @@ function outputStructs_generateClassDefinition(structName: string, structDef: an
     // Fields
     for (const field of structDef.fields) {
         const fieldType = getFieldType(field.fieldtype);
-        const typeString = convertDefinedType(fieldType, structMap);
+        const typeString = convertBasicFFiTypeToTS(fieldType, structMap);
         output += `  ${field.fieldname}: ${typeString};\n`;
     }
 
@@ -881,6 +942,18 @@ function outputStructs_generateClassDefinition(structName: string, structDef: an
     }
 
     output += `    return result;\n`;
+    output += `  }\n\n`;
+
+    // toBuffer method
+    output += `  toBuffer(buffer: ArrayBuffer, offset: number): void {\n`;
+    output += `    const view = new DataView(buffer, offset);\n`;
+    output += `    let currentOffset = 0;\n\n`;
+
+    for (const field of structDef.fields) {
+        const fieldType = getFieldType(field.fieldtype);
+        output += generateToBufferCode(field.fieldname, fieldType, "this", "currentOffset", structMap);
+    }
+
     output += `  }\n`;
 
     output += "}\n\n";
@@ -895,6 +968,110 @@ function generateNestedArrayInitializer(baseType: string, dimensions: string[], 
     const size = parseInt(dimensions[0].slice(1, -1));
     const inner = generateNestedArrayInitializer(baseType, dimensions.slice(1), structMap);
     return `Array(${size}).fill(null).map(() => ${inner})`;
+}
+function generateToBufferCode(fieldName: string, fieldType: string, objectName: string, offsetVar: string, structMap: Map<string, any>): string {
+    let code = "";
+
+    if (fieldType.includes("[")) {
+        const arrayMatch = fieldType.match(/(\w+)\s*(\[.*\])/);
+        if (arrayMatch) {
+            const baseType = arrayMatch[1];
+            const dimensions = arrayMatch[2].match(/\[(\d+)\]/g) || [];
+            code += generateNestedArrayToBufferCode(fieldName, baseType, dimensions, objectName, offsetVar, structMap);
+        }
+    } else {
+        if (fieldType.startsWith("enum ")) {
+            code += `    view.setInt32(${offsetVar}, ${objectName}.${fieldName}, true);\n`;
+            code += `    ${offsetVar} += 4;\n`;
+        }
+        else if (fieldType.endsWith("*")) {
+            code += `    view.setBigUint64(${offsetVar}, ${objectName}.${fieldName}, true);\n`;
+            code += `    ${offsetVar} += 8;\n`;
+        }
+        else {
+            switch (fieldType) {
+                case "float":
+                    code += `    view.setFloat32(${offsetVar}, ${objectName}.${fieldName}, true);\n`;
+                    code += `    ${offsetVar} += 4;\n`;
+                    break;
+                case "bigint":
+                    code += `    view.setBigUint64(${offsetVar}, ${objectName}.${fieldName}, true);\n`;
+                    code += `    ${offsetVar} += 8;\n`;
+                    break;
+                case "number":
+                    code += `    view.setFloat64(${offsetVar}, ${objectName}.${fieldName}, true);\n`;
+                    code += `    ${offsetVar} += 8;\n`;
+                    break;
+                case "double":
+                    code += `    view.setFloat64(${offsetVar}, ${objectName}.${fieldName}, true);\n`;
+                    code += `    ${offsetVar} += 8;\n`;
+                    break;
+                case "uint16_t":
+                    code += `    view.setUint16(${offsetVar}, ${objectName}.${fieldName}, true);\n`;
+                    code += `    ${offsetVar} += 2;\n`;
+                    break;
+                case "int32_t":
+                    code += `    view.setInt32(${offsetVar}, ${objectName}.${fieldName}, true);\n`;
+                    code += `    ${offsetVar} += 4;\n`;
+                    break;
+                case "uint32_t":
+                    code += `    view.setUint32(${offsetVar}, ${objectName}.${fieldName}, true);\n`;
+                    code += `    ${offsetVar} += 4;\n`;
+                    break;
+                case "uint64_t":
+                    code += `    view.setBigUint64(${offsetVar}, ${objectName}.${fieldName}, true);\n`;
+                    code += `    ${offsetVar} += 8;\n`;
+                    break;
+                case "_Bool":
+                    code += `    view.setUint8(${offsetVar}, ${objectName}.${fieldName} ? 1 : 0);\n`;
+                    code += `    ${offsetVar} += 1;\n`;
+                    break;
+                default:
+                    if (structMap.has(fieldType)) {
+                        code += `    ${objectName}.${fieldName}.toBuffer(buffer, offset + ${offsetVar});\n`;
+                        code += `    ${offsetVar} += ${fieldType}.byteLength;\n`;
+                    }
+                    else if (definedTypes.has(fieldType)) {
+                        code += `${generateToBufferCode(fieldName, definedTypes.get(fieldType), objectName, offsetVar, structMap)}`;
+                    }
+                    else if (customTypes[fieldType]) {
+                        code += `    ${objectName}.${fieldName}.toBuffer(buffer, offset + ${offsetVar});\n`;
+                        code += `    ${offsetVar} += ${customTypes[fieldType]!}.byteLength;\n`;
+                    }
+                    else {
+                        code += `    // Unknown type ${fieldType} for field ${fieldName}\n`;
+                        console.log(`Unknown type: ${fieldType}`);
+                    }
+                    break;
+            }
+        }
+    }
+
+    return code;
+}
+
+function generateNestedArrayToBufferCode(fieldName: string, baseType: string, dimensions: string[], objectName: string, offsetVar: string, structMap: Map<string, any>): string {
+    let code = "";
+    let indent = "    ";
+    let currentField = fieldName;
+
+    for (let i = 0; i < dimensions.length; i++) {
+        const size = parseInt(dimensions[i].slice(1, -1));
+        code += `${indent}for (let i${i} = 0; i${i} < ${size}; i${i}++) {\n`;
+        indent += "  ";
+        if (i < dimensions.length - 1) {
+            currentField += `[i${i}]`;
+        }
+    }
+
+    code += generateToBufferCode(`${currentField}[i${dimensions.length - 1}]`, baseType, objectName, offsetVar, structMap);
+
+    for (let i = 0; i < dimensions.length; i++) {
+        indent = indent.slice(2);
+        code += `${indent}}\n`;
+    }
+
+    return code;
 }
 function generateFromBufferCode(fieldName: string, fieldType: string, objectName: string, offsetVar: string, structMap: Map<string, any>): string {
     let code = "";
@@ -959,7 +1136,7 @@ function generateFromBufferCode(fieldName: string, fieldType: string, objectName
                         code += `    ${offsetVar} += ${fieldType}.byteLength;\n`;
                     }
                     else if (definedTypes.has(fieldType)) {
-                        code += `${generateFromBufferCode(fieldName, definedTypes.get(fieldType),objectName, offsetVar, structMap)}`;
+                        code += `${generateFromBufferCode(fieldName, definedTypes.get(fieldType), objectName, offsetVar, structMap)}`;
                     }
                     else if (customTypes[fieldType]) {
                         code += `    ${objectName}.${fieldName} = ${customTypes[fieldType]!}.fromBuffer(buffer, offset + ${offsetVar});\n`;
@@ -1287,6 +1464,9 @@ function generateParameterHandling(method: any): string {
             }
             output += `    const ${param.paramname}Buffer = new ArrayBuffer(${size});\n`;
             output += `    const ${param.paramname}View = new DataView(${param.paramname}Buffer);\n`;
+            if (!isOutParam) {
+                output += `    ${param.paramname}.toBuffer(${param.paramname}Buffer, 0);\n`;
+            }
             // Populate the struct, even for input parameters
             output += generateStructPopulationCode(structInfo, param.paramname);
 
@@ -1336,7 +1516,7 @@ function outputWrapperClasses(data: any): string {
                 if (param.array_count)
                     return `${param.paramname}: ${paramType}[]`;
                 else return `${param.paramname}: ${paramType}`;
-                
+
             }).join(", ")
             : "";
         let returnsMultipleValues = false
@@ -1473,6 +1653,8 @@ function outputWrapperClasses(data: any): string {
                     return `${param.paramname}Ptr`;
                 } else if (param.paramtype === "bool") {
                     return `${param.paramname} ? 1 : 0`;
+                } else if (isStructType(param.paramtype) && !param.paramtype.includes("*")) {
+                    return `${param.paramname}Buffer`;
                 } else {
                     return param.paramname;
                 }
@@ -1480,6 +1662,16 @@ function outputWrapperClasses(data: any): string {
             : "";
 
         output += `    const result = func.call(this.ptr${callArgs ? ", " + callArgs : ""});\n`;
+        if (returnsMultipleValues) {
+            output += `    // Read output parameters\n`;
+            outParams.forEach((param, index) => {
+                const paramType = method.params.find((p: any) => p.paramname === param).paramtype;
+                const structInfo = globalStructs.find(s => s.struct === `vr::${paramType.replace('*', '')}`);
+                if (structInfo) {
+                    output += `    ${param} = ${paramType.replace('*', '')}.fromBuffer(${param}Buffer, 0);\n`;
+                }
+            });
+        }
 
         if (returnsMultipleValues) {
             console.log(returnType);
@@ -1501,7 +1693,8 @@ function outputWrapperClasses(data: any): string {
                     }
                 }).join(", ")}];\n`;
             } else {
-                output += `    return [result, ${outParams.map(param => `${param}Buffer`).join(", ")}];\n`;
+                output += `    return [result, ${outParams.join(", ")}];\n`;
+                //output += `    return [result, ${outParams.map(param => `${param}Buffer`).join(", ")}];\n`;
             }
 
         } else if (isStructType(realReturnType)) {
@@ -1550,7 +1743,7 @@ async function generateBindings() {
         output += "//#endregion\n"
         output += "//#region Structs\n"
         output += outputStructs(data);
-        //output += outputSpecialStructs();
+        output += outputSpecialStructs();
         output += "//#endregion\n"
         output += "//#region Methods\n"
         output += outputMethods(data);

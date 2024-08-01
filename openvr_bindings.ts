@@ -1825,6 +1825,15 @@ export const IVRBlockQueue_Version: string = "IVRBlockQueue_005";
 
 //#endregion
 //#region Structs
+/*{
+  "struct": "vr::HmdMatrix34_t",
+  "fields": [
+    {
+      "fieldname": "m",
+      "fieldtype": "float [3][4]"
+    }
+  ]
+}*/
 export class HmdMatrix34_t {
   static readonly byteLength = 48;
 
@@ -1850,8 +1859,29 @@ export class HmdMatrix34_t {
     }
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    for (let i0 = 0; i0 < 3; i0++) {
+      for (let i1 = 0; i1 < 4; i1++) {
+    view.setFloat32(currentOffset, this.m[i0][i1], true);
+    currentOffset += 4;
+      }
+    }
+  }
 }
 
+/*{
+  "struct": "vr::HmdMatrix33_t",
+  "fields": [
+    {
+      "fieldname": "m",
+      "fieldtype": "float [3][3]"
+    }
+  ]
+}*/
 export class HmdMatrix33_t {
   static readonly byteLength = 36;
 
@@ -1877,8 +1907,29 @@ export class HmdMatrix33_t {
     }
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    for (let i0 = 0; i0 < 3; i0++) {
+      for (let i1 = 0; i1 < 3; i1++) {
+    view.setFloat32(currentOffset, this.m[i0][i1], true);
+    currentOffset += 4;
+      }
+    }
+  }
 }
 
+/*{
+  "struct": "vr::HmdMatrix44_t",
+  "fields": [
+    {
+      "fieldname": "m",
+      "fieldtype": "float [4][4]"
+    }
+  ]
+}*/
 export class HmdMatrix44_t {
   static readonly byteLength = 64;
 
@@ -1904,8 +1955,29 @@ export class HmdMatrix44_t {
     }
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    for (let i0 = 0; i0 < 4; i0++) {
+      for (let i1 = 0; i1 < 4; i1++) {
+    view.setFloat32(currentOffset, this.m[i0][i1], true);
+    currentOffset += 4;
+      }
+    }
+  }
 }
 
+/*{
+  "struct": "vr::HmdVector3_t",
+  "fields": [
+    {
+      "fieldname": "v",
+      "fieldtype": "float [3]"
+    }
+  ]
+}*/
 export class HmdVector3_t {
   static readonly byteLength = 12;
 
@@ -1927,8 +1999,27 @@ export class HmdVector3_t {
     }
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    for (let i0 = 0; i0 < 3; i0++) {
+    view.setFloat32(currentOffset, this.v[i0], true);
+    currentOffset += 4;
+    }
+  }
 }
 
+/*{
+  "struct": "vr::HmdVector4_t",
+  "fields": [
+    {
+      "fieldname": "v",
+      "fieldtype": "float [4]"
+    }
+  ]
+}*/
 export class HmdVector4_t {
   static readonly byteLength = 16;
 
@@ -1950,8 +2041,27 @@ export class HmdVector4_t {
     }
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    for (let i0 = 0; i0 < 4; i0++) {
+    view.setFloat32(currentOffset, this.v[i0], true);
+    currentOffset += 4;
+    }
+  }
 }
 
+/*{
+  "struct": "vr::HmdVector3d_t",
+  "fields": [
+    {
+      "fieldname": "v",
+      "fieldtype": "double [3]"
+    }
+  ]
+}*/
 export class HmdVector3d_t {
   static readonly byteLength = 24;
 
@@ -1973,8 +2083,27 @@ export class HmdVector3d_t {
     }
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    for (let i0 = 0; i0 < 3; i0++) {
+    view.setFloat64(currentOffset, this.v[i0], true);
+    currentOffset += 8;
+    }
+  }
 }
 
+/*{
+  "struct": "vr::HmdVector2_t",
+  "fields": [
+    {
+      "fieldname": "v",
+      "fieldtype": "float [2]"
+    }
+  ]
+}*/
 export class HmdVector2_t {
   static readonly byteLength = 8;
 
@@ -1996,8 +2125,39 @@ export class HmdVector2_t {
     }
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    for (let i0 = 0; i0 < 2; i0++) {
+    view.setFloat32(currentOffset, this.v[i0], true);
+    currentOffset += 4;
+    }
+  }
 }
 
+/*{
+  "struct": "vr::HmdQuaternion_t",
+  "fields": [
+    {
+      "fieldname": "w",
+      "fieldtype": "double"
+    },
+    {
+      "fieldname": "x",
+      "fieldtype": "double"
+    },
+    {
+      "fieldname": "y",
+      "fieldtype": "double"
+    },
+    {
+      "fieldname": "z",
+      "fieldtype": "double"
+    }
+  ]
+}*/
 export class HmdQuaternion_t {
   static readonly byteLength = 32;
 
@@ -2028,8 +2188,43 @@ export class HmdQuaternion_t {
     currentOffset += 8;
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    view.setFloat64(currentOffset, this.w, true);
+    currentOffset += 8;
+    view.setFloat64(currentOffset, this.x, true);
+    currentOffset += 8;
+    view.setFloat64(currentOffset, this.y, true);
+    currentOffset += 8;
+    view.setFloat64(currentOffset, this.z, true);
+    currentOffset += 8;
+  }
 }
 
+/*{
+  "struct": "vr::HmdQuaternionf_t",
+  "fields": [
+    {
+      "fieldname": "w",
+      "fieldtype": "float"
+    },
+    {
+      "fieldname": "x",
+      "fieldtype": "float"
+    },
+    {
+      "fieldname": "y",
+      "fieldtype": "float"
+    },
+    {
+      "fieldname": "z",
+      "fieldtype": "float"
+    }
+  ]
+}*/
 export class HmdQuaternionf_t {
   static readonly byteLength = 16;
 
@@ -2060,8 +2255,43 @@ export class HmdQuaternionf_t {
     currentOffset += 4;
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    view.setFloat32(currentOffset, this.w, true);
+    currentOffset += 4;
+    view.setFloat32(currentOffset, this.x, true);
+    currentOffset += 4;
+    view.setFloat32(currentOffset, this.y, true);
+    currentOffset += 4;
+    view.setFloat32(currentOffset, this.z, true);
+    currentOffset += 4;
+  }
 }
 
+/*{
+  "struct": "vr::HmdColor_t",
+  "fields": [
+    {
+      "fieldname": "r",
+      "fieldtype": "float"
+    },
+    {
+      "fieldname": "g",
+      "fieldtype": "float"
+    },
+    {
+      "fieldname": "b",
+      "fieldtype": "float"
+    },
+    {
+      "fieldname": "a",
+      "fieldtype": "float"
+    }
+  ]
+}*/
 export class HmdColor_t {
   static readonly byteLength = 16;
 
@@ -2092,8 +2322,31 @@ export class HmdColor_t {
     currentOffset += 4;
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    view.setFloat32(currentOffset, this.r, true);
+    currentOffset += 4;
+    view.setFloat32(currentOffset, this.g, true);
+    currentOffset += 4;
+    view.setFloat32(currentOffset, this.b, true);
+    currentOffset += 4;
+    view.setFloat32(currentOffset, this.a, true);
+    currentOffset += 4;
+  }
 }
 
+/*{
+  "struct": "vr::HmdQuad_t",
+  "fields": [
+    {
+      "fieldname": "vCorners",
+      "fieldtype": "struct vr::HmdVector3_t [4]"
+    }
+  ]
+}*/
 export class HmdQuad_t {
   static readonly byteLength = 48;
 
@@ -2115,8 +2368,31 @@ export class HmdQuad_t {
     }
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    for (let i0 = 0; i0 < 4; i0++) {
+    this.vCorners[i0].toBuffer(buffer, offset + currentOffset);
+    currentOffset += HmdVector3_t.byteLength;
+    }
+  }
 }
 
+/*{
+  "struct": "vr::HmdRect2_t",
+  "fields": [
+    {
+      "fieldname": "vTopLeft",
+      "fieldtype": "struct vr::HmdVector2_t"
+    },
+    {
+      "fieldname": "vBottomRight",
+      "fieldtype": "struct vr::HmdVector2_t"
+    }
+  ]
+}*/
 export class HmdRect2_t {
   static readonly byteLength = 16;
 
@@ -2139,8 +2415,31 @@ export class HmdRect2_t {
     currentOffset += HmdVector2_t.byteLength;
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    this.vTopLeft.toBuffer(buffer, offset + currentOffset);
+    currentOffset += HmdVector2_t.byteLength;
+    this.vBottomRight.toBuffer(buffer, offset + currentOffset);
+    currentOffset += HmdVector2_t.byteLength;
+  }
 }
 
+/*{
+  "struct": "vr::VRBoneTransform_t",
+  "fields": [
+    {
+      "fieldname": "position",
+      "fieldtype": "struct vr::HmdVector4_t"
+    },
+    {
+      "fieldname": "orientation",
+      "fieldtype": "struct vr::HmdQuaternionf_t"
+    }
+  ]
+}*/
 export class VRBoneTransform_t {
   static readonly byteLength = 32;
 
@@ -2163,8 +2462,35 @@ export class VRBoneTransform_t {
     currentOffset += HmdQuaternionf_t.byteLength;
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    this.position.toBuffer(buffer, offset + currentOffset);
+    currentOffset += HmdVector4_t.byteLength;
+    this.orientation.toBuffer(buffer, offset + currentOffset);
+    currentOffset += HmdQuaternionf_t.byteLength;
+  }
 }
 
+/*{
+  "struct": "vr::DistortionCoordinates_t",
+  "fields": [
+    {
+      "fieldname": "rfRed",
+      "fieldtype": "float [2]"
+    },
+    {
+      "fieldname": "rfGreen",
+      "fieldtype": "float [2]"
+    },
+    {
+      "fieldname": "rfBlue",
+      "fieldtype": "float [2]"
+    }
+  ]
+}*/
 export class DistortionCoordinates_t {
   static readonly byteLength = 24;
 
@@ -2200,19 +2526,54 @@ export class DistortionCoordinates_t {
     }
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    for (let i0 = 0; i0 < 2; i0++) {
+    view.setFloat32(currentOffset, this.rfRed[i0], true);
+    currentOffset += 4;
+    }
+    for (let i0 = 0; i0 < 2; i0++) {
+    view.setFloat32(currentOffset, this.rfGreen[i0], true);
+    currentOffset += 4;
+    }
+    for (let i0 = 0; i0 < 2; i0++) {
+    view.setFloat32(currentOffset, this.rfBlue[i0], true);
+    currentOffset += 4;
+    }
+  }
 }
 
+/*{
+  "struct": "vr::Texture_t",
+  "fields": [
+    {
+      "fieldname": "handle",
+      "fieldtype": "void *"
+    },
+    {
+      "fieldname": "eType",
+      "fieldtype": "enum vr::ETextureType"
+    },
+    {
+      "fieldname": "eColorSpace",
+      "fieldtype": "enum vr::EColorSpace"
+    }
+  ]
+}*/
 export class Texture_t {
   static readonly byteLength = 16;
 
-  handle: Uint8Array;
+  handle: bigint;
   eType: ETextureType;
   eColorSpace: EColorSpace;
 
   constructor() {
-    this.handle = null;
-    this.eType = 0;
-    this.eColorSpace = 0;
+    this.handle = 0n;
+    this.eType = Object.values(ETextureType)[0] as ETextureType;
+    this.eColorSpace = Object.values(EColorSpace)[0] as EColorSpace;
   }
 
   static fromBuffer(buffer: ArrayBuffer, offset: number): Texture_t {
@@ -2228,8 +2589,41 @@ export class Texture_t {
     currentOffset += 4;
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    view.setBigUint64(currentOffset, this.handle, true);
+    currentOffset += 8;
+    view.setInt32(currentOffset, this.eType, true);
+    currentOffset += 4;
+    view.setInt32(currentOffset, this.eColorSpace, true);
+    currentOffset += 4;
+  }
 }
 
+/*{
+  "struct": "vr::VRTextureBounds_t",
+  "fields": [
+    {
+      "fieldname": "uMin",
+      "fieldtype": "float"
+    },
+    {
+      "fieldname": "vMin",
+      "fieldtype": "float"
+    },
+    {
+      "fieldname": "uMax",
+      "fieldtype": "float"
+    },
+    {
+      "fieldname": "vMax",
+      "fieldtype": "float"
+    }
+  ]
+}*/
 export class VRTextureBounds_t {
   static readonly byteLength = 16;
 
@@ -2260,8 +2654,31 @@ export class VRTextureBounds_t {
     currentOffset += 4;
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    view.setFloat32(currentOffset, this.uMin, true);
+    currentOffset += 4;
+    view.setFloat32(currentOffset, this.vMin, true);
+    currentOffset += 4;
+    view.setFloat32(currentOffset, this.uMax, true);
+    currentOffset += 4;
+    view.setFloat32(currentOffset, this.vMax, true);
+    currentOffset += 4;
+  }
 }
 
+/*{
+  "struct": "vr::VRTextureWithPose_t",
+  "fields": [
+    {
+      "fieldname": "mDeviceToAbsoluteTracking",
+      "fieldtype": "struct vr::HmdMatrix34_t"
+    }
+  ]
+}*/
 export class VRTextureWithPose_t {
   static readonly byteLength = 48;
 
@@ -2280,17 +2697,42 @@ export class VRTextureWithPose_t {
     currentOffset += HmdMatrix34_t.byteLength;
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    this.mDeviceToAbsoluteTracking.toBuffer(buffer, offset + currentOffset);
+    currentOffset += HmdMatrix34_t.byteLength;
+  }
 }
 
+/*{
+  "struct": "vr::VRTextureDepthInfo_t",
+  "fields": [
+    {
+      "fieldname": "handle",
+      "fieldtype": "void *"
+    },
+    {
+      "fieldname": "mProjection",
+      "fieldtype": "struct vr::HmdMatrix44_t"
+    },
+    {
+      "fieldname": "vRange",
+      "fieldtype": "struct vr::HmdVector2_t"
+    }
+  ]
+}*/
 export class VRTextureDepthInfo_t {
   static readonly byteLength = 80;
 
-  handle: Uint8Array;
+  handle: bigint;
   mProjection: HmdMatrix44_t;
   vRange: HmdVector2_t;
 
   constructor() {
-    this.handle = null;
+    this.handle = 0n;
     this.mProjection = new HmdMatrix44_t();
     this.vRange = new HmdVector2_t();
   }
@@ -2308,8 +2750,29 @@ export class VRTextureDepthInfo_t {
     currentOffset += HmdVector2_t.byteLength;
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    view.setBigUint64(currentOffset, this.handle, true);
+    currentOffset += 8;
+    this.mProjection.toBuffer(buffer, offset + currentOffset);
+    currentOffset += HmdMatrix44_t.byteLength;
+    this.vRange.toBuffer(buffer, offset + currentOffset);
+    currentOffset += HmdVector2_t.byteLength;
+  }
 }
 
+/*{
+  "struct": "vr::VRTextureWithDepth_t",
+  "fields": [
+    {
+      "fieldname": "depth",
+      "fieldtype": "struct vr::VRTextureDepthInfo_t"
+    }
+  ]
+}*/
 export class VRTextureWithDepth_t {
   static readonly byteLength = 80;
 
@@ -2328,8 +2791,25 @@ export class VRTextureWithDepth_t {
     currentOffset += VRTextureDepthInfo_t.byteLength;
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    this.depth.toBuffer(buffer, offset + currentOffset);
+    currentOffset += VRTextureDepthInfo_t.byteLength;
+  }
 }
 
+/*{
+  "struct": "vr::VRTextureWithPoseAndDepth_t",
+  "fields": [
+    {
+      "fieldname": "depth",
+      "fieldtype": "struct vr::VRTextureDepthInfo_t"
+    }
+  ]
+}*/
 export class VRTextureWithPoseAndDepth_t {
   static readonly byteLength = 80;
 
@@ -2348,8 +2828,45 @@ export class VRTextureWithPoseAndDepth_t {
     currentOffset += VRTextureDepthInfo_t.byteLength;
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    this.depth.toBuffer(buffer, offset + currentOffset);
+    currentOffset += VRTextureDepthInfo_t.byteLength;
+  }
 }
 
+/*{
+  "struct": "vr::TrackedDevicePose_t",
+  "fields": [
+    {
+      "fieldname": "mDeviceToAbsoluteTracking",
+      "fieldtype": "struct vr::HmdMatrix34_t"
+    },
+    {
+      "fieldname": "vVelocity",
+      "fieldtype": "struct vr::HmdVector3_t"
+    },
+    {
+      "fieldname": "vAngularVelocity",
+      "fieldtype": "struct vr::HmdVector3_t"
+    },
+    {
+      "fieldname": "eTrackingResult",
+      "fieldtype": "enum vr::ETrackingResult"
+    },
+    {
+      "fieldname": "bPoseIsValid",
+      "fieldtype": "_Bool"
+    },
+    {
+      "fieldname": "bDeviceIsConnected",
+      "fieldtype": "_Bool"
+    }
+  ]
+}*/
 export class TrackedDevicePose_t {
   static readonly byteLength = 78;
 
@@ -2364,7 +2881,7 @@ export class TrackedDevicePose_t {
     this.mDeviceToAbsoluteTracking = new HmdMatrix34_t();
     this.vVelocity = new HmdVector3_t();
     this.vAngularVelocity = new HmdVector3_t();
-    this.eTrackingResult = ETrackingResult.TrackingResult_Uninitialized;
+    this.eTrackingResult = Object.values(ETrackingResult)[0] as ETrackingResult;
     this.bPoseIsValid = false;
     this.bDeviceIsConnected = false;
   }
@@ -2389,42 +2906,78 @@ export class TrackedDevicePose_t {
     return result;
   }
 
-  toBuffer(): ArrayBuffer {
-    const buffer = new ArrayBuffer(TrackedDevicePose_t.byteLength);
-    const view = new DataView(buffer);
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
     let currentOffset = 0;
 
-    const mDeviceToAbsoluteTrackingBuffer = this.mDeviceToAbsoluteTracking.toBuffer();
-    new Uint8Array(buffer, currentOffset).set(new Uint8Array(mDeviceToAbsoluteTrackingBuffer));
+    this.mDeviceToAbsoluteTracking.toBuffer(buffer, offset + currentOffset);
     currentOffset += HmdMatrix34_t.byteLength;
-
-    const vVelocityBuffer = this.vVelocity.toBuffer();
-    new Uint8Array(buffer, currentOffset).set(new Uint8Array(vVelocityBuffer));
+    this.vVelocity.toBuffer(buffer, offset + currentOffset);
     currentOffset += HmdVector3_t.byteLength;
-
-    const vAngularVelocityBuffer = this.vAngularVelocity.toBuffer();
-    new Uint8Array(buffer, currentOffset).set(new Uint8Array(vAngularVelocityBuffer));
+    this.vAngularVelocity.toBuffer(buffer, offset + currentOffset);
     currentOffset += HmdVector3_t.byteLength;
-
     view.setInt32(currentOffset, this.eTrackingResult, true);
     currentOffset += 4;
     view.setUint8(currentOffset, this.bPoseIsValid ? 1 : 0);
     currentOffset += 1;
     view.setUint8(currentOffset, this.bDeviceIsConnected ? 1 : 0);
     currentOffset += 1;
-
-    return buffer;
   }
 }
 
+/*{
+  "struct": "vr::VRVulkanTextureData_t",
+  "fields": [
+    {
+      "fieldname": "m_nImage",
+      "fieldtype": "uint64_t"
+    },
+    {
+      "fieldname": "m_pDevice",
+      "fieldtype": "struct VkDevice_T *"
+    },
+    {
+      "fieldname": "m_pPhysicalDevice",
+      "fieldtype": "struct VkPhysicalDevice_T *"
+    },
+    {
+      "fieldname": "m_pInstance",
+      "fieldtype": "struct VkInstance_T *"
+    },
+    {
+      "fieldname": "m_pQueue",
+      "fieldtype": "struct VkQueue_T *"
+    },
+    {
+      "fieldname": "m_nQueueFamilyIndex",
+      "fieldtype": "uint32_t"
+    },
+    {
+      "fieldname": "m_nWidth",
+      "fieldtype": "uint32_t"
+    },
+    {
+      "fieldname": "m_nHeight",
+      "fieldtype": "uint32_t"
+    },
+    {
+      "fieldname": "m_nFormat",
+      "fieldtype": "uint32_t"
+    },
+    {
+      "fieldname": "m_nSampleCount",
+      "fieldtype": "uint32_t"
+    }
+  ]
+}*/
 export class VRVulkanTextureData_t {
   static readonly byteLength = 60;
 
   m_nImage: bigint;
-  m_pDevice: Uint8Array;
-  m_pPhysicalDevice: Uint8Array;
-  m_pInstance: Uint8Array;
-  m_pQueue: Uint8Array;
+  m_pDevice: bigint;
+  m_pPhysicalDevice: bigint;
+  m_pInstance: bigint;
+  m_pQueue: bigint;
   m_nQueueFamilyIndex: number;
   m_nWidth: number;
   m_nHeight: number;
@@ -2433,10 +2986,10 @@ export class VRVulkanTextureData_t {
 
   constructor() {
     this.m_nImage = 0n;
-    this.m_pDevice = null;
-    this.m_pPhysicalDevice = null;
-    this.m_pInstance = null;
-    this.m_pQueue = null;
+    this.m_pDevice = 0n;
+    this.m_pPhysicalDevice = 0n;
+    this.m_pInstance = 0n;
+    this.m_pQueue = 0n;
     this.m_nQueueFamilyIndex = 0;
     this.m_nWidth = 0;
     this.m_nHeight = 0;
@@ -2471,8 +3024,47 @@ export class VRVulkanTextureData_t {
     currentOffset += 4;
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    view.setBigUint64(currentOffset, this.m_nImage, true);
+    currentOffset += 8;
+    view.setBigUint64(currentOffset, this.m_pDevice, true);
+    currentOffset += 8;
+    view.setBigUint64(currentOffset, this.m_pPhysicalDevice, true);
+    currentOffset += 8;
+    view.setBigUint64(currentOffset, this.m_pInstance, true);
+    currentOffset += 8;
+    view.setBigUint64(currentOffset, this.m_pQueue, true);
+    currentOffset += 8;
+    view.setUint32(currentOffset, this.m_nQueueFamilyIndex, true);
+    currentOffset += 4;
+    view.setUint32(currentOffset, this.m_nWidth, true);
+    currentOffset += 4;
+    view.setUint32(currentOffset, this.m_nHeight, true);
+    currentOffset += 4;
+    view.setUint32(currentOffset, this.m_nFormat, true);
+    currentOffset += 4;
+    view.setUint32(currentOffset, this.m_nSampleCount, true);
+    currentOffset += 4;
+  }
 }
 
+/*{
+  "struct": "vr::VRVulkanTextureArrayData_t",
+  "fields": [
+    {
+      "fieldname": "m_unArrayIndex",
+      "fieldtype": "uint32_t"
+    },
+    {
+      "fieldname": "m_unArraySize",
+      "fieldtype": "uint32_t"
+    }
+  ]
+}*/
 export class VRVulkanTextureArrayData_t {
   static readonly byteLength = 8;
 
@@ -2495,18 +3087,45 @@ export class VRVulkanTextureArrayData_t {
     currentOffset += 4;
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    view.setUint32(currentOffset, this.m_unArrayIndex, true);
+    currentOffset += 4;
+    view.setUint32(currentOffset, this.m_unArraySize, true);
+    currentOffset += 4;
+  }
 }
 
+/*{
+  "struct": "vr::D3D12TextureData_t",
+  "fields": [
+    {
+      "fieldname": "m_pResource",
+      "fieldtype": "struct ID3D12Resource *"
+    },
+    {
+      "fieldname": "m_pCommandQueue",
+      "fieldtype": "struct ID3D12CommandQueue *"
+    },
+    {
+      "fieldname": "m_nNodeMask",
+      "fieldtype": "uint32_t"
+    }
+  ]
+}*/
 export class D3D12TextureData_t {
   static readonly byteLength = 20;
 
-  m_pResource: Uint8Array;
-  m_pCommandQueue: Uint8Array;
+  m_pResource: bigint;
+  m_pCommandQueue: bigint;
   m_nNodeMask: number;
 
   constructor() {
-    this.m_pResource = null;
-    this.m_pCommandQueue = null;
+    this.m_pResource = 0n;
+    this.m_pCommandQueue = 0n;
     this.m_nNodeMask = 0;
   }
 
@@ -2523,8 +3142,29 @@ export class D3D12TextureData_t {
     currentOffset += 4;
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    view.setBigUint64(currentOffset, this.m_pResource, true);
+    currentOffset += 8;
+    view.setBigUint64(currentOffset, this.m_pCommandQueue, true);
+    currentOffset += 8;
+    view.setUint32(currentOffset, this.m_nNodeMask, true);
+    currentOffset += 4;
+  }
 }
 
+/*{
+  "struct": "vr::VREvent_Controller_t",
+  "fields": [
+    {
+      "fieldname": "button",
+      "fieldtype": "uint32_t"
+    }
+  ]
+}*/
 export class VREvent_Controller_t {
   static readonly byteLength = 4;
 
@@ -2543,8 +3183,37 @@ export class VREvent_Controller_t {
     currentOffset += 4;
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    view.setUint32(currentOffset, this.button, true);
+    currentOffset += 4;
+  }
 }
 
+/*{
+  "struct": "vr::VREvent_Mouse_t",
+  "fields": [
+    {
+      "fieldname": "x",
+      "fieldtype": "float"
+    },
+    {
+      "fieldname": "y",
+      "fieldtype": "float"
+    },
+    {
+      "fieldname": "button",
+      "fieldtype": "uint32_t"
+    },
+    {
+      "fieldname": "cursorIndex",
+      "fieldtype": "uint32_t"
+    }
+  ]
+}*/
 export class VREvent_Mouse_t {
   static readonly byteLength = 16;
 
@@ -2575,8 +3244,47 @@ export class VREvent_Mouse_t {
     currentOffset += 4;
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    view.setFloat32(currentOffset, this.x, true);
+    currentOffset += 4;
+    view.setFloat32(currentOffset, this.y, true);
+    currentOffset += 4;
+    view.setUint32(currentOffset, this.button, true);
+    currentOffset += 4;
+    view.setUint32(currentOffset, this.cursorIndex, true);
+    currentOffset += 4;
+  }
 }
 
+/*{
+  "struct": "vr::VREvent_Scroll_t",
+  "fields": [
+    {
+      "fieldname": "xdelta",
+      "fieldtype": "float"
+    },
+    {
+      "fieldname": "ydelta",
+      "fieldtype": "float"
+    },
+    {
+      "fieldname": "unused",
+      "fieldtype": "uint32_t"
+    },
+    {
+      "fieldname": "viewportscale",
+      "fieldtype": "float"
+    },
+    {
+      "fieldname": "cursorIndex",
+      "fieldtype": "uint32_t"
+    }
+  ]
+}*/
 export class VREvent_Scroll_t {
   static readonly byteLength = 20;
 
@@ -2611,8 +3319,53 @@ export class VREvent_Scroll_t {
     currentOffset += 4;
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    view.setFloat32(currentOffset, this.xdelta, true);
+    currentOffset += 4;
+    view.setFloat32(currentOffset, this.ydelta, true);
+    currentOffset += 4;
+    view.setUint32(currentOffset, this.unused, true);
+    currentOffset += 4;
+    view.setFloat32(currentOffset, this.viewportscale, true);
+    currentOffset += 4;
+    view.setUint32(currentOffset, this.cursorIndex, true);
+    currentOffset += 4;
+  }
 }
 
+/*{
+  "struct": "vr::VREvent_TouchPadMove_t",
+  "fields": [
+    {
+      "fieldname": "bFingerDown",
+      "fieldtype": "_Bool"
+    },
+    {
+      "fieldname": "flSecondsFingerDown",
+      "fieldtype": "float"
+    },
+    {
+      "fieldname": "fValueXFirst",
+      "fieldtype": "float"
+    },
+    {
+      "fieldname": "fValueYFirst",
+      "fieldtype": "float"
+    },
+    {
+      "fieldname": "fValueXRaw",
+      "fieldtype": "float"
+    },
+    {
+      "fieldname": "fValueYRaw",
+      "fieldtype": "float"
+    }
+  ]
+}*/
 export class VREvent_TouchPadMove_t {
   static readonly byteLength = 21;
 
@@ -2651,8 +3404,39 @@ export class VREvent_TouchPadMove_t {
     currentOffset += 4;
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    view.setUint8(currentOffset, this.bFingerDown ? 1 : 0);
+    currentOffset += 1;
+    view.setFloat32(currentOffset, this.flSecondsFingerDown, true);
+    currentOffset += 4;
+    view.setFloat32(currentOffset, this.fValueXFirst, true);
+    currentOffset += 4;
+    view.setFloat32(currentOffset, this.fValueYFirst, true);
+    currentOffset += 4;
+    view.setFloat32(currentOffset, this.fValueXRaw, true);
+    currentOffset += 4;
+    view.setFloat32(currentOffset, this.fValueYRaw, true);
+    currentOffset += 4;
+  }
 }
 
+/*{
+  "struct": "vr::VREvent_Notification_t",
+  "fields": [
+    {
+      "fieldname": "ulUserValue",
+      "fieldtype": "uint64_t"
+    },
+    {
+      "fieldname": "notificationId",
+      "fieldtype": "uint32_t"
+    }
+  ]
+}*/
 export class VREvent_Notification_t {
   static readonly byteLength = 12;
 
@@ -2675,8 +3459,39 @@ export class VREvent_Notification_t {
     currentOffset += 4;
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    view.setBigUint64(currentOffset, this.ulUserValue, true);
+    currentOffset += 8;
+    view.setUint32(currentOffset, this.notificationId, true);
+    currentOffset += 4;
+  }
 }
 
+/*{
+  "struct": "vr::VREvent_Process_t",
+  "fields": [
+    {
+      "fieldname": "pid",
+      "fieldtype": "uint32_t"
+    },
+    {
+      "fieldname": "oldPid",
+      "fieldtype": "uint32_t"
+    },
+    {
+      "fieldname": "bForced",
+      "fieldtype": "_Bool"
+    },
+    {
+      "fieldname": "bConnectionLost",
+      "fieldtype": "_Bool"
+    }
+  ]
+}*/
 export class VREvent_Process_t {
   static readonly byteLength = 10;
 
@@ -2707,8 +3522,43 @@ export class VREvent_Process_t {
     currentOffset += 1;
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    view.setUint32(currentOffset, this.pid, true);
+    currentOffset += 4;
+    view.setUint32(currentOffset, this.oldPid, true);
+    currentOffset += 4;
+    view.setUint8(currentOffset, this.bForced ? 1 : 0);
+    currentOffset += 1;
+    view.setUint8(currentOffset, this.bConnectionLost ? 1 : 0);
+    currentOffset += 1;
+  }
 }
 
+/*{
+  "struct": "vr::VREvent_Overlay_t",
+  "fields": [
+    {
+      "fieldname": "overlayHandle",
+      "fieldtype": "uint64_t"
+    },
+    {
+      "fieldname": "devicePath",
+      "fieldtype": "uint64_t"
+    },
+    {
+      "fieldname": "memoryBlockId",
+      "fieldtype": "uint64_t"
+    },
+    {
+      "fieldname": "cursorIndex",
+      "fieldtype": "uint32_t"
+    }
+  ]
+}*/
 export class VREvent_Overlay_t {
   static readonly byteLength = 28;
 
@@ -2739,8 +3589,31 @@ export class VREvent_Overlay_t {
     currentOffset += 4;
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    view.setBigUint64(currentOffset, this.overlayHandle, true);
+    currentOffset += 8;
+    view.setBigUint64(currentOffset, this.devicePath, true);
+    currentOffset += 8;
+    view.setBigUint64(currentOffset, this.memoryBlockId, true);
+    currentOffset += 8;
+    view.setUint32(currentOffset, this.cursorIndex, true);
+    currentOffset += 4;
+  }
 }
 
+/*{
+  "struct": "vr::VREvent_Status_t",
+  "fields": [
+    {
+      "fieldname": "statusState",
+      "fieldtype": "uint32_t"
+    }
+  ]
+}*/
 export class VREvent_Status_t {
   static readonly byteLength = 4;
 
@@ -2759,17 +3632,42 @@ export class VREvent_Status_t {
     currentOffset += 4;
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    view.setUint32(currentOffset, this.statusState, true);
+    currentOffset += 4;
+  }
 }
 
+/*{
+  "struct": "vr::VREvent_Keyboard_t",
+  "fields": [
+    {
+      "fieldname": "cNewInput",
+      "fieldtype": "char [8]"
+    },
+    {
+      "fieldname": "uUserValue",
+      "fieldtype": "uint64_t"
+    },
+    {
+      "fieldname": "overlayHandle",
+      "fieldtype": "uint64_t"
+    }
+  ]
+}*/
 export class VREvent_Keyboard_t {
-  static readonly byteLength = 16;
+  static readonly byteLength = 24;
 
-  cNewInput: any[];
+  cNewInput: number[];
   uUserValue: bigint;
   overlayHandle: bigint;
 
   constructor() {
-    this.cNewInput = Array(8).fill(null).map(() => null);
+    this.cNewInput = Array(8).fill(null).map(() => 0);
     this.uUserValue = 0n;
     this.overlayHandle = 0n;
   }
@@ -2789,8 +3687,30 @@ export class VREvent_Keyboard_t {
     currentOffset += 8;
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    for (let i0 = 0; i0 < 8; i0++) {
+    // Unknown type char for field cNewInput[i0]
+    }
+    view.setBigUint64(currentOffset, this.uUserValue, true);
+    currentOffset += 8;
+    view.setBigUint64(currentOffset, this.overlayHandle, true);
+    currentOffset += 8;
+  }
 }
 
+/*{
+  "struct": "vr::VREvent_Ipd_t",
+  "fields": [
+    {
+      "fieldname": "ipdMeters",
+      "fieldtype": "float"
+    }
+  ]
+}*/
 export class VREvent_Ipd_t {
   static readonly byteLength = 4;
 
@@ -2809,8 +3729,29 @@ export class VREvent_Ipd_t {
     currentOffset += 4;
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    view.setFloat32(currentOffset, this.ipdMeters, true);
+    currentOffset += 4;
+  }
 }
 
+/*{
+  "struct": "vr::VREvent_Chaperone_t",
+  "fields": [
+    {
+      "fieldname": "m_nPreviousUniverse",
+      "fieldtype": "uint64_t"
+    },
+    {
+      "fieldname": "m_nCurrentUniverse",
+      "fieldtype": "uint64_t"
+    }
+  ]
+}*/
 export class VREvent_Chaperone_t {
   static readonly byteLength = 16;
 
@@ -2833,8 +3774,47 @@ export class VREvent_Chaperone_t {
     currentOffset += 8;
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    view.setBigUint64(currentOffset, this.m_nPreviousUniverse, true);
+    currentOffset += 8;
+    view.setBigUint64(currentOffset, this.m_nCurrentUniverse, true);
+    currentOffset += 8;
+  }
 }
 
+/*{
+  "struct": "vr::VREvent_Reserved_t",
+  "fields": [
+    {
+      "fieldname": "reserved0",
+      "fieldtype": "uint64_t"
+    },
+    {
+      "fieldname": "reserved1",
+      "fieldtype": "uint64_t"
+    },
+    {
+      "fieldname": "reserved2",
+      "fieldtype": "uint64_t"
+    },
+    {
+      "fieldname": "reserved3",
+      "fieldtype": "uint64_t"
+    },
+    {
+      "fieldname": "reserved4",
+      "fieldtype": "uint64_t"
+    },
+    {
+      "fieldname": "reserved5",
+      "fieldtype": "uint64_t"
+    }
+  ]
+}*/
 export class VREvent_Reserved_t {
   static readonly byteLength = 48;
 
@@ -2873,8 +3853,35 @@ export class VREvent_Reserved_t {
     currentOffset += 8;
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    view.setBigUint64(currentOffset, this.reserved0, true);
+    currentOffset += 8;
+    view.setBigUint64(currentOffset, this.reserved1, true);
+    currentOffset += 8;
+    view.setBigUint64(currentOffset, this.reserved2, true);
+    currentOffset += 8;
+    view.setBigUint64(currentOffset, this.reserved3, true);
+    currentOffset += 8;
+    view.setBigUint64(currentOffset, this.reserved4, true);
+    currentOffset += 8;
+    view.setBigUint64(currentOffset, this.reserved5, true);
+    currentOffset += 8;
+  }
 }
 
+/*{
+  "struct": "vr::VREvent_PerformanceTest_t",
+  "fields": [
+    {
+      "fieldname": "m_nFidelityLevel",
+      "fieldtype": "uint32_t"
+    }
+  ]
+}*/
 export class VREvent_PerformanceTest_t {
   static readonly byteLength = 4;
 
@@ -2893,8 +3900,25 @@ export class VREvent_PerformanceTest_t {
     currentOffset += 4;
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    view.setUint32(currentOffset, this.m_nFidelityLevel, true);
+    currentOffset += 4;
+  }
 }
 
+/*{
+  "struct": "vr::VREvent_SeatedZeroPoseReset_t",
+  "fields": [
+    {
+      "fieldname": "bResetBySystemMenu",
+      "fieldtype": "_Bool"
+    }
+  ]
+}*/
 export class VREvent_SeatedZeroPoseReset_t {
   static readonly byteLength = 1;
 
@@ -2913,8 +3937,29 @@ export class VREvent_SeatedZeroPoseReset_t {
     currentOffset += 1;
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    view.setUint8(currentOffset, this.bResetBySystemMenu ? 1 : 0);
+    currentOffset += 1;
+  }
 }
 
+/*{
+  "struct": "vr::VREvent_Screenshot_t",
+  "fields": [
+    {
+      "fieldname": "handle",
+      "fieldtype": "uint32_t"
+    },
+    {
+      "fieldname": "type",
+      "fieldtype": "uint32_t"
+    }
+  ]
+}*/
 export class VREvent_Screenshot_t {
   static readonly byteLength = 8;
 
@@ -2937,8 +3982,27 @@ export class VREvent_Screenshot_t {
     currentOffset += 4;
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    view.setUint32(currentOffset, this.handle, true);
+    currentOffset += 4;
+    view.setUint32(currentOffset, this.type, true);
+    currentOffset += 4;
+  }
 }
 
+/*{
+  "struct": "vr::VREvent_ScreenshotProgress_t",
+  "fields": [
+    {
+      "fieldname": "progress",
+      "fieldtype": "float"
+    }
+  ]
+}*/
 export class VREvent_ScreenshotProgress_t {
   static readonly byteLength = 4;
 
@@ -2957,8 +4021,29 @@ export class VREvent_ScreenshotProgress_t {
     currentOffset += 4;
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    view.setFloat32(currentOffset, this.progress, true);
+    currentOffset += 4;
+  }
 }
 
+/*{
+  "struct": "vr::VREvent_ApplicationLaunch_t",
+  "fields": [
+    {
+      "fieldname": "pid",
+      "fieldtype": "uint32_t"
+    },
+    {
+      "fieldname": "unArgsHandle",
+      "fieldtype": "uint32_t"
+    }
+  ]
+}*/
 export class VREvent_ApplicationLaunch_t {
   static readonly byteLength = 8;
 
@@ -2981,8 +4066,31 @@ export class VREvent_ApplicationLaunch_t {
     currentOffset += 4;
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    view.setUint32(currentOffset, this.pid, true);
+    currentOffset += 4;
+    view.setUint32(currentOffset, this.unArgsHandle, true);
+    currentOffset += 4;
+  }
 }
 
+/*{
+  "struct": "vr::VREvent_EditingCameraSurface_t",
+  "fields": [
+    {
+      "fieldname": "overlayHandle",
+      "fieldtype": "uint64_t"
+    },
+    {
+      "fieldname": "nVisualMode",
+      "fieldtype": "uint32_t"
+    }
+  ]
+}*/
 export class VREvent_EditingCameraSurface_t {
   static readonly byteLength = 12;
 
@@ -3005,8 +4113,27 @@ export class VREvent_EditingCameraSurface_t {
     currentOffset += 4;
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    view.setBigUint64(currentOffset, this.overlayHandle, true);
+    currentOffset += 8;
+    view.setUint32(currentOffset, this.nVisualMode, true);
+    currentOffset += 4;
+  }
 }
 
+/*{
+  "struct": "vr::VREvent_MessageOverlay_t",
+  "fields": [
+    {
+      "fieldname": "unVRMessageOverlayResponse",
+      "fieldtype": "uint32_t"
+    }
+  ]
+}*/
 export class VREvent_MessageOverlay_t {
   static readonly byteLength = 4;
 
@@ -3025,17 +4152,38 @@ export class VREvent_MessageOverlay_t {
     currentOffset += 4;
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    view.setUint32(currentOffset, this.unVRMessageOverlayResponse, true);
+    currentOffset += 4;
+  }
 }
 
+/*{
+  "struct": "vr::VREvent_Property_t",
+  "fields": [
+    {
+      "fieldname": "container",
+      "fieldtype": "PropertyContainerHandle_t"
+    },
+    {
+      "fieldname": "prop",
+      "fieldtype": "enum vr::ETrackedDeviceProperty"
+    }
+  ]
+}*/
 export class VREvent_Property_t {
   static readonly byteLength = 12;
 
-  container: bigint;
+  container: PropertyContainerHandle_t;
   prop: ETrackedDeviceProperty;
 
   constructor() {
     this.container = 0n;
-    this.prop = 0;
+    this.prop = Object.values(ETrackedDeviceProperty)[0] as ETrackedDeviceProperty;
   }
 
   static fromBuffer(buffer: ArrayBuffer, offset: number): VREvent_Property_t {
@@ -3049,8 +4197,43 @@ export class VREvent_Property_t {
     currentOffset += 4;
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    view.setBigUint64(currentOffset, this.container, true);
+    currentOffset += 8;
+    view.setInt32(currentOffset, this.prop, true);
+    currentOffset += 4;
+  }
 }
 
+/*{
+  "struct": "vr::VREvent_HapticVibration_t",
+  "fields": [
+    {
+      "fieldname": "containerHandle",
+      "fieldtype": "uint64_t"
+    },
+    {
+      "fieldname": "componentHandle",
+      "fieldtype": "uint64_t"
+    },
+    {
+      "fieldname": "fDurationSeconds",
+      "fieldtype": "float"
+    },
+    {
+      "fieldname": "fFrequency",
+      "fieldtype": "float"
+    },
+    {
+      "fieldname": "fAmplitude",
+      "fieldtype": "float"
+    }
+  ]
+}*/
 export class VREvent_HapticVibration_t {
   static readonly byteLength = 28;
 
@@ -3085,12 +4268,37 @@ export class VREvent_HapticVibration_t {
     currentOffset += 4;
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    view.setBigUint64(currentOffset, this.containerHandle, true);
+    currentOffset += 8;
+    view.setBigUint64(currentOffset, this.componentHandle, true);
+    currentOffset += 8;
+    view.setFloat32(currentOffset, this.fDurationSeconds, true);
+    currentOffset += 4;
+    view.setFloat32(currentOffset, this.fFrequency, true);
+    currentOffset += 4;
+    view.setFloat32(currentOffset, this.fAmplitude, true);
+    currentOffset += 4;
+  }
 }
 
+/*{
+  "struct": "vr::VREvent_WebConsole_t",
+  "fields": [
+    {
+      "fieldname": "webConsoleHandle",
+      "fieldtype": "WebConsoleHandle_t"
+    }
+  ]
+}*/
 export class VREvent_WebConsole_t {
   static readonly byteLength = 8;
 
-  webConsoleHandle: bigint;
+  webConsoleHandle: WebConsoleHandle_t;
 
   constructor() {
     this.webConsoleHandle = 0n;
@@ -3105,12 +4313,41 @@ export class VREvent_WebConsole_t {
     currentOffset += 8;
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    view.setBigUint64(currentOffset, this.webConsoleHandle, true);
+    currentOffset += 8;
+  }
 }
 
+/*{
+  "struct": "vr::VREvent_InputBindingLoad_t",
+  "fields": [
+    {
+      "fieldname": "ulAppContainer",
+      "fieldtype": "vr::PropertyContainerHandle_t"
+    },
+    {
+      "fieldname": "pathMessage",
+      "fieldtype": "uint64_t"
+    },
+    {
+      "fieldname": "pathUrl",
+      "fieldtype": "uint64_t"
+    },
+    {
+      "fieldname": "pathControllerType",
+      "fieldtype": "uint64_t"
+    }
+  ]
+}*/
 export class VREvent_InputBindingLoad_t {
   static readonly byteLength = 32;
 
-  ulAppContainer: bigint;
+  ulAppContainer: PropertyContainerHandle_t;
   pathMessage: bigint;
   pathUrl: bigint;
   pathControllerType: bigint;
@@ -3137,8 +4374,43 @@ export class VREvent_InputBindingLoad_t {
     currentOffset += 8;
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    view.setBigUint64(currentOffset, this.ulAppContainer, true);
+    currentOffset += 8;
+    view.setBigUint64(currentOffset, this.pathMessage, true);
+    currentOffset += 8;
+    view.setBigUint64(currentOffset, this.pathUrl, true);
+    currentOffset += 8;
+    view.setBigUint64(currentOffset, this.pathControllerType, true);
+    currentOffset += 8;
+  }
 }
 
+/*{
+  "struct": "vr::VREvent_InputActionManifestLoad_t",
+  "fields": [
+    {
+      "fieldname": "pathAppKey",
+      "fieldtype": "uint64_t"
+    },
+    {
+      "fieldname": "pathMessage",
+      "fieldtype": "uint64_t"
+    },
+    {
+      "fieldname": "pathMessageParam",
+      "fieldtype": "uint64_t"
+    },
+    {
+      "fieldname": "pathManifestPath",
+      "fieldtype": "uint64_t"
+    }
+  ]
+}*/
 export class VREvent_InputActionManifestLoad_t {
   static readonly byteLength = 32;
 
@@ -3169,12 +4441,35 @@ export class VREvent_InputActionManifestLoad_t {
     currentOffset += 8;
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    view.setBigUint64(currentOffset, this.pathAppKey, true);
+    currentOffset += 8;
+    view.setBigUint64(currentOffset, this.pathMessage, true);
+    currentOffset += 8;
+    view.setBigUint64(currentOffset, this.pathMessageParam, true);
+    currentOffset += 8;
+    view.setBigUint64(currentOffset, this.pathManifestPath, true);
+    currentOffset += 8;
+  }
 }
 
+/*{
+  "struct": "vr::VREvent_SpatialAnchor_t",
+  "fields": [
+    {
+      "fieldname": "unHandle",
+      "fieldtype": "SpatialAnchorHandle_t"
+    }
+  ]
+}*/
 export class VREvent_SpatialAnchor_t {
   static readonly byteLength = 4;
 
-  unHandle: number;
+  unHandle: SpatialAnchorHandle_t;
 
   constructor() {
     this.unHandle = 0;
@@ -3189,8 +4484,45 @@ export class VREvent_SpatialAnchor_t {
     currentOffset += 8;
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    view.setFloat64(currentOffset, this.unHandle, true);
+    currentOffset += 8;
+  }
 }
 
+/*{
+  "struct": "vr::VREvent_ProgressUpdate_t",
+  "fields": [
+    {
+      "fieldname": "ulApplicationPropertyContainer",
+      "fieldtype": "uint64_t"
+    },
+    {
+      "fieldname": "pathDevice",
+      "fieldtype": "uint64_t"
+    },
+    {
+      "fieldname": "pathInputSource",
+      "fieldtype": "uint64_t"
+    },
+    {
+      "fieldname": "pathProgressAction",
+      "fieldtype": "uint64_t"
+    },
+    {
+      "fieldname": "pathIcon",
+      "fieldtype": "uint64_t"
+    },
+    {
+      "fieldname": "fProgress",
+      "fieldtype": "float"
+    }
+  ]
+}*/
 export class VREvent_ProgressUpdate_t {
   static readonly byteLength = 44;
 
@@ -3229,15 +4561,42 @@ export class VREvent_ProgressUpdate_t {
     currentOffset += 4;
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    view.setBigUint64(currentOffset, this.ulApplicationPropertyContainer, true);
+    currentOffset += 8;
+    view.setBigUint64(currentOffset, this.pathDevice, true);
+    currentOffset += 8;
+    view.setBigUint64(currentOffset, this.pathInputSource, true);
+    currentOffset += 8;
+    view.setBigUint64(currentOffset, this.pathProgressAction, true);
+    currentOffset += 8;
+    view.setBigUint64(currentOffset, this.pathIcon, true);
+    currentOffset += 8;
+    view.setFloat32(currentOffset, this.fProgress, true);
+    currentOffset += 4;
+  }
 }
 
+/*{
+  "struct": "vr::VREvent_ShowUI_t",
+  "fields": [
+    {
+      "fieldname": "eType",
+      "fieldtype": "enum vr::EShowUIType"
+    }
+  ]
+}*/
 export class VREvent_ShowUI_t {
   static readonly byteLength = 4;
 
   eType: EShowUIType;
 
   constructor() {
-    this.eType = 0;
+    this.eType = Object.values(EShowUIType)[0] as EShowUIType;
   }
 
   static fromBuffer(buffer: ArrayBuffer, offset: number): VREvent_ShowUI_t {
@@ -3249,8 +4608,25 @@ export class VREvent_ShowUI_t {
     currentOffset += 4;
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    view.setInt32(currentOffset, this.eType, true);
+    currentOffset += 4;
+  }
 }
 
+/*{
+  "struct": "vr::VREvent_ShowDevTools_t",
+  "fields": [
+    {
+      "fieldname": "nBrowserIdentifier",
+      "fieldtype": "int32_t"
+    }
+  ]
+}*/
 export class VREvent_ShowDevTools_t {
   static readonly byteLength = 4;
 
@@ -3269,15 +4645,32 @@ export class VREvent_ShowDevTools_t {
     currentOffset += 4;
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    view.setInt32(currentOffset, this.nBrowserIdentifier, true);
+    currentOffset += 4;
+  }
 }
 
+/*{
+  "struct": "vr::VREvent_HDCPError_t",
+  "fields": [
+    {
+      "fieldname": "eCode",
+      "fieldtype": "enum vr::EHDCPError"
+    }
+  ]
+}*/
 export class VREvent_HDCPError_t {
   static readonly byteLength = 4;
 
   eCode: EHDCPError;
 
   constructor() {
-    this.eCode = 0;
+    this.eCode = Object.values(EHDCPError)[0] as EHDCPError;
   }
 
   static fromBuffer(buffer: ArrayBuffer, offset: number): VREvent_HDCPError_t {
@@ -3289,8 +4682,25 @@ export class VREvent_HDCPError_t {
     currentOffset += 4;
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    view.setInt32(currentOffset, this.eCode, true);
+    currentOffset += 4;
+  }
 }
 
+/*{
+  "struct": "vr::VREvent_AudioVolumeControl_t",
+  "fields": [
+    {
+      "fieldname": "fVolumeLevel",
+      "fieldtype": "float"
+    }
+  ]
+}*/
 export class VREvent_AudioVolumeControl_t {
   static readonly byteLength = 4;
 
@@ -3309,8 +4719,25 @@ export class VREvent_AudioVolumeControl_t {
     currentOffset += 4;
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    view.setFloat32(currentOffset, this.fVolumeLevel, true);
+    currentOffset += 4;
+  }
 }
 
+/*{
+  "struct": "vr::VREvent_AudioMuteControl_t",
+  "fields": [
+    {
+      "fieldname": "bMute",
+      "fieldtype": "_Bool"
+    }
+  ]
+}*/
 export class VREvent_AudioMuteControl_t {
   static readonly byteLength = 1;
 
@@ -3329,10 +4756,147 @@ export class VREvent_AudioMuteControl_t {
     currentOffset += 1;
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    view.setUint8(currentOffset, this.bMute ? 1 : 0);
+    currentOffset += 1;
+  }
 }
 
+/*{
+  "struct": "vr::(anonymous)",
+  "fields": [
+    {
+      "fieldname": "reserved",
+      "fieldtype": "struct vr::VREvent_Reserved_t"
+    },
+    {
+      "fieldname": "controller",
+      "fieldtype": "struct vr::VREvent_Controller_t"
+    },
+    {
+      "fieldname": "mouse",
+      "fieldtype": "struct vr::VREvent_Mouse_t"
+    },
+    {
+      "fieldname": "scroll",
+      "fieldtype": "struct vr::VREvent_Scroll_t"
+    },
+    {
+      "fieldname": "process",
+      "fieldtype": "struct vr::VREvent_Process_t"
+    },
+    {
+      "fieldname": "notification",
+      "fieldtype": "struct vr::VREvent_Notification_t"
+    },
+    {
+      "fieldname": "overlay",
+      "fieldtype": "struct vr::VREvent_Overlay_t"
+    },
+    {
+      "fieldname": "status",
+      "fieldtype": "struct vr::VREvent_Status_t"
+    },
+    {
+      "fieldname": "keyboard",
+      "fieldtype": "struct vr::VREvent_Keyboard_t"
+    },
+    {
+      "fieldname": "ipd",
+      "fieldtype": "struct vr::VREvent_Ipd_t"
+    },
+    {
+      "fieldname": "chaperone",
+      "fieldtype": "struct vr::VREvent_Chaperone_t"
+    },
+    {
+      "fieldname": "performanceTest",
+      "fieldtype": "struct vr::VREvent_PerformanceTest_t"
+    },
+    {
+      "fieldname": "touchPadMove",
+      "fieldtype": "struct vr::VREvent_TouchPadMove_t"
+    },
+    {
+      "fieldname": "seatedZeroPoseReset",
+      "fieldtype": "struct vr::VREvent_SeatedZeroPoseReset_t"
+    },
+    {
+      "fieldname": "screenshot",
+      "fieldtype": "struct vr::VREvent_Screenshot_t"
+    },
+    {
+      "fieldname": "screenshotProgress",
+      "fieldtype": "struct vr::VREvent_ScreenshotProgress_t"
+    },
+    {
+      "fieldname": "applicationLaunch",
+      "fieldtype": "struct vr::VREvent_ApplicationLaunch_t"
+    },
+    {
+      "fieldname": "cameraSurface",
+      "fieldtype": "struct vr::VREvent_EditingCameraSurface_t"
+    },
+    {
+      "fieldname": "messageOverlay",
+      "fieldtype": "struct vr::VREvent_MessageOverlay_t"
+    },
+    {
+      "fieldname": "property",
+      "fieldtype": "struct vr::VREvent_Property_t"
+    },
+    {
+      "fieldname": "hapticVibration",
+      "fieldtype": "struct vr::VREvent_HapticVibration_t"
+    },
+    {
+      "fieldname": "webConsole",
+      "fieldtype": "struct vr::VREvent_WebConsole_t"
+    },
+    {
+      "fieldname": "inputBinding",
+      "fieldtype": "struct vr::VREvent_InputBindingLoad_t"
+    },
+    {
+      "fieldname": "actionManifest",
+      "fieldtype": "struct vr::VREvent_InputActionManifestLoad_t"
+    },
+    {
+      "fieldname": "spatialAnchor",
+      "fieldtype": "struct vr::VREvent_SpatialAnchor_t"
+    },
+    {
+      "fieldname": "progressUpdate",
+      "fieldtype": "struct vr::VREvent_ProgressUpdate_t"
+    },
+    {
+      "fieldname": "showUi",
+      "fieldtype": "struct vr::VREvent_ShowUI_t"
+    },
+    {
+      "fieldname": "showDevTools",
+      "fieldtype": "struct vr::VREvent_ShowDevTools_t"
+    },
+    {
+      "fieldname": "hdcpError",
+      "fieldtype": "struct vr::VREvent_HDCPError_t"
+    },
+    {
+      "fieldname": "audioVolumeControl",
+      "fieldtype": "struct vr::VREvent_AudioVolumeControl_t"
+    },
+    {
+      "fieldname": "audioMuteControl",
+      "fieldtype": "struct vr::VREvent_AudioMuteControl_t"
+    }
+  ]
+}*/
 export class AnonymousStruct_1 {
-  static readonly byteLength = 417;
+  static readonly byteLength = 425;
 
   reserved: VREvent_Reserved_t;
   controller: VREvent_Controller_t;
@@ -3469,21 +5033,110 @@ export class AnonymousStruct_1 {
     currentOffset += VREvent_AudioMuteControl_t.byteLength;
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    this.reserved.toBuffer(buffer, offset + currentOffset);
+    currentOffset += VREvent_Reserved_t.byteLength;
+    this.controller.toBuffer(buffer, offset + currentOffset);
+    currentOffset += VREvent_Controller_t.byteLength;
+    this.mouse.toBuffer(buffer, offset + currentOffset);
+    currentOffset += VREvent_Mouse_t.byteLength;
+    this.scroll.toBuffer(buffer, offset + currentOffset);
+    currentOffset += VREvent_Scroll_t.byteLength;
+    this.process.toBuffer(buffer, offset + currentOffset);
+    currentOffset += VREvent_Process_t.byteLength;
+    this.notification.toBuffer(buffer, offset + currentOffset);
+    currentOffset += VREvent_Notification_t.byteLength;
+    this.overlay.toBuffer(buffer, offset + currentOffset);
+    currentOffset += VREvent_Overlay_t.byteLength;
+    this.status.toBuffer(buffer, offset + currentOffset);
+    currentOffset += VREvent_Status_t.byteLength;
+    this.keyboard.toBuffer(buffer, offset + currentOffset);
+    currentOffset += VREvent_Keyboard_t.byteLength;
+    this.ipd.toBuffer(buffer, offset + currentOffset);
+    currentOffset += VREvent_Ipd_t.byteLength;
+    this.chaperone.toBuffer(buffer, offset + currentOffset);
+    currentOffset += VREvent_Chaperone_t.byteLength;
+    this.performanceTest.toBuffer(buffer, offset + currentOffset);
+    currentOffset += VREvent_PerformanceTest_t.byteLength;
+    this.touchPadMove.toBuffer(buffer, offset + currentOffset);
+    currentOffset += VREvent_TouchPadMove_t.byteLength;
+    this.seatedZeroPoseReset.toBuffer(buffer, offset + currentOffset);
+    currentOffset += VREvent_SeatedZeroPoseReset_t.byteLength;
+    this.screenshot.toBuffer(buffer, offset + currentOffset);
+    currentOffset += VREvent_Screenshot_t.byteLength;
+    this.screenshotProgress.toBuffer(buffer, offset + currentOffset);
+    currentOffset += VREvent_ScreenshotProgress_t.byteLength;
+    this.applicationLaunch.toBuffer(buffer, offset + currentOffset);
+    currentOffset += VREvent_ApplicationLaunch_t.byteLength;
+    this.cameraSurface.toBuffer(buffer, offset + currentOffset);
+    currentOffset += VREvent_EditingCameraSurface_t.byteLength;
+    this.messageOverlay.toBuffer(buffer, offset + currentOffset);
+    currentOffset += VREvent_MessageOverlay_t.byteLength;
+    this.property.toBuffer(buffer, offset + currentOffset);
+    currentOffset += VREvent_Property_t.byteLength;
+    this.hapticVibration.toBuffer(buffer, offset + currentOffset);
+    currentOffset += VREvent_HapticVibration_t.byteLength;
+    this.webConsole.toBuffer(buffer, offset + currentOffset);
+    currentOffset += VREvent_WebConsole_t.byteLength;
+    this.inputBinding.toBuffer(buffer, offset + currentOffset);
+    currentOffset += VREvent_InputBindingLoad_t.byteLength;
+    this.actionManifest.toBuffer(buffer, offset + currentOffset);
+    currentOffset += VREvent_InputActionManifestLoad_t.byteLength;
+    this.spatialAnchor.toBuffer(buffer, offset + currentOffset);
+    currentOffset += VREvent_SpatialAnchor_t.byteLength;
+    this.progressUpdate.toBuffer(buffer, offset + currentOffset);
+    currentOffset += VREvent_ProgressUpdate_t.byteLength;
+    this.showUi.toBuffer(buffer, offset + currentOffset);
+    currentOffset += VREvent_ShowUI_t.byteLength;
+    this.showDevTools.toBuffer(buffer, offset + currentOffset);
+    currentOffset += VREvent_ShowDevTools_t.byteLength;
+    this.hdcpError.toBuffer(buffer, offset + currentOffset);
+    currentOffset += VREvent_HDCPError_t.byteLength;
+    this.audioVolumeControl.toBuffer(buffer, offset + currentOffset);
+    currentOffset += VREvent_AudioVolumeControl_t.byteLength;
+    this.audioMuteControl.toBuffer(buffer, offset + currentOffset);
+    currentOffset += VREvent_AudioMuteControl_t.byteLength;
+  }
 }
 
+/*{
+  "struct": "vr::VREvent_t",
+  "fields": [
+    {
+      "fieldname": "eventType",
+      "fieldtype": "uint32_t"
+    },
+    {
+      "fieldname": "trackedDeviceIndex",
+      "fieldtype": "TrackedDeviceIndex_t"
+    },
+    {
+      "fieldname": "eventAgeSeconds",
+      "fieldtype": "float"
+    },
+    {
+      "fieldname": "data",
+      "fieldtype": "VREvent_Data_t"
+    }
+  ]
+}*/
 export class VREvent_t {
   static readonly byteLength = 12;
 
   eventType: number;
-  trackedDeviceIndex: number;
+  trackedDeviceIndex: TrackedDeviceIndex_t;
   eventAgeSeconds: number;
-  data: any;
+  data: VREvent_Data_t;
 
   constructor() {
     this.eventType = 0;
     this.trackedDeviceIndex = 0;
     this.eventAgeSeconds = 0;
-    this.data = null;
+    this.data = new VREvent_Data_t();
   }
 
   static fromBuffer(buffer: ArrayBuffer, offset: number): VREvent_t {
@@ -3500,14 +5153,44 @@ export class VREvent_t {
     // Unknown type VREvent_Data_t for field data
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    view.setUint32(currentOffset, this.eventType, true);
+    currentOffset += 4;
+    view.setFloat64(currentOffset, this.trackedDeviceIndex, true);
+    currentOffset += 8;
+    view.setFloat32(currentOffset, this.eventAgeSeconds, true);
+    currentOffset += 4;
+    // Unknown type VREvent_Data_t for field data
+  }
 }
 
+/*{
+  "struct": "vr::RenderModel_ComponentState_t",
+  "fields": [
+    {
+      "fieldname": "mTrackingToComponentRenderModel",
+      "fieldtype": "struct vr::HmdMatrix34_t"
+    },
+    {
+      "fieldname": "mTrackingToComponentLocal",
+      "fieldtype": "struct vr::HmdMatrix34_t"
+    },
+    {
+      "fieldname": "uProperties",
+      "fieldtype": "VRComponentProperties"
+    }
+  ]
+}*/
 export class RenderModel_ComponentState_t {
   static readonly byteLength = 100;
 
   mTrackingToComponentRenderModel: HmdMatrix34_t;
   mTrackingToComponentLocal: HmdMatrix34_t;
-  uProperties: number;
+  uProperties: VRComponentProperties;
 
   constructor() {
     this.mTrackingToComponentRenderModel = new HmdMatrix34_t();
@@ -3528,16 +5211,41 @@ export class RenderModel_ComponentState_t {
     currentOffset += 8;
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    this.mTrackingToComponentRenderModel.toBuffer(buffer, offset + currentOffset);
+    currentOffset += HmdMatrix34_t.byteLength;
+    this.mTrackingToComponentLocal.toBuffer(buffer, offset + currentOffset);
+    currentOffset += HmdMatrix34_t.byteLength;
+    view.setFloat64(currentOffset, this.uProperties, true);
+    currentOffset += 8;
+  }
 }
 
+/*{
+  "struct": "vr::HiddenAreaMesh_t",
+  "fields": [
+    {
+      "fieldname": "pVertexData",
+      "fieldtype": "const struct vr::HmdVector2_t *"
+    },
+    {
+      "fieldname": "unTriangleCount",
+      "fieldtype": "uint32_t"
+    }
+  ]
+}*/
 export class HiddenAreaMesh_t {
   static readonly byteLength = 12;
 
-  pVertexData: Uint8Array;
+  pVertexData: bigint;
   unTriangleCount: number;
 
   constructor() {
-    this.pVertexData = null;
+    this.pVertexData = 0n;
     this.unTriangleCount = 0;
   }
 
@@ -3552,8 +5260,31 @@ export class HiddenAreaMesh_t {
     currentOffset += 4;
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    view.setBigUint64(currentOffset, this.pVertexData, true);
+    currentOffset += 8;
+    view.setUint32(currentOffset, this.unTriangleCount, true);
+    currentOffset += 4;
+  }
 }
 
+/*{
+  "struct": "vr::VRControllerAxis_t",
+  "fields": [
+    {
+      "fieldname": "x",
+      "fieldtype": "float"
+    },
+    {
+      "fieldname": "y",
+      "fieldtype": "float"
+    }
+  ]
+}*/
 export class VRControllerAxis_t {
   static readonly byteLength = 8;
 
@@ -3576,8 +5307,39 @@ export class VRControllerAxis_t {
     currentOffset += 4;
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    view.setFloat32(currentOffset, this.x, true);
+    currentOffset += 4;
+    view.setFloat32(currentOffset, this.y, true);
+    currentOffset += 4;
+  }
 }
 
+/*{
+  "struct": "vr::VRControllerState001_t",
+  "fields": [
+    {
+      "fieldname": "unPacketNum",
+      "fieldtype": "uint32_t"
+    },
+    {
+      "fieldname": "ulButtonPressed",
+      "fieldtype": "uint64_t"
+    },
+    {
+      "fieldname": "ulButtonTouched",
+      "fieldtype": "uint64_t"
+    },
+    {
+      "fieldname": "rAxis",
+      "fieldtype": "struct vr::VRControllerAxis_t [5]"
+    }
+  ]
+}*/
 export class VRControllerState001_t {
   static readonly byteLength = 60;
 
@@ -3611,8 +5373,57 @@ export class VRControllerState001_t {
     }
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    view.setUint32(currentOffset, this.unPacketNum, true);
+    currentOffset += 4;
+    view.setBigUint64(currentOffset, this.ulButtonPressed, true);
+    currentOffset += 8;
+    view.setBigUint64(currentOffset, this.ulButtonTouched, true);
+    currentOffset += 8;
+    for (let i0 = 0; i0 < 5; i0++) {
+    this.rAxis[i0].toBuffer(buffer, offset + currentOffset);
+    currentOffset += VRControllerAxis_t.byteLength;
+    }
+  }
 }
 
+/*{
+  "struct": "vr::CameraVideoStreamFrameHeader_t",
+  "fields": [
+    {
+      "fieldname": "eFrameType",
+      "fieldtype": "enum vr::EVRTrackedCameraFrameType"
+    },
+    {
+      "fieldname": "nWidth",
+      "fieldtype": "uint32_t"
+    },
+    {
+      "fieldname": "nHeight",
+      "fieldtype": "uint32_t"
+    },
+    {
+      "fieldname": "nBytesPerPixel",
+      "fieldtype": "uint32_t"
+    },
+    {
+      "fieldname": "nFrameSequence",
+      "fieldtype": "uint32_t"
+    },
+    {
+      "fieldname": "trackedDevicePose",
+      "fieldtype": "struct vr::TrackedDevicePose_t"
+    },
+    {
+      "fieldname": "ulFrameExposureTime",
+      "fieldtype": "uint64_t"
+    }
+  ]
+}*/
 export class CameraVideoStreamFrameHeader_t {
   static readonly byteLength = 106;
 
@@ -3625,7 +5436,7 @@ export class CameraVideoStreamFrameHeader_t {
   ulFrameExposureTime: bigint;
 
   constructor() {
-    this.eFrameType = 0;
+    this.eFrameType = Object.values(EVRTrackedCameraFrameType)[0] as EVRTrackedCameraFrameType;
     this.nWidth = 0;
     this.nHeight = 0;
     this.nBytesPerPixel = 0;
@@ -3655,8 +5466,141 @@ export class CameraVideoStreamFrameHeader_t {
     currentOffset += 8;
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    view.setInt32(currentOffset, this.eFrameType, true);
+    currentOffset += 4;
+    view.setUint32(currentOffset, this.nWidth, true);
+    currentOffset += 4;
+    view.setUint32(currentOffset, this.nHeight, true);
+    currentOffset += 4;
+    view.setUint32(currentOffset, this.nBytesPerPixel, true);
+    currentOffset += 4;
+    view.setUint32(currentOffset, this.nFrameSequence, true);
+    currentOffset += 4;
+    this.trackedDevicePose.toBuffer(buffer, offset + currentOffset);
+    currentOffset += TrackedDevicePose_t.byteLength;
+    view.setBigUint64(currentOffset, this.ulFrameExposureTime, true);
+    currentOffset += 8;
+  }
 }
 
+/*{
+  "struct": "vr::Compositor_FrameTiming",
+  "fields": [
+    {
+      "fieldname": "m_nSize",
+      "fieldtype": "uint32_t"
+    },
+    {
+      "fieldname": "m_nFrameIndex",
+      "fieldtype": "uint32_t"
+    },
+    {
+      "fieldname": "m_nNumFramePresents",
+      "fieldtype": "uint32_t"
+    },
+    {
+      "fieldname": "m_nNumMisPresented",
+      "fieldtype": "uint32_t"
+    },
+    {
+      "fieldname": "m_nNumDroppedFrames",
+      "fieldtype": "uint32_t"
+    },
+    {
+      "fieldname": "m_nReprojectionFlags",
+      "fieldtype": "uint32_t"
+    },
+    {
+      "fieldname": "m_flSystemTimeInSeconds",
+      "fieldtype": "double"
+    },
+    {
+      "fieldname": "m_flPreSubmitGpuMs",
+      "fieldtype": "float"
+    },
+    {
+      "fieldname": "m_flPostSubmitGpuMs",
+      "fieldtype": "float"
+    },
+    {
+      "fieldname": "m_flTotalRenderGpuMs",
+      "fieldtype": "float"
+    },
+    {
+      "fieldname": "m_flCompositorRenderGpuMs",
+      "fieldtype": "float"
+    },
+    {
+      "fieldname": "m_flCompositorRenderCpuMs",
+      "fieldtype": "float"
+    },
+    {
+      "fieldname": "m_flCompositorIdleCpuMs",
+      "fieldtype": "float"
+    },
+    {
+      "fieldname": "m_flClientFrameIntervalMs",
+      "fieldtype": "float"
+    },
+    {
+      "fieldname": "m_flPresentCallCpuMs",
+      "fieldtype": "float"
+    },
+    {
+      "fieldname": "m_flWaitForPresentCpuMs",
+      "fieldtype": "float"
+    },
+    {
+      "fieldname": "m_flSubmitFrameMs",
+      "fieldtype": "float"
+    },
+    {
+      "fieldname": "m_flWaitGetPosesCalledMs",
+      "fieldtype": "float"
+    },
+    {
+      "fieldname": "m_flNewPosesReadyMs",
+      "fieldtype": "float"
+    },
+    {
+      "fieldname": "m_flNewFrameReadyMs",
+      "fieldtype": "float"
+    },
+    {
+      "fieldname": "m_flCompositorUpdateStartMs",
+      "fieldtype": "float"
+    },
+    {
+      "fieldname": "m_flCompositorUpdateEndMs",
+      "fieldtype": "float"
+    },
+    {
+      "fieldname": "m_flCompositorRenderStartMs",
+      "fieldtype": "float"
+    },
+    {
+      "fieldname": "m_HmdPose",
+      "fieldtype": "vr::TrackedDevicePose_t"
+    },
+    {
+      "fieldname": "m_nNumVSyncsReadyForUse",
+      "fieldtype": "uint32_t"
+    },
+    {
+      "fieldname": "m_nNumVSyncsToFirstView",
+      "fieldtype": "uint32_t"
+    },
+    {
+      "fieldname": "m_flTransferLatencyMs",
+      "fieldtype": "float"
+    }
+  ]
+}*/
 export class Compositor_FrameTiming {
   static readonly byteLength = 186;
 
@@ -3779,8 +5723,81 @@ export class Compositor_FrameTiming {
     currentOffset += 4;
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    view.setUint32(currentOffset, this.m_nSize, true);
+    currentOffset += 4;
+    view.setUint32(currentOffset, this.m_nFrameIndex, true);
+    currentOffset += 4;
+    view.setUint32(currentOffset, this.m_nNumFramePresents, true);
+    currentOffset += 4;
+    view.setUint32(currentOffset, this.m_nNumMisPresented, true);
+    currentOffset += 4;
+    view.setUint32(currentOffset, this.m_nNumDroppedFrames, true);
+    currentOffset += 4;
+    view.setUint32(currentOffset, this.m_nReprojectionFlags, true);
+    currentOffset += 4;
+    view.setFloat64(currentOffset, this.m_flSystemTimeInSeconds, true);
+    currentOffset += 8;
+    view.setFloat32(currentOffset, this.m_flPreSubmitGpuMs, true);
+    currentOffset += 4;
+    view.setFloat32(currentOffset, this.m_flPostSubmitGpuMs, true);
+    currentOffset += 4;
+    view.setFloat32(currentOffset, this.m_flTotalRenderGpuMs, true);
+    currentOffset += 4;
+    view.setFloat32(currentOffset, this.m_flCompositorRenderGpuMs, true);
+    currentOffset += 4;
+    view.setFloat32(currentOffset, this.m_flCompositorRenderCpuMs, true);
+    currentOffset += 4;
+    view.setFloat32(currentOffset, this.m_flCompositorIdleCpuMs, true);
+    currentOffset += 4;
+    view.setFloat32(currentOffset, this.m_flClientFrameIntervalMs, true);
+    currentOffset += 4;
+    view.setFloat32(currentOffset, this.m_flPresentCallCpuMs, true);
+    currentOffset += 4;
+    view.setFloat32(currentOffset, this.m_flWaitForPresentCpuMs, true);
+    currentOffset += 4;
+    view.setFloat32(currentOffset, this.m_flSubmitFrameMs, true);
+    currentOffset += 4;
+    view.setFloat32(currentOffset, this.m_flWaitGetPosesCalledMs, true);
+    currentOffset += 4;
+    view.setFloat32(currentOffset, this.m_flNewPosesReadyMs, true);
+    currentOffset += 4;
+    view.setFloat32(currentOffset, this.m_flNewFrameReadyMs, true);
+    currentOffset += 4;
+    view.setFloat32(currentOffset, this.m_flCompositorUpdateStartMs, true);
+    currentOffset += 4;
+    view.setFloat32(currentOffset, this.m_flCompositorUpdateEndMs, true);
+    currentOffset += 4;
+    view.setFloat32(currentOffset, this.m_flCompositorRenderStartMs, true);
+    currentOffset += 4;
+    this.m_HmdPose.toBuffer(buffer, offset + currentOffset);
+    currentOffset += TrackedDevicePose_t.byteLength;
+    view.setUint32(currentOffset, this.m_nNumVSyncsReadyForUse, true);
+    currentOffset += 4;
+    view.setUint32(currentOffset, this.m_nNumVSyncsToFirstView, true);
+    currentOffset += 4;
+    view.setFloat32(currentOffset, this.m_flTransferLatencyMs, true);
+    currentOffset += 4;
+  }
 }
 
+/*{
+  "struct": "vr::Compositor_BenchmarkResults",
+  "fields": [
+    {
+      "fieldname": "m_flMegaPixelsPerSecond",
+      "fieldtype": "float"
+    },
+    {
+      "fieldname": "m_flHmdRecommendedMegaPixelsPerSecond",
+      "fieldtype": "float"
+    }
+  ]
+}*/
 export class Compositor_BenchmarkResults {
   static readonly byteLength = 8;
 
@@ -3803,8 +5820,43 @@ export class Compositor_BenchmarkResults {
     currentOffset += 4;
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    view.setFloat32(currentOffset, this.m_flMegaPixelsPerSecond, true);
+    currentOffset += 4;
+    view.setFloat32(currentOffset, this.m_flHmdRecommendedMegaPixelsPerSecond, true);
+    currentOffset += 4;
+  }
 }
 
+/*{
+  "struct": "vr::DriverDirectMode_FrameTiming",
+  "fields": [
+    {
+      "fieldname": "m_nSize",
+      "fieldtype": "uint32_t"
+    },
+    {
+      "fieldname": "m_nNumFramePresents",
+      "fieldtype": "uint32_t"
+    },
+    {
+      "fieldname": "m_nNumMisPresented",
+      "fieldtype": "uint32_t"
+    },
+    {
+      "fieldname": "m_nNumDroppedFrames",
+      "fieldtype": "uint32_t"
+    },
+    {
+      "fieldname": "m_nReprojectionFlags",
+      "fieldtype": "uint32_t"
+    }
+  ]
+}*/
 export class DriverDirectMode_FrameTiming {
   static readonly byteLength = 20;
 
@@ -3839,8 +5891,45 @@ export class DriverDirectMode_FrameTiming {
     currentOffset += 4;
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    view.setUint32(currentOffset, this.m_nSize, true);
+    currentOffset += 4;
+    view.setUint32(currentOffset, this.m_nNumFramePresents, true);
+    currentOffset += 4;
+    view.setUint32(currentOffset, this.m_nNumMisPresented, true);
+    currentOffset += 4;
+    view.setUint32(currentOffset, this.m_nNumDroppedFrames, true);
+    currentOffset += 4;
+    view.setUint32(currentOffset, this.m_nReprojectionFlags, true);
+    currentOffset += 4;
+  }
 }
 
+/*{
+  "struct": "vr::ImuSample_t",
+  "fields": [
+    {
+      "fieldname": "fSampleTime",
+      "fieldtype": "double"
+    },
+    {
+      "fieldname": "vAccel",
+      "fieldtype": "struct vr::HmdVector3d_t"
+    },
+    {
+      "fieldname": "vGyro",
+      "fieldtype": "struct vr::HmdVector3d_t"
+    },
+    {
+      "fieldname": "unOffScaleFlags",
+      "fieldtype": "uint32_t"
+    }
+  ]
+}*/
 export class ImuSample_t {
   static readonly byteLength = 60;
 
@@ -3871,17 +5960,44 @@ export class ImuSample_t {
     currentOffset += 4;
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    view.setFloat64(currentOffset, this.fSampleTime, true);
+    currentOffset += 8;
+    this.vAccel.toBuffer(buffer, offset + currentOffset);
+    currentOffset += HmdVector3d_t.byteLength;
+    this.vGyro.toBuffer(buffer, offset + currentOffset);
+    currentOffset += HmdVector3d_t.byteLength;
+    view.setUint32(currentOffset, this.unOffScaleFlags, true);
+    currentOffset += 4;
+  }
 }
 
+/*{
+  "struct": "vr::AppOverrideKeys_t",
+  "fields": [
+    {
+      "fieldname": "pchKey",
+      "fieldtype": "const char *"
+    },
+    {
+      "fieldname": "pchValue",
+      "fieldtype": "const char *"
+    }
+  ]
+}*/
 export class AppOverrideKeys_t {
   static readonly byteLength = 16;
 
-  pchKey: Uint8Array;
-  pchValue: Uint8Array;
+  pchKey: bigint;
+  pchValue: bigint;
 
   constructor() {
-    this.pchKey = null;
-    this.pchValue = null;
+    this.pchKey = 0n;
+    this.pchValue = 0n;
   }
 
   static fromBuffer(buffer: ArrayBuffer, offset: number): AppOverrideKeys_t {
@@ -3895,8 +6011,111 @@ export class AppOverrideKeys_t {
     currentOffset += 8;
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    view.setBigUint64(currentOffset, this.pchKey, true);
+    currentOffset += 8;
+    view.setBigUint64(currentOffset, this.pchValue, true);
+    currentOffset += 8;
+  }
 }
 
+/*{
+  "struct": "vr::Compositor_CumulativeStats",
+  "fields": [
+    {
+      "fieldname": "m_nPid",
+      "fieldtype": "uint32_t"
+    },
+    {
+      "fieldname": "m_nNumFramePresents",
+      "fieldtype": "uint32_t"
+    },
+    {
+      "fieldname": "m_nNumDroppedFrames",
+      "fieldtype": "uint32_t"
+    },
+    {
+      "fieldname": "m_nNumReprojectedFrames",
+      "fieldtype": "uint32_t"
+    },
+    {
+      "fieldname": "m_nNumFramePresentsOnStartup",
+      "fieldtype": "uint32_t"
+    },
+    {
+      "fieldname": "m_nNumDroppedFramesOnStartup",
+      "fieldtype": "uint32_t"
+    },
+    {
+      "fieldname": "m_nNumReprojectedFramesOnStartup",
+      "fieldtype": "uint32_t"
+    },
+    {
+      "fieldname": "m_nNumLoading",
+      "fieldtype": "uint32_t"
+    },
+    {
+      "fieldname": "m_nNumFramePresentsLoading",
+      "fieldtype": "uint32_t"
+    },
+    {
+      "fieldname": "m_nNumDroppedFramesLoading",
+      "fieldtype": "uint32_t"
+    },
+    {
+      "fieldname": "m_nNumReprojectedFramesLoading",
+      "fieldtype": "uint32_t"
+    },
+    {
+      "fieldname": "m_nNumTimedOut",
+      "fieldtype": "uint32_t"
+    },
+    {
+      "fieldname": "m_nNumFramePresentsTimedOut",
+      "fieldtype": "uint32_t"
+    },
+    {
+      "fieldname": "m_nNumDroppedFramesTimedOut",
+      "fieldtype": "uint32_t"
+    },
+    {
+      "fieldname": "m_nNumReprojectedFramesTimedOut",
+      "fieldtype": "uint32_t"
+    },
+    {
+      "fieldname": "m_nNumFrameSubmits",
+      "fieldtype": "uint32_t"
+    },
+    {
+      "fieldname": "m_flSumCompositorCPUTimeMS",
+      "fieldtype": "vrshared_double"
+    },
+    {
+      "fieldname": "m_flSumCompositorGPUTimeMS",
+      "fieldtype": "vrshared_double"
+    },
+    {
+      "fieldname": "m_flSumTargetFrameTimes",
+      "fieldtype": "vrshared_double"
+    },
+    {
+      "fieldname": "m_flSumApplicationCPUTimeMS",
+      "fieldtype": "vrshared_double"
+    },
+    {
+      "fieldname": "m_flSumApplicationGPUTimeMS",
+      "fieldtype": "vrshared_double"
+    },
+    {
+      "fieldname": "m_nNumFramesWithDepth",
+      "fieldtype": "uint32_t"
+    }
+  ]
+}*/
 export class Compositor_CumulativeStats {
   static readonly byteLength = 88;
 
@@ -3916,11 +6135,11 @@ export class Compositor_CumulativeStats {
   m_nNumDroppedFramesTimedOut: number;
   m_nNumReprojectedFramesTimedOut: number;
   m_nNumFrameSubmits: number;
-  m_flSumCompositorCPUTimeMS: number;
-  m_flSumCompositorGPUTimeMS: number;
-  m_flSumTargetFrameTimes: number;
-  m_flSumApplicationCPUTimeMS: number;
-  m_flSumApplicationGPUTimeMS: number;
+  m_flSumCompositorCPUTimeMS: vrshared_double;
+  m_flSumCompositorGPUTimeMS: vrshared_double;
+  m_flSumTargetFrameTimes: vrshared_double;
+  m_flSumApplicationCPUTimeMS: vrshared_double;
+  m_flSumApplicationGPUTimeMS: vrshared_double;
   m_nNumFramesWithDepth: number;
 
   constructor() {
@@ -3999,8 +6218,95 @@ export class Compositor_CumulativeStats {
     currentOffset += 4;
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    view.setUint32(currentOffset, this.m_nPid, true);
+    currentOffset += 4;
+    view.setUint32(currentOffset, this.m_nNumFramePresents, true);
+    currentOffset += 4;
+    view.setUint32(currentOffset, this.m_nNumDroppedFrames, true);
+    currentOffset += 4;
+    view.setUint32(currentOffset, this.m_nNumReprojectedFrames, true);
+    currentOffset += 4;
+    view.setUint32(currentOffset, this.m_nNumFramePresentsOnStartup, true);
+    currentOffset += 4;
+    view.setUint32(currentOffset, this.m_nNumDroppedFramesOnStartup, true);
+    currentOffset += 4;
+    view.setUint32(currentOffset, this.m_nNumReprojectedFramesOnStartup, true);
+    currentOffset += 4;
+    view.setUint32(currentOffset, this.m_nNumLoading, true);
+    currentOffset += 4;
+    view.setUint32(currentOffset, this.m_nNumFramePresentsLoading, true);
+    currentOffset += 4;
+    view.setUint32(currentOffset, this.m_nNumDroppedFramesLoading, true);
+    currentOffset += 4;
+    view.setUint32(currentOffset, this.m_nNumReprojectedFramesLoading, true);
+    currentOffset += 4;
+    view.setUint32(currentOffset, this.m_nNumTimedOut, true);
+    currentOffset += 4;
+    view.setUint32(currentOffset, this.m_nNumFramePresentsTimedOut, true);
+    currentOffset += 4;
+    view.setUint32(currentOffset, this.m_nNumDroppedFramesTimedOut, true);
+    currentOffset += 4;
+    view.setUint32(currentOffset, this.m_nNumReprojectedFramesTimedOut, true);
+    currentOffset += 4;
+    view.setUint32(currentOffset, this.m_nNumFrameSubmits, true);
+    currentOffset += 4;
+    view.setFloat64(currentOffset, this.m_flSumCompositorCPUTimeMS, true);
+    currentOffset += 8;
+    view.setFloat64(currentOffset, this.m_flSumCompositorGPUTimeMS, true);
+    currentOffset += 8;
+    view.setFloat64(currentOffset, this.m_flSumTargetFrameTimes, true);
+    currentOffset += 8;
+    view.setFloat64(currentOffset, this.m_flSumApplicationCPUTimeMS, true);
+    currentOffset += 8;
+    view.setFloat64(currentOffset, this.m_flSumApplicationGPUTimeMS, true);
+    currentOffset += 8;
+    view.setUint32(currentOffset, this.m_nNumFramesWithDepth, true);
+    currentOffset += 4;
+  }
 }
 
+/*{
+  "struct": "vr::Compositor_StageRenderSettings",
+  "fields": [
+    {
+      "fieldname": "m_PrimaryColor",
+      "fieldtype": "struct vr::HmdColor_t"
+    },
+    {
+      "fieldname": "m_SecondaryColor",
+      "fieldtype": "struct vr::HmdColor_t"
+    },
+    {
+      "fieldname": "m_flVignetteInnerRadius",
+      "fieldtype": "float"
+    },
+    {
+      "fieldname": "m_flVignetteOuterRadius",
+      "fieldtype": "float"
+    },
+    {
+      "fieldname": "m_flFresnelStrength",
+      "fieldtype": "float"
+    },
+    {
+      "fieldname": "m_bBackfaceCulling",
+      "fieldtype": "_Bool"
+    },
+    {
+      "fieldname": "m_bGreyscale",
+      "fieldtype": "_Bool"
+    },
+    {
+      "fieldname": "m_bWireframe",
+      "fieldtype": "_Bool"
+    }
+  ]
+}*/
 export class Compositor_StageRenderSettings {
   static readonly byteLength = 47;
 
@@ -4047,8 +6353,47 @@ export class Compositor_StageRenderSettings {
     currentOffset += 1;
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    this.m_PrimaryColor.toBuffer(buffer, offset + currentOffset);
+    currentOffset += HmdColor_t.byteLength;
+    this.m_SecondaryColor.toBuffer(buffer, offset + currentOffset);
+    currentOffset += HmdColor_t.byteLength;
+    view.setFloat32(currentOffset, this.m_flVignetteInnerRadius, true);
+    currentOffset += 4;
+    view.setFloat32(currentOffset, this.m_flVignetteOuterRadius, true);
+    currentOffset += 4;
+    view.setFloat32(currentOffset, this.m_flFresnelStrength, true);
+    currentOffset += 4;
+    view.setUint8(currentOffset, this.m_bBackfaceCulling ? 1 : 0);
+    currentOffset += 1;
+    view.setUint8(currentOffset, this.m_bGreyscale ? 1 : 0);
+    currentOffset += 1;
+    view.setUint8(currentOffset, this.m_bWireframe ? 1 : 0);
+    currentOffset += 1;
+  }
 }
 
+/*{
+  "struct": "vr::VROverlayIntersectionParams_t",
+  "fields": [
+    {
+      "fieldname": "vSource",
+      "fieldtype": "struct vr::HmdVector3_t"
+    },
+    {
+      "fieldname": "vDirection",
+      "fieldtype": "struct vr::HmdVector3_t"
+    },
+    {
+      "fieldname": "eOrigin",
+      "fieldtype": "enum vr::ETrackingUniverseOrigin"
+    }
+  ]
+}*/
 export class VROverlayIntersectionParams_t {
   static readonly byteLength = 28;
 
@@ -4059,7 +6404,7 @@ export class VROverlayIntersectionParams_t {
   constructor() {
     this.vSource = new HmdVector3_t();
     this.vDirection = new HmdVector3_t();
-    this.eOrigin = 0;
+    this.eOrigin = Object.values(ETrackingUniverseOrigin)[0] as ETrackingUniverseOrigin;
   }
 
   static fromBuffer(buffer: ArrayBuffer, offset: number): VROverlayIntersectionParams_t {
@@ -4075,8 +6420,41 @@ export class VROverlayIntersectionParams_t {
     currentOffset += 4;
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    this.vSource.toBuffer(buffer, offset + currentOffset);
+    currentOffset += HmdVector3_t.byteLength;
+    this.vDirection.toBuffer(buffer, offset + currentOffset);
+    currentOffset += HmdVector3_t.byteLength;
+    view.setInt32(currentOffset, this.eOrigin, true);
+    currentOffset += 4;
+  }
 }
 
+/*{
+  "struct": "vr::VROverlayIntersectionResults_t",
+  "fields": [
+    {
+      "fieldname": "vPoint",
+      "fieldtype": "struct vr::HmdVector3_t"
+    },
+    {
+      "fieldname": "vNormal",
+      "fieldtype": "struct vr::HmdVector3_t"
+    },
+    {
+      "fieldname": "vUVs",
+      "fieldtype": "struct vr::HmdVector2_t"
+    },
+    {
+      "fieldname": "fDistance",
+      "fieldtype": "float"
+    }
+  ]
+}*/
 export class VROverlayIntersectionResults_t {
   static readonly byteLength = 36;
 
@@ -4107,8 +6485,43 @@ export class VROverlayIntersectionResults_t {
     currentOffset += 4;
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    this.vPoint.toBuffer(buffer, offset + currentOffset);
+    currentOffset += HmdVector3_t.byteLength;
+    this.vNormal.toBuffer(buffer, offset + currentOffset);
+    currentOffset += HmdVector3_t.byteLength;
+    this.vUVs.toBuffer(buffer, offset + currentOffset);
+    currentOffset += HmdVector2_t.byteLength;
+    view.setFloat32(currentOffset, this.fDistance, true);
+    currentOffset += 4;
+  }
 }
 
+/*{
+  "struct": "vr::IntersectionMaskRectangle_t",
+  "fields": [
+    {
+      "fieldname": "m_flTopLeftX",
+      "fieldtype": "float"
+    },
+    {
+      "fieldname": "m_flTopLeftY",
+      "fieldtype": "float"
+    },
+    {
+      "fieldname": "m_flWidth",
+      "fieldtype": "float"
+    },
+    {
+      "fieldname": "m_flHeight",
+      "fieldtype": "float"
+    }
+  ]
+}*/
 export class IntersectionMaskRectangle_t {
   static readonly byteLength = 16;
 
@@ -4139,8 +6552,39 @@ export class IntersectionMaskRectangle_t {
     currentOffset += 4;
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    view.setFloat32(currentOffset, this.m_flTopLeftX, true);
+    currentOffset += 4;
+    view.setFloat32(currentOffset, this.m_flTopLeftY, true);
+    currentOffset += 4;
+    view.setFloat32(currentOffset, this.m_flWidth, true);
+    currentOffset += 4;
+    view.setFloat32(currentOffset, this.m_flHeight, true);
+    currentOffset += 4;
+  }
 }
 
+/*{
+  "struct": "vr::IntersectionMaskCircle_t",
+  "fields": [
+    {
+      "fieldname": "m_flCenterX",
+      "fieldtype": "float"
+    },
+    {
+      "fieldname": "m_flCenterY",
+      "fieldtype": "float"
+    },
+    {
+      "fieldname": "m_flRadius",
+      "fieldtype": "float"
+    }
+  ]
+}*/
 export class IntersectionMaskCircle_t {
   static readonly byteLength = 12;
 
@@ -4167,8 +6611,33 @@ export class IntersectionMaskCircle_t {
     currentOffset += 4;
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    view.setFloat32(currentOffset, this.m_flCenterX, true);
+    currentOffset += 4;
+    view.setFloat32(currentOffset, this.m_flCenterY, true);
+    currentOffset += 4;
+    view.setFloat32(currentOffset, this.m_flRadius, true);
+    currentOffset += 4;
+  }
 }
 
+/*{
+  "struct": "vr::(anonymous)",
+  "fields": [
+    {
+      "fieldname": "m_Rectangle",
+      "fieldtype": "struct vr::IntersectionMaskRectangle_t"
+    },
+    {
+      "fieldname": "m_Circle",
+      "fieldtype": "struct vr::IntersectionMaskCircle_t"
+    }
+  ]
+}*/
 export class AnonymousStruct_2 {
   static readonly byteLength = 28;
 
@@ -4191,17 +6660,40 @@ export class AnonymousStruct_2 {
     currentOffset += IntersectionMaskCircle_t.byteLength;
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    this.m_Rectangle.toBuffer(buffer, offset + currentOffset);
+    currentOffset += IntersectionMaskRectangle_t.byteLength;
+    this.m_Circle.toBuffer(buffer, offset + currentOffset);
+    currentOffset += IntersectionMaskCircle_t.byteLength;
+  }
 }
 
+/*{
+  "struct": "vr::VROverlayIntersectionMaskPrimitive_t",
+  "fields": [
+    {
+      "fieldname": "m_nPrimitiveType",
+      "fieldtype": "enum vr::EVROverlayIntersectionMaskPrimitiveType"
+    },
+    {
+      "fieldname": "m_Primitive",
+      "fieldtype": "VROverlayIntersectionMaskPrimitive_Data_t"
+    }
+  ]
+}*/
 export class VROverlayIntersectionMaskPrimitive_t {
   static readonly byteLength = 4;
 
   m_nPrimitiveType: EVROverlayIntersectionMaskPrimitiveType;
-  m_Primitive: any;
+  m_Primitive: VROverlayIntersectionMaskPrimitive_Data_t;
 
   constructor() {
-    this.m_nPrimitiveType = 0;
-    this.m_Primitive = null;
+    this.m_nPrimitiveType = Object.values(EVROverlayIntersectionMaskPrimitiveType)[0] as EVROverlayIntersectionMaskPrimitiveType;
+    this.m_Primitive = new VROverlayIntersectionMaskPrimitive_Data_t();
   }
 
   static fromBuffer(buffer: ArrayBuffer, offset: number): VROverlayIntersectionMaskPrimitive_t {
@@ -4214,8 +6706,38 @@ export class VROverlayIntersectionMaskPrimitive_t {
     // Unknown type VROverlayIntersectionMaskPrimitive_Data_t for field m_Primitive
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    view.setInt32(currentOffset, this.m_nPrimitiveType, true);
+    currentOffset += 4;
+    // Unknown type VROverlayIntersectionMaskPrimitive_Data_t for field m_Primitive
+  }
 }
 
+/*{
+  "struct": "vr::VROverlayProjection_t",
+  "fields": [
+    {
+      "fieldname": "fLeft",
+      "fieldtype": "float"
+    },
+    {
+      "fieldname": "fRight",
+      "fieldtype": "float"
+    },
+    {
+      "fieldname": "fTop",
+      "fieldtype": "float"
+    },
+    {
+      "fieldname": "fBottom",
+      "fieldtype": "float"
+    }
+  ]
+}*/
 export class VROverlayProjection_t {
   static readonly byteLength = 16;
 
@@ -4246,12 +6768,43 @@ export class VROverlayProjection_t {
     currentOffset += 4;
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    view.setFloat32(currentOffset, this.fLeft, true);
+    currentOffset += 4;
+    view.setFloat32(currentOffset, this.fRight, true);
+    currentOffset += 4;
+    view.setFloat32(currentOffset, this.fTop, true);
+    currentOffset += 4;
+    view.setFloat32(currentOffset, this.fBottom, true);
+    currentOffset += 4;
+  }
 }
 
+/*{
+  "struct": "vr::VROverlayView_t",
+  "fields": [
+    {
+      "fieldname": "overlayHandle",
+      "fieldtype": "VROverlayHandle_t"
+    },
+    {
+      "fieldname": "texture",
+      "fieldtype": "struct vr::Texture_t"
+    },
+    {
+      "fieldname": "textureBounds",
+      "fieldtype": "struct vr::VRTextureBounds_t"
+    }
+  ]
+}*/
 export class VROverlayView_t {
   static readonly byteLength = 40;
 
-  overlayHandle: bigint;
+  overlayHandle: VROverlayHandle_t;
   texture: Texture_t;
   textureBounds: VRTextureBounds_t;
 
@@ -4274,22 +6827,59 @@ export class VROverlayView_t {
     currentOffset += VRTextureBounds_t.byteLength;
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    view.setBigUint64(currentOffset, this.overlayHandle, true);
+    currentOffset += 8;
+    this.texture.toBuffer(buffer, offset + currentOffset);
+    currentOffset += Texture_t.byteLength;
+    this.textureBounds.toBuffer(buffer, offset + currentOffset);
+    currentOffset += VRTextureBounds_t.byteLength;
+  }
 }
 
+/*{
+  "struct": "vr::VRVulkanDevice_t",
+  "fields": [
+    {
+      "fieldname": "m_pInstance",
+      "fieldtype": "struct VkInstance_T *"
+    },
+    {
+      "fieldname": "m_pDevice",
+      "fieldtype": "struct VkDevice_T *"
+    },
+    {
+      "fieldname": "m_pPhysicalDevice",
+      "fieldtype": "struct VkPhysicalDevice_T *"
+    },
+    {
+      "fieldname": "m_pQueue",
+      "fieldtype": "struct VkQueue_T *"
+    },
+    {
+      "fieldname": "m_uQueueFamilyIndex",
+      "fieldtype": "uint32_t"
+    }
+  ]
+}*/
 export class VRVulkanDevice_t {
   static readonly byteLength = 36;
 
-  m_pInstance: Uint8Array;
-  m_pDevice: Uint8Array;
-  m_pPhysicalDevice: Uint8Array;
-  m_pQueue: Uint8Array;
+  m_pInstance: bigint;
+  m_pDevice: bigint;
+  m_pPhysicalDevice: bigint;
+  m_pQueue: bigint;
   m_uQueueFamilyIndex: number;
 
   constructor() {
-    this.m_pInstance = null;
-    this.m_pDevice = null;
-    this.m_pPhysicalDevice = null;
-    this.m_pQueue = null;
+    this.m_pInstance = 0n;
+    this.m_pDevice = 0n;
+    this.m_pPhysicalDevice = 0n;
+    this.m_pQueue = 0n;
     this.m_uQueueFamilyIndex = 0;
   }
 
@@ -4310,17 +6900,46 @@ export class VRVulkanDevice_t {
     currentOffset += 4;
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    view.setBigUint64(currentOffset, this.m_pInstance, true);
+    currentOffset += 8;
+    view.setBigUint64(currentOffset, this.m_pDevice, true);
+    currentOffset += 8;
+    view.setBigUint64(currentOffset, this.m_pPhysicalDevice, true);
+    currentOffset += 8;
+    view.setBigUint64(currentOffset, this.m_pQueue, true);
+    currentOffset += 8;
+    view.setUint32(currentOffset, this.m_uQueueFamilyIndex, true);
+    currentOffset += 4;
+  }
 }
 
+/*{
+  "struct": "vr::VRNativeDevice_t",
+  "fields": [
+    {
+      "fieldname": "handle",
+      "fieldtype": "void *"
+    },
+    {
+      "fieldname": "eType",
+      "fieldtype": "enum vr::EDeviceType"
+    }
+  ]
+}*/
 export class VRNativeDevice_t {
   static readonly byteLength = 12;
 
-  handle: Uint8Array;
+  handle: bigint;
   eType: EDeviceType;
 
   constructor() {
-    this.handle = null;
-    this.eType = 0;
+    this.handle = 0n;
+    this.eType = Object.values(EDeviceType)[0] as EDeviceType;
   }
 
   static fromBuffer(buffer: ArrayBuffer, offset: number): VRNativeDevice_t {
@@ -4334,8 +6953,35 @@ export class VRNativeDevice_t {
     currentOffset += 4;
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    view.setBigUint64(currentOffset, this.handle, true);
+    currentOffset += 8;
+    view.setInt32(currentOffset, this.eType, true);
+    currentOffset += 4;
+  }
 }
 
+/*{
+  "struct": "vr::RenderModel_Vertex_t",
+  "fields": [
+    {
+      "fieldname": "vPosition",
+      "fieldtype": "struct vr::HmdVector3_t"
+    },
+    {
+      "fieldname": "vNormal",
+      "fieldtype": "struct vr::HmdVector3_t"
+    },
+    {
+      "fieldname": "rfTextureCoord",
+      "fieldtype": "float [2]"
+    }
+  ]
+}*/
 export class RenderModel_Vertex_t {
   static readonly byteLength = 32;
 
@@ -4365,22 +7011,61 @@ export class RenderModel_Vertex_t {
     }
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    this.vPosition.toBuffer(buffer, offset + currentOffset);
+    currentOffset += HmdVector3_t.byteLength;
+    this.vNormal.toBuffer(buffer, offset + currentOffset);
+    currentOffset += HmdVector3_t.byteLength;
+    for (let i0 = 0; i0 < 2; i0++) {
+    view.setFloat32(currentOffset, this.rfTextureCoord[i0], true);
+    currentOffset += 4;
+    }
+  }
 }
 
+/*{
+  "struct": "vr::RenderModel_TextureMap_t",
+  "fields": [
+    {
+      "fieldname": "unWidth",
+      "fieldtype": "uint16_t"
+    },
+    {
+      "fieldname": "unHeight",
+      "fieldtype": "uint16_t"
+    },
+    {
+      "fieldname": "rubTextureMapData",
+      "fieldtype": "const uint8_t *"
+    },
+    {
+      "fieldname": "format",
+      "fieldtype": "enum vr::EVRRenderModelTextureFormat"
+    },
+    {
+      "fieldname": "unMipLevels",
+      "fieldtype": "uint16_t"
+    }
+  ]
+}*/
 export class RenderModel_TextureMap_t {
   static readonly byteLength = 18;
 
   unWidth: number;
   unHeight: number;
-  rubTextureMapData: Uint8Array;
+  rubTextureMapData: bigint;
   format: EVRRenderModelTextureFormat;
   unMipLevels: number;
 
   constructor() {
     this.unWidth = 0;
     this.unHeight = 0;
-    this.rubTextureMapData = null;
-    this.format = 0;
+    this.rubTextureMapData = 0n;
+    this.format = Object.values(EVRRenderModelTextureFormat)[0] as EVRRenderModelTextureFormat;
     this.unMipLevels = 0;
   }
 
@@ -4401,21 +7086,62 @@ export class RenderModel_TextureMap_t {
     currentOffset += 2;
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    view.setUint16(currentOffset, this.unWidth, true);
+    currentOffset += 2;
+    view.setUint16(currentOffset, this.unHeight, true);
+    currentOffset += 2;
+    view.setBigUint64(currentOffset, this.rubTextureMapData, true);
+    currentOffset += 8;
+    view.setInt32(currentOffset, this.format, true);
+    currentOffset += 4;
+    view.setUint16(currentOffset, this.unMipLevels, true);
+    currentOffset += 2;
+  }
 }
 
+/*{
+  "struct": "vr::RenderModel_t",
+  "fields": [
+    {
+      "fieldname": "rVertexData",
+      "fieldtype": "const struct vr::RenderModel_Vertex_t *"
+    },
+    {
+      "fieldname": "unVertexCount",
+      "fieldtype": "uint32_t"
+    },
+    {
+      "fieldname": "rIndexData",
+      "fieldtype": "const uint16_t *"
+    },
+    {
+      "fieldname": "unTriangleCount",
+      "fieldtype": "uint32_t"
+    },
+    {
+      "fieldname": "diffuseTextureId",
+      "fieldtype": "TextureID_t"
+    }
+  ]
+}*/
 export class RenderModel_t {
   static readonly byteLength = 28;
 
-  rVertexData: Uint8Array;
+  rVertexData: bigint;
   unVertexCount: number;
-  rIndexData: Uint8Array;
+  rIndexData: bigint;
   unTriangleCount: number;
-  diffuseTextureId: number;
+  diffuseTextureId: TextureID_t;
 
   constructor() {
-    this.rVertexData = null;
+    this.rVertexData = 0n;
     this.unVertexCount = 0;
-    this.rIndexData = null;
+    this.rIndexData = 0n;
     this.unTriangleCount = 0;
     this.diffuseTextureId = 0;
   }
@@ -4437,8 +7163,33 @@ export class RenderModel_t {
     currentOffset += 8;
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    view.setBigUint64(currentOffset, this.rVertexData, true);
+    currentOffset += 8;
+    view.setUint32(currentOffset, this.unVertexCount, true);
+    currentOffset += 4;
+    view.setBigUint64(currentOffset, this.rIndexData, true);
+    currentOffset += 8;
+    view.setUint32(currentOffset, this.unTriangleCount, true);
+    currentOffset += 4;
+    view.setFloat64(currentOffset, this.diffuseTextureId, true);
+    currentOffset += 8;
+  }
 }
 
+/*{
+  "struct": "vr::RenderModel_ControllerMode_State_t",
+  "fields": [
+    {
+      "fieldname": "bScrollWheelVisible",
+      "fieldtype": "_Bool"
+    }
+  ]
+}*/
 export class RenderModel_ControllerMode_State_t {
   static readonly byteLength = 1;
 
@@ -4457,18 +7208,47 @@ export class RenderModel_ControllerMode_State_t {
     currentOffset += 1;
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    view.setUint8(currentOffset, this.bScrollWheelVisible ? 1 : 0);
+    currentOffset += 1;
+  }
 }
 
+/*{
+  "struct": "vr::NotificationBitmap_t",
+  "fields": [
+    {
+      "fieldname": "m_pImageData",
+      "fieldtype": "void *"
+    },
+    {
+      "fieldname": "m_nWidth",
+      "fieldtype": "int32_t"
+    },
+    {
+      "fieldname": "m_nHeight",
+      "fieldtype": "int32_t"
+    },
+    {
+      "fieldname": "m_nBytesPerPixel",
+      "fieldtype": "int32_t"
+    }
+  ]
+}*/
 export class NotificationBitmap_t {
   static readonly byteLength = 20;
 
-  m_pImageData: Uint8Array;
+  m_pImageData: bigint;
   m_nWidth: number;
   m_nHeight: number;
   m_nBytesPerPixel: number;
 
   constructor() {
-    this.m_pImageData = null;
+    this.m_pImageData = 0n;
     this.m_nWidth = 0;
     this.m_nHeight = 0;
     this.m_nBytesPerPixel = 0;
@@ -4489,15 +7269,38 @@ export class NotificationBitmap_t {
     currentOffset += 4;
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    view.setBigUint64(currentOffset, this.m_pImageData, true);
+    currentOffset += 8;
+    view.setInt32(currentOffset, this.m_nWidth, true);
+    currentOffset += 4;
+    view.setInt32(currentOffset, this.m_nHeight, true);
+    currentOffset += 4;
+    view.setInt32(currentOffset, this.m_nBytesPerPixel, true);
+    currentOffset += 4;
+  }
 }
 
+/*{
+  "struct": "vr::CVRSettingHelper",
+  "fields": [
+    {
+      "fieldname": "m_pSettings",
+      "fieldtype": "class vr::IVRSettings *"
+    }
+  ]
+}*/
 export class CVRSettingHelper {
   static readonly byteLength = 8;
 
-  m_pSettings: Uint8Array;
+  m_pSettings: bigint;
 
   constructor() {
-    this.m_pSettings = null;
+    this.m_pSettings = 0n;
   }
 
   static fromBuffer(buffer: ArrayBuffer, offset: number): CVRSettingHelper {
@@ -4509,13 +7312,62 @@ export class CVRSettingHelper {
     currentOffset += 8;
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    view.setBigUint64(currentOffset, this.m_pSettings, true);
+    currentOffset += 8;
+  }
 }
 
+/*{
+  "struct": "vr::InputAnalogActionData_t",
+  "fields": [
+    {
+      "fieldname": "bActive",
+      "fieldtype": "_Bool"
+    },
+    {
+      "fieldname": "activeOrigin",
+      "fieldtype": "VRInputValueHandle_t"
+    },
+    {
+      "fieldname": "x",
+      "fieldtype": "float"
+    },
+    {
+      "fieldname": "y",
+      "fieldtype": "float"
+    },
+    {
+      "fieldname": "z",
+      "fieldtype": "float"
+    },
+    {
+      "fieldname": "deltaX",
+      "fieldtype": "float"
+    },
+    {
+      "fieldname": "deltaY",
+      "fieldtype": "float"
+    },
+    {
+      "fieldname": "deltaZ",
+      "fieldtype": "float"
+    },
+    {
+      "fieldname": "fUpdateTime",
+      "fieldtype": "float"
+    }
+  ]
+}*/
 export class InputAnalogActionData_t {
   static readonly byteLength = 37;
 
   bActive: boolean;
-  activeOrigin: bigint;
+  activeOrigin: VRInputValueHandle_t;
   x: number;
   y: number;
   z: number;
@@ -4561,13 +7413,62 @@ export class InputAnalogActionData_t {
     currentOffset += 4;
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    view.setUint8(currentOffset, this.bActive ? 1 : 0);
+    currentOffset += 1;
+    view.setBigUint64(currentOffset, this.activeOrigin, true);
+    currentOffset += 8;
+    view.setFloat32(currentOffset, this.x, true);
+    currentOffset += 4;
+    view.setFloat32(currentOffset, this.y, true);
+    currentOffset += 4;
+    view.setFloat32(currentOffset, this.z, true);
+    currentOffset += 4;
+    view.setFloat32(currentOffset, this.deltaX, true);
+    currentOffset += 4;
+    view.setFloat32(currentOffset, this.deltaY, true);
+    currentOffset += 4;
+    view.setFloat32(currentOffset, this.deltaZ, true);
+    currentOffset += 4;
+    view.setFloat32(currentOffset, this.fUpdateTime, true);
+    currentOffset += 4;
+  }
 }
 
+/*{
+  "struct": "vr::InputDigitalActionData_t",
+  "fields": [
+    {
+      "fieldname": "bActive",
+      "fieldtype": "_Bool"
+    },
+    {
+      "fieldname": "activeOrigin",
+      "fieldtype": "VRInputValueHandle_t"
+    },
+    {
+      "fieldname": "bState",
+      "fieldtype": "_Bool"
+    },
+    {
+      "fieldname": "bChanged",
+      "fieldtype": "_Bool"
+    },
+    {
+      "fieldname": "fUpdateTime",
+      "fieldtype": "float"
+    }
+  ]
+}*/
 export class InputDigitalActionData_t {
   static readonly byteLength = 15;
 
   bActive: boolean;
-  activeOrigin: bigint;
+  activeOrigin: VRInputValueHandle_t;
   bState: boolean;
   bChanged: boolean;
   fUpdateTime: number;
@@ -4597,13 +7498,46 @@ export class InputDigitalActionData_t {
     currentOffset += 4;
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    view.setUint8(currentOffset, this.bActive ? 1 : 0);
+    currentOffset += 1;
+    view.setBigUint64(currentOffset, this.activeOrigin, true);
+    currentOffset += 8;
+    view.setUint8(currentOffset, this.bState ? 1 : 0);
+    currentOffset += 1;
+    view.setUint8(currentOffset, this.bChanged ? 1 : 0);
+    currentOffset += 1;
+    view.setFloat32(currentOffset, this.fUpdateTime, true);
+    currentOffset += 4;
+  }
 }
 
+/*{
+  "struct": "vr::InputPoseActionData_t",
+  "fields": [
+    {
+      "fieldname": "bActive",
+      "fieldtype": "_Bool"
+    },
+    {
+      "fieldname": "activeOrigin",
+      "fieldtype": "VRInputValueHandle_t"
+    },
+    {
+      "fieldname": "pose",
+      "fieldtype": "struct vr::TrackedDevicePose_t"
+    }
+  ]
+}*/
 export class InputPoseActionData_t {
-  static readonly byteLength = 1 + 8 + TrackedDevicePose_t.byteLength;
+  static readonly byteLength = 87;
 
   bActive: boolean;
-  activeOrigin: bigint;
+  activeOrigin: VRInputValueHandle_t;
   pose: TrackedDevicePose_t;
 
   constructor() {
@@ -4622,32 +7556,41 @@ export class InputPoseActionData_t {
     result.activeOrigin = view.getBigUint64(currentOffset, true);
     currentOffset += 8;
     result.pose = TrackedDevicePose_t.fromBuffer(buffer, offset + currentOffset);
-
+    currentOffset += TrackedDevicePose_t.byteLength;
     return result;
   }
 
-  toBuffer(): ArrayBuffer {
-    const buffer = new ArrayBuffer(InputPoseActionData_t.byteLength);
-    const view = new DataView(buffer);
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
     let currentOffset = 0;
 
     view.setUint8(currentOffset, this.bActive ? 1 : 0);
     currentOffset += 1;
     view.setBigUint64(currentOffset, this.activeOrigin, true);
     currentOffset += 8;
-
-    const poseBuffer = this.pose.toBuffer();
-    new Uint8Array(buffer, currentOffset).set(new Uint8Array(poseBuffer));
-
-    return buffer;
+    this.pose.toBuffer(buffer, offset + currentOffset);
+    currentOffset += TrackedDevicePose_t.byteLength;
   }
 }
 
+/*{
+  "struct": "vr::InputSkeletalActionData_t",
+  "fields": [
+    {
+      "fieldname": "bActive",
+      "fieldtype": "_Bool"
+    },
+    {
+      "fieldname": "activeOrigin",
+      "fieldtype": "VRInputValueHandle_t"
+    }
+  ]
+}*/
 export class InputSkeletalActionData_t {
   static readonly byteLength = 9;
 
   bActive: boolean;
-  activeOrigin: bigint;
+  activeOrigin: VRInputValueHandle_t;
 
   constructor() {
     this.bActive = false;
@@ -4665,19 +7608,46 @@ export class InputSkeletalActionData_t {
     currentOffset += 8;
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    view.setUint8(currentOffset, this.bActive ? 1 : 0);
+    currentOffset += 1;
+    view.setBigUint64(currentOffset, this.activeOrigin, true);
+    currentOffset += 8;
+  }
 }
 
+/*{
+  "struct": "vr::InputOriginInfo_t",
+  "fields": [
+    {
+      "fieldname": "devicePath",
+      "fieldtype": "VRInputValueHandle_t"
+    },
+    {
+      "fieldname": "trackedDeviceIndex",
+      "fieldtype": "TrackedDeviceIndex_t"
+    },
+    {
+      "fieldname": "rchRenderModelComponentName",
+      "fieldtype": "char [128]"
+    }
+  ]
+}*/
 export class InputOriginInfo_t {
-  static readonly byteLength = 12;
+  static readonly byteLength = 140;
 
-  devicePath: bigint;
-  trackedDeviceIndex: number;
-  rchRenderModelComponentName: any[];
+  devicePath: VRInputValueHandle_t;
+  trackedDeviceIndex: TrackedDeviceIndex_t;
+  rchRenderModelComponentName: number[];
 
   constructor() {
     this.devicePath = 0n;
     this.trackedDeviceIndex = 0;
-    this.rchRenderModelComponentName = Array(128).fill(null).map(() => null);
+    this.rchRenderModelComponentName = Array(128).fill(null).map(() => 0);
   }
 
   static fromBuffer(buffer: ArrayBuffer, offset: number): InputOriginInfo_t {
@@ -4695,23 +7665,61 @@ export class InputOriginInfo_t {
     }
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    view.setBigUint64(currentOffset, this.devicePath, true);
+    currentOffset += 8;
+    view.setFloat64(currentOffset, this.trackedDeviceIndex, true);
+    currentOffset += 8;
+    for (let i0 = 0; i0 < 128; i0++) {
+    // Unknown type char for field rchRenderModelComponentName[i0]
+    }
+  }
 }
 
+/*{
+  "struct": "vr::InputBindingInfo_t",
+  "fields": [
+    {
+      "fieldname": "rchDevicePathName",
+      "fieldtype": "char [128]"
+    },
+    {
+      "fieldname": "rchInputPathName",
+      "fieldtype": "char [128]"
+    },
+    {
+      "fieldname": "rchModeName",
+      "fieldtype": "char [128]"
+    },
+    {
+      "fieldname": "rchSlotName",
+      "fieldtype": "char [128]"
+    },
+    {
+      "fieldname": "rchInputSourceType",
+      "fieldtype": "char [32]"
+    }
+  ]
+}*/
 export class InputBindingInfo_t {
-  static readonly byteLength = 0;
+  static readonly byteLength = 544;
 
-  rchDevicePathName: any[];
-  rchInputPathName: any[];
-  rchModeName: any[];
-  rchSlotName: any[];
-  rchInputSourceType: any[];
+  rchDevicePathName: number[];
+  rchInputPathName: number[];
+  rchModeName: number[];
+  rchSlotName: number[];
+  rchInputSourceType: number[];
 
   constructor() {
-    this.rchDevicePathName = Array(128).fill(null).map(() => null);
-    this.rchInputPathName = Array(128).fill(null).map(() => null);
-    this.rchModeName = Array(128).fill(null).map(() => null);
-    this.rchSlotName = Array(128).fill(null).map(() => null);
-    this.rchInputSourceType = Array(32).fill(null).map(() => null);
+    this.rchDevicePathName = Array(128).fill(null).map(() => 0);
+    this.rchInputPathName = Array(128).fill(null).map(() => 0);
+    this.rchModeName = Array(128).fill(null).map(() => 0);
+    this.rchSlotName = Array(128).fill(null).map(() => 0);
+    this.rchInputSourceType = Array(32).fill(null).map(() => 0);
   }
 
   static fromBuffer(buffer: ArrayBuffer, offset: number): InputBindingInfo_t {
@@ -4741,14 +7749,60 @@ export class InputBindingInfo_t {
     }
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    for (let i0 = 0; i0 < 128; i0++) {
+    // Unknown type char for field rchDevicePathName[i0]
+    }
+    for (let i0 = 0; i0 < 128; i0++) {
+    // Unknown type char for field rchInputPathName[i0]
+    }
+    for (let i0 = 0; i0 < 128; i0++) {
+    // Unknown type char for field rchModeName[i0]
+    }
+    for (let i0 = 0; i0 < 128; i0++) {
+    // Unknown type char for field rchSlotName[i0]
+    }
+    for (let i0 = 0; i0 < 32; i0++) {
+    // Unknown type char for field rchInputSourceType[i0]
+    }
+  }
 }
 
+/*{
+  "struct": "vr::VRActiveActionSet_t",
+  "fields": [
+    {
+      "fieldname": "ulActionSet",
+      "fieldtype": "VRActionSetHandle_t"
+    },
+    {
+      "fieldname": "ulRestrictedToDevice",
+      "fieldtype": "VRInputValueHandle_t"
+    },
+    {
+      "fieldname": "ulSecondaryActionSet",
+      "fieldtype": "VRActionSetHandle_t"
+    },
+    {
+      "fieldname": "unPadding",
+      "fieldtype": "uint32_t"
+    },
+    {
+      "fieldname": "nPriority",
+      "fieldtype": "int32_t"
+    }
+  ]
+}*/
 export class VRActiveActionSet_t {
   static readonly byteLength = 32;
 
-  ulActionSet: bigint;
-  ulRestrictedToDevice: bigint;
-  ulSecondaryActionSet: bigint;
+  ulActionSet: VRActionSetHandle_t;
+  ulRestrictedToDevice: VRInputValueHandle_t;
+  ulSecondaryActionSet: VRActionSetHandle_t;
   unPadding: number;
   nPriority: number;
 
@@ -4777,8 +7831,37 @@ export class VRActiveActionSet_t {
     currentOffset += 4;
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    view.setBigUint64(currentOffset, this.ulActionSet, true);
+    currentOffset += 8;
+    view.setBigUint64(currentOffset, this.ulRestrictedToDevice, true);
+    currentOffset += 8;
+    view.setBigUint64(currentOffset, this.ulSecondaryActionSet, true);
+    currentOffset += 8;
+    view.setUint32(currentOffset, this.unPadding, true);
+    currentOffset += 4;
+    view.setInt32(currentOffset, this.nPriority, true);
+    currentOffset += 4;
+  }
 }
 
+/*{
+  "struct": "vr::VRSkeletalSummaryData_t",
+  "fields": [
+    {
+      "fieldname": "flFingerCurl",
+      "fieldtype": "float [5]"
+    },
+    {
+      "fieldname": "flFingerSplay",
+      "fieldtype": "float [4]"
+    }
+  ]
+}*/
 export class VRSkeletalSummaryData_t {
   static readonly byteLength = 36;
 
@@ -4807,8 +7890,31 @@ export class VRSkeletalSummaryData_t {
     }
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    for (let i0 = 0; i0 < 5; i0++) {
+    view.setFloat32(currentOffset, this.flFingerCurl[i0], true);
+    currentOffset += 4;
+    }
+    for (let i0 = 0; i0 < 4; i0++) {
+    view.setFloat32(currentOffset, this.flFingerSplay[i0], true);
+    currentOffset += 4;
+    }
+  }
 }
 
+/*{
+  "struct": "vr::SpatialAnchorPose_t",
+  "fields": [
+    {
+      "fieldname": "mAnchorToAbsoluteTracking",
+      "fieldtype": "struct vr::HmdMatrix34_t"
+    }
+  ]
+}*/
 export class SpatialAnchorPose_t {
   static readonly byteLength = 48;
 
@@ -4827,53 +7933,146 @@ export class SpatialAnchorPose_t {
     currentOffset += HmdMatrix34_t.byteLength;
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    this.mAnchorToAbsoluteTracking.toBuffer(buffer, offset + currentOffset);
+    currentOffset += HmdMatrix34_t.byteLength;
+  }
 }
 
+/*{
+  "struct": "vr::COpenVRContext",
+  "fields": [
+    {
+      "fieldname": "m_pVRSystem",
+      "fieldtype": "class vr::IVRSystem *"
+    },
+    {
+      "fieldname": "m_pVRChaperone",
+      "fieldtype": "class vr::IVRChaperone *"
+    },
+    {
+      "fieldname": "m_pVRChaperoneSetup",
+      "fieldtype": "class vr::IVRChaperoneSetup *"
+    },
+    {
+      "fieldname": "m_pVRCompositor",
+      "fieldtype": "class vr::IVRCompositor *"
+    },
+    {
+      "fieldname": "m_pVRHeadsetView",
+      "fieldtype": "class vr::IVRHeadsetView *"
+    },
+    {
+      "fieldname": "m_pVROverlay",
+      "fieldtype": "class vr::IVROverlay *"
+    },
+    {
+      "fieldname": "m_pVROverlayView",
+      "fieldtype": "class vr::IVROverlayView *"
+    },
+    {
+      "fieldname": "m_pVRResources",
+      "fieldtype": "class vr::IVRResources *"
+    },
+    {
+      "fieldname": "m_pVRRenderModels",
+      "fieldtype": "class vr::IVRRenderModels *"
+    },
+    {
+      "fieldname": "m_pVRExtendedDisplay",
+      "fieldtype": "class vr::IVRExtendedDisplay *"
+    },
+    {
+      "fieldname": "m_pVRSettings",
+      "fieldtype": "class vr::IVRSettings *"
+    },
+    {
+      "fieldname": "m_pVRApplications",
+      "fieldtype": "class vr::IVRApplications *"
+    },
+    {
+      "fieldname": "m_pVRTrackedCamera",
+      "fieldtype": "class vr::IVRTrackedCamera *"
+    },
+    {
+      "fieldname": "m_pVRScreenshots",
+      "fieldtype": "class vr::IVRScreenshots *"
+    },
+    {
+      "fieldname": "m_pVRDriverManager",
+      "fieldtype": "class vr::IVRDriverManager *"
+    },
+    {
+      "fieldname": "m_pVRInput",
+      "fieldtype": "class vr::IVRInput *"
+    },
+    {
+      "fieldname": "m_pVRIOBuffer",
+      "fieldtype": "class vr::IVRIOBuffer *"
+    },
+    {
+      "fieldname": "m_pVRSpatialAnchors",
+      "fieldtype": "class vr::IVRSpatialAnchors *"
+    },
+    {
+      "fieldname": "m_pVRDebug",
+      "fieldtype": "class vr::IVRDebug *"
+    },
+    {
+      "fieldname": "m_pVRNotifications",
+      "fieldtype": "class vr::IVRNotifications *"
+    }
+  ]
+}*/
 export class COpenVRContext {
   static readonly byteLength = 160;
 
-  m_pVRSystem: Uint8Array;
-  m_pVRChaperone: Uint8Array;
-  m_pVRChaperoneSetup: Uint8Array;
-  m_pVRCompositor: Uint8Array;
-  m_pVRHeadsetView: Uint8Array;
-  m_pVROverlay: Uint8Array;
-  m_pVROverlayView: Uint8Array;
-  m_pVRResources: Uint8Array;
-  m_pVRRenderModels: Uint8Array;
-  m_pVRExtendedDisplay: Uint8Array;
-  m_pVRSettings: Uint8Array;
-  m_pVRApplications: Uint8Array;
-  m_pVRTrackedCamera: Uint8Array;
-  m_pVRScreenshots: Uint8Array;
-  m_pVRDriverManager: Uint8Array;
-  m_pVRInput: Uint8Array;
-  m_pVRIOBuffer: Uint8Array;
-  m_pVRSpatialAnchors: Uint8Array;
-  m_pVRDebug: Uint8Array;
-  m_pVRNotifications: Uint8Array;
+  m_pVRSystem: bigint;
+  m_pVRChaperone: bigint;
+  m_pVRChaperoneSetup: bigint;
+  m_pVRCompositor: bigint;
+  m_pVRHeadsetView: bigint;
+  m_pVROverlay: bigint;
+  m_pVROverlayView: bigint;
+  m_pVRResources: bigint;
+  m_pVRRenderModels: bigint;
+  m_pVRExtendedDisplay: bigint;
+  m_pVRSettings: bigint;
+  m_pVRApplications: bigint;
+  m_pVRTrackedCamera: bigint;
+  m_pVRScreenshots: bigint;
+  m_pVRDriverManager: bigint;
+  m_pVRInput: bigint;
+  m_pVRIOBuffer: bigint;
+  m_pVRSpatialAnchors: bigint;
+  m_pVRDebug: bigint;
+  m_pVRNotifications: bigint;
 
   constructor() {
-    this.m_pVRSystem = null;
-    this.m_pVRChaperone = null;
-    this.m_pVRChaperoneSetup = null;
-    this.m_pVRCompositor = null;
-    this.m_pVRHeadsetView = null;
-    this.m_pVROverlay = null;
-    this.m_pVROverlayView = null;
-    this.m_pVRResources = null;
-    this.m_pVRRenderModels = null;
-    this.m_pVRExtendedDisplay = null;
-    this.m_pVRSettings = null;
-    this.m_pVRApplications = null;
-    this.m_pVRTrackedCamera = null;
-    this.m_pVRScreenshots = null;
-    this.m_pVRDriverManager = null;
-    this.m_pVRInput = null;
-    this.m_pVRIOBuffer = null;
-    this.m_pVRSpatialAnchors = null;
-    this.m_pVRDebug = null;
-    this.m_pVRNotifications = null;
+    this.m_pVRSystem = 0n;
+    this.m_pVRChaperone = 0n;
+    this.m_pVRChaperoneSetup = 0n;
+    this.m_pVRCompositor = 0n;
+    this.m_pVRHeadsetView = 0n;
+    this.m_pVROverlay = 0n;
+    this.m_pVROverlayView = 0n;
+    this.m_pVRResources = 0n;
+    this.m_pVRRenderModels = 0n;
+    this.m_pVRExtendedDisplay = 0n;
+    this.m_pVRSettings = 0n;
+    this.m_pVRApplications = 0n;
+    this.m_pVRTrackedCamera = 0n;
+    this.m_pVRScreenshots = 0n;
+    this.m_pVRDriverManager = 0n;
+    this.m_pVRInput = 0n;
+    this.m_pVRIOBuffer = 0n;
+    this.m_pVRSpatialAnchors = 0n;
+    this.m_pVRDebug = 0n;
+    this.m_pVRNotifications = 0n;
   }
 
   static fromBuffer(buffer: ArrayBuffer, offset: number): COpenVRContext {
@@ -4923,27 +8122,106 @@ export class COpenVRContext {
     currentOffset += 8;
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    view.setBigUint64(currentOffset, this.m_pVRSystem, true);
+    currentOffset += 8;
+    view.setBigUint64(currentOffset, this.m_pVRChaperone, true);
+    currentOffset += 8;
+    view.setBigUint64(currentOffset, this.m_pVRChaperoneSetup, true);
+    currentOffset += 8;
+    view.setBigUint64(currentOffset, this.m_pVRCompositor, true);
+    currentOffset += 8;
+    view.setBigUint64(currentOffset, this.m_pVRHeadsetView, true);
+    currentOffset += 8;
+    view.setBigUint64(currentOffset, this.m_pVROverlay, true);
+    currentOffset += 8;
+    view.setBigUint64(currentOffset, this.m_pVROverlayView, true);
+    currentOffset += 8;
+    view.setBigUint64(currentOffset, this.m_pVRResources, true);
+    currentOffset += 8;
+    view.setBigUint64(currentOffset, this.m_pVRRenderModels, true);
+    currentOffset += 8;
+    view.setBigUint64(currentOffset, this.m_pVRExtendedDisplay, true);
+    currentOffset += 8;
+    view.setBigUint64(currentOffset, this.m_pVRSettings, true);
+    currentOffset += 8;
+    view.setBigUint64(currentOffset, this.m_pVRApplications, true);
+    currentOffset += 8;
+    view.setBigUint64(currentOffset, this.m_pVRTrackedCamera, true);
+    currentOffset += 8;
+    view.setBigUint64(currentOffset, this.m_pVRScreenshots, true);
+    currentOffset += 8;
+    view.setBigUint64(currentOffset, this.m_pVRDriverManager, true);
+    currentOffset += 8;
+    view.setBigUint64(currentOffset, this.m_pVRInput, true);
+    currentOffset += 8;
+    view.setBigUint64(currentOffset, this.m_pVRIOBuffer, true);
+    currentOffset += 8;
+    view.setBigUint64(currentOffset, this.m_pVRSpatialAnchors, true);
+    currentOffset += 8;
+    view.setBigUint64(currentOffset, this.m_pVRDebug, true);
+    currentOffset += 8;
+    view.setBigUint64(currentOffset, this.m_pVRNotifications, true);
+    currentOffset += 8;
+  }
 }
 
+/*{
+  "struct": "vr::PropertyWrite_t",
+  "fields": [
+    {
+      "fieldname": "prop",
+      "fieldtype": "enum vr::ETrackedDeviceProperty"
+    },
+    {
+      "fieldname": "writeType",
+      "fieldtype": "enum vr::EPropertyWriteType"
+    },
+    {
+      "fieldname": "eSetError",
+      "fieldtype": "enum vr::ETrackedPropertyError"
+    },
+    {
+      "fieldname": "pvBuffer",
+      "fieldtype": "void *"
+    },
+    {
+      "fieldname": "unBufferSize",
+      "fieldtype": "uint32_t"
+    },
+    {
+      "fieldname": "unTag",
+      "fieldtype": "PropertyTypeTag_t"
+    },
+    {
+      "fieldname": "eError",
+      "fieldtype": "enum vr::ETrackedPropertyError"
+    }
+  ]
+}*/
 export class PropertyWrite_t {
   static readonly byteLength = 32;
 
   prop: ETrackedDeviceProperty;
   writeType: EPropertyWriteType;
   eSetError: ETrackedPropertyError;
-  pvBuffer: Uint8Array;
+  pvBuffer: bigint;
   unBufferSize: number;
-  unTag: number;
+  unTag: PropertyTypeTag_t;
   eError: ETrackedPropertyError;
 
   constructor() {
-    this.prop = 0;
-    this.writeType = 0;
-    this.eSetError = 0;
-    this.pvBuffer = null;
+    this.prop = Object.values(ETrackedDeviceProperty)[0] as ETrackedDeviceProperty;
+    this.writeType = Object.values(EPropertyWriteType)[0] as EPropertyWriteType;
+    this.eSetError = Object.values(ETrackedPropertyError)[0] as ETrackedPropertyError;
+    this.pvBuffer = 0n;
     this.unBufferSize = 0;
     this.unTag = 0;
-    this.eError = 0;
+    this.eError = Object.values(ETrackedPropertyError)[0] as ETrackedPropertyError;
   }
 
   static fromBuffer(buffer: ArrayBuffer, offset: number): PropertyWrite_t {
@@ -4967,25 +8245,74 @@ export class PropertyWrite_t {
     currentOffset += 4;
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    view.setInt32(currentOffset, this.prop, true);
+    currentOffset += 4;
+    view.setInt32(currentOffset, this.writeType, true);
+    currentOffset += 4;
+    view.setInt32(currentOffset, this.eSetError, true);
+    currentOffset += 4;
+    view.setBigUint64(currentOffset, this.pvBuffer, true);
+    currentOffset += 8;
+    view.setUint32(currentOffset, this.unBufferSize, true);
+    currentOffset += 4;
+    view.setFloat64(currentOffset, this.unTag, true);
+    currentOffset += 8;
+    view.setInt32(currentOffset, this.eError, true);
+    currentOffset += 4;
+  }
 }
 
+/*{
+  "struct": "vr::PropertyRead_t",
+  "fields": [
+    {
+      "fieldname": "prop",
+      "fieldtype": "enum vr::ETrackedDeviceProperty"
+    },
+    {
+      "fieldname": "pvBuffer",
+      "fieldtype": "void *"
+    },
+    {
+      "fieldname": "unBufferSize",
+      "fieldtype": "uint32_t"
+    },
+    {
+      "fieldname": "unTag",
+      "fieldtype": "PropertyTypeTag_t"
+    },
+    {
+      "fieldname": "unRequiredBufferSize",
+      "fieldtype": "uint32_t"
+    },
+    {
+      "fieldname": "eError",
+      "fieldtype": "enum vr::ETrackedPropertyError"
+    }
+  ]
+}*/
 export class PropertyRead_t {
   static readonly byteLength = 28;
 
   prop: ETrackedDeviceProperty;
-  pvBuffer: Uint8Array;
+  pvBuffer: bigint;
   unBufferSize: number;
-  unTag: number;
+  unTag: PropertyTypeTag_t;
   unRequiredBufferSize: number;
   eError: ETrackedPropertyError;
 
   constructor() {
-    this.prop = 0;
-    this.pvBuffer = null;
+    this.prop = Object.values(ETrackedDeviceProperty)[0] as ETrackedDeviceProperty;
+    this.pvBuffer = 0n;
     this.unBufferSize = 0;
     this.unTag = 0;
     this.unRequiredBufferSize = 0;
-    this.eError = 0;
+    this.eError = Object.values(ETrackedPropertyError)[0] as ETrackedPropertyError;
   }
 
   static fromBuffer(buffer: ArrayBuffer, offset: number): PropertyRead_t {
@@ -5007,15 +8334,42 @@ export class PropertyRead_t {
     currentOffset += 4;
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    view.setInt32(currentOffset, this.prop, true);
+    currentOffset += 4;
+    view.setBigUint64(currentOffset, this.pvBuffer, true);
+    currentOffset += 8;
+    view.setUint32(currentOffset, this.unBufferSize, true);
+    currentOffset += 4;
+    view.setFloat64(currentOffset, this.unTag, true);
+    currentOffset += 8;
+    view.setUint32(currentOffset, this.unRequiredBufferSize, true);
+    currentOffset += 4;
+    view.setInt32(currentOffset, this.eError, true);
+    currentOffset += 4;
+  }
 }
 
+/*{
+  "struct": "vr::CVRPropertyHelpers",
+  "fields": [
+    {
+      "fieldname": "m_pProperties",
+      "fieldtype": "class vr::IVRProperties *"
+    }
+  ]
+}*/
 export class CVRPropertyHelpers {
   static readonly byteLength = 8;
 
-  m_pProperties: Uint8Array;
+  m_pProperties: bigint;
 
   constructor() {
-    this.m_pProperties = null;
+    this.m_pProperties = 0n;
   }
 
   static fromBuffer(buffer: ArrayBuffer, offset: number): CVRPropertyHelpers {
@@ -5027,29 +8381,74 @@ export class CVRPropertyHelpers {
     currentOffset += 8;
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    view.setBigUint64(currentOffset, this.m_pProperties, true);
+    currentOffset += 8;
+  }
 }
 
+/*{
+  "struct": "vr::PathWrite_t",
+  "fields": [
+    {
+      "fieldname": "ulPath",
+      "fieldtype": "PathHandle_t"
+    },
+    {
+      "fieldname": "writeType",
+      "fieldtype": "enum vr::EPropertyWriteType"
+    },
+    {
+      "fieldname": "eSetError",
+      "fieldtype": "enum vr::ETrackedPropertyError"
+    },
+    {
+      "fieldname": "pvBuffer",
+      "fieldtype": "void *"
+    },
+    {
+      "fieldname": "unBufferSize",
+      "fieldtype": "uint32_t"
+    },
+    {
+      "fieldname": "unTag",
+      "fieldtype": "PropertyTypeTag_t"
+    },
+    {
+      "fieldname": "eError",
+      "fieldtype": "enum vr::ETrackedPropertyError"
+    },
+    {
+      "fieldname": "pszPath",
+      "fieldtype": "const char *"
+    }
+  ]
+}*/
 export class PathWrite_t {
   static readonly byteLength = 44;
 
-  ulPath: bigint;
+  ulPath: PathHandle_t;
   writeType: EPropertyWriteType;
   eSetError: ETrackedPropertyError;
-  pvBuffer: Uint8Array;
+  pvBuffer: bigint;
   unBufferSize: number;
-  unTag: number;
+  unTag: PropertyTypeTag_t;
   eError: ETrackedPropertyError;
-  pszPath: Uint8Array;
+  pszPath: bigint;
 
   constructor() {
     this.ulPath = 0n;
-    this.writeType = 0;
-    this.eSetError = 0;
-    this.pvBuffer = null;
+    this.writeType = Object.values(EPropertyWriteType)[0] as EPropertyWriteType;
+    this.eSetError = Object.values(ETrackedPropertyError)[0] as ETrackedPropertyError;
+    this.pvBuffer = 0n;
     this.unBufferSize = 0;
     this.unTag = 0;
-    this.eError = 0;
-    this.pszPath = null;
+    this.eError = Object.values(ETrackedPropertyError)[0] as ETrackedPropertyError;
+    this.pszPath = 0n;
   }
 
   static fromBuffer(buffer: ArrayBuffer, offset: number): PathWrite_t {
@@ -5075,27 +8474,82 @@ export class PathWrite_t {
     currentOffset += 8;
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    view.setBigUint64(currentOffset, this.ulPath, true);
+    currentOffset += 8;
+    view.setInt32(currentOffset, this.writeType, true);
+    currentOffset += 4;
+    view.setInt32(currentOffset, this.eSetError, true);
+    currentOffset += 4;
+    view.setBigUint64(currentOffset, this.pvBuffer, true);
+    currentOffset += 8;
+    view.setUint32(currentOffset, this.unBufferSize, true);
+    currentOffset += 4;
+    view.setFloat64(currentOffset, this.unTag, true);
+    currentOffset += 8;
+    view.setInt32(currentOffset, this.eError, true);
+    currentOffset += 4;
+    view.setBigUint64(currentOffset, this.pszPath, true);
+    currentOffset += 8;
+  }
 }
 
+/*{
+  "struct": "vr::PathRead_t",
+  "fields": [
+    {
+      "fieldname": "ulPath",
+      "fieldtype": "PathHandle_t"
+    },
+    {
+      "fieldname": "pvBuffer",
+      "fieldtype": "void *"
+    },
+    {
+      "fieldname": "unBufferSize",
+      "fieldtype": "uint32_t"
+    },
+    {
+      "fieldname": "unTag",
+      "fieldtype": "PropertyTypeTag_t"
+    },
+    {
+      "fieldname": "unRequiredBufferSize",
+      "fieldtype": "uint32_t"
+    },
+    {
+      "fieldname": "eError",
+      "fieldtype": "enum vr::ETrackedPropertyError"
+    },
+    {
+      "fieldname": "pszPath",
+      "fieldtype": "const char *"
+    }
+  ]
+}*/
 export class PathRead_t {
   static readonly byteLength = 40;
 
-  ulPath: bigint;
-  pvBuffer: Uint8Array;
+  ulPath: PathHandle_t;
+  pvBuffer: bigint;
   unBufferSize: number;
-  unTag: number;
+  unTag: PropertyTypeTag_t;
   unRequiredBufferSize: number;
   eError: ETrackedPropertyError;
-  pszPath: Uint8Array;
+  pszPath: bigint;
 
   constructor() {
     this.ulPath = 0n;
-    this.pvBuffer = null;
+    this.pvBuffer = 0n;
     this.unBufferSize = 0;
     this.unTag = 0;
     this.unRequiredBufferSize = 0;
-    this.eError = 0;
-    this.pszPath = null;
+    this.eError = Object.values(ETrackedPropertyError)[0] as ETrackedPropertyError;
+    this.pszPath = 0n;
   }
 
   static fromBuffer(buffer: ArrayBuffer, offset: number): PathRead_t {
@@ -5119,7 +8573,82 @@ export class PathRead_t {
     currentOffset += 8;
     return result;
   }
+
+  toBuffer(buffer: ArrayBuffer, offset: number): void {
+    const view = new DataView(buffer, offset);
+    let currentOffset = 0;
+
+    view.setBigUint64(currentOffset, this.ulPath, true);
+    currentOffset += 8;
+    view.setBigUint64(currentOffset, this.pvBuffer, true);
+    currentOffset += 8;
+    view.setUint32(currentOffset, this.unBufferSize, true);
+    currentOffset += 4;
+    view.setFloat64(currentOffset, this.unTag, true);
+    currentOffset += 8;
+    view.setUint32(currentOffset, this.unRequiredBufferSize, true);
+    currentOffset += 4;
+    view.setInt32(currentOffset, this.eError, true);
+    currentOffset += 4;
+    view.setBigUint64(currentOffset, this.pszPath, true);
+    currentOffset += 8;
+  }
 }
+
+export interface IVREvent_Data_t {
+    reserved?: VREvent_Reserved_t;
+    controller?: VREvent_Controller_t;
+    mouse?: VREvent_Mouse_t;
+    scroll?: VREvent_Scroll_t;
+    process?: VREvent_Process_t;
+    notification?: VREvent_Notification_t;
+    overlay?: VREvent_Overlay_t;
+    status?: VREvent_Status_t;
+    keyboard?: VREvent_Keyboard_t;
+    ipd?: VREvent_Ipd_t;
+    chaperone?: VREvent_Chaperone_t;
+    performanceTest?: VREvent_PerformanceTest_t;
+    touchPadMove?: VREvent_TouchPadMove_t;
+    seatedZeroPoseReset?: VREvent_SeatedZeroPoseReset_t;
+    screenshot?: VREvent_Screenshot_t;
+    screenshotProgress?: VREvent_ScreenshotProgress_t;
+    applicationLaunch?: VREvent_ApplicationLaunch_t;
+    cameraSurface?: VREvent_EditingCameraSurface_t;
+    messageOverlay?: VREvent_MessageOverlay_t;
+    property?: VREvent_Property_t;
+    hapticVibration?: VREvent_HapticVibration_t;
+    webConsole?: VREvent_WebConsole_t;
+    inputBinding?: VREvent_InputBindingLoad_t;
+    actionManifest?: VREvent_InputActionManifestLoad_t;
+    spatialAnchor?: VREvent_SpatialAnchor_t;
+    progressUpdate?: VREvent_ProgressUpdate_t;
+    showUi?: VREvent_ShowUI_t;
+    showDevTools?: VREvent_ShowDevTools_t;
+    hdcpError?: VREvent_HDCPError_t;
+    audioVolumeControl?: VREvent_AudioVolumeControl_t;
+    audioMuteControl?: VREvent_AudioMuteControl_t;
+  }
+
+export type VREvent_Data_t = Partial<IVREvent_Data_t>;
+
+export interface VREvent_t {
+    eventType: number;
+    trackedDeviceIndex: TrackedDeviceIndex_t;
+    eventAgeSeconds: number;
+    data: VREvent_Data_t;
+  }
+
+export interface IVROverlayIntersectionMaskPrimitive_Data_t {
+    m_Rectangle?: IntersectionMaskRectangle_t;
+    m_Circle?: IntersectionMaskCircle_t;
+  }
+
+export type VROverlayIntersectionMaskPrimitive_Data_t = Partial<IVROverlayIntersectionMaskPrimitive_Data_t>;
+
+export interface VROverlayIntersectionMaskPrimitive_t {
+    m_nPrimitiveType: EVROverlayIntersectionMaskPrimitiveType;
+    m_Primitive: VROverlayIntersectionMaskPrimitive_Data_t;
+  }
 
 //#endregion
 //#region Methods
@@ -5624,6 +9153,7 @@ export class IVRSystem {
     const pnHeightArray = new Float64Array([pnHeight]);
     const pnHeightPtr = Deno.UnsafePointer.of(pnHeightArray);
     const result = func.call(this.ptr, pnWidthPtr, pnHeightPtr);
+    // Read output parameters
     return [result, pnWidthBuffer, pnHeightBuffer];
   }
 
@@ -5711,6 +9241,7 @@ export class IVRSystem {
     const pfBottomArray = new Float64Array([pfBottom]);
     const pfBottomPtr = Deno.UnsafePointer.of(pfBottomArray);
     const result = func.call(this.ptr, eEye, pfLeftPtr, pfRightPtr, pfTopPtr, pfBottomPtr);
+    // Read output parameters
     return [result, pfLeftBuffer, pfRightBuffer, pfTopBuffer, pfBottomBuffer];
   }
 
@@ -5763,6 +9294,7 @@ export class IVRSystem {
     const fVArray = new Float64Array([fV]);
     const fVPtr = Deno.UnsafePointer.of(fVArray);
     const result = func.call(this.ptr, eEye, fU, fV, pDistortionCoordinatesPtr);
+    // Read output parameters
     return [result, DistortionCoordinates_t.fromBuffer(pDistortionCoordinatesBuffer, 0)];
   }
 
@@ -5822,6 +9354,7 @@ export class IVRSystem {
     const pulFrameCounterBuffer = new BigUint64Array([pulFrameCounter]);
     const pulFrameCounterPtr = Deno.UnsafePointer.of(pulFrameCounterBuffer);
     const result = func.call(this.ptr, pfSecondsSinceLastVsyncPtr, pulFrameCounterPtr);
+    // Read output parameters
     return [result, pfSecondsSinceLastVsyncBuffer, pulFrameCounterBuffer];
   }
 
@@ -5866,6 +9399,7 @@ export class IVRSystem {
     const pnAdapterIndexArray = new Float64Array([pnAdapterIndex]);
     const pnAdapterIndexPtr = Deno.UnsafePointer.of(pnAdapterIndexArray);
     const result = func.call(this.ptr, pnAdapterIndexPtr);
+    // Read output parameters
     return [result, pnAdapterIndexBuffer];
   }
 
@@ -5900,6 +9434,7 @@ export class IVRSystem {
     const pnDeviceBuffer = new BigUint64Array([pnDevice]);
     const pnDevicePtr = Deno.UnsafePointer.of(pnDeviceBuffer);
     const result = func.call(this.ptr, pnDevicePtr, textureType, pInstancePtr);
+    // Read output parameters
     return [result, pnDeviceBuffer, pInstanceBuffer];
   }
 
@@ -5989,6 +9524,7 @@ export class IVRSystem {
     const unTrackedDevicePoseArrayCountArray = new Float64Array([unTrackedDevicePoseArrayCount]);
     const unTrackedDevicePoseArrayCountPtr = Deno.UnsafePointer.of(unTrackedDevicePoseArrayCountArray);
     const result = func.call(this.ptr, eOrigin, fPredictedSecondsToPhotonsFromNow, pTrackedDevicePoseArrayPtr, unTrackedDevicePoseArrayCount);
+    // Read output parameters
     return [result, TrackedDevicePose_t.fromBuffer(pTrackedDevicePoseArrayBuffer, 0)];
   }
 
@@ -6074,6 +9610,7 @@ export class IVRSystem {
     const unRelativeToTrackedDeviceIndexArray = new Float64Array([unRelativeToTrackedDeviceIndex]);
     const unRelativeToTrackedDeviceIndexPtr = Deno.UnsafePointer.of(unRelativeToTrackedDeviceIndexArray);
     const result = func.call(this.ptr, eTrackedDeviceClass, punTrackedDeviceIndexArrayPtr, unTrackedDeviceIndexArrayCount, unRelativeToTrackedDeviceIndex);
+    // Read output parameters
     return [result, punTrackedDeviceIndexArrayBuffer];
   }
 
@@ -6146,6 +9683,7 @@ export class IVRSystem {
     }
     const pTransformPtr = Deno.UnsafePointer.of(pTransformBuffer);
     const result = func.call(this.ptr, pOutputPosePtr, pTrackedDevicePosePtr, pTransformPtr);
+    // Read output parameters
     return [result, TrackedDevicePose_t.fromBuffer(pOutputPoseBuffer, 0), TrackedDevicePose_t.fromBuffer(pTrackedDevicePoseBuffer, 0), HmdMatrix34_t.fromBuffer(pTransformBuffer, 0)];
   }
 
@@ -6282,6 +9820,7 @@ export class IVRSystem {
     const unDeviceIndexArray = new Float64Array([unDeviceIndex]);
     const unDeviceIndexPtr = Deno.UnsafePointer.of(unDeviceIndexArray);
     const result = func.call(this.ptr, unDeviceIndex, prop, pErrorPtr);
+    // Read output parameters
     return [result, pErrorBuffer];
   }
 
@@ -6316,6 +9855,7 @@ export class IVRSystem {
     const unDeviceIndexArray = new Float64Array([unDeviceIndex]);
     const unDeviceIndexPtr = Deno.UnsafePointer.of(unDeviceIndexArray);
     const result = func.call(this.ptr, unDeviceIndex, prop, pErrorPtr);
+    // Read output parameters
     return [result, pErrorBuffer];
   }
 
@@ -6350,6 +9890,7 @@ export class IVRSystem {
     const unDeviceIndexArray = new Float64Array([unDeviceIndex]);
     const unDeviceIndexPtr = Deno.UnsafePointer.of(unDeviceIndexArray);
     const result = func.call(this.ptr, unDeviceIndex, prop, pErrorPtr);
+    // Read output parameters
     return [result, pErrorBuffer];
   }
 
@@ -6384,6 +9925,7 @@ export class IVRSystem {
     const unDeviceIndexArray = new Float64Array([unDeviceIndex]);
     const unDeviceIndexPtr = Deno.UnsafePointer.of(unDeviceIndexArray);
     const result = func.call(this.ptr, unDeviceIndex, prop, pErrorPtr);
+    // Read output parameters
     return [result, pErrorBuffer];
   }
 
@@ -6418,6 +9960,7 @@ export class IVRSystem {
     const unDeviceIndexArray = new Float64Array([unDeviceIndex]);
     const unDeviceIndexPtr = Deno.UnsafePointer.of(unDeviceIndexArray);
     const result = func.call(this.ptr, unDeviceIndex, prop, pErrorPtr);
+    // Read output parameters
     return [result, pErrorBuffer];
   }
 
@@ -6469,6 +10012,7 @@ export class IVRSystem {
     const unBufferSizeArray = new Float64Array([unBufferSize]);
     const unBufferSizePtr = Deno.UnsafePointer.of(unBufferSizeArray);
     const result = func.call(this.ptr, unDeviceIndex, prop, propType, pBufferPtr, unBufferSize, pErrorPtr);
+    // Read output parameters
     return [result, pBufferBuffer, pErrorBuffer];
   }
 
@@ -6516,6 +10060,7 @@ export class IVRSystem {
     const unBufferSizeArray = new Float64Array([unBufferSize]);
     const unBufferSizePtr = Deno.UnsafePointer.of(unBufferSizeArray);
     const result = func.call(this.ptr, unDeviceIndex, prop, pchValuePtr, unBufferSize, pErrorPtr);
+    // Read output parameters
     return [result, pErrorBuffer];
   }
 
@@ -6573,6 +10118,7 @@ export class IVRSystem {
     const uncbVREventArray = new Float64Array([uncbVREvent]);
     const uncbVREventPtr = Deno.UnsafePointer.of(uncbVREventArray);
     const result = func.call(this.ptr, pEventPtr, uncbVREvent);
+    // Read output parameters
     return [result, VREvent_t.fromBuffer(pEventBuffer, 0)];
   }
 
@@ -6617,6 +10163,7 @@ export class IVRSystem {
     const uncbVREventArray = new Float64Array([uncbVREvent]);
     const uncbVREventPtr = Deno.UnsafePointer.of(uncbVREventArray);
     const result = func.call(this.ptr, eOrigin, pEventPtr, uncbVREvent, pTrackedDevicePosePtr);
+    // Read output parameters
     return [result, VREvent_t.fromBuffer(pEventBuffer, 0), TrackedDevicePose_t.fromBuffer(pTrackedDevicePoseBuffer, 0)];
   }
 
@@ -6712,6 +10259,7 @@ export class IVRSystem {
     const unControllerStateSizeArray = new Float64Array([unControllerStateSize]);
     const unControllerStateSizePtr = Deno.UnsafePointer.of(unControllerStateSizeArray);
     const result = func.call(this.ptr, unControllerDeviceIndex, pControllerStatePtr, unControllerStateSize);
+    // Read output parameters
     return [result, pControllerStateBuffer];
   }
 
@@ -6762,6 +10310,7 @@ export class IVRSystem {
     const unControllerStateSizeArray = new Float64Array([unControllerStateSize]);
     const unControllerStateSizePtr = Deno.UnsafePointer.of(unControllerStateSizeArray);
     const result = func.call(this.ptr, eOrigin, unControllerDeviceIndex, pControllerStatePtr, unControllerStateSize, pTrackedDevicePosePtr);
+    // Read output parameters
     return [result, pControllerStateBuffer, TrackedDevicePose_t.fromBuffer(pTrackedDevicePoseBuffer, 0)];
   }
 
@@ -7064,6 +10613,7 @@ export class IVRExtendedDisplay {
     const pnHeightArray = new Float64Array([pnHeight]);
     const pnHeightPtr = Deno.UnsafePointer.of(pnHeightArray);
     const result = func.call(this.ptr, pnXPtr, pnYPtr, pnWidthPtr, pnHeightPtr);
+    // Read output parameters
     return [result, pnXBuffer, pnYBuffer, pnWidthBuffer, pnHeightBuffer];
   }
 
@@ -7112,6 +10662,7 @@ export class IVRExtendedDisplay {
     const pnHeightArray = new Float64Array([pnHeight]);
     const pnHeightPtr = Deno.UnsafePointer.of(pnHeightArray);
     const result = func.call(this.ptr, eEye, pnXPtr, pnYPtr, pnWidthPtr, pnHeightPtr);
+    // Read output parameters
     return [result, pnXBuffer, pnYBuffer, pnWidthBuffer, pnHeightBuffer];
   }
 
@@ -7144,6 +10695,7 @@ export class IVRExtendedDisplay {
     const pnAdapterOutputIndexArray = new Float64Array([pnAdapterOutputIndex]);
     const pnAdapterOutputIndexPtr = Deno.UnsafePointer.of(pnAdapterOutputIndexArray);
     const result = func.call(this.ptr, pnAdapterIndexPtr, pnAdapterOutputIndexPtr);
+    // Read output parameters
     return [result, pnAdapterIndexBuffer, pnAdapterOutputIndexBuffer];
   }
 
@@ -7205,6 +10757,7 @@ export class IVRTrackedCamera {
     const pHasCameraArray = new Uint8Array([pHasCamera ? 1 : 0]);
     const pHasCameraPtr = Deno.UnsafePointer.of(pHasCameraArray);
     const result = func.call(this.ptr, nDeviceIndex, pHasCameraPtr);
+    // Read output parameters
     return [result, pHasCameraBuffer];
   }
 
@@ -7253,6 +10806,7 @@ export class IVRTrackedCamera {
     const pnFrameBufferSizeArray = new Float64Array([pnFrameBufferSize]);
     const pnFrameBufferSizePtr = Deno.UnsafePointer.of(pnFrameBufferSizeArray);
     const result = func.call(this.ptr, nDeviceIndex, eFrameType, pnWidthPtr, pnHeightPtr, pnFrameBufferSizePtr);
+    // Read output parameters
     return [result, pnWidthBuffer, pnHeightBuffer, pnFrameBufferSizeBuffer];
   }
 
@@ -7309,6 +10863,7 @@ export class IVRTrackedCamera {
     const nCameraIndexArray = new Float64Array([nCameraIndex]);
     const nCameraIndexPtr = Deno.UnsafePointer.of(nCameraIndexArray);
     const result = func.call(this.ptr, nDeviceIndex, nCameraIndex, eFrameType, pFocalLengthPtr, pCenterPtr);
+    // Read output parameters
     return [result, HmdVector2_t.fromBuffer(pFocalLengthBuffer, 0), HmdVector2_t.fromBuffer(pCenterBuffer, 0)];
   }
 
@@ -7369,6 +10924,7 @@ export class IVRTrackedCamera {
     const flZFarArray = new Float64Array([flZFar]);
     const flZFarPtr = Deno.UnsafePointer.of(flZFarArray);
     const result = func.call(this.ptr, nDeviceIndex, nCameraIndex, eFrameType, flZNear, flZFar, pProjectionPtr);
+    // Read output parameters
     return [result, HmdMatrix44_t.fromBuffer(pProjectionBuffer, 0)];
   }
 
@@ -7401,6 +10957,7 @@ export class IVRTrackedCamera {
     const pHandleBuffer = new BigUint64Array([pHandle]);
     const pHandlePtr = Deno.UnsafePointer.of(pHandleBuffer);
     const result = func.call(this.ptr, nDeviceIndex, pHandlePtr);
+    // Read output parameters
     return [result, pHandleBuffer];
   }
 
@@ -7481,6 +11038,7 @@ export class IVRTrackedCamera {
     const nFrameHeaderSizeArray = new Float64Array([nFrameHeaderSize]);
     const nFrameHeaderSizePtr = Deno.UnsafePointer.of(nFrameHeaderSizeArray);
     const result = func.call(this.ptr, hTrackedCamera, eFrameType, pFrameBufferPtr, nFrameBufferSize, pFrameHeaderPtr, nFrameHeaderSize);
+    // Read output parameters
     return [result, pFrameBufferBuffer, CameraVideoStreamFrameHeader_t.fromBuffer(pFrameHeaderBuffer, 0)];
   }
 
@@ -7530,6 +11088,7 @@ export class IVRTrackedCamera {
     const pnHeightArray = new Float64Array([pnHeight]);
     const pnHeightPtr = Deno.UnsafePointer.of(pnHeightArray);
     const result = func.call(this.ptr, nDeviceIndex, eFrameType, pTextureBoundsPtr, pnWidthPtr, pnHeightPtr);
+    // Read output parameters
     return [result, VRTextureBounds_t.fromBuffer(pTextureBoundsBuffer, 0), pnWidthBuffer, pnHeightBuffer];
   }
 
@@ -7583,6 +11142,7 @@ export class IVRTrackedCamera {
     const nFrameHeaderSizeArray = new Float64Array([nFrameHeaderSize]);
     const nFrameHeaderSizePtr = Deno.UnsafePointer.of(nFrameHeaderSizeArray);
     const result = func.call(this.ptr, hTrackedCamera, eFrameType, pD3D11DeviceOrResourcePtr, ppD3D11ShaderResourceViewPtr, pFrameHeaderPtr, nFrameHeaderSize);
+    // Read output parameters
     return [result, pD3D11DeviceOrResourceBuffer, ppD3D11ShaderResourceViewBuffer, CameraVideoStreamFrameHeader_t.fromBuffer(pFrameHeaderBuffer, 0)];
   }
 
@@ -7632,6 +11192,7 @@ export class IVRTrackedCamera {
     const nFrameHeaderSizeArray = new Float64Array([nFrameHeaderSize]);
     const nFrameHeaderSizePtr = Deno.UnsafePointer.of(nFrameHeaderSizeArray);
     const result = func.call(this.ptr, hTrackedCamera, eFrameType, pglTextureIdPtr, pFrameHeaderPtr, nFrameHeaderSize);
+    // Read output parameters
     return [result, pglTextureIdBuffer, CameraVideoStreamFrameHeader_t.fromBuffer(pFrameHeaderBuffer, 0)];
   }
 
@@ -8177,6 +11738,7 @@ export class IVRApplications {
     const unPropertyValueBufferLenArray = new Float64Array([unPropertyValueBufferLen]);
     const unPropertyValueBufferLenPtr = Deno.UnsafePointer.of(unPropertyValueBufferLenArray);
     const result = func.call(this.ptr, pchAppKeyPtr, eProperty, pchPropertyValueBufferPtr, unPropertyValueBufferLen, peErrorPtr);
+    // Read output parameters
     return [result, peErrorBuffer];
   }
 
@@ -8211,6 +11773,7 @@ export class IVRApplications {
     const pchAppKeyBuffer = new TextEncoder().encode(pchAppKey + '\0');
     const pchAppKeyPtr = Deno.UnsafePointer.of(pchAppKeyBuffer);
     const result = func.call(this.ptr, pchAppKeyPtr, eProperty, peErrorPtr);
+    // Read output parameters
     return [result, peErrorBuffer];
   }
 
@@ -8245,6 +11808,7 @@ export class IVRApplications {
     const pchAppKeyBuffer = new TextEncoder().encode(pchAppKey + '\0');
     const pchAppKeyPtr = Deno.UnsafePointer.of(pchAppKeyBuffer);
     const result = func.call(this.ptr, pchAppKeyPtr, eProperty, peErrorPtr);
+    // Read output parameters
     return [result, peErrorBuffer];
   }
 
@@ -8703,6 +12267,7 @@ export class IVRChaperone {
     const pSizeZArray = new Float64Array([pSizeZ]);
     const pSizeZPtr = Deno.UnsafePointer.of(pSizeZArray);
     const result = func.call(this.ptr, pSizeXPtr, pSizeZPtr);
+    // Read output parameters
     return [result, pSizeXBuffer, pSizeZBuffer];
   }
 
@@ -8733,6 +12298,7 @@ export class IVRChaperone {
     }
     const rectPtr = Deno.UnsafePointer.of(rectBuffer);
     const result = func.call(this.ptr, rectPtr);
+    // Read output parameters
     return [result, HmdQuad_t.fromBuffer(rectBuffer, 0)];
   }
 
@@ -8776,6 +12342,7 @@ export class IVRChaperone {
     const func = new Deno.UnsafeFnPointer(funcPtr, { parameters: ["pointer", { struct: ["f32", "f32", "f32", "f32"] }], result: "void" });
     const colorBuffer = new ArrayBuffer(16);
     const colorView = new DataView(colorBuffer);
+    color.toBuffer(colorBuffer, 0);
     const colorPtr = Deno.UnsafePointer.of(colorBuffer);
     const result = func.call(this.ptr, colorBuffer);
     return result;
@@ -8824,6 +12391,7 @@ export class IVRChaperone {
     const flCollisionBoundsFadeDistanceArray = new Float64Array([flCollisionBoundsFadeDistance]);
     const flCollisionBoundsFadeDistancePtr = Deno.UnsafePointer.of(flCollisionBoundsFadeDistanceArray);
     const result = func.call(this.ptr, pOutputColorArrayPtr, nNumOutputColors, flCollisionBoundsFadeDistance, pOutputCameraColorPtr);
+    // Read output parameters
     return [result, HmdColor_t.fromBuffer(pOutputColorArrayBuffer, 0), HmdColor_t.fromBuffer(pOutputCameraColorBuffer, 0)];
   }
 
@@ -8971,6 +12539,7 @@ export class IVRChaperoneSetup {
     const pSizeZArray = new Float64Array([pSizeZ]);
     const pSizeZPtr = Deno.UnsafePointer.of(pSizeZArray);
     const result = func.call(this.ptr, pSizeXPtr, pSizeZPtr);
+    // Read output parameters
     return [result, pSizeXBuffer, pSizeZBuffer];
   }
 
@@ -9001,6 +12570,7 @@ export class IVRChaperoneSetup {
     }
     const rectPtr = Deno.UnsafePointer.of(rectBuffer);
     const result = func.call(this.ptr, rectPtr);
+    // Read output parameters
     return [result, HmdQuad_t.fromBuffer(rectBuffer, 0)];
   }
 
@@ -9038,6 +12608,7 @@ export class IVRChaperoneSetup {
     const punQuadsCountArray = new Float64Array([punQuadsCount]);
     const punQuadsCountPtr = Deno.UnsafePointer.of(punQuadsCountArray);
     const result = func.call(this.ptr, pQuadsBufferPtr, punQuadsCountPtr);
+    // Read output parameters
     return [result, HmdQuad_t.fromBuffer(pQuadsBufferBuffer, 0), punQuadsCountBuffer];
   }
 
@@ -9075,6 +12646,7 @@ export class IVRChaperoneSetup {
     const punQuadsCountArray = new Float64Array([punQuadsCount]);
     const punQuadsCountPtr = Deno.UnsafePointer.of(punQuadsCountArray);
     const result = func.call(this.ptr, pQuadsBufferPtr, punQuadsCountPtr);
+    // Read output parameters
     return [result, HmdQuad_t.fromBuffer(pQuadsBufferBuffer, 0), punQuadsCountBuffer];
   }
 
@@ -9107,6 +12679,7 @@ export class IVRChaperoneSetup {
     }
     const pmatSeatedZeroPoseToRawTrackingPosePtr = Deno.UnsafePointer.of(pmatSeatedZeroPoseToRawTrackingPoseBuffer);
     const result = func.call(this.ptr, pmatSeatedZeroPoseToRawTrackingPosePtr);
+    // Read output parameters
     return [result, HmdMatrix34_t.fromBuffer(pmatSeatedZeroPoseToRawTrackingPoseBuffer, 0)];
   }
 
@@ -9139,6 +12712,7 @@ export class IVRChaperoneSetup {
     }
     const pmatStandingZeroPoseToRawTrackingPosePtr = Deno.UnsafePointer.of(pmatStandingZeroPoseToRawTrackingPoseBuffer);
     const result = func.call(this.ptr, pmatStandingZeroPoseToRawTrackingPosePtr);
+    // Read output parameters
     return [result, HmdMatrix34_t.fromBuffer(pmatStandingZeroPoseToRawTrackingPoseBuffer, 0)];
   }
 
@@ -9209,6 +12783,7 @@ export class IVRChaperoneSetup {
     const unQuadsCountArray = new Float64Array([unQuadsCount]);
     const unQuadsCountPtr = Deno.UnsafePointer.of(unQuadsCountArray);
     const result = func.call(this.ptr, pQuadsBufferPtr, unQuadsCount);
+    // Read output parameters
     return [result, HmdQuad_t.fromBuffer(pQuadsBufferBuffer, 0)];
   }
 
@@ -9247,6 +12822,7 @@ export class IVRChaperoneSetup {
     const unPointCountArray = new Float64Array([unPointCount]);
     const unPointCountPtr = Deno.UnsafePointer.of(unPointCountArray);
     const result = func.call(this.ptr, pPointBufferPtr, unPointCount);
+    // Read output parameters
     return [result, HmdVector2_t.fromBuffer(pPointBufferBuffer, 0)];
   }
 
@@ -9367,6 +12943,7 @@ export class IVRChaperoneSetup {
     }
     const pmatSeatedZeroPoseToRawTrackingPosePtr = Deno.UnsafePointer.of(pmatSeatedZeroPoseToRawTrackingPoseBuffer);
     const result = func.call(this.ptr, pmatSeatedZeroPoseToRawTrackingPosePtr);
+    // Read output parameters
     return [result, HmdMatrix34_t.fromBuffer(pmatSeatedZeroPoseToRawTrackingPoseBuffer, 0)];
   }
 
@@ -9400,6 +12977,7 @@ export class IVRChaperoneSetup {
     const pnBufferLengthArray = new Float64Array([pnBufferLength]);
     const pnBufferLengthPtr = Deno.UnsafePointer.of(pnBufferLengthArray);
     const result = func.call(this.ptr, pBufferPtr, pnBufferLengthPtr);
+    // Read output parameters
     return [result, pnBufferLengthBuffer];
   }
 
@@ -9583,6 +13161,7 @@ export class IVRCompositor {
     const unGamePoseArrayCountArray = new Float64Array([unGamePoseArrayCount]);
     const unGamePoseArrayCountPtr = Deno.UnsafePointer.of(unGamePoseArrayCountArray);
     const result = func.call(this.ptr, pRenderPoseArrayPtr, unRenderPoseArrayCount, pGamePoseArrayPtr, unGamePoseArrayCount);
+    // Read output parameters
     return [result, TrackedDevicePose_t.fromBuffer(pRenderPoseArrayBuffer, 0), TrackedDevicePose_t.fromBuffer(pGamePoseArrayBuffer, 0)];
   }
 
@@ -9633,6 +13212,7 @@ export class IVRCompositor {
     const unGamePoseArrayCountArray = new Float64Array([unGamePoseArrayCount]);
     const unGamePoseArrayCountPtr = Deno.UnsafePointer.of(unGamePoseArrayCountArray);
     const result = func.call(this.ptr, pRenderPoseArrayPtr, unRenderPoseArrayCount, pGamePoseArrayPtr, unGamePoseArrayCount);
+    // Read output parameters
     return [result, TrackedDevicePose_t.fromBuffer(pRenderPoseArrayBuffer, 0), TrackedDevicePose_t.fromBuffer(pGamePoseArrayBuffer, 0)];
   }
 
@@ -9673,6 +13253,7 @@ export class IVRCompositor {
     const unDeviceIndexArray = new Float64Array([unDeviceIndex]);
     const unDeviceIndexPtr = Deno.UnsafePointer.of(unDeviceIndexArray);
     const result = func.call(this.ptr, unDeviceIndex, pOutputPosePtr, pOutputGamePosePtr);
+    // Read output parameters
     return [result, TrackedDevicePose_t.fromBuffer(pOutputPoseBuffer, 0), TrackedDevicePose_t.fromBuffer(pOutputGamePoseBuffer, 0)];
   }
 
@@ -9832,6 +13413,7 @@ export class IVRCompositor {
     const unFramesAgoArray = new Float64Array([unFramesAgo]);
     const unFramesAgoPtr = Deno.UnsafePointer.of(unFramesAgoArray);
     const result = func.call(this.ptr, pTimingPtr, unFramesAgo);
+    // Read output parameters
     return [result, Compositor_FrameTiming.fromBuffer(pTimingBuffer, 0)];
   }
 
@@ -9867,6 +13449,7 @@ export class IVRCompositor {
     const nFramesArray = new Float64Array([nFrames]);
     const nFramesPtr = Deno.UnsafePointer.of(nFramesArray);
     const result = func.call(this.ptr, pTimingPtr, nFrames);
+    // Read output parameters
     return [result, Compositor_FrameTiming.fromBuffer(pTimingBuffer, 0)];
   }
 
@@ -9918,6 +13501,7 @@ export class IVRCompositor {
     const nStatsSizeInBytesArray = new Float64Array([nStatsSizeInBytes]);
     const nStatsSizeInBytesPtr = Deno.UnsafePointer.of(nStatsSizeInBytesArray);
     const result = func.call(this.ptr, pStatsPtr, nStatsSizeInBytes);
+    // Read output parameters
     return [result, Compositor_CumulativeStats.fromBuffer(pStatsBuffer, 0)];
   }
 
@@ -10429,6 +14013,7 @@ export class IVRCompositor {
     const pD3D11DeviceOrResourcePtr = Deno.UnsafePointer.of(pD3D11DeviceOrResource);
     const ppD3D11ShaderResourceViewPtr = Deno.UnsafePointer.of(ppD3D11ShaderResourceView);
     const result = func.call(this.ptr, eEye, pD3D11DeviceOrResourcePtr, ppD3D11ShaderResourceViewPtr);
+    // Read output parameters
     return [result, pD3D11DeviceOrResourceBuffer, ppD3D11ShaderResourceViewBuffer];
   }
 
@@ -10454,6 +14039,7 @@ export class IVRCompositor {
     const func = new Deno.UnsafeFnPointer(funcPtr, { parameters: ["pointer", "pointer"], result: "void" });
     const pD3D11ShaderResourceViewPtr = Deno.UnsafePointer.of(pD3D11ShaderResourceView);
     const result = func.call(this.ptr, pD3D11ShaderResourceViewPtr);
+    // Read output parameters
     return [result, pD3D11ShaderResourceViewBuffer];
   }
 
@@ -10489,6 +14075,7 @@ export class IVRCompositor {
     const pglTextureIdPtr = Deno.UnsafePointer.of(pglTextureIdArray);
     const pglSharedTextureHandlePtr = pglSharedTextureHandle;
     const result = func.call(this.ptr, eEye, pglTextureIdPtr, pglSharedTextureHandlePtr);
+    // Read output parameters
     return [result, pglTextureIdBuffer, pglSharedTextureHandleBuffer];
   }
 
@@ -10640,6 +14227,7 @@ export class IVRCompositor {
     const unBufferSizeArray = new Float64Array([unBufferSize]);
     const unBufferSizePtr = Deno.UnsafePointer.of(unBufferSizeArray);
     const result = func.call(this.ptr, pPhysicalDevicePtr, pchValuePtr, unBufferSize);
+    // Read output parameters
     return [result, pPhysicalDeviceBuffer];
   }
 
@@ -10838,6 +14426,7 @@ export class IVRCompositor {
     const nSizeOfBenchmarkResultsArray = new Float64Array([nSizeOfBenchmarkResults]);
     const nSizeOfBenchmarkResultsPtr = Deno.UnsafePointer.of(nSizeOfBenchmarkResultsArray);
     const result = func.call(this.ptr, pBenchmarkResultsPtr, nSizeOfBenchmarkResults);
+    // Read output parameters
     return [result, Compositor_BenchmarkResults.fromBuffer(pBenchmarkResultsBuffer, 0)];
   }
 
@@ -10870,6 +14459,7 @@ export class IVRCompositor {
     const pGamePosePredictionIDArray = new Float64Array([pGamePosePredictionID]);
     const pGamePosePredictionIDPtr = Deno.UnsafePointer.of(pGamePosePredictionIDArray);
     const result = func.call(this.ptr, pRenderPosePredictionIDPtr, pGamePosePredictionIDPtr);
+    // Read output parameters
     return [result, pRenderPosePredictionIDBuffer, pGamePosePredictionIDBuffer];
   }
 
@@ -10911,6 +14501,7 @@ export class IVRCompositor {
     const unPoseArrayCountArray = new Float64Array([unPoseArrayCount]);
     const unPoseArrayCountPtr = Deno.UnsafePointer.of(unPoseArrayCountArray);
     const result = func.call(this.ptr, unPosePredictionID, pPoseArrayPtr, unPoseArrayCount);
+    // Read output parameters
     return [result, TrackedDevicePose_t.fromBuffer(pPoseArrayBuffer, 0)];
   }
 
@@ -10948,6 +14539,7 @@ export class IVROverlay {
     const pOverlayHandleBuffer = new BigUint64Array([pOverlayHandle]);
     const pOverlayHandlePtr = Deno.UnsafePointer.of(pOverlayHandleBuffer);
     const result = func.call(this.ptr, pchOverlayKeyPtr, pOverlayHandlePtr);
+    // Read output parameters
     return [result, pOverlayHandleBuffer];
   }
 
@@ -10986,6 +14578,7 @@ export class IVROverlay {
     const pOverlayHandleBuffer = new BigUint64Array([pOverlayHandle]);
     const pOverlayHandlePtr = Deno.UnsafePointer.of(pOverlayHandleBuffer);
     const result = func.call(this.ptr, pchOverlayKeyPtr, pchOverlayNamePtr, pOverlayHandlePtr);
+    // Read output parameters
     return [result, pOverlayHandleBuffer];
   }
 
@@ -11055,6 +14648,7 @@ export class IVROverlay {
     const unBufferSizeArray = new Float64Array([unBufferSize]);
     const unBufferSizePtr = Deno.UnsafePointer.of(unBufferSizeArray);
     const result = func.call(this.ptr, ulOverlayHandle, pchValuePtr, unBufferSize, pErrorPtr);
+    // Read output parameters
     return [result, pErrorBuffer];
   }
 
@@ -11098,6 +14692,7 @@ export class IVROverlay {
     const unBufferSizeArray = new Float64Array([unBufferSize]);
     const unBufferSizePtr = Deno.UnsafePointer.of(unBufferSizeArray);
     const result = func.call(this.ptr, ulOverlayHandle, pchValuePtr, unBufferSize, pErrorPtr);
+    // Read output parameters
     return [result, pErrorBuffer];
   }
 
@@ -11179,6 +14774,7 @@ export class IVROverlay {
     const punHeightArray = new Float64Array([punHeight]);
     const punHeightPtr = Deno.UnsafePointer.of(punHeightArray);
     const result = func.call(this.ptr, ulOverlayHandle, pvBufferPtr, unBufferSize, punWidthPtr, punHeightPtr);
+    // Read output parameters
     return [result, pvBufferBuffer, punWidthBuffer, punHeightBuffer];
   }
 
@@ -11333,6 +14929,7 @@ export class IVROverlay {
     const pbEnabledArray = new Uint8Array([pbEnabled ? 1 : 0]);
     const pbEnabledPtr = Deno.UnsafePointer.of(pbEnabledArray);
     const result = func.call(this.ptr, ulOverlayHandle, eOverlayFlag, pbEnabledPtr);
+    // Read output parameters
     return [result, pbEnabledBuffer];
   }
 
@@ -11365,6 +14962,7 @@ export class IVROverlay {
     const pFlagsArray = new Float64Array([pFlags]);
     const pFlagsPtr = Deno.UnsafePointer.of(pFlagsArray);
     const result = func.call(this.ptr, ulOverlayHandle, pFlagsPtr);
+    // Read output parameters
     return [result, pFlagsBuffer];
   }
 
@@ -11453,6 +15051,7 @@ export class IVROverlay {
     const pfBlueArray = new Float64Array([pfBlue]);
     const pfBluePtr = Deno.UnsafePointer.of(pfBlueArray);
     const result = func.call(this.ptr, ulOverlayHandle, pfRedPtr, pfGreenPtr, pfBluePtr);
+    // Read output parameters
     return [result, pfRedBuffer, pfGreenBuffer, pfBlueBuffer];
   }
 
@@ -11517,6 +15116,7 @@ export class IVROverlay {
     const pfAlphaArray = new Float64Array([pfAlpha]);
     const pfAlphaPtr = Deno.UnsafePointer.of(pfAlphaArray);
     const result = func.call(this.ptr, ulOverlayHandle, pfAlphaPtr);
+    // Read output parameters
     return [result, pfAlphaBuffer];
   }
 
@@ -11581,6 +15181,7 @@ export class IVROverlay {
     const pfTexelAspectArray = new Float64Array([pfTexelAspect]);
     const pfTexelAspectPtr = Deno.UnsafePointer.of(pfTexelAspectArray);
     const result = func.call(this.ptr, ulOverlayHandle, pfTexelAspectPtr);
+    // Read output parameters
     return [result, pfTexelAspectBuffer];
   }
 
@@ -11645,6 +15246,7 @@ export class IVROverlay {
     const punSortOrderArray = new Float64Array([punSortOrder]);
     const punSortOrderPtr = Deno.UnsafePointer.of(punSortOrderArray);
     const result = func.call(this.ptr, ulOverlayHandle, punSortOrderPtr);
+    // Read output parameters
     return [result, punSortOrderBuffer];
   }
 
@@ -11709,6 +15311,7 @@ export class IVROverlay {
     const pfWidthInMetersArray = new Float64Array([pfWidthInMeters]);
     const pfWidthInMetersPtr = Deno.UnsafePointer.of(pfWidthInMetersArray);
     const result = func.call(this.ptr, ulOverlayHandle, pfWidthInMetersPtr);
+    // Read output parameters
     return [result, pfWidthInMetersBuffer];
   }
 
@@ -11773,6 +15376,7 @@ export class IVROverlay {
     const pfCurvatureArray = new Float64Array([pfCurvature]);
     const pfCurvaturePtr = Deno.UnsafePointer.of(pfCurvatureArray);
     const result = func.call(this.ptr, ulOverlayHandle, pfCurvaturePtr);
+    // Read output parameters
     return [result, pfCurvatureBuffer];
   }
 
@@ -11837,6 +15441,7 @@ export class IVROverlay {
     const pfRadiansArray = new Float64Array([pfRadians]);
     const pfRadiansPtr = Deno.UnsafePointer.of(pfRadiansArray);
     const result = func.call(this.ptr, ulOverlayHandle, pfRadiansPtr);
+    // Read output parameters
     return [result, pfRadiansBuffer];
   }
 
@@ -11897,6 +15502,7 @@ export class IVROverlay {
     const ulOverlayHandleBuffer = new BigUint64Array([ulOverlayHandle]);
     const ulOverlayHandlePtr = Deno.UnsafePointer.of(ulOverlayHandleBuffer);
     const result = func.call(this.ptr, ulOverlayHandle, peTextureColorSpacePtr);
+    // Read output parameters
     return [result, peTextureColorSpaceBuffer];
   }
 
@@ -11963,6 +15569,7 @@ export class IVROverlay {
     const ulOverlayHandleBuffer = new BigUint64Array([ulOverlayHandle]);
     const ulOverlayHandlePtr = Deno.UnsafePointer.of(ulOverlayHandleBuffer);
     const result = func.call(this.ptr, ulOverlayHandle, pOverlayTextureBoundsPtr);
+    // Read output parameters
     return [result, VRTextureBounds_t.fromBuffer(pOverlayTextureBoundsBuffer, 0)];
   }
 
@@ -11993,6 +15600,7 @@ export class IVROverlay {
     const ulOverlayHandleBuffer = new BigUint64Array([ulOverlayHandle]);
     const ulOverlayHandlePtr = Deno.UnsafePointer.of(ulOverlayHandleBuffer);
     const result = func.call(this.ptr, ulOverlayHandle, peTransformTypePtr);
+    // Read output parameters
     return [result, peTransformTypeBuffer];
   }
 
@@ -12077,6 +15685,7 @@ export class IVROverlay {
     const ulOverlayHandleBuffer = new BigUint64Array([ulOverlayHandle]);
     const ulOverlayHandlePtr = Deno.UnsafePointer.of(ulOverlayHandleBuffer);
     const result = func.call(this.ptr, ulOverlayHandle, peTrackingOriginPtr, pmatTrackingOriginToOverlayTransformPtr);
+    // Read output parameters
     return [result, peTrackingOriginBuffer, HmdMatrix34_t.fromBuffer(pmatTrackingOriginToOverlayTransformBuffer, 0)];
   }
 
@@ -12165,6 +15774,7 @@ export class IVROverlay {
     const punTrackedDeviceArray = new Float64Array([punTrackedDevice]);
     const punTrackedDevicePtr = Deno.UnsafePointer.of(punTrackedDeviceArray);
     const result = func.call(this.ptr, ulOverlayHandle, punTrackedDevicePtr, pmatTrackedDeviceToOverlayTransformPtr);
+    // Read output parameters
     return [result, punTrackedDeviceBuffer, HmdMatrix34_t.fromBuffer(pmatTrackedDeviceToOverlayTransformBuffer, 0)];
   }
 
@@ -12248,6 +15858,7 @@ export class IVROverlay {
     const unComponentNameSizeArray = new Float64Array([unComponentNameSize]);
     const unComponentNameSizePtr = Deno.UnsafePointer.of(unComponentNameSizeArray);
     const result = func.call(this.ptr, ulOverlayHandle, punDeviceIndexPtr, pchComponentNamePtr, unComponentNameSize);
+    // Read output parameters
     return [result, punDeviceIndexBuffer];
   }
 
@@ -12320,6 +15931,7 @@ export class IVROverlay {
     const ulOverlayHandleBuffer = new BigUint64Array([ulOverlayHandle]);
     const ulOverlayHandlePtr = Deno.UnsafePointer.of(ulOverlayHandleBuffer);
     const result = func.call(this.ptr, ulOverlayHandle, pvHotspotPtr);
+    // Read output parameters
     return [result, HmdVector2_t.fromBuffer(pvHotspotBuffer, 0)];
   }
 
@@ -12488,6 +16100,7 @@ export class IVROverlay {
     const func = new Deno.UnsafeFnPointer(funcPtr, { parameters: ["pointer", "u64", "i32", { struct: ["f32","f32"] }, "pointer"], result: "i32" });
     const coordinatesInOverlayBuffer = new ArrayBuffer(8);
     const coordinatesInOverlayView = new DataView(coordinatesInOverlayBuffer);
+    coordinatesInOverlay.toBuffer(coordinatesInOverlayBuffer, 0);
     for (let i0 = 0; i0 < 2; i0++) {
         coordinatesInOverlayView.setFloat32((i0 * 1) * 4, coordinatesInOverlay.v[i0], true);
     }
@@ -12503,6 +16116,7 @@ export class IVROverlay {
     const ulOverlayHandleBuffer = new BigUint64Array([ulOverlayHandle]);
     const ulOverlayHandlePtr = Deno.UnsafePointer.of(ulOverlayHandleBuffer);
     const result = func.call(this.ptr, ulOverlayHandle, eTrackingOrigin, coordinatesInOverlayBuffer, pmatTransformPtr);
+    // Read output parameters
     return [result, HmdMatrix34_t.fromBuffer(pmatTransformBuffer, 0)];
   }
 
@@ -12568,6 +16182,7 @@ export class IVROverlay {
     const uncbVREventArray = new Float64Array([uncbVREvent]);
     const uncbVREventPtr = Deno.UnsafePointer.of(uncbVREventArray);
     const result = func.call(this.ptr, ulOverlayHandle, pEventPtr, uncbVREvent);
+    // Read output parameters
     return [result, VREvent_t.fromBuffer(pEventBuffer, 0)];
   }
 
@@ -12598,6 +16213,7 @@ export class IVROverlay {
     const ulOverlayHandleBuffer = new BigUint64Array([ulOverlayHandle]);
     const ulOverlayHandlePtr = Deno.UnsafePointer.of(ulOverlayHandleBuffer);
     const result = func.call(this.ptr, ulOverlayHandle, peInputMethodPtr);
+    // Read output parameters
     return [result, peInputMethodBuffer];
   }
 
@@ -12664,6 +16280,7 @@ export class IVROverlay {
     const ulOverlayHandleBuffer = new BigUint64Array([ulOverlayHandle]);
     const ulOverlayHandlePtr = Deno.UnsafePointer.of(ulOverlayHandleBuffer);
     const result = func.call(this.ptr, ulOverlayHandle, pvecMouseScalePtr);
+    // Read output parameters
     return [result, HmdVector2_t.fromBuffer(pvecMouseScaleBuffer, 0)];
   }
 
@@ -12740,6 +16357,7 @@ export class IVROverlay {
     const ulOverlayHandleBuffer = new BigUint64Array([ulOverlayHandle]);
     const ulOverlayHandlePtr = Deno.UnsafePointer.of(ulOverlayHandleBuffer);
     const result = func.call(this.ptr, ulOverlayHandle, pParamsPtr, pResultsPtr);
+    // Read output parameters
     return [result, VROverlayIntersectionParams_t.fromBuffer(pParamsBuffer, 0), VROverlayIntersectionResults_t.fromBuffer(pResultsBuffer, 0)];
   }
 
@@ -12811,6 +16429,7 @@ export class IVROverlay {
     const unPrimitiveSizeArray = new Float64Array([unPrimitiveSize]);
     const unPrimitiveSizePtr = Deno.UnsafePointer.of(unPrimitiveSizeArray);
     const result = func.call(this.ptr, ulOverlayHandle, pMaskPrimitivesPtr, unNumMaskPrimitives, unPrimitiveSize);
+    // Read output parameters
     return [result, VROverlayIntersectionMaskPrimitive_t.fromBuffer(pMaskPrimitivesBuffer, 0)];
   }
 
@@ -13057,6 +16676,7 @@ export class IVROverlay {
     const unBytesPerPixelArray = new Float64Array([unBytesPerPixel]);
     const unBytesPerPixelPtr = Deno.UnsafePointer.of(unBytesPerPixelArray);
     const result = func.call(this.ptr, ulOverlayHandle, pvBufferPtr, unWidth, unHeight, unBytesPerPixel);
+    // Read output parameters
     return [result, pvBufferBuffer];
   }
 
@@ -13158,6 +16778,7 @@ export class IVROverlay {
     const pNativeFormatArray = new Float64Array([pNativeFormat]);
     const pNativeFormatPtr = Deno.UnsafePointer.of(pNativeFormatArray);
     const result = func.call(this.ptr, ulOverlayHandle, pNativeTextureHandlePtr, pNativeTextureRefPtr, pWidthPtr, pHeightPtr, pNativeFormatPtr, pAPITypePtr, pColorSpacePtr, pTextureBoundsPtr);
+    // Read output parameters
     return [result, pNativeTextureHandleBuffer, pNativeTextureRefBuffer, pWidthBuffer, pHeightBuffer, pNativeFormatBuffer, pAPITypeBuffer, pColorSpaceBuffer, VRTextureBounds_t.fromBuffer(pTextureBoundsBuffer, 0)];
   }
 
@@ -13189,6 +16810,7 @@ export class IVROverlay {
     const ulOverlayHandlePtr = Deno.UnsafePointer.of(ulOverlayHandleBuffer);
     const pNativeTextureHandlePtr = Deno.UnsafePointer.of(pNativeTextureHandle);
     const result = func.call(this.ptr, ulOverlayHandle, pNativeTextureHandlePtr);
+    // Read output parameters
     return [result, pNativeTextureHandleBuffer];
   }
 
@@ -13227,6 +16849,7 @@ export class IVROverlay {
     const pHeightArray = new Float64Array([pHeight]);
     const pHeightPtr = Deno.UnsafePointer.of(pHeightArray);
     const result = func.call(this.ptr, ulOverlayHandle, pWidthPtr, pHeightPtr);
+    // Read output parameters
     return [result, pWidthBuffer, pHeightBuffer];
   }
 
@@ -13271,6 +16894,7 @@ export class IVROverlay {
     const pThumbnailHandleBuffer = new BigUint64Array([pThumbnailHandle]);
     const pThumbnailHandlePtr = Deno.UnsafePointer.of(pThumbnailHandleBuffer);
     const result = func.call(this.ptr, pchOverlayKeyPtr, pchOverlayFriendlyNamePtr, pMainHandlePtr, pThumbnailHandlePtr);
+    // Read output parameters
     return [result, pMainHandleBuffer, pThumbnailHandleBuffer];
   }
 
@@ -13379,6 +17003,7 @@ export class IVROverlay {
     const punProcessIdArray = new Float64Array([punProcessId]);
     const punProcessIdPtr = Deno.UnsafePointer.of(punProcessIdArray);
     const result = func.call(this.ptr, ulOverlayHandle, punProcessIdPtr);
+    // Read output parameters
     return [result, punProcessIdBuffer];
   }
 
@@ -13661,6 +17286,7 @@ export class IVROverlay {
     const func = new Deno.UnsafeFnPointer(funcPtr, { parameters: ["pointer", "u64", { struct: [{ struct: ["f32","f32"] }, { struct: ["f32","f32"] }] }], result: "void" });
     const avoidRectBuffer = new ArrayBuffer(16);
     const avoidRectView = new DataView(avoidRectBuffer);
+    avoidRect.toBuffer(avoidRectBuffer, 0);
     const avoidRectPtr = Deno.UnsafePointer.of(avoidRectBuffer);
     const ulOverlayHandleBuffer = new BigUint64Array([ulOverlayHandle]);
     const ulOverlayHandlePtr = Deno.UnsafePointer.of(ulOverlayHandleBuffer);
@@ -13790,6 +17416,7 @@ export class IVROverlayView {
     const unOverlayViewSizeArray = new Float64Array([unOverlayViewSize]);
     const unOverlayViewSizePtr = Deno.UnsafePointer.of(unOverlayViewSizeArray);
     const result = func.call(this.ptr, ulOverlayHandle, pNativeDevicePtr, pOverlayViewPtr, unOverlayViewSize);
+    // Read output parameters
     return [result, VRNativeDevice_t.fromBuffer(pNativeDeviceBuffer, 0), VROverlayView_t.fromBuffer(pOverlayViewBuffer, 0)];
   }
 
@@ -13817,6 +17444,7 @@ export class IVROverlayView {
     const pOverlayViewView = new DataView(pOverlayViewBuffer);
     const pOverlayViewPtr = Deno.UnsafePointer.of(pOverlayViewBuffer);
     const result = func.call(this.ptr, pOverlayViewPtr);
+    // Read output parameters
     return [result, VROverlayView_t.fromBuffer(pOverlayViewBuffer, 0)];
   }
 
@@ -13945,6 +17573,7 @@ export class IVRHeadsetView {
     const pnHeightArray = new Float64Array([pnHeight]);
     const pnHeightPtr = Deno.UnsafePointer.of(pnHeightArray);
     const result = func.call(this.ptr, pnWidthPtr, pnHeightPtr);
+    // Read output parameters
     return [result, pnWidthBuffer, pnHeightBuffer];
   }
 
@@ -14113,6 +17742,7 @@ export class IVRHeadsetView {
     const pEndPctArray = new Float64Array([pEndPct]);
     const pEndPctPtr = Deno.UnsafePointer.of(pEndPctArray);
     const result = func.call(this.ptr, pStartPctPtr, pEndPctPtr);
+    // Read output parameters
     return [result, pStartPctBuffer, pEndPctBuffer];
   }
 
@@ -14151,6 +17781,7 @@ export class IVRRenderModels {
     const pchRenderModelNameBuffer = new TextEncoder().encode(pchRenderModelName + '\0');
     const pchRenderModelNamePtr = Deno.UnsafePointer.of(pchRenderModelNameBuffer);
     const result = func.call(this.ptr, pchRenderModelNamePtr, ppRenderModelPtr);
+    // Read output parameters
     return [result, RenderModel_t.fromBuffer(ppRenderModelBuffer, 0)];
   }
 
@@ -14178,6 +17809,7 @@ export class IVRRenderModels {
     const pRenderModelView = new DataView(pRenderModelBuffer);
     const pRenderModelPtr = Deno.UnsafePointer.of(pRenderModelBuffer);
     const result = func.call(this.ptr, pRenderModelPtr);
+    // Read output parameters
     return [result, RenderModel_t.fromBuffer(pRenderModelBuffer, 0)];
   }
 
@@ -14211,6 +17843,7 @@ export class IVRRenderModels {
     const textureIdArray = new Float64Array([textureId]);
     const textureIdPtr = Deno.UnsafePointer.of(textureIdArray);
     const result = func.call(this.ptr, textureId, ppTexturePtr);
+    // Read output parameters
     return [result, RenderModel_TextureMap_t.fromBuffer(ppTextureBuffer, 0)];
   }
 
@@ -14238,6 +17871,7 @@ export class IVRRenderModels {
     const pTextureView = new DataView(pTextureBuffer);
     const pTexturePtr = Deno.UnsafePointer.of(pTextureBuffer);
     const result = func.call(this.ptr, pTexturePtr);
+    // Read output parameters
     return [result, RenderModel_TextureMap_t.fromBuffer(pTextureBuffer, 0)];
   }
 
@@ -14274,6 +17908,7 @@ export class IVRRenderModels {
     const pD3D11DevicePtr = Deno.UnsafePointer.of(pD3D11Device);
     const ppD3D11Texture2DPtr = Deno.UnsafePointer.of(ppD3D11Texture2D);
     const result = func.call(this.ptr, textureId, pD3D11DevicePtr, ppD3D11Texture2DPtr);
+    // Read output parameters
     return [result, pD3D11DeviceBuffer, ppD3D11Texture2DBuffer];
   }
 
@@ -14305,6 +17940,7 @@ export class IVRRenderModels {
     const textureIdPtr = Deno.UnsafePointer.of(textureIdArray);
     const pDstTexturePtr = Deno.UnsafePointer.of(pDstTexture);
     const result = func.call(this.ptr, textureId, pDstTexturePtr);
+    // Read output parameters
     return [result, pDstTextureBuffer];
   }
 
@@ -14330,6 +17966,7 @@ export class IVRRenderModels {
     const func = new Deno.UnsafeFnPointer(funcPtr, { parameters: ["pointer", "pointer"], result: "void" });
     const pD3D11Texture2DPtr = Deno.UnsafePointer.of(pD3D11Texture2D);
     const result = func.call(this.ptr, pD3D11Texture2DPtr);
+    // Read output parameters
     return [result, pD3D11Texture2DBuffer];
   }
 
@@ -14587,6 +18224,7 @@ export class IVRRenderModels {
     const devicePathBuffer = new BigUint64Array([devicePath]);
     const devicePathPtr = Deno.UnsafePointer.of(devicePathBuffer);
     const result = func.call(this.ptr, pchRenderModelNamePtr, pchComponentNamePtr, devicePath, pStatePtr, pComponentStatePtr);
+    // Read output parameters
     return [result, RenderModel_ControllerMode_State_t.fromBuffer(pStateBuffer, 0), RenderModel_ComponentState_t.fromBuffer(pComponentStateBuffer, 0)];
   }
 
@@ -14640,6 +18278,7 @@ export class IVRRenderModels {
     const pControllerStateView = new DataView(pControllerStateBuffer);
     const pControllerStatePtr = Deno.UnsafePointer.of(pControllerStateBuffer);
     const result = func.call(this.ptr, pchRenderModelNamePtr, pchComponentNamePtr, pControllerStatePtr, pStatePtr, pComponentStatePtr);
+    // Read output parameters
     return [result, pControllerStateBuffer, RenderModel_ControllerMode_State_t.fromBuffer(pStateBuffer, 0), RenderModel_ComponentState_t.fromBuffer(pComponentStateBuffer, 0)];
   }
 
@@ -14715,6 +18354,7 @@ export class IVRRenderModels {
     const unThumbnailURLLenArray = new Float64Array([unThumbnailURLLen]);
     const unThumbnailURLLenPtr = Deno.UnsafePointer.of(unThumbnailURLLenArray);
     const result = func.call(this.ptr, pchRenderModelNamePtr, pchThumbnailURLPtr, unThumbnailURLLen, peErrorPtr);
+    // Read output parameters
     return [result, peErrorBuffer];
   }
 
@@ -14758,6 +18398,7 @@ export class IVRRenderModels {
     const unOriginalPathLenArray = new Float64Array([unOriginalPathLen]);
     const unOriginalPathLenPtr = Deno.UnsafePointer.of(unOriginalPathLenArray);
     const result = func.call(this.ptr, pchRenderModelNamePtr, pchOriginalPathPtr, unOriginalPathLen, peErrorPtr);
+    // Read output parameters
     return [result, peErrorBuffer];
   }
 
@@ -14846,6 +18487,7 @@ export class IVRNotifications {
     const pNotificationIdArray = new Float64Array([pNotificationId]);
     const pNotificationIdPtr = Deno.UnsafePointer.of(pNotificationIdArray);
     const result = func.call(this.ptr, ulOverlayHandle, ulUserValue, type, pchTextPtr, style, pImagePtr, pNotificationIdPtr);
+    // Read output parameters
     return [result, NotificationBitmap_t.fromBuffer(pImageBuffer, 0), pNotificationIdBuffer];
   }
 
@@ -14943,6 +18585,7 @@ export class IVRSettings {
     const bValueArray = new Uint8Array([bValue ? 1 : 0]);
     const bValuePtr = Deno.UnsafePointer.of(bValueArray);
     const result = func.call(this.ptr, pchSectionPtr, pchSettingsKeyPtr, bValue ? 1 : 0, peErrorPtr);
+    // Read output parameters
     return [result, peErrorBuffer];
   }
 
@@ -14985,6 +18628,7 @@ export class IVRSettings {
     const nValueArray = new Float64Array([nValue]);
     const nValuePtr = Deno.UnsafePointer.of(nValueArray);
     const result = func.call(this.ptr, pchSectionPtr, pchSettingsKeyPtr, nValue, peErrorPtr);
+    // Read output parameters
     return [result, peErrorBuffer];
   }
 
@@ -15027,6 +18671,7 @@ export class IVRSettings {
     const flValueArray = new Float64Array([flValue]);
     const flValuePtr = Deno.UnsafePointer.of(flValueArray);
     const result = func.call(this.ptr, pchSectionPtr, pchSettingsKeyPtr, flValue, peErrorPtr);
+    // Read output parameters
     return [result, peErrorBuffer];
   }
 
@@ -15069,6 +18714,7 @@ export class IVRSettings {
     const pchValueBuffer = new TextEncoder().encode(pchValue + '\0');
     const pchValuePtr = Deno.UnsafePointer.of(pchValueBuffer);
     const result = func.call(this.ptr, pchSectionPtr, pchSettingsKeyPtr, pchValuePtr, peErrorPtr);
+    // Read output parameters
     return [result, peErrorBuffer];
   }
 
@@ -15105,6 +18751,7 @@ export class IVRSettings {
     const pchSettingsKeyBuffer = new TextEncoder().encode(pchSettingsKey + '\0');
     const pchSettingsKeyPtr = Deno.UnsafePointer.of(pchSettingsKeyBuffer);
     const result = func.call(this.ptr, pchSectionPtr, pchSettingsKeyPtr, peErrorPtr);
+    // Read output parameters
     return [result, peErrorBuffer];
   }
 
@@ -15141,6 +18788,7 @@ export class IVRSettings {
     const pchSettingsKeyBuffer = new TextEncoder().encode(pchSettingsKey + '\0');
     const pchSettingsKeyPtr = Deno.UnsafePointer.of(pchSettingsKeyBuffer);
     const result = func.call(this.ptr, pchSectionPtr, pchSettingsKeyPtr, peErrorPtr);
+    // Read output parameters
     return [result, peErrorBuffer];
   }
 
@@ -15177,6 +18825,7 @@ export class IVRSettings {
     const pchSettingsKeyBuffer = new TextEncoder().encode(pchSettingsKey + '\0');
     const pchSettingsKeyPtr = Deno.UnsafePointer.of(pchSettingsKeyBuffer);
     const result = func.call(this.ptr, pchSectionPtr, pchSettingsKeyPtr, peErrorPtr);
+    // Read output parameters
     return [result, peErrorBuffer];
   }
 
@@ -15226,6 +18875,7 @@ export class IVRSettings {
     const unValueLenArray = new Float64Array([unValueLen]);
     const unValueLenPtr = Deno.UnsafePointer.of(unValueLenArray);
     const result = func.call(this.ptr, pchSectionPtr, pchSettingsKeyPtr, pchValuePtr, unValueLen, peErrorPtr);
+    // Read output parameters
     return [result, peErrorBuffer];
   }
 
@@ -15256,6 +18906,7 @@ export class IVRSettings {
     const pchSectionBuffer = new TextEncoder().encode(pchSection + '\0');
     const pchSectionPtr = Deno.UnsafePointer.of(pchSectionBuffer);
     const result = func.call(this.ptr, pchSectionPtr, peErrorPtr);
+    // Read output parameters
     return [result, peErrorBuffer];
   }
 
@@ -15292,6 +18943,7 @@ export class IVRSettings {
     const pchSettingsKeyBuffer = new TextEncoder().encode(pchSettingsKey + '\0');
     const pchSettingsKeyPtr = Deno.UnsafePointer.of(pchSettingsKeyBuffer);
     const result = func.call(this.ptr, pchSectionPtr, pchSettingsKeyPtr, peErrorPtr);
+    // Read output parameters
     return [result, peErrorBuffer];
   }
 
@@ -15339,6 +18991,7 @@ export class IVRScreenshots {
     const pchVRFilenameBuffer = new TextEncoder().encode(pchVRFilename + '\0');
     const pchVRFilenamePtr = Deno.UnsafePointer.of(pchVRFilenameBuffer);
     const result = func.call(this.ptr, pOutScreenshotHandlePtr, type, pchPreviewFilenamePtr, pchVRFilenamePtr);
+    // Read output parameters
     return [result, pOutScreenshotHandleBuffer];
   }
 
@@ -15400,6 +19053,7 @@ export class IVRScreenshots {
     const screenshotHandleArray = new Float64Array([screenshotHandle]);
     const screenshotHandlePtr = Deno.UnsafePointer.of(screenshotHandleArray);
     const result = func.call(this.ptr, screenshotHandle, pErrorPtr);
+    // Read output parameters
     return [result, pErrorBuffer];
   }
 
@@ -15447,6 +19101,7 @@ export class IVRScreenshots {
     const cchFilenameArray = new Float64Array([cchFilename]);
     const cchFilenamePtr = Deno.UnsafePointer.of(cchFilenameArray);
     const result = func.call(this.ptr, screenshotHandle, filenameType, pchFilenamePtr, cchFilename, pErrorPtr);
+    // Read output parameters
     return [result, pErrorBuffer];
   }
 
@@ -15517,6 +19172,7 @@ export class IVRScreenshots {
     const pchVRFilenameBuffer = new TextEncoder().encode(pchVRFilename + '\0');
     const pchVRFilenamePtr = Deno.UnsafePointer.of(pchVRFilenameBuffer);
     const result = func.call(this.ptr, pOutScreenshotHandlePtr, pchPreviewFilenamePtr, pchVRFilenamePtr);
+    // Read output parameters
     return [result, pOutScreenshotHandleBuffer];
   }
 
@@ -15824,6 +19480,7 @@ export class IVRInput {
     const pHandleBuffer = new BigUint64Array([pHandle]);
     const pHandlePtr = Deno.UnsafePointer.of(pHandleBuffer);
     const result = func.call(this.ptr, pchActionSetNamePtr, pHandlePtr);
+    // Read output parameters
     return [result, pHandleBuffer];
   }
 
@@ -15856,6 +19513,7 @@ export class IVRInput {
     const pHandleBuffer = new BigUint64Array([pHandle]);
     const pHandlePtr = Deno.UnsafePointer.of(pHandleBuffer);
     const result = func.call(this.ptr, pchActionNamePtr, pHandlePtr);
+    // Read output parameters
     return [result, pHandleBuffer];
   }
 
@@ -15888,6 +19546,7 @@ export class IVRInput {
     const pHandleBuffer = new BigUint64Array([pHandle]);
     const pHandlePtr = Deno.UnsafePointer.of(pHandleBuffer);
     const result = func.call(this.ptr, pchInputSourcePathPtr, pHandlePtr);
+    // Read output parameters
     return [result, pHandleBuffer];
   }
 
@@ -15929,6 +19588,7 @@ export class IVRInput {
     const unSetCountArray = new Float64Array([unSetCount]);
     const unSetCountPtr = Deno.UnsafePointer.of(unSetCountArray);
     const result = func.call(this.ptr, pSetsPtr, unSizeOfVRSelectedActionSet_t, unSetCount);
+    // Read output parameters
     return [result, VRActiveActionSet_t.fromBuffer(pSetsBuffer, 0)];
   }
 
@@ -15974,6 +19634,7 @@ export class IVRInput {
     const ulRestrictToDeviceBuffer = new BigUint64Array([ulRestrictToDevice]);
     const ulRestrictToDevicePtr = Deno.UnsafePointer.of(ulRestrictToDeviceBuffer);
     const result = func.call(this.ptr, action, pActionDataPtr, unActionDataSize, ulRestrictToDevice);
+    // Read output parameters
     return [result, InputDigitalActionData_t.fromBuffer(pActionDataBuffer, 0)];
   }
 
@@ -16019,6 +19680,7 @@ export class IVRInput {
     const ulRestrictToDeviceBuffer = new BigUint64Array([ulRestrictToDevice]);
     const ulRestrictToDevicePtr = Deno.UnsafePointer.of(ulRestrictToDeviceBuffer);
     const result = func.call(this.ptr, action, pActionDataPtr, unActionDataSize, ulRestrictToDevice);
+    // Read output parameters
     return [result, InputAnalogActionData_t.fromBuffer(pActionDataBuffer, 0)];
   }
 
@@ -16074,6 +19736,7 @@ export class IVRInput {
     const ulRestrictToDeviceBuffer = new BigUint64Array([ulRestrictToDevice]);
     const ulRestrictToDevicePtr = Deno.UnsafePointer.of(ulRestrictToDeviceBuffer);
     const result = func.call(this.ptr, action, eOrigin, fPredictedSecondsFromNow, pActionDataPtr, unActionDataSize, ulRestrictToDevice);
+    // Read output parameters
     return [result, InputPoseActionData_t.fromBuffer(pActionDataBuffer, 0)];
   }
 
@@ -16123,6 +19786,7 @@ export class IVRInput {
     const ulRestrictToDeviceBuffer = new BigUint64Array([ulRestrictToDevice]);
     const ulRestrictToDevicePtr = Deno.UnsafePointer.of(ulRestrictToDeviceBuffer);
     const result = func.call(this.ptr, action, eOrigin, pActionDataPtr, unActionDataSize, ulRestrictToDevice);
+    // Read output parameters
     return [result, InputPoseActionData_t.fromBuffer(pActionDataBuffer, 0)];
   }
 
@@ -16162,6 +19826,7 @@ export class IVRInput {
     const unActionDataSizeArray = new Float64Array([unActionDataSize]);
     const unActionDataSizePtr = Deno.UnsafePointer.of(unActionDataSizeArray);
     const result = func.call(this.ptr, action, pActionDataPtr, unActionDataSize);
+    // Read output parameters
     return [result, InputSkeletalActionData_t.fromBuffer(pActionDataBuffer, 0)];
   }
 
@@ -16186,6 +19851,7 @@ export class IVRInput {
     if (funcPtr === null) throw new Error("Invalid function pointer");
     const func = new Deno.UnsafeFnPointer(funcPtr, { parameters: ["pointer", "pointer"], result: "i32" });
     const result = func.call(this.ptr, peDominantHandPtr);
+    // Read output parameters
     return [result, peDominantHandBuffer];
   }
 
@@ -16242,6 +19908,7 @@ export class IVRInput {
     const pBoneCountArray = new Float64Array([pBoneCount]);
     const pBoneCountPtr = Deno.UnsafePointer.of(pBoneCountArray);
     const result = func.call(this.ptr, action, pBoneCountPtr);
+    // Read output parameters
     return [result, pBoneCountBuffer];
   }
 
@@ -16281,6 +19948,7 @@ export class IVRInput {
     const unIndexArayCountArray = new Float64Array([unIndexArayCount]);
     const unIndexArayCountPtr = Deno.UnsafePointer.of(unIndexArayCountArray);
     const result = func.call(this.ptr, action, pParentIndicesPtr, unIndexArayCount);
+    // Read output parameters
     return [result, pParentIndicesBuffer];
   }
 
@@ -16375,6 +20043,7 @@ export class IVRInput {
     const unTransformArrayCountArray = new Float64Array([unTransformArrayCount]);
     const unTransformArrayCountPtr = Deno.UnsafePointer.of(unTransformArrayCountArray);
     const result = func.call(this.ptr, action, eTransformSpace, eReferencePose, pTransformArrayPtr, unTransformArrayCount);
+    // Read output parameters
     return [result, VRBoneTransform_t.fromBuffer(pTransformArrayBuffer, 0)];
   }
 
@@ -16405,6 +20074,7 @@ export class IVRInput {
     const actionBuffer = new BigUint64Array([action]);
     const actionPtr = Deno.UnsafePointer.of(actionBuffer);
     const result = func.call(this.ptr, action, pSkeletalTrackingLevelPtr);
+    // Read output parameters
     return [result, pSkeletalTrackingLevelBuffer];
   }
 
@@ -16454,6 +20124,7 @@ export class IVRInput {
     const unTransformArrayCountArray = new Float64Array([unTransformArrayCount]);
     const unTransformArrayCountPtr = Deno.UnsafePointer.of(unTransformArrayCountArray);
     const result = func.call(this.ptr, action, eTransformSpace, eMotionRange, pTransformArrayPtr, unTransformArrayCount);
+    // Read output parameters
     return [result, VRBoneTransform_t.fromBuffer(pTransformArrayBuffer, 0)];
   }
 
@@ -16497,6 +20168,7 @@ export class IVRInput {
     const actionBuffer = new BigUint64Array([action]);
     const actionPtr = Deno.UnsafePointer.of(actionBuffer);
     const result = func.call(this.ptr, action, eSummaryType, pSkeletalSummaryDataPtr);
+    // Read output parameters
     return [result, VRSkeletalSummaryData_t.fromBuffer(pSkeletalSummaryDataBuffer, 0)];
   }
 
@@ -16545,6 +20217,7 @@ export class IVRInput {
     const punRequiredCompressedSizeArray = new Float64Array([punRequiredCompressedSize]);
     const punRequiredCompressedSizePtr = Deno.UnsafePointer.of(punRequiredCompressedSizeArray);
     const result = func.call(this.ptr, action, eMotionRange, pvCompressedDataPtr, unCompressedSize, punRequiredCompressedSizePtr);
+    // Read output parameters
     return [result, pvCompressedDataBuffer, punRequiredCompressedSizeBuffer];
   }
 
@@ -16595,6 +20268,7 @@ export class IVRInput {
     const unTransformArrayCountArray = new Float64Array([unTransformArrayCount]);
     const unTransformArrayCountPtr = Deno.UnsafePointer.of(unTransformArrayCountArray);
     const result = func.call(this.ptr, pvCompressedBufferPtr, unCompressedBufferSize, eTransformSpace, pTransformArrayPtr, unTransformArrayCount);
+    // Read output parameters
     return [result, pvCompressedBufferBuffer, VRBoneTransform_t.fromBuffer(pTransformArrayBuffer, 0)];
   }
 
@@ -16696,6 +20370,7 @@ export class IVRInput {
     const originOutCountArray = new Float64Array([originOutCount]);
     const originOutCountPtr = Deno.UnsafePointer.of(originOutCountArray);
     const result = func.call(this.ptr, actionSetHandle, digitalActionHandle, originsOutPtr, originOutCount);
+    // Read output parameters
     return [result, originsOutBuffer];
   }
 
@@ -16783,6 +20458,7 @@ export class IVRInput {
     const unOriginInfoSizeArray = new Float64Array([unOriginInfoSize]);
     const unOriginInfoSizePtr = Deno.UnsafePointer.of(unOriginInfoSizeArray);
     const result = func.call(this.ptr, origin, pOriginInfoPtr, unOriginInfoSize);
+    // Read output parameters
     return [result, InputOriginInfo_t.fromBuffer(pOriginInfoBuffer, 0)];
   }
 
@@ -16851,6 +20527,7 @@ export class IVRInput {
     const punReturnedBindingInfoCountArray = new Float64Array([punReturnedBindingInfoCount]);
     const punReturnedBindingInfoCountPtr = Deno.UnsafePointer.of(punReturnedBindingInfoCountArray);
     const result = func.call(this.ptr, action, pOriginInfoPtr, unBindingInfoSize, unBindingInfoCount, punReturnedBindingInfoCountPtr);
+    // Read output parameters
     return [result, InputBindingInfo_t.fromBuffer(pOriginInfoBuffer, 0), punReturnedBindingInfoCountBuffer];
   }
 
@@ -16930,6 +20607,7 @@ export class IVRInput {
     const originToHighlightBuffer = new BigUint64Array([originToHighlight]);
     const originToHighlightPtr = Deno.UnsafePointer.of(originToHighlightBuffer);
     const result = func.call(this.ptr, pSetsPtr, unSizeOfVRSelectedActionSet_t, unSetCount, originToHighlight);
+    // Read output parameters
     return [result, VRActiveActionSet_t.fromBuffer(pSetsBuffer, 0)];
   }
 
@@ -17003,6 +20681,7 @@ export class IVRInput {
     const unBindingInfoCountArray = new Float64Array([unBindingInfoCount]);
     const unBindingInfoCountPtr = Deno.UnsafePointer.of(unBindingInfoCountArray);
     const result = func.call(this.ptr, pchRenderModelNamePtr, pchComponentNamePtr, pOriginInfoPtr, unBindingInfoSize, unBindingInfoCount, pComponentStatePtr);
+    // Read output parameters
     return [result, InputBindingInfo_t.fromBuffer(pOriginInfoBuffer, 0), RenderModel_ComponentState_t.fromBuffer(pComponentStateBuffer, 0)];
   }
 
@@ -17157,6 +20836,7 @@ export class IVRIOBuffer {
     const pulBufferBuffer = new BigUint64Array([pulBuffer]);
     const pulBufferPtr = Deno.UnsafePointer.of(pulBufferBuffer);
     const result = func.call(this.ptr, pchPathPtr, mode, unElementSize, unElements, pulBufferPtr);
+    // Read output parameters
     return [result, pulBufferBuffer];
   }
 
@@ -17226,6 +20906,7 @@ export class IVRIOBuffer {
     const punReadArray = new Float64Array([punRead]);
     const punReadPtr = Deno.UnsafePointer.of(punReadArray);
     const result = func.call(this.ptr, ulBuffer, pDstPtr, unBytes, punReadPtr);
+    // Read output parameters
     return [result, pDstBuffer, punReadBuffer];
   }
 
@@ -17263,6 +20944,7 @@ export class IVRIOBuffer {
     const unBytesArray = new Float64Array([unBytes]);
     const unBytesPtr = Deno.UnsafePointer.of(unBytesArray);
     const result = func.call(this.ptr, ulBuffer, pSrcPtr, unBytes);
+    // Read output parameters
     return [result, pSrcBuffer];
   }
 
@@ -17352,6 +21034,7 @@ export class IVRSpatialAnchors {
     const pHandleOutArray = new Float64Array([pHandleOut]);
     const pHandleOutPtr = Deno.UnsafePointer.of(pHandleOutArray);
     const result = func.call(this.ptr, pchDescriptorPtr, pHandleOutPtr);
+    // Read output parameters
     return [result, pHandleOutBuffer];
   }
 
@@ -17395,6 +21078,7 @@ export class IVRSpatialAnchors {
     const pHandleOutArray = new Float64Array([pHandleOut]);
     const pHandleOutPtr = Deno.UnsafePointer.of(pHandleOutArray);
     const result = func.call(this.ptr, unDeviceIndex, eOrigin, pPosePtr, pHandleOutPtr);
+    // Read output parameters
     return [result, SpatialAnchorPose_t.fromBuffer(pPoseBuffer, 0), pHandleOutBuffer];
   }
 
@@ -17432,6 +21116,7 @@ export class IVRSpatialAnchors {
     const unHandleArray = new Float64Array([unHandle]);
     const unHandlePtr = Deno.UnsafePointer.of(unHandleArray);
     const result = func.call(this.ptr, unHandle, eOrigin, pPoseOutPtr);
+    // Read output parameters
     return [result, SpatialAnchorPose_t.fromBuffer(pPoseOutBuffer, 0)];
   }
 
@@ -17471,6 +21156,7 @@ export class IVRSpatialAnchors {
     const punDescriptorBufferLenInOutArray = new Float64Array([punDescriptorBufferLenInOut]);
     const punDescriptorBufferLenInOutPtr = Deno.UnsafePointer.of(punDescriptorBufferLenInOutArray);
     const result = func.call(this.ptr, unHandle, pchDescriptorOutPtr, punDescriptorBufferLenInOutPtr);
+    // Read output parameters
     return [result, punDescriptorBufferLenInOutBuffer];
   }
 
@@ -17528,6 +21214,7 @@ export class IVRDebug {
     const pHandleOutBuffer = new BigUint64Array([pHandleOut]);
     const pHandleOutPtr = Deno.UnsafePointer.of(pHandleOutBuffer);
     const result = func.call(this.ptr, pHandleOutPtr);
+    // Read output parameters
     return [result, pHandleOutBuffer];
   }
 
@@ -17649,6 +21336,7 @@ export class IVRProperties {
     const unBatchEntryCountArray = new Float64Array([unBatchEntryCount]);
     const unBatchEntryCountPtr = Deno.UnsafePointer.of(unBatchEntryCountArray);
     const result = func.call(this.ptr, ulContainerHandle, pBatchPtr, unBatchEntryCount);
+    // Read output parameters
     return [result, PropertyRead_t.fromBuffer(pBatchBuffer, 0)];
   }
 
@@ -17688,6 +21376,7 @@ export class IVRProperties {
     const unBatchEntryCountArray = new Float64Array([unBatchEntryCount]);
     const unBatchEntryCountPtr = Deno.UnsafePointer.of(unBatchEntryCountArray);
     const result = func.call(this.ptr, ulContainerHandle, pBatchPtr, unBatchEntryCount);
+    // Read output parameters
     return [result, PropertyWrite_t.fromBuffer(pBatchBuffer, 0)];
   }
 
@@ -17782,6 +21471,7 @@ export class IVRPaths {
     const unBatchEntryCountArray = new Float64Array([unBatchEntryCount]);
     const unBatchEntryCountPtr = Deno.UnsafePointer.of(unBatchEntryCountArray);
     const result = func.call(this.ptr, ulRootHandle, pBatchPtr, unBatchEntryCount);
+    // Read output parameters
     return [result, PathRead_t.fromBuffer(pBatchBuffer, 0)];
   }
 
@@ -17821,6 +21511,7 @@ export class IVRPaths {
     const unBatchEntryCountArray = new Float64Array([unBatchEntryCount]);
     const unBatchEntryCountPtr = Deno.UnsafePointer.of(unBatchEntryCountArray);
     const result = func.call(this.ptr, ulRootHandle, pBatchPtr, unBatchEntryCount);
+    // Read output parameters
     return [result, PathWrite_t.fromBuffer(pBatchBuffer, 0)];
   }
 
@@ -17853,6 +21544,7 @@ export class IVRPaths {
     const pchPathBuffer = new TextEncoder().encode(pchPath + '\0');
     const pchPathPtr = Deno.UnsafePointer.of(pchPathBuffer);
     const result = func.call(this.ptr, pHandlePtr, pchPathPtr);
+    // Read output parameters
     return [result, pHandleBuffer];
   }
 
@@ -17897,6 +21589,7 @@ export class IVRPaths {
     const punBufferSizeUsedArray = new Float64Array([punBufferSizeUsed]);
     const punBufferSizeUsedPtr = Deno.UnsafePointer.of(punBufferSizeUsedArray);
     const result = func.call(this.ptr, pHandle, pchBufferPtr, unBufferSize, punBufferSizeUsedPtr);
+    // Read output parameters
     return [result, punBufferSizeUsedBuffer];
   }
 
@@ -17958,6 +21651,7 @@ export class IVRBlockQueue {
     const unFlagsArray = new Float64Array([unFlags]);
     const unFlagsPtr = Deno.UnsafePointer.of(unFlagsArray);
     const result = func.call(this.ptr, pulQueueHandlePtr, pchPathPtr, unBlockDataSize, unBlockHeaderSize, unBlockCount, unFlags);
+    // Read output parameters
     return [result, pulQueueHandleBuffer];
   }
 
@@ -17990,6 +21684,7 @@ export class IVRBlockQueue {
     const pchPathBuffer = new TextEncoder().encode(pchPath + '\0');
     const pchPathPtr = Deno.UnsafePointer.of(pchPathBuffer);
     const result = func.call(this.ptr, pulQueueHandlePtr, pchPathPtr);
+    // Read output parameters
     return [result, pulQueueHandleBuffer];
   }
 
@@ -18053,6 +21748,7 @@ export class IVRBlockQueue {
     const pulBlockHandlePtr = Deno.UnsafePointer.of(pulBlockHandleBuffer);
     const ppvBufferPtr = Deno.UnsafePointer.of(ppvBuffer);
     const result = func.call(this.ptr, ulQueueHandle, pulBlockHandlePtr, ppvBufferPtr);
+    // Read output parameters
     return [result, pulBlockHandleBuffer, ppvBufferBuffer];
   }
 
@@ -18132,6 +21828,7 @@ export class IVRBlockQueue {
     const unTimeoutMsArray = new Float64Array([unTimeoutMs]);
     const unTimeoutMsPtr = Deno.UnsafePointer.of(unTimeoutMsArray);
     const result = func.call(this.ptr, ulQueueHandle, pulBlockHandlePtr, ppvBufferPtr, eReadType, unTimeoutMs);
+    // Read output parameters
     return [result, pulBlockHandleBuffer, ppvBufferBuffer];
   }
 
@@ -18173,6 +21870,7 @@ export class IVRBlockQueue {
     const pulBlockHandlePtr = Deno.UnsafePointer.of(pulBlockHandleBuffer);
     const ppvBufferPtr = Deno.UnsafePointer.of(ppvBuffer);
     const result = func.call(this.ptr, ulQueueHandle, pulBlockHandlePtr, ppvBufferPtr, eReadType);
+    // Read output parameters
     return [result, pulBlockHandleBuffer, ppvBufferBuffer];
   }
 
@@ -18237,6 +21935,7 @@ export class IVRBlockQueue {
     const pbHasReadersArray = new Uint8Array([pbHasReaders ? 1 : 0]);
     const pbHasReadersPtr = Deno.UnsafePointer.of(pbHasReadersArray);
     const result = func.call(this.ptr, ulQueueHandle, pbHasReadersPtr);
+    // Read output parameters
     return [result, pbHasReadersBuffer];
   }
 
