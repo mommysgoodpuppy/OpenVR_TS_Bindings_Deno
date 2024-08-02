@@ -36,22 +36,21 @@ async function main() {
         throw new Error("Failed to set action manifest path");
     }
 
-    let actionSetHandle: OpenVR.ActionSetHandle = 0n;
-    const actionSetHandlePTR = Deno.UnsafePointer.of<OpenVR.ActionSetHandle>(new BigUint64Array())!
 
+    const actionSetHandlePTR = Deno.UnsafePointer.of<OpenVR.ActionSetHandle>(new BigUint64Array(1))!
     error = vrInput.GetActionSetHandle("/actions/main", actionSetHandlePTR);
     if (error !== OpenVR.InputError.VRInputError_None) {
         console.error(`Failed to get action set handle: ${OpenVR.InputError[error]}`);
         throw new Error("Failed to get action set handle");
     }
     if (actionSetHandlePTR === null) throw new Error("Invalid pointer");
-    actionSetHandle = new Deno.UnsafePointerView(actionSetHandlePTR).getBigUint64();
+    let actionSetHandle = new Deno.UnsafePointerView(actionSetHandlePTR).getBigUint64();
 
     let handPoseLeftHandle: OpenVR.ActionHandle = OpenVR.k_ulInvalidActionHandle;
-    const handPoseLeftHandlePTR = Deno.UnsafePointer.of<OpenVR.ActionHandle>(new BigUint64Array())!
+    const handPoseLeftHandlePTR = Deno.UnsafePointer.of<OpenVR.ActionHandle>(new BigUint64Array(1))!
 
     let handPoseRightHandle: OpenVR.ActionHandle = OpenVR.k_ulInvalidActionHandle;
-    const handPoseRightHandlePTR = Deno.UnsafePointer.of<OpenVR.ActionHandle>(new BigUint64Array())!
+    const handPoseRightHandlePTR = Deno.UnsafePointer.of<OpenVR.ActionHandle>(new BigUint64Array(1))!
 
 
     error = vrInput.GetActionHandle("/actions/main/in/HandPoseLeft", handPoseLeftHandlePTR);
@@ -73,7 +72,7 @@ async function main() {
     console.log(handPoseLeftHandle, handPoseRightHandle);
 
     let overlayHandle: OpenVR.OverlayHandle = 0n;
-    const overlayHandlePTR = Deno.UnsafePointer.of<OpenVR.OverlayHandle>(new BigUint64Array())!
+    const overlayHandlePTR = Deno.UnsafePointer.of<OpenVR.OverlayHandle>(new BigUint64Array(1))!
 
     error = overlay.CreateOverlay("image", "image", overlayHandlePTR);
     if (error !== OpenVR.OverlayError.VROverlayError_None) {

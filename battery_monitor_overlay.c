@@ -87,6 +87,7 @@ int main()
 
 	{
 		// Generate the overlay.
+		VROverlayHandle_t overlayID;
 		oOverlay->CreateOverlay( "batterymonitoroverlay-overlay", "Battery Monitor Overlay", &overlayID );
 		oOverlay->SetOverlayWidthInMeters( overlayID, .1 );
 		oOverlay->SetOverlayColor( overlayID, 1., .8, .7 );
