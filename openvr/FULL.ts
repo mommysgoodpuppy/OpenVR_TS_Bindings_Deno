@@ -5,7 +5,7 @@ export type PropertyTypeTag = number;//uint32_t
 export type vrshared_uint64 = bigint;//uint64_t
 export type vrshared_double = number;//double
 export type SpatialAnchorHandle = number;//uint32_t
-export type glSharedTextureHandle = Deno.PointerValue;//void *
+export type glSharedTextureHandle = Deno.PointerValue<unknown>;//void *
 export type glInt = number;//int32_t
 export type glUInt = number;//uint32_t
 export type SharedTextureHandle = bigint;//uint64_t
@@ -1785,6 +1785,2490 @@ export enum BlockQueueReadType {
 
 export enum BlockQueueCreationFlag {
   BlockQueueFlag_OwnerIsReader = 1,
+}
+
+//#endregion
+// Structs
+
+//#region Structs
+/*vr::HmdMatrix34_t, [
+  {
+    "fieldname": "m",
+    "fieldtype": "float [3][4]"
+  }
+]*/
+export interface HmdMatrix34 {
+  m: [[number, number, number, number], [number, number, number, number], [number, number, number, number]];
+}
+
+/*vr::HmdMatrix33_t, [
+  {
+    "fieldname": "m",
+    "fieldtype": "float [3][3]"
+  }
+]*/
+export interface HmdMatrix33 {
+  m: [[number, number, number], [number, number, number], [number, number, number]];
+}
+
+/*vr::HmdMatrix44_t, [
+  {
+    "fieldname": "m",
+    "fieldtype": "float [4][4]"
+  }
+]*/
+export interface HmdMatrix44 {
+  m: [[number, number, number, number], [number, number, number, number], [number, number, number, number], [number, number, number, number]];
+}
+
+/*vr::HmdVector3_t, [
+  {
+    "fieldname": "v",
+    "fieldtype": "float [3]"
+  }
+]*/
+export interface HmdVector3 {
+  v: [number, number, number];
+}
+
+/*vr::HmdVector4_t, [
+  {
+    "fieldname": "v",
+    "fieldtype": "float [4]"
+  }
+]*/
+export interface HmdVector4 {
+  v: [number, number, number, number];
+}
+
+/*vr::HmdVector3d_t, [
+  {
+    "fieldname": "v",
+    "fieldtype": "double [3]"
+  }
+]*/
+export interface HmdVector3d {
+  v: [number, number, number];
+}
+
+/*vr::HmdVector2_t, [
+  {
+    "fieldname": "v",
+    "fieldtype": "float [2]"
+  }
+]*/
+export interface HmdVector2 {
+  v: [number, number];
+}
+
+/*vr::HmdQuaternion_t, [
+  {
+    "fieldname": "w",
+    "fieldtype": "double"
+  },
+  {
+    "fieldname": "x",
+    "fieldtype": "double"
+  },
+  {
+    "fieldname": "y",
+    "fieldtype": "double"
+  },
+  {
+    "fieldname": "z",
+    "fieldtype": "double"
+  }
+]*/
+export interface HmdQuaternion {
+  w: number;
+  x: number;
+  y: number;
+  z: number;
+}
+
+/*vr::HmdQuaternionf_t, [
+  {
+    "fieldname": "w",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "x",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "y",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "z",
+    "fieldtype": "float"
+  }
+]*/
+export interface HmdQuaternionf {
+  w: number;
+  x: number;
+  y: number;
+  z: number;
+}
+
+/*vr::HmdColor_t, [
+  {
+    "fieldname": "r",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "g",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "b",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "a",
+    "fieldtype": "float"
+  }
+]*/
+export interface HmdColor {
+  r: number;
+  g: number;
+  b: number;
+  a: number;
+}
+
+/*vr::HmdQuad_t, [
+  {
+    "fieldname": "vCorners",
+    "fieldtype": "struct vr::HmdVector3_t [4]"
+  }
+]*/
+export interface HmdQuad {
+  vCorners: [HmdVector3, HmdVector3, HmdVector3, HmdVector3];
+}
+
+/*vr::HmdRect2_t, [
+  {
+    "fieldname": "vTopLeft",
+    "fieldtype": "struct vr::HmdVector2_t"
+  },
+  {
+    "fieldname": "vBottomRight",
+    "fieldtype": "struct vr::HmdVector2_t"
+  }
+]*/
+export interface HmdRect2 {
+  vTopLeft: HmdVector2;
+  vBottomRight: HmdVector2;
+}
+
+/*vr::VRBoneTransform_t, [
+  {
+    "fieldname": "position",
+    "fieldtype": "struct vr::HmdVector4_t"
+  },
+  {
+    "fieldname": "orientation",
+    "fieldtype": "struct vr::HmdQuaternionf_t"
+  }
+]*/
+export interface BoneTransform {
+  position: HmdVector4;
+  orientation: HmdQuaternionf;
+}
+
+/*vr::DistortionCoordinates_t, [
+  {
+    "fieldname": "rfRed",
+    "fieldtype": "float [2]"
+  },
+  {
+    "fieldname": "rfGreen",
+    "fieldtype": "float [2]"
+  },
+  {
+    "fieldname": "rfBlue",
+    "fieldtype": "float [2]"
+  }
+]*/
+export interface DistortionCoordinates {
+  rfRed: [number, number];
+  rfGreen: [number, number];
+  rfBlue: [number, number];
+}
+
+/*vr::Texture_t, [
+  {
+    "fieldname": "handle",
+    "fieldtype": "void *"
+  },
+  {
+    "fieldname": "eType",
+    "fieldtype": "enum vr::ETextureType"
+  },
+  {
+    "fieldname": "eColorSpace",
+    "fieldtype": "enum vr::EColorSpace"
+  }
+]*/
+export interface Texture {
+  handle: Deno.PointerValue<unknown>;
+  eType: TextureType;
+  eColorSpace: ColorSpace;
+}
+
+/*vr::VRTextureBounds_t, [
+  {
+    "fieldname": "uMin",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "vMin",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "uMax",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "vMax",
+    "fieldtype": "float"
+  }
+]*/
+export interface TextureBounds {
+  uMin: number;
+  vMin: number;
+  uMax: number;
+  vMax: number;
+}
+
+/*vr::VRTextureWithPose_t, [
+  {
+    "fieldname": "mDeviceToAbsoluteTracking",
+    "fieldtype": "struct vr::HmdMatrix34_t"
+  }
+]*/
+export interface TextureWithPose {
+  mDeviceToAbsoluteTracking: HmdMatrix34;
+}
+
+/*vr::VRTextureDepthInfo_t, [
+  {
+    "fieldname": "handle",
+    "fieldtype": "void *"
+  },
+  {
+    "fieldname": "mProjection",
+    "fieldtype": "struct vr::HmdMatrix44_t"
+  },
+  {
+    "fieldname": "vRange",
+    "fieldtype": "struct vr::HmdVector2_t"
+  }
+]*/
+export interface TextureDepthInfo {
+  handle: Deno.PointerValue<unknown>;
+  mProjection: HmdMatrix44;
+  vRange: HmdVector2;
+}
+
+/*vr::VRTextureWithDepth_t, [
+  {
+    "fieldname": "depth",
+    "fieldtype": "struct vr::VRTextureDepthInfo_t"
+  }
+]*/
+export interface TextureWithDepth {
+  depth: TextureDepthInfo;
+}
+
+/*vr::VRTextureWithPoseAndDepth_t, [
+  {
+    "fieldname": "depth",
+    "fieldtype": "struct vr::VRTextureDepthInfo_t"
+  }
+]*/
+export interface TextureWithPoseAndDepth {
+  depth: TextureDepthInfo;
+}
+
+/*vr::TrackedDevicePose_t, [
+  {
+    "fieldname": "mDeviceToAbsoluteTracking",
+    "fieldtype": "struct vr::HmdMatrix34_t"
+  },
+  {
+    "fieldname": "vVelocity",
+    "fieldtype": "struct vr::HmdVector3_t"
+  },
+  {
+    "fieldname": "vAngularVelocity",
+    "fieldtype": "struct vr::HmdVector3_t"
+  },
+  {
+    "fieldname": "eTrackingResult",
+    "fieldtype": "enum vr::ETrackingResult"
+  },
+  {
+    "fieldname": "bPoseIsValid",
+    "fieldtype": "_Bool"
+  },
+  {
+    "fieldname": "bDeviceIsConnected",
+    "fieldtype": "_Bool"
+  }
+]*/
+export interface TrackedDevicePose {
+  mDeviceToAbsoluteTracking: HmdMatrix34;
+  vVelocity: HmdVector3;
+  vAngularVelocity: HmdVector3;
+  eTrackingResult: TrackingResult;
+  bPoseIsValid: boolean;
+  bDeviceIsConnected: boolean;
+}
+
+/*vr::VRVulkanTextureData_t, [
+  {
+    "fieldname": "m_nImage",
+    "fieldtype": "uint64_t"
+  },
+  {
+    "fieldname": "m_pDevice",
+    "fieldtype": "struct VkDevice_T *"
+  },
+  {
+    "fieldname": "m_pPhysicalDevice",
+    "fieldtype": "struct VkPhysicalDevice_T *"
+  },
+  {
+    "fieldname": "m_pInstance",
+    "fieldtype": "struct VkInstance_T *"
+  },
+  {
+    "fieldname": "m_pQueue",
+    "fieldtype": "struct VkQueue_T *"
+  },
+  {
+    "fieldname": "m_nQueueFamilyIndex",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "m_nWidth",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "m_nHeight",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "m_nFormat",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "m_nSampleCount",
+    "fieldtype": "uint32_t"
+  }
+]*/
+export interface VulkanTextureData {
+  nImage: bigint;
+  pDevice: Deno.PointerValue<VkDevice_T>;
+  pPhysicalDevice: Deno.PointerValue<VkPhysicalDevice_T>;
+  pInstance: Deno.PointerValue<VkInstance_T>;
+  pQueue: Deno.PointerValue<VkQueue_T>;
+  nQueueFamilyIndex: number;
+  nWidth: number;
+  nHeight: number;
+  nFormat: number;
+  nSampleCount: number;
+}
+
+/*vr::VRVulkanTextureArrayData_t, [
+  {
+    "fieldname": "m_unArrayIndex",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "m_unArraySize",
+    "fieldtype": "uint32_t"
+  }
+]*/
+export interface VulkanTextureArrayData {
+  unArrayIndex: number;
+  unArraySize: number;
+}
+
+/*vr::D3D12TextureData_t, [
+  {
+    "fieldname": "m_pResource",
+    "fieldtype": "struct ID3D12Resource *"
+  },
+  {
+    "fieldname": "m_pCommandQueue",
+    "fieldtype": "struct ID3D12CommandQueue *"
+  },
+  {
+    "fieldname": "m_nNodeMask",
+    "fieldtype": "uint32_t"
+  }
+]*/
+export interface D3D12TextureData {
+  pResource: Deno.PointerValue<ID3D12Resource>;
+  pCommandQueue: Deno.PointerValue<ID3D12CommandQueue>;
+  nNodeMask: number;
+}
+
+/*vr::VREvent_Controller_t, [
+  {
+    "fieldname": "button",
+    "fieldtype": "uint32_t"
+  }
+]*/
+export interface Event_Controller {
+  button: number;
+}
+
+/*vr::VREvent_Mouse_t, [
+  {
+    "fieldname": "x",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "y",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "button",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "cursorIndex",
+    "fieldtype": "uint32_t"
+  }
+]*/
+export interface Event_Mouse {
+  x: number;
+  y: number;
+  button: number;
+  cursorIndex: number;
+}
+
+/*vr::VREvent_Scroll_t, [
+  {
+    "fieldname": "xdelta",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "ydelta",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "unused",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "viewportscale",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "cursorIndex",
+    "fieldtype": "uint32_t"
+  }
+]*/
+export interface Event_Scroll {
+  xdelta: number;
+  ydelta: number;
+  unused: number;
+  viewportscale: number;
+  cursorIndex: number;
+}
+
+/*vr::VREvent_TouchPadMove_t, [
+  {
+    "fieldname": "bFingerDown",
+    "fieldtype": "_Bool"
+  },
+  {
+    "fieldname": "flSecondsFingerDown",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "fValueXFirst",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "fValueYFirst",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "fValueXRaw",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "fValueYRaw",
+    "fieldtype": "float"
+  }
+]*/
+export interface Event_TouchPadMove {
+  bFingerDown: boolean;
+  flSecondsFingerDown: number;
+  fValueXFirst: number;
+  fValueYFirst: number;
+  fValueXRaw: number;
+  fValueYRaw: number;
+}
+
+/*vr::VREvent_Notification_t, [
+  {
+    "fieldname": "ulUserValue",
+    "fieldtype": "uint64_t"
+  },
+  {
+    "fieldname": "notificationId",
+    "fieldtype": "uint32_t"
+  }
+]*/
+export interface Event_Notification {
+  ulUserValue: bigint;
+  notificationId: number;
+}
+
+/*vr::VREvent_Process_t, [
+  {
+    "fieldname": "pid",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "oldPid",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "bForced",
+    "fieldtype": "_Bool"
+  },
+  {
+    "fieldname": "bConnectionLost",
+    "fieldtype": "_Bool"
+  }
+]*/
+export interface Event_Process {
+  pid: number;
+  oldPid: number;
+  bForced: boolean;
+  bConnectionLost: boolean;
+}
+
+/*vr::VREvent_Overlay_t, [
+  {
+    "fieldname": "overlayHandle",
+    "fieldtype": "uint64_t"
+  },
+  {
+    "fieldname": "devicePath",
+    "fieldtype": "uint64_t"
+  },
+  {
+    "fieldname": "memoryBlockId",
+    "fieldtype": "uint64_t"
+  },
+  {
+    "fieldname": "cursorIndex",
+    "fieldtype": "uint32_t"
+  }
+]*/
+export interface Event_Overlay {
+  overlayHandle: bigint;
+  devicePath: bigint;
+  memoryBlockId: bigint;
+  cursorIndex: number;
+}
+
+/*vr::VREvent_Status_t, [
+  {
+    "fieldname": "statusState",
+    "fieldtype": "uint32_t"
+  }
+]*/
+export interface Event_Status {
+  statusState: number;
+}
+
+/*vr::VREvent_Keyboard_t, [
+  {
+    "fieldname": "cNewInput",
+    "fieldtype": "char [8]"
+  },
+  {
+    "fieldname": "uUserValue",
+    "fieldtype": "uint64_t"
+  },
+  {
+    "fieldname": "overlayHandle",
+    "fieldtype": "uint64_t"
+  }
+]*/
+export interface Event_Keyboard {
+  cNewInput: [number, number, number, number, number, number, number, number];
+  uUserValue: bigint;
+  overlayHandle: bigint;
+}
+
+/*vr::VREvent_Ipd_t, [
+  {
+    "fieldname": "ipdMeters",
+    "fieldtype": "float"
+  }
+]*/
+export interface Event_Ipd {
+  ipdMeters: number;
+}
+
+/*vr::VREvent_Chaperone_t, [
+  {
+    "fieldname": "m_nPreviousUniverse",
+    "fieldtype": "uint64_t"
+  },
+  {
+    "fieldname": "m_nCurrentUniverse",
+    "fieldtype": "uint64_t"
+  }
+]*/
+export interface Event_Chaperone {
+  nPreviousUniverse: bigint;
+  nCurrentUniverse: bigint;
+}
+
+/*vr::VREvent_Reserved_t, [
+  {
+    "fieldname": "reserved0",
+    "fieldtype": "uint64_t"
+  },
+  {
+    "fieldname": "reserved1",
+    "fieldtype": "uint64_t"
+  },
+  {
+    "fieldname": "reserved2",
+    "fieldtype": "uint64_t"
+  },
+  {
+    "fieldname": "reserved3",
+    "fieldtype": "uint64_t"
+  },
+  {
+    "fieldname": "reserved4",
+    "fieldtype": "uint64_t"
+  },
+  {
+    "fieldname": "reserved5",
+    "fieldtype": "uint64_t"
+  }
+]*/
+export interface Event_Reserved {
+  reserved0: bigint;
+  reserved1: bigint;
+  reserved2: bigint;
+  reserved3: bigint;
+  reserved4: bigint;
+  reserved5: bigint;
+}
+
+/*vr::VREvent_PerformanceTest_t, [
+  {
+    "fieldname": "m_nFidelityLevel",
+    "fieldtype": "uint32_t"
+  }
+]*/
+export interface Event_PerformanceTest {
+  nFidelityLevel: number;
+}
+
+/*vr::VREvent_SeatedZeroPoseReset_t, [
+  {
+    "fieldname": "bResetBySystemMenu",
+    "fieldtype": "_Bool"
+  }
+]*/
+export interface Event_SeatedZeroPoseReset {
+  bResetBySystemMenu: boolean;
+}
+
+/*vr::VREvent_Screenshot_t, [
+  {
+    "fieldname": "handle",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "type",
+    "fieldtype": "uint32_t"
+  }
+]*/
+export interface Event_Screenshot {
+  handle: number;
+  type: number;
+}
+
+/*vr::VREvent_ScreenshotProgress_t, [
+  {
+    "fieldname": "progress",
+    "fieldtype": "float"
+  }
+]*/
+export interface Event_ScreenshotProgress {
+  progress: number;
+}
+
+/*vr::VREvent_ApplicationLaunch_t, [
+  {
+    "fieldname": "pid",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "unArgsHandle",
+    "fieldtype": "uint32_t"
+  }
+]*/
+export interface Event_ApplicationLaunch {
+  pid: number;
+  unArgsHandle: number;
+}
+
+/*vr::VREvent_EditingCameraSurface_t, [
+  {
+    "fieldname": "overlayHandle",
+    "fieldtype": "uint64_t"
+  },
+  {
+    "fieldname": "nVisualMode",
+    "fieldtype": "uint32_t"
+  }
+]*/
+export interface Event_EditingCameraSurface {
+  overlayHandle: bigint;
+  nVisualMode: number;
+}
+
+/*vr::VREvent_MessageOverlay_t, [
+  {
+    "fieldname": "unVRMessageOverlayResponse",
+    "fieldtype": "uint32_t"
+  }
+]*/
+export interface Event_MessageOverlay {
+  unVRMessageOverlayResponse: number;
+}
+
+/*vr::VREvent_Property_t, [
+  {
+    "fieldname": "container",
+    "fieldtype": "PropertyContainerHandle_t"
+  },
+  {
+    "fieldname": "prop",
+    "fieldtype": "enum vr::ETrackedDeviceProperty"
+  }
+]*/
+export interface Event_Property {
+  container: PropertyContainerHandle;
+  prop: TrackedDeviceProperty;
+}
+
+/*vr::VREvent_HapticVibration_t, [
+  {
+    "fieldname": "containerHandle",
+    "fieldtype": "uint64_t"
+  },
+  {
+    "fieldname": "componentHandle",
+    "fieldtype": "uint64_t"
+  },
+  {
+    "fieldname": "fDurationSeconds",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "fFrequency",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "fAmplitude",
+    "fieldtype": "float"
+  }
+]*/
+export interface Event_HapticVibration {
+  containerHandle: bigint;
+  componentHandle: bigint;
+  fDurationSeconds: number;
+  fFrequency: number;
+  fAmplitude: number;
+}
+
+/*vr::VREvent_WebConsole_t, [
+  {
+    "fieldname": "webConsoleHandle",
+    "fieldtype": "WebConsoleHandle_t"
+  }
+]*/
+export interface Event_WebConsole {
+  webConsoleHandle: WebConsoleHandle;
+}
+
+/*vr::VREvent_InputBindingLoad_t, [
+  {
+    "fieldname": "ulAppContainer",
+    "fieldtype": "vr::PropertyContainerHandle_t"
+  },
+  {
+    "fieldname": "pathMessage",
+    "fieldtype": "uint64_t"
+  },
+  {
+    "fieldname": "pathUrl",
+    "fieldtype": "uint64_t"
+  },
+  {
+    "fieldname": "pathControllerType",
+    "fieldtype": "uint64_t"
+  }
+]*/
+export interface Event_InputBindingLoad {
+  ulAppContainer: PropertyContainerHandle;
+  pathMessage: bigint;
+  pathUrl: bigint;
+  pathControllerType: bigint;
+}
+
+/*vr::VREvent_InputActionManifestLoad_t, [
+  {
+    "fieldname": "pathAppKey",
+    "fieldtype": "uint64_t"
+  },
+  {
+    "fieldname": "pathMessage",
+    "fieldtype": "uint64_t"
+  },
+  {
+    "fieldname": "pathMessageParam",
+    "fieldtype": "uint64_t"
+  },
+  {
+    "fieldname": "pathManifestPath",
+    "fieldtype": "uint64_t"
+  }
+]*/
+export interface Event_InputActionManifestLoad {
+  pathAppKey: bigint;
+  pathMessage: bigint;
+  pathMessageParam: bigint;
+  pathManifestPath: bigint;
+}
+
+/*vr::VREvent_SpatialAnchor_t, [
+  {
+    "fieldname": "unHandle",
+    "fieldtype": "SpatialAnchorHandle_t"
+  }
+]*/
+export interface Event_SpatialAnchor {
+  unHandle: SpatialAnchorHandle;
+}
+
+/*vr::VREvent_ProgressUpdate_t, [
+  {
+    "fieldname": "ulApplicationPropertyContainer",
+    "fieldtype": "uint64_t"
+  },
+  {
+    "fieldname": "pathDevice",
+    "fieldtype": "uint64_t"
+  },
+  {
+    "fieldname": "pathInputSource",
+    "fieldtype": "uint64_t"
+  },
+  {
+    "fieldname": "pathProgressAction",
+    "fieldtype": "uint64_t"
+  },
+  {
+    "fieldname": "pathIcon",
+    "fieldtype": "uint64_t"
+  },
+  {
+    "fieldname": "fProgress",
+    "fieldtype": "float"
+  }
+]*/
+export interface Event_ProgressUpdate {
+  ulApplicationPropertyContainer: bigint;
+  pathDevice: bigint;
+  pathInputSource: bigint;
+  pathProgressAction: bigint;
+  pathIcon: bigint;
+  fProgress: number;
+}
+
+/*vr::VREvent_ShowUI_t, [
+  {
+    "fieldname": "eType",
+    "fieldtype": "enum vr::EShowUIType"
+  }
+]*/
+export interface Event_ShowUI {
+  eType: ShowUIType;
+}
+
+/*vr::VREvent_ShowDevTools_t, [
+  {
+    "fieldname": "nBrowserIdentifier",
+    "fieldtype": "int32_t"
+  }
+]*/
+export interface Event_ShowDevTools {
+  nBrowserIdentifier: number;
+}
+
+/*vr::VREvent_HDCPError_t, [
+  {
+    "fieldname": "eCode",
+    "fieldtype": "enum vr::EHDCPError"
+  }
+]*/
+export interface Event_HDCPError {
+  eCode: HDCPError;
+}
+
+/*vr::VREvent_AudioVolumeControl_t, [
+  {
+    "fieldname": "fVolumeLevel",
+    "fieldtype": "float"
+  }
+]*/
+export interface Event_AudioVolumeControl {
+  fVolumeLevel: number;
+}
+
+/*vr::VREvent_AudioMuteControl_t, [
+  {
+    "fieldname": "bMute",
+    "fieldtype": "_Bool"
+  }
+]*/
+export interface Event_AudioMuteControl {
+  bMute: boolean;
+}
+
+/*vr::(anonymous), [
+  {
+    "fieldname": "reserved",
+    "fieldtype": "struct vr::VREvent_Reserved_t"
+  },
+  {
+    "fieldname": "controller",
+    "fieldtype": "struct vr::VREvent_Controller_t"
+  },
+  {
+    "fieldname": "mouse",
+    "fieldtype": "struct vr::VREvent_Mouse_t"
+  },
+  {
+    "fieldname": "scroll",
+    "fieldtype": "struct vr::VREvent_Scroll_t"
+  },
+  {
+    "fieldname": "process",
+    "fieldtype": "struct vr::VREvent_Process_t"
+  },
+  {
+    "fieldname": "notification",
+    "fieldtype": "struct vr::VREvent_Notification_t"
+  },
+  {
+    "fieldname": "overlay",
+    "fieldtype": "struct vr::VREvent_Overlay_t"
+  },
+  {
+    "fieldname": "status",
+    "fieldtype": "struct vr::VREvent_Status_t"
+  },
+  {
+    "fieldname": "keyboard",
+    "fieldtype": "struct vr::VREvent_Keyboard_t"
+  },
+  {
+    "fieldname": "ipd",
+    "fieldtype": "struct vr::VREvent_Ipd_t"
+  },
+  {
+    "fieldname": "chaperone",
+    "fieldtype": "struct vr::VREvent_Chaperone_t"
+  },
+  {
+    "fieldname": "performanceTest",
+    "fieldtype": "struct vr::VREvent_PerformanceTest_t"
+  },
+  {
+    "fieldname": "touchPadMove",
+    "fieldtype": "struct vr::VREvent_TouchPadMove_t"
+  },
+  {
+    "fieldname": "seatedZeroPoseReset",
+    "fieldtype": "struct vr::VREvent_SeatedZeroPoseReset_t"
+  },
+  {
+    "fieldname": "screenshot",
+    "fieldtype": "struct vr::VREvent_Screenshot_t"
+  },
+  {
+    "fieldname": "screenshotProgress",
+    "fieldtype": "struct vr::VREvent_ScreenshotProgress_t"
+  },
+  {
+    "fieldname": "applicationLaunch",
+    "fieldtype": "struct vr::VREvent_ApplicationLaunch_t"
+  },
+  {
+    "fieldname": "cameraSurface",
+    "fieldtype": "struct vr::VREvent_EditingCameraSurface_t"
+  },
+  {
+    "fieldname": "messageOverlay",
+    "fieldtype": "struct vr::VREvent_MessageOverlay_t"
+  },
+  {
+    "fieldname": "property",
+    "fieldtype": "struct vr::VREvent_Property_t"
+  },
+  {
+    "fieldname": "hapticVibration",
+    "fieldtype": "struct vr::VREvent_HapticVibration_t"
+  },
+  {
+    "fieldname": "webConsole",
+    "fieldtype": "struct vr::VREvent_WebConsole_t"
+  },
+  {
+    "fieldname": "inputBinding",
+    "fieldtype": "struct vr::VREvent_InputBindingLoad_t"
+  },
+  {
+    "fieldname": "actionManifest",
+    "fieldtype": "struct vr::VREvent_InputActionManifestLoad_t"
+  },
+  {
+    "fieldname": "spatialAnchor",
+    "fieldtype": "struct vr::VREvent_SpatialAnchor_t"
+  },
+  {
+    "fieldname": "progressUpdate",
+    "fieldtype": "struct vr::VREvent_ProgressUpdate_t"
+  },
+  {
+    "fieldname": "showUi",
+    "fieldtype": "struct vr::VREvent_ShowUI_t"
+  },
+  {
+    "fieldname": "showDevTools",
+    "fieldtype": "struct vr::VREvent_ShowDevTools_t"
+  },
+  {
+    "fieldname": "hdcpError",
+    "fieldtype": "struct vr::VREvent_HDCPError_t"
+  },
+  {
+    "fieldname": "audioVolumeControl",
+    "fieldtype": "struct vr::VREvent_AudioVolumeControl_t"
+  },
+  {
+    "fieldname": "audioMuteControl",
+    "fieldtype": "struct vr::VREvent_AudioMuteControl_t"
+  }
+]*/
+export interface Event_Data {
+  reserved: Event_Reserved;
+  controller: Event_Controller;
+  mouse: Event_Mouse;
+  scroll: Event_Scroll;
+  process: Event_Process;
+  notification: Event_Notification;
+  overlay: Event_Overlay;
+  status: Event_Status;
+  keyboard: Event_Keyboard;
+  ipd: Event_Ipd;
+  chaperone: Event_Chaperone;
+  performanceTest: Event_PerformanceTest;
+  touchPadMove: Event_TouchPadMove;
+  seatedZeroPoseReset: Event_SeatedZeroPoseReset;
+  screenshot: Event_Screenshot;
+  screenshotProgress: Event_ScreenshotProgress;
+  applicationLaunch: Event_ApplicationLaunch;
+  cameraSurface: Event_EditingCameraSurface;
+  messageOverlay: Event_MessageOverlay;
+  property: Event_Property;
+  hapticVibration: Event_HapticVibration;
+  webConsole: Event_WebConsole;
+  inputBinding: Event_InputBindingLoad;
+  actionManifest: Event_InputActionManifestLoad;
+  spatialAnchor: Event_SpatialAnchor;
+  progressUpdate: Event_ProgressUpdate;
+  showUi: Event_ShowUI;
+  showDevTools: Event_ShowDevTools;
+  hdcpError: Event_HDCPError;
+  audioVolumeControl: Event_AudioVolumeControl;
+  audioMuteControl: Event_AudioMuteControl;
+}
+
+/*vr::VREvent_t, [
+  {
+    "fieldname": "eventType",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "trackedDeviceIndex",
+    "fieldtype": "TrackedDeviceIndex_t"
+  },
+  {
+    "fieldname": "eventAgeSeconds",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "data",
+    "fieldtype": "VREvent_Data_t"
+  }
+]*/
+export interface Event {
+  eventType: number;
+  trackedDeviceIndex: TrackedDeviceIndex;
+  eventAgeSeconds: number;
+  data: Event_Data;
+}
+
+/*vr::RenderModel_ComponentState_t, [
+  {
+    "fieldname": "mTrackingToComponentRenderModel",
+    "fieldtype": "struct vr::HmdMatrix34_t"
+  },
+  {
+    "fieldname": "mTrackingToComponentLocal",
+    "fieldtype": "struct vr::HmdMatrix34_t"
+  },
+  {
+    "fieldname": "uProperties",
+    "fieldtype": "VRComponentProperties"
+  }
+]*/
+export interface RenderModel_ComponentState {
+  mTrackingToComponentRenderModel: HmdMatrix34;
+  mTrackingToComponentLocal: HmdMatrix34;
+  uProperties: ComponentProperties;
+}
+
+/*vr::HiddenAreaMesh_t, [
+  {
+    "fieldname": "pVertexData",
+    "fieldtype": "const struct vr::HmdVector2_t *"
+  },
+  {
+    "fieldname": "unTriangleCount",
+    "fieldtype": "uint32_t"
+  }
+]*/
+export interface HiddenAreaMesh {
+  pVertexData: Deno.PointerValue<HmdVector2>//READONLY;
+  unTriangleCount: number;
+}
+
+/*vr::VRControllerAxis_t, [
+  {
+    "fieldname": "x",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "y",
+    "fieldtype": "float"
+  }
+]*/
+export interface ControllerAxis {
+  x: number;
+  y: number;
+}
+
+/*vr::VRControllerState001_t, [
+  {
+    "fieldname": "unPacketNum",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "ulButtonPressed",
+    "fieldtype": "uint64_t"
+  },
+  {
+    "fieldname": "ulButtonTouched",
+    "fieldtype": "uint64_t"
+  },
+  {
+    "fieldname": "rAxis",
+    "fieldtype": "struct vr::VRControllerAxis_t [5]"
+  }
+]*/
+export interface ControllerState001 {
+  unPacketNum: number;
+  ulButtonPressed: bigint;
+  ulButtonTouched: bigint;
+  rAxis: [ControllerAxis, ControllerAxis, ControllerAxis, ControllerAxis, ControllerAxis];
+}
+
+/*vr::CameraVideoStreamFrameHeader_t, [
+  {
+    "fieldname": "eFrameType",
+    "fieldtype": "enum vr::EVRTrackedCameraFrameType"
+  },
+  {
+    "fieldname": "nWidth",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "nHeight",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "nBytesPerPixel",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "nFrameSequence",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "trackedDevicePose",
+    "fieldtype": "struct vr::TrackedDevicePose_t"
+  },
+  {
+    "fieldname": "ulFrameExposureTime",
+    "fieldtype": "uint64_t"
+  }
+]*/
+export interface CameraVideoStreamFrameHeader {
+  eFrameType: TrackedCameraFrameType;
+  nWidth: number;
+  nHeight: number;
+  nBytesPerPixel: number;
+  nFrameSequence: number;
+  trackedDevicePose: TrackedDevicePose;
+  ulFrameExposureTime: bigint;
+}
+
+/*vr::Compositor_FrameTiming, [
+  {
+    "fieldname": "m_nSize",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "m_nFrameIndex",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "m_nNumFramePresents",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "m_nNumMisPresented",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "m_nNumDroppedFrames",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "m_nReprojectionFlags",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "m_flSystemTimeInSeconds",
+    "fieldtype": "double"
+  },
+  {
+    "fieldname": "m_flPreSubmitGpuMs",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "m_flPostSubmitGpuMs",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "m_flTotalRenderGpuMs",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "m_flCompositorRenderGpuMs",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "m_flCompositorRenderCpuMs",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "m_flCompositorIdleCpuMs",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "m_flClientFrameIntervalMs",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "m_flPresentCallCpuMs",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "m_flWaitForPresentCpuMs",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "m_flSubmitFrameMs",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "m_flWaitGetPosesCalledMs",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "m_flNewPosesReadyMs",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "m_flNewFrameReadyMs",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "m_flCompositorUpdateStartMs",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "m_flCompositorUpdateEndMs",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "m_flCompositorRenderStartMs",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "m_HmdPose",
+    "fieldtype": "vr::TrackedDevicePose_t"
+  },
+  {
+    "fieldname": "m_nNumVSyncsReadyForUse",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "m_nNumVSyncsToFirstView",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "m_flTransferLatencyMs",
+    "fieldtype": "float"
+  }
+]*/
+export interface Compositor_FrameTiming {
+  nSize: number;
+  nFrameIndex: number;
+  nNumFramePresents: number;
+  nNumMisPresented: number;
+  nNumDroppedFrames: number;
+  nReprojectionFlags: number;
+  flSystemTimeInSeconds: number;
+  flPreSubmitGpuMs: number;
+  flPostSubmitGpuMs: number;
+  flTotalRenderGpuMs: number;
+  flCompositorRenderGpuMs: number;
+  flCompositorRenderCpuMs: number;
+  flCompositorIdleCpuMs: number;
+  flClientFrameIntervalMs: number;
+  flPresentCallCpuMs: number;
+  flWaitForPresentCpuMs: number;
+  flSubmitFrameMs: number;
+  flWaitGetPosesCalledMs: number;
+  flNewPosesReadyMs: number;
+  flNewFrameReadyMs: number;
+  flCompositorUpdateStartMs: number;
+  flCompositorUpdateEndMs: number;
+  flCompositorRenderStartMs: number;
+  HmdPose: TrackedDevicePose;
+  nNumVSyncsReadyForUse: number;
+  nNumVSyncsToFirstView: number;
+  flTransferLatencyMs: number;
+}
+
+/*vr::Compositor_BenchmarkResults, [
+  {
+    "fieldname": "m_flMegaPixelsPerSecond",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "m_flHmdRecommendedMegaPixelsPerSecond",
+    "fieldtype": "float"
+  }
+]*/
+export interface Compositor_BenchmarkResults {
+  flMegaPixelsPerSecond: number;
+  flHmdRecommendedMegaPixelsPerSecond: number;
+}
+
+/*vr::DriverDirectMode_FrameTiming, [
+  {
+    "fieldname": "m_nSize",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "m_nNumFramePresents",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "m_nNumMisPresented",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "m_nNumDroppedFrames",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "m_nReprojectionFlags",
+    "fieldtype": "uint32_t"
+  }
+]*/
+export interface DriverDirectMode_FrameTiming {
+  nSize: number;
+  nNumFramePresents: number;
+  nNumMisPresented: number;
+  nNumDroppedFrames: number;
+  nReprojectionFlags: number;
+}
+
+/*vr::ImuSample_t, [
+  {
+    "fieldname": "fSampleTime",
+    "fieldtype": "double"
+  },
+  {
+    "fieldname": "vAccel",
+    "fieldtype": "struct vr::HmdVector3d_t"
+  },
+  {
+    "fieldname": "vGyro",
+    "fieldtype": "struct vr::HmdVector3d_t"
+  },
+  {
+    "fieldname": "unOffScaleFlags",
+    "fieldtype": "uint32_t"
+  }
+]*/
+export interface ImuSample {
+  fSampleTime: number;
+  vAccel: HmdVector3d;
+  vGyro: HmdVector3d;
+  unOffScaleFlags: number;
+}
+
+/*vr::AppOverrideKeys_t, [
+  {
+    "fieldname": "pchKey",
+    "fieldtype": "const char *"
+  },
+  {
+    "fieldname": "pchValue",
+    "fieldtype": "const char *"
+  }
+]*/
+export interface AppOverrideKeys {
+  pchKey: string;
+  pchValue: string;
+}
+
+/*vr::Compositor_CumulativeStats, [
+  {
+    "fieldname": "m_nPid",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "m_nNumFramePresents",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "m_nNumDroppedFrames",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "m_nNumReprojectedFrames",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "m_nNumFramePresentsOnStartup",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "m_nNumDroppedFramesOnStartup",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "m_nNumReprojectedFramesOnStartup",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "m_nNumLoading",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "m_nNumFramePresentsLoading",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "m_nNumDroppedFramesLoading",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "m_nNumReprojectedFramesLoading",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "m_nNumTimedOut",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "m_nNumFramePresentsTimedOut",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "m_nNumDroppedFramesTimedOut",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "m_nNumReprojectedFramesTimedOut",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "m_nNumFrameSubmits",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "m_flSumCompositorCPUTimeMS",
+    "fieldtype": "vrshared_double"
+  },
+  {
+    "fieldname": "m_flSumCompositorGPUTimeMS",
+    "fieldtype": "vrshared_double"
+  },
+  {
+    "fieldname": "m_flSumTargetFrameTimes",
+    "fieldtype": "vrshared_double"
+  },
+  {
+    "fieldname": "m_flSumApplicationCPUTimeMS",
+    "fieldtype": "vrshared_double"
+  },
+  {
+    "fieldname": "m_flSumApplicationGPUTimeMS",
+    "fieldtype": "vrshared_double"
+  },
+  {
+    "fieldname": "m_nNumFramesWithDepth",
+    "fieldtype": "uint32_t"
+  }
+]*/
+export interface Compositor_CumulativeStats {
+  nPid: number;
+  nNumFramePresents: number;
+  nNumDroppedFrames: number;
+  nNumReprojectedFrames: number;
+  nNumFramePresentsOnStartup: number;
+  nNumDroppedFramesOnStartup: number;
+  nNumReprojectedFramesOnStartup: number;
+  nNumLoading: number;
+  nNumFramePresentsLoading: number;
+  nNumDroppedFramesLoading: number;
+  nNumReprojectedFramesLoading: number;
+  nNumTimedOut: number;
+  nNumFramePresentsTimedOut: number;
+  nNumDroppedFramesTimedOut: number;
+  nNumReprojectedFramesTimedOut: number;
+  nNumFrameSubmits: number;
+  flSumCompositorCPUTimeMS: vrshared_double;
+  flSumCompositorGPUTimeMS: vrshared_double;
+  flSumTargetFrameTimes: vrshared_double;
+  flSumApplicationCPUTimeMS: vrshared_double;
+  flSumApplicationGPUTimeMS: vrshared_double;
+  nNumFramesWithDepth: number;
+}
+
+/*vr::Compositor_StageRenderSettings, [
+  {
+    "fieldname": "m_PrimaryColor",
+    "fieldtype": "struct vr::HmdColor_t"
+  },
+  {
+    "fieldname": "m_SecondaryColor",
+    "fieldtype": "struct vr::HmdColor_t"
+  },
+  {
+    "fieldname": "m_flVignetteInnerRadius",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "m_flVignetteOuterRadius",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "m_flFresnelStrength",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "m_bBackfaceCulling",
+    "fieldtype": "_Bool"
+  },
+  {
+    "fieldname": "m_bGreyscale",
+    "fieldtype": "_Bool"
+  },
+  {
+    "fieldname": "m_bWireframe",
+    "fieldtype": "_Bool"
+  }
+]*/
+export interface Compositor_StageRenderSettings {
+  PrimaryColor: HmdColor;
+  SecondaryColor: HmdColor;
+  flVignetteInnerRadius: number;
+  flVignetteOuterRadius: number;
+  flFresnelStrength: number;
+  bBackfaceCulling: boolean;
+  bGreyscale: boolean;
+  bWireframe: boolean;
+}
+
+/*vr::VROverlayIntersectionParams_t, [
+  {
+    "fieldname": "vSource",
+    "fieldtype": "struct vr::HmdVector3_t"
+  },
+  {
+    "fieldname": "vDirection",
+    "fieldtype": "struct vr::HmdVector3_t"
+  },
+  {
+    "fieldname": "eOrigin",
+    "fieldtype": "enum vr::ETrackingUniverseOrigin"
+  }
+]*/
+export interface OverlayIntersectionParams {
+  vSource: HmdVector3;
+  vDirection: HmdVector3;
+  eOrigin: TrackingUniverseOrigin;
+}
+
+/*vr::VROverlayIntersectionResults_t, [
+  {
+    "fieldname": "vPoint",
+    "fieldtype": "struct vr::HmdVector3_t"
+  },
+  {
+    "fieldname": "vNormal",
+    "fieldtype": "struct vr::HmdVector3_t"
+  },
+  {
+    "fieldname": "vUVs",
+    "fieldtype": "struct vr::HmdVector2_t"
+  },
+  {
+    "fieldname": "fDistance",
+    "fieldtype": "float"
+  }
+]*/
+export interface OverlayIntersectionResults {
+  vPoint: HmdVector3;
+  vNormal: HmdVector3;
+  vUVs: HmdVector2;
+  fDistance: number;
+}
+
+/*vr::IntersectionMaskRectangle_t, [
+  {
+    "fieldname": "m_flTopLeftX",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "m_flTopLeftY",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "m_flWidth",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "m_flHeight",
+    "fieldtype": "float"
+  }
+]*/
+export interface IntersectionMaskRectangle {
+  flTopLeftX: number;
+  flTopLeftY: number;
+  flWidth: number;
+  flHeight: number;
+}
+
+/*vr::IntersectionMaskCircle_t, [
+  {
+    "fieldname": "m_flCenterX",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "m_flCenterY",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "m_flRadius",
+    "fieldtype": "float"
+  }
+]*/
+export interface IntersectionMaskCircle {
+  flCenterX: number;
+  flCenterY: number;
+  flRadius: number;
+}
+
+/*vr::(anonymous), [
+  {
+    "fieldname": "m_Rectangle",
+    "fieldtype": "struct vr::IntersectionMaskRectangle_t"
+  },
+  {
+    "fieldname": "m_Circle",
+    "fieldtype": "struct vr::IntersectionMaskCircle_t"
+  }
+]*/
+export interface OverlayIntersectionMaskPrimitive_Data {
+  Rectangle: IntersectionMaskRectangle;
+  Circle: IntersectionMaskCircle;
+}
+
+/*vr::VROverlayIntersectionMaskPrimitive_t, [
+  {
+    "fieldname": "m_nPrimitiveType",
+    "fieldtype": "enum vr::EVROverlayIntersectionMaskPrimitiveType"
+  },
+  {
+    "fieldname": "m_Primitive",
+    "fieldtype": "VROverlayIntersectionMaskPrimitive_Data_t"
+  }
+]*/
+export interface OverlayIntersectionMaskPrimitive {
+  nPrimitiveType: OverlayIntersectionMaskPrimitiveType;
+  Primitive: OverlayIntersectionMaskPrimitive_Data;
+}
+
+/*vr::VROverlayProjection_t, [
+  {
+    "fieldname": "fLeft",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "fRight",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "fTop",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "fBottom",
+    "fieldtype": "float"
+  }
+]*/
+export interface OverlayProjection {
+  fLeft: number;
+  fRight: number;
+  fTop: number;
+  fBottom: number;
+}
+
+/*vr::VROverlayView_t, [
+  {
+    "fieldname": "overlayHandle",
+    "fieldtype": "VROverlayHandle_t"
+  },
+  {
+    "fieldname": "texture",
+    "fieldtype": "struct vr::Texture_t"
+  },
+  {
+    "fieldname": "textureBounds",
+    "fieldtype": "struct vr::VRTextureBounds_t"
+  }
+]*/
+export interface OverlayView {
+  overlayHandle: OverlayHandle;
+  texture: Texture;
+  textureBounds: TextureBounds;
+}
+
+/*vr::VRVulkanDevice_t, [
+  {
+    "fieldname": "m_pInstance",
+    "fieldtype": "struct VkInstance_T *"
+  },
+  {
+    "fieldname": "m_pDevice",
+    "fieldtype": "struct VkDevice_T *"
+  },
+  {
+    "fieldname": "m_pPhysicalDevice",
+    "fieldtype": "struct VkPhysicalDevice_T *"
+  },
+  {
+    "fieldname": "m_pQueue",
+    "fieldtype": "struct VkQueue_T *"
+  },
+  {
+    "fieldname": "m_uQueueFamilyIndex",
+    "fieldtype": "uint32_t"
+  }
+]*/
+export interface VulkanDevice {
+  pInstance: Deno.PointerValue<VkInstance_T>;
+  pDevice: Deno.PointerValue<VkDevice_T>;
+  pPhysicalDevice: Deno.PointerValue<VkPhysicalDevice_T>;
+  pQueue: Deno.PointerValue<VkQueue_T>;
+  uQueueFamilyIndex: number;
+}
+
+/*vr::VRNativeDevice_t, [
+  {
+    "fieldname": "handle",
+    "fieldtype": "void *"
+  },
+  {
+    "fieldname": "eType",
+    "fieldtype": "enum vr::EDeviceType"
+  }
+]*/
+export interface NativeDevice {
+  handle: Deno.PointerValue<unknown>;
+  eType: DeviceType;
+}
+
+/*vr::RenderModel_Vertex_t, [
+  {
+    "fieldname": "vPosition",
+    "fieldtype": "struct vr::HmdVector3_t"
+  },
+  {
+    "fieldname": "vNormal",
+    "fieldtype": "struct vr::HmdVector3_t"
+  },
+  {
+    "fieldname": "rfTextureCoord",
+    "fieldtype": "float [2]"
+  }
+]*/
+export interface RenderModel_Vertex {
+  vPosition: HmdVector3;
+  vNormal: HmdVector3;
+  rfTextureCoord: [number, number];
+}
+
+/*vr::RenderModel_TextureMap_t, [
+  {
+    "fieldname": "unWidth",
+    "fieldtype": "uint16_t"
+  },
+  {
+    "fieldname": "unHeight",
+    "fieldtype": "uint16_t"
+  },
+  {
+    "fieldname": "rubTextureMapData",
+    "fieldtype": "const uint8_t *"
+  },
+  {
+    "fieldname": "format",
+    "fieldtype": "enum vr::EVRRenderModelTextureFormat"
+  },
+  {
+    "fieldname": "unMipLevels",
+    "fieldtype": "uint16_t"
+  }
+]*/
+export interface RenderModel_TextureMap {
+  unWidth: number;
+  unHeight: number;
+  rubTextureMapData: Uint8Array;
+  format: RenderModelTextureFormat;
+  unMipLevels: number;
+}
+
+/*vr::RenderModel_t, [
+  {
+    "fieldname": "rVertexData",
+    "fieldtype": "const struct vr::RenderModel_Vertex_t *"
+  },
+  {
+    "fieldname": "unVertexCount",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "rIndexData",
+    "fieldtype": "const uint16_t *"
+  },
+  {
+    "fieldname": "unTriangleCount",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "diffuseTextureId",
+    "fieldtype": "TextureID_t"
+  }
+]*/
+export interface RenderModel {
+  rVertexData: Deno.PointerValue<RenderModel_Vertex>//READONLY;
+  unVertexCount: number;
+  rIndexData: Deno.PointerValue<number>//READONLY;
+  unTriangleCount: number;
+  diffuseTextureId: TextureID;
+}
+
+/*vr::RenderModel_ControllerMode_State_t, [
+  {
+    "fieldname": "bScrollWheelVisible",
+    "fieldtype": "_Bool"
+  }
+]*/
+export interface RenderModel_ControllerMode_State {
+  bScrollWheelVisible: boolean;
+}
+
+/*vr::NotificationBitmap_t, [
+  {
+    "fieldname": "m_pImageData",
+    "fieldtype": "void *"
+  },
+  {
+    "fieldname": "m_nWidth",
+    "fieldtype": "int32_t"
+  },
+  {
+    "fieldname": "m_nHeight",
+    "fieldtype": "int32_t"
+  },
+  {
+    "fieldname": "m_nBytesPerPixel",
+    "fieldtype": "int32_t"
+  }
+]*/
+export interface NotificationBitmap {
+  pImageData: Deno.PointerValue<unknown>;
+  nWidth: number;
+  nHeight: number;
+  nBytesPerPixel: number;
+}
+
+/*vr::CVRSettingHelper, [
+  {
+    "fieldname": "m_pSettings",
+    "fieldtype": "class vr::IVRSettings *"
+  }
+]*/
+export interface CVRSettingHelper {
+  pSettings: Deno.PointerValue<IVRSettings>;
+}
+
+/*vr::InputAnalogActionData_t, [
+  {
+    "fieldname": "bActive",
+    "fieldtype": "_Bool"
+  },
+  {
+    "fieldname": "activeOrigin",
+    "fieldtype": "VRInputValueHandle_t"
+  },
+  {
+    "fieldname": "x",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "y",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "z",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "deltaX",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "deltaY",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "deltaZ",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "fUpdateTime",
+    "fieldtype": "float"
+  }
+]*/
+export interface InputAnalogActionData {
+  bActive: boolean;
+  activeOrigin: InputValueHandle;
+  x: number;
+  y: number;
+  z: number;
+  deltaX: number;
+  deltaY: number;
+  deltaZ: number;
+  fUpdateTime: number;
+}
+
+/*vr::InputDigitalActionData_t, [
+  {
+    "fieldname": "bActive",
+    "fieldtype": "_Bool"
+  },
+  {
+    "fieldname": "activeOrigin",
+    "fieldtype": "VRInputValueHandle_t"
+  },
+  {
+    "fieldname": "bState",
+    "fieldtype": "_Bool"
+  },
+  {
+    "fieldname": "bChanged",
+    "fieldtype": "_Bool"
+  },
+  {
+    "fieldname": "fUpdateTime",
+    "fieldtype": "float"
+  }
+]*/
+export interface InputDigitalActionData {
+  bActive: boolean;
+  activeOrigin: InputValueHandle;
+  bState: boolean;
+  bChanged: boolean;
+  fUpdateTime: number;
+}
+
+/*vr::InputPoseActionData_t, [
+  {
+    "fieldname": "bActive",
+    "fieldtype": "_Bool"
+  },
+  {
+    "fieldname": "activeOrigin",
+    "fieldtype": "VRInputValueHandle_t"
+  },
+  {
+    "fieldname": "pose",
+    "fieldtype": "struct vr::TrackedDevicePose_t"
+  }
+]*/
+export interface InputPoseActionData {
+  bActive: boolean;
+  activeOrigin: InputValueHandle;
+  pose: TrackedDevicePose;
+}
+
+/*vr::InputSkeletalActionData_t, [
+  {
+    "fieldname": "bActive",
+    "fieldtype": "_Bool"
+  },
+  {
+    "fieldname": "activeOrigin",
+    "fieldtype": "VRInputValueHandle_t"
+  }
+]*/
+export interface InputSkeletalActionData {
+  bActive: boolean;
+  activeOrigin: InputValueHandle;
+}
+
+/*vr::InputOriginInfo_t, [
+  {
+    "fieldname": "devicePath",
+    "fieldtype": "VRInputValueHandle_t"
+  },
+  {
+    "fieldname": "trackedDeviceIndex",
+    "fieldtype": "TrackedDeviceIndex_t"
+  },
+  {
+    "fieldname": "rchRenderModelComponentName",
+    "fieldtype": "char [128]"
+  }
+]*/
+export interface InputOriginInfo {
+  devicePath: InputValueHandle;
+  trackedDeviceIndex: TrackedDeviceIndex;
+  rchRenderModelComponentName: [number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number];
+}
+
+/*vr::InputBindingInfo_t, [
+  {
+    "fieldname": "rchDevicePathName",
+    "fieldtype": "char [128]"
+  },
+  {
+    "fieldname": "rchInputPathName",
+    "fieldtype": "char [128]"
+  },
+  {
+    "fieldname": "rchModeName",
+    "fieldtype": "char [128]"
+  },
+  {
+    "fieldname": "rchSlotName",
+    "fieldtype": "char [128]"
+  },
+  {
+    "fieldname": "rchInputSourceType",
+    "fieldtype": "char [32]"
+  }
+]*/
+export interface InputBindingInfo {
+  rchDevicePathName: [number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number];
+  rchInputPathName: [number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number];
+  rchModeName: [number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number];
+  rchSlotName: [number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number];
+  rchInputSourceType: [number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number];
+}
+
+/*vr::VRActiveActionSet_t, [
+  {
+    "fieldname": "ulActionSet",
+    "fieldtype": "VRActionSetHandle_t"
+  },
+  {
+    "fieldname": "ulRestrictedToDevice",
+    "fieldtype": "VRInputValueHandle_t"
+  },
+  {
+    "fieldname": "ulSecondaryActionSet",
+    "fieldtype": "VRActionSetHandle_t"
+  },
+  {
+    "fieldname": "unPadding",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "nPriority",
+    "fieldtype": "int32_t"
+  }
+]*/
+export interface ActiveActionSet {
+  ulActionSet: ActionSetHandle;
+  ulRestrictedToDevice: InputValueHandle;
+  ulSecondaryActionSet: ActionSetHandle;
+  unPadding: number;
+  nPriority: number;
+}
+
+/*vr::VRSkeletalSummaryData_t, [
+  {
+    "fieldname": "flFingerCurl",
+    "fieldtype": "float [5]"
+  },
+  {
+    "fieldname": "flFingerSplay",
+    "fieldtype": "float [4]"
+  }
+]*/
+export interface SkeletalSummaryData {
+  flFingerCurl: [number, number, number, number, number];
+  flFingerSplay: [number, number, number, number];
+}
+
+/*vr::SpatialAnchorPose_t, [
+  {
+    "fieldname": "mAnchorToAbsoluteTracking",
+    "fieldtype": "struct vr::HmdMatrix34_t"
+  }
+]*/
+export interface SpatialAnchorPose {
+  mAnchorToAbsoluteTracking: HmdMatrix34;
+}
+
+/*vr::COpenVRContext, [
+  {
+    "fieldname": "m_pVRSystem",
+    "fieldtype": "class vr::IVRSystem *"
+  },
+  {
+    "fieldname": "m_pVRChaperone",
+    "fieldtype": "class vr::IVRChaperone *"
+  },
+  {
+    "fieldname": "m_pVRChaperoneSetup",
+    "fieldtype": "class vr::IVRChaperoneSetup *"
+  },
+  {
+    "fieldname": "m_pVRCompositor",
+    "fieldtype": "class vr::IVRCompositor *"
+  },
+  {
+    "fieldname": "m_pVRHeadsetView",
+    "fieldtype": "class vr::IVRHeadsetView *"
+  },
+  {
+    "fieldname": "m_pVROverlay",
+    "fieldtype": "class vr::IVROverlay *"
+  },
+  {
+    "fieldname": "m_pVROverlayView",
+    "fieldtype": "class vr::IVROverlayView *"
+  },
+  {
+    "fieldname": "m_pVRResources",
+    "fieldtype": "class vr::IVRResources *"
+  },
+  {
+    "fieldname": "m_pVRRenderModels",
+    "fieldtype": "class vr::IVRRenderModels *"
+  },
+  {
+    "fieldname": "m_pVRExtendedDisplay",
+    "fieldtype": "class vr::IVRExtendedDisplay *"
+  },
+  {
+    "fieldname": "m_pVRSettings",
+    "fieldtype": "class vr::IVRSettings *"
+  },
+  {
+    "fieldname": "m_pVRApplications",
+    "fieldtype": "class vr::IVRApplications *"
+  },
+  {
+    "fieldname": "m_pVRTrackedCamera",
+    "fieldtype": "class vr::IVRTrackedCamera *"
+  },
+  {
+    "fieldname": "m_pVRScreenshots",
+    "fieldtype": "class vr::IVRScreenshots *"
+  },
+  {
+    "fieldname": "m_pVRDriverManager",
+    "fieldtype": "class vr::IVRDriverManager *"
+  },
+  {
+    "fieldname": "m_pVRInput",
+    "fieldtype": "class vr::IVRInput *"
+  },
+  {
+    "fieldname": "m_pVRIOBuffer",
+    "fieldtype": "class vr::IVRIOBuffer *"
+  },
+  {
+    "fieldname": "m_pVRSpatialAnchors",
+    "fieldtype": "class vr::IVRSpatialAnchors *"
+  },
+  {
+    "fieldname": "m_pVRDebug",
+    "fieldtype": "class vr::IVRDebug *"
+  },
+  {
+    "fieldname": "m_pVRNotifications",
+    "fieldtype": "class vr::IVRNotifications *"
+  }
+]*/
+export interface COpenVRContext {
+  pVRSystem: Deno.PointerValue<IVRSystem>;
+  pVRChaperone: Deno.PointerValue<IVRChaperone>;
+  pVRChaperoneSetup: Deno.PointerValue<IVRChaperoneSetup>;
+  pVRCompositor: Deno.PointerValue<IVRCompositor>;
+  pVRHeadsetView: Deno.PointerValue<IVRHeadsetView>;
+  pVROverlay: Deno.PointerValue<IVROverlay>;
+  pVROverlayView: Deno.PointerValue<IVROverlayView>;
+  pVRResources: Deno.PointerValue<IVRResources>;
+  pVRRenderModels: Deno.PointerValue<IVRRenderModels>;
+  pVRExtendedDisplay: Deno.PointerValue<IVRExtendedDisplay>;
+  pVRSettings: Deno.PointerValue<IVRSettings>;
+  pVRApplications: Deno.PointerValue<IVRApplications>;
+  pVRTrackedCamera: Deno.PointerValue<IVRTrackedCamera>;
+  pVRScreenshots: Deno.PointerValue<IVRScreenshots>;
+  pVRDriverManager: Deno.PointerValue<IVRDriverManager>;
+  pVRInput: Deno.PointerValue<IVRInput>;
+  pVRIOBuffer: Deno.PointerValue<IVRIOBuffer>;
+  pVRSpatialAnchors: Deno.PointerValue<IVRSpatialAnchors>;
+  pVRDebug: Deno.PointerValue<IVRDebug>;
+  pVRNotifications: Deno.PointerValue<IVRNotifications>;
+}
+
+/*vr::PropertyWrite_t, [
+  {
+    "fieldname": "prop",
+    "fieldtype": "enum vr::ETrackedDeviceProperty"
+  },
+  {
+    "fieldname": "writeType",
+    "fieldtype": "enum vr::EPropertyWriteType"
+  },
+  {
+    "fieldname": "eSetError",
+    "fieldtype": "enum vr::ETrackedPropertyError"
+  },
+  {
+    "fieldname": "pvBuffer",
+    "fieldtype": "void *"
+  },
+  {
+    "fieldname": "unBufferSize",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "unTag",
+    "fieldtype": "PropertyTypeTag_t"
+  },
+  {
+    "fieldname": "eError",
+    "fieldtype": "enum vr::ETrackedPropertyError"
+  }
+]*/
+export interface PropertyWrite {
+  prop: TrackedDeviceProperty;
+  writeType: PropertyWriteType;
+  eSetError: TrackedPropertyError;
+  pvBuffer: Deno.PointerValue<unknown>;
+  unBufferSize: number;
+  unTag: PropertyTypeTag;
+  eError: TrackedPropertyError;
+}
+
+/*vr::PropertyRead_t, [
+  {
+    "fieldname": "prop",
+    "fieldtype": "enum vr::ETrackedDeviceProperty"
+  },
+  {
+    "fieldname": "pvBuffer",
+    "fieldtype": "void *"
+  },
+  {
+    "fieldname": "unBufferSize",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "unTag",
+    "fieldtype": "PropertyTypeTag_t"
+  },
+  {
+    "fieldname": "unRequiredBufferSize",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "eError",
+    "fieldtype": "enum vr::ETrackedPropertyError"
+  }
+]*/
+export interface PropertyRead {
+  prop: TrackedDeviceProperty;
+  pvBuffer: Deno.PointerValue<unknown>;
+  unBufferSize: number;
+  unTag: PropertyTypeTag;
+  unRequiredBufferSize: number;
+  eError: TrackedPropertyError;
+}
+
+/*vr::CVRPropertyHelpers, [
+  {
+    "fieldname": "m_pProperties",
+    "fieldtype": "class vr::IVRProperties *"
+  }
+]*/
+export interface CVRPropertyHelpers {
+  pProperties: Deno.PointerValue<IVRProperties>;
+}
+
+/*vr::PathWrite_t, [
+  {
+    "fieldname": "ulPath",
+    "fieldtype": "PathHandle_t"
+  },
+  {
+    "fieldname": "writeType",
+    "fieldtype": "enum vr::EPropertyWriteType"
+  },
+  {
+    "fieldname": "eSetError",
+    "fieldtype": "enum vr::ETrackedPropertyError"
+  },
+  {
+    "fieldname": "pvBuffer",
+    "fieldtype": "void *"
+  },
+  {
+    "fieldname": "unBufferSize",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "unTag",
+    "fieldtype": "PropertyTypeTag_t"
+  },
+  {
+    "fieldname": "eError",
+    "fieldtype": "enum vr::ETrackedPropertyError"
+  },
+  {
+    "fieldname": "pszPath",
+    "fieldtype": "const char *"
+  }
+]*/
+export interface PathWrite {
+  ulPath: PathHandle;
+  writeType: PropertyWriteType;
+  eSetError: TrackedPropertyError;
+  pvBuffer: Deno.PointerValue<unknown>;
+  unBufferSize: number;
+  unTag: PropertyTypeTag;
+  eError: TrackedPropertyError;
+  pszPath: string;
+}
+
+/*vr::PathRead_t, [
+  {
+    "fieldname": "ulPath",
+    "fieldtype": "PathHandle_t"
+  },
+  {
+    "fieldname": "pvBuffer",
+    "fieldtype": "void *"
+  },
+  {
+    "fieldname": "unBufferSize",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "unTag",
+    "fieldtype": "PropertyTypeTag_t"
+  },
+  {
+    "fieldname": "unRequiredBufferSize",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "eError",
+    "fieldtype": "enum vr::ETrackedPropertyError"
+  },
+  {
+    "fieldname": "pszPath",
+    "fieldtype": "const char *"
+  }
+]*/
+export interface PathRead {
+  ulPath: PathHandle;
+  pvBuffer: Deno.PointerValue<unknown>;
+  unBufferSize: number;
+  unTag: PropertyTypeTag;
+  unRequiredBufferSize: number;
+  eError: TrackedPropertyError;
+  pszPath: string;
 }
 
 //#endregion

@@ -8,7 +8,7 @@ const enum OtherEnum {
     CXt,
     BXrd
 }
-class FileHandle { }
+interface FileHandle { }
 type FilePointer = Deno.PointerObject & { brand: FileHandle }
 const genericPointer = {} as Deno.PointerObject;
 

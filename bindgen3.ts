@@ -11,7 +11,7 @@ async function main() {
   let output = "";
   output += await generateTypes(api.typedefs, api.consts);
   output += await generateEnums(api.enums);
-  await generateStructs(api.structs);
+  output += await generateStructs(api.structs);
   await generateMethods(api.methods);
   await generateEntrypoints();
 
@@ -28,10 +28,10 @@ const TYPEDEF_MAP: Record<string, string> = {
   "int16_t": "number",
   "int32_t": "number",
   "int64_t": "bigint",
-  "void *": "Deno.PointerValue",
-  "const void *": "Deno.PointerValue",
-  "void **": "Deno.PointerValue",
-  "const void **": "Deno.PointerValue",
+  "void *": "Deno.PointerValue<unknown>",
+  "const void *": "Deno.PointerValue<unknown>//READONLY",
+  "void **": "Deno.PointerValue<Deno.PointerValue<unknown>>",
+  "const void **": "Deno.PointerValue<Deno.PointerValue<unknown>>//READONLY",
   "_Bool": "boolean",
   "char": "number",
   "float": "number",
@@ -240,7 +240,10 @@ function trimFieldName(name: string): string {
 }
 
 // Convert field type
+//#region Convert Field Type
 function fieldTypeConvert(name: string): string {
+
+
   // Check for a simple match in TYPEDEF_MAP
   const typename = TYPEDEF_MAP[name];
   if (typename) {
@@ -258,7 +261,6 @@ function fieldTypeConvert(name: string): string {
   let isPtr = false;
   let isPtrPtr = false;
   let isArray = false;
-  let vrName = "";
   let arrayString = "";
 
   if (tokens[st] === "const") {
@@ -313,28 +315,57 @@ function fieldTypeConvert(name: string): string {
     coreType = trimStructName(coreType);
   }
 
-  const result = `${isPtrPtr ? "^^" : ""}${isPtr ? "^" : ""}${arrayString}${coreType}`;
+  // Adapt the result for TypeScript and Deno
+  let result = coreType;
+
+  if (isPtr) {
+    result = `Deno.PointerValue<${result}>`;
+  } else if (isPtrPtr) {
+    result = `Deno.PointerValue<Deno.PointerValue<${result}>>`;
+  }
+  if (isArray) {
+    // Parse array dimensions
+    const dimensions = arrayString.match(/\[(\d+)\]/g);
+    if (dimensions) {
+      dimensions.reverse().forEach(dim => {
+        const size = parseInt(dim.slice(1, -1));
+        result = `[${Array(size).fill(result).join(", ")}]`;
+      });
+    }
+  }
+
+  // Add 'readonly' for const values if needed
+  if (isConst) {
+    result = `${result}//READONLY`;
+  }
+
   return result;
 }
-
+//#endregion
 const STRUCT_PRELUDE = `
 import vk "vendor:vulkan"
 import D3D11 "vendor:directx/d3d11"
 import D3D12 "vendor:directx/d3d12"
 `
 
+type FFIArray<T, N extends number> = T[];
+
 async function generateStructs(structs: any[]) {
   let output = "// Structs\n\n";
+  output += "//#region Structs\n";
 
   for (const str of structs) {
     const structName = str.struct;
     const structFields = str.fields;
+    output += `/*${structName}, ${JSON.stringify(structFields, null, 2)}*/\n`;
 
     const structTrim = trimStructName(structName);
-    if (structTrim === "(anonymous)" && structFields.length === 2) {
-      output += `export interface OverlayIntersectionMaskPrimitive_Data {\n`;
-    } else if (structTrim === "(anonymous)") {
-      output += `export interface Event_Data {\n`;
+    if (structTrim === "(anonymous)") {
+      if (structFields.length === 2) {
+        output += `export interface OverlayIntersectionMaskPrimitive_Data {\n`;
+      } else {
+        output += `export interface Event_Data {\n`;
+      }
     } else {
       output += `export interface ${structTrim} {\n`;
     }
@@ -342,16 +373,17 @@ async function generateStructs(structs: any[]) {
     for (const field of structFields) {
       const fieldname = field.fieldname;
       const fieldtype = field.fieldtype;
-      const odinType = fieldTypeConvert(fieldtype);
+      const tsType = fieldTypeConvert(fieldtype);
 
       const fieldnameTrim = trimFieldName(fieldname);
-      output += `  ${fieldnameTrim}: ${odinType};\n`;
+      output += `  ${fieldnameTrim}: ${tsType};\n`;
     }
 
     output += "}\n\n";
   }
 
-  await Deno.writeTextFile("openvr/structs.ts", output);
+  output += "//#endregion\n";
+  return output;
 }
 
 const INTERFACE_NAMES: string[] = [
