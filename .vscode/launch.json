@@ -12,6 +12,8 @@
             "runtimeExecutable": "Deno",
             "runtimeArgs": [
                 "run",
+                "--unstable",
+                "--allow-ffi",
                 "--unstable-ffi",
                 "--inspect-wait",
                 "--allow-all"
