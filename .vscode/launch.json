@@ -5,7 +5,7 @@
             "request": "launch",
             "name": "Launch Program",
             "type": "node",
-            "program": "${workspaceFolder}/test.ts",
+            "program": "${workspaceFolder}/test2.ts",
             "cwd": "${workspaceFolder}",
             "env": {},
             "console": "integratedTerminal",

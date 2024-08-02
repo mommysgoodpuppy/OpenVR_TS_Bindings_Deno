@@ -2,27 +2,27 @@
 //#region Entrypoints
 
 declare const brand: unique symbol;
-type InitErrorPTRType = Deno.PointerObject & { [brand]: InitError };
+export type InitErrorPTRType = Deno.PointerObject<InitError>
 const TypedInitErrorPTR = "pointer" as Deno.NativeTypedPointer<InitErrorPTRType>;
 
 const { symbols } = await Deno.dlopen("openvr_api.dll", {
-  Init: { parameters: ["pointer", "i32"], result: "pointer" },
-  Shutdown: { parameters: [], result: "void" },
-  IsHmdPresent: { parameters: [], result: "bool" },
-  GetGenericInterface: { parameters: ["pointer", TypedInitErrorPTR], result: "pointer" },
-  IsRuntimeInstalled: { parameters: [], result: "bool" },
-  GetInitErrorAsSymbol: { parameters: ["i32"], result: "pointer" },
-  GetInitErrorAsDescription: { parameters: ["i32"], result: "pointer" },
+  VR_InitInternal: { parameters: ["pointer", "i32"], result: "pointer" },
+  VR_ShutdownInternal: { parameters: [], result: "void" },
+  VR_IsHmdPresent: { parameters: [], result: "bool" },
+  VR_GetGenericInterface: { parameters: ["pointer", TypedInitErrorPTR], result: "pointer" },
+  VR_IsRuntimeInstalled: { parameters: [], result: "bool" },
+  VR_GetVRInitErrorAsSymbol: { parameters: ["i32"], result: "pointer" },
+  VR_GetVRInitErrorAsEnglishDescription: { parameters: ["i32"], result: "pointer" },
 });
 
 export const {
-  Init,
-  Shutdown,
-  IsHmdPresent,
-  GetGenericInterface,
-  IsRuntimeInstalled,
-  GetInitErrorAsSymbol,
-  GetInitErrorAsDescription,
+  VR_InitInternal,
+  VR_ShutdownInternal,
+  VR_IsHmdPresent,
+  VR_GetGenericInterface,
+  VR_IsRuntimeInstalled,
+  VR_GetVRInitErrorAsSymbol,
+  VR_GetVRInitErrorAsEnglishDescription,
 } = symbols;
 //#endregion
 // Typedefs and Constants
@@ -4303,7 +4303,7 @@ export interface PathRead {
 
 //#region Classes
 export class IVRSystem {
-  constructor(private ptr: Deno.PointerValue<IVRSystem>) {}
+  constructor(private ptr: Deno.PointerValue<IVRSystem|unknown>) {}
 
   /*
   GetRecommendedRenderTargetSize
@@ -4890,7 +4890,7 @@ export class IVRSystem {
 }
 
 export class IVRChaperone {
-  constructor(private ptr: Deno.PointerValue<IVRChaperone>) {}
+  constructor(private ptr: Deno.PointerValue<IVRChaperone|unknown>) {}
 
   /*
   GetCalibrationState
@@ -5002,7 +5002,7 @@ export class IVRChaperone {
 }
 
 export class IVRChaperoneSetup {
-  constructor(private ptr: Deno.PointerValue<IVRChaperoneSetup>) {}
+  constructor(private ptr: Deno.PointerValue<IVRChaperoneSetup|unknown>) {}
 
   /*
   CommitWorkingCopy
@@ -5247,7 +5247,7 @@ export class IVRChaperoneSetup {
 }
 
 export class IVRCompositor {
-  constructor(private ptr: Deno.PointerValue<IVRCompositor>) {}
+  constructor(private ptr: Deno.PointerValue<IVRCompositor|unknown>) {}
 
   /*
   SetTrackingSpace
@@ -5886,7 +5886,7 @@ export class IVRCompositor {
 }
 
 export class IVRHeadsetView {
-  constructor(private ptr: Deno.PointerValue<IVRHeadsetView>) {}
+  constructor(private ptr: Deno.PointerValue<IVRHeadsetView|unknown>) {}
 
   /*
   SetHeadsetViewSize
@@ -5996,7 +5996,7 @@ export class IVRHeadsetView {
 }
 
 export class IVROverlay {
-  constructor(private ptr: Deno.PointerValue<IVROverlay>) {}
+  constructor(private ptr: Deno.PointerValue<IVROverlay|unknown>) {}
 
   /*
   FindOverlay
@@ -7031,7 +7031,7 @@ export class IVROverlay {
 }
 
 export class IVROverlayView {
-  constructor(private ptr: Deno.PointerValue<IVROverlayView>) {}
+  constructor(private ptr: Deno.PointerValue<IVROverlayView|unknown>) {}
 
   /*
   AcquireOverlayView
@@ -7086,7 +7086,7 @@ export class IVROverlayView {
 }
 
 export class IVRResources {
-  constructor(private ptr: Deno.PointerValue<IVRResources>) {}
+  constructor(private ptr: Deno.PointerValue<IVRResources|unknown>) {}
 
   /*
   LoadSharedResource
@@ -7117,7 +7117,7 @@ export class IVRResources {
 }
 
 export class IVRRenderModels {
-  constructor(private ptr: Deno.PointerValue<IVRRenderModels>) {}
+  constructor(private ptr: Deno.PointerValue<IVRRenderModels|unknown>) {}
 
   /*
   LoadRenderModel_Async
@@ -7363,7 +7363,7 @@ export class IVRRenderModels {
 }
 
 export class IVRExtendedDisplay {
-  constructor(private ptr: Deno.PointerValue<IVRExtendedDisplay>) {}
+  constructor(private ptr: Deno.PointerValue<IVRExtendedDisplay|unknown>) {}
 
   /*
   GetWindowBounds
@@ -7401,7 +7401,7 @@ export class IVRExtendedDisplay {
 }
 
 export class IVRSettings {
-  constructor(private ptr: Deno.PointerValue<IVRSettings>) {}
+  constructor(private ptr: Deno.PointerValue<IVRSettings|unknown>) {}
 
   /*
   GetSettingsErrorNameFromEnum
@@ -7535,7 +7535,7 @@ export class IVRSettings {
 }
 
 export class IVRApplications {
-  constructor(private ptr: Deno.PointerValue<IVRApplications>) {}
+  constructor(private ptr: Deno.PointerValue<IVRApplications|unknown>) {}
 
   /*
   AddApplicationManifest
@@ -7930,7 +7930,7 @@ export class IVRApplications {
 }
 
 export class IVRTrackedCamera {
-  constructor(private ptr: Deno.PointerValue<IVRTrackedCamera>) {}
+  constructor(private ptr: Deno.PointerValue<IVRTrackedCamera|unknown>) {}
 
   /*
   GetCameraErrorNameFromEnum
@@ -8115,7 +8115,7 @@ export class IVRTrackedCamera {
 }
 
 export class IVRScreenshots {
-  constructor(private ptr: Deno.PointerValue<IVRScreenshots>) {}
+  constructor(private ptr: Deno.PointerValue<IVRScreenshots|unknown>) {}
 
   /*
   RequestScreenshot
@@ -8211,7 +8211,7 @@ export class IVRScreenshots {
 }
 
 export class IVRDriverManager {
-  constructor(private ptr: Deno.PointerValue<IVRDriverManager>) {}
+  constructor(private ptr: Deno.PointerValue<IVRDriverManager|unknown>) {}
 
   /*
   GetDriverCount
@@ -8268,7 +8268,7 @@ export class IVRDriverManager {
 }
 
 export class IVRInput {
-  constructor(private ptr: Deno.PointerValue<IVRInput>) {}
+  constructor(private ptr: Deno.PointerValue<IVRInput|unknown>) {}
 
   /*
   SetActionManifestPath
@@ -8689,7 +8689,7 @@ export class IVRInput {
 }
 
 export class IVRIOBuffer {
-  constructor(private ptr: Deno.PointerValue<IVRIOBuffer>) {}
+  constructor(private ptr: Deno.PointerValue<IVRIOBuffer|unknown>) {}
 
   /*
   Open
@@ -8772,7 +8772,7 @@ export class IVRIOBuffer {
 }
 
 export class IVRSpatialAnchors {
-  constructor(private ptr: Deno.PointerValue<IVRSpatialAnchors>) {}
+  constructor(private ptr: Deno.PointerValue<IVRSpatialAnchors|unknown>) {}
 
   /*
   CreateSpatialAnchorFromDescriptor
@@ -8829,7 +8829,7 @@ export class IVRSpatialAnchors {
 }
 
 export class IVRDebug {
-  constructor(private ptr: Deno.PointerValue<IVRDebug>) {}
+  constructor(private ptr: Deno.PointerValue<IVRDebug|unknown>) {}
 
   /*
   EmitVrProfilerEvent
@@ -8886,7 +8886,7 @@ export class IVRDebug {
 }
 
 export class IVRNotifications {
-  constructor(private ptr: Deno.PointerValue<IVRNotifications>) {}
+  constructor(private ptr: Deno.PointerValue<IVRNotifications|unknown>) {}
 
   /*
   CreateNotification
@@ -8917,7 +8917,7 @@ export class IVRNotifications {
 }
 
 export class IVRProperties {
-  constructor(private ptr: Deno.PointerValue<IVRProperties>) {}
+  constructor(private ptr: Deno.PointerValue<IVRProperties|unknown>) {}
 
   /*
   ReadPropertyBatch
@@ -8974,7 +8974,7 @@ export class IVRProperties {
 }
 
 export class IVRPaths {
-  constructor(private ptr: Deno.PointerValue<IVRPaths>) {}
+  constructor(private ptr: Deno.PointerValue<IVRPaths|unknown>) {}
 
   /*
   ReadPathBatch
@@ -9031,7 +9031,7 @@ export class IVRPaths {
 }
 
 export class IVRBlockQueue {
-  constructor(private ptr: Deno.PointerValue<IVRBlockQueue>) {}
+  constructor(private ptr: Deno.PointerValue<IVRBlockQueue|unknown>) {}
 
   /*
   Create

@@ -422,7 +422,7 @@ async function generateMethods(methods: any[]) {
   for (const iface of INTERFACE_NAMES) {
     const ifaceTrim = iface.replace("vr::", "");
     output += `export class ${ifaceTrim} {\n`;
-    output += `  constructor(private ptr: Deno.PointerValue<${ifaceTrim}>) {}\n\n`;
+    output += `  constructor(private ptr: Deno.PointerValue<${ifaceTrim}|unknown>) {}\n\n`;
 
     for (const meth of methods) {
       if (meth.classname !== iface) continue;
@@ -479,27 +479,27 @@ async function generateEntrypoints() {
 //#region Entrypoints
 
 declare const brand: unique symbol;
-type InitErrorPTRType = Deno.PointerObject & { [brand]: InitError };
+export type InitErrorPTRType = Deno.PointerObject<InitError>
 const TypedInitErrorPTR = "pointer" as Deno.NativeTypedPointer<InitErrorPTRType>;
 
 const { symbols } = await Deno.dlopen("openvr_api.dll", {
-  Init: { parameters: ["pointer", "i32"], result: "pointer" },
-  Shutdown: { parameters: [], result: "void" },
-  IsHmdPresent: { parameters: [], result: "bool" },
-  GetGenericInterface: { parameters: ["pointer", TypedInitErrorPTR], result: "pointer" },
-  IsRuntimeInstalled: { parameters: [], result: "bool" },
-  GetInitErrorAsSymbol: { parameters: ["i32"], result: "pointer" },
-  GetInitErrorAsDescription: { parameters: ["i32"], result: "pointer" },
+  VR_InitInternal: { parameters: ["pointer", "i32"], result: "pointer" },
+  VR_ShutdownInternal: { parameters: [], result: "void" },
+  VR_IsHmdPresent: { parameters: [], result: "bool" },
+  VR_GetGenericInterface: { parameters: ["pointer", TypedInitErrorPTR], result: "pointer" },
+  VR_IsRuntimeInstalled: { parameters: [], result: "bool" },
+  VR_GetVRInitErrorAsSymbol: { parameters: ["i32"], result: "pointer" },
+  VR_GetVRInitErrorAsEnglishDescription: { parameters: ["i32"], result: "pointer" },
 });
 
 export const {
-  Init,
-  Shutdown,
-  IsHmdPresent,
-  GetGenericInterface,
-  IsRuntimeInstalled,
-  GetInitErrorAsSymbol,
-  GetInitErrorAsDescription,
+  VR_InitInternal,
+  VR_ShutdownInternal,
+  VR_IsHmdPresent,
+  VR_GetGenericInterface,
+  VR_IsRuntimeInstalled,
+  VR_GetVRInitErrorAsSymbol,
+  VR_GetVRInitErrorAsEnglishDescription,
 } = symbols;
 //#endregion
 `;
