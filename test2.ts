@@ -87,22 +87,23 @@ async function main() {
         throw new Error("Failed to set action manifest path");
     } */
 
-    const overlayhandlexx: OpenVR.OverlayHandle = 0n;
-    const overlayhandlearray = new BigUint64Array([overlayhandlexx]);
+    let overlayhandle: OpenVR.OverlayHandle = 0n;
+    const overlayhandlearray = new BigUint64Array([overlayhandle]);
 
     const overlayhandlePTR= Deno.UnsafePointer.of(overlayhandlearray);
     
     //do something with overlayhandlePTR
     
     const overlayhandleBuf = Deno.UnsafePointerView.getArrayBuffer((overlayhandlePTR as Deno.PointerObject), 8);
-    const overlayhandle = new BigUint64Array(overlayhandleBuf)[0];
-    console.log(`Overlay created with handle: ${overlayhandlexx}`);
+    
+    overlayhandle = new BigUint64Array(overlayhandleBuf)[0];
+    console.log(`Overlay created with handle: ${overlayhandle}`);
 
 
 
     if (overlayhandlePTR === null) throw new Error("Invalid pointer");
     error = overlay.CreateOverlay("image", "image", overlayhandlePTR);
-    
+
     console.log(`Overlay created with handle: ${overlayhandlePTR}`);
 
     type a = Deno.NativeBigIntType
