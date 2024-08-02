@@ -10,7 +10,6 @@
 ,{"typedef": "vr::TrackedDeviceIndex_t","type": "uint32_t"}
 ,{"typedef": "vr::WebConsoleHandle_t","type": "uint64_t"}
 ,{"typedef": "vr::PropertyContainerHandle_t","type": "uint64_t"}
-,{"typedef": "vr::PropertyTypeTag_t","type": "uint32_t"}
 ,{"typedef": "vr::DriverHandle_t","type": "PropertyContainerHandle_t"}
 ,{"typedef": "vr::VRActionHandle_t","type": "uint64_t"}
 ,{"typedef": "vr::VRActionSetHandle_t","type": "uint64_t"}

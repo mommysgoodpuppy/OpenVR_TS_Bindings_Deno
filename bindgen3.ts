@@ -10,7 +10,7 @@ async function main() {
   }
   let output = "";
   output += await generateTypes(api.typedefs, api.consts);
-  await generateEnums(api.enums);
+  output += await generateEnums(api.enums);
   await generateStructs(api.structs);
   await generateMethods(api.methods);
   await generateEntrypoints();
@@ -70,7 +70,7 @@ async function generateTypes(defs: any[], consts: any[]): Promise<string> {
 
     const typeTrim = trimStructName(typedef); // Assuming trimStructName is defined elsewhere
     const otype = TYPEDEF_MAP[dtype] || fieldTypeConvert(dtype); // Assuming TYPEDEF_MAP and fieldTypeConvert are defined elsewhere
-    if (REDUNDANT_TYPEDEFS[otype]) continue; // Assuming REDUNDANT_TYPEDEFS is defined elsewhere
+    if (REDUNDANT_TYPEDEFS[typeTrim]) continue; // Assuming REDUNDANT_TYPEDEFS is defined elsewhere
     output += `export type ${typeTrim} = ${otype};//${dtype}\n`;
   }
   output += "//#endregion\n";
@@ -192,7 +192,7 @@ function trimEnumName(name: string): string {
 
 async function generateEnums(enums: any[]) {
   let output = "// Enums\n\n";
-
+  output += "//#region Enums\n";
   for (const e of enums) {
     const enumName = e.enumname;
     const enumTrim = trimEnumName(enumName);
@@ -205,7 +205,8 @@ async function generateEnums(enums: any[]) {
     }
     output += "}\n\n";
   }
-
+  output += "//#endregion\n";
+  return output;
   await Deno.writeTextFile("openvr/enums.ts", output);
 }
 
