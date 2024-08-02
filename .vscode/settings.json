@@ -2,6 +2,7 @@
     "deno.enable": true,
     "files.associations": {
         "*.jsontestset": "json",
-        "string.h": "c"
+        "string.h": "c",
+        "openvr_capi.h": "c"
     },
 }

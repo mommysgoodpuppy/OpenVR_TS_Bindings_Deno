@@ -20,6 +20,7 @@ async function main() {
 }
 
 const TYPEDEF_MAP: Record<string, string> = {
+  "int": "number",
   "uint8_t": "number",
   "unsigned short": "number",
   "uint16_t": "number",
@@ -30,10 +31,11 @@ const TYPEDEF_MAP: Record<string, string> = {
   "int32_t": "number",
   "int64_t": "bigint",
   "void *": "Deno.PointerValue<unknown>",
-  "const void *": "Deno.PointerValue<unknown>//READONLY",
+  "const void *": "Deno.PointerValue<unknown>",
   "void **": "Deno.PointerValue<Deno.PointerValue<unknown>>",
-  "const void **": "Deno.PointerValue<Deno.PointerValue<unknown>>//READONLY",
+  "const void **": "Deno.PointerValue<Deno.PointerValue<unknown>>",
   "_Bool": "boolean",
+  "bool": "boolean",
   "char": "number",
   "float": "number",
   "double": "number",
@@ -244,7 +246,6 @@ function trimFieldName(name: string): string {
 //#region Convert Field Type
 function fieldTypeConvert(name: string): string {
 
-
   // Check for a simple match in TYPEDEF_MAP
   const typename = TYPEDEF_MAP[name];
   if (typename) {
@@ -337,7 +338,7 @@ function fieldTypeConvert(name: string): string {
 
   // Add 'readonly' for const values if needed
   if (isConst) {
-    result = `${result}//READONLY`;
+    result = `${result}`;
   }
 
   return result;
@@ -476,11 +477,16 @@ async function generateMethods(methods: any[]) {
 async function generateEntrypoints() {
   const entrypoints = `
 //#region Entrypoints
+
+declare const brand: unique symbol;
+type InitErrorPTRType = Deno.PointerObject & { [brand]: InitError };
+const TypedInitErrorPTR = "pointer" as Deno.NativeTypedPointer<InitErrorPTRType>;
+
 const { symbols } = await Deno.dlopen("openvr_api.dll", {
   Init: { parameters: ["pointer", "i32"], result: "pointer" },
   Shutdown: { parameters: [], result: "void" },
   IsHmdPresent: { parameters: [], result: "bool" },
-  GetGenericInterface: { parameters: ["pointer", "pointer"], result: "pointer" },
+  GetGenericInterface: { parameters: ["pointer", TypedInitErrorPTR], result: "pointer" },
   IsRuntimeInstalled: { parameters: [], result: "bool" },
   GetInitErrorAsSymbol: { parameters: ["i32"], result: "pointer" },
   GetInitErrorAsDescription: { parameters: ["i32"], result: "pointer" },

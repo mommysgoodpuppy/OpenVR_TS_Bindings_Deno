@@ -16,6 +16,7 @@ export const typeMapping: Record<string, { ffi: Deno.NativeType | Deno.NativeVoi
     "buffer": { ffi: "buffer", deno: "Uint8Array", c: "uint8_t*" },
     "function": { ffi: "function", deno: "Function", c: "void (*)()" },
     // Adding the new types
+    "bool": { ffi: "bool", deno: "boolean", c: "bool" },
     "uint32_t": { ffi: "u32", deno: "number", c: "uint32_t" },
     "uint64_t": { ffi: "u64", deno: "bigint", c: "uint64_t" },
     "int32_t": { ffi: "i32", deno: "number", c: "int32_t" },

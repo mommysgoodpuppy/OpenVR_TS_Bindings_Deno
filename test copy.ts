@@ -1,4 +1,4 @@
-import * as OpenVR from "./openvr_bindings.ts";
+import * as OpenVR from "./openvr/FULL.ts";
 let _void = null
 let pose: OpenVR.TrackedDevicePose_t = new OpenVR.TrackedDevicePose_t();
 
@@ -51,12 +51,14 @@ async function main() {
 
     
     const errorX = new Int32Array(1);
-    OpenVR.OpenVR.VR_Init(Deno.UnsafePointer.of(errorX), OpenVR.EVRApplicationType.VRApplication_Overlay);
+    OpenVR.Init(Deno.UnsafePointer.of(errorX), OpenVR.ApplicationType.VRApplication_Overlay);
+
+    const initerr = OpenVR.InitError.VRInitError_None
     
-    const overlayHandle2: OpenVR.VROverlayHandle_t = 0n;
-    const overlayPtr = OpenVR.getGenericInterface(OpenVR.IVROverlay_Version);
-    const IVRPtr = OpenVR.getGenericInterface(OpenVR.IVRSystem_Version);
-    const IVRInputPtr = OpenVR.getGenericInterface(OpenVR.IVRInput_Version);
+    const overlayHandle2: OpenVR.OverlayHandle = 0n;
+    const overlayPtr = OpenVR.GetGenericInterface(OpenVR.IVROverlay_Version);
+    const IVRPtr = OpenVR.GetGenericInterface(OpenVR.IVRSystem_Version);
+    const IVRInputPtr = OpenVR.GetGenericInterface(OpenVR.IVRInput_Version);
 
 
     const overlay = new OpenVR.IVROverlay(overlayPtr);
