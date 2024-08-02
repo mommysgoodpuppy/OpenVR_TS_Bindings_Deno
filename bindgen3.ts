@@ -8,12 +8,14 @@ async function main() {
     console.log(typeof api);
     throw new Error("API was not object");
   }
-
-  await generateTypes(api.typedefs, api.consts);
+  let output = "";
+  output += await generateTypes(api.typedefs, api.consts);
   await generateEnums(api.enums);
   await generateStructs(api.structs);
   await generateMethods(api.methods);
   await generateEntrypoints();
+
+  await Deno.writeTextFile("openvr/FULL.ts", output);
 }
 
 const TYPEDEF_MAP: Record<string, string> = {
@@ -56,10 +58,12 @@ const REDUNDANT_TYPEDEFS: Record<string, boolean> = {
   "OverlayIntersectionMaskPrimitive_Data": true,
 };
 
-async function generateTypes(defs: any[], consts: any[]) {
+async function generateTypes(defs: any[], consts: any[]): Promise<string> {
   let output = "// Typedefs and Constants\n\n";
 
-  // Generate Typedefs
+  //#region Generate Typedefs
+
+  output += "//#region Typedefs\n";
   for (const def of defs) {
     const typedef = def.typedef;
     const dtype = def.type;
@@ -67,18 +71,23 @@ async function generateTypes(defs: any[], consts: any[]) {
     const typeTrim = trimStructName(typedef); // Assuming trimStructName is defined elsewhere
     const otype = TYPEDEF_MAP[dtype] || fieldTypeConvert(dtype); // Assuming TYPEDEF_MAP and fieldTypeConvert are defined elsewhere
     if (REDUNDANT_TYPEDEFS[otype]) continue; // Assuming REDUNDANT_TYPEDEFS is defined elsewhere
-    output += `export type ${typeTrim} = ${otype};\n`;
+    output += `export type ${typeTrim} = ${otype};//${dtype}\n`;
   }
+  output += "//#endregion\n";
+  //#endregion
 
   output += "\n"; // Add a separator between typedefs and consts
 
-  // Generate Constants
+  //#region Generate Constants
+
+  output += "//#region Constants\n";
   for (const con of consts) {
     const constname = con.constname;
     let consttype = con.consttype;
     const constval = con.constval;
 
     consttype = consttype.replace("const ", "").trim();
+    // deno-lint-ignore prefer-const
     let originalConstType = trimStructName(consttype); // Store the original type for later use
     let typedef = false;
     // Typedef Lookup
@@ -122,8 +131,12 @@ async function generateTypes(defs: any[], consts: any[]) {
         else output += `export const ${constname}: ${denoType} = ${constval};//${consttype}\n`;
     }
   }
+  output += "//#endregion\n";
+  //#endregion
 
-  await Deno.writeTextFile("openvr/types.ts", output); // Write to a single file
+  return output;
+
+  //await Deno.writeTextFile("openvr/types.ts", output); // Write to a single file
 }
 
 const ENUM_NONSTANDARD_PREFIXES: string[] = [

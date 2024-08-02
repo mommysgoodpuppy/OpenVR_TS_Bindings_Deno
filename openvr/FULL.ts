@@ -1,5 +1,6 @@
 // Typedefs and Constants
 
+//#region Typedefs
 export type PropertyTypeTag = number;//uint32_t
 export type vrshared_uint64 = bigint;//uint64_t
 export type vrshared_double = number;//double
@@ -32,7 +33,9 @@ export type Hmd_Eye = Eye;//enum vr::EVREye
 export type HmdTrackingResult = TrackingResult;//enum vr::ETrackingResult
 export type ScreenshotsError = ScreenshotError;//enum vr::EVRScreenshotError
 export type PathHandle = bigint;//uint64_t
+//#endregion
 
+//#region Constants
 export const k_nDriverNone: number = 4294967295;//uint32_t
 export const k_unMaxDriverDebugResponseSize: number = 32768;//uint32_t
 export const k_unTrackedDeviceIndex_Hmd: number = 0;//uint32_t
@@ -396,3 +399,4 @@ export const k_pchPathClientAppKey: string = "/client_info/app_key";//char *
 export const k_ulInvalidPathHandle: PathHandle = 0n;//uint64_t
 export const IVRPaths_Version: string = "FnTable:IVRPaths_001";//char *const
 export const IVRBlockQueue_Version: string = "FnTable:IVRBlockQueue_005";//char *
+//#endregion
