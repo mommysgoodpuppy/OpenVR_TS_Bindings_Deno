@@ -429,6 +429,11 @@ async function generateMethods(methods: any[]) {
       const methParams = meth.params;
       const methRet = meth.returntype;
       const retType = fieldTypeConvert(methRet);
+      output += `  /*\n`;
+      output += `  ${methName}\n`;
+      output += `  Parameters: ${JSON.stringify(methParams)}\n`;
+      output += `  Return: ${methRet}\n`;
+      output += `  */\n`;
 
       output += `  ${methName}(`;
       if (methParams) {

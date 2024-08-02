@@ -4300,12 +4300,22 @@ export interface PathRead {
 export class IVRSystem {
   constructor(private ptr: Deno.PointerValue<IVRSystem>) {}
 
+  /*
+  GetRecommendedRenderTargetSize
+  Parameters: [{"paramname":"pnWidth","paramtype":"uint32_t *"},{"paramname":"pnHeight","paramtype":"uint32_t *"}]
+  Return: void
+  */
   GetRecommendedRenderTargetSize(pnWidth: Deno.PointerValue<number>, pnHeight: Deno.PointerValue<number>): void {
     if (this.ptr === null) throw new Error("IVRSystem pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSystem>);
     // TODO: Implement FFI call
   }
 
+  /*
+  GetProjectionMatrix
+  Parameters: [{"paramname":"eEye","paramtype":"vr::EVREye"},{"paramname":"fNearZ","paramtype":"float"},{"paramname":"fFarZ","paramtype":"float"}]
+  Return: struct vr::HmdMatrix44_t
+  */
   GetProjectionMatrix(eEye: Eye, fNearZ: number, fFarZ: number): HmdMatrix44 {
     if (this.ptr === null) throw new Error("IVRSystem pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSystem>);
@@ -4314,12 +4324,22 @@ export class IVRSystem {
     return null as unknown as HmdMatrix44;
   }
 
+  /*
+  GetProjectionRaw
+  Parameters: [{"paramname":"eEye","paramtype":"vr::EVREye"},{"paramname":"pfLeft","paramtype":"float *"},{"paramname":"pfRight","paramtype":"float *"},{"paramname":"pfTop","paramtype":"float *"},{"paramname":"pfBottom","paramtype":"float *"}]
+  Return: void
+  */
   GetProjectionRaw(eEye: Eye, pfLeft: Deno.PointerValue<number>, pfRight: Deno.PointerValue<number>, pfTop: Deno.PointerValue<number>, pfBottom: Deno.PointerValue<number>): void {
     if (this.ptr === null) throw new Error("IVRSystem pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSystem>);
     // TODO: Implement FFI call
   }
 
+  /*
+  ComputeDistortion
+  Parameters: [{"paramname":"eEye","paramtype":"vr::EVREye"},{"paramname":"fU","paramtype":"float"},{"paramname":"fV","paramtype":"float"},{"paramname":"pDistortionCoordinates","paramtype":"struct vr::DistortionCoordinates_t *"}]
+  Return: bool
+  */
   ComputeDistortion(eEye: Eye, fU: number, fV: number, pDistortionCoordinates: Deno.PointerValue<DistortionCoordinates>): bool {
     if (this.ptr === null) throw new Error("IVRSystem pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSystem>);
@@ -4328,6 +4348,11 @@ export class IVRSystem {
     return null as unknown as bool;
   }
 
+  /*
+  GetEyeToHeadTransform
+  Parameters: [{"paramname":"eEye","paramtype":"vr::EVREye"}]
+  Return: struct vr::HmdMatrix34_t
+  */
   GetEyeToHeadTransform(eEye: Eye): HmdMatrix34 {
     if (this.ptr === null) throw new Error("IVRSystem pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSystem>);
@@ -4336,6 +4361,11 @@ export class IVRSystem {
     return null as unknown as HmdMatrix34;
   }
 
+  /*
+  GetTimeSinceLastVsync
+  Parameters: [{"paramname":"pfSecondsSinceLastVsync","paramtype":"float *"},{"paramname":"pulFrameCounter","paramtype":"uint64_t *"}]
+  Return: bool
+  */
   GetTimeSinceLastVsync(pfSecondsSinceLastVsync: Deno.PointerValue<number>, pulFrameCounter: Deno.PointerValue<bigint>): bool {
     if (this.ptr === null) throw new Error("IVRSystem pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSystem>);
@@ -4344,6 +4374,11 @@ export class IVRSystem {
     return null as unknown as bool;
   }
 
+  /*
+  GetD3D9AdapterIndex
+  Parameters: undefined
+  Return: int32_t
+  */
   GetD3D9AdapterIndex(): number {
     if (this.ptr === null) throw new Error("IVRSystem pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSystem>);
@@ -4352,18 +4387,33 @@ export class IVRSystem {
     return null as unknown as number;
   }
 
+  /*
+  GetDXGIOutputInfo
+  Parameters: [{"paramname":"pnAdapterIndex","paramtype":"int32_t *"}]
+  Return: void
+  */
   GetDXGIOutputInfo(pnAdapterIndex: Deno.PointerValue<number>): void {
     if (this.ptr === null) throw new Error("IVRSystem pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSystem>);
     // TODO: Implement FFI call
   }
 
+  /*
+  GetOutputDevice
+  Parameters: [{"paramname":"pnDevice","paramtype":"uint64_t *"},{"paramname":"textureType","paramtype":"vr::ETextureType"},{"paramname":"pInstance","paramtype":"struct VkInstance_T *"}]
+  Return: void
+  */
   GetOutputDevice(pnDevice: Deno.PointerValue<bigint>, textureType: TextureType, pInstance: Deno.PointerValue<VkInstance_T>): void {
     if (this.ptr === null) throw new Error("IVRSystem pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSystem>);
     // TODO: Implement FFI call
   }
 
+  /*
+  IsDisplayOnDesktop
+  Parameters: undefined
+  Return: bool
+  */
   IsDisplayOnDesktop(): bool {
     if (this.ptr === null) throw new Error("IVRSystem pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSystem>);
@@ -4372,6 +4422,11 @@ export class IVRSystem {
     return null as unknown as bool;
   }
 
+  /*
+  SetDisplayVisibility
+  Parameters: [{"paramname":"bIsVisibleOnDesktop","paramtype":"bool"}]
+  Return: bool
+  */
   SetDisplayVisibility(bIsVisibleOnDesktop: bool): bool {
     if (this.ptr === null) throw new Error("IVRSystem pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSystem>);
@@ -4380,12 +4435,22 @@ export class IVRSystem {
     return null as unknown as bool;
   }
 
+  /*
+  GetDeviceToAbsoluteTrackingPose
+  Parameters: [{"paramname":"eOrigin","paramtype":"vr::ETrackingUniverseOrigin"},{"paramname":"fPredictedSecondsToPhotonsFromNow","paramtype":"float"},{"paramname":"pTrackedDevicePoseArray","array_count":"unTrackedDevicePoseArrayCount","paramtype":"struct vr::TrackedDevicePose_t *"},{"paramname":"unTrackedDevicePoseArrayCount","paramtype":"uint32_t"}]
+  Return: void
+  */
   GetDeviceToAbsoluteTrackingPose(eOrigin: TrackingUniverseOrigin, fPredictedSecondsToPhotonsFromNow: number, pTrackedDevicePoseArray: Deno.PointerValue<TrackedDevicePose>, unTrackedDevicePoseArrayCount: number): void {
     if (this.ptr === null) throw new Error("IVRSystem pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSystem>);
     // TODO: Implement FFI call
   }
 
+  /*
+  GetSeatedZeroPoseToStandingAbsoluteTrackingPose
+  Parameters: undefined
+  Return: struct vr::HmdMatrix34_t
+  */
   GetSeatedZeroPoseToStandingAbsoluteTrackingPose(): HmdMatrix34 {
     if (this.ptr === null) throw new Error("IVRSystem pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSystem>);
@@ -4394,6 +4459,11 @@ export class IVRSystem {
     return null as unknown as HmdMatrix34;
   }
 
+  /*
+  GetRawZeroPoseToStandingAbsoluteTrackingPose
+  Parameters: undefined
+  Return: struct vr::HmdMatrix34_t
+  */
   GetRawZeroPoseToStandingAbsoluteTrackingPose(): HmdMatrix34 {
     if (this.ptr === null) throw new Error("IVRSystem pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSystem>);
@@ -4402,6 +4472,11 @@ export class IVRSystem {
     return null as unknown as HmdMatrix34;
   }
 
+  /*
+  GetSortedTrackedDeviceIndicesOfClass
+  Parameters: [{"paramname":"eTrackedDeviceClass","paramtype":"vr::ETrackedDeviceClass"},{"paramname":"punTrackedDeviceIndexArray","array_count":"unTrackedDeviceIndexArrayCount","paramtype":"vr::TrackedDeviceIndex_t *"},{"paramname":"unTrackedDeviceIndexArrayCount","paramtype":"uint32_t"},{"paramname":"unRelativeToTrackedDeviceIndex","paramtype":"vr::TrackedDeviceIndex_t"}]
+  Return: uint32_t
+  */
   GetSortedTrackedDeviceIndicesOfClass(eTrackedDeviceClass: TrackedDeviceClass, punTrackedDeviceIndexArray: Deno.PointerValue<TrackedDeviceIndex>, unTrackedDeviceIndexArrayCount: number, unRelativeToTrackedDeviceIndex: TrackedDeviceIndex): number {
     if (this.ptr === null) throw new Error("IVRSystem pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSystem>);
@@ -4410,6 +4485,11 @@ export class IVRSystem {
     return null as unknown as number;
   }
 
+  /*
+  GetTrackedDeviceActivityLevel
+  Parameters: [{"paramname":"unDeviceId","paramtype":"vr::TrackedDeviceIndex_t"}]
+  Return: vr::EDeviceActivityLevel
+  */
   GetTrackedDeviceActivityLevel(unDeviceId: TrackedDeviceIndex): DeviceActivityLevel {
     if (this.ptr === null) throw new Error("IVRSystem pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSystem>);
@@ -4418,12 +4498,22 @@ export class IVRSystem {
     return null as unknown as DeviceActivityLevel;
   }
 
+  /*
+  ApplyTransform
+  Parameters: [{"paramname":"pOutputPose","paramtype":"struct vr::TrackedDevicePose_t *"},{"paramname":"pTrackedDevicePose","paramtype":"const struct vr::TrackedDevicePose_t *"},{"paramname":"pTransform","paramtype":"const struct vr::HmdMatrix34_t *"}]
+  Return: void
+  */
   ApplyTransform(pOutputPose: Deno.PointerValue<TrackedDevicePose>, pTrackedDevicePose: Deno.PointerValue<TrackedDevicePose>//READONLY, pTransform: Deno.PointerValue<HmdMatrix34>//READONLY): void {
     if (this.ptr === null) throw new Error("IVRSystem pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSystem>);
     // TODO: Implement FFI call
   }
 
+  /*
+  GetTrackedDeviceIndexForControllerRole
+  Parameters: [{"paramname":"unDeviceType","paramtype":"vr::ETrackedControllerRole"}]
+  Return: vr::TrackedDeviceIndex_t
+  */
   GetTrackedDeviceIndexForControllerRole(unDeviceType: TrackedControllerRole): TrackedDeviceIndex {
     if (this.ptr === null) throw new Error("IVRSystem pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSystem>);
@@ -4432,6 +4522,11 @@ export class IVRSystem {
     return null as unknown as TrackedDeviceIndex;
   }
 
+  /*
+  GetControllerRoleForTrackedDeviceIndex
+  Parameters: [{"paramname":"unDeviceIndex","paramtype":"vr::TrackedDeviceIndex_t"}]
+  Return: vr::ETrackedControllerRole
+  */
   GetControllerRoleForTrackedDeviceIndex(unDeviceIndex: TrackedDeviceIndex): TrackedControllerRole {
     if (this.ptr === null) throw new Error("IVRSystem pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSystem>);
@@ -4440,6 +4535,11 @@ export class IVRSystem {
     return null as unknown as TrackedControllerRole;
   }
 
+  /*
+  GetTrackedDeviceClass
+  Parameters: [{"paramname":"unDeviceIndex","paramtype":"vr::TrackedDeviceIndex_t"}]
+  Return: vr::ETrackedDeviceClass
+  */
   GetTrackedDeviceClass(unDeviceIndex: TrackedDeviceIndex): TrackedDeviceClass {
     if (this.ptr === null) throw new Error("IVRSystem pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSystem>);
@@ -4448,6 +4548,11 @@ export class IVRSystem {
     return null as unknown as TrackedDeviceClass;
   }
 
+  /*
+  IsTrackedDeviceConnected
+  Parameters: [{"paramname":"unDeviceIndex","paramtype":"vr::TrackedDeviceIndex_t"}]
+  Return: bool
+  */
   IsTrackedDeviceConnected(unDeviceIndex: TrackedDeviceIndex): bool {
     if (this.ptr === null) throw new Error("IVRSystem pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSystem>);
@@ -4456,6 +4561,11 @@ export class IVRSystem {
     return null as unknown as bool;
   }
 
+  /*
+  GetBoolTrackedDeviceProperty
+  Parameters: [{"paramname":"unDeviceIndex","paramtype":"vr::TrackedDeviceIndex_t"},{"paramname":"prop","paramtype":"vr::ETrackedDeviceProperty"},{"paramname":"pError","paramtype":"vr::ETrackedPropertyError *"}]
+  Return: bool
+  */
   GetBoolTrackedDeviceProperty(unDeviceIndex: TrackedDeviceIndex, prop: TrackedDeviceProperty, pError: Deno.PointerValue<TrackedPropertyError>): bool {
     if (this.ptr === null) throw new Error("IVRSystem pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSystem>);
@@ -4464,6 +4574,11 @@ export class IVRSystem {
     return null as unknown as bool;
   }
 
+  /*
+  GetFloatTrackedDeviceProperty
+  Parameters: [{"paramname":"unDeviceIndex","paramtype":"vr::TrackedDeviceIndex_t"},{"paramname":"prop","paramtype":"vr::ETrackedDeviceProperty"},{"paramname":"pError","paramtype":"vr::ETrackedPropertyError *"}]
+  Return: float
+  */
   GetFloatTrackedDeviceProperty(unDeviceIndex: TrackedDeviceIndex, prop: TrackedDeviceProperty, pError: Deno.PointerValue<TrackedPropertyError>): number {
     if (this.ptr === null) throw new Error("IVRSystem pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSystem>);
@@ -4472,6 +4587,11 @@ export class IVRSystem {
     return null as unknown as number;
   }
 
+  /*
+  GetInt32TrackedDeviceProperty
+  Parameters: [{"paramname":"unDeviceIndex","paramtype":"vr::TrackedDeviceIndex_t"},{"paramname":"prop","paramtype":"vr::ETrackedDeviceProperty"},{"paramname":"pError","paramtype":"vr::ETrackedPropertyError *"}]
+  Return: int32_t
+  */
   GetInt32TrackedDeviceProperty(unDeviceIndex: TrackedDeviceIndex, prop: TrackedDeviceProperty, pError: Deno.PointerValue<TrackedPropertyError>): number {
     if (this.ptr === null) throw new Error("IVRSystem pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSystem>);
@@ -4480,6 +4600,11 @@ export class IVRSystem {
     return null as unknown as number;
   }
 
+  /*
+  GetUint64TrackedDeviceProperty
+  Parameters: [{"paramname":"unDeviceIndex","paramtype":"vr::TrackedDeviceIndex_t"},{"paramname":"prop","paramtype":"vr::ETrackedDeviceProperty"},{"paramname":"pError","paramtype":"vr::ETrackedPropertyError *"}]
+  Return: uint64_t
+  */
   GetUint64TrackedDeviceProperty(unDeviceIndex: TrackedDeviceIndex, prop: TrackedDeviceProperty, pError: Deno.PointerValue<TrackedPropertyError>): bigint {
     if (this.ptr === null) throw new Error("IVRSystem pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSystem>);
@@ -4488,6 +4613,11 @@ export class IVRSystem {
     return null as unknown as bigint;
   }
 
+  /*
+  GetMatrix34TrackedDeviceProperty
+  Parameters: [{"paramname":"unDeviceIndex","paramtype":"vr::TrackedDeviceIndex_t"},{"paramname":"prop","paramtype":"vr::ETrackedDeviceProperty"},{"paramname":"pError","paramtype":"vr::ETrackedPropertyError *"}]
+  Return: struct vr::HmdMatrix34_t
+  */
   GetMatrix34TrackedDeviceProperty(unDeviceIndex: TrackedDeviceIndex, prop: TrackedDeviceProperty, pError: Deno.PointerValue<TrackedPropertyError>): HmdMatrix34 {
     if (this.ptr === null) throw new Error("IVRSystem pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSystem>);
@@ -4496,6 +4626,11 @@ export class IVRSystem {
     return null as unknown as HmdMatrix34;
   }
 
+  /*
+  GetArrayTrackedDeviceProperty
+  Parameters: [{"paramname":"unDeviceIndex","paramtype":"vr::TrackedDeviceIndex_t"},{"paramname":"prop","paramtype":"vr::ETrackedDeviceProperty"},{"paramname":"propType","paramtype":"vr::PropertyTypeTag_t"},{"paramname":"pBuffer","paramtype":"void *"},{"paramname":"unBufferSize","paramtype":"uint32_t"},{"paramname":"pError","paramtype":"vr::ETrackedPropertyError *"}]
+  Return: uint32_t
+  */
   GetArrayTrackedDeviceProperty(unDeviceIndex: TrackedDeviceIndex, prop: TrackedDeviceProperty, propType: PropertyTypeTag, pBuffer: Deno.PointerValue<unknown>, unBufferSize: number, pError: Deno.PointerValue<TrackedPropertyError>): number {
     if (this.ptr === null) throw new Error("IVRSystem pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSystem>);
@@ -4504,6 +4639,11 @@ export class IVRSystem {
     return null as unknown as number;
   }
 
+  /*
+  GetStringTrackedDeviceProperty
+  Parameters: [{"paramname":"unDeviceIndex","paramtype":"vr::TrackedDeviceIndex_t"},{"paramname":"prop","paramtype":"vr::ETrackedDeviceProperty"},{"paramname":"pchValue","out_string":" ","paramtype":"char *"},{"paramname":"unBufferSize","paramtype":"uint32_t"},{"paramname":"pError","paramtype":"vr::ETrackedPropertyError *"}]
+  Return: uint32_t
+  */
   GetStringTrackedDeviceProperty(unDeviceIndex: TrackedDeviceIndex, prop: TrackedDeviceProperty, pchValue: string, unBufferSize: number, pError: Deno.PointerValue<TrackedPropertyError>): number {
     if (this.ptr === null) throw new Error("IVRSystem pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSystem>);
@@ -4512,6 +4652,11 @@ export class IVRSystem {
     return null as unknown as number;
   }
 
+  /*
+  GetPropErrorNameFromEnum
+  Parameters: [{"paramname":"error","paramtype":"vr::ETrackedPropertyError"}]
+  Return: const char *
+  */
   GetPropErrorNameFromEnum(error: TrackedPropertyError): string {
     if (this.ptr === null) throw new Error("IVRSystem pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSystem>);
@@ -4520,6 +4665,11 @@ export class IVRSystem {
     return null as unknown as string;
   }
 
+  /*
+  PollNextEvent
+  Parameters: [{"paramname":"pEvent","paramtype":"struct vr::VREvent_t *"},{"paramname":"uncbVREvent","paramtype":"uint32_t"}]
+  Return: bool
+  */
   PollNextEvent(pEvent: Deno.PointerValue<Event>, uncbVREvent: number): bool {
     if (this.ptr === null) throw new Error("IVRSystem pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSystem>);
@@ -4528,6 +4678,11 @@ export class IVRSystem {
     return null as unknown as bool;
   }
 
+  /*
+  PollNextEventWithPose
+  Parameters: [{"paramname":"eOrigin","paramtype":"vr::ETrackingUniverseOrigin"},{"paramname":"pEvent","paramtype":"struct vr::VREvent_t *"},{"paramname":"uncbVREvent","paramtype":"uint32_t"},{"paramname":"pTrackedDevicePose","paramtype":"vr::TrackedDevicePose_t *"}]
+  Return: bool
+  */
   PollNextEventWithPose(eOrigin: TrackingUniverseOrigin, pEvent: Deno.PointerValue<Event>, uncbVREvent: number, pTrackedDevicePose: Deno.PointerValue<TrackedDevicePose>): bool {
     if (this.ptr === null) throw new Error("IVRSystem pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSystem>);
@@ -4536,6 +4691,11 @@ export class IVRSystem {
     return null as unknown as bool;
   }
 
+  /*
+  GetEventTypeNameFromEnum
+  Parameters: [{"paramname":"eType","paramtype":"vr::EVREventType"}]
+  Return: const char *
+  */
   GetEventTypeNameFromEnum(eType: EventType): string {
     if (this.ptr === null) throw new Error("IVRSystem pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSystem>);
@@ -4544,6 +4704,11 @@ export class IVRSystem {
     return null as unknown as string;
   }
 
+  /*
+  GetHiddenAreaMesh
+  Parameters: [{"paramname":"eEye","paramtype":"vr::EVREye"},{"paramname":"type","paramtype":"vr::EHiddenAreaMeshType"}]
+  Return: struct vr::HiddenAreaMesh_t
+  */
   GetHiddenAreaMesh(eEye: Eye, type: HiddenAreaMeshType): HiddenAreaMesh {
     if (this.ptr === null) throw new Error("IVRSystem pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSystem>);
@@ -4552,6 +4717,11 @@ export class IVRSystem {
     return null as unknown as HiddenAreaMesh;
   }
 
+  /*
+  GetControllerState
+  Parameters: [{"paramname":"unControllerDeviceIndex","paramtype":"vr::TrackedDeviceIndex_t"},{"paramname":"pControllerState","paramtype":"vr::VRControllerState_t *"},{"paramname":"unControllerStateSize","paramtype":"uint32_t"}]
+  Return: bool
+  */
   GetControllerState(unControllerDeviceIndex: TrackedDeviceIndex, pControllerState: Deno.PointerValue<ControllerState>, unControllerStateSize: number): bool {
     if (this.ptr === null) throw new Error("IVRSystem pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSystem>);
@@ -4560,6 +4730,11 @@ export class IVRSystem {
     return null as unknown as bool;
   }
 
+  /*
+  GetControllerStateWithPose
+  Parameters: [{"paramname":"eOrigin","paramtype":"vr::ETrackingUniverseOrigin"},{"paramname":"unControllerDeviceIndex","paramtype":"vr::TrackedDeviceIndex_t"},{"paramname":"pControllerState","paramtype":"vr::VRControllerState_t *"},{"paramname":"unControllerStateSize","paramtype":"uint32_t"},{"paramname":"pTrackedDevicePose","paramtype":"struct vr::TrackedDevicePose_t *"}]
+  Return: bool
+  */
   GetControllerStateWithPose(eOrigin: TrackingUniverseOrigin, unControllerDeviceIndex: TrackedDeviceIndex, pControllerState: Deno.PointerValue<ControllerState>, unControllerStateSize: number, pTrackedDevicePose: Deno.PointerValue<TrackedDevicePose>): bool {
     if (this.ptr === null) throw new Error("IVRSystem pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSystem>);
@@ -4568,12 +4743,22 @@ export class IVRSystem {
     return null as unknown as bool;
   }
 
+  /*
+  TriggerHapticPulse
+  Parameters: [{"paramname":"unControllerDeviceIndex","paramtype":"vr::TrackedDeviceIndex_t"},{"paramname":"unAxisId","paramtype":"uint32_t"},{"paramname":"usDurationMicroSec","paramtype":"unsigned short"}]
+  Return: void
+  */
   TriggerHapticPulse(unControllerDeviceIndex: TrackedDeviceIndex, unAxisId: number, usDurationMicroSec: number): void {
     if (this.ptr === null) throw new Error("IVRSystem pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSystem>);
     // TODO: Implement FFI call
   }
 
+  /*
+  GetButtonIdNameFromEnum
+  Parameters: [{"paramname":"eButtonId","paramtype":"vr::EVRButtonId"}]
+  Return: const char *
+  */
   GetButtonIdNameFromEnum(eButtonId: ButtonId): string {
     if (this.ptr === null) throw new Error("IVRSystem pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSystem>);
@@ -4582,6 +4767,11 @@ export class IVRSystem {
     return null as unknown as string;
   }
 
+  /*
+  GetControllerAxisTypeNameFromEnum
+  Parameters: [{"paramname":"eAxisType","paramtype":"vr::EVRControllerAxisType"}]
+  Return: const char *
+  */
   GetControllerAxisTypeNameFromEnum(eAxisType: ControllerAxisType): string {
     if (this.ptr === null) throw new Error("IVRSystem pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSystem>);
@@ -4590,6 +4780,11 @@ export class IVRSystem {
     return null as unknown as string;
   }
 
+  /*
+  IsInputAvailable
+  Parameters: undefined
+  Return: bool
+  */
   IsInputAvailable(): bool {
     if (this.ptr === null) throw new Error("IVRSystem pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSystem>);
@@ -4598,6 +4793,11 @@ export class IVRSystem {
     return null as unknown as bool;
   }
 
+  /*
+  IsSteamVRDrawingControllers
+  Parameters: undefined
+  Return: bool
+  */
   IsSteamVRDrawingControllers(): bool {
     if (this.ptr === null) throw new Error("IVRSystem pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSystem>);
@@ -4606,6 +4806,11 @@ export class IVRSystem {
     return null as unknown as bool;
   }
 
+  /*
+  ShouldApplicationPause
+  Parameters: undefined
+  Return: bool
+  */
   ShouldApplicationPause(): bool {
     if (this.ptr === null) throw new Error("IVRSystem pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSystem>);
@@ -4614,6 +4819,11 @@ export class IVRSystem {
     return null as unknown as bool;
   }
 
+  /*
+  ShouldApplicationReduceRenderingWork
+  Parameters: undefined
+  Return: bool
+  */
   ShouldApplicationReduceRenderingWork(): bool {
     if (this.ptr === null) throw new Error("IVRSystem pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSystem>);
@@ -4622,6 +4832,11 @@ export class IVRSystem {
     return null as unknown as bool;
   }
 
+  /*
+  PerformFirmwareUpdate
+  Parameters: [{"paramname":"unDeviceIndex","paramtype":"vr::TrackedDeviceIndex_t"}]
+  Return: vr::EVRFirmwareError
+  */
   PerformFirmwareUpdate(unDeviceIndex: TrackedDeviceIndex): FirmwareError {
     if (this.ptr === null) throw new Error("IVRSystem pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSystem>);
@@ -4630,12 +4845,22 @@ export class IVRSystem {
     return null as unknown as FirmwareError;
   }
 
+  /*
+  AcknowledgeQuit_Exiting
+  Parameters: undefined
+  Return: void
+  */
   AcknowledgeQuit_Exiting(): void {
     if (this.ptr === null) throw new Error("IVRSystem pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSystem>);
     // TODO: Implement FFI call
   }
 
+  /*
+  GetAppContainerFilePaths
+  Parameters: [{"paramname":"pchBuffer","out_string":" ","paramtype":"char *"},{"paramname":"unBufferSize","paramtype":"uint32_t"}]
+  Return: uint32_t
+  */
   GetAppContainerFilePaths(pchBuffer: string, unBufferSize: number): number {
     if (this.ptr === null) throw new Error("IVRSystem pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSystem>);
@@ -4644,6 +4869,11 @@ export class IVRSystem {
     return null as unknown as number;
   }
 
+  /*
+  GetRuntimeVersion
+  Parameters: undefined
+  Return: const char *
+  */
   GetRuntimeVersion(): string {
     if (this.ptr === null) throw new Error("IVRSystem pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSystem>);
@@ -4657,6 +4887,11 @@ export class IVRSystem {
 export class IVRChaperone {
   constructor(private ptr: Deno.PointerValue<IVRChaperone>) {}
 
+  /*
+  GetCalibrationState
+  Parameters: undefined
+  Return: vr::ChaperoneCalibrationState
+  */
   GetCalibrationState(): ChaperoneCalibrationState {
     if (this.ptr === null) throw new Error("IVRChaperone pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRChaperone>);
@@ -4665,6 +4900,11 @@ export class IVRChaperone {
     return null as unknown as ChaperoneCalibrationState;
   }
 
+  /*
+  GetPlayAreaSize
+  Parameters: [{"paramname":"pSizeX","paramtype":"float *"},{"paramname":"pSizeZ","paramtype":"float *"}]
+  Return: bool
+  */
   GetPlayAreaSize(pSizeX: Deno.PointerValue<number>, pSizeZ: Deno.PointerValue<number>): bool {
     if (this.ptr === null) throw new Error("IVRChaperone pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRChaperone>);
@@ -4673,6 +4913,11 @@ export class IVRChaperone {
     return null as unknown as bool;
   }
 
+  /*
+  GetPlayAreaRect
+  Parameters: [{"paramname":"rect","paramtype":"struct vr::HmdQuad_t *"}]
+  Return: bool
+  */
   GetPlayAreaRect(rect: Deno.PointerValue<HmdQuad>): bool {
     if (this.ptr === null) throw new Error("IVRChaperone pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRChaperone>);
@@ -4681,24 +4926,44 @@ export class IVRChaperone {
     return null as unknown as bool;
   }
 
+  /*
+  ReloadInfo
+  Parameters: undefined
+  Return: void
+  */
   ReloadInfo(): void {
     if (this.ptr === null) throw new Error("IVRChaperone pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRChaperone>);
     // TODO: Implement FFI call
   }
 
+  /*
+  SetSceneColor
+  Parameters: [{"paramname":"color","paramtype":"struct vr::HmdColor_t"}]
+  Return: void
+  */
   SetSceneColor(color: HmdColor): void {
     if (this.ptr === null) throw new Error("IVRChaperone pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRChaperone>);
     // TODO: Implement FFI call
   }
 
+  /*
+  GetBoundsColor
+  Parameters: [{"paramname":"pOutputColorArray","paramtype":"struct vr::HmdColor_t *"},{"paramname":"nNumOutputColors","paramtype":"int"},{"paramname":"flCollisionBoundsFadeDistance","paramtype":"float"},{"paramname":"pOutputCameraColor","paramtype":"struct vr::HmdColor_t *"}]
+  Return: void
+  */
   GetBoundsColor(pOutputColorArray: Deno.PointerValue<HmdColor>, nNumOutputColors: int, flCollisionBoundsFadeDistance: number, pOutputCameraColor: Deno.PointerValue<HmdColor>): void {
     if (this.ptr === null) throw new Error("IVRChaperone pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRChaperone>);
     // TODO: Implement FFI call
   }
 
+  /*
+  AreBoundsVisible
+  Parameters: undefined
+  Return: bool
+  */
   AreBoundsVisible(): bool {
     if (this.ptr === null) throw new Error("IVRChaperone pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRChaperone>);
@@ -4707,12 +4972,22 @@ export class IVRChaperone {
     return null as unknown as bool;
   }
 
+  /*
+  ForceBoundsVisible
+  Parameters: [{"paramname":"bForce","paramtype":"bool"}]
+  Return: void
+  */
   ForceBoundsVisible(bForce: bool): void {
     if (this.ptr === null) throw new Error("IVRChaperone pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRChaperone>);
     // TODO: Implement FFI call
   }
 
+  /*
+  ResetZeroPose
+  Parameters: [{"paramname":"eTrackingUniverseOrigin","paramtype":"vr::ETrackingUniverseOrigin"}]
+  Return: void
+  */
   ResetZeroPose(eTrackingUniverseOrigin: TrackingUniverseOrigin): void {
     if (this.ptr === null) throw new Error("IVRChaperone pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRChaperone>);
@@ -4724,6 +4999,11 @@ export class IVRChaperone {
 export class IVRChaperoneSetup {
   constructor(private ptr: Deno.PointerValue<IVRChaperoneSetup>) {}
 
+  /*
+  CommitWorkingCopy
+  Parameters: [{"paramname":"configFile","paramtype":"vr::EChaperoneConfigFile"}]
+  Return: bool
+  */
   CommitWorkingCopy(configFile: ChaperoneConfigFile): bool {
     if (this.ptr === null) throw new Error("IVRChaperoneSetup pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRChaperoneSetup>);
@@ -4732,12 +5012,22 @@ export class IVRChaperoneSetup {
     return null as unknown as bool;
   }
 
+  /*
+  RevertWorkingCopy
+  Parameters: undefined
+  Return: void
+  */
   RevertWorkingCopy(): void {
     if (this.ptr === null) throw new Error("IVRChaperoneSetup pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRChaperoneSetup>);
     // TODO: Implement FFI call
   }
 
+  /*
+  GetWorkingPlayAreaSize
+  Parameters: [{"paramname":"pSizeX","paramtype":"float *"},{"paramname":"pSizeZ","paramtype":"float *"}]
+  Return: bool
+  */
   GetWorkingPlayAreaSize(pSizeX: Deno.PointerValue<number>, pSizeZ: Deno.PointerValue<number>): bool {
     if (this.ptr === null) throw new Error("IVRChaperoneSetup pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRChaperoneSetup>);
@@ -4746,6 +5036,11 @@ export class IVRChaperoneSetup {
     return null as unknown as bool;
   }
 
+  /*
+  GetWorkingPlayAreaRect
+  Parameters: [{"paramname":"rect","paramtype":"struct vr::HmdQuad_t *"}]
+  Return: bool
+  */
   GetWorkingPlayAreaRect(rect: Deno.PointerValue<HmdQuad>): bool {
     if (this.ptr === null) throw new Error("IVRChaperoneSetup pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRChaperoneSetup>);
@@ -4754,6 +5049,11 @@ export class IVRChaperoneSetup {
     return null as unknown as bool;
   }
 
+  /*
+  GetWorkingCollisionBoundsInfo
+  Parameters: [{"paramname":"pQuadsBuffer","out_array_count":"punQuadsCount","paramtype":"struct vr::HmdQuad_t *"},{"paramname":"punQuadsCount","paramtype":"uint32_t *"}]
+  Return: bool
+  */
   GetWorkingCollisionBoundsInfo(pQuadsBuffer: Deno.PointerValue<HmdQuad>, punQuadsCount: Deno.PointerValue<number>): bool {
     if (this.ptr === null) throw new Error("IVRChaperoneSetup pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRChaperoneSetup>);
@@ -4762,6 +5062,11 @@ export class IVRChaperoneSetup {
     return null as unknown as bool;
   }
 
+  /*
+  GetLiveCollisionBoundsInfo
+  Parameters: [{"paramname":"pQuadsBuffer","out_array_count":"punQuadsCount","paramtype":"struct vr::HmdQuad_t *"},{"paramname":"punQuadsCount","paramtype":"uint32_t *"}]
+  Return: bool
+  */
   GetLiveCollisionBoundsInfo(pQuadsBuffer: Deno.PointerValue<HmdQuad>, punQuadsCount: Deno.PointerValue<number>): bool {
     if (this.ptr === null) throw new Error("IVRChaperoneSetup pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRChaperoneSetup>);
@@ -4770,6 +5075,11 @@ export class IVRChaperoneSetup {
     return null as unknown as bool;
   }
 
+  /*
+  GetWorkingSeatedZeroPoseToRawTrackingPose
+  Parameters: [{"paramname":"pmatSeatedZeroPoseToRawTrackingPose","paramtype":"struct vr::HmdMatrix34_t *"}]
+  Return: bool
+  */
   GetWorkingSeatedZeroPoseToRawTrackingPose(pmatSeatedZeroPoseToRawTrackingPose: Deno.PointerValue<HmdMatrix34>): bool {
     if (this.ptr === null) throw new Error("IVRChaperoneSetup pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRChaperoneSetup>);
@@ -4778,6 +5088,11 @@ export class IVRChaperoneSetup {
     return null as unknown as bool;
   }
 
+  /*
+  GetWorkingStandingZeroPoseToRawTrackingPose
+  Parameters: [{"paramname":"pmatStandingZeroPoseToRawTrackingPose","paramtype":"struct vr::HmdMatrix34_t *"}]
+  Return: bool
+  */
   GetWorkingStandingZeroPoseToRawTrackingPose(pmatStandingZeroPoseToRawTrackingPose: Deno.PointerValue<HmdMatrix34>): bool {
     if (this.ptr === null) throw new Error("IVRChaperoneSetup pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRChaperoneSetup>);
@@ -4786,42 +5101,77 @@ export class IVRChaperoneSetup {
     return null as unknown as bool;
   }
 
+  /*
+  SetWorkingPlayAreaSize
+  Parameters: [{"paramname":"sizeX","paramtype":"float"},{"paramname":"sizeZ","paramtype":"float"}]
+  Return: void
+  */
   SetWorkingPlayAreaSize(sizeX: number, sizeZ: number): void {
     if (this.ptr === null) throw new Error("IVRChaperoneSetup pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRChaperoneSetup>);
     // TODO: Implement FFI call
   }
 
+  /*
+  SetWorkingCollisionBoundsInfo
+  Parameters: [{"paramname":"pQuadsBuffer","array_count":"unQuadsCount","paramtype":"struct vr::HmdQuad_t *"},{"paramname":"unQuadsCount","paramtype":"uint32_t"}]
+  Return: void
+  */
   SetWorkingCollisionBoundsInfo(pQuadsBuffer: Deno.PointerValue<HmdQuad>, unQuadsCount: number): void {
     if (this.ptr === null) throw new Error("IVRChaperoneSetup pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRChaperoneSetup>);
     // TODO: Implement FFI call
   }
 
+  /*
+  SetWorkingPerimeter
+  Parameters: [{"paramname":"pPointBuffer","array_count":"unPointCount","paramtype":"struct vr::HmdVector2_t *"},{"paramname":"unPointCount","paramtype":"uint32_t"}]
+  Return: void
+  */
   SetWorkingPerimeter(pPointBuffer: Deno.PointerValue<HmdVector2>, unPointCount: number): void {
     if (this.ptr === null) throw new Error("IVRChaperoneSetup pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRChaperoneSetup>);
     // TODO: Implement FFI call
   }
 
+  /*
+  SetWorkingSeatedZeroPoseToRawTrackingPose
+  Parameters: [{"paramname":"pMatSeatedZeroPoseToRawTrackingPose","paramtype":"const struct vr::HmdMatrix34_t *"}]
+  Return: void
+  */
   SetWorkingSeatedZeroPoseToRawTrackingPose(pMatSeatedZeroPoseToRawTrackingPose: Deno.PointerValue<HmdMatrix34>//READONLY): void {
     if (this.ptr === null) throw new Error("IVRChaperoneSetup pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRChaperoneSetup>);
     // TODO: Implement FFI call
   }
 
+  /*
+  SetWorkingStandingZeroPoseToRawTrackingPose
+  Parameters: [{"paramname":"pMatStandingZeroPoseToRawTrackingPose","paramtype":"const struct vr::HmdMatrix34_t *"}]
+  Return: void
+  */
   SetWorkingStandingZeroPoseToRawTrackingPose(pMatStandingZeroPoseToRawTrackingPose: Deno.PointerValue<HmdMatrix34>//READONLY): void {
     if (this.ptr === null) throw new Error("IVRChaperoneSetup pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRChaperoneSetup>);
     // TODO: Implement FFI call
   }
 
+  /*
+  ReloadFromDisk
+  Parameters: [{"paramname":"configFile","paramtype":"vr::EChaperoneConfigFile"}]
+  Return: void
+  */
   ReloadFromDisk(configFile: ChaperoneConfigFile): void {
     if (this.ptr === null) throw new Error("IVRChaperoneSetup pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRChaperoneSetup>);
     // TODO: Implement FFI call
   }
 
+  /*
+  GetLiveSeatedZeroPoseToRawTrackingPose
+  Parameters: [{"paramname":"pmatSeatedZeroPoseToRawTrackingPose","paramtype":"struct vr::HmdMatrix34_t *"}]
+  Return: bool
+  */
   GetLiveSeatedZeroPoseToRawTrackingPose(pmatSeatedZeroPoseToRawTrackingPose: Deno.PointerValue<HmdMatrix34>): bool {
     if (this.ptr === null) throw new Error("IVRChaperoneSetup pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRChaperoneSetup>);
@@ -4830,6 +5180,11 @@ export class IVRChaperoneSetup {
     return null as unknown as bool;
   }
 
+  /*
+  ExportLiveToBuffer
+  Parameters: [{"paramname":"pBuffer","out_string":" ","paramtype":"char *"},{"paramname":"pnBufferLength","paramtype":"uint32_t *"}]
+  Return: bool
+  */
   ExportLiveToBuffer(pBuffer: string, pnBufferLength: Deno.PointerValue<number>): bool {
     if (this.ptr === null) throw new Error("IVRChaperoneSetup pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRChaperoneSetup>);
@@ -4838,6 +5193,11 @@ export class IVRChaperoneSetup {
     return null as unknown as bool;
   }
 
+  /*
+  ImportFromBufferToWorking
+  Parameters: [{"paramname":"pBuffer","paramtype":"const char *"},{"paramname":"nImportFlags","paramtype":"uint32_t"}]
+  Return: bool
+  */
   ImportFromBufferToWorking(pBuffer: string, nImportFlags: number): bool {
     if (this.ptr === null) throw new Error("IVRChaperoneSetup pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRChaperoneSetup>);
@@ -4846,18 +5206,33 @@ export class IVRChaperoneSetup {
     return null as unknown as bool;
   }
 
+  /*
+  ShowWorkingSetPreview
+  Parameters: undefined
+  Return: void
+  */
   ShowWorkingSetPreview(): void {
     if (this.ptr === null) throw new Error("IVRChaperoneSetup pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRChaperoneSetup>);
     // TODO: Implement FFI call
   }
 
+  /*
+  HideWorkingSetPreview
+  Parameters: undefined
+  Return: void
+  */
   HideWorkingSetPreview(): void {
     if (this.ptr === null) throw new Error("IVRChaperoneSetup pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRChaperoneSetup>);
     // TODO: Implement FFI call
   }
 
+  /*
+  RoomSetupStarting
+  Parameters: undefined
+  Return: void
+  */
   RoomSetupStarting(): void {
     if (this.ptr === null) throw new Error("IVRChaperoneSetup pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRChaperoneSetup>);
@@ -4869,12 +5244,22 @@ export class IVRChaperoneSetup {
 export class IVRCompositor {
   constructor(private ptr: Deno.PointerValue<IVRCompositor>) {}
 
+  /*
+  SetTrackingSpace
+  Parameters: [{"paramname":"eOrigin","paramtype":"vr::ETrackingUniverseOrigin"}]
+  Return: void
+  */
   SetTrackingSpace(eOrigin: TrackingUniverseOrigin): void {
     if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
     // TODO: Implement FFI call
   }
 
+  /*
+  GetTrackingSpace
+  Parameters: undefined
+  Return: vr::ETrackingUniverseOrigin
+  */
   GetTrackingSpace(): TrackingUniverseOrigin {
     if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
@@ -4883,6 +5268,11 @@ export class IVRCompositor {
     return null as unknown as TrackingUniverseOrigin;
   }
 
+  /*
+  WaitGetPoses
+  Parameters: [{"paramname":"pRenderPoseArray","array_count":"unRenderPoseArrayCount","paramtype":"struct vr::TrackedDevicePose_t *"},{"paramname":"unRenderPoseArrayCount","paramtype":"uint32_t"},{"paramname":"pGamePoseArray","array_count":"unGamePoseArrayCount","paramtype":"struct vr::TrackedDevicePose_t *"},{"paramname":"unGamePoseArrayCount","paramtype":"uint32_t"}]
+  Return: vr::EVRCompositorError
+  */
   WaitGetPoses(pRenderPoseArray: Deno.PointerValue<TrackedDevicePose>, unRenderPoseArrayCount: number, pGamePoseArray: Deno.PointerValue<TrackedDevicePose>, unGamePoseArrayCount: number): CompositorError {
     if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
@@ -4891,6 +5281,11 @@ export class IVRCompositor {
     return null as unknown as CompositorError;
   }
 
+  /*
+  GetLastPoses
+  Parameters: [{"paramname":"pRenderPoseArray","array_count":"unRenderPoseArrayCount","paramtype":"struct vr::TrackedDevicePose_t *"},{"paramname":"unRenderPoseArrayCount","paramtype":"uint32_t"},{"paramname":"pGamePoseArray","array_count":"unGamePoseArrayCount","paramtype":"struct vr::TrackedDevicePose_t *"},{"paramname":"unGamePoseArrayCount","paramtype":"uint32_t"}]
+  Return: vr::EVRCompositorError
+  */
   GetLastPoses(pRenderPoseArray: Deno.PointerValue<TrackedDevicePose>, unRenderPoseArrayCount: number, pGamePoseArray: Deno.PointerValue<TrackedDevicePose>, unGamePoseArrayCount: number): CompositorError {
     if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
@@ -4899,6 +5294,11 @@ export class IVRCompositor {
     return null as unknown as CompositorError;
   }
 
+  /*
+  GetLastPoseForTrackedDeviceIndex
+  Parameters: [{"paramname":"unDeviceIndex","paramtype":"vr::TrackedDeviceIndex_t"},{"paramname":"pOutputPose","paramtype":"struct vr::TrackedDevicePose_t *"},{"paramname":"pOutputGamePose","paramtype":"struct vr::TrackedDevicePose_t *"}]
+  Return: vr::EVRCompositorError
+  */
   GetLastPoseForTrackedDeviceIndex(unDeviceIndex: TrackedDeviceIndex, pOutputPose: Deno.PointerValue<TrackedDevicePose>, pOutputGamePose: Deno.PointerValue<TrackedDevicePose>): CompositorError {
     if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
@@ -4907,6 +5307,11 @@ export class IVRCompositor {
     return null as unknown as CompositorError;
   }
 
+  /*
+  Submit
+  Parameters: [{"paramname":"eEye","paramtype":"vr::EVREye"},{"paramname":"pTexture","paramtype":"const struct vr::Texture_t *"},{"paramname":"pBounds","paramtype":"const struct vr::VRTextureBounds_t *"},{"paramname":"nSubmitFlags","paramtype":"vr::EVRSubmitFlags"}]
+  Return: vr::EVRCompositorError
+  */
   Submit(eEye: Eye, pTexture: Deno.PointerValue<Texture>//READONLY, pBounds: Deno.PointerValue<TextureBounds>//READONLY, nSubmitFlags: SubmitFlags): CompositorError {
     if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
@@ -4915,6 +5320,11 @@ export class IVRCompositor {
     return null as unknown as CompositorError;
   }
 
+  /*
+  SubmitWithArrayIndex
+  Parameters: [{"paramname":"eEye","paramtype":"vr::EVREye"},{"paramname":"pTexture","paramtype":"const struct vr::Texture_t *"},{"paramname":"unTextureArrayIndex","paramtype":"uint32_t"},{"paramname":"pBounds","paramtype":"const struct vr::VRTextureBounds_t *"},{"paramname":"nSubmitFlags","paramtype":"vr::EVRSubmitFlags"}]
+  Return: vr::EVRCompositorError
+  */
   SubmitWithArrayIndex(eEye: Eye, pTexture: Deno.PointerValue<Texture>//READONLY, unTextureArrayIndex: number, pBounds: Deno.PointerValue<TextureBounds>//READONLY, nSubmitFlags: SubmitFlags): CompositorError {
     if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
@@ -4923,18 +5333,33 @@ export class IVRCompositor {
     return null as unknown as CompositorError;
   }
 
+  /*
+  ClearLastSubmittedFrame
+  Parameters: undefined
+  Return: void
+  */
   ClearLastSubmittedFrame(): void {
     if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
     // TODO: Implement FFI call
   }
 
+  /*
+  PostPresentHandoff
+  Parameters: undefined
+  Return: void
+  */
   PostPresentHandoff(): void {
     if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
     // TODO: Implement FFI call
   }
 
+  /*
+  GetFrameTiming
+  Parameters: [{"paramname":"pTiming","paramtype":"struct vr::Compositor_FrameTiming *"},{"paramname":"unFramesAgo","paramtype":"uint32_t"}]
+  Return: bool
+  */
   GetFrameTiming(pTiming: Deno.PointerValue<Compositor_FrameTiming>, unFramesAgo: number): bool {
     if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
@@ -4943,6 +5368,11 @@ export class IVRCompositor {
     return null as unknown as bool;
   }
 
+  /*
+  GetFrameTimings
+  Parameters: [{"paramname":"pTiming","array_count":"nFrames","paramtype":"struct vr::Compositor_FrameTiming *"},{"paramname":"nFrames","paramtype":"uint32_t"}]
+  Return: uint32_t
+  */
   GetFrameTimings(pTiming: Deno.PointerValue<Compositor_FrameTiming>, nFrames: number): number {
     if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
@@ -4951,6 +5381,11 @@ export class IVRCompositor {
     return null as unknown as number;
   }
 
+  /*
+  GetFrameTimeRemaining
+  Parameters: undefined
+  Return: float
+  */
   GetFrameTimeRemaining(): number {
     if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
@@ -4959,18 +5394,33 @@ export class IVRCompositor {
     return null as unknown as number;
   }
 
+  /*
+  GetCumulativeStats
+  Parameters: [{"paramname":"pStats","paramtype":"struct vr::Compositor_CumulativeStats *"},{"paramname":"nStatsSizeInBytes","paramtype":"uint32_t"}]
+  Return: void
+  */
   GetCumulativeStats(pStats: Deno.PointerValue<Compositor_CumulativeStats>, nStatsSizeInBytes: number): void {
     if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
     // TODO: Implement FFI call
   }
 
+  /*
+  FadeToColor
+  Parameters: [{"paramname":"fSeconds","paramtype":"float"},{"paramname":"fRed","paramtype":"float"},{"paramname":"fGreen","paramtype":"float"},{"paramname":"fBlue","paramtype":"float"},{"paramname":"fAlpha","paramtype":"float"},{"paramname":"bBackground","paramtype":"bool"}]
+  Return: void
+  */
   FadeToColor(fSeconds: number, fRed: number, fGreen: number, fBlue: number, fAlpha: number, bBackground: bool): void {
     if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
     // TODO: Implement FFI call
   }
 
+  /*
+  GetCurrentFadeColor
+  Parameters: [{"paramname":"bBackground","paramtype":"bool"}]
+  Return: struct vr::HmdColor_t
+  */
   GetCurrentFadeColor(bBackground: bool): HmdColor {
     if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
@@ -4979,12 +5429,22 @@ export class IVRCompositor {
     return null as unknown as HmdColor;
   }
 
+  /*
+  FadeGrid
+  Parameters: [{"paramname":"fSeconds","paramtype":"float"},{"paramname":"bFadeGridIn","paramtype":"bool"}]
+  Return: void
+  */
   FadeGrid(fSeconds: number, bFadeGridIn: bool): void {
     if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
     // TODO: Implement FFI call
   }
 
+  /*
+  GetCurrentGridAlpha
+  Parameters: undefined
+  Return: float
+  */
   GetCurrentGridAlpha(): number {
     if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
@@ -4993,6 +5453,11 @@ export class IVRCompositor {
     return null as unknown as number;
   }
 
+  /*
+  SetSkyboxOverride
+  Parameters: [{"paramname":"pTextures","array_count":"unTextureCount","paramtype":"const struct vr::Texture_t *"},{"paramname":"unTextureCount","paramtype":"uint32_t"}]
+  Return: vr::EVRCompositorError
+  */
   SetSkyboxOverride(pTextures: Deno.PointerValue<Texture>//READONLY, unTextureCount: number): CompositorError {
     if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
@@ -5001,30 +5466,55 @@ export class IVRCompositor {
     return null as unknown as CompositorError;
   }
 
+  /*
+  ClearSkyboxOverride
+  Parameters: undefined
+  Return: void
+  */
   ClearSkyboxOverride(): void {
     if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
     // TODO: Implement FFI call
   }
 
+  /*
+  CompositorBringToFront
+  Parameters: undefined
+  Return: void
+  */
   CompositorBringToFront(): void {
     if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
     // TODO: Implement FFI call
   }
 
+  /*
+  CompositorGoToBack
+  Parameters: undefined
+  Return: void
+  */
   CompositorGoToBack(): void {
     if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
     // TODO: Implement FFI call
   }
 
+  /*
+  CompositorQuit
+  Parameters: undefined
+  Return: void
+  */
   CompositorQuit(): void {
     if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
     // TODO: Implement FFI call
   }
 
+  /*
+  IsFullscreen
+  Parameters: undefined
+  Return: bool
+  */
   IsFullscreen(): bool {
     if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
@@ -5033,6 +5523,11 @@ export class IVRCompositor {
     return null as unknown as bool;
   }
 
+  /*
+  GetCurrentSceneFocusProcess
+  Parameters: undefined
+  Return: uint32_t
+  */
   GetCurrentSceneFocusProcess(): number {
     if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
@@ -5041,6 +5536,11 @@ export class IVRCompositor {
     return null as unknown as number;
   }
 
+  /*
+  GetLastFrameRenderer
+  Parameters: undefined
+  Return: uint32_t
+  */
   GetLastFrameRenderer(): number {
     if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
@@ -5049,6 +5549,11 @@ export class IVRCompositor {
     return null as unknown as number;
   }
 
+  /*
+  CanRenderScene
+  Parameters: undefined
+  Return: bool
+  */
   CanRenderScene(): bool {
     if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
@@ -5057,18 +5562,33 @@ export class IVRCompositor {
     return null as unknown as bool;
   }
 
+  /*
+  ShowMirrorWindow
+  Parameters: undefined
+  Return: void
+  */
   ShowMirrorWindow(): void {
     if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
     // TODO: Implement FFI call
   }
 
+  /*
+  HideMirrorWindow
+  Parameters: undefined
+  Return: void
+  */
   HideMirrorWindow(): void {
     if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
     // TODO: Implement FFI call
   }
 
+  /*
+  IsMirrorWindowVisible
+  Parameters: undefined
+  Return: bool
+  */
   IsMirrorWindowVisible(): bool {
     if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
@@ -5077,12 +5597,22 @@ export class IVRCompositor {
     return null as unknown as bool;
   }
 
+  /*
+  CompositorDumpImages
+  Parameters: undefined
+  Return: void
+  */
   CompositorDumpImages(): void {
     if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
     // TODO: Implement FFI call
   }
 
+  /*
+  ShouldAppRenderWithLowResources
+  Parameters: undefined
+  Return: bool
+  */
   ShouldAppRenderWithLowResources(): bool {
     if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
@@ -5091,24 +5621,44 @@ export class IVRCompositor {
     return null as unknown as bool;
   }
 
+  /*
+  ForceInterleavedReprojectionOn
+  Parameters: [{"paramname":"bOverride","paramtype":"bool"}]
+  Return: void
+  */
   ForceInterleavedReprojectionOn(bOverride: bool): void {
     if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
     // TODO: Implement FFI call
   }
 
+  /*
+  ForceReconnectProcess
+  Parameters: undefined
+  Return: void
+  */
   ForceReconnectProcess(): void {
     if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
     // TODO: Implement FFI call
   }
 
+  /*
+  SuspendRendering
+  Parameters: [{"paramname":"bSuspend","paramtype":"bool"}]
+  Return: void
+  */
   SuspendRendering(bSuspend: bool): void {
     if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
     // TODO: Implement FFI call
   }
 
+  /*
+  GetMirrorTextureD3D11
+  Parameters: [{"paramname":"eEye","paramtype":"vr::EVREye"},{"paramname":"pD3D11DeviceOrResource","paramtype":"void *"},{"paramname":"ppD3D11ShaderResourceView","paramtype":"void **"}]
+  Return: vr::EVRCompositorError
+  */
   GetMirrorTextureD3D11(eEye: Eye, pD3D11DeviceOrResource: Deno.PointerValue<unknown>, ppD3D11ShaderResourceView: Deno.PointerValue<Deno.PointerValue<unknown>>): CompositorError {
     if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
@@ -5117,12 +5667,22 @@ export class IVRCompositor {
     return null as unknown as CompositorError;
   }
 
+  /*
+  ReleaseMirrorTextureD3D11
+  Parameters: [{"paramname":"pD3D11ShaderResourceView","paramtype":"void *"}]
+  Return: void
+  */
   ReleaseMirrorTextureD3D11(pD3D11ShaderResourceView: Deno.PointerValue<unknown>): void {
     if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
     // TODO: Implement FFI call
   }
 
+  /*
+  GetMirrorTextureGL
+  Parameters: [{"paramname":"eEye","paramtype":"vr::EVREye"},{"paramname":"pglTextureId","paramtype":"vr::glUInt_t *"},{"paramname":"pglSharedTextureHandle","paramtype":"vr::glSharedTextureHandle_t *"}]
+  Return: vr::EVRCompositorError
+  */
   GetMirrorTextureGL(eEye: Eye, pglTextureId: Deno.PointerValue<glUInt>, pglSharedTextureHandle: Deno.PointerValue<glSharedTextureHandle>): CompositorError {
     if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
@@ -5131,6 +5691,11 @@ export class IVRCompositor {
     return null as unknown as CompositorError;
   }
 
+  /*
+  ReleaseSharedGLTexture
+  Parameters: [{"paramname":"glTextureId","paramtype":"vr::glUInt_t"},{"paramname":"glSharedTextureHandle","paramtype":"vr::glSharedTextureHandle_t"}]
+  Return: bool
+  */
   ReleaseSharedGLTexture(glTextureId: glUInt, glSharedTextureHandle: glSharedTextureHandle): bool {
     if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
@@ -5139,18 +5704,33 @@ export class IVRCompositor {
     return null as unknown as bool;
   }
 
+  /*
+  LockGLSharedTextureForAccess
+  Parameters: [{"paramname":"glSharedTextureHandle","paramtype":"vr::glSharedTextureHandle_t"}]
+  Return: void
+  */
   LockGLSharedTextureForAccess(glSharedTextureHandle: glSharedTextureHandle): void {
     if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
     // TODO: Implement FFI call
   }
 
+  /*
+  UnlockGLSharedTextureForAccess
+  Parameters: [{"paramname":"glSharedTextureHandle","paramtype":"vr::glSharedTextureHandle_t"}]
+  Return: void
+  */
   UnlockGLSharedTextureForAccess(glSharedTextureHandle: glSharedTextureHandle): void {
     if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
     // TODO: Implement FFI call
   }
 
+  /*
+  GetVulkanInstanceExtensionsRequired
+  Parameters: [{"paramname":"pchValue","out_string":" ","paramtype":"char *"},{"paramname":"unBufferSize","paramtype":"uint32_t"}]
+  Return: uint32_t
+  */
   GetVulkanInstanceExtensionsRequired(pchValue: string, unBufferSize: number): number {
     if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
@@ -5159,6 +5739,11 @@ export class IVRCompositor {
     return null as unknown as number;
   }
 
+  /*
+  GetVulkanDeviceExtensionsRequired
+  Parameters: [{"paramname":"pPhysicalDevice","paramtype":"struct VkPhysicalDevice_T *"},{"paramname":"pchValue","out_string":" ","paramtype":"char *"},{"paramname":"unBufferSize","paramtype":"uint32_t"}]
+  Return: uint32_t
+  */
   GetVulkanDeviceExtensionsRequired(pPhysicalDevice: Deno.PointerValue<VkPhysicalDevice_T>, pchValue: string, unBufferSize: number): number {
     if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
@@ -5167,12 +5752,22 @@ export class IVRCompositor {
     return null as unknown as number;
   }
 
+  /*
+  SetExplicitTimingMode
+  Parameters: [{"paramname":"eTimingMode","paramtype":"vr::EVRCompositorTimingMode"}]
+  Return: void
+  */
   SetExplicitTimingMode(eTimingMode: CompositorTimingMode): void {
     if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
     // TODO: Implement FFI call
   }
 
+  /*
+  SubmitExplicitTimingData
+  Parameters: undefined
+  Return: vr::EVRCompositorError
+  */
   SubmitExplicitTimingData(): CompositorError {
     if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
@@ -5181,6 +5776,11 @@ export class IVRCompositor {
     return null as unknown as CompositorError;
   }
 
+  /*
+  IsMotionSmoothingEnabled
+  Parameters: undefined
+  Return: bool
+  */
   IsMotionSmoothingEnabled(): bool {
     if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
@@ -5189,6 +5789,11 @@ export class IVRCompositor {
     return null as unknown as bool;
   }
 
+  /*
+  IsMotionSmoothingSupported
+  Parameters: undefined
+  Return: bool
+  */
   IsMotionSmoothingSupported(): bool {
     if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
@@ -5197,6 +5802,11 @@ export class IVRCompositor {
     return null as unknown as bool;
   }
 
+  /*
+  IsCurrentSceneFocusAppLoading
+  Parameters: undefined
+  Return: bool
+  */
   IsCurrentSceneFocusAppLoading(): bool {
     if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
@@ -5205,6 +5815,11 @@ export class IVRCompositor {
     return null as unknown as bool;
   }
 
+  /*
+  SetStageOverride_Async
+  Parameters: [{"paramname":"pchRenderModelPath","paramtype":"const char *"},{"paramname":"pTransform","paramtype":"const struct vr::HmdMatrix34_t *"},{"paramname":"pRenderSettings","paramtype":"const struct vr::Compositor_StageRenderSettings *"},{"paramname":"nSizeOfRenderSettings","paramtype":"uint32_t"}]
+  Return: vr::EVRCompositorError
+  */
   SetStageOverride_Async(pchRenderModelPath: string, pTransform: Deno.PointerValue<HmdMatrix34>//READONLY, pRenderSettings: Deno.PointerValue<Compositor_StageRenderSettings>//READONLY, nSizeOfRenderSettings: number): CompositorError {
     if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
@@ -5213,12 +5828,22 @@ export class IVRCompositor {
     return null as unknown as CompositorError;
   }
 
+  /*
+  ClearStageOverride
+  Parameters: undefined
+  Return: void
+  */
   ClearStageOverride(): void {
     if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
     // TODO: Implement FFI call
   }
 
+  /*
+  GetCompositorBenchmarkResults
+  Parameters: [{"paramname":"pBenchmarkResults","paramtype":"struct vr::Compositor_BenchmarkResults *"},{"paramname":"nSizeOfBenchmarkResults","paramtype":"uint32_t"}]
+  Return: bool
+  */
   GetCompositorBenchmarkResults(pBenchmarkResults: Deno.PointerValue<Compositor_BenchmarkResults>, nSizeOfBenchmarkResults: number): bool {
     if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
@@ -5227,6 +5852,11 @@ export class IVRCompositor {
     return null as unknown as bool;
   }
 
+  /*
+  GetLastPosePredictionIDs
+  Parameters: [{"paramname":"pRenderPosePredictionID","paramtype":"uint32_t *"},{"paramname":"pGamePosePredictionID","paramtype":"uint32_t *"}]
+  Return: vr::EVRCompositorError
+  */
   GetLastPosePredictionIDs(pRenderPosePredictionID: Deno.PointerValue<number>, pGamePosePredictionID: Deno.PointerValue<number>): CompositorError {
     if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
@@ -5235,6 +5865,11 @@ export class IVRCompositor {
     return null as unknown as CompositorError;
   }
 
+  /*
+  GetPosesForFrame
+  Parameters: [{"paramname":"unPosePredictionID","paramtype":"uint32_t"},{"paramname":"pPoseArray","array_count":"unPoseArrayCount","paramtype":"struct vr::TrackedDevicePose_t *"},{"paramname":"unPoseArrayCount","paramtype":"uint32_t"}]
+  Return: vr::EVRCompositorError
+  */
   GetPosesForFrame(unPosePredictionID: number, pPoseArray: Deno.PointerValue<TrackedDevicePose>, unPoseArrayCount: number): CompositorError {
     if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
@@ -5248,24 +5883,44 @@ export class IVRCompositor {
 export class IVRHeadsetView {
   constructor(private ptr: Deno.PointerValue<IVRHeadsetView>) {}
 
+  /*
+  SetHeadsetViewSize
+  Parameters: [{"paramname":"nWidth","paramtype":"uint32_t"},{"paramname":"nHeight","paramtype":"uint32_t"}]
+  Return: void
+  */
   SetHeadsetViewSize(nWidth: number, nHeight: number): void {
     if (this.ptr === null) throw new Error("IVRHeadsetView pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRHeadsetView>);
     // TODO: Implement FFI call
   }
 
+  /*
+  GetHeadsetViewSize
+  Parameters: [{"paramname":"pnWidth","paramtype":"uint32_t *"},{"paramname":"pnHeight","paramtype":"uint32_t *"}]
+  Return: void
+  */
   GetHeadsetViewSize(pnWidth: Deno.PointerValue<number>, pnHeight: Deno.PointerValue<number>): void {
     if (this.ptr === null) throw new Error("IVRHeadsetView pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRHeadsetView>);
     // TODO: Implement FFI call
   }
 
+  /*
+  SetHeadsetViewMode
+  Parameters: [{"paramname":"eHeadsetViewMode","paramtype":"vr::HeadsetViewMode_t"}]
+  Return: void
+  */
   SetHeadsetViewMode(eHeadsetViewMode: HeadsetViewMode): void {
     if (this.ptr === null) throw new Error("IVRHeadsetView pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRHeadsetView>);
     // TODO: Implement FFI call
   }
 
+  /*
+  GetHeadsetViewMode
+  Parameters: undefined
+  Return: vr::HeadsetViewMode_t
+  */
   GetHeadsetViewMode(): HeadsetViewMode {
     if (this.ptr === null) throw new Error("IVRHeadsetView pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRHeadsetView>);
@@ -5274,12 +5929,22 @@ export class IVRHeadsetView {
     return null as unknown as HeadsetViewMode;
   }
 
+  /*
+  SetHeadsetViewCropped
+  Parameters: [{"paramname":"bCropped","paramtype":"bool"}]
+  Return: void
+  */
   SetHeadsetViewCropped(bCropped: bool): void {
     if (this.ptr === null) throw new Error("IVRHeadsetView pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRHeadsetView>);
     // TODO: Implement FFI call
   }
 
+  /*
+  GetHeadsetViewCropped
+  Parameters: undefined
+  Return: bool
+  */
   GetHeadsetViewCropped(): bool {
     if (this.ptr === null) throw new Error("IVRHeadsetView pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRHeadsetView>);
@@ -5288,6 +5953,11 @@ export class IVRHeadsetView {
     return null as unknown as bool;
   }
 
+  /*
+  GetHeadsetViewAspectRatio
+  Parameters: undefined
+  Return: float
+  */
   GetHeadsetViewAspectRatio(): number {
     if (this.ptr === null) throw new Error("IVRHeadsetView pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRHeadsetView>);
@@ -5296,12 +5966,22 @@ export class IVRHeadsetView {
     return null as unknown as number;
   }
 
+  /*
+  SetHeadsetViewBlendRange
+  Parameters: [{"paramname":"flStartPct","paramtype":"float"},{"paramname":"flEndPct","paramtype":"float"}]
+  Return: void
+  */
   SetHeadsetViewBlendRange(flStartPct: number, flEndPct: number): void {
     if (this.ptr === null) throw new Error("IVRHeadsetView pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRHeadsetView>);
     // TODO: Implement FFI call
   }
 
+  /*
+  GetHeadsetViewBlendRange
+  Parameters: [{"paramname":"pStartPct","paramtype":"float *"},{"paramname":"pEndPct","paramtype":"float *"}]
+  Return: void
+  */
   GetHeadsetViewBlendRange(pStartPct: Deno.PointerValue<number>, pEndPct: Deno.PointerValue<number>): void {
     if (this.ptr === null) throw new Error("IVRHeadsetView pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRHeadsetView>);
@@ -5313,6 +5993,11 @@ export class IVRHeadsetView {
 export class IVROverlay {
   constructor(private ptr: Deno.PointerValue<IVROverlay>) {}
 
+  /*
+  FindOverlay
+  Parameters: [{"paramname":"pchOverlayKey","paramtype":"const char *"},{"paramname":"pOverlayHandle","paramtype":"vr::VROverlayHandle_t *"}]
+  Return: vr::EVROverlayError
+  */
   FindOverlay(pchOverlayKey: string, pOverlayHandle: Deno.PointerValue<OverlayHandle>): OverlayError {
     if (this.ptr === null) throw new Error("IVROverlay pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
@@ -5321,6 +6006,11 @@ export class IVROverlay {
     return null as unknown as OverlayError;
   }
 
+  /*
+  CreateOverlay
+  Parameters: [{"paramname":"pchOverlayKey","paramtype":"const char *"},{"paramname":"pchOverlayName","paramtype":"const char *"},{"paramname":"pOverlayHandle","paramtype":"vr::VROverlayHandle_t *"}]
+  Return: vr::EVROverlayError
+  */
   CreateOverlay(pchOverlayKey: string, pchOverlayName: string, pOverlayHandle: Deno.PointerValue<OverlayHandle>): OverlayError {
     if (this.ptr === null) throw new Error("IVROverlay pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
@@ -5329,6 +6019,11 @@ export class IVROverlay {
     return null as unknown as OverlayError;
   }
 
+  /*
+  DestroyOverlay
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"}]
+  Return: vr::EVROverlayError
+  */
   DestroyOverlay(ulOverlayHandle: OverlayHandle): OverlayError {
     if (this.ptr === null) throw new Error("IVROverlay pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
@@ -5337,6 +6032,11 @@ export class IVROverlay {
     return null as unknown as OverlayError;
   }
 
+  /*
+  GetOverlayKey
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"pchValue","out_string":" ","paramtype":"char *"},{"paramname":"unBufferSize","paramtype":"uint32_t"},{"paramname":"pError","paramtype":"vr::EVROverlayError *"}]
+  Return: uint32_t
+  */
   GetOverlayKey(ulOverlayHandle: OverlayHandle, pchValue: string, unBufferSize: number, pError: Deno.PointerValue<OverlayError>): number {
     if (this.ptr === null) throw new Error("IVROverlay pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
@@ -5345,6 +6045,11 @@ export class IVROverlay {
     return null as unknown as number;
   }
 
+  /*
+  GetOverlayName
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"pchValue","out_string":" ","paramtype":"char *"},{"paramname":"unBufferSize","paramtype":"uint32_t"},{"paramname":"pError","paramtype":"vr::EVROverlayError *"}]
+  Return: uint32_t
+  */
   GetOverlayName(ulOverlayHandle: OverlayHandle, pchValue: string, unBufferSize: number, pError: Deno.PointerValue<OverlayError>): number {
     if (this.ptr === null) throw new Error("IVROverlay pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
@@ -5353,6 +6058,11 @@ export class IVROverlay {
     return null as unknown as number;
   }
 
+  /*
+  SetOverlayName
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"pchName","paramtype":"const char *"}]
+  Return: vr::EVROverlayError
+  */
   SetOverlayName(ulOverlayHandle: OverlayHandle, pchName: string): OverlayError {
     if (this.ptr === null) throw new Error("IVROverlay pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
@@ -5361,6 +6071,11 @@ export class IVROverlay {
     return null as unknown as OverlayError;
   }
 
+  /*
+  GetOverlayImageData
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"pvBuffer","paramtype":"void *"},{"paramname":"unBufferSize","paramtype":"uint32_t"},{"paramname":"punWidth","paramtype":"uint32_t *"},{"paramname":"punHeight","paramtype":"uint32_t *"}]
+  Return: vr::EVROverlayError
+  */
   GetOverlayImageData(ulOverlayHandle: OverlayHandle, pvBuffer: Deno.PointerValue<unknown>, unBufferSize: number, punWidth: Deno.PointerValue<number>, punHeight: Deno.PointerValue<number>): OverlayError {
     if (this.ptr === null) throw new Error("IVROverlay pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
@@ -5369,6 +6084,11 @@ export class IVROverlay {
     return null as unknown as OverlayError;
   }
 
+  /*
+  GetOverlayErrorNameFromEnum
+  Parameters: [{"paramname":"error","paramtype":"vr::EVROverlayError"}]
+  Return: const char *
+  */
   GetOverlayErrorNameFromEnum(error: OverlayError): string {
     if (this.ptr === null) throw new Error("IVROverlay pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
@@ -5377,6 +6097,11 @@ export class IVROverlay {
     return null as unknown as string;
   }
 
+  /*
+  SetOverlayRenderingPid
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"unPID","paramtype":"uint32_t"}]
+  Return: vr::EVROverlayError
+  */
   SetOverlayRenderingPid(ulOverlayHandle: OverlayHandle, unPID: number): OverlayError {
     if (this.ptr === null) throw new Error("IVROverlay pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
@@ -5385,6 +6110,11 @@ export class IVROverlay {
     return null as unknown as OverlayError;
   }
 
+  /*
+  GetOverlayRenderingPid
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"}]
+  Return: uint32_t
+  */
   GetOverlayRenderingPid(ulOverlayHandle: OverlayHandle): number {
     if (this.ptr === null) throw new Error("IVROverlay pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
@@ -5393,6 +6123,11 @@ export class IVROverlay {
     return null as unknown as number;
   }
 
+  /*
+  SetOverlayFlag
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"eOverlayFlag","paramtype":"vr::VROverlayFlags"},{"paramname":"bEnabled","paramtype":"bool"}]
+  Return: vr::EVROverlayError
+  */
   SetOverlayFlag(ulOverlayHandle: OverlayHandle, eOverlayFlag: OverlayFlags, bEnabled: bool): OverlayError {
     if (this.ptr === null) throw new Error("IVROverlay pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
@@ -5401,6 +6136,11 @@ export class IVROverlay {
     return null as unknown as OverlayError;
   }
 
+  /*
+  GetOverlayFlag
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"eOverlayFlag","paramtype":"vr::VROverlayFlags"},{"paramname":"pbEnabled","paramtype":"bool *"}]
+  Return: vr::EVROverlayError
+  */
   GetOverlayFlag(ulOverlayHandle: OverlayHandle, eOverlayFlag: OverlayFlags, pbEnabled: Deno.PointerValue<bool>): OverlayError {
     if (this.ptr === null) throw new Error("IVROverlay pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
@@ -5409,6 +6149,11 @@ export class IVROverlay {
     return null as unknown as OverlayError;
   }
 
+  /*
+  GetOverlayFlags
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"pFlags","paramtype":"uint32_t *"}]
+  Return: vr::EVROverlayError
+  */
   GetOverlayFlags(ulOverlayHandle: OverlayHandle, pFlags: Deno.PointerValue<number>): OverlayError {
     if (this.ptr === null) throw new Error("IVROverlay pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
@@ -5417,6 +6162,11 @@ export class IVROverlay {
     return null as unknown as OverlayError;
   }
 
+  /*
+  SetOverlayColor
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"fRed","paramtype":"float"},{"paramname":"fGreen","paramtype":"float"},{"paramname":"fBlue","paramtype":"float"}]
+  Return: vr::EVROverlayError
+  */
   SetOverlayColor(ulOverlayHandle: OverlayHandle, fRed: number, fGreen: number, fBlue: number): OverlayError {
     if (this.ptr === null) throw new Error("IVROverlay pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
@@ -5425,6 +6175,11 @@ export class IVROverlay {
     return null as unknown as OverlayError;
   }
 
+  /*
+  GetOverlayColor
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"pfRed","paramtype":"float *"},{"paramname":"pfGreen","paramtype":"float *"},{"paramname":"pfBlue","paramtype":"float *"}]
+  Return: vr::EVROverlayError
+  */
   GetOverlayColor(ulOverlayHandle: OverlayHandle, pfRed: Deno.PointerValue<number>, pfGreen: Deno.PointerValue<number>, pfBlue: Deno.PointerValue<number>): OverlayError {
     if (this.ptr === null) throw new Error("IVROverlay pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
@@ -5433,6 +6188,11 @@ export class IVROverlay {
     return null as unknown as OverlayError;
   }
 
+  /*
+  SetOverlayAlpha
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"fAlpha","paramtype":"float"}]
+  Return: vr::EVROverlayError
+  */
   SetOverlayAlpha(ulOverlayHandle: OverlayHandle, fAlpha: number): OverlayError {
     if (this.ptr === null) throw new Error("IVROverlay pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
@@ -5441,6 +6201,11 @@ export class IVROverlay {
     return null as unknown as OverlayError;
   }
 
+  /*
+  GetOverlayAlpha
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"pfAlpha","paramtype":"float *"}]
+  Return: vr::EVROverlayError
+  */
   GetOverlayAlpha(ulOverlayHandle: OverlayHandle, pfAlpha: Deno.PointerValue<number>): OverlayError {
     if (this.ptr === null) throw new Error("IVROverlay pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
@@ -5449,6 +6214,11 @@ export class IVROverlay {
     return null as unknown as OverlayError;
   }
 
+  /*
+  SetOverlayTexelAspect
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"fTexelAspect","paramtype":"float"}]
+  Return: vr::EVROverlayError
+  */
   SetOverlayTexelAspect(ulOverlayHandle: OverlayHandle, fTexelAspect: number): OverlayError {
     if (this.ptr === null) throw new Error("IVROverlay pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
@@ -5457,6 +6227,11 @@ export class IVROverlay {
     return null as unknown as OverlayError;
   }
 
+  /*
+  GetOverlayTexelAspect
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"pfTexelAspect","paramtype":"float *"}]
+  Return: vr::EVROverlayError
+  */
   GetOverlayTexelAspect(ulOverlayHandle: OverlayHandle, pfTexelAspect: Deno.PointerValue<number>): OverlayError {
     if (this.ptr === null) throw new Error("IVROverlay pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
@@ -5465,6 +6240,11 @@ export class IVROverlay {
     return null as unknown as OverlayError;
   }
 
+  /*
+  SetOverlaySortOrder
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"unSortOrder","paramtype":"uint32_t"}]
+  Return: vr::EVROverlayError
+  */
   SetOverlaySortOrder(ulOverlayHandle: OverlayHandle, unSortOrder: number): OverlayError {
     if (this.ptr === null) throw new Error("IVROverlay pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
@@ -5473,6 +6253,11 @@ export class IVROverlay {
     return null as unknown as OverlayError;
   }
 
+  /*
+  GetOverlaySortOrder
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"punSortOrder","paramtype":"uint32_t *"}]
+  Return: vr::EVROverlayError
+  */
   GetOverlaySortOrder(ulOverlayHandle: OverlayHandle, punSortOrder: Deno.PointerValue<number>): OverlayError {
     if (this.ptr === null) throw new Error("IVROverlay pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
@@ -5481,6 +6266,11 @@ export class IVROverlay {
     return null as unknown as OverlayError;
   }
 
+  /*
+  SetOverlayWidthInMeters
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"fWidthInMeters","paramtype":"float"}]
+  Return: vr::EVROverlayError
+  */
   SetOverlayWidthInMeters(ulOverlayHandle: OverlayHandle, fWidthInMeters: number): OverlayError {
     if (this.ptr === null) throw new Error("IVROverlay pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
@@ -5489,6 +6279,11 @@ export class IVROverlay {
     return null as unknown as OverlayError;
   }
 
+  /*
+  GetOverlayWidthInMeters
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"pfWidthInMeters","paramtype":"float *"}]
+  Return: vr::EVROverlayError
+  */
   GetOverlayWidthInMeters(ulOverlayHandle: OverlayHandle, pfWidthInMeters: Deno.PointerValue<number>): OverlayError {
     if (this.ptr === null) throw new Error("IVROverlay pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
@@ -5497,6 +6292,11 @@ export class IVROverlay {
     return null as unknown as OverlayError;
   }
 
+  /*
+  SetOverlayCurvature
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"fCurvature","paramtype":"float"}]
+  Return: vr::EVROverlayError
+  */
   SetOverlayCurvature(ulOverlayHandle: OverlayHandle, fCurvature: number): OverlayError {
     if (this.ptr === null) throw new Error("IVROverlay pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
@@ -5505,6 +6305,11 @@ export class IVROverlay {
     return null as unknown as OverlayError;
   }
 
+  /*
+  GetOverlayCurvature
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"pfCurvature","paramtype":"float *"}]
+  Return: vr::EVROverlayError
+  */
   GetOverlayCurvature(ulOverlayHandle: OverlayHandle, pfCurvature: Deno.PointerValue<number>): OverlayError {
     if (this.ptr === null) throw new Error("IVROverlay pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
@@ -5513,6 +6318,11 @@ export class IVROverlay {
     return null as unknown as OverlayError;
   }
 
+  /*
+  SetOverlayPreCurvePitch
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"fRadians","paramtype":"float"}]
+  Return: vr::EVROverlayError
+  */
   SetOverlayPreCurvePitch(ulOverlayHandle: OverlayHandle, fRadians: number): OverlayError {
     if (this.ptr === null) throw new Error("IVROverlay pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
@@ -5521,6 +6331,11 @@ export class IVROverlay {
     return null as unknown as OverlayError;
   }
 
+  /*
+  GetOverlayPreCurvePitch
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"pfRadians","paramtype":"float *"}]
+  Return: vr::EVROverlayError
+  */
   GetOverlayPreCurvePitch(ulOverlayHandle: OverlayHandle, pfRadians: Deno.PointerValue<number>): OverlayError {
     if (this.ptr === null) throw new Error("IVROverlay pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
@@ -5529,6 +6344,11 @@ export class IVROverlay {
     return null as unknown as OverlayError;
   }
 
+  /*
+  SetOverlayTextureColorSpace
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"eTextureColorSpace","paramtype":"vr::EColorSpace"}]
+  Return: vr::EVROverlayError
+  */
   SetOverlayTextureColorSpace(ulOverlayHandle: OverlayHandle, eTextureColorSpace: ColorSpace): OverlayError {
     if (this.ptr === null) throw new Error("IVROverlay pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
@@ -5537,6 +6357,11 @@ export class IVROverlay {
     return null as unknown as OverlayError;
   }
 
+  /*
+  GetOverlayTextureColorSpace
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"peTextureColorSpace","paramtype":"vr::EColorSpace *"}]
+  Return: vr::EVROverlayError
+  */
   GetOverlayTextureColorSpace(ulOverlayHandle: OverlayHandle, peTextureColorSpace: Deno.PointerValue<ColorSpace>): OverlayError {
     if (this.ptr === null) throw new Error("IVROverlay pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
@@ -5545,6 +6370,11 @@ export class IVROverlay {
     return null as unknown as OverlayError;
   }
 
+  /*
+  SetOverlayTextureBounds
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"pOverlayTextureBounds","paramtype":"const struct vr::VRTextureBounds_t *"}]
+  Return: vr::EVROverlayError
+  */
   SetOverlayTextureBounds(ulOverlayHandle: OverlayHandle, pOverlayTextureBounds: Deno.PointerValue<TextureBounds>//READONLY): OverlayError {
     if (this.ptr === null) throw new Error("IVROverlay pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
@@ -5553,6 +6383,11 @@ export class IVROverlay {
     return null as unknown as OverlayError;
   }
 
+  /*
+  GetOverlayTextureBounds
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"pOverlayTextureBounds","paramtype":"struct vr::VRTextureBounds_t *"}]
+  Return: vr::EVROverlayError
+  */
   GetOverlayTextureBounds(ulOverlayHandle: OverlayHandle, pOverlayTextureBounds: Deno.PointerValue<TextureBounds>): OverlayError {
     if (this.ptr === null) throw new Error("IVROverlay pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
@@ -5561,6 +6396,11 @@ export class IVROverlay {
     return null as unknown as OverlayError;
   }
 
+  /*
+  GetOverlayTransformType
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"peTransformType","paramtype":"vr::VROverlayTransformType *"}]
+  Return: vr::EVROverlayError
+  */
   GetOverlayTransformType(ulOverlayHandle: OverlayHandle, peTransformType: Deno.PointerValue<OverlayTransformType>): OverlayError {
     if (this.ptr === null) throw new Error("IVROverlay pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
@@ -5569,6 +6409,11 @@ export class IVROverlay {
     return null as unknown as OverlayError;
   }
 
+  /*
+  SetOverlayTransformAbsolute
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"eTrackingOrigin","paramtype":"vr::ETrackingUniverseOrigin"},{"paramname":"pmatTrackingOriginToOverlayTransform","paramtype":"const struct vr::HmdMatrix34_t *"}]
+  Return: vr::EVROverlayError
+  */
   SetOverlayTransformAbsolute(ulOverlayHandle: OverlayHandle, eTrackingOrigin: TrackingUniverseOrigin, pmatTrackingOriginToOverlayTransform: Deno.PointerValue<HmdMatrix34>//READONLY): OverlayError {
     if (this.ptr === null) throw new Error("IVROverlay pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
@@ -5577,6 +6422,11 @@ export class IVROverlay {
     return null as unknown as OverlayError;
   }
 
+  /*
+  GetOverlayTransformAbsolute
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"peTrackingOrigin","paramtype":"vr::ETrackingUniverseOrigin *"},{"paramname":"pmatTrackingOriginToOverlayTransform","paramtype":"struct vr::HmdMatrix34_t *"}]
+  Return: vr::EVROverlayError
+  */
   GetOverlayTransformAbsolute(ulOverlayHandle: OverlayHandle, peTrackingOrigin: Deno.PointerValue<TrackingUniverseOrigin>, pmatTrackingOriginToOverlayTransform: Deno.PointerValue<HmdMatrix34>): OverlayError {
     if (this.ptr === null) throw new Error("IVROverlay pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
@@ -5585,6 +6435,11 @@ export class IVROverlay {
     return null as unknown as OverlayError;
   }
 
+  /*
+  SetOverlayTransformTrackedDeviceRelative
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"unTrackedDevice","paramtype":"vr::TrackedDeviceIndex_t"},{"paramname":"pmatTrackedDeviceToOverlayTransform","paramtype":"const struct vr::HmdMatrix34_t *"}]
+  Return: vr::EVROverlayError
+  */
   SetOverlayTransformTrackedDeviceRelative(ulOverlayHandle: OverlayHandle, unTrackedDevice: TrackedDeviceIndex, pmatTrackedDeviceToOverlayTransform: Deno.PointerValue<HmdMatrix34>//READONLY): OverlayError {
     if (this.ptr === null) throw new Error("IVROverlay pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
@@ -5593,6 +6448,11 @@ export class IVROverlay {
     return null as unknown as OverlayError;
   }
 
+  /*
+  GetOverlayTransformTrackedDeviceRelative
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"punTrackedDevice","paramtype":"vr::TrackedDeviceIndex_t *"},{"paramname":"pmatTrackedDeviceToOverlayTransform","paramtype":"struct vr::HmdMatrix34_t *"}]
+  Return: vr::EVROverlayError
+  */
   GetOverlayTransformTrackedDeviceRelative(ulOverlayHandle: OverlayHandle, punTrackedDevice: Deno.PointerValue<TrackedDeviceIndex>, pmatTrackedDeviceToOverlayTransform: Deno.PointerValue<HmdMatrix34>): OverlayError {
     if (this.ptr === null) throw new Error("IVROverlay pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
@@ -5601,6 +6461,11 @@ export class IVROverlay {
     return null as unknown as OverlayError;
   }
 
+  /*
+  SetOverlayTransformTrackedDeviceComponent
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"unDeviceIndex","paramtype":"vr::TrackedDeviceIndex_t"},{"paramname":"pchComponentName","paramtype":"const char *"}]
+  Return: vr::EVROverlayError
+  */
   SetOverlayTransformTrackedDeviceComponent(ulOverlayHandle: OverlayHandle, unDeviceIndex: TrackedDeviceIndex, pchComponentName: string): OverlayError {
     if (this.ptr === null) throw new Error("IVROverlay pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
@@ -5609,6 +6474,11 @@ export class IVROverlay {
     return null as unknown as OverlayError;
   }
 
+  /*
+  GetOverlayTransformTrackedDeviceComponent
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"punDeviceIndex","paramtype":"vr::TrackedDeviceIndex_t *"},{"paramname":"pchComponentName","out_string":" ","paramtype":"char *"},{"paramname":"unComponentNameSize","paramtype":"uint32_t"}]
+  Return: vr::EVROverlayError
+  */
   GetOverlayTransformTrackedDeviceComponent(ulOverlayHandle: OverlayHandle, punDeviceIndex: Deno.PointerValue<TrackedDeviceIndex>, pchComponentName: string, unComponentNameSize: number): OverlayError {
     if (this.ptr === null) throw new Error("IVROverlay pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
@@ -5617,6 +6487,11 @@ export class IVROverlay {
     return null as unknown as OverlayError;
   }
 
+  /*
+  SetOverlayTransformCursor
+  Parameters: [{"paramname":"ulCursorOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"pvHotspot","paramtype":"const struct vr::HmdVector2_t *"}]
+  Return: vr::EVROverlayError
+  */
   SetOverlayTransformCursor(ulCursorOverlayHandle: OverlayHandle, pvHotspot: Deno.PointerValue<HmdVector2>//READONLY): OverlayError {
     if (this.ptr === null) throw new Error("IVROverlay pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
@@ -5625,6 +6500,11 @@ export class IVROverlay {
     return null as unknown as OverlayError;
   }
 
+  /*
+  GetOverlayTransformCursor
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"pvHotspot","paramtype":"struct vr::HmdVector2_t *"}]
+  Return: vr::EVROverlayError
+  */
   GetOverlayTransformCursor(ulOverlayHandle: OverlayHandle, pvHotspot: Deno.PointerValue<HmdVector2>): OverlayError {
     if (this.ptr === null) throw new Error("IVROverlay pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
@@ -5633,6 +6513,11 @@ export class IVROverlay {
     return null as unknown as OverlayError;
   }
 
+  /*
+  SetOverlayTransformProjection
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"eTrackingOrigin","paramtype":"vr::ETrackingUniverseOrigin"},{"paramname":"pmatTrackingOriginToOverlayTransform","paramtype":"const struct vr::HmdMatrix34_t *"},{"paramname":"pProjection","paramtype":"const struct vr::VROverlayProjection_t *"},{"paramname":"eEye","paramtype":"vr::EVREye"}]
+  Return: vr::EVROverlayError
+  */
   SetOverlayTransformProjection(ulOverlayHandle: OverlayHandle, eTrackingOrigin: TrackingUniverseOrigin, pmatTrackingOriginToOverlayTransform: Deno.PointerValue<HmdMatrix34>//READONLY, pProjection: Deno.PointerValue<OverlayProjection>//READONLY, eEye: Eye): OverlayError {
     if (this.ptr === null) throw new Error("IVROverlay pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
@@ -5641,6 +6526,11 @@ export class IVROverlay {
     return null as unknown as OverlayError;
   }
 
+  /*
+  ShowOverlay
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"}]
+  Return: vr::EVROverlayError
+  */
   ShowOverlay(ulOverlayHandle: OverlayHandle): OverlayError {
     if (this.ptr === null) throw new Error("IVROverlay pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
@@ -5649,6 +6539,11 @@ export class IVROverlay {
     return null as unknown as OverlayError;
   }
 
+  /*
+  HideOverlay
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"}]
+  Return: vr::EVROverlayError
+  */
   HideOverlay(ulOverlayHandle: OverlayHandle): OverlayError {
     if (this.ptr === null) throw new Error("IVROverlay pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
@@ -5657,6 +6552,11 @@ export class IVROverlay {
     return null as unknown as OverlayError;
   }
 
+  /*
+  IsOverlayVisible
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"}]
+  Return: bool
+  */
   IsOverlayVisible(ulOverlayHandle: OverlayHandle): bool {
     if (this.ptr === null) throw new Error("IVROverlay pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
@@ -5665,6 +6565,11 @@ export class IVROverlay {
     return null as unknown as bool;
   }
 
+  /*
+  GetTransformForOverlayCoordinates
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"eTrackingOrigin","paramtype":"vr::ETrackingUniverseOrigin"},{"paramname":"coordinatesInOverlay","paramtype":"struct vr::HmdVector2_t"},{"paramname":"pmatTransform","paramtype":"struct vr::HmdMatrix34_t *"}]
+  Return: vr::EVROverlayError
+  */
   GetTransformForOverlayCoordinates(ulOverlayHandle: OverlayHandle, eTrackingOrigin: TrackingUniverseOrigin, coordinatesInOverlay: HmdVector2, pmatTransform: Deno.PointerValue<HmdMatrix34>): OverlayError {
     if (this.ptr === null) throw new Error("IVROverlay pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
@@ -5673,6 +6578,11 @@ export class IVROverlay {
     return null as unknown as OverlayError;
   }
 
+  /*
+  WaitFrameSync
+  Parameters: [{"paramname":"nTimeoutMs","paramtype":"uint32_t"}]
+  Return: vr::EVROverlayError
+  */
   WaitFrameSync(nTimeoutMs: number): OverlayError {
     if (this.ptr === null) throw new Error("IVROverlay pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
@@ -5681,6 +6591,11 @@ export class IVROverlay {
     return null as unknown as OverlayError;
   }
 
+  /*
+  PollNextOverlayEvent
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"pEvent","paramtype":"struct vr::VREvent_t *"},{"paramname":"uncbVREvent","paramtype":"uint32_t"}]
+  Return: bool
+  */
   PollNextOverlayEvent(ulOverlayHandle: OverlayHandle, pEvent: Deno.PointerValue<Event>, uncbVREvent: number): bool {
     if (this.ptr === null) throw new Error("IVROverlay pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
@@ -5689,6 +6604,11 @@ export class IVROverlay {
     return null as unknown as bool;
   }
 
+  /*
+  GetOverlayInputMethod
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"peInputMethod","paramtype":"vr::VROverlayInputMethod *"}]
+  Return: vr::EVROverlayError
+  */
   GetOverlayInputMethod(ulOverlayHandle: OverlayHandle, peInputMethod: Deno.PointerValue<OverlayInputMethod>): OverlayError {
     if (this.ptr === null) throw new Error("IVROverlay pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
@@ -5697,6 +6617,11 @@ export class IVROverlay {
     return null as unknown as OverlayError;
   }
 
+  /*
+  SetOverlayInputMethod
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"eInputMethod","paramtype":"vr::VROverlayInputMethod"}]
+  Return: vr::EVROverlayError
+  */
   SetOverlayInputMethod(ulOverlayHandle: OverlayHandle, eInputMethod: OverlayInputMethod): OverlayError {
     if (this.ptr === null) throw new Error("IVROverlay pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
@@ -5705,6 +6630,11 @@ export class IVROverlay {
     return null as unknown as OverlayError;
   }
 
+  /*
+  GetOverlayMouseScale
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"pvecMouseScale","paramtype":"struct vr::HmdVector2_t *"}]
+  Return: vr::EVROverlayError
+  */
   GetOverlayMouseScale(ulOverlayHandle: OverlayHandle, pvecMouseScale: Deno.PointerValue<HmdVector2>): OverlayError {
     if (this.ptr === null) throw new Error("IVROverlay pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
@@ -5713,6 +6643,11 @@ export class IVROverlay {
     return null as unknown as OverlayError;
   }
 
+  /*
+  SetOverlayMouseScale
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"pvecMouseScale","paramtype":"const struct vr::HmdVector2_t *"}]
+  Return: vr::EVROverlayError
+  */
   SetOverlayMouseScale(ulOverlayHandle: OverlayHandle, pvecMouseScale: Deno.PointerValue<HmdVector2>//READONLY): OverlayError {
     if (this.ptr === null) throw new Error("IVROverlay pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
@@ -5721,6 +6656,11 @@ export class IVROverlay {
     return null as unknown as OverlayError;
   }
 
+  /*
+  ComputeOverlayIntersection
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"pParams","paramtype":"const struct vr::VROverlayIntersectionParams_t *"},{"paramname":"pResults","paramtype":"struct vr::VROverlayIntersectionResults_t *"}]
+  Return: bool
+  */
   ComputeOverlayIntersection(ulOverlayHandle: OverlayHandle, pParams: Deno.PointerValue<OverlayIntersectionParams>//READONLY, pResults: Deno.PointerValue<OverlayIntersectionResults>): bool {
     if (this.ptr === null) throw new Error("IVROverlay pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
@@ -5729,6 +6669,11 @@ export class IVROverlay {
     return null as unknown as bool;
   }
 
+  /*
+  IsHoverTargetOverlay
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"}]
+  Return: bool
+  */
   IsHoverTargetOverlay(ulOverlayHandle: OverlayHandle): bool {
     if (this.ptr === null) throw new Error("IVROverlay pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
@@ -5737,6 +6682,11 @@ export class IVROverlay {
     return null as unknown as bool;
   }
 
+  /*
+  SetOverlayIntersectionMask
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"pMaskPrimitives","paramtype":"struct vr::VROverlayIntersectionMaskPrimitive_t *"},{"paramname":"unNumMaskPrimitives","paramtype":"uint32_t"},{"paramname":"unPrimitiveSize","paramtype":"uint32_t"}]
+  Return: vr::EVROverlayError
+  */
   SetOverlayIntersectionMask(ulOverlayHandle: OverlayHandle, pMaskPrimitives: Deno.PointerValue<OverlayIntersectionMaskPrimitive>, unNumMaskPrimitives: number, unPrimitiveSize: number): OverlayError {
     if (this.ptr === null) throw new Error("IVROverlay pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
@@ -5745,6 +6695,11 @@ export class IVROverlay {
     return null as unknown as OverlayError;
   }
 
+  /*
+  TriggerLaserMouseHapticVibration
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"fDurationSeconds","paramtype":"float"},{"paramname":"fFrequency","paramtype":"float"},{"paramname":"fAmplitude","paramtype":"float"}]
+  Return: vr::EVROverlayError
+  */
   TriggerLaserMouseHapticVibration(ulOverlayHandle: OverlayHandle, fDurationSeconds: number, fFrequency: number, fAmplitude: number): OverlayError {
     if (this.ptr === null) throw new Error("IVROverlay pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
@@ -5753,6 +6708,11 @@ export class IVROverlay {
     return null as unknown as OverlayError;
   }
 
+  /*
+  SetOverlayCursor
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"ulCursorHandle","paramtype":"vr::VROverlayHandle_t"}]
+  Return: vr::EVROverlayError
+  */
   SetOverlayCursor(ulOverlayHandle: OverlayHandle, ulCursorHandle: OverlayHandle): OverlayError {
     if (this.ptr === null) throw new Error("IVROverlay pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
@@ -5761,6 +6721,11 @@ export class IVROverlay {
     return null as unknown as OverlayError;
   }
 
+  /*
+  SetOverlayCursorPositionOverride
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"pvCursor","paramtype":"const struct vr::HmdVector2_t *"}]
+  Return: vr::EVROverlayError
+  */
   SetOverlayCursorPositionOverride(ulOverlayHandle: OverlayHandle, pvCursor: Deno.PointerValue<HmdVector2>//READONLY): OverlayError {
     if (this.ptr === null) throw new Error("IVROverlay pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
@@ -5769,6 +6734,11 @@ export class IVROverlay {
     return null as unknown as OverlayError;
   }
 
+  /*
+  ClearOverlayCursorPositionOverride
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"}]
+  Return: vr::EVROverlayError
+  */
   ClearOverlayCursorPositionOverride(ulOverlayHandle: OverlayHandle): OverlayError {
     if (this.ptr === null) throw new Error("IVROverlay pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
@@ -5777,6 +6747,11 @@ export class IVROverlay {
     return null as unknown as OverlayError;
   }
 
+  /*
+  SetOverlayTexture
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"pTexture","paramtype":"const struct vr::Texture_t *"}]
+  Return: vr::EVROverlayError
+  */
   SetOverlayTexture(ulOverlayHandle: OverlayHandle, pTexture: Deno.PointerValue<Texture>//READONLY): OverlayError {
     if (this.ptr === null) throw new Error("IVROverlay pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
@@ -5785,6 +6760,11 @@ export class IVROverlay {
     return null as unknown as OverlayError;
   }
 
+  /*
+  ClearOverlayTexture
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"}]
+  Return: vr::EVROverlayError
+  */
   ClearOverlayTexture(ulOverlayHandle: OverlayHandle): OverlayError {
     if (this.ptr === null) throw new Error("IVROverlay pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
@@ -5793,6 +6773,11 @@ export class IVROverlay {
     return null as unknown as OverlayError;
   }
 
+  /*
+  SetOverlayRaw
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"pvBuffer","paramtype":"void *"},{"paramname":"unWidth","paramtype":"uint32_t"},{"paramname":"unHeight","paramtype":"uint32_t"},{"paramname":"unBytesPerPixel","paramtype":"uint32_t"}]
+  Return: vr::EVROverlayError
+  */
   SetOverlayRaw(ulOverlayHandle: OverlayHandle, pvBuffer: Deno.PointerValue<unknown>, unWidth: number, unHeight: number, unBytesPerPixel: number): OverlayError {
     if (this.ptr === null) throw new Error("IVROverlay pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
@@ -5801,6 +6786,11 @@ export class IVROverlay {
     return null as unknown as OverlayError;
   }
 
+  /*
+  SetOverlayFromFile
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"pchFilePath","paramtype":"const char *"}]
+  Return: vr::EVROverlayError
+  */
   SetOverlayFromFile(ulOverlayHandle: OverlayHandle, pchFilePath: string): OverlayError {
     if (this.ptr === null) throw new Error("IVROverlay pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
@@ -5809,6 +6799,11 @@ export class IVROverlay {
     return null as unknown as OverlayError;
   }
 
+  /*
+  GetOverlayTexture
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"pNativeTextureHandle","paramtype":"void **"},{"paramname":"pNativeTextureRef","paramtype":"void *"},{"paramname":"pWidth","paramtype":"uint32_t *"},{"paramname":"pHeight","paramtype":"uint32_t *"},{"paramname":"pNativeFormat","paramtype":"uint32_t *"},{"paramname":"pAPIType","paramtype":"vr::ETextureType *"},{"paramname":"pColorSpace","paramtype":"vr::EColorSpace *"},{"paramname":"pTextureBounds","paramtype":"struct vr::VRTextureBounds_t *"}]
+  Return: vr::EVROverlayError
+  */
   GetOverlayTexture(ulOverlayHandle: OverlayHandle, pNativeTextureHandle: Deno.PointerValue<Deno.PointerValue<unknown>>, pNativeTextureRef: Deno.PointerValue<unknown>, pWidth: Deno.PointerValue<number>, pHeight: Deno.PointerValue<number>, pNativeFormat: Deno.PointerValue<number>, pAPIType: Deno.PointerValue<TextureType>, pColorSpace: Deno.PointerValue<ColorSpace>, pTextureBounds: Deno.PointerValue<TextureBounds>): OverlayError {
     if (this.ptr === null) throw new Error("IVROverlay pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
@@ -5817,6 +6812,11 @@ export class IVROverlay {
     return null as unknown as OverlayError;
   }
 
+  /*
+  ReleaseNativeOverlayHandle
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"pNativeTextureHandle","paramtype":"void *"}]
+  Return: vr::EVROverlayError
+  */
   ReleaseNativeOverlayHandle(ulOverlayHandle: OverlayHandle, pNativeTextureHandle: Deno.PointerValue<unknown>): OverlayError {
     if (this.ptr === null) throw new Error("IVROverlay pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
@@ -5825,6 +6825,11 @@ export class IVROverlay {
     return null as unknown as OverlayError;
   }
 
+  /*
+  GetOverlayTextureSize
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"pWidth","paramtype":"uint32_t *"},{"paramname":"pHeight","paramtype":"uint32_t *"}]
+  Return: vr::EVROverlayError
+  */
   GetOverlayTextureSize(ulOverlayHandle: OverlayHandle, pWidth: Deno.PointerValue<number>, pHeight: Deno.PointerValue<number>): OverlayError {
     if (this.ptr === null) throw new Error("IVROverlay pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
@@ -5833,6 +6838,11 @@ export class IVROverlay {
     return null as unknown as OverlayError;
   }
 
+  /*
+  CreateDashboardOverlay
+  Parameters: [{"paramname":"pchOverlayKey","paramtype":"const char *"},{"paramname":"pchOverlayFriendlyName","paramtype":"const char *"},{"paramname":"pMainHandle","paramtype":"vr::VROverlayHandle_t *"},{"paramname":"pThumbnailHandle","paramtype":"vr::VROverlayHandle_t *"}]
+  Return: vr::EVROverlayError
+  */
   CreateDashboardOverlay(pchOverlayKey: string, pchOverlayFriendlyName: string, pMainHandle: Deno.PointerValue<OverlayHandle>, pThumbnailHandle: Deno.PointerValue<OverlayHandle>): OverlayError {
     if (this.ptr === null) throw new Error("IVROverlay pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
@@ -5841,6 +6851,11 @@ export class IVROverlay {
     return null as unknown as OverlayError;
   }
 
+  /*
+  IsDashboardVisible
+  Parameters: undefined
+  Return: bool
+  */
   IsDashboardVisible(): bool {
     if (this.ptr === null) throw new Error("IVROverlay pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
@@ -5849,6 +6864,11 @@ export class IVROverlay {
     return null as unknown as bool;
   }
 
+  /*
+  IsActiveDashboardOverlay
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"}]
+  Return: bool
+  */
   IsActiveDashboardOverlay(ulOverlayHandle: OverlayHandle): bool {
     if (this.ptr === null) throw new Error("IVROverlay pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
@@ -5857,6 +6877,11 @@ export class IVROverlay {
     return null as unknown as bool;
   }
 
+  /*
+  SetDashboardOverlaySceneProcess
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"unProcessId","paramtype":"uint32_t"}]
+  Return: vr::EVROverlayError
+  */
   SetDashboardOverlaySceneProcess(ulOverlayHandle: OverlayHandle, unProcessId: number): OverlayError {
     if (this.ptr === null) throw new Error("IVROverlay pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
@@ -5865,6 +6890,11 @@ export class IVROverlay {
     return null as unknown as OverlayError;
   }
 
+  /*
+  GetDashboardOverlaySceneProcess
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"punProcessId","paramtype":"uint32_t *"}]
+  Return: vr::EVROverlayError
+  */
   GetDashboardOverlaySceneProcess(ulOverlayHandle: OverlayHandle, punProcessId: Deno.PointerValue<number>): OverlayError {
     if (this.ptr === null) throw new Error("IVROverlay pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
@@ -5873,12 +6903,22 @@ export class IVROverlay {
     return null as unknown as OverlayError;
   }
 
+  /*
+  ShowDashboard
+  Parameters: [{"paramname":"pchOverlayToShow","paramtype":"const char *"}]
+  Return: void
+  */
   ShowDashboard(pchOverlayToShow: string): void {
     if (this.ptr === null) throw new Error("IVROverlay pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
     // TODO: Implement FFI call
   }
 
+  /*
+  GetPrimaryDashboardDevice
+  Parameters: undefined
+  Return: vr::TrackedDeviceIndex_t
+  */
   GetPrimaryDashboardDevice(): TrackedDeviceIndex {
     if (this.ptr === null) throw new Error("IVROverlay pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
@@ -5887,6 +6927,11 @@ export class IVROverlay {
     return null as unknown as TrackedDeviceIndex;
   }
 
+  /*
+  ShowKeyboard
+  Parameters: [{"paramname":"eInputMode","paramtype":"vr::EGamepadTextInputMode"},{"paramname":"eLineInputMode","paramtype":"vr::EGamepadTextInputLineMode"},{"paramname":"unFlags","paramtype":"uint32_t"},{"paramname":"pchDescription","paramtype":"const char *"},{"paramname":"unCharMax","paramtype":"uint32_t"},{"paramname":"pchExistingText","paramtype":"const char *"},{"paramname":"uUserValue","paramtype":"uint64_t"}]
+  Return: vr::EVROverlayError
+  */
   ShowKeyboard(eInputMode: GamepadTextInputMode, eLineInputMode: GamepadTextInputLineMode, unFlags: number, pchDescription: string, unCharMax: number, pchExistingText: string, uUserValue: bigint): OverlayError {
     if (this.ptr === null) throw new Error("IVROverlay pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
@@ -5895,6 +6940,11 @@ export class IVROverlay {
     return null as unknown as OverlayError;
   }
 
+  /*
+  ShowKeyboardForOverlay
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"eInputMode","paramtype":"vr::EGamepadTextInputMode"},{"paramname":"eLineInputMode","paramtype":"vr::EGamepadTextInputLineMode"},{"paramname":"unFlags","paramtype":"uint32_t"},{"paramname":"pchDescription","paramtype":"const char *"},{"paramname":"unCharMax","paramtype":"uint32_t"},{"paramname":"pchExistingText","paramtype":"const char *"},{"paramname":"uUserValue","paramtype":"uint64_t"}]
+  Return: vr::EVROverlayError
+  */
   ShowKeyboardForOverlay(ulOverlayHandle: OverlayHandle, eInputMode: GamepadTextInputMode, eLineInputMode: GamepadTextInputLineMode, unFlags: number, pchDescription: string, unCharMax: number, pchExistingText: string, uUserValue: bigint): OverlayError {
     if (this.ptr === null) throw new Error("IVROverlay pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
@@ -5903,6 +6953,11 @@ export class IVROverlay {
     return null as unknown as OverlayError;
   }
 
+  /*
+  GetKeyboardText
+  Parameters: [{"paramname":"pchText","out_string":" ","paramtype":"char *"},{"paramname":"cchText","paramtype":"uint32_t"}]
+  Return: uint32_t
+  */
   GetKeyboardText(pchText: string, cchText: number): number {
     if (this.ptr === null) throw new Error("IVROverlay pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
@@ -5911,24 +6966,44 @@ export class IVROverlay {
     return null as unknown as number;
   }
 
+  /*
+  HideKeyboard
+  Parameters: undefined
+  Return: void
+  */
   HideKeyboard(): void {
     if (this.ptr === null) throw new Error("IVROverlay pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
     // TODO: Implement FFI call
   }
 
+  /*
+  SetKeyboardTransformAbsolute
+  Parameters: [{"paramname":"eTrackingOrigin","paramtype":"vr::ETrackingUniverseOrigin"},{"paramname":"pmatTrackingOriginToKeyboardTransform","paramtype":"const struct vr::HmdMatrix34_t *"}]
+  Return: void
+  */
   SetKeyboardTransformAbsolute(eTrackingOrigin: TrackingUniverseOrigin, pmatTrackingOriginToKeyboardTransform: Deno.PointerValue<HmdMatrix34>//READONLY): void {
     if (this.ptr === null) throw new Error("IVROverlay pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
     // TODO: Implement FFI call
   }
 
+  /*
+  SetKeyboardPositionForOverlay
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"avoidRect","paramtype":"struct vr::HmdRect2_t"}]
+  Return: void
+  */
   SetKeyboardPositionForOverlay(ulOverlayHandle: OverlayHandle, avoidRect: HmdRect2): void {
     if (this.ptr === null) throw new Error("IVROverlay pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
     // TODO: Implement FFI call
   }
 
+  /*
+  ShowMessageOverlay
+  Parameters: [{"paramname":"pchText","paramtype":"const char *"},{"paramname":"pchCaption","paramtype":"const char *"},{"paramname":"pchButton0Text","paramtype":"const char *"},{"paramname":"pchButton1Text","paramtype":"const char *"},{"paramname":"pchButton2Text","paramtype":"const char *"},{"paramname":"pchButton3Text","paramtype":"const char *"}]
+  Return: vr::VRMessageOverlayResponse
+  */
   ShowMessageOverlay(pchText: string, pchCaption: string, pchButton0Text: string, pchButton1Text: string, pchButton2Text: string, pchButton3Text: string): MessageOverlayResponse {
     if (this.ptr === null) throw new Error("IVROverlay pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
@@ -5937,6 +7012,11 @@ export class IVROverlay {
     return null as unknown as MessageOverlayResponse;
   }
 
+  /*
+  CloseMessageOverlay
+  Parameters: undefined
+  Return: void
+  */
   CloseMessageOverlay(): void {
     if (this.ptr === null) throw new Error("IVROverlay pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
@@ -5948,6 +7028,11 @@ export class IVROverlay {
 export class IVROverlayView {
   constructor(private ptr: Deno.PointerValue<IVROverlayView>) {}
 
+  /*
+  AcquireOverlayView
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"pNativeDevice","paramtype":"struct vr::VRNativeDevice_t *"},{"paramname":"pOverlayView","paramtype":"struct vr::VROverlayView_t *"},{"paramname":"unOverlayViewSize","paramtype":"uint32_t"}]
+  Return: vr::EVROverlayError
+  */
   AcquireOverlayView(ulOverlayHandle: OverlayHandle, pNativeDevice: Deno.PointerValue<NativeDevice>, pOverlayView: Deno.PointerValue<OverlayView>, unOverlayViewSize: number): OverlayError {
     if (this.ptr === null) throw new Error("IVROverlayView pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlayView>);
@@ -5956,6 +7041,11 @@ export class IVROverlayView {
     return null as unknown as OverlayError;
   }
 
+  /*
+  ReleaseOverlayView
+  Parameters: [{"paramname":"pOverlayView","paramtype":"struct vr::VROverlayView_t *"}]
+  Return: vr::EVROverlayError
+  */
   ReleaseOverlayView(pOverlayView: Deno.PointerValue<OverlayView>): OverlayError {
     if (this.ptr === null) throw new Error("IVROverlayView pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlayView>);
@@ -5964,12 +7054,22 @@ export class IVROverlayView {
     return null as unknown as OverlayError;
   }
 
+  /*
+  PostOverlayEvent
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"pvrEvent","paramtype":"const struct vr::VREvent_t *"}]
+  Return: void
+  */
   PostOverlayEvent(ulOverlayHandle: OverlayHandle, pvrEvent: Deno.PointerValue<Event>//READONLY): void {
     if (this.ptr === null) throw new Error("IVROverlayView pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlayView>);
     // TODO: Implement FFI call
   }
 
+  /*
+  IsViewingPermitted
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"}]
+  Return: bool
+  */
   IsViewingPermitted(ulOverlayHandle: OverlayHandle): bool {
     if (this.ptr === null) throw new Error("IVROverlayView pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlayView>);
@@ -5983,6 +7083,11 @@ export class IVROverlayView {
 export class IVRResources {
   constructor(private ptr: Deno.PointerValue<IVRResources>) {}
 
+  /*
+  LoadSharedResource
+  Parameters: [{"paramname":"pchResourceName","paramtype":"const char *"},{"paramname":"pchBuffer","paramtype":"char *"},{"paramname":"unBufferLen","paramtype":"uint32_t"}]
+  Return: uint32_t
+  */
   LoadSharedResource(pchResourceName: string, pchBuffer: string, unBufferLen: number): number {
     if (this.ptr === null) throw new Error("IVRResources pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRResources>);
@@ -5991,6 +7096,11 @@ export class IVRResources {
     return null as unknown as number;
   }
 
+  /*
+  GetResourceFullPath
+  Parameters: [{"paramname":"pchResourceName","paramtype":"const char *"},{"paramname":"pchResourceTypeDirectory","paramtype":"const char *"},{"paramname":"pchPathBuffer","out_string":" ","paramtype":"char *"},{"paramname":"unBufferLen","paramtype":"uint32_t"}]
+  Return: uint32_t
+  */
   GetResourceFullPath(pchResourceName: string, pchResourceTypeDirectory: string, pchPathBuffer: string, unBufferLen: number): number {
     if (this.ptr === null) throw new Error("IVRResources pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRResources>);
@@ -6004,6 +7114,11 @@ export class IVRResources {
 export class IVRRenderModels {
   constructor(private ptr: Deno.PointerValue<IVRRenderModels>) {}
 
+  /*
+  LoadRenderModel_Async
+  Parameters: [{"paramname":"pchRenderModelName","paramtype":"const char *"},{"paramname":"ppRenderModel","paramtype":"struct vr::RenderModel_t **"}]
+  Return: vr::EVRRenderModelError
+  */
   LoadRenderModel_Async(pchRenderModelName: string, ppRenderModel: Deno.PointerValue<Deno.PointerValue<RenderModel>>): RenderModelError {
     if (this.ptr === null) throw new Error("IVRRenderModels pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRRenderModels>);
@@ -6012,12 +7127,22 @@ export class IVRRenderModels {
     return null as unknown as RenderModelError;
   }
 
+  /*
+  FreeRenderModel
+  Parameters: [{"paramname":"pRenderModel","paramtype":"struct vr::RenderModel_t *"}]
+  Return: void
+  */
   FreeRenderModel(pRenderModel: Deno.PointerValue<RenderModel>): void {
     if (this.ptr === null) throw new Error("IVRRenderModels pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRRenderModels>);
     // TODO: Implement FFI call
   }
 
+  /*
+  LoadTexture_Async
+  Parameters: [{"paramname":"textureId","paramtype":"vr::TextureID_t"},{"paramname":"ppTexture","paramtype":"struct vr::RenderModel_TextureMap_t **"}]
+  Return: vr::EVRRenderModelError
+  */
   LoadTexture_Async(textureId: TextureID, ppTexture: Deno.PointerValue<Deno.PointerValue<RenderModel_TextureMap>>): RenderModelError {
     if (this.ptr === null) throw new Error("IVRRenderModels pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRRenderModels>);
@@ -6026,12 +7151,22 @@ export class IVRRenderModels {
     return null as unknown as RenderModelError;
   }
 
+  /*
+  FreeTexture
+  Parameters: [{"paramname":"pTexture","paramtype":"struct vr::RenderModel_TextureMap_t *"}]
+  Return: void
+  */
   FreeTexture(pTexture: Deno.PointerValue<RenderModel_TextureMap>): void {
     if (this.ptr === null) throw new Error("IVRRenderModels pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRRenderModels>);
     // TODO: Implement FFI call
   }
 
+  /*
+  LoadTextureD3D11_Async
+  Parameters: [{"paramname":"textureId","paramtype":"vr::TextureID_t"},{"paramname":"pD3D11Device","paramtype":"void *"},{"paramname":"ppD3D11Texture2D","paramtype":"void **"}]
+  Return: vr::EVRRenderModelError
+  */
   LoadTextureD3D11_Async(textureId: TextureID, pD3D11Device: Deno.PointerValue<unknown>, ppD3D11Texture2D: Deno.PointerValue<Deno.PointerValue<unknown>>): RenderModelError {
     if (this.ptr === null) throw new Error("IVRRenderModels pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRRenderModels>);
@@ -6040,6 +7175,11 @@ export class IVRRenderModels {
     return null as unknown as RenderModelError;
   }
 
+  /*
+  LoadIntoTextureD3D11_Async
+  Parameters: [{"paramname":"textureId","paramtype":"vr::TextureID_t"},{"paramname":"pDstTexture","paramtype":"void *"}]
+  Return: vr::EVRRenderModelError
+  */
   LoadIntoTextureD3D11_Async(textureId: TextureID, pDstTexture: Deno.PointerValue<unknown>): RenderModelError {
     if (this.ptr === null) throw new Error("IVRRenderModels pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRRenderModels>);
@@ -6048,12 +7188,22 @@ export class IVRRenderModels {
     return null as unknown as RenderModelError;
   }
 
+  /*
+  FreeTextureD3D11
+  Parameters: [{"paramname":"pD3D11Texture2D","paramtype":"void *"}]
+  Return: void
+  */
   FreeTextureD3D11(pD3D11Texture2D: Deno.PointerValue<unknown>): void {
     if (this.ptr === null) throw new Error("IVRRenderModels pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRRenderModels>);
     // TODO: Implement FFI call
   }
 
+  /*
+  GetRenderModelName
+  Parameters: [{"paramname":"unRenderModelIndex","paramtype":"uint32_t"},{"paramname":"pchRenderModelName","out_string":" ","paramtype":"char *"},{"paramname":"unRenderModelNameLen","paramtype":"uint32_t"}]
+  Return: uint32_t
+  */
   GetRenderModelName(unRenderModelIndex: number, pchRenderModelName: string, unRenderModelNameLen: number): number {
     if (this.ptr === null) throw new Error("IVRRenderModels pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRRenderModels>);
@@ -6062,6 +7212,11 @@ export class IVRRenderModels {
     return null as unknown as number;
   }
 
+  /*
+  GetRenderModelCount
+  Parameters: undefined
+  Return: uint32_t
+  */
   GetRenderModelCount(): number {
     if (this.ptr === null) throw new Error("IVRRenderModels pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRRenderModels>);
@@ -6070,6 +7225,11 @@ export class IVRRenderModels {
     return null as unknown as number;
   }
 
+  /*
+  GetComponentCount
+  Parameters: [{"paramname":"pchRenderModelName","paramtype":"const char *"}]
+  Return: uint32_t
+  */
   GetComponentCount(pchRenderModelName: string): number {
     if (this.ptr === null) throw new Error("IVRRenderModels pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRRenderModels>);
@@ -6078,6 +7238,11 @@ export class IVRRenderModels {
     return null as unknown as number;
   }
 
+  /*
+  GetComponentName
+  Parameters: [{"paramname":"pchRenderModelName","paramtype":"const char *"},{"paramname":"unComponentIndex","paramtype":"uint32_t"},{"paramname":"pchComponentName","out_string":" ","paramtype":"char *"},{"paramname":"unComponentNameLen","paramtype":"uint32_t"}]
+  Return: uint32_t
+  */
   GetComponentName(pchRenderModelName: string, unComponentIndex: number, pchComponentName: string, unComponentNameLen: number): number {
     if (this.ptr === null) throw new Error("IVRRenderModels pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRRenderModels>);
@@ -6086,6 +7251,11 @@ export class IVRRenderModels {
     return null as unknown as number;
   }
 
+  /*
+  GetComponentButtonMask
+  Parameters: [{"paramname":"pchRenderModelName","paramtype":"const char *"},{"paramname":"pchComponentName","paramtype":"const char *"}]
+  Return: uint64_t
+  */
   GetComponentButtonMask(pchRenderModelName: string, pchComponentName: string): bigint {
     if (this.ptr === null) throw new Error("IVRRenderModels pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRRenderModels>);
@@ -6094,6 +7264,11 @@ export class IVRRenderModels {
     return null as unknown as bigint;
   }
 
+  /*
+  GetComponentRenderModelName
+  Parameters: [{"paramname":"pchRenderModelName","paramtype":"const char *"},{"paramname":"pchComponentName","paramtype":"const char *"},{"paramname":"pchComponentRenderModelName","out_string":" ","paramtype":"char *"},{"paramname":"unComponentRenderModelNameLen","paramtype":"uint32_t"}]
+  Return: uint32_t
+  */
   GetComponentRenderModelName(pchRenderModelName: string, pchComponentName: string, pchComponentRenderModelName: string, unComponentRenderModelNameLen: number): number {
     if (this.ptr === null) throw new Error("IVRRenderModels pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRRenderModels>);
@@ -6102,6 +7277,11 @@ export class IVRRenderModels {
     return null as unknown as number;
   }
 
+  /*
+  GetComponentStateForDevicePath
+  Parameters: [{"paramname":"pchRenderModelName","paramtype":"const char *"},{"paramname":"pchComponentName","paramtype":"const char *"},{"paramname":"devicePath","paramtype":"vr::VRInputValueHandle_t"},{"paramname":"pState","paramtype":"const vr::RenderModel_ControllerMode_State_t *"},{"paramname":"pComponentState","paramtype":"vr::RenderModel_ComponentState_t *"}]
+  Return: bool
+  */
   GetComponentStateForDevicePath(pchRenderModelName: string, pchComponentName: string, devicePath: InputValueHandle, pState: Deno.PointerValue<RenderModel_ControllerMode_State>//READONLY, pComponentState: Deno.PointerValue<RenderModel_ComponentState>): bool {
     if (this.ptr === null) throw new Error("IVRRenderModels pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRRenderModels>);
@@ -6110,6 +7290,11 @@ export class IVRRenderModels {
     return null as unknown as bool;
   }
 
+  /*
+  GetComponentState
+  Parameters: [{"paramname":"pchRenderModelName","paramtype":"const char *"},{"paramname":"pchComponentName","paramtype":"const char *"},{"paramname":"pControllerState","paramtype":"const vr::VRControllerState_t *"},{"paramname":"pState","paramtype":"const struct vr::RenderModel_ControllerMode_State_t *"},{"paramname":"pComponentState","paramtype":"struct vr::RenderModel_ComponentState_t *"}]
+  Return: bool
+  */
   GetComponentState(pchRenderModelName: string, pchComponentName: string, pControllerState: Deno.PointerValue<ControllerState>//READONLY, pState: Deno.PointerValue<RenderModel_ControllerMode_State>//READONLY, pComponentState: Deno.PointerValue<RenderModel_ComponentState>): bool {
     if (this.ptr === null) throw new Error("IVRRenderModels pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRRenderModels>);
@@ -6118,6 +7303,11 @@ export class IVRRenderModels {
     return null as unknown as bool;
   }
 
+  /*
+  RenderModelHasComponent
+  Parameters: [{"paramname":"pchRenderModelName","paramtype":"const char *"},{"paramname":"pchComponentName","paramtype":"const char *"}]
+  Return: bool
+  */
   RenderModelHasComponent(pchRenderModelName: string, pchComponentName: string): bool {
     if (this.ptr === null) throw new Error("IVRRenderModels pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRRenderModels>);
@@ -6126,6 +7316,11 @@ export class IVRRenderModels {
     return null as unknown as bool;
   }
 
+  /*
+  GetRenderModelThumbnailURL
+  Parameters: [{"paramname":"pchRenderModelName","paramtype":"const char *"},{"paramname":"pchThumbnailURL","out_string":" ","paramtype":"char *"},{"paramname":"unThumbnailURLLen","paramtype":"uint32_t"},{"paramname":"peError","paramtype":"vr::EVRRenderModelError *"}]
+  Return: uint32_t
+  */
   GetRenderModelThumbnailURL(pchRenderModelName: string, pchThumbnailURL: string, unThumbnailURLLen: number, peError: Deno.PointerValue<RenderModelError>): number {
     if (this.ptr === null) throw new Error("IVRRenderModels pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRRenderModels>);
@@ -6134,6 +7329,11 @@ export class IVRRenderModels {
     return null as unknown as number;
   }
 
+  /*
+  GetRenderModelOriginalPath
+  Parameters: [{"paramname":"pchRenderModelName","paramtype":"const char *"},{"paramname":"pchOriginalPath","out_string":" ","paramtype":"char *"},{"paramname":"unOriginalPathLen","paramtype":"uint32_t"},{"paramname":"peError","paramtype":"vr::EVRRenderModelError *"}]
+  Return: uint32_t
+  */
   GetRenderModelOriginalPath(pchRenderModelName: string, pchOriginalPath: string, unOriginalPathLen: number, peError: Deno.PointerValue<RenderModelError>): number {
     if (this.ptr === null) throw new Error("IVRRenderModels pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRRenderModels>);
@@ -6142,6 +7342,11 @@ export class IVRRenderModels {
     return null as unknown as number;
   }
 
+  /*
+  GetRenderModelErrorNameFromEnum
+  Parameters: [{"paramname":"error","paramtype":"vr::EVRRenderModelError"}]
+  Return: const char *
+  */
   GetRenderModelErrorNameFromEnum(error: RenderModelError): string {
     if (this.ptr === null) throw new Error("IVRRenderModels pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRRenderModels>);
@@ -6155,18 +7360,33 @@ export class IVRRenderModels {
 export class IVRExtendedDisplay {
   constructor(private ptr: Deno.PointerValue<IVRExtendedDisplay>) {}
 
+  /*
+  GetWindowBounds
+  Parameters: [{"paramname":"pnX","paramtype":"int32_t *"},{"paramname":"pnY","paramtype":"int32_t *"},{"paramname":"pnWidth","paramtype":"uint32_t *"},{"paramname":"pnHeight","paramtype":"uint32_t *"}]
+  Return: void
+  */
   GetWindowBounds(pnX: Deno.PointerValue<number>, pnY: Deno.PointerValue<number>, pnWidth: Deno.PointerValue<number>, pnHeight: Deno.PointerValue<number>): void {
     if (this.ptr === null) throw new Error("IVRExtendedDisplay pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRExtendedDisplay>);
     // TODO: Implement FFI call
   }
 
+  /*
+  GetEyeOutputViewport
+  Parameters: [{"paramname":"eEye","paramtype":"vr::EVREye"},{"paramname":"pnX","paramtype":"uint32_t *"},{"paramname":"pnY","paramtype":"uint32_t *"},{"paramname":"pnWidth","paramtype":"uint32_t *"},{"paramname":"pnHeight","paramtype":"uint32_t *"}]
+  Return: void
+  */
   GetEyeOutputViewport(eEye: Eye, pnX: Deno.PointerValue<number>, pnY: Deno.PointerValue<number>, pnWidth: Deno.PointerValue<number>, pnHeight: Deno.PointerValue<number>): void {
     if (this.ptr === null) throw new Error("IVRExtendedDisplay pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRExtendedDisplay>);
     // TODO: Implement FFI call
   }
 
+  /*
+  GetDXGIOutputInfo
+  Parameters: [{"paramname":"pnAdapterIndex","paramtype":"int32_t *"},{"paramname":"pnAdapterOutputIndex","paramtype":"int32_t *"}]
+  Return: void
+  */
   GetDXGIOutputInfo(pnAdapterIndex: Deno.PointerValue<number>, pnAdapterOutputIndex: Deno.PointerValue<number>): void {
     if (this.ptr === null) throw new Error("IVRExtendedDisplay pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRExtendedDisplay>);
@@ -6178,6 +7398,11 @@ export class IVRExtendedDisplay {
 export class IVRSettings {
   constructor(private ptr: Deno.PointerValue<IVRSettings>) {}
 
+  /*
+  GetSettingsErrorNameFromEnum
+  Parameters: [{"paramname":"eError","paramtype":"vr::EVRSettingsError"}]
+  Return: const char *
+  */
   GetSettingsErrorNameFromEnum(eError: SettingsError): string {
     if (this.ptr === null) throw new Error("IVRSettings pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSettings>);
@@ -6186,30 +7411,55 @@ export class IVRSettings {
     return null as unknown as string;
   }
 
+  /*
+  SetBool
+  Parameters: [{"paramname":"pchSection","paramtype":"const char *"},{"paramname":"pchSettingsKey","paramtype":"const char *"},{"paramname":"bValue","paramtype":"bool"},{"paramname":"peError","paramtype":"vr::EVRSettingsError *"}]
+  Return: void
+  */
   SetBool(pchSection: string, pchSettingsKey: string, bValue: bool, peError: Deno.PointerValue<SettingsError>): void {
     if (this.ptr === null) throw new Error("IVRSettings pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSettings>);
     // TODO: Implement FFI call
   }
 
+  /*
+  SetInt32
+  Parameters: [{"paramname":"pchSection","paramtype":"const char *"},{"paramname":"pchSettingsKey","paramtype":"const char *"},{"paramname":"nValue","paramtype":"int32_t"},{"paramname":"peError","paramtype":"vr::EVRSettingsError *"}]
+  Return: void
+  */
   SetInt32(pchSection: string, pchSettingsKey: string, nValue: number, peError: Deno.PointerValue<SettingsError>): void {
     if (this.ptr === null) throw new Error("IVRSettings pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSettings>);
     // TODO: Implement FFI call
   }
 
+  /*
+  SetFloat
+  Parameters: [{"paramname":"pchSection","paramtype":"const char *"},{"paramname":"pchSettingsKey","paramtype":"const char *"},{"paramname":"flValue","paramtype":"float"},{"paramname":"peError","paramtype":"vr::EVRSettingsError *"}]
+  Return: void
+  */
   SetFloat(pchSection: string, pchSettingsKey: string, flValue: number, peError: Deno.PointerValue<SettingsError>): void {
     if (this.ptr === null) throw new Error("IVRSettings pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSettings>);
     // TODO: Implement FFI call
   }
 
+  /*
+  SetString
+  Parameters: [{"paramname":"pchSection","paramtype":"const char *"},{"paramname":"pchSettingsKey","paramtype":"const char *"},{"paramname":"pchValue","paramtype":"const char *"},{"paramname":"peError","paramtype":"vr::EVRSettingsError *"}]
+  Return: void
+  */
   SetString(pchSection: string, pchSettingsKey: string, pchValue: string, peError: Deno.PointerValue<SettingsError>): void {
     if (this.ptr === null) throw new Error("IVRSettings pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSettings>);
     // TODO: Implement FFI call
   }
 
+  /*
+  GetBool
+  Parameters: [{"paramname":"pchSection","paramtype":"const char *"},{"paramname":"pchSettingsKey","paramtype":"const char *"},{"paramname":"peError","paramtype":"vr::EVRSettingsError *"}]
+  Return: bool
+  */
   GetBool(pchSection: string, pchSettingsKey: string, peError: Deno.PointerValue<SettingsError>): bool {
     if (this.ptr === null) throw new Error("IVRSettings pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSettings>);
@@ -6218,6 +7468,11 @@ export class IVRSettings {
     return null as unknown as bool;
   }
 
+  /*
+  GetInt32
+  Parameters: [{"paramname":"pchSection","paramtype":"const char *"},{"paramname":"pchSettingsKey","paramtype":"const char *"},{"paramname":"peError","paramtype":"vr::EVRSettingsError *"}]
+  Return: int32_t
+  */
   GetInt32(pchSection: string, pchSettingsKey: string, peError: Deno.PointerValue<SettingsError>): number {
     if (this.ptr === null) throw new Error("IVRSettings pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSettings>);
@@ -6226,6 +7481,11 @@ export class IVRSettings {
     return null as unknown as number;
   }
 
+  /*
+  GetFloat
+  Parameters: [{"paramname":"pchSection","paramtype":"const char *"},{"paramname":"pchSettingsKey","paramtype":"const char *"},{"paramname":"peError","paramtype":"vr::EVRSettingsError *"}]
+  Return: float
+  */
   GetFloat(pchSection: string, pchSettingsKey: string, peError: Deno.PointerValue<SettingsError>): number {
     if (this.ptr === null) throw new Error("IVRSettings pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSettings>);
@@ -6234,18 +7494,33 @@ export class IVRSettings {
     return null as unknown as number;
   }
 
+  /*
+  GetString
+  Parameters: [{"paramname":"pchSection","paramtype":"const char *"},{"paramname":"pchSettingsKey","paramtype":"const char *"},{"paramname":"pchValue","out_string":" ","paramtype":"char *"},{"paramname":"unValueLen","paramtype":"uint32_t"},{"paramname":"peError","paramtype":"vr::EVRSettingsError *"}]
+  Return: void
+  */
   GetString(pchSection: string, pchSettingsKey: string, pchValue: string, unValueLen: number, peError: Deno.PointerValue<SettingsError>): void {
     if (this.ptr === null) throw new Error("IVRSettings pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSettings>);
     // TODO: Implement FFI call
   }
 
+  /*
+  RemoveSection
+  Parameters: [{"paramname":"pchSection","paramtype":"const char *"},{"paramname":"peError","paramtype":"vr::EVRSettingsError *"}]
+  Return: void
+  */
   RemoveSection(pchSection: string, peError: Deno.PointerValue<SettingsError>): void {
     if (this.ptr === null) throw new Error("IVRSettings pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSettings>);
     // TODO: Implement FFI call
   }
 
+  /*
+  RemoveKeyInSection
+  Parameters: [{"paramname":"pchSection","paramtype":"const char *"},{"paramname":"pchSettingsKey","paramtype":"const char *"},{"paramname":"peError","paramtype":"vr::EVRSettingsError *"}]
+  Return: void
+  */
   RemoveKeyInSection(pchSection: string, pchSettingsKey: string, peError: Deno.PointerValue<SettingsError>): void {
     if (this.ptr === null) throw new Error("IVRSettings pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSettings>);
@@ -6257,6 +7532,11 @@ export class IVRSettings {
 export class IVRApplications {
   constructor(private ptr: Deno.PointerValue<IVRApplications>) {}
 
+  /*
+  AddApplicationManifest
+  Parameters: [{"paramname":"pchApplicationManifestFullPath","paramtype":"const char *"},{"paramname":"bTemporary","paramtype":"bool"}]
+  Return: vr::EVRApplicationError
+  */
   AddApplicationManifest(pchApplicationManifestFullPath: string, bTemporary: bool): ApplicationError {
     if (this.ptr === null) throw new Error("IVRApplications pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRApplications>);
@@ -6265,6 +7545,11 @@ export class IVRApplications {
     return null as unknown as ApplicationError;
   }
 
+  /*
+  RemoveApplicationManifest
+  Parameters: [{"paramname":"pchApplicationManifestFullPath","paramtype":"const char *"}]
+  Return: vr::EVRApplicationError
+  */
   RemoveApplicationManifest(pchApplicationManifestFullPath: string): ApplicationError {
     if (this.ptr === null) throw new Error("IVRApplications pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRApplications>);
@@ -6273,6 +7558,11 @@ export class IVRApplications {
     return null as unknown as ApplicationError;
   }
 
+  /*
+  IsApplicationInstalled
+  Parameters: [{"paramname":"pchAppKey","paramtype":"const char *"}]
+  Return: bool
+  */
   IsApplicationInstalled(pchAppKey: string): bool {
     if (this.ptr === null) throw new Error("IVRApplications pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRApplications>);
@@ -6281,6 +7571,11 @@ export class IVRApplications {
     return null as unknown as bool;
   }
 
+  /*
+  GetApplicationCount
+  Parameters: undefined
+  Return: uint32_t
+  */
   GetApplicationCount(): number {
     if (this.ptr === null) throw new Error("IVRApplications pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRApplications>);
@@ -6289,6 +7584,11 @@ export class IVRApplications {
     return null as unknown as number;
   }
 
+  /*
+  GetApplicationKeyByIndex
+  Parameters: [{"paramname":"unApplicationIndex","paramtype":"uint32_t"},{"paramname":"pchAppKeyBuffer","out_string":" ","paramtype":"char *"},{"paramname":"unAppKeyBufferLen","paramtype":"uint32_t"}]
+  Return: vr::EVRApplicationError
+  */
   GetApplicationKeyByIndex(unApplicationIndex: number, pchAppKeyBuffer: string, unAppKeyBufferLen: number): ApplicationError {
     if (this.ptr === null) throw new Error("IVRApplications pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRApplications>);
@@ -6297,6 +7597,11 @@ export class IVRApplications {
     return null as unknown as ApplicationError;
   }
 
+  /*
+  GetApplicationKeyByProcessId
+  Parameters: [{"paramname":"unProcessId","paramtype":"uint32_t"},{"paramname":"pchAppKeyBuffer","out_string":" ","paramtype":"char *"},{"paramname":"unAppKeyBufferLen","paramtype":"uint32_t"}]
+  Return: vr::EVRApplicationError
+  */
   GetApplicationKeyByProcessId(unProcessId: number, pchAppKeyBuffer: string, unAppKeyBufferLen: number): ApplicationError {
     if (this.ptr === null) throw new Error("IVRApplications pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRApplications>);
@@ -6305,6 +7610,11 @@ export class IVRApplications {
     return null as unknown as ApplicationError;
   }
 
+  /*
+  LaunchApplication
+  Parameters: [{"paramname":"pchAppKey","paramtype":"const char *"}]
+  Return: vr::EVRApplicationError
+  */
   LaunchApplication(pchAppKey: string): ApplicationError {
     if (this.ptr === null) throw new Error("IVRApplications pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRApplications>);
@@ -6313,6 +7623,11 @@ export class IVRApplications {
     return null as unknown as ApplicationError;
   }
 
+  /*
+  LaunchTemplateApplication
+  Parameters: [{"paramname":"pchTemplateAppKey","paramtype":"const char *"},{"paramname":"pchNewAppKey","paramtype":"const char *"},{"paramname":"pKeys","array_count":"unKeys","paramtype":"const struct vr::AppOverrideKeys_t *"},{"paramname":"unKeys","paramtype":"uint32_t"}]
+  Return: vr::EVRApplicationError
+  */
   LaunchTemplateApplication(pchTemplateAppKey: string, pchNewAppKey: string, pKeys: Deno.PointerValue<AppOverrideKeys>//READONLY, unKeys: number): ApplicationError {
     if (this.ptr === null) throw new Error("IVRApplications pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRApplications>);
@@ -6321,6 +7636,11 @@ export class IVRApplications {
     return null as unknown as ApplicationError;
   }
 
+  /*
+  LaunchApplicationFromMimeType
+  Parameters: [{"paramname":"pchMimeType","paramtype":"const char *"},{"paramname":"pchArgs","paramtype":"const char *"}]
+  Return: vr::EVRApplicationError
+  */
   LaunchApplicationFromMimeType(pchMimeType: string, pchArgs: string): ApplicationError {
     if (this.ptr === null) throw new Error("IVRApplications pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRApplications>);
@@ -6329,6 +7649,11 @@ export class IVRApplications {
     return null as unknown as ApplicationError;
   }
 
+  /*
+  LaunchDashboardOverlay
+  Parameters: [{"paramname":"pchAppKey","paramtype":"const char *"}]
+  Return: vr::EVRApplicationError
+  */
   LaunchDashboardOverlay(pchAppKey: string): ApplicationError {
     if (this.ptr === null) throw new Error("IVRApplications pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRApplications>);
@@ -6337,6 +7662,11 @@ export class IVRApplications {
     return null as unknown as ApplicationError;
   }
 
+  /*
+  CancelApplicationLaunch
+  Parameters: [{"paramname":"pchAppKey","paramtype":"const char *"}]
+  Return: bool
+  */
   CancelApplicationLaunch(pchAppKey: string): bool {
     if (this.ptr === null) throw new Error("IVRApplications pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRApplications>);
@@ -6345,6 +7675,11 @@ export class IVRApplications {
     return null as unknown as bool;
   }
 
+  /*
+  IdentifyApplication
+  Parameters: [{"paramname":"unProcessId","paramtype":"uint32_t"},{"paramname":"pchAppKey","paramtype":"const char *"}]
+  Return: vr::EVRApplicationError
+  */
   IdentifyApplication(unProcessId: number, pchAppKey: string): ApplicationError {
     if (this.ptr === null) throw new Error("IVRApplications pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRApplications>);
@@ -6353,6 +7688,11 @@ export class IVRApplications {
     return null as unknown as ApplicationError;
   }
 
+  /*
+  GetApplicationProcessId
+  Parameters: [{"paramname":"pchAppKey","paramtype":"const char *"}]
+  Return: uint32_t
+  */
   GetApplicationProcessId(pchAppKey: string): number {
     if (this.ptr === null) throw new Error("IVRApplications pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRApplications>);
@@ -6361,6 +7701,11 @@ export class IVRApplications {
     return null as unknown as number;
   }
 
+  /*
+  GetApplicationsErrorNameFromEnum
+  Parameters: [{"paramname":"error","paramtype":"vr::EVRApplicationError"}]
+  Return: const char *
+  */
   GetApplicationsErrorNameFromEnum(error: ApplicationError): string {
     if (this.ptr === null) throw new Error("IVRApplications pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRApplications>);
@@ -6369,6 +7714,11 @@ export class IVRApplications {
     return null as unknown as string;
   }
 
+  /*
+  GetApplicationPropertyString
+  Parameters: [{"paramname":"pchAppKey","paramtype":"const char *"},{"paramname":"eProperty","paramtype":"vr::EVRApplicationProperty"},{"paramname":"pchPropertyValueBuffer","out_string":" ","paramtype":"char *"},{"paramname":"unPropertyValueBufferLen","paramtype":"uint32_t"},{"paramname":"peError","paramtype":"vr::EVRApplicationError *"}]
+  Return: uint32_t
+  */
   GetApplicationPropertyString(pchAppKey: string, eProperty: ApplicationProperty, pchPropertyValueBuffer: string, unPropertyValueBufferLen: number, peError: Deno.PointerValue<ApplicationError>): number {
     if (this.ptr === null) throw new Error("IVRApplications pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRApplications>);
@@ -6377,6 +7727,11 @@ export class IVRApplications {
     return null as unknown as number;
   }
 
+  /*
+  GetApplicationPropertyBool
+  Parameters: [{"paramname":"pchAppKey","paramtype":"const char *"},{"paramname":"eProperty","paramtype":"vr::EVRApplicationProperty"},{"paramname":"peError","paramtype":"vr::EVRApplicationError *"}]
+  Return: bool
+  */
   GetApplicationPropertyBool(pchAppKey: string, eProperty: ApplicationProperty, peError: Deno.PointerValue<ApplicationError>): bool {
     if (this.ptr === null) throw new Error("IVRApplications pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRApplications>);
@@ -6385,6 +7740,11 @@ export class IVRApplications {
     return null as unknown as bool;
   }
 
+  /*
+  GetApplicationPropertyUint64
+  Parameters: [{"paramname":"pchAppKey","paramtype":"const char *"},{"paramname":"eProperty","paramtype":"vr::EVRApplicationProperty"},{"paramname":"peError","paramtype":"vr::EVRApplicationError *"}]
+  Return: uint64_t
+  */
   GetApplicationPropertyUint64(pchAppKey: string, eProperty: ApplicationProperty, peError: Deno.PointerValue<ApplicationError>): bigint {
     if (this.ptr === null) throw new Error("IVRApplications pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRApplications>);
@@ -6393,6 +7753,11 @@ export class IVRApplications {
     return null as unknown as bigint;
   }
 
+  /*
+  SetApplicationAutoLaunch
+  Parameters: [{"paramname":"pchAppKey","paramtype":"const char *"},{"paramname":"bAutoLaunch","paramtype":"bool"}]
+  Return: vr::EVRApplicationError
+  */
   SetApplicationAutoLaunch(pchAppKey: string, bAutoLaunch: bool): ApplicationError {
     if (this.ptr === null) throw new Error("IVRApplications pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRApplications>);
@@ -6401,6 +7766,11 @@ export class IVRApplications {
     return null as unknown as ApplicationError;
   }
 
+  /*
+  GetApplicationAutoLaunch
+  Parameters: [{"paramname":"pchAppKey","paramtype":"const char *"}]
+  Return: bool
+  */
   GetApplicationAutoLaunch(pchAppKey: string): bool {
     if (this.ptr === null) throw new Error("IVRApplications pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRApplications>);
@@ -6409,6 +7779,11 @@ export class IVRApplications {
     return null as unknown as bool;
   }
 
+  /*
+  SetDefaultApplicationForMimeType
+  Parameters: [{"paramname":"pchAppKey","paramtype":"const char *"},{"paramname":"pchMimeType","paramtype":"const char *"}]
+  Return: vr::EVRApplicationError
+  */
   SetDefaultApplicationForMimeType(pchAppKey: string, pchMimeType: string): ApplicationError {
     if (this.ptr === null) throw new Error("IVRApplications pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRApplications>);
@@ -6417,6 +7792,11 @@ export class IVRApplications {
     return null as unknown as ApplicationError;
   }
 
+  /*
+  GetDefaultApplicationForMimeType
+  Parameters: [{"paramname":"pchMimeType","paramtype":"const char *"},{"paramname":"pchAppKeyBuffer","out_string":" ","paramtype":"char *"},{"paramname":"unAppKeyBufferLen","paramtype":"uint32_t"}]
+  Return: bool
+  */
   GetDefaultApplicationForMimeType(pchMimeType: string, pchAppKeyBuffer: string, unAppKeyBufferLen: number): bool {
     if (this.ptr === null) throw new Error("IVRApplications pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRApplications>);
@@ -6425,6 +7805,11 @@ export class IVRApplications {
     return null as unknown as bool;
   }
 
+  /*
+  GetApplicationSupportedMimeTypes
+  Parameters: [{"paramname":"pchAppKey","paramtype":"const char *"},{"paramname":"pchMimeTypesBuffer","out_string":" ","paramtype":"char *"},{"paramname":"unMimeTypesBuffer","paramtype":"uint32_t"}]
+  Return: bool
+  */
   GetApplicationSupportedMimeTypes(pchAppKey: string, pchMimeTypesBuffer: string, unMimeTypesBuffer: number): bool {
     if (this.ptr === null) throw new Error("IVRApplications pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRApplications>);
@@ -6433,6 +7818,11 @@ export class IVRApplications {
     return null as unknown as bool;
   }
 
+  /*
+  GetApplicationsThatSupportMimeType
+  Parameters: [{"paramname":"pchMimeType","paramtype":"const char *"},{"paramname":"pchAppKeysThatSupportBuffer","out_string":" ","paramtype":"char *"},{"paramname":"unAppKeysThatSupportBuffer","paramtype":"uint32_t"}]
+  Return: uint32_t
+  */
   GetApplicationsThatSupportMimeType(pchMimeType: string, pchAppKeysThatSupportBuffer: string, unAppKeysThatSupportBuffer: number): number {
     if (this.ptr === null) throw new Error("IVRApplications pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRApplications>);
@@ -6441,6 +7831,11 @@ export class IVRApplications {
     return null as unknown as number;
   }
 
+  /*
+  GetApplicationLaunchArguments
+  Parameters: [{"paramname":"unHandle","paramtype":"uint32_t"},{"paramname":"pchArgs","out_string":" ","paramtype":"char *"},{"paramname":"unArgs","paramtype":"uint32_t"}]
+  Return: uint32_t
+  */
   GetApplicationLaunchArguments(unHandle: number, pchArgs: string, unArgs: number): number {
     if (this.ptr === null) throw new Error("IVRApplications pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRApplications>);
@@ -6449,6 +7844,11 @@ export class IVRApplications {
     return null as unknown as number;
   }
 
+  /*
+  GetStartingApplication
+  Parameters: [{"paramname":"pchAppKeyBuffer","out_string":" ","paramtype":"char *"},{"paramname":"unAppKeyBufferLen","paramtype":"uint32_t"}]
+  Return: vr::EVRApplicationError
+  */
   GetStartingApplication(pchAppKeyBuffer: string, unAppKeyBufferLen: number): ApplicationError {
     if (this.ptr === null) throw new Error("IVRApplications pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRApplications>);
@@ -6457,6 +7857,11 @@ export class IVRApplications {
     return null as unknown as ApplicationError;
   }
 
+  /*
+  GetSceneApplicationState
+  Parameters: undefined
+  Return: vr::EVRSceneApplicationState
+  */
   GetSceneApplicationState(): SceneApplicationState {
     if (this.ptr === null) throw new Error("IVRApplications pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRApplications>);
@@ -6465,6 +7870,11 @@ export class IVRApplications {
     return null as unknown as SceneApplicationState;
   }
 
+  /*
+  PerformApplicationPrelaunchCheck
+  Parameters: [{"paramname":"pchAppKey","paramtype":"const char *"}]
+  Return: vr::EVRApplicationError
+  */
   PerformApplicationPrelaunchCheck(pchAppKey: string): ApplicationError {
     if (this.ptr === null) throw new Error("IVRApplications pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRApplications>);
@@ -6473,6 +7883,11 @@ export class IVRApplications {
     return null as unknown as ApplicationError;
   }
 
+  /*
+  GetSceneApplicationStateNameFromEnum
+  Parameters: [{"paramname":"state","paramtype":"vr::EVRSceneApplicationState"}]
+  Return: const char *
+  */
   GetSceneApplicationStateNameFromEnum(state: SceneApplicationState): string {
     if (this.ptr === null) throw new Error("IVRApplications pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRApplications>);
@@ -6481,6 +7896,11 @@ export class IVRApplications {
     return null as unknown as string;
   }
 
+  /*
+  LaunchInternalProcess
+  Parameters: [{"paramname":"pchBinaryPath","paramtype":"const char *"},{"paramname":"pchArguments","paramtype":"const char *"},{"paramname":"pchWorkingDirectory","paramtype":"const char *"}]
+  Return: vr::EVRApplicationError
+  */
   LaunchInternalProcess(pchBinaryPath: string, pchArguments: string, pchWorkingDirectory: string): ApplicationError {
     if (this.ptr === null) throw new Error("IVRApplications pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRApplications>);
@@ -6489,6 +7909,11 @@ export class IVRApplications {
     return null as unknown as ApplicationError;
   }
 
+  /*
+  GetCurrentSceneProcessId
+  Parameters: undefined
+  Return: uint32_t
+  */
   GetCurrentSceneProcessId(): number {
     if (this.ptr === null) throw new Error("IVRApplications pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRApplications>);
@@ -6502,6 +7927,11 @@ export class IVRApplications {
 export class IVRTrackedCamera {
   constructor(private ptr: Deno.PointerValue<IVRTrackedCamera>) {}
 
+  /*
+  GetCameraErrorNameFromEnum
+  Parameters: [{"paramname":"eCameraError","paramtype":"vr::EVRTrackedCameraError"}]
+  Return: const char *
+  */
   GetCameraErrorNameFromEnum(eCameraError: TrackedCameraError): string {
     if (this.ptr === null) throw new Error("IVRTrackedCamera pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRTrackedCamera>);
@@ -6510,6 +7940,11 @@ export class IVRTrackedCamera {
     return null as unknown as string;
   }
 
+  /*
+  HasCamera
+  Parameters: [{"paramname":"nDeviceIndex","paramtype":"vr::TrackedDeviceIndex_t"},{"paramname":"pHasCamera","paramtype":"bool *"}]
+  Return: vr::EVRTrackedCameraError
+  */
   HasCamera(nDeviceIndex: TrackedDeviceIndex, pHasCamera: Deno.PointerValue<bool>): TrackedCameraError {
     if (this.ptr === null) throw new Error("IVRTrackedCamera pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRTrackedCamera>);
@@ -6518,6 +7953,11 @@ export class IVRTrackedCamera {
     return null as unknown as TrackedCameraError;
   }
 
+  /*
+  GetCameraFrameSize
+  Parameters: [{"paramname":"nDeviceIndex","paramtype":"vr::TrackedDeviceIndex_t"},{"paramname":"eFrameType","paramtype":"vr::EVRTrackedCameraFrameType"},{"paramname":"pnWidth","paramtype":"uint32_t *"},{"paramname":"pnHeight","paramtype":"uint32_t *"},{"paramname":"pnFrameBufferSize","paramtype":"uint32_t *"}]
+  Return: vr::EVRTrackedCameraError
+  */
   GetCameraFrameSize(nDeviceIndex: TrackedDeviceIndex, eFrameType: TrackedCameraFrameType, pnWidth: Deno.PointerValue<number>, pnHeight: Deno.PointerValue<number>, pnFrameBufferSize: Deno.PointerValue<number>): TrackedCameraError {
     if (this.ptr === null) throw new Error("IVRTrackedCamera pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRTrackedCamera>);
@@ -6526,6 +7966,11 @@ export class IVRTrackedCamera {
     return null as unknown as TrackedCameraError;
   }
 
+  /*
+  GetCameraIntrinsics
+  Parameters: [{"paramname":"nDeviceIndex","paramtype":"vr::TrackedDeviceIndex_t"},{"paramname":"nCameraIndex","paramtype":"uint32_t"},{"paramname":"eFrameType","paramtype":"vr::EVRTrackedCameraFrameType"},{"paramname":"pFocalLength","paramtype":"vr::HmdVector2_t *"},{"paramname":"pCenter","paramtype":"vr::HmdVector2_t *"}]
+  Return: vr::EVRTrackedCameraError
+  */
   GetCameraIntrinsics(nDeviceIndex: TrackedDeviceIndex, nCameraIndex: number, eFrameType: TrackedCameraFrameType, pFocalLength: Deno.PointerValue<HmdVector2>, pCenter: Deno.PointerValue<HmdVector2>): TrackedCameraError {
     if (this.ptr === null) throw new Error("IVRTrackedCamera pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRTrackedCamera>);
@@ -6534,6 +7979,11 @@ export class IVRTrackedCamera {
     return null as unknown as TrackedCameraError;
   }
 
+  /*
+  GetCameraProjection
+  Parameters: [{"paramname":"nDeviceIndex","paramtype":"vr::TrackedDeviceIndex_t"},{"paramname":"nCameraIndex","paramtype":"uint32_t"},{"paramname":"eFrameType","paramtype":"vr::EVRTrackedCameraFrameType"},{"paramname":"flZNear","paramtype":"float"},{"paramname":"flZFar","paramtype":"float"},{"paramname":"pProjection","paramtype":"vr::HmdMatrix44_t *"}]
+  Return: vr::EVRTrackedCameraError
+  */
   GetCameraProjection(nDeviceIndex: TrackedDeviceIndex, nCameraIndex: number, eFrameType: TrackedCameraFrameType, flZNear: number, flZFar: number, pProjection: Deno.PointerValue<HmdMatrix44>): TrackedCameraError {
     if (this.ptr === null) throw new Error("IVRTrackedCamera pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRTrackedCamera>);
@@ -6542,6 +7992,11 @@ export class IVRTrackedCamera {
     return null as unknown as TrackedCameraError;
   }
 
+  /*
+  AcquireVideoStreamingService
+  Parameters: [{"paramname":"nDeviceIndex","paramtype":"vr::TrackedDeviceIndex_t"},{"paramname":"pHandle","paramtype":"vr::TrackedCameraHandle_t *"}]
+  Return: vr::EVRTrackedCameraError
+  */
   AcquireVideoStreamingService(nDeviceIndex: TrackedDeviceIndex, pHandle: Deno.PointerValue<TrackedCameraHandle>): TrackedCameraError {
     if (this.ptr === null) throw new Error("IVRTrackedCamera pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRTrackedCamera>);
@@ -6550,6 +8005,11 @@ export class IVRTrackedCamera {
     return null as unknown as TrackedCameraError;
   }
 
+  /*
+  ReleaseVideoStreamingService
+  Parameters: [{"paramname":"hTrackedCamera","paramtype":"vr::TrackedCameraHandle_t"}]
+  Return: vr::EVRTrackedCameraError
+  */
   ReleaseVideoStreamingService(hTrackedCamera: TrackedCameraHandle): TrackedCameraError {
     if (this.ptr === null) throw new Error("IVRTrackedCamera pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRTrackedCamera>);
@@ -6558,6 +8018,11 @@ export class IVRTrackedCamera {
     return null as unknown as TrackedCameraError;
   }
 
+  /*
+  GetVideoStreamFrameBuffer
+  Parameters: [{"paramname":"hTrackedCamera","paramtype":"vr::TrackedCameraHandle_t"},{"paramname":"eFrameType","paramtype":"vr::EVRTrackedCameraFrameType"},{"paramname":"pFrameBuffer","paramtype":"void *"},{"paramname":"nFrameBufferSize","paramtype":"uint32_t"},{"paramname":"pFrameHeader","paramtype":"vr::CameraVideoStreamFrameHeader_t *"},{"paramname":"nFrameHeaderSize","paramtype":"uint32_t"}]
+  Return: vr::EVRTrackedCameraError
+  */
   GetVideoStreamFrameBuffer(hTrackedCamera: TrackedCameraHandle, eFrameType: TrackedCameraFrameType, pFrameBuffer: Deno.PointerValue<unknown>, nFrameBufferSize: number, pFrameHeader: Deno.PointerValue<CameraVideoStreamFrameHeader>, nFrameHeaderSize: number): TrackedCameraError {
     if (this.ptr === null) throw new Error("IVRTrackedCamera pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRTrackedCamera>);
@@ -6566,6 +8031,11 @@ export class IVRTrackedCamera {
     return null as unknown as TrackedCameraError;
   }
 
+  /*
+  GetVideoStreamTextureSize
+  Parameters: [{"paramname":"nDeviceIndex","paramtype":"vr::TrackedDeviceIndex_t"},{"paramname":"eFrameType","paramtype":"vr::EVRTrackedCameraFrameType"},{"paramname":"pTextureBounds","paramtype":"vr::VRTextureBounds_t *"},{"paramname":"pnWidth","paramtype":"uint32_t *"},{"paramname":"pnHeight","paramtype":"uint32_t *"}]
+  Return: vr::EVRTrackedCameraError
+  */
   GetVideoStreamTextureSize(nDeviceIndex: TrackedDeviceIndex, eFrameType: TrackedCameraFrameType, pTextureBounds: Deno.PointerValue<TextureBounds>, pnWidth: Deno.PointerValue<number>, pnHeight: Deno.PointerValue<number>): TrackedCameraError {
     if (this.ptr === null) throw new Error("IVRTrackedCamera pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRTrackedCamera>);
@@ -6574,6 +8044,11 @@ export class IVRTrackedCamera {
     return null as unknown as TrackedCameraError;
   }
 
+  /*
+  GetVideoStreamTextureD3D11
+  Parameters: [{"paramname":"hTrackedCamera","paramtype":"vr::TrackedCameraHandle_t"},{"paramname":"eFrameType","paramtype":"vr::EVRTrackedCameraFrameType"},{"paramname":"pD3D11DeviceOrResource","paramtype":"void *"},{"paramname":"ppD3D11ShaderResourceView","paramtype":"void **"},{"paramname":"pFrameHeader","paramtype":"vr::CameraVideoStreamFrameHeader_t *"},{"paramname":"nFrameHeaderSize","paramtype":"uint32_t"}]
+  Return: vr::EVRTrackedCameraError
+  */
   GetVideoStreamTextureD3D11(hTrackedCamera: TrackedCameraHandle, eFrameType: TrackedCameraFrameType, pD3D11DeviceOrResource: Deno.PointerValue<unknown>, ppD3D11ShaderResourceView: Deno.PointerValue<Deno.PointerValue<unknown>>, pFrameHeader: Deno.PointerValue<CameraVideoStreamFrameHeader>, nFrameHeaderSize: number): TrackedCameraError {
     if (this.ptr === null) throw new Error("IVRTrackedCamera pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRTrackedCamera>);
@@ -6582,6 +8057,11 @@ export class IVRTrackedCamera {
     return null as unknown as TrackedCameraError;
   }
 
+  /*
+  GetVideoStreamTextureGL
+  Parameters: [{"paramname":"hTrackedCamera","paramtype":"vr::TrackedCameraHandle_t"},{"paramname":"eFrameType","paramtype":"vr::EVRTrackedCameraFrameType"},{"paramname":"pglTextureId","paramtype":"vr::glUInt_t *"},{"paramname":"pFrameHeader","paramtype":"vr::CameraVideoStreamFrameHeader_t *"},{"paramname":"nFrameHeaderSize","paramtype":"uint32_t"}]
+  Return: vr::EVRTrackedCameraError
+  */
   GetVideoStreamTextureGL(hTrackedCamera: TrackedCameraHandle, eFrameType: TrackedCameraFrameType, pglTextureId: Deno.PointerValue<glUInt>, pFrameHeader: Deno.PointerValue<CameraVideoStreamFrameHeader>, nFrameHeaderSize: number): TrackedCameraError {
     if (this.ptr === null) throw new Error("IVRTrackedCamera pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRTrackedCamera>);
@@ -6590,6 +8070,11 @@ export class IVRTrackedCamera {
     return null as unknown as TrackedCameraError;
   }
 
+  /*
+  ReleaseVideoStreamTextureGL
+  Parameters: [{"paramname":"hTrackedCamera","paramtype":"vr::TrackedCameraHandle_t"},{"paramname":"glTextureId","paramtype":"vr::glUInt_t"}]
+  Return: vr::EVRTrackedCameraError
+  */
   ReleaseVideoStreamTextureGL(hTrackedCamera: TrackedCameraHandle, glTextureId: glUInt): TrackedCameraError {
     if (this.ptr === null) throw new Error("IVRTrackedCamera pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRTrackedCamera>);
@@ -6598,12 +8083,22 @@ export class IVRTrackedCamera {
     return null as unknown as TrackedCameraError;
   }
 
+  /*
+  SetCameraTrackingSpace
+  Parameters: [{"paramname":"eUniverse","paramtype":"vr::ETrackingUniverseOrigin"}]
+  Return: void
+  */
   SetCameraTrackingSpace(eUniverse: TrackingUniverseOrigin): void {
     if (this.ptr === null) throw new Error("IVRTrackedCamera pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRTrackedCamera>);
     // TODO: Implement FFI call
   }
 
+  /*
+  GetCameraTrackingSpace
+  Parameters: undefined
+  Return: vr::ETrackingUniverseOrigin
+  */
   GetCameraTrackingSpace(): TrackingUniverseOrigin {
     if (this.ptr === null) throw new Error("IVRTrackedCamera pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRTrackedCamera>);
@@ -6617,6 +8112,11 @@ export class IVRTrackedCamera {
 export class IVRScreenshots {
   constructor(private ptr: Deno.PointerValue<IVRScreenshots>) {}
 
+  /*
+  RequestScreenshot
+  Parameters: [{"paramname":"pOutScreenshotHandle","paramtype":"vr::ScreenshotHandle_t *"},{"paramname":"type","paramtype":"vr::EVRScreenshotType"},{"paramname":"pchPreviewFilename","paramtype":"const char *"},{"paramname":"pchVRFilename","paramtype":"const char *"}]
+  Return: vr::EVRScreenshotError
+  */
   RequestScreenshot(pOutScreenshotHandle: Deno.PointerValue<ScreenshotHandle>, type: ScreenshotType, pchPreviewFilename: string, pchVRFilename: string): ScreenshotError {
     if (this.ptr === null) throw new Error("IVRScreenshots pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRScreenshots>);
@@ -6625,6 +8125,11 @@ export class IVRScreenshots {
     return null as unknown as ScreenshotError;
   }
 
+  /*
+  HookScreenshot
+  Parameters: [{"paramname":"pSupportedTypes","array_count":"numTypes","paramtype":"const vr::EVRScreenshotType *"},{"paramname":"numTypes","paramtype":"int"}]
+  Return: vr::EVRScreenshotError
+  */
   HookScreenshot(pSupportedTypes: Deno.PointerValue<ScreenshotType>//READONLY, numTypes: int): ScreenshotError {
     if (this.ptr === null) throw new Error("IVRScreenshots pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRScreenshots>);
@@ -6633,6 +8138,11 @@ export class IVRScreenshots {
     return null as unknown as ScreenshotError;
   }
 
+  /*
+  GetScreenshotPropertyType
+  Parameters: [{"paramname":"screenshotHandle","paramtype":"vr::ScreenshotHandle_t"},{"paramname":"pError","paramtype":"vr::EVRScreenshotError *"}]
+  Return: vr::EVRScreenshotType
+  */
   GetScreenshotPropertyType(screenshotHandle: ScreenshotHandle, pError: Deno.PointerValue<ScreenshotError>): ScreenshotType {
     if (this.ptr === null) throw new Error("IVRScreenshots pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRScreenshots>);
@@ -6641,6 +8151,11 @@ export class IVRScreenshots {
     return null as unknown as ScreenshotType;
   }
 
+  /*
+  GetScreenshotPropertyFilename
+  Parameters: [{"paramname":"screenshotHandle","paramtype":"vr::ScreenshotHandle_t"},{"paramname":"filenameType","paramtype":"vr::EVRScreenshotPropertyFilenames"},{"paramname":"pchFilename","out_string":" ","paramtype":"char *"},{"paramname":"cchFilename","paramtype":"uint32_t"},{"paramname":"pError","paramtype":"vr::EVRScreenshotError *"}]
+  Return: uint32_t
+  */
   GetScreenshotPropertyFilename(screenshotHandle: ScreenshotHandle, filenameType: ScreenshotPropertyFilenames, pchFilename: string, cchFilename: number, pError: Deno.PointerValue<ScreenshotError>): number {
     if (this.ptr === null) throw new Error("IVRScreenshots pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRScreenshots>);
@@ -6649,6 +8164,11 @@ export class IVRScreenshots {
     return null as unknown as number;
   }
 
+  /*
+  UpdateScreenshotProgress
+  Parameters: [{"paramname":"screenshotHandle","paramtype":"vr::ScreenshotHandle_t"},{"paramname":"flProgress","paramtype":"float"}]
+  Return: vr::EVRScreenshotError
+  */
   UpdateScreenshotProgress(screenshotHandle: ScreenshotHandle, flProgress: number): ScreenshotError {
     if (this.ptr === null) throw new Error("IVRScreenshots pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRScreenshots>);
@@ -6657,6 +8177,11 @@ export class IVRScreenshots {
     return null as unknown as ScreenshotError;
   }
 
+  /*
+  TakeStereoScreenshot
+  Parameters: [{"paramname":"pOutScreenshotHandle","paramtype":"vr::ScreenshotHandle_t *"},{"paramname":"pchPreviewFilename","paramtype":"const char *"},{"paramname":"pchVRFilename","paramtype":"const char *"}]
+  Return: vr::EVRScreenshotError
+  */
   TakeStereoScreenshot(pOutScreenshotHandle: Deno.PointerValue<ScreenshotHandle>, pchPreviewFilename: string, pchVRFilename: string): ScreenshotError {
     if (this.ptr === null) throw new Error("IVRScreenshots pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRScreenshots>);
@@ -6665,6 +8190,11 @@ export class IVRScreenshots {
     return null as unknown as ScreenshotError;
   }
 
+  /*
+  SubmitScreenshot
+  Parameters: [{"paramname":"screenshotHandle","paramtype":"vr::ScreenshotHandle_t"},{"paramname":"type","paramtype":"vr::EVRScreenshotType"},{"paramname":"pchSourcePreviewFilename","paramtype":"const char *"},{"paramname":"pchSourceVRFilename","paramtype":"const char *"}]
+  Return: vr::EVRScreenshotError
+  */
   SubmitScreenshot(screenshotHandle: ScreenshotHandle, type: ScreenshotType, pchSourcePreviewFilename: string, pchSourceVRFilename: string): ScreenshotError {
     if (this.ptr === null) throw new Error("IVRScreenshots pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRScreenshots>);
@@ -6678,6 +8208,11 @@ export class IVRScreenshots {
 export class IVRDriverManager {
   constructor(private ptr: Deno.PointerValue<IVRDriverManager>) {}
 
+  /*
+  GetDriverCount
+  Parameters: undefined
+  Return: uint32_t
+  */
   GetDriverCount(): number {
     if (this.ptr === null) throw new Error("IVRDriverManager pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRDriverManager>);
@@ -6686,6 +8221,11 @@ export class IVRDriverManager {
     return null as unknown as number;
   }
 
+  /*
+  GetDriverName
+  Parameters: [{"paramname":"nDriver","paramtype":"vr::DriverId_t"},{"paramname":"pchValue","out_string":" ","paramtype":"char *"},{"paramname":"unBufferSize","paramtype":"uint32_t"}]
+  Return: uint32_t
+  */
   GetDriverName(nDriver: DriverId, pchValue: string, unBufferSize: number): number {
     if (this.ptr === null) throw new Error("IVRDriverManager pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRDriverManager>);
@@ -6694,6 +8234,11 @@ export class IVRDriverManager {
     return null as unknown as number;
   }
 
+  /*
+  GetDriverHandle
+  Parameters: [{"paramname":"pchDriverName","paramtype":"const char *"}]
+  Return: DriverHandle_t
+  */
   GetDriverHandle(pchDriverName: string): DriverHandle {
     if (this.ptr === null) throw new Error("IVRDriverManager pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRDriverManager>);
@@ -6702,6 +8247,11 @@ export class IVRDriverManager {
     return null as unknown as DriverHandle;
   }
 
+  /*
+  IsEnabled
+  Parameters: [{"paramname":"nDriver","paramtype":"vr::DriverId_t"}]
+  Return: bool
+  */
   IsEnabled(nDriver: DriverId): bool {
     if (this.ptr === null) throw new Error("IVRDriverManager pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRDriverManager>);
@@ -6715,6 +8265,11 @@ export class IVRDriverManager {
 export class IVRInput {
   constructor(private ptr: Deno.PointerValue<IVRInput>) {}
 
+  /*
+  SetActionManifestPath
+  Parameters: [{"paramname":"pchActionManifestPath","paramtype":"const char *"}]
+  Return: vr::EVRInputError
+  */
   SetActionManifestPath(pchActionManifestPath: string): InputError {
     if (this.ptr === null) throw new Error("IVRInput pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRInput>);
@@ -6723,6 +8278,11 @@ export class IVRInput {
     return null as unknown as InputError;
   }
 
+  /*
+  GetActionSetHandle
+  Parameters: [{"paramname":"pchActionSetName","paramtype":"const char *"},{"paramname":"pHandle","paramtype":"vr::VRActionSetHandle_t *"}]
+  Return: vr::EVRInputError
+  */
   GetActionSetHandle(pchActionSetName: string, pHandle: Deno.PointerValue<ActionSetHandle>): InputError {
     if (this.ptr === null) throw new Error("IVRInput pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRInput>);
@@ -6731,6 +8291,11 @@ export class IVRInput {
     return null as unknown as InputError;
   }
 
+  /*
+  GetActionHandle
+  Parameters: [{"paramname":"pchActionName","paramtype":"const char *"},{"paramname":"pHandle","paramtype":"vr::VRActionHandle_t *"}]
+  Return: vr::EVRInputError
+  */
   GetActionHandle(pchActionName: string, pHandle: Deno.PointerValue<ActionHandle>): InputError {
     if (this.ptr === null) throw new Error("IVRInput pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRInput>);
@@ -6739,6 +8304,11 @@ export class IVRInput {
     return null as unknown as InputError;
   }
 
+  /*
+  GetInputSourceHandle
+  Parameters: [{"paramname":"pchInputSourcePath","paramtype":"const char *"},{"paramname":"pHandle","paramtype":"vr::VRInputValueHandle_t *"}]
+  Return: vr::EVRInputError
+  */
   GetInputSourceHandle(pchInputSourcePath: string, pHandle: Deno.PointerValue<InputValueHandle>): InputError {
     if (this.ptr === null) throw new Error("IVRInput pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRInput>);
@@ -6747,6 +8317,11 @@ export class IVRInput {
     return null as unknown as InputError;
   }
 
+  /*
+  UpdateActionState
+  Parameters: [{"paramname":"pSets","array_count":"unSetCount","paramtype":"struct vr::VRActiveActionSet_t *"},{"paramname":"unSizeOfVRSelectedActionSet_t","paramtype":"uint32_t"},{"paramname":"unSetCount","paramtype":"uint32_t"}]
+  Return: vr::EVRInputError
+  */
   UpdateActionState(pSets: Deno.PointerValue<ActiveActionSet>, unSizeOfVRSelectedActionSet_t: number, unSetCount: number): InputError {
     if (this.ptr === null) throw new Error("IVRInput pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRInput>);
@@ -6755,6 +8330,11 @@ export class IVRInput {
     return null as unknown as InputError;
   }
 
+  /*
+  GetDigitalActionData
+  Parameters: [{"paramname":"action","paramtype":"vr::VRActionHandle_t"},{"paramname":"pActionData","paramtype":"struct vr::InputDigitalActionData_t *"},{"paramname":"unActionDataSize","paramtype":"uint32_t"},{"paramname":"ulRestrictToDevice","paramtype":"vr::VRInputValueHandle_t"}]
+  Return: vr::EVRInputError
+  */
   GetDigitalActionData(action: ActionHandle, pActionData: Deno.PointerValue<InputDigitalActionData>, unActionDataSize: number, ulRestrictToDevice: InputValueHandle): InputError {
     if (this.ptr === null) throw new Error("IVRInput pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRInput>);
@@ -6763,6 +8343,11 @@ export class IVRInput {
     return null as unknown as InputError;
   }
 
+  /*
+  GetAnalogActionData
+  Parameters: [{"paramname":"action","paramtype":"vr::VRActionHandle_t"},{"paramname":"pActionData","paramtype":"struct vr::InputAnalogActionData_t *"},{"paramname":"unActionDataSize","paramtype":"uint32_t"},{"paramname":"ulRestrictToDevice","paramtype":"vr::VRInputValueHandle_t"}]
+  Return: vr::EVRInputError
+  */
   GetAnalogActionData(action: ActionHandle, pActionData: Deno.PointerValue<InputAnalogActionData>, unActionDataSize: number, ulRestrictToDevice: InputValueHandle): InputError {
     if (this.ptr === null) throw new Error("IVRInput pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRInput>);
@@ -6771,6 +8356,11 @@ export class IVRInput {
     return null as unknown as InputError;
   }
 
+  /*
+  GetPoseActionDataRelativeToNow
+  Parameters: [{"paramname":"action","paramtype":"vr::VRActionHandle_t"},{"paramname":"eOrigin","paramtype":"vr::ETrackingUniverseOrigin"},{"paramname":"fPredictedSecondsFromNow","paramtype":"float"},{"paramname":"pActionData","paramtype":"struct vr::InputPoseActionData_t *"},{"paramname":"unActionDataSize","paramtype":"uint32_t"},{"paramname":"ulRestrictToDevice","paramtype":"vr::VRInputValueHandle_t"}]
+  Return: vr::EVRInputError
+  */
   GetPoseActionDataRelativeToNow(action: ActionHandle, eOrigin: TrackingUniverseOrigin, fPredictedSecondsFromNow: number, pActionData: Deno.PointerValue<InputPoseActionData>, unActionDataSize: number, ulRestrictToDevice: InputValueHandle): InputError {
     if (this.ptr === null) throw new Error("IVRInput pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRInput>);
@@ -6779,6 +8369,11 @@ export class IVRInput {
     return null as unknown as InputError;
   }
 
+  /*
+  GetPoseActionDataForNextFrame
+  Parameters: [{"paramname":"action","paramtype":"vr::VRActionHandle_t"},{"paramname":"eOrigin","paramtype":"vr::ETrackingUniverseOrigin"},{"paramname":"pActionData","paramtype":"struct vr::InputPoseActionData_t *"},{"paramname":"unActionDataSize","paramtype":"uint32_t"},{"paramname":"ulRestrictToDevice","paramtype":"vr::VRInputValueHandle_t"}]
+  Return: vr::EVRInputError
+  */
   GetPoseActionDataForNextFrame(action: ActionHandle, eOrigin: TrackingUniverseOrigin, pActionData: Deno.PointerValue<InputPoseActionData>, unActionDataSize: number, ulRestrictToDevice: InputValueHandle): InputError {
     if (this.ptr === null) throw new Error("IVRInput pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRInput>);
@@ -6787,6 +8382,11 @@ export class IVRInput {
     return null as unknown as InputError;
   }
 
+  /*
+  GetSkeletalActionData
+  Parameters: [{"paramname":"action","paramtype":"vr::VRActionHandle_t"},{"paramname":"pActionData","paramtype":"struct vr::InputSkeletalActionData_t *"},{"paramname":"unActionDataSize","paramtype":"uint32_t"}]
+  Return: vr::EVRInputError
+  */
   GetSkeletalActionData(action: ActionHandle, pActionData: Deno.PointerValue<InputSkeletalActionData>, unActionDataSize: number): InputError {
     if (this.ptr === null) throw new Error("IVRInput pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRInput>);
@@ -6795,6 +8395,11 @@ export class IVRInput {
     return null as unknown as InputError;
   }
 
+  /*
+  GetDominantHand
+  Parameters: [{"paramname":"peDominantHand","paramtype":"vr::ETrackedControllerRole *"}]
+  Return: vr::EVRInputError
+  */
   GetDominantHand(peDominantHand: Deno.PointerValue<TrackedControllerRole>): InputError {
     if (this.ptr === null) throw new Error("IVRInput pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRInput>);
@@ -6803,6 +8408,11 @@ export class IVRInput {
     return null as unknown as InputError;
   }
 
+  /*
+  SetDominantHand
+  Parameters: [{"paramname":"eDominantHand","paramtype":"vr::ETrackedControllerRole"}]
+  Return: vr::EVRInputError
+  */
   SetDominantHand(eDominantHand: TrackedControllerRole): InputError {
     if (this.ptr === null) throw new Error("IVRInput pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRInput>);
@@ -6811,6 +8421,11 @@ export class IVRInput {
     return null as unknown as InputError;
   }
 
+  /*
+  GetBoneCount
+  Parameters: [{"paramname":"action","paramtype":"vr::VRActionHandle_t"},{"paramname":"pBoneCount","paramtype":"uint32_t *"}]
+  Return: vr::EVRInputError
+  */
   GetBoneCount(action: ActionHandle, pBoneCount: Deno.PointerValue<number>): InputError {
     if (this.ptr === null) throw new Error("IVRInput pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRInput>);
@@ -6819,6 +8434,11 @@ export class IVRInput {
     return null as unknown as InputError;
   }
 
+  /*
+  GetBoneHierarchy
+  Parameters: [{"paramname":"action","paramtype":"vr::VRActionHandle_t"},{"paramname":"pParentIndices","array_count":"unIndexArayCount","paramtype":"vr::BoneIndex_t *"},{"paramname":"unIndexArayCount","paramtype":"uint32_t"}]
+  Return: vr::EVRInputError
+  */
   GetBoneHierarchy(action: ActionHandle, pParentIndices: Deno.PointerValue<BoneIndex>, unIndexArayCount: number): InputError {
     if (this.ptr === null) throw new Error("IVRInput pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRInput>);
@@ -6827,6 +8447,11 @@ export class IVRInput {
     return null as unknown as InputError;
   }
 
+  /*
+  GetBoneName
+  Parameters: [{"paramname":"action","paramtype":"vr::VRActionHandle_t"},{"paramname":"nBoneIndex","paramtype":"vr::BoneIndex_t"},{"paramname":"pchBoneName","out_string":" ","paramtype":"char *"},{"paramname":"unNameBufferSize","paramtype":"uint32_t"}]
+  Return: vr::EVRInputError
+  */
   GetBoneName(action: ActionHandle, nBoneIndex: BoneIndex, pchBoneName: string, unNameBufferSize: number): InputError {
     if (this.ptr === null) throw new Error("IVRInput pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRInput>);
@@ -6835,6 +8460,11 @@ export class IVRInput {
     return null as unknown as InputError;
   }
 
+  /*
+  GetSkeletalReferenceTransforms
+  Parameters: [{"paramname":"action","paramtype":"vr::VRActionHandle_t"},{"paramname":"eTransformSpace","paramtype":"vr::EVRSkeletalTransformSpace"},{"paramname":"eReferencePose","paramtype":"vr::EVRSkeletalReferencePose"},{"paramname":"pTransformArray","array_count":"unTransformArrayCount","paramtype":"struct vr::VRBoneTransform_t *"},{"paramname":"unTransformArrayCount","paramtype":"uint32_t"}]
+  Return: vr::EVRInputError
+  */
   GetSkeletalReferenceTransforms(action: ActionHandle, eTransformSpace: SkeletalTransformSpace, eReferencePose: SkeletalReferencePose, pTransformArray: Deno.PointerValue<BoneTransform>, unTransformArrayCount: number): InputError {
     if (this.ptr === null) throw new Error("IVRInput pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRInput>);
@@ -6843,6 +8473,11 @@ export class IVRInput {
     return null as unknown as InputError;
   }
 
+  /*
+  GetSkeletalTrackingLevel
+  Parameters: [{"paramname":"action","paramtype":"vr::VRActionHandle_t"},{"paramname":"pSkeletalTrackingLevel","paramtype":"vr::EVRSkeletalTrackingLevel *"}]
+  Return: vr::EVRInputError
+  */
   GetSkeletalTrackingLevel(action: ActionHandle, pSkeletalTrackingLevel: Deno.PointerValue<SkeletalTrackingLevel>): InputError {
     if (this.ptr === null) throw new Error("IVRInput pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRInput>);
@@ -6851,6 +8486,11 @@ export class IVRInput {
     return null as unknown as InputError;
   }
 
+  /*
+  GetSkeletalBoneData
+  Parameters: [{"paramname":"action","paramtype":"vr::VRActionHandle_t"},{"paramname":"eTransformSpace","paramtype":"vr::EVRSkeletalTransformSpace"},{"paramname":"eMotionRange","paramtype":"vr::EVRSkeletalMotionRange"},{"paramname":"pTransformArray","array_count":"unTransformArrayCount","paramtype":"struct vr::VRBoneTransform_t *"},{"paramname":"unTransformArrayCount","paramtype":"uint32_t"}]
+  Return: vr::EVRInputError
+  */
   GetSkeletalBoneData(action: ActionHandle, eTransformSpace: SkeletalTransformSpace, eMotionRange: SkeletalMotionRange, pTransformArray: Deno.PointerValue<BoneTransform>, unTransformArrayCount: number): InputError {
     if (this.ptr === null) throw new Error("IVRInput pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRInput>);
@@ -6859,6 +8499,11 @@ export class IVRInput {
     return null as unknown as InputError;
   }
 
+  /*
+  GetSkeletalSummaryData
+  Parameters: [{"paramname":"action","paramtype":"vr::VRActionHandle_t"},{"paramname":"eSummaryType","paramtype":"vr::EVRSummaryType"},{"paramname":"pSkeletalSummaryData","paramtype":"struct vr::VRSkeletalSummaryData_t *"}]
+  Return: vr::EVRInputError
+  */
   GetSkeletalSummaryData(action: ActionHandle, eSummaryType: SummaryType, pSkeletalSummaryData: Deno.PointerValue<SkeletalSummaryData>): InputError {
     if (this.ptr === null) throw new Error("IVRInput pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRInput>);
@@ -6867,6 +8512,11 @@ export class IVRInput {
     return null as unknown as InputError;
   }
 
+  /*
+  GetSkeletalBoneDataCompressed
+  Parameters: [{"paramname":"action","paramtype":"vr::VRActionHandle_t"},{"paramname":"eMotionRange","paramtype":"vr::EVRSkeletalMotionRange"},{"paramname":"pvCompressedData","out_buffer_count":"unCompressedSize","paramtype":"void *"},{"paramname":"unCompressedSize","paramtype":"uint32_t"},{"paramname":"punRequiredCompressedSize","paramtype":"uint32_t *"}]
+  Return: vr::EVRInputError
+  */
   GetSkeletalBoneDataCompressed(action: ActionHandle, eMotionRange: SkeletalMotionRange, pvCompressedData: Deno.PointerValue<unknown>, unCompressedSize: number, punRequiredCompressedSize: Deno.PointerValue<number>): InputError {
     if (this.ptr === null) throw new Error("IVRInput pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRInput>);
@@ -6875,6 +8525,11 @@ export class IVRInput {
     return null as unknown as InputError;
   }
 
+  /*
+  DecompressSkeletalBoneData
+  Parameters: [{"paramname":"pvCompressedBuffer","paramtype":"const void *"},{"paramname":"unCompressedBufferSize","paramtype":"uint32_t"},{"paramname":"eTransformSpace","paramtype":"vr::EVRSkeletalTransformSpace"},{"paramname":"pTransformArray","array_count":"unTransformArrayCount","paramtype":"struct vr::VRBoneTransform_t *"},{"paramname":"unTransformArrayCount","paramtype":"uint32_t"}]
+  Return: vr::EVRInputError
+  */
   DecompressSkeletalBoneData(pvCompressedBuffer: Deno.PointerValue<unknown>//READONLY, unCompressedBufferSize: number, eTransformSpace: SkeletalTransformSpace, pTransformArray: Deno.PointerValue<BoneTransform>, unTransformArrayCount: number): InputError {
     if (this.ptr === null) throw new Error("IVRInput pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRInput>);
@@ -6883,6 +8538,11 @@ export class IVRInput {
     return null as unknown as InputError;
   }
 
+  /*
+  TriggerHapticVibrationAction
+  Parameters: [{"paramname":"action","paramtype":"vr::VRActionHandle_t"},{"paramname":"fStartSecondsFromNow","paramtype":"float"},{"paramname":"fDurationSeconds","paramtype":"float"},{"paramname":"fFrequency","paramtype":"float"},{"paramname":"fAmplitude","paramtype":"float"},{"paramname":"ulRestrictToDevice","paramtype":"vr::VRInputValueHandle_t"}]
+  Return: vr::EVRInputError
+  */
   TriggerHapticVibrationAction(action: ActionHandle, fStartSecondsFromNow: number, fDurationSeconds: number, fFrequency: number, fAmplitude: number, ulRestrictToDevice: InputValueHandle): InputError {
     if (this.ptr === null) throw new Error("IVRInput pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRInput>);
@@ -6891,6 +8551,11 @@ export class IVRInput {
     return null as unknown as InputError;
   }
 
+  /*
+  GetActionOrigins
+  Parameters: [{"paramname":"actionSetHandle","paramtype":"vr::VRActionSetHandle_t"},{"paramname":"digitalActionHandle","paramtype":"vr::VRActionHandle_t"},{"paramname":"originsOut","array_count":"originOutCount","paramtype":"vr::VRInputValueHandle_t *"},{"paramname":"originOutCount","paramtype":"uint32_t"}]
+  Return: vr::EVRInputError
+  */
   GetActionOrigins(actionSetHandle: ActionSetHandle, digitalActionHandle: ActionHandle, originsOut: Deno.PointerValue<InputValueHandle>, originOutCount: number): InputError {
     if (this.ptr === null) throw new Error("IVRInput pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRInput>);
@@ -6899,6 +8564,11 @@ export class IVRInput {
     return null as unknown as InputError;
   }
 
+  /*
+  GetOriginLocalizedName
+  Parameters: [{"paramname":"origin","paramtype":"vr::VRInputValueHandle_t"},{"paramname":"pchNameArray","out_string":" ","paramtype":"char *"},{"paramname":"unNameArraySize","paramtype":"uint32_t"},{"paramname":"unStringSectionsToInclude","paramtype":"int32_t"}]
+  Return: vr::EVRInputError
+  */
   GetOriginLocalizedName(origin: InputValueHandle, pchNameArray: string, unNameArraySize: number, unStringSectionsToInclude: number): InputError {
     if (this.ptr === null) throw new Error("IVRInput pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRInput>);
@@ -6907,6 +8577,11 @@ export class IVRInput {
     return null as unknown as InputError;
   }
 
+  /*
+  GetOriginTrackedDeviceInfo
+  Parameters: [{"paramname":"origin","paramtype":"vr::VRInputValueHandle_t"},{"paramname":"pOriginInfo","paramtype":"struct vr::InputOriginInfo_t *"},{"paramname":"unOriginInfoSize","paramtype":"uint32_t"}]
+  Return: vr::EVRInputError
+  */
   GetOriginTrackedDeviceInfo(origin: InputValueHandle, pOriginInfo: Deno.PointerValue<InputOriginInfo>, unOriginInfoSize: number): InputError {
     if (this.ptr === null) throw new Error("IVRInput pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRInput>);
@@ -6915,6 +8590,11 @@ export class IVRInput {
     return null as unknown as InputError;
   }
 
+  /*
+  GetActionBindingInfo
+  Parameters: [{"paramname":"action","paramtype":"vr::VRActionHandle_t"},{"paramname":"pOriginInfo","array_count":"unBindingInfoCount","paramtype":"struct vr::InputBindingInfo_t *"},{"paramname":"unBindingInfoSize","paramtype":"uint32_t"},{"paramname":"unBindingInfoCount","paramtype":"uint32_t"},{"paramname":"punReturnedBindingInfoCount","paramtype":"uint32_t *"}]
+  Return: vr::EVRInputError
+  */
   GetActionBindingInfo(action: ActionHandle, pOriginInfo: Deno.PointerValue<InputBindingInfo>, unBindingInfoSize: number, unBindingInfoCount: number, punReturnedBindingInfoCount: Deno.PointerValue<number>): InputError {
     if (this.ptr === null) throw new Error("IVRInput pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRInput>);
@@ -6923,6 +8603,11 @@ export class IVRInput {
     return null as unknown as InputError;
   }
 
+  /*
+  ShowActionOrigins
+  Parameters: [{"paramname":"actionSetHandle","paramtype":"vr::VRActionSetHandle_t"},{"paramname":"ulActionHandle","paramtype":"vr::VRActionHandle_t"}]
+  Return: vr::EVRInputError
+  */
   ShowActionOrigins(actionSetHandle: ActionSetHandle, ulActionHandle: ActionHandle): InputError {
     if (this.ptr === null) throw new Error("IVRInput pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRInput>);
@@ -6931,6 +8616,11 @@ export class IVRInput {
     return null as unknown as InputError;
   }
 
+  /*
+  ShowBindingsForActionSet
+  Parameters: [{"paramname":"pSets","array_count":"unSetCount","paramtype":"struct vr::VRActiveActionSet_t *"},{"paramname":"unSizeOfVRSelectedActionSet_t","paramtype":"uint32_t"},{"paramname":"unSetCount","paramtype":"uint32_t"},{"paramname":"originToHighlight","paramtype":"vr::VRInputValueHandle_t"}]
+  Return: vr::EVRInputError
+  */
   ShowBindingsForActionSet(pSets: Deno.PointerValue<ActiveActionSet>, unSizeOfVRSelectedActionSet_t: number, unSetCount: number, originToHighlight: InputValueHandle): InputError {
     if (this.ptr === null) throw new Error("IVRInput pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRInput>);
@@ -6939,6 +8629,11 @@ export class IVRInput {
     return null as unknown as InputError;
   }
 
+  /*
+  GetComponentStateForBinding
+  Parameters: [{"paramname":"pchRenderModelName","paramtype":"const char *"},{"paramname":"pchComponentName","paramtype":"const char *"},{"paramname":"pOriginInfo","paramtype":"const struct vr::InputBindingInfo_t *"},{"paramname":"unBindingInfoSize","paramtype":"uint32_t"},{"paramname":"unBindingInfoCount","paramtype":"uint32_t"},{"paramname":"pComponentState","paramtype":"vr::RenderModel_ComponentState_t *"}]
+  Return: vr::EVRInputError
+  */
   GetComponentStateForBinding(pchRenderModelName: string, pchComponentName: string, pOriginInfo: Deno.PointerValue<InputBindingInfo>//READONLY, unBindingInfoSize: number, unBindingInfoCount: number, pComponentState: Deno.PointerValue<RenderModel_ComponentState>): InputError {
     if (this.ptr === null) throw new Error("IVRInput pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRInput>);
@@ -6947,6 +8642,11 @@ export class IVRInput {
     return null as unknown as InputError;
   }
 
+  /*
+  IsUsingLegacyInput
+  Parameters: undefined
+  Return: bool
+  */
   IsUsingLegacyInput(): bool {
     if (this.ptr === null) throw new Error("IVRInput pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRInput>);
@@ -6955,6 +8655,11 @@ export class IVRInput {
     return null as unknown as bool;
   }
 
+  /*
+  OpenBindingUI
+  Parameters: [{"paramname":"pchAppKey","paramtype":"const char *"},{"paramname":"ulActionSetHandle","paramtype":"vr::VRActionSetHandle_t"},{"paramname":"ulDeviceHandle","paramtype":"vr::VRInputValueHandle_t"},{"paramname":"bShowOnDesktop","paramtype":"bool"}]
+  Return: vr::EVRInputError
+  */
   OpenBindingUI(pchAppKey: string, ulActionSetHandle: ActionSetHandle, ulDeviceHandle: InputValueHandle, bShowOnDesktop: bool): InputError {
     if (this.ptr === null) throw new Error("IVRInput pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRInput>);
@@ -6963,6 +8668,11 @@ export class IVRInput {
     return null as unknown as InputError;
   }
 
+  /*
+  GetBindingVariant
+  Parameters: [{"paramname":"ulDevicePath","paramtype":"vr::VRInputValueHandle_t"},{"paramname":"pchVariantArray","out_string":" ","paramtype":"char *"},{"paramname":"unVariantArraySize","paramtype":"uint32_t"}]
+  Return: vr::EVRInputError
+  */
   GetBindingVariant(ulDevicePath: InputValueHandle, pchVariantArray: string, unVariantArraySize: number): InputError {
     if (this.ptr === null) throw new Error("IVRInput pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRInput>);
@@ -6976,6 +8686,11 @@ export class IVRInput {
 export class IVRIOBuffer {
   constructor(private ptr: Deno.PointerValue<IVRIOBuffer>) {}
 
+  /*
+  Open
+  Parameters: [{"paramname":"pchPath","paramtype":"const char *"},{"paramname":"mode","paramtype":"vr::EIOBufferMode"},{"paramname":"unElementSize","paramtype":"uint32_t"},{"paramname":"unElements","paramtype":"uint32_t"},{"paramname":"pulBuffer","paramtype":"vr::IOBufferHandle_t *"}]
+  Return: vr::EIOBufferError
+  */
   Open(pchPath: string, mode: IOBufferMode, unElementSize: number, unElements: number, pulBuffer: Deno.PointerValue<IOBufferHandle>): IOBufferError {
     if (this.ptr === null) throw new Error("IVRIOBuffer pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRIOBuffer>);
@@ -6984,6 +8699,11 @@ export class IVRIOBuffer {
     return null as unknown as IOBufferError;
   }
 
+  /*
+  Close
+  Parameters: [{"paramname":"ulBuffer","paramtype":"vr::IOBufferHandle_t"}]
+  Return: vr::EIOBufferError
+  */
   Close(ulBuffer: IOBufferHandle): IOBufferError {
     if (this.ptr === null) throw new Error("IVRIOBuffer pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRIOBuffer>);
@@ -6992,6 +8712,11 @@ export class IVRIOBuffer {
     return null as unknown as IOBufferError;
   }
 
+  /*
+  Read
+  Parameters: [{"paramname":"ulBuffer","paramtype":"vr::IOBufferHandle_t"},{"paramname":"pDst","paramtype":"void *"},{"paramname":"unBytes","paramtype":"uint32_t"},{"paramname":"punRead","paramtype":"uint32_t *"}]
+  Return: vr::EIOBufferError
+  */
   Read(ulBuffer: IOBufferHandle, pDst: Deno.PointerValue<unknown>, unBytes: number, punRead: Deno.PointerValue<number>): IOBufferError {
     if (this.ptr === null) throw new Error("IVRIOBuffer pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRIOBuffer>);
@@ -7000,6 +8725,11 @@ export class IVRIOBuffer {
     return null as unknown as IOBufferError;
   }
 
+  /*
+  Write
+  Parameters: [{"paramname":"ulBuffer","paramtype":"vr::IOBufferHandle_t"},{"paramname":"pSrc","paramtype":"void *"},{"paramname":"unBytes","paramtype":"uint32_t"}]
+  Return: vr::EIOBufferError
+  */
   Write(ulBuffer: IOBufferHandle, pSrc: Deno.PointerValue<unknown>, unBytes: number): IOBufferError {
     if (this.ptr === null) throw new Error("IVRIOBuffer pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRIOBuffer>);
@@ -7008,6 +8738,11 @@ export class IVRIOBuffer {
     return null as unknown as IOBufferError;
   }
 
+  /*
+  PropertyContainer
+  Parameters: [{"paramname":"ulBuffer","paramtype":"vr::IOBufferHandle_t"}]
+  Return: vr::PropertyContainerHandle_t
+  */
   PropertyContainer(ulBuffer: IOBufferHandle): PropertyContainerHandle {
     if (this.ptr === null) throw new Error("IVRIOBuffer pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRIOBuffer>);
@@ -7016,6 +8751,11 @@ export class IVRIOBuffer {
     return null as unknown as PropertyContainerHandle;
   }
 
+  /*
+  HasReaders
+  Parameters: [{"paramname":"ulBuffer","paramtype":"vr::IOBufferHandle_t"}]
+  Return: bool
+  */
   HasReaders(ulBuffer: IOBufferHandle): bool {
     if (this.ptr === null) throw new Error("IVRIOBuffer pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRIOBuffer>);
@@ -7029,6 +8769,11 @@ export class IVRIOBuffer {
 export class IVRSpatialAnchors {
   constructor(private ptr: Deno.PointerValue<IVRSpatialAnchors>) {}
 
+  /*
+  CreateSpatialAnchorFromDescriptor
+  Parameters: [{"paramname":"pchDescriptor","paramtype":"const char *"},{"paramname":"pHandleOut","paramtype":"vr::SpatialAnchorHandle_t *"}]
+  Return: vr::EVRSpatialAnchorError
+  */
   CreateSpatialAnchorFromDescriptor(pchDescriptor: string, pHandleOut: Deno.PointerValue<SpatialAnchorHandle>): SpatialAnchorError {
     if (this.ptr === null) throw new Error("IVRSpatialAnchors pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSpatialAnchors>);
@@ -7037,6 +8782,11 @@ export class IVRSpatialAnchors {
     return null as unknown as SpatialAnchorError;
   }
 
+  /*
+  CreateSpatialAnchorFromPose
+  Parameters: [{"paramname":"unDeviceIndex","paramtype":"vr::TrackedDeviceIndex_t"},{"paramname":"eOrigin","paramtype":"vr::ETrackingUniverseOrigin"},{"paramname":"pPose","paramtype":"struct vr::SpatialAnchorPose_t *"},{"paramname":"pHandleOut","paramtype":"vr::SpatialAnchorHandle_t *"}]
+  Return: vr::EVRSpatialAnchorError
+  */
   CreateSpatialAnchorFromPose(unDeviceIndex: TrackedDeviceIndex, eOrigin: TrackingUniverseOrigin, pPose: Deno.PointerValue<SpatialAnchorPose>, pHandleOut: Deno.PointerValue<SpatialAnchorHandle>): SpatialAnchorError {
     if (this.ptr === null) throw new Error("IVRSpatialAnchors pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSpatialAnchors>);
@@ -7045,6 +8795,11 @@ export class IVRSpatialAnchors {
     return null as unknown as SpatialAnchorError;
   }
 
+  /*
+  GetSpatialAnchorPose
+  Parameters: [{"paramname":"unHandle","paramtype":"vr::SpatialAnchorHandle_t"},{"paramname":"eOrigin","paramtype":"vr::ETrackingUniverseOrigin"},{"paramname":"pPoseOut","paramtype":"struct vr::SpatialAnchorPose_t *"}]
+  Return: vr::EVRSpatialAnchorError
+  */
   GetSpatialAnchorPose(unHandle: SpatialAnchorHandle, eOrigin: TrackingUniverseOrigin, pPoseOut: Deno.PointerValue<SpatialAnchorPose>): SpatialAnchorError {
     if (this.ptr === null) throw new Error("IVRSpatialAnchors pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSpatialAnchors>);
@@ -7053,6 +8808,11 @@ export class IVRSpatialAnchors {
     return null as unknown as SpatialAnchorError;
   }
 
+  /*
+  GetSpatialAnchorDescriptor
+  Parameters: [{"paramname":"unHandle","paramtype":"vr::SpatialAnchorHandle_t"},{"paramname":"pchDescriptorOut","out_string":" ","paramtype":"char *"},{"paramname":"punDescriptorBufferLenInOut","paramtype":"uint32_t *"}]
+  Return: vr::EVRSpatialAnchorError
+  */
   GetSpatialAnchorDescriptor(unHandle: SpatialAnchorHandle, pchDescriptorOut: string, punDescriptorBufferLenInOut: Deno.PointerValue<number>): SpatialAnchorError {
     if (this.ptr === null) throw new Error("IVRSpatialAnchors pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSpatialAnchors>);
@@ -7066,6 +8826,11 @@ export class IVRSpatialAnchors {
 export class IVRDebug {
   constructor(private ptr: Deno.PointerValue<IVRDebug>) {}
 
+  /*
+  EmitVrProfilerEvent
+  Parameters: [{"paramname":"pchMessage","paramtype":"const char *"}]
+  Return: vr::EVRDebugError
+  */
   EmitVrProfilerEvent(pchMessage: string): DebugError {
     if (this.ptr === null) throw new Error("IVRDebug pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRDebug>);
@@ -7074,6 +8839,11 @@ export class IVRDebug {
     return null as unknown as DebugError;
   }
 
+  /*
+  BeginVrProfilerEvent
+  Parameters: [{"paramname":"pHandleOut","paramtype":"vr::VrProfilerEventHandle_t *"}]
+  Return: vr::EVRDebugError
+  */
   BeginVrProfilerEvent(pHandleOut: Deno.PointerValue<VrProfilerEventHandle>): DebugError {
     if (this.ptr === null) throw new Error("IVRDebug pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRDebug>);
@@ -7082,6 +8852,11 @@ export class IVRDebug {
     return null as unknown as DebugError;
   }
 
+  /*
+  FinishVrProfilerEvent
+  Parameters: [{"paramname":"hHandle","paramtype":"vr::VrProfilerEventHandle_t"},{"paramname":"pchMessage","paramtype":"const char *"}]
+  Return: vr::EVRDebugError
+  */
   FinishVrProfilerEvent(hHandle: VrProfilerEventHandle, pchMessage: string): DebugError {
     if (this.ptr === null) throw new Error("IVRDebug pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRDebug>);
@@ -7090,6 +8865,11 @@ export class IVRDebug {
     return null as unknown as DebugError;
   }
 
+  /*
+  DriverDebugRequest
+  Parameters: [{"paramname":"unDeviceIndex","paramtype":"vr::TrackedDeviceIndex_t"},{"paramname":"pchRequest","paramtype":"const char *"},{"paramname":"pchResponseBuffer","out_string":" ","paramtype":"char *"},{"paramname":"unResponseBufferSize","paramtype":"uint32_t"}]
+  Return: uint32_t
+  */
   DriverDebugRequest(unDeviceIndex: TrackedDeviceIndex, pchRequest: string, pchResponseBuffer: string, unResponseBufferSize: number): number {
     if (this.ptr === null) throw new Error("IVRDebug pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRDebug>);
@@ -7103,6 +8883,11 @@ export class IVRDebug {
 export class IVRNotifications {
   constructor(private ptr: Deno.PointerValue<IVRNotifications>) {}
 
+  /*
+  CreateNotification
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"ulUserValue","paramtype":"uint64_t"},{"paramname":"type","paramtype":"vr::EVRNotificationType"},{"paramname":"pchText","paramtype":"const char *"},{"paramname":"style","paramtype":"vr::EVRNotificationStyle"},{"paramname":"pImage","paramtype":"const struct vr::NotificationBitmap_t *"},{"paramname":"pNotificationId","paramtype":"vr::VRNotificationId *"}]
+  Return: vr::EVRNotificationError
+  */
   CreateNotification(ulOverlayHandle: OverlayHandle, ulUserValue: bigint, type: NotificationType, pchText: string, style: NotificationStyle, pImage: Deno.PointerValue<NotificationBitmap>//READONLY, pNotificationId: Deno.PointerValue<NotificationId>): NotificationError {
     if (this.ptr === null) throw new Error("IVRNotifications pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRNotifications>);
@@ -7111,6 +8896,11 @@ export class IVRNotifications {
     return null as unknown as NotificationError;
   }
 
+  /*
+  RemoveNotification
+  Parameters: [{"paramname":"notificationId","paramtype":"vr::VRNotificationId"}]
+  Return: vr::EVRNotificationError
+  */
   RemoveNotification(notificationId: NotificationId): NotificationError {
     if (this.ptr === null) throw new Error("IVRNotifications pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRNotifications>);
@@ -7124,6 +8914,11 @@ export class IVRNotifications {
 export class IVRProperties {
   constructor(private ptr: Deno.PointerValue<IVRProperties>) {}
 
+  /*
+  ReadPropertyBatch
+  Parameters: [{"paramname":"ulContainerHandle","paramtype":"vr::PropertyContainerHandle_t"},{"paramname":"pBatch","paramtype":"struct vr::PropertyRead_t *"},{"paramname":"unBatchEntryCount","paramtype":"uint32_t"}]
+  Return: vr::ETrackedPropertyError
+  */
   ReadPropertyBatch(ulContainerHandle: PropertyContainerHandle, pBatch: Deno.PointerValue<PropertyRead>, unBatchEntryCount: number): TrackedPropertyError {
     if (this.ptr === null) throw new Error("IVRProperties pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRProperties>);
@@ -7132,6 +8927,11 @@ export class IVRProperties {
     return null as unknown as TrackedPropertyError;
   }
 
+  /*
+  WritePropertyBatch
+  Parameters: [{"paramname":"ulContainerHandle","paramtype":"vr::PropertyContainerHandle_t"},{"paramname":"pBatch","paramtype":"struct vr::PropertyWrite_t *"},{"paramname":"unBatchEntryCount","paramtype":"uint32_t"}]
+  Return: vr::ETrackedPropertyError
+  */
   WritePropertyBatch(ulContainerHandle: PropertyContainerHandle, pBatch: Deno.PointerValue<PropertyWrite>, unBatchEntryCount: number): TrackedPropertyError {
     if (this.ptr === null) throw new Error("IVRProperties pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRProperties>);
@@ -7140,6 +8940,11 @@ export class IVRProperties {
     return null as unknown as TrackedPropertyError;
   }
 
+  /*
+  GetPropErrorNameFromEnum
+  Parameters: [{"paramname":"error","paramtype":"vr::ETrackedPropertyError"}]
+  Return: const char *
+  */
   GetPropErrorNameFromEnum(error: TrackedPropertyError): string {
     if (this.ptr === null) throw new Error("IVRProperties pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRProperties>);
@@ -7148,6 +8953,11 @@ export class IVRProperties {
     return null as unknown as string;
   }
 
+  /*
+  TrackedDeviceToPropertyContainer
+  Parameters: [{"paramname":"nDevice","paramtype":"vr::TrackedDeviceIndex_t"}]
+  Return: PropertyContainerHandle_t
+  */
   TrackedDeviceToPropertyContainer(nDevice: TrackedDeviceIndex): PropertyContainerHandle {
     if (this.ptr === null) throw new Error("IVRProperties pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRProperties>);
@@ -7161,6 +8971,11 @@ export class IVRProperties {
 export class IVRPaths {
   constructor(private ptr: Deno.PointerValue<IVRPaths>) {}
 
+  /*
+  ReadPathBatch
+  Parameters: [{"paramname":"ulRootHandle","paramtype":"vr::PropertyContainerHandle_t"},{"paramname":"pBatch","paramtype":"struct vr::PathRead_t *"},{"paramname":"unBatchEntryCount","paramtype":"uint32_t"}]
+  Return: vr::ETrackedPropertyError
+  */
   ReadPathBatch(ulRootHandle: PropertyContainerHandle, pBatch: Deno.PointerValue<PathRead>, unBatchEntryCount: number): TrackedPropertyError {
     if (this.ptr === null) throw new Error("IVRPaths pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRPaths>);
@@ -7169,6 +8984,11 @@ export class IVRPaths {
     return null as unknown as TrackedPropertyError;
   }
 
+  /*
+  WritePathBatch
+  Parameters: [{"paramname":"ulRootHandle","paramtype":"vr::PropertyContainerHandle_t"},{"paramname":"pBatch","paramtype":"struct vr::PathWrite_t *"},{"paramname":"unBatchEntryCount","paramtype":"uint32_t"}]
+  Return: vr::ETrackedPropertyError
+  */
   WritePathBatch(ulRootHandle: PropertyContainerHandle, pBatch: Deno.PointerValue<PathWrite>, unBatchEntryCount: number): TrackedPropertyError {
     if (this.ptr === null) throw new Error("IVRPaths pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRPaths>);
@@ -7177,6 +8997,11 @@ export class IVRPaths {
     return null as unknown as TrackedPropertyError;
   }
 
+  /*
+  StringToHandle
+  Parameters: [{"paramname":"pHandle","paramtype":"vr::PathHandle_t *"},{"paramname":"pchPath","paramtype":"const char *"}]
+  Return: vr::ETrackedPropertyError
+  */
   StringToHandle(pHandle: Deno.PointerValue<PathHandle>, pchPath: string): TrackedPropertyError {
     if (this.ptr === null) throw new Error("IVRPaths pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRPaths>);
@@ -7185,6 +9010,11 @@ export class IVRPaths {
     return null as unknown as TrackedPropertyError;
   }
 
+  /*
+  HandleToString
+  Parameters: [{"paramname":"pHandle","paramtype":"vr::PathHandle_t"},{"paramname":"pchBuffer","paramtype":"char *"},{"paramname":"unBufferSize","paramtype":"uint32_t"},{"paramname":"punBufferSizeUsed","paramtype":"uint32_t *"}]
+  Return: vr::ETrackedPropertyError
+  */
   HandleToString(pHandle: PathHandle, pchBuffer: string, unBufferSize: number, punBufferSizeUsed: Deno.PointerValue<number>): TrackedPropertyError {
     if (this.ptr === null) throw new Error("IVRPaths pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRPaths>);
@@ -7198,6 +9028,11 @@ export class IVRPaths {
 export class IVRBlockQueue {
   constructor(private ptr: Deno.PointerValue<IVRBlockQueue>) {}
 
+  /*
+  Create
+  Parameters: [{"paramname":"pulQueueHandle","paramtype":"vr::PropertyContainerHandle_t *"},{"paramname":"pchPath","paramtype":"const char *"},{"paramname":"unBlockDataSize","paramtype":"uint32_t"},{"paramname":"unBlockHeaderSize","paramtype":"uint32_t"},{"paramname":"unBlockCount","paramtype":"uint32_t"},{"paramname":"unFlags","paramtype":"uint32_t"}]
+  Return: vr::EBlockQueueError
+  */
   Create(pulQueueHandle: Deno.PointerValue<PropertyContainerHandle>, pchPath: string, unBlockDataSize: number, unBlockHeaderSize: number, unBlockCount: number, unFlags: number): BlockQueueError {
     if (this.ptr === null) throw new Error("IVRBlockQueue pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRBlockQueue>);
@@ -7206,6 +9041,11 @@ export class IVRBlockQueue {
     return null as unknown as BlockQueueError;
   }
 
+  /*
+  Connect
+  Parameters: [{"paramname":"pulQueueHandle","paramtype":"vr::PropertyContainerHandle_t *"},{"paramname":"pchPath","paramtype":"const char *"}]
+  Return: vr::EBlockQueueError
+  */
   Connect(pulQueueHandle: Deno.PointerValue<PropertyContainerHandle>, pchPath: string): BlockQueueError {
     if (this.ptr === null) throw new Error("IVRBlockQueue pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRBlockQueue>);
@@ -7214,6 +9054,11 @@ export class IVRBlockQueue {
     return null as unknown as BlockQueueError;
   }
 
+  /*
+  Destroy
+  Parameters: [{"paramname":"ulQueueHandle","paramtype":"vr::PropertyContainerHandle_t"}]
+  Return: vr::EBlockQueueError
+  */
   Destroy(ulQueueHandle: PropertyContainerHandle): BlockQueueError {
     if (this.ptr === null) throw new Error("IVRBlockQueue pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRBlockQueue>);
@@ -7222,6 +9067,11 @@ export class IVRBlockQueue {
     return null as unknown as BlockQueueError;
   }
 
+  /*
+  AcquireWriteOnlyBlock
+  Parameters: [{"paramname":"ulQueueHandle","paramtype":"vr::PropertyContainerHandle_t"},{"paramname":"pulBlockHandle","paramtype":"vr::PropertyContainerHandle_t *"},{"paramname":"ppvBuffer","paramtype":"void **"}]
+  Return: vr::EBlockQueueError
+  */
   AcquireWriteOnlyBlock(ulQueueHandle: PropertyContainerHandle, pulBlockHandle: Deno.PointerValue<PropertyContainerHandle>, ppvBuffer: Deno.PointerValue<Deno.PointerValue<unknown>>): BlockQueueError {
     if (this.ptr === null) throw new Error("IVRBlockQueue pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRBlockQueue>);
@@ -7230,6 +9080,11 @@ export class IVRBlockQueue {
     return null as unknown as BlockQueueError;
   }
 
+  /*
+  ReleaseWriteOnlyBlock
+  Parameters: [{"paramname":"ulQueueHandle","paramtype":"vr::PropertyContainerHandle_t"},{"paramname":"ulBlockHandle","paramtype":"vr::PropertyContainerHandle_t"}]
+  Return: vr::EBlockQueueError
+  */
   ReleaseWriteOnlyBlock(ulQueueHandle: PropertyContainerHandle, ulBlockHandle: PropertyContainerHandle): BlockQueueError {
     if (this.ptr === null) throw new Error("IVRBlockQueue pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRBlockQueue>);
@@ -7238,6 +9093,11 @@ export class IVRBlockQueue {
     return null as unknown as BlockQueueError;
   }
 
+  /*
+  WaitAndAcquireReadOnlyBlock
+  Parameters: [{"paramname":"ulQueueHandle","paramtype":"vr::PropertyContainerHandle_t"},{"paramname":"pulBlockHandle","paramtype":"vr::PropertyContainerHandle_t *"},{"paramname":"ppvBuffer","paramtype":"const void **"},{"paramname":"eReadType","paramtype":"vr::EBlockQueueReadType"},{"paramname":"unTimeoutMs","paramtype":"uint32_t"}]
+  Return: vr::EBlockQueueError
+  */
   WaitAndAcquireReadOnlyBlock(ulQueueHandle: PropertyContainerHandle, pulBlockHandle: Deno.PointerValue<PropertyContainerHandle>, ppvBuffer: Deno.PointerValue<Deno.PointerValue<unknown>>//READONLY, eReadType: BlockQueueReadType, unTimeoutMs: number): BlockQueueError {
     if (this.ptr === null) throw new Error("IVRBlockQueue pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRBlockQueue>);
@@ -7246,6 +9106,11 @@ export class IVRBlockQueue {
     return null as unknown as BlockQueueError;
   }
 
+  /*
+  AcquireReadOnlyBlock
+  Parameters: [{"paramname":"ulQueueHandle","paramtype":"vr::PropertyContainerHandle_t"},{"paramname":"pulBlockHandle","paramtype":"vr::PropertyContainerHandle_t *"},{"paramname":"ppvBuffer","paramtype":"const void **"},{"paramname":"eReadType","paramtype":"vr::EBlockQueueReadType"}]
+  Return: vr::EBlockQueueError
+  */
   AcquireReadOnlyBlock(ulQueueHandle: PropertyContainerHandle, pulBlockHandle: Deno.PointerValue<PropertyContainerHandle>, ppvBuffer: Deno.PointerValue<Deno.PointerValue<unknown>>//READONLY, eReadType: BlockQueueReadType): BlockQueueError {
     if (this.ptr === null) throw new Error("IVRBlockQueue pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRBlockQueue>);
@@ -7254,6 +9119,11 @@ export class IVRBlockQueue {
     return null as unknown as BlockQueueError;
   }
 
+  /*
+  ReleaseReadOnlyBlock
+  Parameters: [{"paramname":"ulQueueHandle","paramtype":"vr::PropertyContainerHandle_t"},{"paramname":"ulBlockHandle","paramtype":"vr::PropertyContainerHandle_t"}]
+  Return: vr::EBlockQueueError
+  */
   ReleaseReadOnlyBlock(ulQueueHandle: PropertyContainerHandle, ulBlockHandle: PropertyContainerHandle): BlockQueueError {
     if (this.ptr === null) throw new Error("IVRBlockQueue pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRBlockQueue>);
@@ -7262,6 +9132,11 @@ export class IVRBlockQueue {
     return null as unknown as BlockQueueError;
   }
 
+  /*
+  QueueHasReader
+  Parameters: [{"paramname":"ulQueueHandle","paramtype":"vr::PropertyContainerHandle_t"},{"paramname":"pbHasReaders","paramtype":"bool *"}]
+  Return: vr::EBlockQueueError
+  */
   QueueHasReader(ulQueueHandle: PropertyContainerHandle, pbHasReaders: Deno.PointerValue<bool>): BlockQueueError {
     if (this.ptr === null) throw new Error("IVRBlockQueue pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRBlockQueue>);
