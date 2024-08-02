@@ -9,11 +9,12 @@ async function main() {
     throw new Error("API was not object");
   }
   let output = "";
+  output += await generateEntrypoints();
   output += await generateTypes(api.typedefs, api.consts);
   output += await generateEnums(api.enums);
   output += await generateStructs(api.structs);
-  await generateMethods(api.methods);
-  await generateEntrypoints();
+  output += await generateMethods(api.methods);
+
 
   await Deno.writeTextFile("openvr/FULL.ts", output);
 }
@@ -414,11 +415,14 @@ const INTERFACE_NAMES: string[] = [
 
 
 async function generateMethods(methods: any[]) {
-  let output = "// Methods\n\n";
+  let output = "// Classes\n\n";
+  output += "//#region Classes\n";
 
   for (const iface of INTERFACE_NAMES) {
-    const ifaceTrim = iface.replace("vr::IVR", "");
-    output += `export interface I${ifaceTrim} {\n`;
+    const ifaceTrim = iface.replace("vr::", "");
+    output += `export class ${ifaceTrim} {\n`;
+    output += `  constructor(private ptr: Deno.PointerValue<${ifaceTrim}>) {}\n\n`;
+
     for (const meth of methods) {
       if (meth.classname !== iface) continue;
       const methName = meth.methodname;
@@ -426,42 +430,48 @@ async function generateMethods(methods: any[]) {
       const methRet = meth.returntype;
       const retType = fieldTypeConvert(methRet);
 
-      output += `  ${methName}: (`;
+      output += `  ${methName}(`;
       if (methParams) {
         for (let i = 0; i < methParams.length; i++) {
           const par = methParams[i];
           const parname = par.paramname;
           const partype = par.paramtype;
-          const odinType = fieldTypeConvert(partype);
-          output += `${parname}: ${odinType}`;
+          const tsType = fieldTypeConvert(partype);
+          output += `${parname}: ${tsType}`;
           if (i < methParams.length - 1) output += ", ";
         }
       }
 
       if (retType === "void") {
-        output += ") => void;\n";
+        output += "): void {\n";
       } else {
-        output += `) => ${retType};\n`;
+        output += `): ${retType} {\n`;
       }
+
+      // Add method implementation
+      output += `    if (this.ptr === null) throw new Error("${ifaceTrim} pointer is null");\n`;
+      output += `    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<${ifaceTrim}>);\n`;
+      output += `    // TODO: Implement FFI call\n`;
+
+      if (retType !== "void") {
+        output += `    // TODO: Return the result\n`;
+        output += `    return null as unknown as ${retType};\n`;
+      }
+
+      output += "  }\n\n";
     }
     output += "}\n\n";
   }
-
-  await Deno.writeTextFile("openvr/procedures.ts", output);
+  output += "//#endregion\n";
+  return output;
 }
 
 
 
 async function generateEntrypoints() {
   const entrypoints = `
-import { dlopen, FetchOptions } from "https://deno.land/x/plug/mod.ts";
-
-const opts: FetchOptions = {
-  name: "openvr_api",
-  url: "https://example.com/path/to/openvr_api.dll",
-};
-
-const { symbols } = await dlopen(opts, {
+//#region Entrypoints
+const { symbols } = await Deno.dlopen("openvr_api.dll", {
   Init: { parameters: ["pointer", "i32"], result: "pointer" },
   Shutdown: { parameters: [], result: "void" },
   IsHmdPresent: { parameters: [], result: "bool" },
@@ -480,8 +490,9 @@ export const {
   GetInitErrorAsSymbol,
   GetInitErrorAsDescription,
 } = symbols;
+//#endregion
 `;
-
+  return entrypoints;
   await Deno.writeTextFile("openvr/entrypoints.ts", entrypoints);
 }
 
