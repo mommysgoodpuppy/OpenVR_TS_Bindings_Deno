@@ -37,7 +37,7 @@ async function main() {
     }
 
     let actionSetHandle: OpenVR.ActionSetHandle = 0n;
-    const actionSetHandlePTR = Deno.UnsafePointer.of<OpenVR.ActionSetHandle>(new BigUint64Array([actionSetHandle]))
+    const actionSetHandlePTR = Deno.UnsafePointer.of<OpenVR.ActionSetHandle>(new BigUint64Array())!
 
     error = vrInput.GetActionSetHandle("/actions/main", actionSetHandlePTR);
     if (error !== OpenVR.InputError.VRInputError_None) {
@@ -48,10 +48,10 @@ async function main() {
     actionSetHandle = new Deno.UnsafePointerView(actionSetHandlePTR).getBigUint64();
 
     let handPoseLeftHandle: OpenVR.ActionHandle = OpenVR.k_ulInvalidActionHandle;
-    const handPoseLeftHandlePTR = Deno.UnsafePointer.of<OpenVR.ActionHandle>(new BigUint64Array([handPoseLeftHandle]))
+    const handPoseLeftHandlePTR = Deno.UnsafePointer.of<OpenVR.ActionHandle>(new BigUint64Array())!
 
     let handPoseRightHandle: OpenVR.ActionHandle = OpenVR.k_ulInvalidActionHandle;
-    const handPoseRightHandlePTR = Deno.UnsafePointer.of<OpenVR.ActionHandle>(new BigUint64Array([handPoseRightHandle]))
+    const handPoseRightHandlePTR = Deno.UnsafePointer.of<OpenVR.ActionHandle>(new BigUint64Array())!
 
 
     error = vrInput.GetActionHandle("/actions/main/in/HandPoseLeft", handPoseLeftHandlePTR);
@@ -73,7 +73,7 @@ async function main() {
     console.log(handPoseLeftHandle, handPoseRightHandle);
 
     let overlayHandle: OpenVR.OverlayHandle = 0n;
-    const overlayHandlePTR = Deno.UnsafePointer.of<OpenVR.OverlayHandle>(new BigUint64Array([overlayHandle]))
+    const overlayHandlePTR = Deno.UnsafePointer.of<OpenVR.OverlayHandle>(new BigUint64Array())!
 
     error = overlay.CreateOverlay("image", "image", overlayHandlePTR);
     if (error !== OpenVR.OverlayError.VROverlayError_None) {
@@ -97,7 +97,7 @@ async function main() {
         ]
     };
     const initialTransformPTR = Deno.UnsafePointer.of<OpenVR.HmdMatrix34>(new Float32Array(initialTransform.m.flat()));
-    
+
     overlay.SetOverlayTransformAbsolute(overlayHandle, OpenVR.TrackingUniverseOrigin.TrackingUniverseStanding, initialTransformPTR);
 
     console.log("Overlay created and shown. Press Ctrl+C to exit.");
