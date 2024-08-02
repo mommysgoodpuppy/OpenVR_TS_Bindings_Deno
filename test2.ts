@@ -87,6 +87,7 @@ async function main() {
         throw new Error("Failed to set action manifest path");
     } */
 
+
     let overlayhandle: OpenVR.OverlayHandle = 0n;
     const overlayhandleBigUintArray = new BigUint64Array([overlayhandle]);
 
@@ -94,7 +95,7 @@ async function main() {
     
     //do something with overlayhandlePTR
     
-    const overlayhandleBuf = Deno.UnsafePointerView.getArrayBuffer((overlayhandlePTR as Deno.PointerObject), 8);
+    const overlayhandleBuf = Deno.UnsafePointerView.getArrayBuffer((overlayhandlePTR as Deno.PointerObject), BigUint64Array.BYTES_PER_ELEMENT);
     
     overlayhandle = new BigUint64Array(overlayhandleBuf)[0];
     console.log(`Overlay created with handle: ${overlayhandle}`);
