@@ -96,14 +96,8 @@ async function main() {
             [0.0, 0.0, 1.0, -2.0]
         ]
     };
-    const matrixBuffer = new Float32Array(12);
-    let index = 0;
-    for (let i = 0; i < 3; i++) {
-        for (let j = 0; j < 4; j++) {
-            matrixBuffer[index++] = initialTransform.m[i][j];
-        }
-    }
-    const initialTransformPTR = Deno.UnsafePointer.of<OpenVR.HmdMatrix34>(matrixBuffer);
+    const initialTransformPTR = Deno.UnsafePointer.of<OpenVR.HmdMatrix34>(new Float32Array(initialTransform.m.flat()));
+    
     overlay.SetOverlayTransformAbsolute(overlayHandle, OpenVR.TrackingUniverseOrigin.TrackingUniverseStanding, initialTransformPTR);
 
     console.log("Overlay created and shown. Press Ctrl+C to exit.");
