@@ -88,9 +88,9 @@ async function main() {
     } */
 
     let overlayhandle: OpenVR.OverlayHandle = 0n;
-    const overlayhandlearray = new BigUint64Array([overlayhandle]);
+    const overlayhandleBigUintArray = new BigUint64Array([overlayhandle]);
 
-    const overlayhandlePTR= Deno.UnsafePointer.of(overlayhandlearray);
+    const overlayhandlePTR= Deno.UnsafePointer.of(overlayhandleBigUintArray);
     
     //do something with overlayhandlePTR
     
