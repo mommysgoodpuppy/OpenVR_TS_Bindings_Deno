@@ -33,19 +33,18 @@ async function main() {
     let handPoseRightHandle: OpenVR.VRActionHandle_t = OpenVR.k_ulInvalidActionHandle;
     [error, handPoseLeftHandle] = vrInput.GetActionHandle("/actions/main/in/HandPoseLeft", handPoseLeftHandle);
     [error, handPoseRightHandle] = vrInput.GetActionHandle("/actions/main/in/HandPoseRight", handPoseRightHandle);
-    console.log(handPoseLeftHandle[0], handPoseRightHandle[0]);
+    console.log(handPoseLeftHandle, handPoseRightHandle);
 
     const overlayHandle2: OpenVR.VROverlayHandle_t = 0n;
-    const [_errorX, xbuffer] = overlay.CreateOverlay("image", "image", overlayHandle2);
-    const buffer = xbuffer as unknown as Array<ArrayBuffer>;
-    const overlayHandle = buffer[0] as unknown as bigint;
+    const [_errorX, overlayHandle] = overlay.CreateOverlay("image", "image", overlayHandle2);
+
     console.log(`Overlay created with handle: ${overlayHandle}`);
 
     overlay.SetOverlayFromFile(overlayHandle, "C:/GIT/petplay/resources/PetPlay.png");
     overlay.SetOverlayWidthInMeters(overlayHandle, 1);
     overlay.ShowOverlay(overlayHandle);
 
-    const initialTransform: OpenVR.HmdMatrix34_t = {
+    const initialTransform:OpenVR.HmdMatrix34_t = {
         m: [
             [1.0, 0.0, 0.0, 0.0],
             [0.0, 1.0, 0.0, 1.0],

@@ -14,6 +14,10 @@ const specialUnionTypes = new Set([
     "VROverlayIntersectionMaskPrimitive_Data_t"
 ]);
 
+
+
+  
+
 //#region helpers
 
 
@@ -254,7 +258,7 @@ function getPrimitiveSize(type: string): number {
 function getBaseType(type: string): string {
     let currentType = type;
     while (isDefinedType(currentType)) {
-        currentType = definedTypes.get(currentType) || definedTypes.get(`vr::${currentType}`);
+        currentType = definedTypes.get(currentType) ?? definedTypes.get(`vr::${currentType}`)?? currentType;
     }
     return currentType;
 }
@@ -277,9 +281,9 @@ function structToObject2(structType: string, pointerName: string): string {
 
         if (fieldType.includes("[")) {
             // Handle array types
-            const [baseType, ...dimensions] = fieldType.split("[").map(s => s.replace("]", ""));
+            const [baseType, ...dimensions] = fieldType.split("[").map((s: string) => s.replace("]", ""));
             let arrayAccess = `(    ${pointerName} as any)[${index}]`;
-            dimensions.forEach((dim, i) => {
+            dimensions.forEach((dim: any, i: any) => {
                 if (dim) {
                     arrayAccess = `Array(${dim}).fill(0).map((_, i${i}) => ${arrayAccess}[i${i}])`;
                 }
@@ -756,7 +760,7 @@ function convertConstType(type: string): string {
 }
 function calculateStructSize(structName: string): number {
     let struct = globalStructs.find(s => s.struct === structName || s.struct === `vr::${structName}`);
-    if (definedStructs.has(structName?.struct)) {
+    if (definedStructs.has((structName as any).struct)) {
         struct = structName;
     }
 
@@ -802,10 +806,11 @@ function calculateArraySizeAndAlignment(fieldType: string): [number, number] {
     }
 
     const baseType = matches[1];
-    const dimensions = fieldType.match(/\[(\d+)\]/g).map(dim => parseInt(dim.slice(1, -1)));
+    const dimensions = fieldType.match(/\[(\d+)\]/g)?.map(dim => parseInt(dim.slice(1, -1)));
     const [elementSize, elementAlignment] = getTypeSizeAndAlignment(baseType);
 
-    const totalSize = dimensions.reduce((acc, dim) => acc * dim, elementSize);
+    const totalSize = dimensions?.reduce((acc, dim) => acc * dim, elementSize);
+    if (totalSize === undefined) throw new Error(`Unable to calculate array size for type: ${fieldType}`);
     return [totalSize, elementAlignment];
 }
 
@@ -1032,7 +1037,9 @@ function generateToBufferCode(fieldName: string, fieldType: string, objectName: 
                         code += `    ${offsetVar} += ${fieldType}.byteLength;\n`;
                     }
                     else if (definedTypes.has(fieldType)) {
-                        code += `${generateToBufferCode(fieldName, definedTypes.get(fieldType), objectName, offsetVar, structMap)}`;
+                        const type = definedTypes.get(fieldType);
+                        if (type == undefined) throw new Error(`Type ${fieldType} is undefined`);
+                        code += `${generateToBufferCode(fieldName, type, objectName, offsetVar, structMap)}`;
                     }
                     else if (customTypes[fieldType]) {
                         code += `    ${objectName}.${fieldName}.toBuffer(buffer, offset + ${offsetVar});\n`;
@@ -1136,7 +1143,9 @@ function generateFromBufferCode(fieldName: string, fieldType: string, objectName
                         code += `    ${offsetVar} += ${fieldType}.byteLength;\n`;
                     }
                     else if (definedTypes.has(fieldType)) {
-                        code += `${generateFromBufferCode(fieldName, definedTypes.get(fieldType), objectName, offsetVar, structMap)}`;
+                        const type = definedTypes.get(fieldType);
+                        if (type == undefined) throw new Error(`Type ${fieldType} is undefined`);
+                        code += `${generateFromBufferCode(fieldName, type, objectName, offsetVar, structMap)}`;
                     }
                     else if (customTypes[fieldType]) {
                         code += `    ${objectName}.${fieldName} = ${customTypes[fieldType]!}.fromBuffer(buffer, offset + ${offsetVar});\n`;
@@ -1265,8 +1274,19 @@ export interface ${currentClass.replace("vr::", "")} {\n`;
                 return `${param.paramname}: ${paramType}`;
             }).join(", ")
             : "";
-        const returnType = resolveType(method.returntype, true);
 
+
+        let returnsMultipleValues = false
+        returnsMultipleValues = method.params?.some((param: any) => param.paramtype.includes("*") && !param.paramtype.includes("char") && !param.paramtype.includes("const"));
+
+        const returnType = returnsMultipleValues
+            ? `[${resolveType(method.returntype, true)}, ${method.params.filter((param: any) => param.paramtype.includes("*") && !param.paramtype.includes("char")).map((param: any) => resolveType(param.paramtype, false)).join(", ")}]`
+            : resolveType(method.returntype, true);
+
+        
+        
+
+    
         output += `  ${method.methodname}(${params}): ${returnType};\n`;
     }
 
@@ -1387,7 +1407,7 @@ function outputFFIConfigurations(data: any): string {
 //dunno if this is needed
 function generateStructPopulationCode(structName: string, paramName: string): string {
     let struct = globalStructs.find(s => s.struct === structName || s.struct === `vr::${structName}`);
-    if (definedStructs.has(structName?.struct)) {
+    if (definedStructs.has((structName as any).struct)) {
 
         struct = structName
     }
@@ -1405,7 +1425,7 @@ function generateStructPopulationCode(structName: string, paramName: string): st
             const matches = fieldType.match(/(\w+)\s*(\[(\d+)\])+/);
             if (matches) {
                 const baseType = matches[1];
-                const dimensions = fieldType.match(/\[(\d+)\]/g).map(dim => parseInt(dim.slice(1, -1)));
+                const dimensions = fieldType.match(/\[(\d+)\]/g)?.map((dim: string) => parseInt(dim.slice(1, -1)));
                 const elementSize = getPrimitiveSize(baseType);
 
                 let nestingLevel = dimensions.length;
@@ -1418,7 +1438,7 @@ function generateStructPopulationCode(structName: string, paramName: string): st
                 }
 
                 // Corrected offset calculation
-                const totalOffset = dimensions.map((_, i) => `i${i} * ${dimensions.slice(i + 1).reduce((a, b) => a * b, 1)}`).join(' + ');
+                const totalOffset = dimensions.map((_: any, i: number) => `i${i} * ${dimensions.slice(i + 1).reduce((a: number, b: number) => a * b, 1)}`).join(' + ');
                 loopCode += `    ${'    '.repeat(nestingLevel)}${paramName}View.set${getSetterMethod(baseType)}((${totalOffset}) * ${elementSize}, ${paramName}.${fieldName}${indexCalc}, true);\n`;
 
                 for (let i = 0; i < nestingLevel; i++) {
@@ -1426,7 +1446,7 @@ function generateStructPopulationCode(structName: string, paramName: string): st
                 }
 
                 output += loopCode;
-                offset += dimensions.reduce((a, b) => a * b, 1) * elementSize;
+                offset += dimensions.reduce((a: number, b: number) => a * b, 1) * elementSize;
             }
         } else {
             // Handle primitive types
@@ -1458,7 +1478,7 @@ function generateParameterHandling(method: any): string {
             if (param.array_count) {
                 countParam = method.params.find((p: any) => p.paramname === param.array_count);
                 if (countParam) {
-                    output += `    const ${param.paramname}Count = ${countParam.paramname};\n`;
+                    output += `    const ${param.paramname}Count = ${(countParam as any).paramname};\n`;
                     size += ` * ${param.paramname}Count`;
                 }
             }
@@ -1513,9 +1533,9 @@ function outputWrapperClasses(data: any): string {
         const params = method.params
             ? method.params.map((param: any) => {
                 const paramType = resolveType(param.paramtype, param.paramtype.includes("*"));
-                if (param.array_count)
-                    return `${param.paramname}: ${paramType}[]`;
-                else return `${param.paramname}: ${paramType}`;
+/*                 if (param.array_count)
+                    return `${param.paramname}: ${paramType}[]`; */
+                return `${param.paramname}: ${paramType}`;
 
             }).join(", ")
             : "";
@@ -1605,12 +1625,17 @@ function outputWrapperClasses(data: any): string {
 
                     output += `    const ${param.paramname}Ptr = Deno.UnsafePointer.of(${param.paramname}Buffer);\n`;
                 } else {
+                    
                     switch (type) {
                         case "number":
                             output += `    const ${param.paramname}Array = new Float64Array([${param.paramname}]);\n`;
                             output += `    const ${param.paramname}Ptr = Deno.UnsafePointer.of(${param.paramname}Array);\n`;
                             break;
                         case "bigint":
+                            console.log(type, param.paramname, param.paramtype, param.array_count);
+                            if (globalStructs.find(s => s.struct === `${param.paramtype.replace(' *', '')}`)) {
+                                debugger;
+                            }
                             output += `    const ${param.paramname}Buffer = new BigUint64Array([${param.paramname}]);\n`;
                             output += `    const ${param.paramname}Ptr = Deno.UnsafePointer.of(${param.paramname}Buffer);\n`;
                             break;
@@ -1689,7 +1714,8 @@ function outputWrapperClasses(data: any): string {
 
                         return `${paramType}.fromBuffer(${param}Buffer, 0)`;
                     } else {
-                        return `${param}Buffer`;
+                        if (paramType == "number") return `${param}`;
+                        else return `${param}Buffer[0]`;
                     }
                 }).join(", ")}];\n`;
             } else {

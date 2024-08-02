@@ -23,7 +23,7 @@
             "request": "launch",
             "name": "build",
             "type": "node",
-            "program": "${workspaceFolder}/bindgen.ts",
+            "program": "${workspaceFolder}/bindgen3.ts",
             "cwd": "${workspaceFolder}",
             "env": {},
             "runtimeExecutable": "Deno",

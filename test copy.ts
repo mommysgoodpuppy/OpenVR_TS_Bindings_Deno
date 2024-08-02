@@ -7,9 +7,9 @@ const manifestPath = Deno.realPathSync("c:/GIT/OpenVRDenoBindgen/actions.json");
 function GetControllerPositions(pVRInput: OpenVR.IVRInput, poseAction: OpenVR.VRActionHandle_t): OpenVR.InputPoseActionData_t | null {
     // Update action state
     let actionSet: OpenVR.VRActiveActionSet_t = {
-        ulActionSet: 0, // Your action set handle
+        ulActionSet: 0n, // Your action set handle
         ulRestrictedToDevice: OpenVR.k_ulInvalidInputValueHandle,
-        ulSecondaryActionSet: 0,
+        ulSecondaryActionSet: 0n,
         unPadding: 0,
         nPriority: 0
     };

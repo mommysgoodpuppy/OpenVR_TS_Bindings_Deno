@@ -8654,41 +8654,41 @@ export interface VROverlayIntersectionMaskPrimitive_t {
 //#region Methods
 //method class IVRSystem
 export interface IVRSystem {
-  GetRecommendedRenderTargetSize(pnWidth: number, pnHeight: number): void;
+  GetRecommendedRenderTargetSize(pnWidth: number, pnHeight: number): [void, number, number];
   GetProjectionMatrix(eEye: EVREye, fNearZ: number, fFarZ: number): HmdMatrix44_t;
-  GetProjectionRaw(eEye: EVREye, pfLeft: number, pfRight: number, pfTop: number, pfBottom: number): void;
-  ComputeDistortion(eEye: EVREye, fU: number, fV: number, pDistortionCoordinates: DistortionCoordinates_t): boolean;
+  GetProjectionRaw(eEye: EVREye, pfLeft: number, pfRight: number, pfTop: number, pfBottom: number): [void, number, number, number, number];
+  ComputeDistortion(eEye: EVREye, fU: number, fV: number, pDistortionCoordinates: DistortionCoordinates_t): [boolean, DistortionCoordinates_t];
   GetEyeToHeadTransform(eEye: EVREye): HmdMatrix34_t;
-  GetTimeSinceLastVsync(pfSecondsSinceLastVsync: number, pulFrameCounter: bigint): boolean;
+  GetTimeSinceLastVsync(pfSecondsSinceLastVsync: number, pulFrameCounter: bigint): [boolean, number, bigint];
   GetD3D9AdapterIndex(): number;
-  GetDXGIOutputInfo(pnAdapterIndex: number): void;
-  GetOutputDevice(pnDevice: bigint, textureType: ETextureType, pInstance: VkInstance_T): void;
+  GetDXGIOutputInfo(pnAdapterIndex: number): [void, number];
+  GetOutputDevice(pnDevice: bigint, textureType: ETextureType, pInstance: VkInstance_T): [void, bigint, VkInstance_T];
   IsDisplayOnDesktop(): boolean;
   SetDisplayVisibility(bIsVisibleOnDesktop: boolean): boolean;
-  GetDeviceToAbsoluteTrackingPose(eOrigin: ETrackingUniverseOrigin, fPredictedSecondsToPhotonsFromNow: number, pTrackedDevicePoseArray: TrackedDevicePose_t, unTrackedDevicePoseArrayCount: number): void;
+  GetDeviceToAbsoluteTrackingPose(eOrigin: ETrackingUniverseOrigin, fPredictedSecondsToPhotonsFromNow: number, pTrackedDevicePoseArray: TrackedDevicePose_t, unTrackedDevicePoseArrayCount: number): [void, TrackedDevicePose_t];
   GetSeatedZeroPoseToStandingAbsoluteTrackingPose(): HmdMatrix34_t;
   GetRawZeroPoseToStandingAbsoluteTrackingPose(): HmdMatrix34_t;
-  GetSortedTrackedDeviceIndicesOfClass(eTrackedDeviceClass: ETrackedDeviceClass, punTrackedDeviceIndexArray: TrackedDeviceIndex_t, unTrackedDeviceIndexArrayCount: number, unRelativeToTrackedDeviceIndex: TrackedDeviceIndex_t): number;
+  GetSortedTrackedDeviceIndicesOfClass(eTrackedDeviceClass: ETrackedDeviceClass, punTrackedDeviceIndexArray: TrackedDeviceIndex_t, unTrackedDeviceIndexArrayCount: number, unRelativeToTrackedDeviceIndex: TrackedDeviceIndex_t): [number, TrackedDeviceIndex_t];
   GetTrackedDeviceActivityLevel(unDeviceId: TrackedDeviceIndex_t): EDeviceActivityLevel;
-  ApplyTransform(pOutputPose: TrackedDevicePose_t, pTrackedDevicePose: TrackedDevicePose_t, pTransform: HmdMatrix34_t): void;
+  ApplyTransform(pOutputPose: TrackedDevicePose_t, pTrackedDevicePose: TrackedDevicePose_t, pTransform: HmdMatrix34_t): [void, TrackedDevicePose_t, TrackedDevicePose_t, HmdMatrix34_t];
   GetTrackedDeviceIndexForControllerRole(unDeviceType: ETrackedControllerRole): TrackedDeviceIndex_t;
   GetControllerRoleForTrackedDeviceIndex(unDeviceIndex: TrackedDeviceIndex_t): ETrackedControllerRole;
   GetTrackedDeviceClass(unDeviceIndex: TrackedDeviceIndex_t): ETrackedDeviceClass;
   IsTrackedDeviceConnected(unDeviceIndex: TrackedDeviceIndex_t): boolean;
-  GetBoolTrackedDeviceProperty(unDeviceIndex: TrackedDeviceIndex_t, prop: ETrackedDeviceProperty, pError: ETrackedPropertyError): boolean;
-  GetFloatTrackedDeviceProperty(unDeviceIndex: TrackedDeviceIndex_t, prop: ETrackedDeviceProperty, pError: ETrackedPropertyError): number;
-  GetInt32TrackedDeviceProperty(unDeviceIndex: TrackedDeviceIndex_t, prop: ETrackedDeviceProperty, pError: ETrackedPropertyError): number;
-  GetUint64TrackedDeviceProperty(unDeviceIndex: TrackedDeviceIndex_t, prop: ETrackedDeviceProperty, pError: ETrackedPropertyError): bigint;
-  GetMatrix34TrackedDeviceProperty(unDeviceIndex: TrackedDeviceIndex_t, prop: ETrackedDeviceProperty, pError: ETrackedPropertyError): HmdMatrix34_t;
-  GetArrayTrackedDeviceProperty(unDeviceIndex: TrackedDeviceIndex_t, prop: ETrackedDeviceProperty, propType: PropertyTypeTag_t, pBuffer: Uint8Array, unBufferSize: number, pError: ETrackedPropertyError): number;
-  GetStringTrackedDeviceProperty(unDeviceIndex: TrackedDeviceIndex_t, prop: ETrackedDeviceProperty, pchValue: string, unBufferSize: number, pError: ETrackedPropertyError): number;
+  GetBoolTrackedDeviceProperty(unDeviceIndex: TrackedDeviceIndex_t, prop: ETrackedDeviceProperty, pError: ETrackedPropertyError): [boolean, ETrackedPropertyError];
+  GetFloatTrackedDeviceProperty(unDeviceIndex: TrackedDeviceIndex_t, prop: ETrackedDeviceProperty, pError: ETrackedPropertyError): [number, ETrackedPropertyError];
+  GetInt32TrackedDeviceProperty(unDeviceIndex: TrackedDeviceIndex_t, prop: ETrackedDeviceProperty, pError: ETrackedPropertyError): [number, ETrackedPropertyError];
+  GetUint64TrackedDeviceProperty(unDeviceIndex: TrackedDeviceIndex_t, prop: ETrackedDeviceProperty, pError: ETrackedPropertyError): [bigint, ETrackedPropertyError];
+  GetMatrix34TrackedDeviceProperty(unDeviceIndex: TrackedDeviceIndex_t, prop: ETrackedDeviceProperty, pError: ETrackedPropertyError): [HmdMatrix34_t, ETrackedPropertyError];
+  GetArrayTrackedDeviceProperty(unDeviceIndex: TrackedDeviceIndex_t, prop: ETrackedDeviceProperty, propType: PropertyTypeTag_t, pBuffer: Uint8Array, unBufferSize: number, pError: ETrackedPropertyError): [number, Uint8Array, ETrackedPropertyError];
+  GetStringTrackedDeviceProperty(unDeviceIndex: TrackedDeviceIndex_t, prop: ETrackedDeviceProperty, pchValue: string, unBufferSize: number, pError: ETrackedPropertyError): [number, ETrackedPropertyError];
   GetPropErrorNameFromEnum(error: ETrackedPropertyError): string;
-  PollNextEvent(pEvent: VREvent_t, uncbVREvent: number): boolean;
-  PollNextEventWithPose(eOrigin: ETrackingUniverseOrigin, pEvent: VREvent_t, uncbVREvent: number, pTrackedDevicePose: TrackedDevicePose_t): boolean;
+  PollNextEvent(pEvent: VREvent_t, uncbVREvent: number): [boolean, VREvent_t];
+  PollNextEventWithPose(eOrigin: ETrackingUniverseOrigin, pEvent: VREvent_t, uncbVREvent: number, pTrackedDevicePose: TrackedDevicePose_t): [boolean, VREvent_t, TrackedDevicePose_t];
   GetEventTypeNameFromEnum(eType: EVREventType): string;
   GetHiddenAreaMesh(eEye: EVREye, type: EHiddenAreaMeshType): HiddenAreaMesh_t;
-  GetControllerState(unControllerDeviceIndex: TrackedDeviceIndex_t, pControllerState: VRControllerState_t, unControllerStateSize: number): boolean;
-  GetControllerStateWithPose(eOrigin: ETrackingUniverseOrigin, unControllerDeviceIndex: TrackedDeviceIndex_t, pControllerState: VRControllerState_t, unControllerStateSize: number, pTrackedDevicePose: TrackedDevicePose_t): boolean;
+  GetControllerState(unControllerDeviceIndex: TrackedDeviceIndex_t, pControllerState: VRControllerState_t, unControllerStateSize: number): [boolean, VRControllerState_t];
+  GetControllerStateWithPose(eOrigin: ETrackingUniverseOrigin, unControllerDeviceIndex: TrackedDeviceIndex_t, pControllerState: VRControllerState_t, unControllerStateSize: number, pTrackedDevicePose: TrackedDevicePose_t): [boolean, VRControllerState_t, TrackedDevicePose_t];
   TriggerHapticPulse(unControllerDeviceIndex: TrackedDeviceIndex_t, unAxisId: number, usDurationMicroSec: number): void;
   GetButtonIdNameFromEnum(eButtonId: EVRButtonId): string;
   GetControllerAxisTypeNameFromEnum(eAxisType: EVRControllerAxisType): string;
@@ -8704,24 +8704,24 @@ export interface IVRSystem {
 
 //method class IVRExtendedDisplay
 export interface IVRExtendedDisplay {
-  GetWindowBounds(pnX: number, pnY: number, pnWidth: number, pnHeight: number): void;
-  GetEyeOutputViewport(eEye: EVREye, pnX: number, pnY: number, pnWidth: number, pnHeight: number): void;
-  GetDXGIOutputInfo(pnAdapterIndex: number, pnAdapterOutputIndex: number): void;
+  GetWindowBounds(pnX: number, pnY: number, pnWidth: number, pnHeight: number): [void, number, number, number, number];
+  GetEyeOutputViewport(eEye: EVREye, pnX: number, pnY: number, pnWidth: number, pnHeight: number): [void, number, number, number, number];
+  GetDXGIOutputInfo(pnAdapterIndex: number, pnAdapterOutputIndex: number): [void, number, number];
 }
 
 //method class IVRTrackedCamera
 export interface IVRTrackedCamera {
   GetCameraErrorNameFromEnum(eCameraError: EVRTrackedCameraError): string;
-  HasCamera(nDeviceIndex: TrackedDeviceIndex_t, pHasCamera: boolean): EVRTrackedCameraError;
-  GetCameraFrameSize(nDeviceIndex: TrackedDeviceIndex_t, eFrameType: EVRTrackedCameraFrameType, pnWidth: number, pnHeight: number, pnFrameBufferSize: number): EVRTrackedCameraError;
-  GetCameraIntrinsics(nDeviceIndex: TrackedDeviceIndex_t, nCameraIndex: number, eFrameType: EVRTrackedCameraFrameType, pFocalLength: HmdVector2_t, pCenter: HmdVector2_t): EVRTrackedCameraError;
-  GetCameraProjection(nDeviceIndex: TrackedDeviceIndex_t, nCameraIndex: number, eFrameType: EVRTrackedCameraFrameType, flZNear: number, flZFar: number, pProjection: HmdMatrix44_t): EVRTrackedCameraError;
-  AcquireVideoStreamingService(nDeviceIndex: TrackedDeviceIndex_t, pHandle: TrackedCameraHandle_t): EVRTrackedCameraError;
+  HasCamera(nDeviceIndex: TrackedDeviceIndex_t, pHasCamera: boolean): [EVRTrackedCameraError, boolean];
+  GetCameraFrameSize(nDeviceIndex: TrackedDeviceIndex_t, eFrameType: EVRTrackedCameraFrameType, pnWidth: number, pnHeight: number, pnFrameBufferSize: number): [EVRTrackedCameraError, number, number, number];
+  GetCameraIntrinsics(nDeviceIndex: TrackedDeviceIndex_t, nCameraIndex: number, eFrameType: EVRTrackedCameraFrameType, pFocalLength: HmdVector2_t, pCenter: HmdVector2_t): [EVRTrackedCameraError, HmdVector2_t, HmdVector2_t];
+  GetCameraProjection(nDeviceIndex: TrackedDeviceIndex_t, nCameraIndex: number, eFrameType: EVRTrackedCameraFrameType, flZNear: number, flZFar: number, pProjection: HmdMatrix44_t): [EVRTrackedCameraError, HmdMatrix44_t];
+  AcquireVideoStreamingService(nDeviceIndex: TrackedDeviceIndex_t, pHandle: TrackedCameraHandle_t): [EVRTrackedCameraError, TrackedCameraHandle_t];
   ReleaseVideoStreamingService(hTrackedCamera: TrackedCameraHandle_t): EVRTrackedCameraError;
-  GetVideoStreamFrameBuffer(hTrackedCamera: TrackedCameraHandle_t, eFrameType: EVRTrackedCameraFrameType, pFrameBuffer: Uint8Array, nFrameBufferSize: number, pFrameHeader: CameraVideoStreamFrameHeader_t, nFrameHeaderSize: number): EVRTrackedCameraError;
-  GetVideoStreamTextureSize(nDeviceIndex: TrackedDeviceIndex_t, eFrameType: EVRTrackedCameraFrameType, pTextureBounds: VRTextureBounds_t, pnWidth: number, pnHeight: number): EVRTrackedCameraError;
-  GetVideoStreamTextureD3D11(hTrackedCamera: TrackedCameraHandle_t, eFrameType: EVRTrackedCameraFrameType, pD3D11DeviceOrResource: Uint8Array, ppD3D11ShaderResourceView: Uint8Array, pFrameHeader: CameraVideoStreamFrameHeader_t, nFrameHeaderSize: number): EVRTrackedCameraError;
-  GetVideoStreamTextureGL(hTrackedCamera: TrackedCameraHandle_t, eFrameType: EVRTrackedCameraFrameType, pglTextureId: glUInt_t, pFrameHeader: CameraVideoStreamFrameHeader_t, nFrameHeaderSize: number): EVRTrackedCameraError;
+  GetVideoStreamFrameBuffer(hTrackedCamera: TrackedCameraHandle_t, eFrameType: EVRTrackedCameraFrameType, pFrameBuffer: Uint8Array, nFrameBufferSize: number, pFrameHeader: CameraVideoStreamFrameHeader_t, nFrameHeaderSize: number): [EVRTrackedCameraError, Uint8Array, CameraVideoStreamFrameHeader_t];
+  GetVideoStreamTextureSize(nDeviceIndex: TrackedDeviceIndex_t, eFrameType: EVRTrackedCameraFrameType, pTextureBounds: VRTextureBounds_t, pnWidth: number, pnHeight: number): [EVRTrackedCameraError, VRTextureBounds_t, number, number];
+  GetVideoStreamTextureD3D11(hTrackedCamera: TrackedCameraHandle_t, eFrameType: EVRTrackedCameraFrameType, pD3D11DeviceOrResource: Uint8Array, ppD3D11ShaderResourceView: Uint8Array, pFrameHeader: CameraVideoStreamFrameHeader_t, nFrameHeaderSize: number): [EVRTrackedCameraError, Uint8Array, Uint8Array, CameraVideoStreamFrameHeader_t];
+  GetVideoStreamTextureGL(hTrackedCamera: TrackedCameraHandle_t, eFrameType: EVRTrackedCameraFrameType, pglTextureId: glUInt_t, pFrameHeader: CameraVideoStreamFrameHeader_t, nFrameHeaderSize: number): [EVRTrackedCameraError, glUInt_t, CameraVideoStreamFrameHeader_t];
   ReleaseVideoStreamTextureGL(hTrackedCamera: TrackedCameraHandle_t, glTextureId: glUInt_t): EVRTrackedCameraError;
   SetCameraTrackingSpace(eUniverse: ETrackingUniverseOrigin): void;
   GetCameraTrackingSpace(): ETrackingUniverseOrigin;
@@ -8743,9 +8743,9 @@ export interface IVRApplications {
   IdentifyApplication(unProcessId: number, pchAppKey: string): EVRApplicationError;
   GetApplicationProcessId(pchAppKey: string): number;
   GetApplicationsErrorNameFromEnum(error: EVRApplicationError): string;
-  GetApplicationPropertyString(pchAppKey: string, eProperty: EVRApplicationProperty, pchPropertyValueBuffer: string, unPropertyValueBufferLen: number, peError: EVRApplicationError): number;
-  GetApplicationPropertyBool(pchAppKey: string, eProperty: EVRApplicationProperty, peError: EVRApplicationError): boolean;
-  GetApplicationPropertyUint64(pchAppKey: string, eProperty: EVRApplicationProperty, peError: EVRApplicationError): bigint;
+  GetApplicationPropertyString(pchAppKey: string, eProperty: EVRApplicationProperty, pchPropertyValueBuffer: string, unPropertyValueBufferLen: number, peError: EVRApplicationError): [number, EVRApplicationError];
+  GetApplicationPropertyBool(pchAppKey: string, eProperty: EVRApplicationProperty, peError: EVRApplicationError): [boolean, EVRApplicationError];
+  GetApplicationPropertyUint64(pchAppKey: string, eProperty: EVRApplicationProperty, peError: EVRApplicationError): [bigint, EVRApplicationError];
   SetApplicationAutoLaunch(pchAppKey: string, bAutoLaunch: boolean): EVRApplicationError;
   GetApplicationAutoLaunch(pchAppKey: string): boolean;
   SetDefaultApplicationForMimeType(pchAppKey: string, pchMimeType: string): EVRApplicationError;
@@ -8764,11 +8764,11 @@ export interface IVRApplications {
 //method class IVRChaperone
 export interface IVRChaperone {
   GetCalibrationState(): ChaperoneCalibrationState;
-  GetPlayAreaSize(pSizeX: number, pSizeZ: number): boolean;
-  GetPlayAreaRect(rect: HmdQuad_t): boolean;
+  GetPlayAreaSize(pSizeX: number, pSizeZ: number): [boolean, number, number];
+  GetPlayAreaRect(rect: HmdQuad_t): [boolean, HmdQuad_t];
   ReloadInfo(): void;
   SetSceneColor(color: HmdColor_t): void;
-  GetBoundsColor(pOutputColorArray: HmdColor_t, nNumOutputColors: number, flCollisionBoundsFadeDistance: number, pOutputCameraColor: HmdColor_t): void;
+  GetBoundsColor(pOutputColorArray: HmdColor_t, nNumOutputColors: number, flCollisionBoundsFadeDistance: number, pOutputCameraColor: HmdColor_t): [void, HmdColor_t, HmdColor_t];
   AreBoundsVisible(): boolean;
   ForceBoundsVisible(bForce: boolean): void;
   ResetZeroPose(eTrackingUniverseOrigin: ETrackingUniverseOrigin): void;
@@ -8778,20 +8778,20 @@ export interface IVRChaperone {
 export interface IVRChaperoneSetup {
   CommitWorkingCopy(configFile: EChaperoneConfigFile): boolean;
   RevertWorkingCopy(): void;
-  GetWorkingPlayAreaSize(pSizeX: number, pSizeZ: number): boolean;
-  GetWorkingPlayAreaRect(rect: HmdQuad_t): boolean;
-  GetWorkingCollisionBoundsInfo(pQuadsBuffer: HmdQuad_t, punQuadsCount: number): boolean;
-  GetLiveCollisionBoundsInfo(pQuadsBuffer: HmdQuad_t, punQuadsCount: number): boolean;
-  GetWorkingSeatedZeroPoseToRawTrackingPose(pmatSeatedZeroPoseToRawTrackingPose: HmdMatrix34_t): boolean;
-  GetWorkingStandingZeroPoseToRawTrackingPose(pmatStandingZeroPoseToRawTrackingPose: HmdMatrix34_t): boolean;
+  GetWorkingPlayAreaSize(pSizeX: number, pSizeZ: number): [boolean, number, number];
+  GetWorkingPlayAreaRect(rect: HmdQuad_t): [boolean, HmdQuad_t];
+  GetWorkingCollisionBoundsInfo(pQuadsBuffer: HmdQuad_t, punQuadsCount: number): [boolean, HmdQuad_t, number];
+  GetLiveCollisionBoundsInfo(pQuadsBuffer: HmdQuad_t, punQuadsCount: number): [boolean, HmdQuad_t, number];
+  GetWorkingSeatedZeroPoseToRawTrackingPose(pmatSeatedZeroPoseToRawTrackingPose: HmdMatrix34_t): [boolean, HmdMatrix34_t];
+  GetWorkingStandingZeroPoseToRawTrackingPose(pmatStandingZeroPoseToRawTrackingPose: HmdMatrix34_t): [boolean, HmdMatrix34_t];
   SetWorkingPlayAreaSize(sizeX: number, sizeZ: number): void;
-  SetWorkingCollisionBoundsInfo(pQuadsBuffer: HmdQuad_t, unQuadsCount: number): void;
-  SetWorkingPerimeter(pPointBuffer: HmdVector2_t, unPointCount: number): void;
+  SetWorkingCollisionBoundsInfo(pQuadsBuffer: HmdQuad_t, unQuadsCount: number): [void, HmdQuad_t];
+  SetWorkingPerimeter(pPointBuffer: HmdVector2_t, unPointCount: number): [void, HmdVector2_t];
   SetWorkingSeatedZeroPoseToRawTrackingPose(pMatSeatedZeroPoseToRawTrackingPose: HmdMatrix34_t): void;
   SetWorkingStandingZeroPoseToRawTrackingPose(pMatStandingZeroPoseToRawTrackingPose: HmdMatrix34_t): void;
   ReloadFromDisk(configFile: EChaperoneConfigFile): void;
-  GetLiveSeatedZeroPoseToRawTrackingPose(pmatSeatedZeroPoseToRawTrackingPose: HmdMatrix34_t): boolean;
-  ExportLiveToBuffer(pBuffer: string, pnBufferLength: number): boolean;
+  GetLiveSeatedZeroPoseToRawTrackingPose(pmatSeatedZeroPoseToRawTrackingPose: HmdMatrix34_t): [boolean, HmdMatrix34_t];
+  ExportLiveToBuffer(pBuffer: string, pnBufferLength: number): [boolean, number];
   ImportFromBufferToWorking(pBuffer: string, nImportFlags: number): boolean;
   ShowWorkingSetPreview(): void;
   HideWorkingSetPreview(): void;
@@ -8802,17 +8802,17 @@ export interface IVRChaperoneSetup {
 export interface IVRCompositor {
   SetTrackingSpace(eOrigin: ETrackingUniverseOrigin): void;
   GetTrackingSpace(): ETrackingUniverseOrigin;
-  WaitGetPoses(pRenderPoseArray: TrackedDevicePose_t, unRenderPoseArrayCount: number, pGamePoseArray: TrackedDevicePose_t, unGamePoseArrayCount: number): EVRCompositorError;
-  GetLastPoses(pRenderPoseArray: TrackedDevicePose_t, unRenderPoseArrayCount: number, pGamePoseArray: TrackedDevicePose_t, unGamePoseArrayCount: number): EVRCompositorError;
-  GetLastPoseForTrackedDeviceIndex(unDeviceIndex: TrackedDeviceIndex_t, pOutputPose: TrackedDevicePose_t, pOutputGamePose: TrackedDevicePose_t): EVRCompositorError;
+  WaitGetPoses(pRenderPoseArray: TrackedDevicePose_t, unRenderPoseArrayCount: number, pGamePoseArray: TrackedDevicePose_t, unGamePoseArrayCount: number): [EVRCompositorError, TrackedDevicePose_t, TrackedDevicePose_t];
+  GetLastPoses(pRenderPoseArray: TrackedDevicePose_t, unRenderPoseArrayCount: number, pGamePoseArray: TrackedDevicePose_t, unGamePoseArrayCount: number): [EVRCompositorError, TrackedDevicePose_t, TrackedDevicePose_t];
+  GetLastPoseForTrackedDeviceIndex(unDeviceIndex: TrackedDeviceIndex_t, pOutputPose: TrackedDevicePose_t, pOutputGamePose: TrackedDevicePose_t): [EVRCompositorError, TrackedDevicePose_t, TrackedDevicePose_t];
   Submit(eEye: EVREye, pTexture: Texture_t, pBounds: VRTextureBounds_t, nSubmitFlags: EVRSubmitFlags): EVRCompositorError;
   SubmitWithArrayIndex(eEye: EVREye, pTexture: Texture_t, unTextureArrayIndex: number, pBounds: VRTextureBounds_t, nSubmitFlags: EVRSubmitFlags): EVRCompositorError;
   ClearLastSubmittedFrame(): void;
   PostPresentHandoff(): void;
-  GetFrameTiming(pTiming: Compositor_FrameTiming, unFramesAgo: number): boolean;
-  GetFrameTimings(pTiming: Compositor_FrameTiming, nFrames: number): number;
+  GetFrameTiming(pTiming: Compositor_FrameTiming, unFramesAgo: number): [boolean, Compositor_FrameTiming];
+  GetFrameTimings(pTiming: Compositor_FrameTiming, nFrames: number): [number, Compositor_FrameTiming];
   GetFrameTimeRemaining(): number;
-  GetCumulativeStats(pStats: Compositor_CumulativeStats, nStatsSizeInBytes: number): void;
+  GetCumulativeStats(pStats: Compositor_CumulativeStats, nStatsSizeInBytes: number): [void, Compositor_CumulativeStats];
   FadeToColor(fSeconds: number, fRed: number, fGreen: number, fBlue: number, fAlpha: number, bBackground: boolean): void;
   GetCurrentFadeColor(bBackground: boolean): HmdColor_t;
   FadeGrid(fSeconds: number, bFadeGridIn: boolean): void;
@@ -8834,14 +8834,14 @@ export interface IVRCompositor {
   ForceInterleavedReprojectionOn(bOverride: boolean): void;
   ForceReconnectProcess(): void;
   SuspendRendering(bSuspend: boolean): void;
-  GetMirrorTextureD3D11(eEye: EVREye, pD3D11DeviceOrResource: Uint8Array, ppD3D11ShaderResourceView: Uint8Array): EVRCompositorError;
-  ReleaseMirrorTextureD3D11(pD3D11ShaderResourceView: Uint8Array): void;
-  GetMirrorTextureGL(eEye: EVREye, pglTextureId: glUInt_t, pglSharedTextureHandle: glSharedTextureHandle_t): EVRCompositorError;
+  GetMirrorTextureD3D11(eEye: EVREye, pD3D11DeviceOrResource: Uint8Array, ppD3D11ShaderResourceView: Uint8Array): [EVRCompositorError, Uint8Array, Uint8Array];
+  ReleaseMirrorTextureD3D11(pD3D11ShaderResourceView: Uint8Array): [void, Uint8Array];
+  GetMirrorTextureGL(eEye: EVREye, pglTextureId: glUInt_t, pglSharedTextureHandle: glSharedTextureHandle_t): [EVRCompositorError, glUInt_t, glSharedTextureHandle_t];
   ReleaseSharedGLTexture(glTextureId: glUInt_t, glSharedTextureHandle: glSharedTextureHandle_t): boolean;
   LockGLSharedTextureForAccess(glSharedTextureHandle: glSharedTextureHandle_t): void;
   UnlockGLSharedTextureForAccess(glSharedTextureHandle: glSharedTextureHandle_t): void;
   GetVulkanInstanceExtensionsRequired(pchValue: string, unBufferSize: number): number;
-  GetVulkanDeviceExtensionsRequired(pPhysicalDevice: VkPhysicalDevice_T, pchValue: string, unBufferSize: number): number;
+  GetVulkanDeviceExtensionsRequired(pPhysicalDevice: VkPhysicalDevice_T, pchValue: string, unBufferSize: number): [number, VkPhysicalDevice_T];
   SetExplicitTimingMode(eTimingMode: EVRCompositorTimingMode): void;
   SubmitExplicitTimingData(): EVRCompositorError;
   IsMotionSmoothingEnabled(): boolean;
@@ -8849,83 +8849,83 @@ export interface IVRCompositor {
   IsCurrentSceneFocusAppLoading(): boolean;
   SetStageOverride_Async(pchRenderModelPath: string, pTransform: HmdMatrix34_t, pRenderSettings: Compositor_StageRenderSettings, nSizeOfRenderSettings: number): EVRCompositorError;
   ClearStageOverride(): void;
-  GetCompositorBenchmarkResults(pBenchmarkResults: Compositor_BenchmarkResults, nSizeOfBenchmarkResults: number): boolean;
-  GetLastPosePredictionIDs(pRenderPosePredictionID: number, pGamePosePredictionID: number): EVRCompositorError;
-  GetPosesForFrame(unPosePredictionID: number, pPoseArray: TrackedDevicePose_t, unPoseArrayCount: number): EVRCompositorError;
+  GetCompositorBenchmarkResults(pBenchmarkResults: Compositor_BenchmarkResults, nSizeOfBenchmarkResults: number): [boolean, Compositor_BenchmarkResults];
+  GetLastPosePredictionIDs(pRenderPosePredictionID: number, pGamePosePredictionID: number): [EVRCompositorError, number, number];
+  GetPosesForFrame(unPosePredictionID: number, pPoseArray: TrackedDevicePose_t, unPoseArrayCount: number): [EVRCompositorError, TrackedDevicePose_t];
 }
 
 //method class IVROverlay
 export interface IVROverlay {
-  FindOverlay(pchOverlayKey: string, pOverlayHandle: VROverlayHandle_t): EVROverlayError;
-  CreateOverlay(pchOverlayKey: string, pchOverlayName: string, pOverlayHandle: VROverlayHandle_t): EVROverlayError;
+  FindOverlay(pchOverlayKey: string, pOverlayHandle: VROverlayHandle_t): [EVROverlayError, VROverlayHandle_t];
+  CreateOverlay(pchOverlayKey: string, pchOverlayName: string, pOverlayHandle: VROverlayHandle_t): [EVROverlayError, VROverlayHandle_t];
   DestroyOverlay(ulOverlayHandle: VROverlayHandle_t): EVROverlayError;
-  GetOverlayKey(ulOverlayHandle: VROverlayHandle_t, pchValue: string, unBufferSize: number, pError: EVROverlayError): number;
-  GetOverlayName(ulOverlayHandle: VROverlayHandle_t, pchValue: string, unBufferSize: number, pError: EVROverlayError): number;
+  GetOverlayKey(ulOverlayHandle: VROverlayHandle_t, pchValue: string, unBufferSize: number, pError: EVROverlayError): [number, EVROverlayError];
+  GetOverlayName(ulOverlayHandle: VROverlayHandle_t, pchValue: string, unBufferSize: number, pError: EVROverlayError): [number, EVROverlayError];
   SetOverlayName(ulOverlayHandle: VROverlayHandle_t, pchName: string): EVROverlayError;
-  GetOverlayImageData(ulOverlayHandle: VROverlayHandle_t, pvBuffer: Uint8Array, unBufferSize: number, punWidth: number, punHeight: number): EVROverlayError;
+  GetOverlayImageData(ulOverlayHandle: VROverlayHandle_t, pvBuffer: Uint8Array, unBufferSize: number, punWidth: number, punHeight: number): [EVROverlayError, Uint8Array, number, number];
   GetOverlayErrorNameFromEnum(error: EVROverlayError): string;
   SetOverlayRenderingPid(ulOverlayHandle: VROverlayHandle_t, unPID: number): EVROverlayError;
   GetOverlayRenderingPid(ulOverlayHandle: VROverlayHandle_t): number;
   SetOverlayFlag(ulOverlayHandle: VROverlayHandle_t, eOverlayFlag: VROverlayFlags, bEnabled: boolean): EVROverlayError;
-  GetOverlayFlag(ulOverlayHandle: VROverlayHandle_t, eOverlayFlag: VROverlayFlags, pbEnabled: boolean): EVROverlayError;
-  GetOverlayFlags(ulOverlayHandle: VROverlayHandle_t, pFlags: number): EVROverlayError;
+  GetOverlayFlag(ulOverlayHandle: VROverlayHandle_t, eOverlayFlag: VROverlayFlags, pbEnabled: boolean): [EVROverlayError, boolean];
+  GetOverlayFlags(ulOverlayHandle: VROverlayHandle_t, pFlags: number): [EVROverlayError, number];
   SetOverlayColor(ulOverlayHandle: VROverlayHandle_t, fRed: number, fGreen: number, fBlue: number): EVROverlayError;
-  GetOverlayColor(ulOverlayHandle: VROverlayHandle_t, pfRed: number, pfGreen: number, pfBlue: number): EVROverlayError;
+  GetOverlayColor(ulOverlayHandle: VROverlayHandle_t, pfRed: number, pfGreen: number, pfBlue: number): [EVROverlayError, number, number, number];
   SetOverlayAlpha(ulOverlayHandle: VROverlayHandle_t, fAlpha: number): EVROverlayError;
-  GetOverlayAlpha(ulOverlayHandle: VROverlayHandle_t, pfAlpha: number): EVROverlayError;
+  GetOverlayAlpha(ulOverlayHandle: VROverlayHandle_t, pfAlpha: number): [EVROverlayError, number];
   SetOverlayTexelAspect(ulOverlayHandle: VROverlayHandle_t, fTexelAspect: number): EVROverlayError;
-  GetOverlayTexelAspect(ulOverlayHandle: VROverlayHandle_t, pfTexelAspect: number): EVROverlayError;
+  GetOverlayTexelAspect(ulOverlayHandle: VROverlayHandle_t, pfTexelAspect: number): [EVROverlayError, number];
   SetOverlaySortOrder(ulOverlayHandle: VROverlayHandle_t, unSortOrder: number): EVROverlayError;
-  GetOverlaySortOrder(ulOverlayHandle: VROverlayHandle_t, punSortOrder: number): EVROverlayError;
+  GetOverlaySortOrder(ulOverlayHandle: VROverlayHandle_t, punSortOrder: number): [EVROverlayError, number];
   SetOverlayWidthInMeters(ulOverlayHandle: VROverlayHandle_t, fWidthInMeters: number): EVROverlayError;
-  GetOverlayWidthInMeters(ulOverlayHandle: VROverlayHandle_t, pfWidthInMeters: number): EVROverlayError;
+  GetOverlayWidthInMeters(ulOverlayHandle: VROverlayHandle_t, pfWidthInMeters: number): [EVROverlayError, number];
   SetOverlayCurvature(ulOverlayHandle: VROverlayHandle_t, fCurvature: number): EVROverlayError;
-  GetOverlayCurvature(ulOverlayHandle: VROverlayHandle_t, pfCurvature: number): EVROverlayError;
+  GetOverlayCurvature(ulOverlayHandle: VROverlayHandle_t, pfCurvature: number): [EVROverlayError, number];
   SetOverlayPreCurvePitch(ulOverlayHandle: VROverlayHandle_t, fRadians: number): EVROverlayError;
-  GetOverlayPreCurvePitch(ulOverlayHandle: VROverlayHandle_t, pfRadians: number): EVROverlayError;
+  GetOverlayPreCurvePitch(ulOverlayHandle: VROverlayHandle_t, pfRadians: number): [EVROverlayError, number];
   SetOverlayTextureColorSpace(ulOverlayHandle: VROverlayHandle_t, eTextureColorSpace: EColorSpace): EVROverlayError;
-  GetOverlayTextureColorSpace(ulOverlayHandle: VROverlayHandle_t, peTextureColorSpace: EColorSpace): EVROverlayError;
+  GetOverlayTextureColorSpace(ulOverlayHandle: VROverlayHandle_t, peTextureColorSpace: EColorSpace): [EVROverlayError, EColorSpace];
   SetOverlayTextureBounds(ulOverlayHandle: VROverlayHandle_t, pOverlayTextureBounds: VRTextureBounds_t): EVROverlayError;
-  GetOverlayTextureBounds(ulOverlayHandle: VROverlayHandle_t, pOverlayTextureBounds: VRTextureBounds_t): EVROverlayError;
-  GetOverlayTransformType(ulOverlayHandle: VROverlayHandle_t, peTransformType: VROverlayTransformType): EVROverlayError;
+  GetOverlayTextureBounds(ulOverlayHandle: VROverlayHandle_t, pOverlayTextureBounds: VRTextureBounds_t): [EVROverlayError, VRTextureBounds_t];
+  GetOverlayTransformType(ulOverlayHandle: VROverlayHandle_t, peTransformType: VROverlayTransformType): [EVROverlayError, VROverlayTransformType];
   SetOverlayTransformAbsolute(ulOverlayHandle: VROverlayHandle_t, eTrackingOrigin: ETrackingUniverseOrigin, pmatTrackingOriginToOverlayTransform: HmdMatrix34_t): EVROverlayError;
-  GetOverlayTransformAbsolute(ulOverlayHandle: VROverlayHandle_t, peTrackingOrigin: ETrackingUniverseOrigin, pmatTrackingOriginToOverlayTransform: HmdMatrix34_t): EVROverlayError;
+  GetOverlayTransformAbsolute(ulOverlayHandle: VROverlayHandle_t, peTrackingOrigin: ETrackingUniverseOrigin, pmatTrackingOriginToOverlayTransform: HmdMatrix34_t): [EVROverlayError, ETrackingUniverseOrigin, HmdMatrix34_t];
   SetOverlayTransformTrackedDeviceRelative(ulOverlayHandle: VROverlayHandle_t, unTrackedDevice: TrackedDeviceIndex_t, pmatTrackedDeviceToOverlayTransform: HmdMatrix34_t): EVROverlayError;
-  GetOverlayTransformTrackedDeviceRelative(ulOverlayHandle: VROverlayHandle_t, punTrackedDevice: TrackedDeviceIndex_t, pmatTrackedDeviceToOverlayTransform: HmdMatrix34_t): EVROverlayError;
+  GetOverlayTransformTrackedDeviceRelative(ulOverlayHandle: VROverlayHandle_t, punTrackedDevice: TrackedDeviceIndex_t, pmatTrackedDeviceToOverlayTransform: HmdMatrix34_t): [EVROverlayError, TrackedDeviceIndex_t, HmdMatrix34_t];
   SetOverlayTransformTrackedDeviceComponent(ulOverlayHandle: VROverlayHandle_t, unDeviceIndex: TrackedDeviceIndex_t, pchComponentName: string): EVROverlayError;
-  GetOverlayTransformTrackedDeviceComponent(ulOverlayHandle: VROverlayHandle_t, punDeviceIndex: TrackedDeviceIndex_t, pchComponentName: string, unComponentNameSize: number): EVROverlayError;
+  GetOverlayTransformTrackedDeviceComponent(ulOverlayHandle: VROverlayHandle_t, punDeviceIndex: TrackedDeviceIndex_t, pchComponentName: string, unComponentNameSize: number): [EVROverlayError, TrackedDeviceIndex_t];
   SetOverlayTransformCursor(ulCursorOverlayHandle: VROverlayHandle_t, pvHotspot: HmdVector2_t): EVROverlayError;
-  GetOverlayTransformCursor(ulOverlayHandle: VROverlayHandle_t, pvHotspot: HmdVector2_t): EVROverlayError;
+  GetOverlayTransformCursor(ulOverlayHandle: VROverlayHandle_t, pvHotspot: HmdVector2_t): [EVROverlayError, HmdVector2_t];
   SetOverlayTransformProjection(ulOverlayHandle: VROverlayHandle_t, eTrackingOrigin: ETrackingUniverseOrigin, pmatTrackingOriginToOverlayTransform: HmdMatrix34_t, pProjection: VROverlayProjection_t, eEye: EVREye): EVROverlayError;
   ShowOverlay(ulOverlayHandle: VROverlayHandle_t): EVROverlayError;
   HideOverlay(ulOverlayHandle: VROverlayHandle_t): EVROverlayError;
   IsOverlayVisible(ulOverlayHandle: VROverlayHandle_t): boolean;
-  GetTransformForOverlayCoordinates(ulOverlayHandle: VROverlayHandle_t, eTrackingOrigin: ETrackingUniverseOrigin, coordinatesInOverlay: HmdVector2_t, pmatTransform: HmdMatrix34_t): EVROverlayError;
+  GetTransformForOverlayCoordinates(ulOverlayHandle: VROverlayHandle_t, eTrackingOrigin: ETrackingUniverseOrigin, coordinatesInOverlay: HmdVector2_t, pmatTransform: HmdMatrix34_t): [EVROverlayError, HmdMatrix34_t];
   WaitFrameSync(nTimeoutMs: number): EVROverlayError;
-  PollNextOverlayEvent(ulOverlayHandle: VROverlayHandle_t, pEvent: VREvent_t, uncbVREvent: number): boolean;
-  GetOverlayInputMethod(ulOverlayHandle: VROverlayHandle_t, peInputMethod: VROverlayInputMethod): EVROverlayError;
+  PollNextOverlayEvent(ulOverlayHandle: VROverlayHandle_t, pEvent: VREvent_t, uncbVREvent: number): [boolean, VREvent_t];
+  GetOverlayInputMethod(ulOverlayHandle: VROverlayHandle_t, peInputMethod: VROverlayInputMethod): [EVROverlayError, VROverlayInputMethod];
   SetOverlayInputMethod(ulOverlayHandle: VROverlayHandle_t, eInputMethod: VROverlayInputMethod): EVROverlayError;
-  GetOverlayMouseScale(ulOverlayHandle: VROverlayHandle_t, pvecMouseScale: HmdVector2_t): EVROverlayError;
+  GetOverlayMouseScale(ulOverlayHandle: VROverlayHandle_t, pvecMouseScale: HmdVector2_t): [EVROverlayError, HmdVector2_t];
   SetOverlayMouseScale(ulOverlayHandle: VROverlayHandle_t, pvecMouseScale: HmdVector2_t): EVROverlayError;
-  ComputeOverlayIntersection(ulOverlayHandle: VROverlayHandle_t, pParams: VROverlayIntersectionParams_t, pResults: VROverlayIntersectionResults_t): boolean;
+  ComputeOverlayIntersection(ulOverlayHandle: VROverlayHandle_t, pParams: VROverlayIntersectionParams_t, pResults: VROverlayIntersectionResults_t): [boolean, VROverlayIntersectionParams_t, VROverlayIntersectionResults_t];
   IsHoverTargetOverlay(ulOverlayHandle: VROverlayHandle_t): boolean;
-  SetOverlayIntersectionMask(ulOverlayHandle: VROverlayHandle_t, pMaskPrimitives: VROverlayIntersectionMaskPrimitive_t, unNumMaskPrimitives: number, unPrimitiveSize: number): EVROverlayError;
+  SetOverlayIntersectionMask(ulOverlayHandle: VROverlayHandle_t, pMaskPrimitives: VROverlayIntersectionMaskPrimitive_t, unNumMaskPrimitives: number, unPrimitiveSize: number): [EVROverlayError, VROverlayIntersectionMaskPrimitive_t];
   TriggerLaserMouseHapticVibration(ulOverlayHandle: VROverlayHandle_t, fDurationSeconds: number, fFrequency: number, fAmplitude: number): EVROverlayError;
   SetOverlayCursor(ulOverlayHandle: VROverlayHandle_t, ulCursorHandle: VROverlayHandle_t): EVROverlayError;
   SetOverlayCursorPositionOverride(ulOverlayHandle: VROverlayHandle_t, pvCursor: HmdVector2_t): EVROverlayError;
   ClearOverlayCursorPositionOverride(ulOverlayHandle: VROverlayHandle_t): EVROverlayError;
   SetOverlayTexture(ulOverlayHandle: VROverlayHandle_t, pTexture: Texture_t): EVROverlayError;
   ClearOverlayTexture(ulOverlayHandle: VROverlayHandle_t): EVROverlayError;
-  SetOverlayRaw(ulOverlayHandle: VROverlayHandle_t, pvBuffer: Uint8Array, unWidth: number, unHeight: number, unBytesPerPixel: number): EVROverlayError;
+  SetOverlayRaw(ulOverlayHandle: VROverlayHandle_t, pvBuffer: Uint8Array, unWidth: number, unHeight: number, unBytesPerPixel: number): [EVROverlayError, Uint8Array];
   SetOverlayFromFile(ulOverlayHandle: VROverlayHandle_t, pchFilePath: string): EVROverlayError;
-  GetOverlayTexture(ulOverlayHandle: VROverlayHandle_t, pNativeTextureHandle: Uint8Array, pNativeTextureRef: Uint8Array, pWidth: number, pHeight: number, pNativeFormat: number, pAPIType: ETextureType, pColorSpace: EColorSpace, pTextureBounds: VRTextureBounds_t): EVROverlayError;
-  ReleaseNativeOverlayHandle(ulOverlayHandle: VROverlayHandle_t, pNativeTextureHandle: Uint8Array): EVROverlayError;
-  GetOverlayTextureSize(ulOverlayHandle: VROverlayHandle_t, pWidth: number, pHeight: number): EVROverlayError;
-  CreateDashboardOverlay(pchOverlayKey: string, pchOverlayFriendlyName: string, pMainHandle: VROverlayHandle_t, pThumbnailHandle: VROverlayHandle_t): EVROverlayError;
+  GetOverlayTexture(ulOverlayHandle: VROverlayHandle_t, pNativeTextureHandle: Uint8Array, pNativeTextureRef: Uint8Array, pWidth: number, pHeight: number, pNativeFormat: number, pAPIType: ETextureType, pColorSpace: EColorSpace, pTextureBounds: VRTextureBounds_t): [EVROverlayError, Uint8Array, Uint8Array, number, number, number, ETextureType, EColorSpace, VRTextureBounds_t];
+  ReleaseNativeOverlayHandle(ulOverlayHandle: VROverlayHandle_t, pNativeTextureHandle: Uint8Array): [EVROverlayError, Uint8Array];
+  GetOverlayTextureSize(ulOverlayHandle: VROverlayHandle_t, pWidth: number, pHeight: number): [EVROverlayError, number, number];
+  CreateDashboardOverlay(pchOverlayKey: string, pchOverlayFriendlyName: string, pMainHandle: VROverlayHandle_t, pThumbnailHandle: VROverlayHandle_t): [EVROverlayError, VROverlayHandle_t, VROverlayHandle_t];
   IsDashboardVisible(): boolean;
   IsActiveDashboardOverlay(ulOverlayHandle: VROverlayHandle_t): boolean;
   SetDashboardOverlaySceneProcess(ulOverlayHandle: VROverlayHandle_t, unProcessId: number): EVROverlayError;
-  GetDashboardOverlaySceneProcess(ulOverlayHandle: VROverlayHandle_t, punProcessId: number): EVROverlayError;
+  GetDashboardOverlaySceneProcess(ulOverlayHandle: VROverlayHandle_t, punProcessId: number): [EVROverlayError, number];
   ShowDashboard(pchOverlayToShow: string): void;
   GetPrimaryDashboardDevice(): TrackedDeviceIndex_t;
   ShowKeyboard(eInputMode: EGamepadTextInputMode, eLineInputMode: EGamepadTextInputLineMode, unFlags: number, pchDescription: string, unCharMax: number, pchExistingText: string, uUserValue: bigint): EVROverlayError;
@@ -8940,8 +8940,8 @@ export interface IVROverlay {
 
 //method class IVROverlayView
 export interface IVROverlayView {
-  AcquireOverlayView(ulOverlayHandle: VROverlayHandle_t, pNativeDevice: VRNativeDevice_t, pOverlayView: VROverlayView_t, unOverlayViewSize: number): EVROverlayError;
-  ReleaseOverlayView(pOverlayView: VROverlayView_t): EVROverlayError;
+  AcquireOverlayView(ulOverlayHandle: VROverlayHandle_t, pNativeDevice: VRNativeDevice_t, pOverlayView: VROverlayView_t, unOverlayViewSize: number): [EVROverlayError, VRNativeDevice_t, VROverlayView_t];
+  ReleaseOverlayView(pOverlayView: VROverlayView_t): [EVROverlayError, VROverlayView_t];
   PostOverlayEvent(ulOverlayHandle: VROverlayHandle_t, pvrEvent: VREvent_t): void;
   IsViewingPermitted(ulOverlayHandle: VROverlayHandle_t): boolean;
 }
@@ -8949,68 +8949,68 @@ export interface IVROverlayView {
 //method class IVRHeadsetView
 export interface IVRHeadsetView {
   SetHeadsetViewSize(nWidth: number, nHeight: number): void;
-  GetHeadsetViewSize(pnWidth: number, pnHeight: number): void;
+  GetHeadsetViewSize(pnWidth: number, pnHeight: number): [void, number, number];
   SetHeadsetViewMode(eHeadsetViewMode: HeadsetViewMode_t): void;
   GetHeadsetViewMode(): HeadsetViewMode_t;
   SetHeadsetViewCropped(bCropped: boolean): void;
   GetHeadsetViewCropped(): boolean;
   GetHeadsetViewAspectRatio(): number;
   SetHeadsetViewBlendRange(flStartPct: number, flEndPct: number): void;
-  GetHeadsetViewBlendRange(pStartPct: number, pEndPct: number): void;
+  GetHeadsetViewBlendRange(pStartPct: number, pEndPct: number): [void, number, number];
 }
 
 //method class IVRRenderModels
 export interface IVRRenderModels {
-  LoadRenderModel_Async(pchRenderModelName: string, ppRenderModel: RenderModel_t): EVRRenderModelError;
-  FreeRenderModel(pRenderModel: RenderModel_t): void;
-  LoadTexture_Async(textureId: TextureID_t, ppTexture: RenderModel_TextureMap_t): EVRRenderModelError;
-  FreeTexture(pTexture: RenderModel_TextureMap_t): void;
-  LoadTextureD3D11_Async(textureId: TextureID_t, pD3D11Device: Uint8Array, ppD3D11Texture2D: Uint8Array): EVRRenderModelError;
-  LoadIntoTextureD3D11_Async(textureId: TextureID_t, pDstTexture: Uint8Array): EVRRenderModelError;
-  FreeTextureD3D11(pD3D11Texture2D: Uint8Array): void;
+  LoadRenderModel_Async(pchRenderModelName: string, ppRenderModel: RenderModel_t): [EVRRenderModelError, RenderModel_t];
+  FreeRenderModel(pRenderModel: RenderModel_t): [void, RenderModel_t];
+  LoadTexture_Async(textureId: TextureID_t, ppTexture: RenderModel_TextureMap_t): [EVRRenderModelError, RenderModel_TextureMap_t];
+  FreeTexture(pTexture: RenderModel_TextureMap_t): [void, RenderModel_TextureMap_t];
+  LoadTextureD3D11_Async(textureId: TextureID_t, pD3D11Device: Uint8Array, ppD3D11Texture2D: Uint8Array): [EVRRenderModelError, Uint8Array, Uint8Array];
+  LoadIntoTextureD3D11_Async(textureId: TextureID_t, pDstTexture: Uint8Array): [EVRRenderModelError, Uint8Array];
+  FreeTextureD3D11(pD3D11Texture2D: Uint8Array): [void, Uint8Array];
   GetRenderModelName(unRenderModelIndex: number, pchRenderModelName: string, unRenderModelNameLen: number): number;
   GetRenderModelCount(): number;
   GetComponentCount(pchRenderModelName: string): number;
   GetComponentName(pchRenderModelName: string, unComponentIndex: number, pchComponentName: string, unComponentNameLen: number): number;
   GetComponentButtonMask(pchRenderModelName: string, pchComponentName: string): bigint;
   GetComponentRenderModelName(pchRenderModelName: string, pchComponentName: string, pchComponentRenderModelName: string, unComponentRenderModelNameLen: number): number;
-  GetComponentStateForDevicePath(pchRenderModelName: string, pchComponentName: string, devicePath: VRInputValueHandle_t, pState: RenderModel_ControllerMode_State_t, pComponentState: RenderModel_ComponentState_t): boolean;
-  GetComponentState(pchRenderModelName: string, pchComponentName: string, pControllerState: VRControllerState_t, pState: RenderModel_ControllerMode_State_t, pComponentState: RenderModel_ComponentState_t): boolean;
+  GetComponentStateForDevicePath(pchRenderModelName: string, pchComponentName: string, devicePath: VRInputValueHandle_t, pState: RenderModel_ControllerMode_State_t, pComponentState: RenderModel_ComponentState_t): [boolean, RenderModel_ControllerMode_State_t, RenderModel_ComponentState_t];
+  GetComponentState(pchRenderModelName: string, pchComponentName: string, pControllerState: VRControllerState_t, pState: RenderModel_ControllerMode_State_t, pComponentState: RenderModel_ComponentState_t): [boolean, VRControllerState_t, RenderModel_ControllerMode_State_t, RenderModel_ComponentState_t];
   RenderModelHasComponent(pchRenderModelName: string, pchComponentName: string): boolean;
-  GetRenderModelThumbnailURL(pchRenderModelName: string, pchThumbnailURL: string, unThumbnailURLLen: number, peError: EVRRenderModelError): number;
-  GetRenderModelOriginalPath(pchRenderModelName: string, pchOriginalPath: string, unOriginalPathLen: number, peError: EVRRenderModelError): number;
+  GetRenderModelThumbnailURL(pchRenderModelName: string, pchThumbnailURL: string, unThumbnailURLLen: number, peError: EVRRenderModelError): [number, EVRRenderModelError];
+  GetRenderModelOriginalPath(pchRenderModelName: string, pchOriginalPath: string, unOriginalPathLen: number, peError: EVRRenderModelError): [number, EVRRenderModelError];
   GetRenderModelErrorNameFromEnum(error: EVRRenderModelError): string;
 }
 
 //method class IVRNotifications
 export interface IVRNotifications {
-  CreateNotification(ulOverlayHandle: VROverlayHandle_t, ulUserValue: bigint, type: EVRNotificationType, pchText: string, style: EVRNotificationStyle, pImage: NotificationBitmap_t, pNotificationId: VRNotificationId): EVRNotificationError;
+  CreateNotification(ulOverlayHandle: VROverlayHandle_t, ulUserValue: bigint, type: EVRNotificationType, pchText: string, style: EVRNotificationStyle, pImage: NotificationBitmap_t, pNotificationId: VRNotificationId): [EVRNotificationError, NotificationBitmap_t, VRNotificationId];
   RemoveNotification(notificationId: VRNotificationId): EVRNotificationError;
 }
 
 //method class IVRSettings
 export interface IVRSettings {
   GetSettingsErrorNameFromEnum(eError: EVRSettingsError): string;
-  SetBool(pchSection: string, pchSettingsKey: string, bValue: boolean, peError: EVRSettingsError): void;
-  SetInt32(pchSection: string, pchSettingsKey: string, nValue: number, peError: EVRSettingsError): void;
-  SetFloat(pchSection: string, pchSettingsKey: string, flValue: number, peError: EVRSettingsError): void;
-  SetString(pchSection: string, pchSettingsKey: string, pchValue: string, peError: EVRSettingsError): void;
-  GetBool(pchSection: string, pchSettingsKey: string, peError: EVRSettingsError): boolean;
-  GetInt32(pchSection: string, pchSettingsKey: string, peError: EVRSettingsError): number;
-  GetFloat(pchSection: string, pchSettingsKey: string, peError: EVRSettingsError): number;
-  GetString(pchSection: string, pchSettingsKey: string, pchValue: string, unValueLen: number, peError: EVRSettingsError): void;
-  RemoveSection(pchSection: string, peError: EVRSettingsError): void;
-  RemoveKeyInSection(pchSection: string, pchSettingsKey: string, peError: EVRSettingsError): void;
+  SetBool(pchSection: string, pchSettingsKey: string, bValue: boolean, peError: EVRSettingsError): [void, EVRSettingsError];
+  SetInt32(pchSection: string, pchSettingsKey: string, nValue: number, peError: EVRSettingsError): [void, EVRSettingsError];
+  SetFloat(pchSection: string, pchSettingsKey: string, flValue: number, peError: EVRSettingsError): [void, EVRSettingsError];
+  SetString(pchSection: string, pchSettingsKey: string, pchValue: string, peError: EVRSettingsError): [void, EVRSettingsError];
+  GetBool(pchSection: string, pchSettingsKey: string, peError: EVRSettingsError): [boolean, EVRSettingsError];
+  GetInt32(pchSection: string, pchSettingsKey: string, peError: EVRSettingsError): [number, EVRSettingsError];
+  GetFloat(pchSection: string, pchSettingsKey: string, peError: EVRSettingsError): [number, EVRSettingsError];
+  GetString(pchSection: string, pchSettingsKey: string, pchValue: string, unValueLen: number, peError: EVRSettingsError): [void, EVRSettingsError];
+  RemoveSection(pchSection: string, peError: EVRSettingsError): [void, EVRSettingsError];
+  RemoveKeyInSection(pchSection: string, pchSettingsKey: string, peError: EVRSettingsError): [void, EVRSettingsError];
 }
 
 //method class IVRScreenshots
 export interface IVRScreenshots {
-  RequestScreenshot(pOutScreenshotHandle: ScreenshotHandle_t, type: EVRScreenshotType, pchPreviewFilename: string, pchVRFilename: string): EVRScreenshotError;
+  RequestScreenshot(pOutScreenshotHandle: ScreenshotHandle_t, type: EVRScreenshotType, pchPreviewFilename: string, pchVRFilename: string): [EVRScreenshotError, ScreenshotHandle_t];
   HookScreenshot(pSupportedTypes: EVRScreenshotType, numTypes: number): EVRScreenshotError;
-  GetScreenshotPropertyType(screenshotHandle: ScreenshotHandle_t, pError: EVRScreenshotError): EVRScreenshotType;
-  GetScreenshotPropertyFilename(screenshotHandle: ScreenshotHandle_t, filenameType: EVRScreenshotPropertyFilenames, pchFilename: string, cchFilename: number, pError: EVRScreenshotError): number;
+  GetScreenshotPropertyType(screenshotHandle: ScreenshotHandle_t, pError: EVRScreenshotError): [EVRScreenshotType, EVRScreenshotError];
+  GetScreenshotPropertyFilename(screenshotHandle: ScreenshotHandle_t, filenameType: EVRScreenshotPropertyFilenames, pchFilename: string, cchFilename: number, pError: EVRScreenshotError): [number, EVRScreenshotError];
   UpdateScreenshotProgress(screenshotHandle: ScreenshotHandle_t, flProgress: number): EVRScreenshotError;
-  TakeStereoScreenshot(pOutScreenshotHandle: ScreenshotHandle_t, pchPreviewFilename: string, pchVRFilename: string): EVRScreenshotError;
+  TakeStereoScreenshot(pOutScreenshotHandle: ScreenshotHandle_t, pchPreviewFilename: string, pchVRFilename: string): [EVRScreenshotError, ScreenshotHandle_t];
   SubmitScreenshot(screenshotHandle: ScreenshotHandle_t, type: EVRScreenshotType, pchSourcePreviewFilename: string, pchSourceVRFilename: string): EVRScreenshotError;
 }
 
@@ -9031,34 +9031,34 @@ export interface IVRDriverManager {
 //method class IVRInput
 export interface IVRInput {
   SetActionManifestPath(pchActionManifestPath: string): EVRInputError;
-  GetActionSetHandle(pchActionSetName: string, pHandle: VRActionSetHandle_t): EVRInputError;
-  GetActionHandle(pchActionName: string, pHandle: VRActionHandle_t): EVRInputError;
-  GetInputSourceHandle(pchInputSourcePath: string, pHandle: VRInputValueHandle_t): EVRInputError;
-  UpdateActionState(pSets: VRActiveActionSet_t, unSizeOfVRSelectedActionSet_t: number, unSetCount: number): EVRInputError;
-  GetDigitalActionData(action: VRActionHandle_t, pActionData: InputDigitalActionData_t, unActionDataSize: number, ulRestrictToDevice: VRInputValueHandle_t): EVRInputError;
-  GetAnalogActionData(action: VRActionHandle_t, pActionData: InputAnalogActionData_t, unActionDataSize: number, ulRestrictToDevice: VRInputValueHandle_t): EVRInputError;
-  GetPoseActionDataRelativeToNow(action: VRActionHandle_t, eOrigin: ETrackingUniverseOrigin, fPredictedSecondsFromNow: number, pActionData: InputPoseActionData_t, unActionDataSize: number, ulRestrictToDevice: VRInputValueHandle_t): EVRInputError;
-  GetPoseActionDataForNextFrame(action: VRActionHandle_t, eOrigin: ETrackingUniverseOrigin, pActionData: InputPoseActionData_t, unActionDataSize: number, ulRestrictToDevice: VRInputValueHandle_t): EVRInputError;
-  GetSkeletalActionData(action: VRActionHandle_t, pActionData: InputSkeletalActionData_t, unActionDataSize: number): EVRInputError;
-  GetDominantHand(peDominantHand: ETrackedControllerRole): EVRInputError;
+  GetActionSetHandle(pchActionSetName: string, pHandle: VRActionSetHandle_t): [EVRInputError, VRActionSetHandle_t];
+  GetActionHandle(pchActionName: string, pHandle: VRActionHandle_t): [EVRInputError, VRActionHandle_t];
+  GetInputSourceHandle(pchInputSourcePath: string, pHandle: VRInputValueHandle_t): [EVRInputError, VRInputValueHandle_t];
+  UpdateActionState(pSets: VRActiveActionSet_t, unSizeOfVRSelectedActionSet_t: number, unSetCount: number): [EVRInputError, VRActiveActionSet_t];
+  GetDigitalActionData(action: VRActionHandle_t, pActionData: InputDigitalActionData_t, unActionDataSize: number, ulRestrictToDevice: VRInputValueHandle_t): [EVRInputError, InputDigitalActionData_t];
+  GetAnalogActionData(action: VRActionHandle_t, pActionData: InputAnalogActionData_t, unActionDataSize: number, ulRestrictToDevice: VRInputValueHandle_t): [EVRInputError, InputAnalogActionData_t];
+  GetPoseActionDataRelativeToNow(action: VRActionHandle_t, eOrigin: ETrackingUniverseOrigin, fPredictedSecondsFromNow: number, pActionData: InputPoseActionData_t, unActionDataSize: number, ulRestrictToDevice: VRInputValueHandle_t): [EVRInputError, InputPoseActionData_t];
+  GetPoseActionDataForNextFrame(action: VRActionHandle_t, eOrigin: ETrackingUniverseOrigin, pActionData: InputPoseActionData_t, unActionDataSize: number, ulRestrictToDevice: VRInputValueHandle_t): [EVRInputError, InputPoseActionData_t];
+  GetSkeletalActionData(action: VRActionHandle_t, pActionData: InputSkeletalActionData_t, unActionDataSize: number): [EVRInputError, InputSkeletalActionData_t];
+  GetDominantHand(peDominantHand: ETrackedControllerRole): [EVRInputError, ETrackedControllerRole];
   SetDominantHand(eDominantHand: ETrackedControllerRole): EVRInputError;
-  GetBoneCount(action: VRActionHandle_t, pBoneCount: number): EVRInputError;
-  GetBoneHierarchy(action: VRActionHandle_t, pParentIndices: BoneIndex_t, unIndexArayCount: number): EVRInputError;
+  GetBoneCount(action: VRActionHandle_t, pBoneCount: number): [EVRInputError, number];
+  GetBoneHierarchy(action: VRActionHandle_t, pParentIndices: BoneIndex_t, unIndexArayCount: number): [EVRInputError, BoneIndex_t];
   GetBoneName(action: VRActionHandle_t, nBoneIndex: BoneIndex_t, pchBoneName: string, unNameBufferSize: number): EVRInputError;
-  GetSkeletalReferenceTransforms(action: VRActionHandle_t, eTransformSpace: EVRSkeletalTransformSpace, eReferencePose: EVRSkeletalReferencePose, pTransformArray: VRBoneTransform_t, unTransformArrayCount: number): EVRInputError;
-  GetSkeletalTrackingLevel(action: VRActionHandle_t, pSkeletalTrackingLevel: EVRSkeletalTrackingLevel): EVRInputError;
-  GetSkeletalBoneData(action: VRActionHandle_t, eTransformSpace: EVRSkeletalTransformSpace, eMotionRange: EVRSkeletalMotionRange, pTransformArray: VRBoneTransform_t, unTransformArrayCount: number): EVRInputError;
-  GetSkeletalSummaryData(action: VRActionHandle_t, eSummaryType: EVRSummaryType, pSkeletalSummaryData: VRSkeletalSummaryData_t): EVRInputError;
-  GetSkeletalBoneDataCompressed(action: VRActionHandle_t, eMotionRange: EVRSkeletalMotionRange, pvCompressedData: Uint8Array, unCompressedSize: number, punRequiredCompressedSize: number): EVRInputError;
-  DecompressSkeletalBoneData(pvCompressedBuffer: Uint8Array, unCompressedBufferSize: number, eTransformSpace: EVRSkeletalTransformSpace, pTransformArray: VRBoneTransform_t, unTransformArrayCount: number): EVRInputError;
+  GetSkeletalReferenceTransforms(action: VRActionHandle_t, eTransformSpace: EVRSkeletalTransformSpace, eReferencePose: EVRSkeletalReferencePose, pTransformArray: VRBoneTransform_t, unTransformArrayCount: number): [EVRInputError, VRBoneTransform_t];
+  GetSkeletalTrackingLevel(action: VRActionHandle_t, pSkeletalTrackingLevel: EVRSkeletalTrackingLevel): [EVRInputError, EVRSkeletalTrackingLevel];
+  GetSkeletalBoneData(action: VRActionHandle_t, eTransformSpace: EVRSkeletalTransformSpace, eMotionRange: EVRSkeletalMotionRange, pTransformArray: VRBoneTransform_t, unTransformArrayCount: number): [EVRInputError, VRBoneTransform_t];
+  GetSkeletalSummaryData(action: VRActionHandle_t, eSummaryType: EVRSummaryType, pSkeletalSummaryData: VRSkeletalSummaryData_t): [EVRInputError, VRSkeletalSummaryData_t];
+  GetSkeletalBoneDataCompressed(action: VRActionHandle_t, eMotionRange: EVRSkeletalMotionRange, pvCompressedData: Uint8Array, unCompressedSize: number, punRequiredCompressedSize: number): [EVRInputError, Uint8Array, number];
+  DecompressSkeletalBoneData(pvCompressedBuffer: Uint8Array, unCompressedBufferSize: number, eTransformSpace: EVRSkeletalTransformSpace, pTransformArray: VRBoneTransform_t, unTransformArrayCount: number): [EVRInputError, Uint8Array, VRBoneTransform_t];
   TriggerHapticVibrationAction(action: VRActionHandle_t, fStartSecondsFromNow: number, fDurationSeconds: number, fFrequency: number, fAmplitude: number, ulRestrictToDevice: VRInputValueHandle_t): EVRInputError;
-  GetActionOrigins(actionSetHandle: VRActionSetHandle_t, digitalActionHandle: VRActionHandle_t, originsOut: VRInputValueHandle_t, originOutCount: number): EVRInputError;
+  GetActionOrigins(actionSetHandle: VRActionSetHandle_t, digitalActionHandle: VRActionHandle_t, originsOut: VRInputValueHandle_t, originOutCount: number): [EVRInputError, VRInputValueHandle_t];
   GetOriginLocalizedName(origin: VRInputValueHandle_t, pchNameArray: string, unNameArraySize: number, unStringSectionsToInclude: number): EVRInputError;
-  GetOriginTrackedDeviceInfo(origin: VRInputValueHandle_t, pOriginInfo: InputOriginInfo_t, unOriginInfoSize: number): EVRInputError;
-  GetActionBindingInfo(action: VRActionHandle_t, pOriginInfo: InputBindingInfo_t, unBindingInfoSize: number, unBindingInfoCount: number, punReturnedBindingInfoCount: number): EVRInputError;
+  GetOriginTrackedDeviceInfo(origin: VRInputValueHandle_t, pOriginInfo: InputOriginInfo_t, unOriginInfoSize: number): [EVRInputError, InputOriginInfo_t];
+  GetActionBindingInfo(action: VRActionHandle_t, pOriginInfo: InputBindingInfo_t, unBindingInfoSize: number, unBindingInfoCount: number, punReturnedBindingInfoCount: number): [EVRInputError, InputBindingInfo_t, number];
   ShowActionOrigins(actionSetHandle: VRActionSetHandle_t, ulActionHandle: VRActionHandle_t): EVRInputError;
-  ShowBindingsForActionSet(pSets: VRActiveActionSet_t, unSizeOfVRSelectedActionSet_t: number, unSetCount: number, originToHighlight: VRInputValueHandle_t): EVRInputError;
-  GetComponentStateForBinding(pchRenderModelName: string, pchComponentName: string, pOriginInfo: InputBindingInfo_t, unBindingInfoSize: number, unBindingInfoCount: number, pComponentState: RenderModel_ComponentState_t): EVRInputError;
+  ShowBindingsForActionSet(pSets: VRActiveActionSet_t, unSizeOfVRSelectedActionSet_t: number, unSetCount: number, originToHighlight: VRInputValueHandle_t): [EVRInputError, VRActiveActionSet_t];
+  GetComponentStateForBinding(pchRenderModelName: string, pchComponentName: string, pOriginInfo: InputBindingInfo_t, unBindingInfoSize: number, unBindingInfoCount: number, pComponentState: RenderModel_ComponentState_t): [EVRInputError, InputBindingInfo_t, RenderModel_ComponentState_t];
   IsUsingLegacyInput(): boolean;
   OpenBindingUI(pchAppKey: string, ulActionSetHandle: VRActionSetHandle_t, ulDeviceHandle: VRInputValueHandle_t, bShowOnDesktop: boolean): EVRInputError;
   GetBindingVariant(ulDevicePath: VRInputValueHandle_t, pchVariantArray: string, unVariantArraySize: number): EVRInputError;
@@ -9066,57 +9066,57 @@ export interface IVRInput {
 
 //method class IVRIOBuffer
 export interface IVRIOBuffer {
-  Open(pchPath: string, mode: EIOBufferMode, unElementSize: number, unElements: number, pulBuffer: IOBufferHandle_t): EIOBufferError;
+  Open(pchPath: string, mode: EIOBufferMode, unElementSize: number, unElements: number, pulBuffer: IOBufferHandle_t): [EIOBufferError, IOBufferHandle_t];
   Close(ulBuffer: IOBufferHandle_t): EIOBufferError;
-  Read(ulBuffer: IOBufferHandle_t, pDst: Uint8Array, unBytes: number, punRead: number): EIOBufferError;
-  Write(ulBuffer: IOBufferHandle_t, pSrc: Uint8Array, unBytes: number): EIOBufferError;
+  Read(ulBuffer: IOBufferHandle_t, pDst: Uint8Array, unBytes: number, punRead: number): [EIOBufferError, Uint8Array, number];
+  Write(ulBuffer: IOBufferHandle_t, pSrc: Uint8Array, unBytes: number): [EIOBufferError, Uint8Array];
   PropertyContainer(ulBuffer: IOBufferHandle_t): PropertyContainerHandle_t;
   HasReaders(ulBuffer: IOBufferHandle_t): boolean;
 }
 
 //method class IVRSpatialAnchors
 export interface IVRSpatialAnchors {
-  CreateSpatialAnchorFromDescriptor(pchDescriptor: string, pHandleOut: SpatialAnchorHandle_t): EVRSpatialAnchorError;
-  CreateSpatialAnchorFromPose(unDeviceIndex: TrackedDeviceIndex_t, eOrigin: ETrackingUniverseOrigin, pPose: SpatialAnchorPose_t, pHandleOut: SpatialAnchorHandle_t): EVRSpatialAnchorError;
-  GetSpatialAnchorPose(unHandle: SpatialAnchorHandle_t, eOrigin: ETrackingUniverseOrigin, pPoseOut: SpatialAnchorPose_t): EVRSpatialAnchorError;
-  GetSpatialAnchorDescriptor(unHandle: SpatialAnchorHandle_t, pchDescriptorOut: string, punDescriptorBufferLenInOut: number): EVRSpatialAnchorError;
+  CreateSpatialAnchorFromDescriptor(pchDescriptor: string, pHandleOut: SpatialAnchorHandle_t): [EVRSpatialAnchorError, SpatialAnchorHandle_t];
+  CreateSpatialAnchorFromPose(unDeviceIndex: TrackedDeviceIndex_t, eOrigin: ETrackingUniverseOrigin, pPose: SpatialAnchorPose_t, pHandleOut: SpatialAnchorHandle_t): [EVRSpatialAnchorError, SpatialAnchorPose_t, SpatialAnchorHandle_t];
+  GetSpatialAnchorPose(unHandle: SpatialAnchorHandle_t, eOrigin: ETrackingUniverseOrigin, pPoseOut: SpatialAnchorPose_t): [EVRSpatialAnchorError, SpatialAnchorPose_t];
+  GetSpatialAnchorDescriptor(unHandle: SpatialAnchorHandle_t, pchDescriptorOut: string, punDescriptorBufferLenInOut: number): [EVRSpatialAnchorError, number];
 }
 
 //method class IVRDebug
 export interface IVRDebug {
   EmitVrProfilerEvent(pchMessage: string): EVRDebugError;
-  BeginVrProfilerEvent(pHandleOut: VrProfilerEventHandle_t): EVRDebugError;
+  BeginVrProfilerEvent(pHandleOut: VrProfilerEventHandle_t): [EVRDebugError, VrProfilerEventHandle_t];
   FinishVrProfilerEvent(hHandle: VrProfilerEventHandle_t, pchMessage: string): EVRDebugError;
   DriverDebugRequest(unDeviceIndex: TrackedDeviceIndex_t, pchRequest: string, pchResponseBuffer: string, unResponseBufferSize: number): number;
 }
 
 //method class IVRProperties
 export interface IVRProperties {
-  ReadPropertyBatch(ulContainerHandle: PropertyContainerHandle_t, pBatch: PropertyRead_t, unBatchEntryCount: number): ETrackedPropertyError;
-  WritePropertyBatch(ulContainerHandle: PropertyContainerHandle_t, pBatch: PropertyWrite_t, unBatchEntryCount: number): ETrackedPropertyError;
+  ReadPropertyBatch(ulContainerHandle: PropertyContainerHandle_t, pBatch: PropertyRead_t, unBatchEntryCount: number): [ETrackedPropertyError, PropertyRead_t];
+  WritePropertyBatch(ulContainerHandle: PropertyContainerHandle_t, pBatch: PropertyWrite_t, unBatchEntryCount: number): [ETrackedPropertyError, PropertyWrite_t];
   GetPropErrorNameFromEnum(error: ETrackedPropertyError): string;
   TrackedDeviceToPropertyContainer(nDevice: TrackedDeviceIndex_t): PropertyContainerHandle_t;
 }
 
 //method class IVRPaths
 export interface IVRPaths {
-  ReadPathBatch(ulRootHandle: PropertyContainerHandle_t, pBatch: PathRead_t, unBatchEntryCount: number): ETrackedPropertyError;
-  WritePathBatch(ulRootHandle: PropertyContainerHandle_t, pBatch: PathWrite_t, unBatchEntryCount: number): ETrackedPropertyError;
-  StringToHandle(pHandle: PathHandle_t, pchPath: string): ETrackedPropertyError;
-  HandleToString(pHandle: PathHandle_t, pchBuffer: string, unBufferSize: number, punBufferSizeUsed: number): ETrackedPropertyError;
+  ReadPathBatch(ulRootHandle: PropertyContainerHandle_t, pBatch: PathRead_t, unBatchEntryCount: number): [ETrackedPropertyError, PathRead_t];
+  WritePathBatch(ulRootHandle: PropertyContainerHandle_t, pBatch: PathWrite_t, unBatchEntryCount: number): [ETrackedPropertyError, PathWrite_t];
+  StringToHandle(pHandle: PathHandle_t, pchPath: string): [ETrackedPropertyError, PathHandle_t];
+  HandleToString(pHandle: PathHandle_t, pchBuffer: string, unBufferSize: number, punBufferSizeUsed: number): [ETrackedPropertyError, number];
 }
 
 //method class IVRBlockQueue
 export interface IVRBlockQueue {
-  Create(pulQueueHandle: PropertyContainerHandle_t, pchPath: string, unBlockDataSize: number, unBlockHeaderSize: number, unBlockCount: number, unFlags: number): EBlockQueueError;
-  Connect(pulQueueHandle: PropertyContainerHandle_t, pchPath: string): EBlockQueueError;
+  Create(pulQueueHandle: PropertyContainerHandle_t, pchPath: string, unBlockDataSize: number, unBlockHeaderSize: number, unBlockCount: number, unFlags: number): [EBlockQueueError, PropertyContainerHandle_t];
+  Connect(pulQueueHandle: PropertyContainerHandle_t, pchPath: string): [EBlockQueueError, PropertyContainerHandle_t];
   Destroy(ulQueueHandle: PropertyContainerHandle_t): EBlockQueueError;
-  AcquireWriteOnlyBlock(ulQueueHandle: PropertyContainerHandle_t, pulBlockHandle: PropertyContainerHandle_t, ppvBuffer: Uint8Array): EBlockQueueError;
+  AcquireWriteOnlyBlock(ulQueueHandle: PropertyContainerHandle_t, pulBlockHandle: PropertyContainerHandle_t, ppvBuffer: Uint8Array): [EBlockQueueError, PropertyContainerHandle_t, Uint8Array];
   ReleaseWriteOnlyBlock(ulQueueHandle: PropertyContainerHandle_t, ulBlockHandle: PropertyContainerHandle_t): EBlockQueueError;
-  WaitAndAcquireReadOnlyBlock(ulQueueHandle: PropertyContainerHandle_t, pulBlockHandle: PropertyContainerHandle_t, ppvBuffer: Uint8Array, eReadType: EBlockQueueReadType, unTimeoutMs: number): EBlockQueueError;
-  AcquireReadOnlyBlock(ulQueueHandle: PropertyContainerHandle_t, pulBlockHandle: PropertyContainerHandle_t, ppvBuffer: Uint8Array, eReadType: EBlockQueueReadType): EBlockQueueError;
+  WaitAndAcquireReadOnlyBlock(ulQueueHandle: PropertyContainerHandle_t, pulBlockHandle: PropertyContainerHandle_t, ppvBuffer: Uint8Array, eReadType: EBlockQueueReadType, unTimeoutMs: number): [EBlockQueueError, PropertyContainerHandle_t, Uint8Array];
+  AcquireReadOnlyBlock(ulQueueHandle: PropertyContainerHandle_t, pulBlockHandle: PropertyContainerHandle_t, ppvBuffer: Uint8Array, eReadType: EBlockQueueReadType): [EBlockQueueError, PropertyContainerHandle_t, Uint8Array];
   ReleaseReadOnlyBlock(ulQueueHandle: PropertyContainerHandle_t, ulBlockHandle: PropertyContainerHandle_t): EBlockQueueError;
-  QueueHasReader(ulQueueHandle: PropertyContainerHandle_t, pbHasReaders: boolean): EBlockQueueError;
+  QueueHasReader(ulQueueHandle: PropertyContainerHandle_t, pbHasReaders: boolean): [EBlockQueueError, boolean];
 }
 
 //#endregion
@@ -9154,7 +9154,7 @@ export class IVRSystem {
     const pnHeightPtr = Deno.UnsafePointer.of(pnHeightArray);
     const result = func.call(this.ptr, pnWidthPtr, pnHeightPtr);
     // Read output parameters
-    return [result, pnWidthBuffer, pnHeightBuffer];
+    return [result, pnWidth, pnHeight];
   }
 
 /*{
@@ -9242,7 +9242,7 @@ export class IVRSystem {
     const pfBottomPtr = Deno.UnsafePointer.of(pfBottomArray);
     const result = func.call(this.ptr, eEye, pfLeftPtr, pfRightPtr, pfTopPtr, pfBottomPtr);
     // Read output parameters
-    return [result, pfLeftBuffer, pfRightBuffer, pfTopBuffer, pfBottomBuffer];
+    return [result, pfLeft, pfRight, pfTop, pfBottom];
   }
 
 /*{
@@ -9355,7 +9355,7 @@ export class IVRSystem {
     const pulFrameCounterPtr = Deno.UnsafePointer.of(pulFrameCounterBuffer);
     const result = func.call(this.ptr, pfSecondsSinceLastVsyncPtr, pulFrameCounterPtr);
     // Read output parameters
-    return [result, pfSecondsSinceLastVsyncBuffer, pulFrameCounterBuffer];
+    return [result, pfSecondsSinceLastVsync, pulFrameCounterBuffer[0]];
   }
 
 /*{
@@ -9400,7 +9400,7 @@ export class IVRSystem {
     const pnAdapterIndexPtr = Deno.UnsafePointer.of(pnAdapterIndexArray);
     const result = func.call(this.ptr, pnAdapterIndexPtr);
     // Read output parameters
-    return [result, pnAdapterIndexBuffer];
+    return [result, pnAdapterIndex];
   }
 
 /*{
@@ -9435,7 +9435,7 @@ export class IVRSystem {
     const pnDevicePtr = Deno.UnsafePointer.of(pnDeviceBuffer);
     const result = func.call(this.ptr, pnDevicePtr, textureType, pInstancePtr);
     // Read output parameters
-    return [result, pnDeviceBuffer, pInstanceBuffer];
+    return [result, pnDeviceBuffer[0], pInstanceBuffer[0]];
   }
 
 /*{
@@ -9506,7 +9506,7 @@ export class IVRSystem {
     }
   ]
 }*/
-  GetDeviceToAbsoluteTrackingPose(eOrigin: ETrackingUniverseOrigin, fPredictedSecondsToPhotonsFromNow: number, pTrackedDevicePoseArray: TrackedDevicePose_t[], unTrackedDevicePoseArrayCount: number): [void, TrackedDevicePose_t] {
+  GetDeviceToAbsoluteTrackingPose(eOrigin: ETrackingUniverseOrigin, fPredictedSecondsToPhotonsFromNow: number, pTrackedDevicePoseArray: TrackedDevicePose_t, unTrackedDevicePoseArrayCount: number): [void, TrackedDevicePose_t] {
     if (this.ptr === null) throw new Error("Invalid pointer");
     const vr = new Deno.UnsafePointerView(this.ptr);
     const vtablePtr = Deno.UnsafePointer.create(vr.getBigUint64(0));
@@ -9594,7 +9594,7 @@ export class IVRSystem {
     }
   ]
 }*/
-  GetSortedTrackedDeviceIndicesOfClass(eTrackedDeviceClass: ETrackedDeviceClass, punTrackedDeviceIndexArray: TrackedDeviceIndex_t[], unTrackedDeviceIndexArrayCount: number, unRelativeToTrackedDeviceIndex: TrackedDeviceIndex_t): [number, TrackedDeviceIndex_t] {
+  GetSortedTrackedDeviceIndicesOfClass(eTrackedDeviceClass: ETrackedDeviceClass, punTrackedDeviceIndexArray: TrackedDeviceIndex_t, unTrackedDeviceIndexArrayCount: number, unRelativeToTrackedDeviceIndex: TrackedDeviceIndex_t): [number, TrackedDeviceIndex_t] {
     if (this.ptr === null) throw new Error("Invalid pointer");
     const vr = new Deno.UnsafePointerView(this.ptr);
     const vtablePtr = Deno.UnsafePointer.create(vr.getBigUint64(0));
@@ -9611,7 +9611,7 @@ export class IVRSystem {
     const unRelativeToTrackedDeviceIndexPtr = Deno.UnsafePointer.of(unRelativeToTrackedDeviceIndexArray);
     const result = func.call(this.ptr, eTrackedDeviceClass, punTrackedDeviceIndexArrayPtr, unTrackedDeviceIndexArrayCount, unRelativeToTrackedDeviceIndex);
     // Read output parameters
-    return [result, punTrackedDeviceIndexArrayBuffer];
+    return [result, punTrackedDeviceIndexArrayBuffer[0]];
   }
 
 /*{
@@ -9821,7 +9821,7 @@ export class IVRSystem {
     const unDeviceIndexPtr = Deno.UnsafePointer.of(unDeviceIndexArray);
     const result = func.call(this.ptr, unDeviceIndex, prop, pErrorPtr);
     // Read output parameters
-    return [result, pErrorBuffer];
+    return [result, pErrorBuffer[0]];
   }
 
 /*{
@@ -9856,7 +9856,7 @@ export class IVRSystem {
     const unDeviceIndexPtr = Deno.UnsafePointer.of(unDeviceIndexArray);
     const result = func.call(this.ptr, unDeviceIndex, prop, pErrorPtr);
     // Read output parameters
-    return [result, pErrorBuffer];
+    return [result, pErrorBuffer[0]];
   }
 
 /*{
@@ -9891,7 +9891,7 @@ export class IVRSystem {
     const unDeviceIndexPtr = Deno.UnsafePointer.of(unDeviceIndexArray);
     const result = func.call(this.ptr, unDeviceIndex, prop, pErrorPtr);
     // Read output parameters
-    return [result, pErrorBuffer];
+    return [result, pErrorBuffer[0]];
   }
 
 /*{
@@ -9926,7 +9926,7 @@ export class IVRSystem {
     const unDeviceIndexPtr = Deno.UnsafePointer.of(unDeviceIndexArray);
     const result = func.call(this.ptr, unDeviceIndex, prop, pErrorPtr);
     // Read output parameters
-    return [result, pErrorBuffer];
+    return [result, pErrorBuffer[0]];
   }
 
 /*{
@@ -9961,7 +9961,7 @@ export class IVRSystem {
     const unDeviceIndexPtr = Deno.UnsafePointer.of(unDeviceIndexArray);
     const result = func.call(this.ptr, unDeviceIndex, prop, pErrorPtr);
     // Read output parameters
-    return [result, pErrorBuffer];
+    return [result, pErrorBuffer[0]];
   }
 
 /*{
@@ -10013,7 +10013,7 @@ export class IVRSystem {
     const unBufferSizePtr = Deno.UnsafePointer.of(unBufferSizeArray);
     const result = func.call(this.ptr, unDeviceIndex, prop, propType, pBufferPtr, unBufferSize, pErrorPtr);
     // Read output parameters
-    return [result, pBufferBuffer, pErrorBuffer];
+    return [result, pBufferBuffer[0], pErrorBuffer[0]];
   }
 
 /*{
@@ -10061,7 +10061,7 @@ export class IVRSystem {
     const unBufferSizePtr = Deno.UnsafePointer.of(unBufferSizeArray);
     const result = func.call(this.ptr, unDeviceIndex, prop, pchValuePtr, unBufferSize, pErrorPtr);
     // Read output parameters
-    return [result, pErrorBuffer];
+    return [result, pErrorBuffer[0]];
   }
 
 /*{
@@ -10260,7 +10260,7 @@ export class IVRSystem {
     const unControllerStateSizePtr = Deno.UnsafePointer.of(unControllerStateSizeArray);
     const result = func.call(this.ptr, unControllerDeviceIndex, pControllerStatePtr, unControllerStateSize);
     // Read output parameters
-    return [result, pControllerStateBuffer];
+    return [result, pControllerStateBuffer[0]];
   }
 
 /*{
@@ -10311,7 +10311,7 @@ export class IVRSystem {
     const unControllerStateSizePtr = Deno.UnsafePointer.of(unControllerStateSizeArray);
     const result = func.call(this.ptr, eOrigin, unControllerDeviceIndex, pControllerStatePtr, unControllerStateSize, pTrackedDevicePosePtr);
     // Read output parameters
-    return [result, pControllerStateBuffer, TrackedDevicePose_t.fromBuffer(pTrackedDevicePoseBuffer, 0)];
+    return [result, pControllerStateBuffer[0], TrackedDevicePose_t.fromBuffer(pTrackedDevicePoseBuffer, 0)];
   }
 
 /*{
@@ -10614,7 +10614,7 @@ export class IVRExtendedDisplay {
     const pnHeightPtr = Deno.UnsafePointer.of(pnHeightArray);
     const result = func.call(this.ptr, pnXPtr, pnYPtr, pnWidthPtr, pnHeightPtr);
     // Read output parameters
-    return [result, pnXBuffer, pnYBuffer, pnWidthBuffer, pnHeightBuffer];
+    return [result, pnX, pnY, pnWidth, pnHeight];
   }
 
 /*{
@@ -10663,7 +10663,7 @@ export class IVRExtendedDisplay {
     const pnHeightPtr = Deno.UnsafePointer.of(pnHeightArray);
     const result = func.call(this.ptr, eEye, pnXPtr, pnYPtr, pnWidthPtr, pnHeightPtr);
     // Read output parameters
-    return [result, pnXBuffer, pnYBuffer, pnWidthBuffer, pnHeightBuffer];
+    return [result, pnX, pnY, pnWidth, pnHeight];
   }
 
 /*{
@@ -10696,7 +10696,7 @@ export class IVRExtendedDisplay {
     const pnAdapterOutputIndexPtr = Deno.UnsafePointer.of(pnAdapterOutputIndexArray);
     const result = func.call(this.ptr, pnAdapterIndexPtr, pnAdapterOutputIndexPtr);
     // Read output parameters
-    return [result, pnAdapterIndexBuffer, pnAdapterOutputIndexBuffer];
+    return [result, pnAdapterIndex, pnAdapterOutputIndex];
   }
 
 /*{
@@ -10758,7 +10758,7 @@ export class IVRTrackedCamera {
     const pHasCameraPtr = Deno.UnsafePointer.of(pHasCameraArray);
     const result = func.call(this.ptr, nDeviceIndex, pHasCameraPtr);
     // Read output parameters
-    return [result, pHasCameraBuffer];
+    return [result, pHasCameraBuffer[0]];
   }
 
 /*{
@@ -10807,7 +10807,7 @@ export class IVRTrackedCamera {
     const pnFrameBufferSizePtr = Deno.UnsafePointer.of(pnFrameBufferSizeArray);
     const result = func.call(this.ptr, nDeviceIndex, eFrameType, pnWidthPtr, pnHeightPtr, pnFrameBufferSizePtr);
     // Read output parameters
-    return [result, pnWidthBuffer, pnHeightBuffer, pnFrameBufferSizeBuffer];
+    return [result, pnWidth, pnHeight, pnFrameBufferSize];
   }
 
 /*{
@@ -10958,7 +10958,7 @@ export class IVRTrackedCamera {
     const pHandlePtr = Deno.UnsafePointer.of(pHandleBuffer);
     const result = func.call(this.ptr, nDeviceIndex, pHandlePtr);
     // Read output parameters
-    return [result, pHandleBuffer];
+    return [result, pHandleBuffer[0]];
   }
 
 /*{
@@ -11039,7 +11039,7 @@ export class IVRTrackedCamera {
     const nFrameHeaderSizePtr = Deno.UnsafePointer.of(nFrameHeaderSizeArray);
     const result = func.call(this.ptr, hTrackedCamera, eFrameType, pFrameBufferPtr, nFrameBufferSize, pFrameHeaderPtr, nFrameHeaderSize);
     // Read output parameters
-    return [result, pFrameBufferBuffer, CameraVideoStreamFrameHeader_t.fromBuffer(pFrameHeaderBuffer, 0)];
+    return [result, pFrameBufferBuffer[0], CameraVideoStreamFrameHeader_t.fromBuffer(pFrameHeaderBuffer, 0)];
   }
 
 /*{
@@ -11089,7 +11089,7 @@ export class IVRTrackedCamera {
     const pnHeightPtr = Deno.UnsafePointer.of(pnHeightArray);
     const result = func.call(this.ptr, nDeviceIndex, eFrameType, pTextureBoundsPtr, pnWidthPtr, pnHeightPtr);
     // Read output parameters
-    return [result, VRTextureBounds_t.fromBuffer(pTextureBoundsBuffer, 0), pnWidthBuffer, pnHeightBuffer];
+    return [result, VRTextureBounds_t.fromBuffer(pTextureBoundsBuffer, 0), pnWidth, pnHeight];
   }
 
 /*{
@@ -11143,7 +11143,7 @@ export class IVRTrackedCamera {
     const nFrameHeaderSizePtr = Deno.UnsafePointer.of(nFrameHeaderSizeArray);
     const result = func.call(this.ptr, hTrackedCamera, eFrameType, pD3D11DeviceOrResourcePtr, ppD3D11ShaderResourceViewPtr, pFrameHeaderPtr, nFrameHeaderSize);
     // Read output parameters
-    return [result, pD3D11DeviceOrResourceBuffer, ppD3D11ShaderResourceViewBuffer, CameraVideoStreamFrameHeader_t.fromBuffer(pFrameHeaderBuffer, 0)];
+    return [result, pD3D11DeviceOrResourceBuffer[0], ppD3D11ShaderResourceViewBuffer[0], CameraVideoStreamFrameHeader_t.fromBuffer(pFrameHeaderBuffer, 0)];
   }
 
 /*{
@@ -11193,7 +11193,7 @@ export class IVRTrackedCamera {
     const nFrameHeaderSizePtr = Deno.UnsafePointer.of(nFrameHeaderSizeArray);
     const result = func.call(this.ptr, hTrackedCamera, eFrameType, pglTextureIdPtr, pFrameHeaderPtr, nFrameHeaderSize);
     // Read output parameters
-    return [result, pglTextureIdBuffer, CameraVideoStreamFrameHeader_t.fromBuffer(pFrameHeaderBuffer, 0)];
+    return [result, pglTextureIdBuffer[0], CameraVideoStreamFrameHeader_t.fromBuffer(pFrameHeaderBuffer, 0)];
   }
 
 /*{
@@ -11505,7 +11505,7 @@ export class IVRApplications {
     }
   ]
 }*/
-  LaunchTemplateApplication(pchTemplateAppKey: string, pchNewAppKey: string, pKeys: AppOverrideKeys_t[], unKeys: number): EVRApplicationError {
+  LaunchTemplateApplication(pchTemplateAppKey: string, pchNewAppKey: string, pKeys: AppOverrideKeys_t, unKeys: number): EVRApplicationError {
     if (this.ptr === null) throw new Error("Invalid pointer");
     const vr = new Deno.UnsafePointerView(this.ptr);
     const vtablePtr = Deno.UnsafePointer.create(vr.getBigUint64(0));
@@ -11739,7 +11739,7 @@ export class IVRApplications {
     const unPropertyValueBufferLenPtr = Deno.UnsafePointer.of(unPropertyValueBufferLenArray);
     const result = func.call(this.ptr, pchAppKeyPtr, eProperty, pchPropertyValueBufferPtr, unPropertyValueBufferLen, peErrorPtr);
     // Read output parameters
-    return [result, peErrorBuffer];
+    return [result, peErrorBuffer[0]];
   }
 
 /*{
@@ -11774,7 +11774,7 @@ export class IVRApplications {
     const pchAppKeyPtr = Deno.UnsafePointer.of(pchAppKeyBuffer);
     const result = func.call(this.ptr, pchAppKeyPtr, eProperty, peErrorPtr);
     // Read output parameters
-    return [result, peErrorBuffer];
+    return [result, peErrorBuffer[0]];
   }
 
 /*{
@@ -11809,7 +11809,7 @@ export class IVRApplications {
     const pchAppKeyPtr = Deno.UnsafePointer.of(pchAppKeyBuffer);
     const result = func.call(this.ptr, pchAppKeyPtr, eProperty, peErrorPtr);
     // Read output parameters
-    return [result, peErrorBuffer];
+    return [result, peErrorBuffer[0]];
   }
 
 /*{
@@ -12268,7 +12268,7 @@ export class IVRChaperone {
     const pSizeZPtr = Deno.UnsafePointer.of(pSizeZArray);
     const result = func.call(this.ptr, pSizeXPtr, pSizeZPtr);
     // Read output parameters
-    return [result, pSizeXBuffer, pSizeZBuffer];
+    return [result, pSizeX, pSizeZ];
   }
 
 /*{
@@ -12540,7 +12540,7 @@ export class IVRChaperoneSetup {
     const pSizeZPtr = Deno.UnsafePointer.of(pSizeZArray);
     const result = func.call(this.ptr, pSizeXPtr, pSizeZPtr);
     // Read output parameters
-    return [result, pSizeXBuffer, pSizeZBuffer];
+    return [result, pSizeX, pSizeZ];
   }
 
 /*{
@@ -12609,7 +12609,7 @@ export class IVRChaperoneSetup {
     const punQuadsCountPtr = Deno.UnsafePointer.of(punQuadsCountArray);
     const result = func.call(this.ptr, pQuadsBufferPtr, punQuadsCountPtr);
     // Read output parameters
-    return [result, HmdQuad_t.fromBuffer(pQuadsBufferBuffer, 0), punQuadsCountBuffer];
+    return [result, HmdQuad_t.fromBuffer(pQuadsBufferBuffer, 0), punQuadsCount];
   }
 
 /*{
@@ -12647,7 +12647,7 @@ export class IVRChaperoneSetup {
     const punQuadsCountPtr = Deno.UnsafePointer.of(punQuadsCountArray);
     const result = func.call(this.ptr, pQuadsBufferPtr, punQuadsCountPtr);
     // Read output parameters
-    return [result, HmdQuad_t.fromBuffer(pQuadsBufferBuffer, 0), punQuadsCountBuffer];
+    return [result, HmdQuad_t.fromBuffer(pQuadsBufferBuffer, 0), punQuadsCount];
   }
 
 /*{
@@ -12764,7 +12764,7 @@ export class IVRChaperoneSetup {
     }
   ]
 }*/
-  SetWorkingCollisionBoundsInfo(pQuadsBuffer: HmdQuad_t[], unQuadsCount: number): [void, HmdQuad_t] {
+  SetWorkingCollisionBoundsInfo(pQuadsBuffer: HmdQuad_t, unQuadsCount: number): [void, HmdQuad_t] {
     if (this.ptr === null) throw new Error("Invalid pointer");
     const vr = new Deno.UnsafePointerView(this.ptr);
     const vtablePtr = Deno.UnsafePointer.create(vr.getBigUint64(0));
@@ -12803,7 +12803,7 @@ export class IVRChaperoneSetup {
     }
   ]
 }*/
-  SetWorkingPerimeter(pPointBuffer: HmdVector2_t[], unPointCount: number): [void, HmdVector2_t] {
+  SetWorkingPerimeter(pPointBuffer: HmdVector2_t, unPointCount: number): [void, HmdVector2_t] {
     if (this.ptr === null) throw new Error("Invalid pointer");
     const vr = new Deno.UnsafePointerView(this.ptr);
     const vtablePtr = Deno.UnsafePointer.create(vr.getBigUint64(0));
@@ -12978,7 +12978,7 @@ export class IVRChaperoneSetup {
     const pnBufferLengthPtr = Deno.UnsafePointer.of(pnBufferLengthArray);
     const result = func.call(this.ptr, pBufferPtr, pnBufferLengthPtr);
     // Read output parameters
-    return [result, pnBufferLengthBuffer];
+    return [result, pnBufferLength];
   }
 
 /*{
@@ -13139,7 +13139,7 @@ export class IVRCompositor {
     }
   ]
 }*/
-  WaitGetPoses(pRenderPoseArray: TrackedDevicePose_t[], unRenderPoseArrayCount: number, pGamePoseArray: TrackedDevicePose_t[], unGamePoseArrayCount: number): [EVRCompositorError, TrackedDevicePose_t, TrackedDevicePose_t] {
+  WaitGetPoses(pRenderPoseArray: TrackedDevicePose_t, unRenderPoseArrayCount: number, pGamePoseArray: TrackedDevicePose_t, unGamePoseArrayCount: number): [EVRCompositorError, TrackedDevicePose_t, TrackedDevicePose_t] {
     if (this.ptr === null) throw new Error("Invalid pointer");
     const vr = new Deno.UnsafePointerView(this.ptr);
     const vtablePtr = Deno.UnsafePointer.create(vr.getBigUint64(0));
@@ -13190,7 +13190,7 @@ export class IVRCompositor {
     }
   ]
 }*/
-  GetLastPoses(pRenderPoseArray: TrackedDevicePose_t[], unRenderPoseArrayCount: number, pGamePoseArray: TrackedDevicePose_t[], unGamePoseArrayCount: number): [EVRCompositorError, TrackedDevicePose_t, TrackedDevicePose_t] {
+  GetLastPoses(pRenderPoseArray: TrackedDevicePose_t, unRenderPoseArrayCount: number, pGamePoseArray: TrackedDevicePose_t, unGamePoseArrayCount: number): [EVRCompositorError, TrackedDevicePose_t, TrackedDevicePose_t] {
     if (this.ptr === null) throw new Error("Invalid pointer");
     const vr = new Deno.UnsafePointerView(this.ptr);
     const vtablePtr = Deno.UnsafePointer.create(vr.getBigUint64(0));
@@ -13433,7 +13433,7 @@ export class IVRCompositor {
     }
   ]
 }*/
-  GetFrameTimings(pTiming: Compositor_FrameTiming[], nFrames: number): [number, Compositor_FrameTiming] {
+  GetFrameTimings(pTiming: Compositor_FrameTiming, nFrames: number): [number, Compositor_FrameTiming] {
     if (this.ptr === null) throw new Error("Invalid pointer");
     const vr = new Deno.UnsafePointerView(this.ptr);
     const vtablePtr = Deno.UnsafePointer.create(vr.getBigUint64(0));
@@ -13659,7 +13659,7 @@ export class IVRCompositor {
     }
   ]
 }*/
-  SetSkyboxOverride(pTextures: Texture_t[], unTextureCount: number): EVRCompositorError {
+  SetSkyboxOverride(pTextures: Texture_t, unTextureCount: number): EVRCompositorError {
     if (this.ptr === null) throw new Error("Invalid pointer");
     const vr = new Deno.UnsafePointerView(this.ptr);
     const vtablePtr = Deno.UnsafePointer.create(vr.getBigUint64(0));
@@ -14014,7 +14014,7 @@ export class IVRCompositor {
     const ppD3D11ShaderResourceViewPtr = Deno.UnsafePointer.of(ppD3D11ShaderResourceView);
     const result = func.call(this.ptr, eEye, pD3D11DeviceOrResourcePtr, ppD3D11ShaderResourceViewPtr);
     // Read output parameters
-    return [result, pD3D11DeviceOrResourceBuffer, ppD3D11ShaderResourceViewBuffer];
+    return [result, pD3D11DeviceOrResourceBuffer[0], ppD3D11ShaderResourceViewBuffer[0]];
   }
 
 /*{
@@ -14040,7 +14040,7 @@ export class IVRCompositor {
     const pD3D11ShaderResourceViewPtr = Deno.UnsafePointer.of(pD3D11ShaderResourceView);
     const result = func.call(this.ptr, pD3D11ShaderResourceViewPtr);
     // Read output parameters
-    return [result, pD3D11ShaderResourceViewBuffer];
+    return [result, pD3D11ShaderResourceViewBuffer[0]];
   }
 
 /*{
@@ -14076,7 +14076,7 @@ export class IVRCompositor {
     const pglSharedTextureHandlePtr = pglSharedTextureHandle;
     const result = func.call(this.ptr, eEye, pglTextureIdPtr, pglSharedTextureHandlePtr);
     // Read output parameters
-    return [result, pglTextureIdBuffer, pglSharedTextureHandleBuffer];
+    return [result, pglTextureIdBuffer[0], pglSharedTextureHandleBuffer[0]];
   }
 
 /*{
@@ -14228,7 +14228,7 @@ export class IVRCompositor {
     const unBufferSizePtr = Deno.UnsafePointer.of(unBufferSizeArray);
     const result = func.call(this.ptr, pPhysicalDevicePtr, pchValuePtr, unBufferSize);
     // Read output parameters
-    return [result, pPhysicalDeviceBuffer];
+    return [result, pPhysicalDeviceBuffer[0]];
   }
 
 /*{
@@ -14460,7 +14460,7 @@ export class IVRCompositor {
     const pGamePosePredictionIDPtr = Deno.UnsafePointer.of(pGamePosePredictionIDArray);
     const result = func.call(this.ptr, pRenderPosePredictionIDPtr, pGamePosePredictionIDPtr);
     // Read output parameters
-    return [result, pRenderPosePredictionIDBuffer, pGamePosePredictionIDBuffer];
+    return [result, pRenderPosePredictionID, pGamePosePredictionID];
   }
 
 /*{
@@ -14483,7 +14483,7 @@ export class IVRCompositor {
     }
   ]
 }*/
-  GetPosesForFrame(unPosePredictionID: number, pPoseArray: TrackedDevicePose_t[], unPoseArrayCount: number): [EVRCompositorError, TrackedDevicePose_t] {
+  GetPosesForFrame(unPosePredictionID: number, pPoseArray: TrackedDevicePose_t, unPoseArrayCount: number): [EVRCompositorError, TrackedDevicePose_t] {
     if (this.ptr === null) throw new Error("Invalid pointer");
     const vr = new Deno.UnsafePointerView(this.ptr);
     const vtablePtr = Deno.UnsafePointer.create(vr.getBigUint64(0));
@@ -14540,7 +14540,7 @@ export class IVROverlay {
     const pOverlayHandlePtr = Deno.UnsafePointer.of(pOverlayHandleBuffer);
     const result = func.call(this.ptr, pchOverlayKeyPtr, pOverlayHandlePtr);
     // Read output parameters
-    return [result, pOverlayHandleBuffer];
+    return [result, pOverlayHandleBuffer[0]];
   }
 
 /*{
@@ -14579,7 +14579,7 @@ export class IVROverlay {
     const pOverlayHandlePtr = Deno.UnsafePointer.of(pOverlayHandleBuffer);
     const result = func.call(this.ptr, pchOverlayKeyPtr, pchOverlayNamePtr, pOverlayHandlePtr);
     // Read output parameters
-    return [result, pOverlayHandleBuffer];
+    return [result, pOverlayHandleBuffer[0]];
   }
 
 /*{
@@ -14649,7 +14649,7 @@ export class IVROverlay {
     const unBufferSizePtr = Deno.UnsafePointer.of(unBufferSizeArray);
     const result = func.call(this.ptr, ulOverlayHandle, pchValuePtr, unBufferSize, pErrorPtr);
     // Read output parameters
-    return [result, pErrorBuffer];
+    return [result, pErrorBuffer[0]];
   }
 
 /*{
@@ -14693,7 +14693,7 @@ export class IVROverlay {
     const unBufferSizePtr = Deno.UnsafePointer.of(unBufferSizeArray);
     const result = func.call(this.ptr, ulOverlayHandle, pchValuePtr, unBufferSize, pErrorPtr);
     // Read output parameters
-    return [result, pErrorBuffer];
+    return [result, pErrorBuffer[0]];
   }
 
 /*{
@@ -14775,7 +14775,7 @@ export class IVROverlay {
     const punHeightPtr = Deno.UnsafePointer.of(punHeightArray);
     const result = func.call(this.ptr, ulOverlayHandle, pvBufferPtr, unBufferSize, punWidthPtr, punHeightPtr);
     // Read output parameters
-    return [result, pvBufferBuffer, punWidthBuffer, punHeightBuffer];
+    return [result, pvBufferBuffer[0], punWidth, punHeight];
   }
 
 /*{
@@ -14930,7 +14930,7 @@ export class IVROverlay {
     const pbEnabledPtr = Deno.UnsafePointer.of(pbEnabledArray);
     const result = func.call(this.ptr, ulOverlayHandle, eOverlayFlag, pbEnabledPtr);
     // Read output parameters
-    return [result, pbEnabledBuffer];
+    return [result, pbEnabledBuffer[0]];
   }
 
 /*{
@@ -14963,7 +14963,7 @@ export class IVROverlay {
     const pFlagsPtr = Deno.UnsafePointer.of(pFlagsArray);
     const result = func.call(this.ptr, ulOverlayHandle, pFlagsPtr);
     // Read output parameters
-    return [result, pFlagsBuffer];
+    return [result, pFlags];
   }
 
 /*{
@@ -15052,7 +15052,7 @@ export class IVROverlay {
     const pfBluePtr = Deno.UnsafePointer.of(pfBlueArray);
     const result = func.call(this.ptr, ulOverlayHandle, pfRedPtr, pfGreenPtr, pfBluePtr);
     // Read output parameters
-    return [result, pfRedBuffer, pfGreenBuffer, pfBlueBuffer];
+    return [result, pfRed, pfGreen, pfBlue];
   }
 
 /*{
@@ -15117,7 +15117,7 @@ export class IVROverlay {
     const pfAlphaPtr = Deno.UnsafePointer.of(pfAlphaArray);
     const result = func.call(this.ptr, ulOverlayHandle, pfAlphaPtr);
     // Read output parameters
-    return [result, pfAlphaBuffer];
+    return [result, pfAlpha];
   }
 
 /*{
@@ -15182,7 +15182,7 @@ export class IVROverlay {
     const pfTexelAspectPtr = Deno.UnsafePointer.of(pfTexelAspectArray);
     const result = func.call(this.ptr, ulOverlayHandle, pfTexelAspectPtr);
     // Read output parameters
-    return [result, pfTexelAspectBuffer];
+    return [result, pfTexelAspect];
   }
 
 /*{
@@ -15247,7 +15247,7 @@ export class IVROverlay {
     const punSortOrderPtr = Deno.UnsafePointer.of(punSortOrderArray);
     const result = func.call(this.ptr, ulOverlayHandle, punSortOrderPtr);
     // Read output parameters
-    return [result, punSortOrderBuffer];
+    return [result, punSortOrder];
   }
 
 /*{
@@ -15312,7 +15312,7 @@ export class IVROverlay {
     const pfWidthInMetersPtr = Deno.UnsafePointer.of(pfWidthInMetersArray);
     const result = func.call(this.ptr, ulOverlayHandle, pfWidthInMetersPtr);
     // Read output parameters
-    return [result, pfWidthInMetersBuffer];
+    return [result, pfWidthInMeters];
   }
 
 /*{
@@ -15377,7 +15377,7 @@ export class IVROverlay {
     const pfCurvaturePtr = Deno.UnsafePointer.of(pfCurvatureArray);
     const result = func.call(this.ptr, ulOverlayHandle, pfCurvaturePtr);
     // Read output parameters
-    return [result, pfCurvatureBuffer];
+    return [result, pfCurvature];
   }
 
 /*{
@@ -15442,7 +15442,7 @@ export class IVROverlay {
     const pfRadiansPtr = Deno.UnsafePointer.of(pfRadiansArray);
     const result = func.call(this.ptr, ulOverlayHandle, pfRadiansPtr);
     // Read output parameters
-    return [result, pfRadiansBuffer];
+    return [result, pfRadians];
   }
 
 /*{
@@ -15503,7 +15503,7 @@ export class IVROverlay {
     const ulOverlayHandlePtr = Deno.UnsafePointer.of(ulOverlayHandleBuffer);
     const result = func.call(this.ptr, ulOverlayHandle, peTextureColorSpacePtr);
     // Read output parameters
-    return [result, peTextureColorSpaceBuffer];
+    return [result, peTextureColorSpaceBuffer[0]];
   }
 
 /*{
@@ -15601,7 +15601,7 @@ export class IVROverlay {
     const ulOverlayHandlePtr = Deno.UnsafePointer.of(ulOverlayHandleBuffer);
     const result = func.call(this.ptr, ulOverlayHandle, peTransformTypePtr);
     // Read output parameters
-    return [result, peTransformTypeBuffer];
+    return [result, peTransformTypeBuffer[0]];
   }
 
 /*{
@@ -15686,7 +15686,7 @@ export class IVROverlay {
     const ulOverlayHandlePtr = Deno.UnsafePointer.of(ulOverlayHandleBuffer);
     const result = func.call(this.ptr, ulOverlayHandle, peTrackingOriginPtr, pmatTrackingOriginToOverlayTransformPtr);
     // Read output parameters
-    return [result, peTrackingOriginBuffer, HmdMatrix34_t.fromBuffer(pmatTrackingOriginToOverlayTransformBuffer, 0)];
+    return [result, peTrackingOriginBuffer[0], HmdMatrix34_t.fromBuffer(pmatTrackingOriginToOverlayTransformBuffer, 0)];
   }
 
 /*{
@@ -15775,7 +15775,7 @@ export class IVROverlay {
     const punTrackedDevicePtr = Deno.UnsafePointer.of(punTrackedDeviceArray);
     const result = func.call(this.ptr, ulOverlayHandle, punTrackedDevicePtr, pmatTrackedDeviceToOverlayTransformPtr);
     // Read output parameters
-    return [result, punTrackedDeviceBuffer, HmdMatrix34_t.fromBuffer(pmatTrackedDeviceToOverlayTransformBuffer, 0)];
+    return [result, punTrackedDeviceBuffer[0], HmdMatrix34_t.fromBuffer(pmatTrackedDeviceToOverlayTransformBuffer, 0)];
   }
 
 /*{
@@ -15859,7 +15859,7 @@ export class IVROverlay {
     const unComponentNameSizePtr = Deno.UnsafePointer.of(unComponentNameSizeArray);
     const result = func.call(this.ptr, ulOverlayHandle, punDeviceIndexPtr, pchComponentNamePtr, unComponentNameSize);
     // Read output parameters
-    return [result, punDeviceIndexBuffer];
+    return [result, punDeviceIndexBuffer[0]];
   }
 
 /*{
@@ -16214,7 +16214,7 @@ export class IVROverlay {
     const ulOverlayHandlePtr = Deno.UnsafePointer.of(ulOverlayHandleBuffer);
     const result = func.call(this.ptr, ulOverlayHandle, peInputMethodPtr);
     // Read output parameters
-    return [result, peInputMethodBuffer];
+    return [result, peInputMethodBuffer[0]];
   }
 
 /*{
@@ -16677,7 +16677,7 @@ export class IVROverlay {
     const unBytesPerPixelPtr = Deno.UnsafePointer.of(unBytesPerPixelArray);
     const result = func.call(this.ptr, ulOverlayHandle, pvBufferPtr, unWidth, unHeight, unBytesPerPixel);
     // Read output parameters
-    return [result, pvBufferBuffer];
+    return [result, pvBufferBuffer[0]];
   }
 
 /*{
@@ -16779,7 +16779,7 @@ export class IVROverlay {
     const pNativeFormatPtr = Deno.UnsafePointer.of(pNativeFormatArray);
     const result = func.call(this.ptr, ulOverlayHandle, pNativeTextureHandlePtr, pNativeTextureRefPtr, pWidthPtr, pHeightPtr, pNativeFormatPtr, pAPITypePtr, pColorSpacePtr, pTextureBoundsPtr);
     // Read output parameters
-    return [result, pNativeTextureHandleBuffer, pNativeTextureRefBuffer, pWidthBuffer, pHeightBuffer, pNativeFormatBuffer, pAPITypeBuffer, pColorSpaceBuffer, VRTextureBounds_t.fromBuffer(pTextureBoundsBuffer, 0)];
+    return [result, pNativeTextureHandleBuffer[0], pNativeTextureRefBuffer[0], pWidth, pHeight, pNativeFormat, pAPITypeBuffer[0], pColorSpaceBuffer[0], VRTextureBounds_t.fromBuffer(pTextureBoundsBuffer, 0)];
   }
 
 /*{
@@ -16811,7 +16811,7 @@ export class IVROverlay {
     const pNativeTextureHandlePtr = Deno.UnsafePointer.of(pNativeTextureHandle);
     const result = func.call(this.ptr, ulOverlayHandle, pNativeTextureHandlePtr);
     // Read output parameters
-    return [result, pNativeTextureHandleBuffer];
+    return [result, pNativeTextureHandleBuffer[0]];
   }
 
 /*{
@@ -16850,7 +16850,7 @@ export class IVROverlay {
     const pHeightPtr = Deno.UnsafePointer.of(pHeightArray);
     const result = func.call(this.ptr, ulOverlayHandle, pWidthPtr, pHeightPtr);
     // Read output parameters
-    return [result, pWidthBuffer, pHeightBuffer];
+    return [result, pWidth, pHeight];
   }
 
 /*{
@@ -16895,7 +16895,7 @@ export class IVROverlay {
     const pThumbnailHandlePtr = Deno.UnsafePointer.of(pThumbnailHandleBuffer);
     const result = func.call(this.ptr, pchOverlayKeyPtr, pchOverlayFriendlyNamePtr, pMainHandlePtr, pThumbnailHandlePtr);
     // Read output parameters
-    return [result, pMainHandleBuffer, pThumbnailHandleBuffer];
+    return [result, pMainHandleBuffer[0], pThumbnailHandleBuffer[0]];
   }
 
 /*{
@@ -17004,7 +17004,7 @@ export class IVROverlay {
     const punProcessIdPtr = Deno.UnsafePointer.of(punProcessIdArray);
     const result = func.call(this.ptr, ulOverlayHandle, punProcessIdPtr);
     // Read output parameters
-    return [result, punProcessIdBuffer];
+    return [result, punProcessId];
   }
 
 /*{
@@ -17574,7 +17574,7 @@ export class IVRHeadsetView {
     const pnHeightPtr = Deno.UnsafePointer.of(pnHeightArray);
     const result = func.call(this.ptr, pnWidthPtr, pnHeightPtr);
     // Read output parameters
-    return [result, pnWidthBuffer, pnHeightBuffer];
+    return [result, pnWidth, pnHeight];
   }
 
 /*{
@@ -17743,7 +17743,7 @@ export class IVRHeadsetView {
     const pEndPctPtr = Deno.UnsafePointer.of(pEndPctArray);
     const result = func.call(this.ptr, pStartPctPtr, pEndPctPtr);
     // Read output parameters
-    return [result, pStartPctBuffer, pEndPctBuffer];
+    return [result, pStartPct, pEndPct];
   }
 
 /*{
@@ -17909,7 +17909,7 @@ export class IVRRenderModels {
     const ppD3D11Texture2DPtr = Deno.UnsafePointer.of(ppD3D11Texture2D);
     const result = func.call(this.ptr, textureId, pD3D11DevicePtr, ppD3D11Texture2DPtr);
     // Read output parameters
-    return [result, pD3D11DeviceBuffer, ppD3D11Texture2DBuffer];
+    return [result, pD3D11DeviceBuffer[0], ppD3D11Texture2DBuffer[0]];
   }
 
 /*{
@@ -17941,7 +17941,7 @@ export class IVRRenderModels {
     const pDstTexturePtr = Deno.UnsafePointer.of(pDstTexture);
     const result = func.call(this.ptr, textureId, pDstTexturePtr);
     // Read output parameters
-    return [result, pDstTextureBuffer];
+    return [result, pDstTextureBuffer[0]];
   }
 
 /*{
@@ -17967,7 +17967,7 @@ export class IVRRenderModels {
     const pD3D11Texture2DPtr = Deno.UnsafePointer.of(pD3D11Texture2D);
     const result = func.call(this.ptr, pD3D11Texture2DPtr);
     // Read output parameters
-    return [result, pD3D11Texture2DBuffer];
+    return [result, pD3D11Texture2DBuffer[0]];
   }
 
 /*{
@@ -18279,7 +18279,7 @@ export class IVRRenderModels {
     const pControllerStatePtr = Deno.UnsafePointer.of(pControllerStateBuffer);
     const result = func.call(this.ptr, pchRenderModelNamePtr, pchComponentNamePtr, pControllerStatePtr, pStatePtr, pComponentStatePtr);
     // Read output parameters
-    return [result, pControllerStateBuffer, RenderModel_ControllerMode_State_t.fromBuffer(pStateBuffer, 0), RenderModel_ComponentState_t.fromBuffer(pComponentStateBuffer, 0)];
+    return [result, pControllerStateBuffer[0], RenderModel_ControllerMode_State_t.fromBuffer(pStateBuffer, 0), RenderModel_ComponentState_t.fromBuffer(pComponentStateBuffer, 0)];
   }
 
 /*{
@@ -18355,7 +18355,7 @@ export class IVRRenderModels {
     const unThumbnailURLLenPtr = Deno.UnsafePointer.of(unThumbnailURLLenArray);
     const result = func.call(this.ptr, pchRenderModelNamePtr, pchThumbnailURLPtr, unThumbnailURLLen, peErrorPtr);
     // Read output parameters
-    return [result, peErrorBuffer];
+    return [result, peErrorBuffer[0]];
   }
 
 /*{
@@ -18399,7 +18399,7 @@ export class IVRRenderModels {
     const unOriginalPathLenPtr = Deno.UnsafePointer.of(unOriginalPathLenArray);
     const result = func.call(this.ptr, pchRenderModelNamePtr, pchOriginalPathPtr, unOriginalPathLen, peErrorPtr);
     // Read output parameters
-    return [result, peErrorBuffer];
+    return [result, peErrorBuffer[0]];
   }
 
 /*{
@@ -18488,7 +18488,7 @@ export class IVRNotifications {
     const pNotificationIdPtr = Deno.UnsafePointer.of(pNotificationIdArray);
     const result = func.call(this.ptr, ulOverlayHandle, ulUserValue, type, pchTextPtr, style, pImagePtr, pNotificationIdPtr);
     // Read output parameters
-    return [result, NotificationBitmap_t.fromBuffer(pImageBuffer, 0), pNotificationIdBuffer];
+    return [result, NotificationBitmap_t.fromBuffer(pImageBuffer, 0), pNotificationIdBuffer[0]];
   }
 
 /*{
@@ -18586,7 +18586,7 @@ export class IVRSettings {
     const bValuePtr = Deno.UnsafePointer.of(bValueArray);
     const result = func.call(this.ptr, pchSectionPtr, pchSettingsKeyPtr, bValue ? 1 : 0, peErrorPtr);
     // Read output parameters
-    return [result, peErrorBuffer];
+    return [result, peErrorBuffer[0]];
   }
 
 /*{
@@ -18629,7 +18629,7 @@ export class IVRSettings {
     const nValuePtr = Deno.UnsafePointer.of(nValueArray);
     const result = func.call(this.ptr, pchSectionPtr, pchSettingsKeyPtr, nValue, peErrorPtr);
     // Read output parameters
-    return [result, peErrorBuffer];
+    return [result, peErrorBuffer[0]];
   }
 
 /*{
@@ -18672,7 +18672,7 @@ export class IVRSettings {
     const flValuePtr = Deno.UnsafePointer.of(flValueArray);
     const result = func.call(this.ptr, pchSectionPtr, pchSettingsKeyPtr, flValue, peErrorPtr);
     // Read output parameters
-    return [result, peErrorBuffer];
+    return [result, peErrorBuffer[0]];
   }
 
 /*{
@@ -18715,7 +18715,7 @@ export class IVRSettings {
     const pchValuePtr = Deno.UnsafePointer.of(pchValueBuffer);
     const result = func.call(this.ptr, pchSectionPtr, pchSettingsKeyPtr, pchValuePtr, peErrorPtr);
     // Read output parameters
-    return [result, peErrorBuffer];
+    return [result, peErrorBuffer[0]];
   }
 
 /*{
@@ -18752,7 +18752,7 @@ export class IVRSettings {
     const pchSettingsKeyPtr = Deno.UnsafePointer.of(pchSettingsKeyBuffer);
     const result = func.call(this.ptr, pchSectionPtr, pchSettingsKeyPtr, peErrorPtr);
     // Read output parameters
-    return [result, peErrorBuffer];
+    return [result, peErrorBuffer[0]];
   }
 
 /*{
@@ -18789,7 +18789,7 @@ export class IVRSettings {
     const pchSettingsKeyPtr = Deno.UnsafePointer.of(pchSettingsKeyBuffer);
     const result = func.call(this.ptr, pchSectionPtr, pchSettingsKeyPtr, peErrorPtr);
     // Read output parameters
-    return [result, peErrorBuffer];
+    return [result, peErrorBuffer[0]];
   }
 
 /*{
@@ -18826,7 +18826,7 @@ export class IVRSettings {
     const pchSettingsKeyPtr = Deno.UnsafePointer.of(pchSettingsKeyBuffer);
     const result = func.call(this.ptr, pchSectionPtr, pchSettingsKeyPtr, peErrorPtr);
     // Read output parameters
-    return [result, peErrorBuffer];
+    return [result, peErrorBuffer[0]];
   }
 
 /*{
@@ -18876,7 +18876,7 @@ export class IVRSettings {
     const unValueLenPtr = Deno.UnsafePointer.of(unValueLenArray);
     const result = func.call(this.ptr, pchSectionPtr, pchSettingsKeyPtr, pchValuePtr, unValueLen, peErrorPtr);
     // Read output parameters
-    return [result, peErrorBuffer];
+    return [result, peErrorBuffer[0]];
   }
 
 /*{
@@ -18907,7 +18907,7 @@ export class IVRSettings {
     const pchSectionPtr = Deno.UnsafePointer.of(pchSectionBuffer);
     const result = func.call(this.ptr, pchSectionPtr, peErrorPtr);
     // Read output parameters
-    return [result, peErrorBuffer];
+    return [result, peErrorBuffer[0]];
   }
 
 /*{
@@ -18944,7 +18944,7 @@ export class IVRSettings {
     const pchSettingsKeyPtr = Deno.UnsafePointer.of(pchSettingsKeyBuffer);
     const result = func.call(this.ptr, pchSectionPtr, pchSettingsKeyPtr, peErrorPtr);
     // Read output parameters
-    return [result, peErrorBuffer];
+    return [result, peErrorBuffer[0]];
   }
 
 /*{
@@ -18992,7 +18992,7 @@ export class IVRScreenshots {
     const pchVRFilenamePtr = Deno.UnsafePointer.of(pchVRFilenameBuffer);
     const result = func.call(this.ptr, pOutScreenshotHandlePtr, type, pchPreviewFilenamePtr, pchVRFilenamePtr);
     // Read output parameters
-    return [result, pOutScreenshotHandleBuffer];
+    return [result, pOutScreenshotHandleBuffer[0]];
   }
 
 /*{
@@ -19011,7 +19011,7 @@ export class IVRScreenshots {
     }
   ]
 }*/
-  HookScreenshot(pSupportedTypes: EVRScreenshotType[], numTypes: number): EVRScreenshotError {
+  HookScreenshot(pSupportedTypes: EVRScreenshotType, numTypes: number): EVRScreenshotError {
     if (this.ptr === null) throw new Error("Invalid pointer");
     const vr = new Deno.UnsafePointerView(this.ptr);
     const vtablePtr = Deno.UnsafePointer.create(vr.getBigUint64(0));
@@ -19054,7 +19054,7 @@ export class IVRScreenshots {
     const screenshotHandlePtr = Deno.UnsafePointer.of(screenshotHandleArray);
     const result = func.call(this.ptr, screenshotHandle, pErrorPtr);
     // Read output parameters
-    return [result, pErrorBuffer];
+    return [result, pErrorBuffer[0]];
   }
 
 /*{
@@ -19102,7 +19102,7 @@ export class IVRScreenshots {
     const cchFilenamePtr = Deno.UnsafePointer.of(cchFilenameArray);
     const result = func.call(this.ptr, screenshotHandle, filenameType, pchFilenamePtr, cchFilename, pErrorPtr);
     // Read output parameters
-    return [result, pErrorBuffer];
+    return [result, pErrorBuffer[0]];
   }
 
 /*{
@@ -19173,7 +19173,7 @@ export class IVRScreenshots {
     const pchVRFilenamePtr = Deno.UnsafePointer.of(pchVRFilenameBuffer);
     const result = func.call(this.ptr, pOutScreenshotHandlePtr, pchPreviewFilenamePtr, pchVRFilenamePtr);
     // Read output parameters
-    return [result, pOutScreenshotHandleBuffer];
+    return [result, pOutScreenshotHandleBuffer[0]];
   }
 
 /*{
@@ -19481,7 +19481,7 @@ export class IVRInput {
     const pHandlePtr = Deno.UnsafePointer.of(pHandleBuffer);
     const result = func.call(this.ptr, pchActionSetNamePtr, pHandlePtr);
     // Read output parameters
-    return [result, pHandleBuffer];
+    return [result, pHandleBuffer[0]];
   }
 
 /*{
@@ -19514,7 +19514,7 @@ export class IVRInput {
     const pHandlePtr = Deno.UnsafePointer.of(pHandleBuffer);
     const result = func.call(this.ptr, pchActionNamePtr, pHandlePtr);
     // Read output parameters
-    return [result, pHandleBuffer];
+    return [result, pHandleBuffer[0]];
   }
 
 /*{
@@ -19547,7 +19547,7 @@ export class IVRInput {
     const pHandlePtr = Deno.UnsafePointer.of(pHandleBuffer);
     const result = func.call(this.ptr, pchInputSourcePathPtr, pHandlePtr);
     // Read output parameters
-    return [result, pHandleBuffer];
+    return [result, pHandleBuffer[0]];
   }
 
 /*{
@@ -19570,7 +19570,7 @@ export class IVRInput {
     }
   ]
 }*/
-  UpdateActionState(pSets: VRActiveActionSet_t[], unSizeOfVRSelectedActionSet_t: number, unSetCount: number): [EVRInputError, VRActiveActionSet_t] {
+  UpdateActionState(pSets: VRActiveActionSet_t, unSizeOfVRSelectedActionSet_t: number, unSetCount: number): [EVRInputError, VRActiveActionSet_t] {
     if (this.ptr === null) throw new Error("Invalid pointer");
     const vr = new Deno.UnsafePointerView(this.ptr);
     const vtablePtr = Deno.UnsafePointer.create(vr.getBigUint64(0));
@@ -19852,7 +19852,7 @@ export class IVRInput {
     const func = new Deno.UnsafeFnPointer(funcPtr, { parameters: ["pointer", "pointer"], result: "i32" });
     const result = func.call(this.ptr, peDominantHandPtr);
     // Read output parameters
-    return [result, peDominantHandBuffer];
+    return [result, peDominantHandBuffer[0]];
   }
 
 /*{
@@ -19909,7 +19909,7 @@ export class IVRInput {
     const pBoneCountPtr = Deno.UnsafePointer.of(pBoneCountArray);
     const result = func.call(this.ptr, action, pBoneCountPtr);
     // Read output parameters
-    return [result, pBoneCountBuffer];
+    return [result, pBoneCount];
   }
 
 /*{
@@ -19932,7 +19932,7 @@ export class IVRInput {
     }
   ]
 }*/
-  GetBoneHierarchy(action: VRActionHandle_t, pParentIndices: BoneIndex_t[], unIndexArayCount: number): [EVRInputError, BoneIndex_t] {
+  GetBoneHierarchy(action: VRActionHandle_t, pParentIndices: BoneIndex_t, unIndexArayCount: number): [EVRInputError, BoneIndex_t] {
     if (this.ptr === null) throw new Error("Invalid pointer");
     const vr = new Deno.UnsafePointerView(this.ptr);
     const vtablePtr = Deno.UnsafePointer.create(vr.getBigUint64(0));
@@ -19949,7 +19949,7 @@ export class IVRInput {
     const unIndexArayCountPtr = Deno.UnsafePointer.of(unIndexArayCountArray);
     const result = func.call(this.ptr, action, pParentIndicesPtr, unIndexArayCount);
     // Read output parameters
-    return [result, pParentIndicesBuffer];
+    return [result, pParentIndicesBuffer[0]];
   }
 
 /*{
@@ -20025,7 +20025,7 @@ export class IVRInput {
     }
   ]
 }*/
-  GetSkeletalReferenceTransforms(action: VRActionHandle_t, eTransformSpace: EVRSkeletalTransformSpace, eReferencePose: EVRSkeletalReferencePose, pTransformArray: VRBoneTransform_t[], unTransformArrayCount: number): [EVRInputError, VRBoneTransform_t] {
+  GetSkeletalReferenceTransforms(action: VRActionHandle_t, eTransformSpace: EVRSkeletalTransformSpace, eReferencePose: EVRSkeletalReferencePose, pTransformArray: VRBoneTransform_t, unTransformArrayCount: number): [EVRInputError, VRBoneTransform_t] {
     if (this.ptr === null) throw new Error("Invalid pointer");
     const vr = new Deno.UnsafePointerView(this.ptr);
     const vtablePtr = Deno.UnsafePointer.create(vr.getBigUint64(0));
@@ -20075,7 +20075,7 @@ export class IVRInput {
     const actionPtr = Deno.UnsafePointer.of(actionBuffer);
     const result = func.call(this.ptr, action, pSkeletalTrackingLevelPtr);
     // Read output parameters
-    return [result, pSkeletalTrackingLevelBuffer];
+    return [result, pSkeletalTrackingLevelBuffer[0]];
   }
 
 /*{
@@ -20106,7 +20106,7 @@ export class IVRInput {
     }
   ]
 }*/
-  GetSkeletalBoneData(action: VRActionHandle_t, eTransformSpace: EVRSkeletalTransformSpace, eMotionRange: EVRSkeletalMotionRange, pTransformArray: VRBoneTransform_t[], unTransformArrayCount: number): [EVRInputError, VRBoneTransform_t] {
+  GetSkeletalBoneData(action: VRActionHandle_t, eTransformSpace: EVRSkeletalTransformSpace, eMotionRange: EVRSkeletalMotionRange, pTransformArray: VRBoneTransform_t, unTransformArrayCount: number): [EVRInputError, VRBoneTransform_t] {
     if (this.ptr === null) throw new Error("Invalid pointer");
     const vr = new Deno.UnsafePointerView(this.ptr);
     const vtablePtr = Deno.UnsafePointer.create(vr.getBigUint64(0));
@@ -20218,7 +20218,7 @@ export class IVRInput {
     const punRequiredCompressedSizePtr = Deno.UnsafePointer.of(punRequiredCompressedSizeArray);
     const result = func.call(this.ptr, action, eMotionRange, pvCompressedDataPtr, unCompressedSize, punRequiredCompressedSizePtr);
     // Read output parameters
-    return [result, pvCompressedDataBuffer, punRequiredCompressedSizeBuffer];
+    return [result, pvCompressedDataBuffer[0], punRequiredCompressedSize];
   }
 
 /*{
@@ -20249,7 +20249,7 @@ export class IVRInput {
     }
   ]
 }*/
-  DecompressSkeletalBoneData(pvCompressedBuffer: Uint8Array, unCompressedBufferSize: number, eTransformSpace: EVRSkeletalTransformSpace, pTransformArray: VRBoneTransform_t[], unTransformArrayCount: number): [EVRInputError, Uint8Array, VRBoneTransform_t] {
+  DecompressSkeletalBoneData(pvCompressedBuffer: Uint8Array, unCompressedBufferSize: number, eTransformSpace: EVRSkeletalTransformSpace, pTransformArray: VRBoneTransform_t, unTransformArrayCount: number): [EVRInputError, Uint8Array, VRBoneTransform_t] {
     if (this.ptr === null) throw new Error("Invalid pointer");
     const vr = new Deno.UnsafePointerView(this.ptr);
     const vtablePtr = Deno.UnsafePointer.create(vr.getBigUint64(0));
@@ -20269,7 +20269,7 @@ export class IVRInput {
     const unTransformArrayCountPtr = Deno.UnsafePointer.of(unTransformArrayCountArray);
     const result = func.call(this.ptr, pvCompressedBufferPtr, unCompressedBufferSize, eTransformSpace, pTransformArrayPtr, unTransformArrayCount);
     // Read output parameters
-    return [result, pvCompressedBufferBuffer, VRBoneTransform_t.fromBuffer(pTransformArrayBuffer, 0)];
+    return [result, pvCompressedBufferBuffer[0], VRBoneTransform_t.fromBuffer(pTransformArrayBuffer, 0)];
   }
 
 /*{
@@ -20352,7 +20352,7 @@ export class IVRInput {
     }
   ]
 }*/
-  GetActionOrigins(actionSetHandle: VRActionSetHandle_t, digitalActionHandle: VRActionHandle_t, originsOut: VRInputValueHandle_t[], originOutCount: number): [EVRInputError, VRInputValueHandle_t] {
+  GetActionOrigins(actionSetHandle: VRActionSetHandle_t, digitalActionHandle: VRActionHandle_t, originsOut: VRInputValueHandle_t, originOutCount: number): [EVRInputError, VRInputValueHandle_t] {
     if (this.ptr === null) throw new Error("Invalid pointer");
     const vr = new Deno.UnsafePointerView(this.ptr);
     const vtablePtr = Deno.UnsafePointer.create(vr.getBigUint64(0));
@@ -20371,7 +20371,7 @@ export class IVRInput {
     const originOutCountPtr = Deno.UnsafePointer.of(originOutCountArray);
     const result = func.call(this.ptr, actionSetHandle, digitalActionHandle, originsOutPtr, originOutCount);
     // Read output parameters
-    return [result, originsOutBuffer];
+    return [result, originsOutBuffer[0]];
   }
 
 /*{
@@ -20490,7 +20490,7 @@ export class IVRInput {
     }
   ]
 }*/
-  GetActionBindingInfo(action: VRActionHandle_t, pOriginInfo: InputBindingInfo_t[], unBindingInfoSize: number, unBindingInfoCount: number, punReturnedBindingInfoCount: number): [EVRInputError, InputBindingInfo_t, number] {
+  GetActionBindingInfo(action: VRActionHandle_t, pOriginInfo: InputBindingInfo_t, unBindingInfoSize: number, unBindingInfoCount: number, punReturnedBindingInfoCount: number): [EVRInputError, InputBindingInfo_t, number] {
     if (this.ptr === null) throw new Error("Invalid pointer");
     const vr = new Deno.UnsafePointerView(this.ptr);
     const vtablePtr = Deno.UnsafePointer.create(vr.getBigUint64(0));
@@ -20528,7 +20528,7 @@ export class IVRInput {
     const punReturnedBindingInfoCountPtr = Deno.UnsafePointer.of(punReturnedBindingInfoCountArray);
     const result = func.call(this.ptr, action, pOriginInfoPtr, unBindingInfoSize, unBindingInfoCount, punReturnedBindingInfoCountPtr);
     // Read output parameters
-    return [result, InputBindingInfo_t.fromBuffer(pOriginInfoBuffer, 0), punReturnedBindingInfoCountBuffer];
+    return [result, InputBindingInfo_t.fromBuffer(pOriginInfoBuffer, 0), punReturnedBindingInfoCount];
   }
 
 /*{
@@ -20587,7 +20587,7 @@ export class IVRInput {
     }
   ]
 }*/
-  ShowBindingsForActionSet(pSets: VRActiveActionSet_t[], unSizeOfVRSelectedActionSet_t: number, unSetCount: number, originToHighlight: VRInputValueHandle_t): [EVRInputError, VRActiveActionSet_t] {
+  ShowBindingsForActionSet(pSets: VRActiveActionSet_t, unSizeOfVRSelectedActionSet_t: number, unSetCount: number, originToHighlight: VRInputValueHandle_t): [EVRInputError, VRActiveActionSet_t] {
     if (this.ptr === null) throw new Error("Invalid pointer");
     const vr = new Deno.UnsafePointerView(this.ptr);
     const vtablePtr = Deno.UnsafePointer.create(vr.getBigUint64(0));
@@ -20837,7 +20837,7 @@ export class IVRIOBuffer {
     const pulBufferPtr = Deno.UnsafePointer.of(pulBufferBuffer);
     const result = func.call(this.ptr, pchPathPtr, mode, unElementSize, unElements, pulBufferPtr);
     // Read output parameters
-    return [result, pulBufferBuffer];
+    return [result, pulBufferBuffer[0]];
   }
 
 /*{
@@ -20907,7 +20907,7 @@ export class IVRIOBuffer {
     const punReadPtr = Deno.UnsafePointer.of(punReadArray);
     const result = func.call(this.ptr, ulBuffer, pDstPtr, unBytes, punReadPtr);
     // Read output parameters
-    return [result, pDstBuffer, punReadBuffer];
+    return [result, pDstBuffer[0], punRead];
   }
 
 /*{
@@ -20945,7 +20945,7 @@ export class IVRIOBuffer {
     const unBytesPtr = Deno.UnsafePointer.of(unBytesArray);
     const result = func.call(this.ptr, ulBuffer, pSrcPtr, unBytes);
     // Read output parameters
-    return [result, pSrcBuffer];
+    return [result, pSrcBuffer[0]];
   }
 
 /*{
@@ -21035,7 +21035,7 @@ export class IVRSpatialAnchors {
     const pHandleOutPtr = Deno.UnsafePointer.of(pHandleOutArray);
     const result = func.call(this.ptr, pchDescriptorPtr, pHandleOutPtr);
     // Read output parameters
-    return [result, pHandleOutBuffer];
+    return [result, pHandleOutBuffer[0]];
   }
 
 /*{
@@ -21079,7 +21079,7 @@ export class IVRSpatialAnchors {
     const pHandleOutPtr = Deno.UnsafePointer.of(pHandleOutArray);
     const result = func.call(this.ptr, unDeviceIndex, eOrigin, pPosePtr, pHandleOutPtr);
     // Read output parameters
-    return [result, SpatialAnchorPose_t.fromBuffer(pPoseBuffer, 0), pHandleOutBuffer];
+    return [result, SpatialAnchorPose_t.fromBuffer(pPoseBuffer, 0), pHandleOutBuffer[0]];
   }
 
 /*{
@@ -21157,7 +21157,7 @@ export class IVRSpatialAnchors {
     const punDescriptorBufferLenInOutPtr = Deno.UnsafePointer.of(punDescriptorBufferLenInOutArray);
     const result = func.call(this.ptr, unHandle, pchDescriptorOutPtr, punDescriptorBufferLenInOutPtr);
     // Read output parameters
-    return [result, punDescriptorBufferLenInOutBuffer];
+    return [result, punDescriptorBufferLenInOut];
   }
 
 /*{
@@ -21215,7 +21215,7 @@ export class IVRDebug {
     const pHandleOutPtr = Deno.UnsafePointer.of(pHandleOutBuffer);
     const result = func.call(this.ptr, pHandleOutPtr);
     // Read output parameters
-    return [result, pHandleOutBuffer];
+    return [result, pHandleOutBuffer[0]];
   }
 
 /*{
@@ -21545,7 +21545,7 @@ export class IVRPaths {
     const pchPathPtr = Deno.UnsafePointer.of(pchPathBuffer);
     const result = func.call(this.ptr, pHandlePtr, pchPathPtr);
     // Read output parameters
-    return [result, pHandleBuffer];
+    return [result, pHandleBuffer[0]];
   }
 
 /*{
@@ -21590,7 +21590,7 @@ export class IVRPaths {
     const punBufferSizeUsedPtr = Deno.UnsafePointer.of(punBufferSizeUsedArray);
     const result = func.call(this.ptr, pHandle, pchBufferPtr, unBufferSize, punBufferSizeUsedPtr);
     // Read output parameters
-    return [result, punBufferSizeUsedBuffer];
+    return [result, punBufferSizeUsed];
   }
 
 /*{
@@ -21652,7 +21652,7 @@ export class IVRBlockQueue {
     const unFlagsPtr = Deno.UnsafePointer.of(unFlagsArray);
     const result = func.call(this.ptr, pulQueueHandlePtr, pchPathPtr, unBlockDataSize, unBlockHeaderSize, unBlockCount, unFlags);
     // Read output parameters
-    return [result, pulQueueHandleBuffer];
+    return [result, pulQueueHandleBuffer[0]];
   }
 
 /*{
@@ -21685,7 +21685,7 @@ export class IVRBlockQueue {
     const pchPathPtr = Deno.UnsafePointer.of(pchPathBuffer);
     const result = func.call(this.ptr, pulQueueHandlePtr, pchPathPtr);
     // Read output parameters
-    return [result, pulQueueHandleBuffer];
+    return [result, pulQueueHandleBuffer[0]];
   }
 
 /*{
@@ -21749,7 +21749,7 @@ export class IVRBlockQueue {
     const ppvBufferPtr = Deno.UnsafePointer.of(ppvBuffer);
     const result = func.call(this.ptr, ulQueueHandle, pulBlockHandlePtr, ppvBufferPtr);
     // Read output parameters
-    return [result, pulBlockHandleBuffer, ppvBufferBuffer];
+    return [result, pulBlockHandleBuffer[0], ppvBufferBuffer[0]];
   }
 
 /*{
@@ -21829,7 +21829,7 @@ export class IVRBlockQueue {
     const unTimeoutMsPtr = Deno.UnsafePointer.of(unTimeoutMsArray);
     const result = func.call(this.ptr, ulQueueHandle, pulBlockHandlePtr, ppvBufferPtr, eReadType, unTimeoutMs);
     // Read output parameters
-    return [result, pulBlockHandleBuffer, ppvBufferBuffer];
+    return [result, pulBlockHandleBuffer[0], ppvBufferBuffer[0]];
   }
 
 /*{
@@ -21871,7 +21871,7 @@ export class IVRBlockQueue {
     const ppvBufferPtr = Deno.UnsafePointer.of(ppvBuffer);
     const result = func.call(this.ptr, ulQueueHandle, pulBlockHandlePtr, ppvBufferPtr, eReadType);
     // Read output parameters
-    return [result, pulBlockHandleBuffer, ppvBufferBuffer];
+    return [result, pulBlockHandleBuffer[0], ppvBufferBuffer[0]];
   }
 
 /*{
@@ -21936,7 +21936,7 @@ export class IVRBlockQueue {
     const pbHasReadersPtr = Deno.UnsafePointer.of(pbHasReadersArray);
     const result = func.call(this.ptr, ulQueueHandle, pbHasReadersPtr);
     // Read output parameters
-    return [result, pbHasReadersBuffer];
+    return [result, pbHasReadersBuffer[0]];
   }
 
 }
