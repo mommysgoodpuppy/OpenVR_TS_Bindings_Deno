@@ -23,7 +23,7 @@ async function main() {
     console.log(a)
 
     
-    const overlayPtr = OpenVR.VR_GetGenericInterface(stringToPointer(OpenVR.IVROverlayView_Version), TypeSafeINITERRPTR);
+    const overlayPtr = OpenVR.VR_GetGenericInterface(stringToPointer(OpenVR.IVROverlay_Version), TypeSafeINITERRPTR);
     a = new Deno.UnsafePointerView(TypeSafeINITERRPTR).getInt32();
     console.log(a)
     

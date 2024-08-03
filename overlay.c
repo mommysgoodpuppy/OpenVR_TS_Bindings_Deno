@@ -26,7 +26,13 @@ int main() {
 
     printf("OpenVR initialized successfully\n");
 
-    struct VR_IVROverlay_FnTable* overlay = (struct VR_IVROverlay_FnTable*)VR_GetGenericInterface(IVROverlay_Version, &error);
+    printf("IVROverlay_Version: %s\n", IVROverlay_Version);
+
+    char fnTableName[128];
+    snprintf(fnTableName, 128, "FnTable:%s", IVROverlay_Version);
+    printf("Constructed fnTableName: %s\n", fnTableName);
+    
+    struct VR_IVROverlay_FnTable* overlay = (struct VR_IVROverlay_FnTable*)VR_GetGenericInterface(fnTableName, &error);
     check_error(__LINE__, error);
     if (overlay == NULL) {
         printf("Failed to get IVROverlay interface\n");
