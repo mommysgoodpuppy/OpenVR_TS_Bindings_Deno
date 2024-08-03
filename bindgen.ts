@@ -1555,12 +1555,15 @@ function outputWrapperClasses(data: any): string {
 
         output += `  ${method.methodname}(${params}): ${returnType} {\n`;
         output += `    if (this.ptr === null) throw new Error("Invalid pointer");\n`;
+
+        
+
         output += `    const vr = new Deno.UnsafePointerView(this.ptr);\n`;
         output += `    const vtablePtr = Deno.UnsafePointer.create(vr.getBigUint64(0));\n`;
-        output += `    if (vtablePtr === null) throw new Error("Invalid vtable pointer");\n`;
+
         output += `    const vtable = new Deno.UnsafePointerView(vtablePtr);\n`;
         output += `    const funcPtr = Deno.UnsafePointer.create(vtable.getBigUint64(${methodIndex * 8}));\n`;
-        output += `    if (funcPtr === null) throw new Error("Invalid function pointer");\n`;
+
 
         const ffiParams = method.params
             ? method.params.map((param: any) => {

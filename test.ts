@@ -13,20 +13,29 @@ async function main() {
 
 
 
-    const initerrorptr = Deno.UnsafePointer.of<OpenVR.InitError>(new Int32Array(1))
-    if (initerrorptr === null) throw new Error("Invalid pointer");
+    const initerrorptr = Deno.UnsafePointer.of<OpenVR.InitError>(new Int32Array(1))!
     const TypeSafeINITERRPTR: OpenVR.InitErrorPTRType = initerrorptr
 
 
-    const errorX = Deno.UnsafePointer.of(new Int32Array(1));
+    const errorX = Deno.UnsafePointer.of(new Int32Array(1))!;
     OpenVR.VR_InitInternal(errorX, OpenVR.ApplicationType.VRApplication_Overlay);
+    let a = new Deno.UnsafePointerView(errorX).getInt32();
+    console.log(a)
 
-
+    
     const overlayPtr = OpenVR.VR_GetGenericInterface(stringToPointer(OpenVR.IVROverlayView_Version), TypeSafeINITERRPTR);
+    a = new Deno.UnsafePointerView(TypeSafeINITERRPTR).getInt32();
+    console.log(a)
+    
     const IVRPtr = OpenVR.VR_GetGenericInterface(stringToPointer(OpenVR.IVRSystem_Version), TypeSafeINITERRPTR);
+    a = new Deno.UnsafePointerView(TypeSafeINITERRPTR).getInt32();
+    console.log(a)
     const IVRInputPtr = OpenVR.VR_GetGenericInterface(stringToPointer(OpenVR.IVRInput_Version), TypeSafeINITERRPTR);
+    a = new Deno.UnsafePointerView(TypeSafeINITERRPTR).getInt32();
+    console.log(a)
 
     const overlay = new OpenVR.IVROverlay(overlayPtr);
+    console.log(overlay)
     const vrSystem = new OpenVR.IVRSystem(IVRPtr);
     const vrInput = new OpenVR.IVRInput(IVRInputPtr);
 
@@ -82,11 +91,14 @@ async function main() {
 
 
 
-    const overlayHandlePTR = Deno.UnsafePointer.of<OpenVR.OverlayHandle>(new BigUint64Array(1))!
-    error = overlay.CreateOverlay("image", "image", overlayHandlePTR);
+    const overlayHandlePTR = Deno.UnsafePointer.of(new BigInt64Array(1))!
+    let overlayhandle = new Deno.UnsafePointerView(overlayHandlePTR).getBigUint64();
+    console.log(`handle: ${overlayhandle}`);
+    error = overlay.CreateOverlay("batterymonitoroverlay-overlay", "Battery Monitor Overlay", overlayHandlePTR);
+
     if (error !== OpenVR.OverlayError.VROverlayError_None) {
         console.error(`Failed to create overlay: ${OpenVR.OverlayError[error]}`);
-        throw new Error("Failed to create overlay");
+        //throw new Error("Failed to create overlay");
     }
     if (overlayHandlePTR === null) throw new Error("Invalid pointer");
     const overlayHandle = new Deno.UnsafePointerView(overlayHandlePTR).getBigUint64();
@@ -125,7 +137,7 @@ async function main() {
         let actionSets = [activeActionSet];
 
 
-        error= vrInput.UpdateActionState(activeActionSet, OpenVR.ActiveActionSet.byteLength, actionSets.length);
+        error = vrInput.UpdateActionState(activeActionSet, OpenVR.ActiveActionSet.byteLength, actionSets.length);
         if (error !== OpenVR.EVRInputError.VRInputError_None) {
             console.error(`Failed to update action state: ${OpenVR.EVRInputError[error]}`);
             throw new Error("Failed to update action state");

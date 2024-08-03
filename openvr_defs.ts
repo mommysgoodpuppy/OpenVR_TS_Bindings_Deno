@@ -20,6 +20,7 @@ export const typeMapping: Record<string, { ffi: Deno.NativeType | Deno.NativeVoi
     "uint32_t": { ffi: "u32", deno: "number", c: "uint32_t" },
     "uint64_t": { ffi: "u64", deno: "bigint", c: "uint64_t" },
     "int32_t": { ffi: "i32", deno: "number", c: "int32_t" },
+    "const char *": { ffi: "pointer", deno: "string", c: "const char *" },
     "char *": { ffi: "pointer", deno: "string", c: "char *" },
     "char *const": { ffi: "pointer", deno: "string", c: "char *const" },
 };

@@ -90,7 +90,6 @@ async function main() {
     
     let overlayhandle: OpenVR.OverlayHandle = 0n;
     const overlayhandlePTR = Deno.UnsafePointer.of<OpenVR.OverlayHandle>(new BigUint64Array(1))!
-    //const x = new ArrayBuffer(BigInt64Array.BYTES_PER_ELEMENT)
 
     
     overlayhandle = new Deno.UnsafePointerView(overlayhandlePTR).getBigUint64();

@@ -13,7 +13,7 @@ async function main() {
   output += await generateTypes(api.typedefs, api.consts);
   output += await generateEnums(api.enums);
   output += await generateStructs(api.structs);
-  output += await generateMethods(api.methods);
+  output += await generateMethods(api.methods, api.typedefs, api.enums);
 
 
   await Deno.writeTextFile("openvr/FULL.ts", output);
@@ -414,8 +414,29 @@ const INTERFACE_NAMES: string[] = [
   "vr::IVRBlockQueue",
 ]
 
+function getFfiType(type: string, defs: any[], enums: any[]): any {
+  // Check if it's a basic type in typeMapping
+  if (typeMapping[type]) {
+    return typeMapping[type].ffi;
+  }
 
-async function generateMethods(methods: any[]) {
+  // Check if it's a typedef
+  const typedef = defs.find(def => def.typedef === type);
+  if (typedef) {
+    return getFfiType(typedef.type, defs, enums);
+  }
+
+  // Check if it's an enum
+  const isEnum = enums.some(e => e.enumname === type);
+  if (isEnum) {
+    return "i32";
+  }
+
+  // If all else fails, assume it's a pointer
+  return "pointer";
+}
+
+async function generateMethods(methods: any[], defs: any[], enums: any[]) {
   let output = "// Classes\n\n";
   output += "//#region Classes\n";
 
@@ -423,6 +444,8 @@ async function generateMethods(methods: any[]) {
     const ifaceTrim = iface.replace("vr::", "");
     output += `export class ${ifaceTrim} {\n`;
     output += `  constructor(private ptr: Deno.PointerValue<${ifaceTrim}|unknown>) {}\n\n`;
+
+    let methodIndex = 0;
 
     for (const meth of methods) {
       if (meth.classname !== iface) continue;
@@ -456,15 +479,56 @@ async function generateMethods(methods: any[]) {
 
       // Add method implementation
       output += `    if (this.ptr === null) throw new Error("${ifaceTrim} pointer is null");\n`;
-      output += `    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<${ifaceTrim}>);\n`;
-      output += `    // TODO: Implement FFI call\n`;
 
+      output += `    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<${ifaceTrim}>);\n`;
+
+
+      output += `    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(${methodIndex * 8}))!;\n`;
+
+
+
+      output += `    const func = new Deno.UnsafeFnPointer(funcPtr, {\n`;
+      output += `      parameters: [\n`;
+      output += `        "pointer", // this pointer\n`;
+      if (methParams) {
+        for (const param of methParams) {
+          const ffiType = getFfiType(param.paramtype, defs, enums);
+          output += `        "${ffiType}", //(${param.paramtype})  ${param.paramname}\n`;
+        }
+      }
+      output += `      ],\n`;
+      output += `      result: "${getFfiType(methRet, defs, enums)}"\n`;
+      output += `    });\n\n`;
+
+      // Call the function
+      output += `    const result = func.call(\n`;
+      output += `      this.ptr,\n`;
+      if (methParams) {
+        for (const param of methParams) {
+          const paramType = fieldTypeConvert(param.paramtype);
+          if (paramType === "string") {
+            output += `      Deno.UnsafePointer.of(new TextEncoder().encode(${param.paramname} + "\\0")),\n`;
+          } else if (typeMapping[param.paramtype]?.deno === "number") {
+            output += `      ${param.paramname},\n`;
+          } else {
+            output += `      ${param.paramname},\n`;
+          }
+        }
+      }
+      output += `    );\n\n`;
+
+      // Handle the result
       if (retType !== "void") {
-        output += `    // TODO: Return the result\n`;
-        output += `    return null as unknown as ${retType};\n`;
+        const ffiType = getFfiType(methRet, defs, enums);
+        if (ffiType === "pointer") {
+          output += `    return result// as unknown as ${retType};\n`;
+        } else {
+          output += `    return result// as ${retType};\n`;
+        }
       }
 
       output += "  }\n\n";
+      methodIndex++;
     }
     output += "}\n\n";
   }
