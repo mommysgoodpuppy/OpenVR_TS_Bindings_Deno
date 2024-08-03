@@ -30,13 +30,18 @@ async function main() {
     const vrSystem = new OpenVR.IVRSystem(IVRPtr);
     const vrInput = new OpenVR.IVRInput(IVRInputPtr);
 
+
+    //#region controller setup
+    /*
+    
+    //set action manifest path
     error = vrInput.SetActionManifestPath(manifestPath);
     if (error !== OpenVR.InputError.VRInputError_None) {
         console.error(`Failed to set action manifest path: ${OpenVR.InputError[error]}`);
         throw new Error("Failed to set action manifest path");
     }
 
-
+    //get action set handle
     const actionSetHandlePTR = Deno.UnsafePointer.of<OpenVR.ActionSetHandle>(new BigUint64Array(1))!
     error = vrInput.GetActionSetHandle("/actions/main", actionSetHandlePTR);
     if (error !== OpenVR.InputError.VRInputError_None) {
@@ -44,15 +49,15 @@ async function main() {
         throw new Error("Failed to get action set handle");
     }
     if (actionSetHandlePTR === null) throw new Error("Invalid pointer");
-    let actionSetHandle = new Deno.UnsafePointerView(actionSetHandlePTR).getBigUint64();
+    const actionSetHandle = new Deno.UnsafePointerView(actionSetHandlePTR).getBigUint64();
 
+
+    //#region Get action handles
     let handPoseLeftHandle: OpenVR.ActionHandle = OpenVR.k_ulInvalidActionHandle;
     const handPoseLeftHandlePTR = Deno.UnsafePointer.of<OpenVR.ActionHandle>(new BigUint64Array(1))!
-
     let handPoseRightHandle: OpenVR.ActionHandle = OpenVR.k_ulInvalidActionHandle;
     const handPoseRightHandlePTR = Deno.UnsafePointer.of<OpenVR.ActionHandle>(new BigUint64Array(1))!
-
-
+    
     error = vrInput.GetActionHandle("/actions/main/in/HandPoseLeft", handPoseLeftHandlePTR);
     if (error !== OpenVR.InputError.VRInputError_None) {
         console.error(`Failed to get action handle: ${OpenVR.InputError[error]}`);
@@ -70,17 +75,21 @@ async function main() {
     handPoseRightHandle = new Deno.UnsafePointerView(handPoseRightHandlePTR).getBigUint64();
 
     console.log(handPoseLeftHandle, handPoseRightHandle);
+    //#endregion
+    
+    */
+    //#endregion
 
-    let overlayHandle: OpenVR.OverlayHandle = 0n;
+
+
     const overlayHandlePTR = Deno.UnsafePointer.of<OpenVR.OverlayHandle>(new BigUint64Array(1))!
-
     error = overlay.CreateOverlay("image", "image", overlayHandlePTR);
     if (error !== OpenVR.OverlayError.VROverlayError_None) {
         console.error(`Failed to create overlay: ${OpenVR.OverlayError[error]}`);
         throw new Error("Failed to create overlay");
     }
     if (overlayHandlePTR === null) throw new Error("Invalid pointer");
-    overlayHandle = new Deno.UnsafePointerView(overlayHandlePTR).getBigUint64();
+    const overlayHandle = new Deno.UnsafePointerView(overlayHandlePTR).getBigUint64();
 
     console.log(`Overlay created with handle: ${overlayHandle}`);
 
@@ -101,7 +110,9 @@ async function main() {
 
     console.log("Overlay created and shown. Press Ctrl+C to exit.");
 
-    while (true) {
+
+    //#region Main loop
+    while (false) {
 
         let activeActionSet: OpenVR.ActiveActionSet = {
             ulActionSet: 0n,
@@ -114,7 +125,7 @@ async function main() {
         let actionSets = [activeActionSet];
 
 
-        [error, activeActionSet] = vrInput.UpdateActionState(activeActionSet, OpenVR.VRActiveActionSet_t.byteLength, actionSets.length);
+        error= vrInput.UpdateActionState(activeActionSet, OpenVR.ActiveActionSet.byteLength, actionSets.length);
         if (error !== OpenVR.EVRInputError.VRInputError_None) {
             console.error(`Failed to update action state: ${OpenVR.EVRInputError[error]}`);
             throw new Error("Failed to update action state");
