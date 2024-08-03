@@ -7857,15 +7857,24 @@ export class IVROverlay {
       ],
       result: "i32"
     });
+    const pchOverlayKeyBuffer = new TextEncoder().encode(pchOverlayKey + '\0');
+    const pchOverlayKeyPtr = Deno.UnsafePointer.of(pchOverlayKeyBuffer);
+    const pchOverlayNameBuffer = new TextEncoder().encode(pchOverlayName + '\0');
+    const pchOverlayNamePtr = Deno.UnsafePointer.of(pchOverlayNameBuffer);
+    const pOverlayHandleBuffer = new BigUint64Array(1);
+    const pOverlayHandlePtr = Deno.UnsafePointer.of(pOverlayHandleBuffer);
 
     const result = func.call(
       this.ptr,
-      Deno.UnsafePointer.of(new TextEncoder().encode(pchOverlayKey + "\0")),
-      Deno.UnsafePointer.of(new TextEncoder().encode(pchOverlayName + "\0")),
-      pOverlayHandle,
+      pchOverlayKeyPtr,
+      pchOverlayNamePtr,
+      pOverlayHandlePtr,
     );
+    const pointerToHandle = new Deno.UnsafePointerView(pOverlayHandlePtr).getBigUint64();
+    const actualHandle = new Deno.UnsafePointerView(Deno.UnsafePointer.create(pointerToHandle)).getBigUint64();
+    console.log(`Actual handle: 0x${actualHandle.toString(16)}`);
 
-    return result// as OverlayError;
+    return [result, pOverlayHandleBuffer]// as OverlayError;
   }
 
   /*

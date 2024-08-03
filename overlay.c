@@ -31,7 +31,8 @@ int main() {
 
     overlay = CNOVRGetOpenVRFunctionTable(IVROverlay_Version);
 
-    VROverlayHandle_t overlayHandle;
+    VROverlayHandle_t overlayHandle = 0;
+    printf("Overlay not yet: %llu\n", overlayHandle);
     overlay->CreateOverlay("minimal-overlay", "Minimal Overlay", &overlayHandle);
     printf("Overlay created with handle: %llu\n", overlayHandle);
     overlay->SetOverlayWidthInMeters(overlayHandle, 0.5f);
