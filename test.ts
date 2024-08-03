@@ -35,7 +35,6 @@ async function main() {
     console.log(a)
 
     const overlay = new OpenVR.IVROverlay(overlayPtr);
-    console.log(overlay)
     const vrSystem = new OpenVR.IVRSystem(IVRPtr);
     const vrInput = new OpenVR.IVRInput(IVRInputPtr);
 
@@ -90,20 +89,16 @@ async function main() {
     //#endregion
 
 
-
-    const overlayHandlePTR = Deno.UnsafePointer.of(new BigInt64Array(1))!
-    let overlayhandle = new Deno.UnsafePointerView(overlayHandlePTR).getBigUint64();
-    console.log(`handle: ${overlayhandle}`);
-    error = overlay.CreateOverlay("batterymonitoroverlay-overlay", "Battery Monitor Overlay", overlayHandlePTR);
-
+    const handlebuffer = new BigUint64Array(1)
+    const overlayHandlePTR = Deno.UnsafePointer.of<OpenVR.OverlayHandle>(handlebuffer)!
+    error = overlay.CreateOverlay("image", "image", overlayHandlePTR);
     if (error !== OpenVR.OverlayError.VROverlayError_None) {
         console.error(`Failed to create overlay: ${OpenVR.OverlayError[error]}`);
-        //throw new Error("Failed to create overlay");
+        throw new Error("Failed to create overlay");
     }
-    if (overlayHandlePTR === null) throw new Error("Invalid pointer");
+    await new Promise(resolve => setTimeout(resolve, 1000));
     const overlayHandle = new Deno.UnsafePointerView(overlayHandlePTR).getBigUint64();
-
-    console.log(`Overlay created with handle: ${overlayHandle}`);
+    console.log(`Overlay created with handle: ${handlebuffer[0]}`);
 
     overlay.SetOverlayFromFile(overlayHandle, "C:/GIT/petplay/resources/PetPlay.png");
     overlay.SetOverlayWidthInMeters(overlayHandle, 1);
@@ -111,7 +106,7 @@ async function main() {
 
     const initialTransform: OpenVR.HmdMatrix34 = {
         m: [
-            [1.0, 0.0, 0.0, 0.0],
+            [1.0, 0.0, 0.0, 1.0],
             [0.0, 1.0, 0.0, 1.0],
             [0.0, 0.0, 1.0, -2.0]
         ]

@@ -4344,8 +4344,8 @@ export class IVRSystem {
       parameters: [
         "pointer", // this pointer
         "i32", //(vr::EVREye)  eEye
-        "pointer", //(float)  fNearZ
-        "pointer", //(float)  fFarZ
+        "f32", //(float)  fNearZ
+        "f32", //(float)  fFarZ
       ],
       result: "pointer"
     });
@@ -4405,8 +4405,8 @@ export class IVRSystem {
       parameters: [
         "pointer", // this pointer
         "i32", //(vr::EVREye)  eEye
-        "pointer", //(float)  fU
-        "pointer", //(float)  fV
+        "f32", //(float)  fU
+        "f32", //(float)  fV
         "pointer", //(struct vr::DistortionCoordinates_t *)  pDistortionCoordinates
       ],
       result: "bool"
@@ -4611,7 +4611,7 @@ export class IVRSystem {
       parameters: [
         "pointer", // this pointer
         "i32", //(vr::ETrackingUniverseOrigin)  eOrigin
-        "pointer", //(float)  fPredictedSecondsToPhotonsFromNow
+        "f32", //(float)  fPredictedSecondsToPhotonsFromNow
         "pointer", //(struct vr::TrackedDevicePose_t *)  pTrackedDevicePoseArray
         "u32", //(uint32_t)  unTrackedDevicePoseArrayCount
       ],
@@ -4903,7 +4903,7 @@ export class IVRSystem {
         "i32", //(vr::ETrackedDeviceProperty)  prop
         "pointer", //(vr::ETrackedPropertyError *)  pError
       ],
-      result: "pointer"
+      result: "f32"
     });
 
     const result = func.call(
@@ -4913,7 +4913,7 @@ export class IVRSystem {
       pError,
     );
 
-    return result// as unknown as number;
+    return result// as number;
   }
 
   /*
@@ -5675,7 +5675,7 @@ export class IVRChaperone {
         "pointer", // this pointer
         "pointer", //(struct vr::HmdColor_t *)  pOutputColorArray
         "pointer", //(int)  nNumOutputColors
-        "pointer", //(float)  flCollisionBoundsFadeDistance
+        "f32", //(float)  flCollisionBoundsFadeDistance
         "pointer", //(struct vr::HmdColor_t *)  pOutputCameraColor
       ],
       result: "void"
@@ -5982,8 +5982,8 @@ export class IVRChaperoneSetup {
     const func = new Deno.UnsafeFnPointer(funcPtr, {
       parameters: [
         "pointer", // this pointer
-        "pointer", //(float)  sizeX
-        "pointer", //(float)  sizeZ
+        "f32", //(float)  sizeX
+        "f32", //(float)  sizeZ
       ],
       result: "void"
     });
@@ -6583,14 +6583,14 @@ export class IVRCompositor {
       parameters: [
         "pointer", // this pointer
       ],
-      result: "pointer"
+      result: "f32"
     });
 
     const result = func.call(
       this.ptr,
     );
 
-    return result// as unknown as number;
+    return result// as number;
   }
 
   /*
@@ -6631,11 +6631,11 @@ export class IVRCompositor {
     const func = new Deno.UnsafeFnPointer(funcPtr, {
       parameters: [
         "pointer", // this pointer
-        "pointer", //(float)  fSeconds
-        "pointer", //(float)  fRed
-        "pointer", //(float)  fGreen
-        "pointer", //(float)  fBlue
-        "pointer", //(float)  fAlpha
+        "f32", //(float)  fSeconds
+        "f32", //(float)  fRed
+        "f32", //(float)  fGreen
+        "f32", //(float)  fBlue
+        "f32", //(float)  fAlpha
         "bool", //(bool)  bBackground
       ],
       result: "void"
@@ -6690,7 +6690,7 @@ export class IVRCompositor {
     const func = new Deno.UnsafeFnPointer(funcPtr, {
       parameters: [
         "pointer", // this pointer
-        "pointer", //(float)  fSeconds
+        "f32", //(float)  fSeconds
         "bool", //(bool)  bFadeGridIn
       ],
       result: "void"
@@ -6717,14 +6717,14 @@ export class IVRCompositor {
       parameters: [
         "pointer", // this pointer
       ],
-      result: "pointer"
+      result: "f32"
     });
 
     const result = func.call(
       this.ptr,
     );
 
-    return result// as unknown as number;
+    return result// as number;
   }
 
   /*
@@ -7745,14 +7745,14 @@ export class IVRHeadsetView {
       parameters: [
         "pointer", // this pointer
       ],
-      result: "pointer"
+      result: "f32"
     });
 
     const result = func.call(
       this.ptr,
     );
 
-    return result// as unknown as number;
+    return result// as number;
   }
 
   /*
@@ -7767,8 +7767,8 @@ export class IVRHeadsetView {
     const func = new Deno.UnsafeFnPointer(funcPtr, {
       parameters: [
         "pointer", // this pointer
-        "pointer", //(float)  flStartPct
-        "pointer", //(float)  flEndPct
+        "f32", //(float)  flStartPct
+        "f32", //(float)  flEndPct
       ],
       result: "void"
     });
@@ -7844,7 +7844,7 @@ export class IVROverlay {
   Parameters: [{"paramname":"pchOverlayKey","paramtype":"const char *"},{"paramname":"pchOverlayName","paramtype":"const char *"},{"paramname":"pOverlayHandle","paramtype":"vr::VROverlayHandle_t *"}]
   Return: vr::EVROverlayError
   */
-  CreateOverlay(pchOverlayKey: string, pchOverlayName: string, pOverlayHandle: Deno.PointerObject): OverlayError {
+  CreateOverlay(pchOverlayKey: string, pchOverlayName: string, pOverlayHandle: Deno.PointerValue<OverlayHandle>): OverlayError {
     if (this.ptr === null) throw new Error("IVROverlay pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
     const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(8))!;
@@ -8190,9 +8190,9 @@ export class IVROverlay {
       parameters: [
         "pointer", // this pointer
         "u64", //(vr::VROverlayHandle_t)  ulOverlayHandle
-        "pointer", //(float)  fRed
-        "pointer", //(float)  fGreen
-        "pointer", //(float)  fBlue
+        "f32", //(float)  fRed
+        "f32", //(float)  fGreen
+        "f32", //(float)  fBlue
       ],
       result: "i32"
     });
@@ -8252,7 +8252,7 @@ export class IVROverlay {
       parameters: [
         "pointer", // this pointer
         "u64", //(vr::VROverlayHandle_t)  ulOverlayHandle
-        "pointer", //(float)  fAlpha
+        "f32", //(float)  fAlpha
       ],
       result: "i32"
     });
@@ -8306,7 +8306,7 @@ export class IVROverlay {
       parameters: [
         "pointer", // this pointer
         "u64", //(vr::VROverlayHandle_t)  ulOverlayHandle
-        "pointer", //(float)  fTexelAspect
+        "f32", //(float)  fTexelAspect
       ],
       result: "i32"
     });
@@ -8414,7 +8414,7 @@ export class IVROverlay {
       parameters: [
         "pointer", // this pointer
         "u64", //(vr::VROverlayHandle_t)  ulOverlayHandle
-        "pointer", //(float)  fWidthInMeters
+        "f32", //(float)  fWidthInMeters
       ],
       result: "i32"
     });
@@ -8468,7 +8468,7 @@ export class IVROverlay {
       parameters: [
         "pointer", // this pointer
         "u64", //(vr::VROverlayHandle_t)  ulOverlayHandle
-        "pointer", //(float)  fCurvature
+        "f32", //(float)  fCurvature
       ],
       result: "i32"
     });
@@ -8522,7 +8522,7 @@ export class IVROverlay {
       parameters: [
         "pointer", // this pointer
         "u64", //(vr::VROverlayHandle_t)  ulOverlayHandle
-        "pointer", //(float)  fRadians
+        "f32", //(float)  fRadians
       ],
       result: "i32"
     });
@@ -9327,9 +9327,9 @@ export class IVROverlay {
       parameters: [
         "pointer", // this pointer
         "u64", //(vr::VROverlayHandle_t)  ulOverlayHandle
-        "pointer", //(float)  fDurationSeconds
-        "pointer", //(float)  fFrequency
-        "pointer", //(float)  fAmplitude
+        "f32", //(float)  fDurationSeconds
+        "f32", //(float)  fFrequency
+        "f32", //(float)  fAmplitude
       ],
       result: "i32"
     });
@@ -10954,7 +10954,7 @@ export class IVRSettings {
         "pointer", // this pointer
         "pointer", //(const char *)  pchSection
         "pointer", //(const char *)  pchSettingsKey
-        "pointer", //(float)  flValue
+        "f32", //(float)  flValue
         "pointer", //(vr::EVRSettingsError *)  peError
       ],
       result: "void"
@@ -11074,7 +11074,7 @@ export class IVRSettings {
         "pointer", //(const char *)  pchSettingsKey
         "pointer", //(vr::EVRSettingsError *)  peError
       ],
-      result: "pointer"
+      result: "f32"
     });
 
     const result = func.call(
@@ -11084,7 +11084,7 @@ export class IVRSettings {
       peError,
     );
 
-    return result// as unknown as number;
+    return result// as number;
   }
 
   /*
@@ -12122,8 +12122,8 @@ export class IVRTrackedCamera {
         "u32", //(vr::TrackedDeviceIndex_t)  nDeviceIndex
         "u32", //(uint32_t)  nCameraIndex
         "i32", //(vr::EVRTrackedCameraFrameType)  eFrameType
-        "pointer", //(float)  flZNear
-        "pointer", //(float)  flZFar
+        "f32", //(float)  flZNear
+        "f32", //(float)  flZFar
         "pointer", //(vr::HmdMatrix44_t *)  pProjection
       ],
       result: "i32"
@@ -12540,7 +12540,7 @@ export class IVRScreenshots {
       parameters: [
         "pointer", // this pointer
         "u32", //(vr::ScreenshotHandle_t)  screenshotHandle
-        "pointer", //(float)  flProgress
+        "f32", //(float)  flProgress
       ],
       result: "i32"
     });
@@ -12937,7 +12937,7 @@ export class IVRInput {
         "pointer", // this pointer
         "u64", //(vr::VRActionHandle_t)  action
         "i32", //(vr::ETrackingUniverseOrigin)  eOrigin
-        "pointer", //(float)  fPredictedSecondsFromNow
+        "f32", //(float)  fPredictedSecondsFromNow
         "pointer", //(struct vr::InputPoseActionData_t *)  pActionData
         "u32", //(uint32_t)  unActionDataSize
         "u64", //(vr::VRInputValueHandle_t)  ulRestrictToDevice
@@ -13358,10 +13358,10 @@ export class IVRInput {
       parameters: [
         "pointer", // this pointer
         "u64", //(vr::VRActionHandle_t)  action
-        "pointer", //(float)  fStartSecondsFromNow
-        "pointer", //(float)  fDurationSeconds
-        "pointer", //(float)  fFrequency
-        "pointer", //(float)  fAmplitude
+        "f32", //(float)  fStartSecondsFromNow
+        "f32", //(float)  fDurationSeconds
+        "f32", //(float)  fFrequency
+        "f32", //(float)  fAmplitude
         "u64", //(vr::VRInputValueHandle_t)  ulRestrictToDevice
       ],
       result: "i32"
