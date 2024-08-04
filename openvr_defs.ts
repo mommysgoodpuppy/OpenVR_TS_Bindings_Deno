@@ -135,6 +135,44 @@ export function readBufferStructured(view: DataView, template: any, offset = 0):
     return [result, offset];
 }
 
+function getFieldSize(value: any): number {
+    if (typeof value === 'boolean') return 1;
+    if (typeof value === 'number') return 4;
+    if (typeof value === 'bigint') return 8;
+    if (Array.isArray(value)) return 4 * value.flat(Infinity).length;
+    if (typeof value === 'object') {
+        if ('m' in value) return 4 * value.m.flat(Infinity).length;
+        if ('v' in value) return 4 * value.v.length;
+        return 0
+        return Object.values(value).reduce((sum, v) => sum + getFieldSize(v), 0);
+    }
+    return 0;
+}
+
+function alignOffset(offset: number, lastFieldSize: number, currentFieldSize: number): number {
+    const alignment = Math.max(currentFieldSize, lastFieldSize, 4); // Ensure at least 4-byte alignment
+    return Math.ceil(offset / alignment) * alignment;
+}
+
+function readNestedObject(view: DataView, template: any, offset: number): [any, number] {
+    const result: any = {};
+    for (const [subKey, subValue] of Object.entries(template)) {
+        if (subKey === 'm') {
+            [result[subKey], offset] = readMatrix(view, subValue, offset);
+        } else if (subKey === 'v') {
+            [result[subKey], offset] = readVector(view, subValue, offset);
+        } else if (typeof subValue === 'object' && !Array.isArray(subValue)) {
+            [result[subKey], offset] = readNestedObject(view, subValue, offset);
+        } else {
+            [result[subKey], offset] = readBufferStructured(view, { [subKey]: subValue }, offset);
+            result[subKey] = result[subKey][subKey];
+        }
+    }
+    return [result, offset];
+}
+
+
+
 function readMatrix(view: DataView, template: number[][], offset: number): [number[][], number] {
     const result = [];
     for (const row of template) {
@@ -156,7 +194,6 @@ function readVector(view: DataView, template: number[], offset: number): [number
     }
     return [result, offset];
 }
-
 function readArrayStructured(view: DataView, template: any[], offset: number): [any, number] {
     const result = [];
     for (const item of template) {

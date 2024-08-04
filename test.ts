@@ -11,6 +11,30 @@ function stringToPointer(str: string): Deno.PointerValue {
 }
 
 async function main() {
+    //#region structures
+    const EmptyPoseData: OpenVR.InputPoseActionData = {
+        bActive: false,
+        activeOrigin: 0n,
+        pose: {
+            mDeviceToAbsoluteTracking: {
+                m: [
+                    [0, 0, 0, 0],
+                    [0, 0, 0, 0],
+                    [0, 0, 0, 0]
+                ]
+            },
+            vVelocity: { v: [0, 0, 0] },
+            vAngularVelocity: { v: [0, 0, 0] },
+            eTrackingResult: 1,
+            bPoseIsValid: false,
+            bDeviceIsConnected: false
+        }
+    }
+    
+
+    //#endregion
+
+
     let _
 
     //#region init
@@ -32,7 +56,7 @@ async function main() {
     a = new Deno.UnsafePointerView(TypeSafeINITERRPTR).getInt32();
     console.log(a)
 
-    const IVRPtr = OpenVR.VR_GetGenericInterface(stringToPointer(OpenVR.IVRSystem_Version), TypeSafeINITERRPTR);
+    //const IVRPtr = OpenVR.VR_GetGenericInterface(stringToPointer(OpenVR.IVRSystem_Version), TypeSafeINITERRPTR);
     a = new Deno.UnsafePointerView(TypeSafeINITERRPTR).getInt32();
     console.log(a)
     const IVRInputPtr = OpenVR.VR_GetGenericInterface(stringToPointer(OpenVR.IVRInput_Version), TypeSafeINITERRPTR);
@@ -40,7 +64,7 @@ async function main() {
     console.log(a)
 
     const overlay = new OpenVR.IVROverlay(overlayPtr);
-    const vrSystem = new OpenVR.IVRSystem(IVRPtr);
+    //const vrSystem = new OpenVR.IVRSystem(IVRPtr);
     const vrInput = new OpenVR.IVRInput(IVRInputPtr);
     //#endregion
 
@@ -113,7 +137,7 @@ async function main() {
     }
     if (triggerRightHandlePTR === null) throw new Error("Invalid pointer");
     triggerRightHandle = new Deno.UnsafePointerView(triggerRightHandlePTR).getBigUint64();
-    
+
     const EmptyDigitalActionData: OpenVR.InputDigitalActionData = {
         bActive: false,
         activeOrigin: 0n,
@@ -152,77 +176,27 @@ async function main() {
     console.log("Overlay created and shown. Press Ctrl+C to exit.");
 
 
-    const EmptyPoseData: OpenVR.InputPoseActionData = {
-        bActive: false,
-        activeOrigin: 0n,
-        pose: {
-            mDeviceToAbsoluteTracking: {
-                m: [
-                    [0, 0, 0, 0],
-                    [0, 0, 0, 0],
-                    [0, 0, 0, 0]
-                ]
-            },
-            vVelocity: { v: [0, 0, 0] },
-            vAngularVelocity: { v: [0, 0, 0] },
-            eTrackingResult: 1,
-            bPoseIsValid: false,
-            bDeviceIsConnected: false
-        }
-    }
+    
 
 
     console.log(EmptyPoseData)
-    const empty34: OpenVR.HmdMatrix34 = {
-        m: [
-            [0, 0, 0, 0],
-            [0, 0, 0, 0],
-            [0, 0, 0, 0]
-        ]
-    }
-
-    const InputPoseActionDataTemplate: Record<string, StructField> = {
-        bActive: { type: 'boolean' },
-        activeOrigin: { type: 'uint64' },
-        pose: {
-            type: 'object',
-            objectTemplate: {
-                mDeviceToAbsoluteTracking: {
-                    type: 'array',
-                    arrayType: { type: 'float32' },
-                    arrayDimensions: [3, 4]
-                },
-                vVelocity: {
-                    type: 'array',
-                    arrayType: { type: 'float32' },
-                    arrayDimensions: [3]
-                },
-                vAngularVelocity: {
-                    type: 'array',
-                    arrayType: { type: 'float32' },
-                    arrayDimensions: [3]
-                },
-                eTrackingResult: { type: 'int32' },
-                bPoseIsValid: { type: 'boolean' },
-                bDeviceIsConnected: { type: 'boolean' }
-            }
-        }
-    };
 
 
     //#region Main loop
     let poseData: OpenVR.InputPoseActionData = EmptyPoseData;
     console.log(EmptyPoseData)
+
+    const activeActionSet: OpenVR.ActiveActionSet = {
+        ulActionSet: actionSetHandle,
+        ulRestrictedToDevice: OpenVR.k_ulInvalidInputValueHandle,
+        ulSecondaryActionSet: 0n,
+        unPadding: 0,
+        nPriority: 0
+    };
+
     while (true) {
 
-
-        const activeActionSet: OpenVR.ActiveActionSet = {
-            ulActionSet: actionSetHandle,
-            ulRestrictedToDevice: OpenVR.k_ulInvalidInputValueHandle,
-            ulSecondaryActionSet: 0n,
-            unPadding: 0,
-            nPriority: 0
-        };
+        
 
         const activeActionSetBuffer = new ArrayBuffer(32); // Adjust size if needed
         const activeActionSetView = new DataView(activeActionSetBuffer);
@@ -236,7 +210,7 @@ async function main() {
         // Create a pointer to the buffer
         const activeActionSetPtr = Deno.UnsafePointer.of<OpenVR.ActiveActionSet>(activeActionSetBuffer)!;
 
-        const triggerDataSize = 24; // Size of InputDigitalActionData
+        const triggerDataSize = 42;
         const triggerDataBufferL = new ArrayBuffer(triggerDataSize);
         const triggerDataBufferR = new ArrayBuffer(triggerDataSize);
         const triggerDataViewL = new DataView(triggerDataBufferL);
@@ -246,8 +220,6 @@ async function main() {
         fillBuffer(triggerDataViewR, EmptyDigitalActionData);
         const triggerLeftPointer = Deno.UnsafePointer.of<OpenVR.InputDigitalActionData>(triggerDataBufferL)!;
         const triggerRightPointer = Deno.UnsafePointer.of<OpenVR.InputDigitalActionData>(triggerDataBufferR)!;
-
-
 
         error = vrInput.UpdateActionState(activeActionSetPtr, 32, 1);
         if (error !== OpenVR.InputError.VRInputError_None) {
@@ -305,24 +277,24 @@ async function main() {
         error = vrInput.GetDigitalActionData(
             triggerLeftHandle,
             triggerLeftPointer,
-            24,
+            42,
             OpenVR.k_ulInvalidInputValueHandle
         );
-        
+
         error = vrInput.GetDigitalActionData(
             triggerRightHandle,
             triggerRightPointer,
-            24,
+            42,
             OpenVR.k_ulInvalidInputValueHandle
         );
 
         if (error === OpenVR.InputError.VRInputError_None) {
             const [leftTriggerData, _] = readBufferStructured(triggerDataViewL, EmptyDigitalActionData);
             const [rightTriggerData, __] = readBufferStructured(triggerDataViewR, EmptyDigitalActionData);
-        
+
             console.log(`Left trigger: ${leftTriggerData.bState ? "Pressed" : "Released"}`);
             console.log(`Right trigger: ${rightTriggerData.bState ? "Pressed" : "Released"}`);
-        
+
             // Move the overlay if the trigger is pressed
             if (leftTriggerData.bState || rightTriggerData.bState) {
                 const activeHandPose = leftTriggerData.bState ? leftPoseData : rightPoseData;
@@ -334,13 +306,7 @@ async function main() {
             }
         }
 
-
-
-        //overlay.SetOverlayTransformAbsolute(overlayHandle, OpenVR.TrackingUniverseOrigin.TrackingUniverseStanding, hmdMatrix34Ptr);
-
-
-
-        await new Promise(resolve => setTimeout(resolve, 200));
+        await new Promise(resolve => setTimeout(resolve, 2));
     }
 }
 
