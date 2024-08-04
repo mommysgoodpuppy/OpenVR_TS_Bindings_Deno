@@ -1,8 +1,8 @@
-import * as OpenVR from "./openvr/FULL.ts";
-import { fillBuffer, readBufferStructured } from "./openvr_defs.ts";
-import { P } from "./pointers.ts";
+import * as OpenVR from "./openvr_bindings.ts";
+import { fillBuffer, readBufferStructured } from "../utils.ts";
+import { P } from "../pointers.ts";
 
-const manifestPath = Deno.realPathSync("c:/GIT/OpenVRDenoBindgen/actions.json");
+const manifestPath = Deno.realPathSync("./test/actions.json");
 
 function stringToPointer(str: string): Deno.PointerValue {
     const encoder = new TextEncoder();
@@ -41,14 +41,12 @@ async function main() {
 
     //#endregion
 
+    //#region init
+
     let _
     let leftPoseData
     let rightPoseData
     let error;
-
-    //#region init
-
-
 
 
     const initerrorptr = Deno.UnsafePointer.of<OpenVR.InitError>(new Int32Array(1))!
@@ -162,7 +160,8 @@ async function main() {
 
     console.log(`Overlay created with handle: ${overlayHandle}`);
 
-    overlay.SetOverlayFromFile(overlayHandle, "C:/GIT/petplay/resources/PetPlay.png");
+    const imgpath = Deno.realPathSync("./test/PetPlay.png");
+    overlay.SetOverlayFromFile(overlayHandle, imgpath);
     overlay.SetOverlayWidthInMeters(overlayHandle, 0.1);
     overlay.ShowOverlay(overlayHandle);
 
@@ -206,7 +205,7 @@ async function main() {
         }
 
         //get pose data
-        const poseDataSize = 96; // Adjust if needed
+        const poseDataSize = 96;
         const posedataleftpointer = Deno.UnsafePointer.of<OpenVR.InputPoseActionData>(new ArrayBuffer(poseDataSize))!;
         const posedatarightpointer = Deno.UnsafePointer.of<OpenVR.InputPoseActionData>(new ArrayBuffer(poseDataSize))!;
 

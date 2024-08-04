@@ -27,6 +27,21 @@ export const typeMapping: Record<string, { ffi: Deno.NativeType | Deno.NativeVoi
     "double": { ffi: "f64", deno: "number", c: "double" }
 };
 
+export enum FFIType {
+    BOOL = 'bool',
+    I8 = 'i8',
+    U8 = 'u8',
+    I16 = 'i16',
+    U16 = 'u16',
+    I32 = 'i32',
+    U32 = 'u32',
+    I64 = 'i64',
+    U64 = 'u64',
+    F32 = 'f32',
+    F64 = 'f64',
+    POINTER = 'pointer',
+    // Add any other FFI types you need
+  }
 
 
 export function fillBuffer(view: DataView, data: any, offset = 0): number {
@@ -191,7 +206,7 @@ export type OpenVRType = {
 
 
 //#region stuff
-export function generateOpenVRBindings(functions: typeof openVRFunctions) {
+/* export function generateOpenVRBindings(functions: typeof openVRFunctions) {
     let output = `// Auto-generated OpenVR bindings for Deno
   
   const lib = Deno.dlopen("openvr_api.dll", {
@@ -264,5 +279,5 @@ const symbols = {
 };
 
 
-const dylib = Deno.dlopen("openvr_api.dll", symbols);
+const dylib = Deno.dlopen("openvr_api.dll", symbols); */
 //#endregion

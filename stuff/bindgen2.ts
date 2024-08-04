@@ -1,4 +1,4 @@
-import { typeMapping, openVRFunctions, mapOpenVRTypeToDeno, OpenVRType, generateOpenVRBindings } from "./openvr_defs.ts";
+import { typeMapping, openVRFunctions, mapOpenVRTypeToDeno, OpenVRType, generateOpenVRBindings } from "../utils.ts";
 
 
 /*

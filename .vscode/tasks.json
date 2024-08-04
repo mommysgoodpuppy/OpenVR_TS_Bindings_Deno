@@ -11,7 +11,7 @@
 		"problemMatcher": [
 		  "$deno"
 		],
-		"label": "BuildOVRTSBindings"
+		"label": "bindgen"
 	  }
 	]
   }

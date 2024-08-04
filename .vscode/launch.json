@@ -5,27 +5,26 @@
             "request": "launch",
             "name": "Launch Program",
             "type": "node",
-            "program": "${workspaceFolder}/test.ts",
+            "program": "${workspaceFolder}/test/test.ts",
             "cwd": "${workspaceFolder}",
             "env": {},
             "console": "integratedTerminal",
             "runtimeExecutable": "Deno",
             "runtimeArgs": [
                 "run",
-                "--unstable",
                 "--allow-ffi",
                 "--unstable-ffi",
                 "--inspect-wait",
                 "--allow-all"
             ],
             "attachSimplePort": 9229,
-            "preLaunchTask": ""
+            "preLaunchTask": "bindgen"
         },
         {
             "request": "launch",
             "name": "build",
             "type": "node",
-            "program": "${workspaceFolder}/bindgen3.ts",
+            "program": "${workspaceFolder}/bindgen.ts",
             "cwd": "${workspaceFolder}",
             "env": {},
             "runtimeExecutable": "Deno",

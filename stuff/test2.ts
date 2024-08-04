@@ -1,4 +1,4 @@
-import * as OpenVR from "./openvr/FULL.ts";
+import * as OpenVR from "../openvr/FULL.ts";
 let _void = null
 
 const manifestPath = Deno.realPathSync("c:/GIT/OpenVRDenoBindgen/actions.json");

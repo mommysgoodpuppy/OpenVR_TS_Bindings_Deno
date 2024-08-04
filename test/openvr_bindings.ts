@@ -1817,8 +1817,6 @@ export enum BlockQueueCreationFlag {
 //#endregion
 // Structs
 
-import { FFIType } from './ffiTypes.ts';
-
 //#region Structs
 /*vr::HmdMatrix34_t, [
   {
