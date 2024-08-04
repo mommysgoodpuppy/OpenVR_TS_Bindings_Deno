@@ -27,6 +27,74 @@ export const typeMapping: Record<string, { ffi: Deno.NativeType | Deno.NativeVoi
     "double": { ffi: "f64", deno: "number", c: "double" }
 };
 
+export function fillBuffer(view: DataView, data: any, offset = 0): number {
+    for (const [key, value] of Object.entries(data)) {
+        if (typeof value === 'boolean') {
+            view.setUint8(offset, value ? 1 : 0);
+            offset += 1;
+        } else if (typeof value === 'number') {
+            view.setFloat32(offset, value, true);
+            offset += 4;
+        } else if (typeof value === 'bigint') {
+            view.setBigUint64(offset, value, true);
+            offset += 8;
+        } else if (Array.isArray(value)) {
+            for (const item of value.flat(Infinity)) {
+                view.setFloat32(offset, item, true);
+                offset += 4;
+            }
+        } else if (typeof value === 'object') {
+            offset = fillBuffer(view, value, offset);
+        }
+    }
+    return offset;
+}
+
+export function readBuffer(view: DataView, template: any, offset = 0): [any, number] {
+    const result: any = {};
+    for (const [key, value] of Object.entries(template)) {
+        if (typeof value === 'boolean') {
+            result[key] = view.getUint8(offset) !== 0;
+            offset += 1;
+        } else if (typeof value === 'number') {
+            result[key] = view.getFloat32(offset, true);
+            offset += 4;
+        } else if (typeof value === 'bigint') {
+            result[key] = view.getBigUint64(offset, true);
+            offset += 8;
+        } else if (Array.isArray(value)) {
+            result[key] = [];
+            const flatLength = value.flat(Infinity).length;
+            for (let i = 0; i < flatLength; i++) {
+                result[key].push(view.getFloat32(offset, true));
+                offset += 4;
+            }
+            // Reshape the array if necessary
+            if (value.length !== flatLength) {
+                result[key] = reshapeArray(result[key], getArrayShape(value));
+            }
+        } else if (typeof value === 'object') {
+            [result[key], offset] = readBuffer(view, value, offset);
+        }
+    }
+    return [result, offset];
+}
+
+function getArrayShape(arr: any[]): number[] {
+    if (!Array.isArray(arr)) return [];
+    return [arr.length, ...getArrayShape(arr[0])];
+}
+
+function reshapeArray(flat: any[], shape: number[]): any[] {
+    if (shape.length === 1) return flat;
+    const result = [];
+    const subLength = flat.length / shape[0];
+    for (let i = 0; i < shape[0]; i++) {
+        result.push(reshapeArray(flat.slice(i * subLength, (i + 1) * subLength), shape.slice(1)));
+    }
+    return result;
+}
+
 
 
 function mapOpenVRTypeToDenoFFI(type: string): Deno.NativeType | Deno.NativeVoidType | Deno.NativeStructType {
