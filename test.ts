@@ -226,7 +226,7 @@ async function main() {
             OpenVR.k_ulInvalidInputValueHandle
         );
         if (error === OpenVR.InputError.VRInputError_None) {
-            [leftPoseData, _] = readBufferStructured(poseDataViewR, EmptyPoseData);
+            [leftPoseData, _] = readBufferStructured(poseDataViewL, EmptyPoseData);
 
         }
         error = vrInput.GetPoseActionDataRelativeToNow(
@@ -271,8 +271,8 @@ async function main() {
             const [leftTriggerData, _] = readBufferStructured(triggerDataViewL, EmptyDigitalActionData);
             const [rightTriggerData, __] = readBufferStructured(triggerDataViewR, EmptyDigitalActionData);
 
-            console.log(`Left trigger: ${leftTriggerData.bState ? "Pressed" : "Released"}`);
-            console.log(`Right trigger: ${rightTriggerData.bState ? "Pressed" : "Released"}`);
+            //console.log(`Left trigger: ${leftTriggerData.bState ? "Pressed" : "Released"}`);
+            //console.log(`Right trigger: ${rightTriggerData.bState ? "Pressed" : "Released"}`);
 
             // Move the overlay if the trigger is pressed
             if (leftTriggerData.bState || rightTriggerData.bState) {

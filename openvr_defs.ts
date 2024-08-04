@@ -100,7 +100,7 @@ export function readBufferStructured(view: DataView, template: any, offset = 0):
             throw new Error(`Unknown type: ${typeof value} for key ${key}`);
         }
 
-        console.log(`Finished ${key}, new offset: ${offset}`);
+        //console.log(`Finished ${key}, new offset: ${offset}`);
     }
     return [result, offset];
 }
