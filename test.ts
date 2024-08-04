@@ -37,7 +37,7 @@ async function main() {
         bChanged: false,
         fUpdateTime: 0.0
     };
-    
+
 
     //#endregion
 
@@ -190,7 +190,7 @@ async function main() {
 
     while (true) {
 
-        
+
 
         const activeActionSetBuffer = new ArrayBuffer(32); // Adjust size if needed
         const activeActionSetView = new DataView(activeActionSetBuffer);
@@ -207,15 +207,8 @@ async function main() {
 
         //get pose data
         const poseDataSize = 96; // Adjust if needed
-        const poseDataBufferR = new ArrayBuffer(poseDataSize);
-        const poseDataBufferL = new ArrayBuffer(poseDataSize);
-        const poseDataViewR = new DataView(poseDataBufferR);
-        const poseDataViewL = new DataView(poseDataBufferL);
-        fillBuffer(poseDataViewR, EmptyPoseData);
-        fillBuffer(poseDataViewL, EmptyPoseData);
-
-        const posedataleftpointer = Deno.UnsafePointer.of<OpenVR.InputPoseActionData>(poseDataBufferL)!;
-        const posedatarightpointer = Deno.UnsafePointer.of<OpenVR.InputPoseActionData>(poseDataBufferR)!;
+        const posedataleftpointer = Deno.UnsafePointer.of<OpenVR.InputPoseActionData>(new ArrayBuffer(poseDataSize))!;
+        const posedatarightpointer = Deno.UnsafePointer.of<OpenVR.InputPoseActionData>(new ArrayBuffer(poseDataSize))!;
 
         error = vrInput.GetPoseActionDataRelativeToNow(
             handPoseLeftHandle,
@@ -225,6 +218,8 @@ async function main() {
             96,
             OpenVR.k_ulInvalidInputValueHandle
         );
+        const bufferL = new Deno.UnsafePointerView(posedataleftpointer).getArrayBuffer(poseDataSize);
+        const poseDataViewL = new DataView(bufferL);
         if (error === OpenVR.InputError.VRInputError_None) {
             [leftPoseData, _] = readBufferStructured(poseDataViewL, EmptyPoseData);
 
@@ -237,21 +232,16 @@ async function main() {
             96,
             OpenVR.k_ulInvalidInputValueHandle
         );
+        const bufferR = new Deno.UnsafePointerView(posedatarightpointer).getArrayBuffer(poseDataSize);
+        const poseDataViewR = new DataView(bufferR);
         if (error === OpenVR.InputError.VRInputError_None) {
             [rightPoseData, _] = readBufferStructured(poseDataViewR, EmptyPoseData);
         }
 
         //get trigger data
         const triggerDataSize = 42;
-        const triggerDataBufferL = new ArrayBuffer(triggerDataSize);
-        const triggerDataBufferR = new ArrayBuffer(triggerDataSize);
-        const triggerDataViewL = new DataView(triggerDataBufferL);
-        const triggerDataViewR = new DataView(triggerDataBufferR);
-        fillBuffer(triggerDataViewL, EmptyDigitalActionData);
-        fillBuffer(triggerDataViewR, EmptyDigitalActionData);
-        
-        const triggerLeftPointer = Deno.UnsafePointer.of<OpenVR.InputDigitalActionData>(triggerDataBufferL)!;
-        const triggerRightPointer = Deno.UnsafePointer.of<OpenVR.InputDigitalActionData>(triggerDataBufferR)!;
+        const triggerLeftPointer = Deno.UnsafePointer.of<OpenVR.InputDigitalActionData>(new ArrayBuffer(triggerDataSize))!;
+        const triggerRightPointer = Deno.UnsafePointer.of<OpenVR.InputDigitalActionData>(new ArrayBuffer(triggerDataSize))!;
 
         error = vrInput.GetDigitalActionData(
             triggerLeftHandle,
@@ -259,12 +249,16 @@ async function main() {
             42,
             OpenVR.k_ulInvalidInputValueHandle
         );
+        const bufferLX = new Deno.UnsafePointerView(triggerLeftPointer).getArrayBuffer(triggerDataSize);
+        const triggerDataViewL = new DataView(bufferLX);
         error = vrInput.GetDigitalActionData(
             triggerRightHandle,
             triggerRightPointer,
             42,
             OpenVR.k_ulInvalidInputValueHandle
         );
+        const bufferRX = new Deno.UnsafePointerView(triggerRightPointer).getArrayBuffer(triggerDataSize);
+        const triggerDataViewR = new DataView(bufferRX);
 
         //update overlay pos if trigger is pressed
         if (error === OpenVR.InputError.VRInputError_None) {
