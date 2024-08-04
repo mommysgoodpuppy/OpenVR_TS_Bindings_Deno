@@ -29,6 +29,11 @@ int main() {
         return -1;
     }
 
+    struct VR_IVROverlay_FnTable* overlay = (struct VR_IVROverlay_FnTable*)CNOVRGetOpenVRFunctionTable(IVROverlay_Version);
+
+    printf("Function pointer for FindOverlay: %p\n", (void*)overlay->FindOverlay);
+    printf("Function pointer for CreateOverlay: %p\n", (void*)overlay->CreateOverlay);
+
     overlay = CNOVRGetOpenVRFunctionTable(IVROverlay_Version);
 
     VROverlayHandle_t overlayHandle = 0;

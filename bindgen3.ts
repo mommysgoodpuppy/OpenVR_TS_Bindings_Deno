@@ -489,7 +489,7 @@ async function generateMethods(methods: any[], defs: any[], enums: any[]) {
 
       output += `    const func = new Deno.UnsafeFnPointer(funcPtr, {\n`;
       output += `      parameters: [\n`;
-      output += `        "pointer", // this pointer\n`;
+ 
       if (methParams) {
         for (const param of methParams) {
           const ffiType = getFfiType(param.paramtype, defs, enums);
@@ -502,7 +502,7 @@ async function generateMethods(methods: any[], defs: any[], enums: any[]) {
 
       // Call the function
       output += `    const result = func.call(\n`;
-      output += `      this.ptr,\n`;
+ 
       if (methParams) {
         for (const param of methParams) {
           const paramType = fieldTypeConvert(param.paramtype);

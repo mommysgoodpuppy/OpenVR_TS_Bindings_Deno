@@ -89,17 +89,16 @@ async function main() {
     //#endregion
 
 
-    const handlebuffer = new BigUint64Array(1)
-    const overlayHandlePTR = Deno.UnsafePointer.of<OpenVR.OverlayHandle>(handlebuffer)!
-    let[errorxx, overlayHandlePTRx] = overlay.CreateOverlay("image", "image", overlayHandlePTR);
-    if (errorxx !== OpenVR.OverlayError.VROverlayError_None) {
-        console.error(`Failed to create overlay: ${OpenVR.OverlayError[errorxx]}`);
+    const overlayHandlePTR = Deno.UnsafePointer.of<OpenVR.OverlayHandle>(new BigUint64Array(1))!
+    error = overlay.CreateOverlay("image", "image", overlayHandlePTR);
+    if (error !== OpenVR.OverlayError.VROverlayError_None) {
+        console.error(`Failed to create overlay: ${OpenVR.OverlayError[error]}`);
         throw new Error("Failed to create overlay");
     }
-    a = new Deno.UnsafePointerView(overlayHandlePTRx).getBigUint64();
+    const overlayHandle = new Deno.UnsafePointerView(overlayHandlePTR).getBigUint64();
 
 
-    console.log(`Overlay created with handle: ${a}`);
+    console.log(`Overlay created with handle: ${overlayHandle}`);
 
     overlay.SetOverlayFromFile(overlayHandle, "C:/GIT/petplay/resources/PetPlay.png");
     overlay.SetOverlayWidthInMeters(overlayHandle, 1);
