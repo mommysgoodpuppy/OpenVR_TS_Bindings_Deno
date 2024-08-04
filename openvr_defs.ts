@@ -54,36 +54,6 @@ export function fillBuffer(view: DataView, data: any, offset = 0): number {
     return offset;
 }
 
-export function readBuffer(view: DataView, template: any, offset = 0): [any, number] {
-    const result: any = {};
-    for (const [key, value] of Object.entries(template)) {
-        if (typeof value === 'boolean') {
-            result[key] = view.getUint8(offset) !== 0;
-            offset += 1;
-        } else if (typeof value === 'number') {
-            result[key] = view.getFloat32(offset, true);
-            offset += 4;
-        } else if (typeof value === 'bigint') {
-            result[key] = view.getBigUint64(offset, true);
-            offset += 8;
-        } else if (Array.isArray(value)) {
-            result[key] = [];
-            const flatLength = value.flat(Infinity).length;
-            for (let i = 0; i < flatLength; i++) {
-                result[key].push(view.getFloat32(offset, true));
-                offset += 4;
-            }
-            // Reshape the array if necessary
-            if (value.length !== flatLength) {
-                result[key] = reshapeArray(result[key], getArrayShape(value));
-            }
-        } else if (typeof value === 'object') {
-            [result[key], offset] = readBuffer(view, value, offset);
-        }
-    }
-    return [result, offset];
-}
-
 export function readBufferStructured(view: DataView, template: any, offset = 0): [any, number] {
     const result: any = {};
     let lastFieldType: string | null = null;
@@ -94,7 +64,7 @@ export function readBufferStructured(view: DataView, template: any, offset = 0):
             offset = Math.ceil(offset / 8) * 8;
         }
 
-        console.log(`Processing key: ${key}, type: ${typeof value}, current offset: ${offset}`);
+        //console.log(`Processing key: ${key}, type: ${typeof value}, current offset: ${offset}`);
 
         if (typeof value === 'boolean') {
             result[key] = view.getUint8(offset) !== 0;
@@ -135,44 +105,6 @@ export function readBufferStructured(view: DataView, template: any, offset = 0):
     return [result, offset];
 }
 
-function getFieldSize(value: any): number {
-    if (typeof value === 'boolean') return 1;
-    if (typeof value === 'number') return 4;
-    if (typeof value === 'bigint') return 8;
-    if (Array.isArray(value)) return 4 * value.flat(Infinity).length;
-    if (typeof value === 'object') {
-        if ('m' in value) return 4 * value.m.flat(Infinity).length;
-        if ('v' in value) return 4 * value.v.length;
-        return 0
-        return Object.values(value).reduce((sum, v) => sum + getFieldSize(v), 0);
-    }
-    return 0;
-}
-
-function alignOffset(offset: number, lastFieldSize: number, currentFieldSize: number): number {
-    const alignment = Math.max(currentFieldSize, lastFieldSize, 4); // Ensure at least 4-byte alignment
-    return Math.ceil(offset / alignment) * alignment;
-}
-
-function readNestedObject(view: DataView, template: any, offset: number): [any, number] {
-    const result: any = {};
-    for (const [subKey, subValue] of Object.entries(template)) {
-        if (subKey === 'm') {
-            [result[subKey], offset] = readMatrix(view, subValue, offset);
-        } else if (subKey === 'v') {
-            [result[subKey], offset] = readVector(view, subValue, offset);
-        } else if (typeof subValue === 'object' && !Array.isArray(subValue)) {
-            [result[subKey], offset] = readNestedObject(view, subValue, offset);
-        } else {
-            [result[subKey], offset] = readBufferStructured(view, { [subKey]: subValue }, offset);
-            result[subKey] = result[subKey][subKey];
-        }
-    }
-    return [result, offset];
-}
-
-
-
 function readMatrix(view: DataView, template: number[][], offset: number): [number[][], number] {
     const result = [];
     for (const row of template) {
@@ -212,22 +144,6 @@ function readArrayStructured(view: DataView, template: any[], offset: number): [
     }
     return [result, offset];
 }
-
-function getArrayShape(arr: any[]): number[] {
-    if (!Array.isArray(arr)) return [];
-    return [arr.length, ...getArrayShape(arr[0])];
-}
-
-function reshapeArray(flat: any[], shape: number[]): any[] {
-    if (shape.length === 1) return flat;
-    const result = [];
-    const subLength = flat.length / shape[0];
-    for (let i = 0; i < shape[0]; i++) {
-        result.push(reshapeArray(flat.slice(i * subLength, (i + 1) * subLength), shape.slice(1)));
-    }
-    return result;
-}
-
 
 
 export function mapOpenVRTypeToDeno(type: string): string {
@@ -274,7 +190,7 @@ export type OpenVRType = {
 };
 
 
-
+//#region stuff
 export function generateOpenVRBindings(functions: typeof openVRFunctions) {
     let output = `// Auto-generated OpenVR bindings for Deno
   
@@ -349,3 +265,4 @@ const symbols = {
 
 
 const dylib = Deno.dlopen("openvr_api.dll", symbols);
+//#endregion
