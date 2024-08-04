@@ -1,5 +1,5 @@
 import * as OpenVR from "./openvr/FULL.ts";
-import { fillBuffer, readBuffer } from "./openvr_defs.ts";
+import { fillBuffer, readBuffer, StructField, fillBufferOrdered, readBufferStructured } from "./openvr_defs.ts";
 import { P } from "./pointers.ts";
 
 const manifestPath = Deno.realPathSync("c:/GIT/OpenVRDenoBindgen/actions.json");
@@ -8,6 +8,75 @@ function stringToPointer(str: string): Deno.PointerValue {
     const encoder = new TextEncoder();
     const view = encoder.encode(str + '\0');
     return Deno.UnsafePointer.of(view);
+}
+
+const BOOL_SIZE = 1;
+const BOOL_PADDING = 7; // To align to 8 bytes
+const UINT64_SIZE = 8;
+const FLOAT_SIZE = 4;
+const MATRIX34_SIZE = 4 * 3 * 4; // 4 bytes per float, 3 rows, 4 columns
+const VECTOR3_SIZE = 4 * 3; // 4 bytes per float, 3 components
+
+function readInputPoseActionData(view: DataView, offset = 0): InputPoseActionData {
+    let currentOffset = offset;
+
+    const bActive = view.getUint8(currentOffset) !== 0;
+    currentOffset += BOOL_SIZE + BOOL_PADDING;
+
+    const activeOrigin = view.getBigUint64(currentOffset, true);
+    currentOffset += UINT64_SIZE;
+
+    const mDeviceToAbsoluteTracking = readMatrix34(view, currentOffset);
+    currentOffset += MATRIX34_SIZE;
+
+    const vVelocity = readVector3(view, currentOffset);
+    currentOffset += VECTOR3_SIZE;
+
+    const vAngularVelocity = readVector3(view, currentOffset);
+    currentOffset += VECTOR3_SIZE;
+
+    const eTrackingResult = view.getInt32(currentOffset, true);
+    currentOffset += FLOAT_SIZE;
+
+    const bPoseIsValid = view.getUint8(currentOffset) !== 0;
+    currentOffset += BOOL_SIZE;
+
+    const bDeviceIsConnected = view.getUint8(currentOffset) !== 0;
+    currentOffset += BOOL_SIZE;
+
+    return {
+        bActive,
+        activeOrigin,
+        pose: {
+            mDeviceToAbsoluteTracking,
+            vVelocity,
+            vAngularVelocity,
+            eTrackingResult,
+            bPoseIsValid,
+            bDeviceIsConnected
+        }
+    };
+}
+
+function readMatrix34(view: DataView, offset: number): number[][] {
+    const matrix = [];
+    for (let i = 0; i < 3; i++) {
+        const row = [];
+        for (let j = 0; j < 4; j++) {
+            row.push(view.getFloat32(offset, true));
+            offset += FLOAT_SIZE;
+        }
+        matrix.push(row);
+    }
+    return matrix;
+}
+
+function readVector3(view: DataView, offset: number): number[] {
+    return [
+        view.getFloat32(offset, true),
+        view.getFloat32(offset + FLOAT_SIZE, true),
+        view.getFloat32(offset + FLOAT_SIZE * 2, true)
+    ];
 }
 
 async function main() {
@@ -136,6 +205,9 @@ async function main() {
             bDeviceIsConnected: false
         }
     }
+
+
+    console.log(EmptyPoseData)
     const empty34: OpenVR.HmdMatrix34 = {
         m: [
             [0, 0, 0, 0],
@@ -143,10 +215,39 @@ async function main() {
             [0, 0, 0, 0]
         ]
     }
+    
+    const InputPoseActionDataTemplate: Record<string, StructField> = {
+        bActive: { type: 'boolean' },
+        activeOrigin: { type: 'uint64' },
+        pose: {
+          type: 'object',
+          objectTemplate: {
+            mDeviceToAbsoluteTracking: {
+              type: 'array',
+              arrayType: { type: 'float32' },
+              arrayDimensions: [3, 4]
+            },
+            vVelocity: {
+              type: 'array',
+              arrayType: { type: 'float32' },
+              arrayDimensions: [3]
+            },
+            vAngularVelocity: {
+              type: 'array',
+              arrayType: { type: 'float32' },
+              arrayDimensions: [3]
+            },
+            eTrackingResult: { type: 'int32' },
+            bPoseIsValid: { type: 'boolean' },
+            bDeviceIsConnected: { type: 'boolean' }
+          }
+        }
+      };
 
 
     //#region Main loop
     let poseData: OpenVR.InputPoseActionData = EmptyPoseData;
+    console.log(EmptyPoseData)
     while (true) {
 
 
@@ -175,7 +276,6 @@ async function main() {
         if (error !== OpenVR.InputError.VRInputError_None) {
             console.error(`Failed to update action state: ${OpenVR.InputError[error]}`);
             throw new Error("Failed to update action state");
-            continue;
         }
 
         const poseDataSize = 96; // Adjust if needed
@@ -183,12 +283,20 @@ async function main() {
         const poseDataBufferL = new ArrayBuffer(poseDataSize);
         const poseDataViewR = new DataView(poseDataBufferR);
         const poseDataViewL = new DataView(poseDataBufferL);
-        fillBuffer(poseDataViewR, EmptyPoseData);
-        fillBuffer(poseDataViewL, EmptyPoseData);
+        fillBufferOrdered(poseDataViewR, EmptyPoseData, EmptyPoseData);
+        fillBufferOrdered(poseDataViewL, EmptyPoseData, EmptyPoseData);
 
-        const posedataleftpointer = Deno.UnsafePointer.of<OpenVR.InputPoseActionData>(poseDataBufferR);
-        const posedatarightpointer = Deno.UnsafePointer.of<OpenVR.InputPoseActionData>(poseDataBufferL);
 
+
+
+
+        //let [rightEmptyData, _1] = readBufferOrdered(poseDataViewR, EmptyPoseData);
+        //console.log(rightEmptyData)
+
+        const posedataleftpointer = Deno.UnsafePointer.of<OpenVR.InputPoseActionData>(poseDataBufferL)!;
+        const posedatarightpointer = Deno.UnsafePointer.of<OpenVR.InputPoseActionData>(poseDataBufferR)!;
+
+        //[rightEmptyData, _1] = readBuffer(poseDataViewR, EmptyPoseData);
 
         error = vrInput.GetPoseActionDataRelativeToNow(
             handPoseLeftHandle,
@@ -199,10 +307,10 @@ async function main() {
             OpenVR.k_ulInvalidInputValueHandle
         );
         if (error === OpenVR.InputError.VRInputError_None) {
-            const [poseData, _] = readBuffer(poseDataViewL, EmptyPoseData);
-            if (poseData.bActive && poseData.pose.bPoseIsValid) {
-                console.log("Left hand position:");
-                console.log(poseData.pose.mDeviceToAbsoluteTracking);
+            const rightPoseData = readInputPoseActionData(poseDataViewR);
+            if (rightPoseData.bActive && rightPoseData.pose.bPoseIsValid) {
+                console.log("Right hand position:");
+                console.log(rightPoseData.pose.mDeviceToAbsoluteTracking);
             }
         }
         error = vrInput.GetPoseActionDataRelativeToNow(
@@ -213,26 +321,22 @@ async function main() {
             96,
             OpenVR.k_ulInvalidInputValueHandle
         );
+
+        /* if (error === OpenVR.InputError.VRInputError_None) {
+            const rightPoseData = readInputPoseActionData(poseDataViewR);
+            console.log(rightPoseData)
+        } */
+
+
         if (error === OpenVR.InputError.VRInputError_None) {
-            const [poseData, _] = readBuffer(poseDataViewR, EmptyPoseData);
-            if (poseData.bActive && poseData.pose.bPoseIsValid) {
-                console.log("Left hand position:");
-                console.log(poseData.pose.mDeviceToAbsoluteTracking);
+            const [rightPoseData, _] = readBufferStructured(poseDataViewR, EmptyPoseData);
+            if (rightPoseData.bActive && rightPoseData.pose.bPoseIsValid) {
+                console.log(rightPoseData)
+                console.log("Right hand position:");
+                console.log(JSON.stringify(rightPoseData.pose.mDeviceToAbsoluteTracking, null, 2));
             }
         }
 
-
-        console.log("Left hand position:");
-        console.log(poseData.pose.mDeviceToAbsoluteTracking);
-
-        const hmdMatrix34Size = 4 * 3 * 4; // 4 bytes per float, 3 rows, 4 columns
-        const hmdMatrix34Buffer = new ArrayBuffer(hmdMatrix34Size);
-        const hmdMatrix34View = new DataView(hmdMatrix34Buffer);
-
-        fillBuffer(hmdMatrix34View, { m: poseData.pose.mDeviceToAbsoluteTracking });
-
-
-        const hmdMatrix34Ptr = Deno.UnsafePointer.of<OpenVR.HmdMatrix34>(hmdMatrix34Buffer);
 
 
         //overlay.SetOverlayTransformAbsolute(overlayHandle, OpenVR.TrackingUniverseOrigin.TrackingUniverseStanding, hmdMatrix34Ptr);

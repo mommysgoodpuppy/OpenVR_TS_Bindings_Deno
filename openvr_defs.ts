@@ -50,6 +50,30 @@ export function fillBuffer(view: DataView, data: any, offset = 0): number {
     return offset;
 }
 
+export function fillBufferOrdered(view: DataView, data: any, template: any, offset = 0): number {
+    for (const [key, value] of Object.entries(template)) {
+        if (typeof value === 'boolean') {
+            view.setUint8(offset, data[key] ? 1 : 0);
+            offset += 1;
+        } else if (typeof value === 'number') {
+            view.setFloat32(offset, data[key], true);
+            offset += 4;
+        } else if (typeof value === 'bigint') {
+            view.setBigUint64(offset, data[key], true);
+            offset += 8;
+        } else if (Array.isArray(value)) {
+            const flatData = data[key].flat(Infinity);
+            for (let i = 0; i < flatData.length; i++) {
+                view.setFloat32(offset, flatData[i], true);
+                offset += 4;
+            }
+        } else if (typeof value === 'object') {
+            offset = fillBufferOrdered(view, data[key], value, offset);
+        }
+    }
+    return offset;
+}
+
 export function readBuffer(view: DataView, template: any, offset = 0): [any, number] {
     const result: any = {};
     for (const [key, value] of Object.entries(template)) {
@@ -78,6 +102,148 @@ export function readBuffer(view: DataView, template: any, offset = 0): [any, num
         }
     }
     return [result, offset];
+}
+
+export function readBufferStructured(view: DataView, template: any, offset = 0): [any, number] {
+    const result: any = {};
+    let lastFieldType: string | null = null;
+
+    for (const [key, value] of Object.entries(template)) {
+        // Align to 8 bytes after a boolean field
+        if (lastFieldType === 'boolean') {
+            offset = Math.ceil(offset / 8) * 8;
+        }
+
+        console.log(`Processing key: ${key}, type: ${typeof value}, current offset: ${offset}`);
+
+        if (typeof value === 'boolean') {
+            result[key] = view.getUint8(offset) !== 0;
+            offset += 1;
+            lastFieldType = 'boolean';
+        } else if (typeof value === 'number') {
+            if (Number.isInteger(value)) {
+                result[key] = view.getInt32(offset, true);
+            } else {
+                result[key] = view.getFloat32(offset, true);
+            }
+            offset += 4;
+            lastFieldType = 'number';
+        } else if (typeof value === 'bigint') {
+            result[key] = view.getBigUint64(offset, true);
+            offset += 8;
+            lastFieldType = 'bigint';
+        } else if (Array.isArray(value)) {
+            [result[key], offset] = readArrayStructured(view, value, offset);
+            lastFieldType = 'array';
+        } else if (typeof value === 'object') {
+            result[key] = {};
+            for (const [subKey, subValue] of Object.entries(value)) {
+                if (subKey === 'm' || subKey === 'v') {
+                    [result[key][subKey], offset] = subKey === 'm' ? readMatrix(view, subValue, offset) : readVector(view, subValue, offset);
+                } else {
+                    [result[key][subKey], offset] = readBufferStructured(view, { [subKey]: subValue }, offset);
+                    result[key][subKey] = result[key][subKey][subKey];
+                }
+            }
+            lastFieldType = 'object';
+        } else {
+            throw new Error(`Unknown type: ${typeof value} for key ${key}`);
+        }
+
+        console.log(`Finished ${key}, new offset: ${offset}`);
+    }
+    return [result, offset];
+}
+
+function readMatrix(view: DataView, template: number[][], offset: number): [number[][], number] {
+    const result = [];
+    for (const row of template) {
+        const rowData = [];
+        for (let i = 0; i < row.length; i++) {
+            rowData.push(view.getFloat32(offset, true));
+            offset += 4;
+        }
+        result.push(rowData);
+    }
+    return [result, offset];
+}
+
+function readVector(view: DataView, template: number[], offset: number): [number[], number] {
+    const result = [];
+    for (let i = 0; i < template.length; i++) {
+        result.push(view.getFloat32(offset, true));
+        offset += 4;
+    }
+    return [result, offset];
+}
+
+function readArrayStructured(view: DataView, template: any[], offset: number): [any, number] {
+    const result = [];
+    for (const item of template) {
+        if (typeof item === 'number') {
+            result.push(view.getFloat32(offset, true));
+            offset += 4;
+        } else if (Array.isArray(item)) {
+            const [subArray, newOffset] = readArrayStructured(view, item, offset);
+            result.push(subArray);
+            offset = newOffset;
+        } else if (typeof item === 'object') {
+            const [subObject, newOffset] = readBufferStructured(view, item, offset);
+            result.push(subObject);
+            offset = newOffset;
+        }
+    }
+    return [result, offset];
+}
+
+
+
+function readFlatArray(view: DataView, template: any, offset: number): any {
+    if ('m' in template) {
+        // Matrix
+        const result = [];
+        for (let i = 0; i < template.m.length; i++) {
+            const row = [];
+            for (let j = 0; j < template.m[i].length; j++) {
+                row.push(view.getFloat32(offset, true));
+                offset += 4;
+            }
+            result.push(row);
+        }
+        return { m: result };
+    } else if ('v' in template) {
+        // Vector
+        const result = [];
+        for (let i = 0; i < template.v.length; i++) {
+            result.push(view.getFloat32(offset, true));
+            offset += 4;
+        }
+        return { v: result };
+    }
+}
+
+function getFlatArrayByteSize(template: any): number {
+    if ('m' in template) {
+        return template.m.flat().length * 4;
+    } else if ('v' in template) {
+        return template.v.length * 4;
+    }
+    return 0;
+}
+
+function getArrayByteSize(arr: any[]): number {
+    return arr.flat(Infinity).length * 4;
+}
+
+function getObjectByteSize(obj: any): number {
+    return Object.values(obj).reduce((sum, value) => {
+        if (typeof value === 'boolean') return sum + 1;
+        if (typeof value === 'number') return sum + 4;
+        if (typeof value === 'bigint') return sum + 8;
+        if (Array.isArray(value)) return sum + getArrayByteSize(value);
+        if (typeof value === 'object') return sum + getObjectByteSize(value);
+        return sum;
+    }, 0);
 }
 
 function getArrayShape(arr: any[]): number[] {

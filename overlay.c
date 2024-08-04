@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdbool.h>
+#include <string.h>
+#include <Windows.h>
 #include "openvr_capi.h"
 
 // OpenVR function declarations
@@ -20,6 +22,8 @@ void* CNOVRGetOpenVRFunctionTable(const char* interfacename) {
 }
 
 struct VR_IVROverlay_FnTable* overlay;
+struct VR_IVRSystem_FnTable* vr_system;
+struct VR_IVRInput_FnTable* vr_input;
 
 int main() {
     EVRInitError ierr;
@@ -29,32 +33,107 @@ int main() {
         return -1;
     }
 
-    struct VR_IVROverlay_FnTable* overlay = (struct VR_IVROverlay_FnTable*)CNOVRGetOpenVRFunctionTable(IVROverlay_Version);
+    overlay = (struct VR_IVROverlay_FnTable*)CNOVRGetOpenVRFunctionTable(IVROverlay_Version);
+    vr_system = (struct VR_IVRSystem_FnTable*)CNOVRGetOpenVRFunctionTable(IVRSystem_Version);
+    vr_input = (struct VR_IVRInput_FnTable*)CNOVRGetOpenVRFunctionTable(IVRInput_Version);
 
-    printf("Function pointer for FindOverlay: %p\n", (void*)overlay->FindOverlay);
-    printf("Function pointer for CreateOverlay: %p\n", (void*)overlay->CreateOverlay);
-
-    overlay = CNOVRGetOpenVRFunctionTable(IVROverlay_Version);
-
-    VROverlayHandle_t overlayHandle = 0;
-    printf("Overlay not yet: %llu\n", overlayHandle);
-    overlay->CreateOverlay("minimal-overlay", "Minimal Overlay", &overlayHandle);
-    printf("Overlay created with handle: %llu\n", overlayHandle);
-    overlay->SetOverlayWidthInMeters(overlayHandle, 0.5f);
-    overlay->ShowOverlay(overlayHandle);
-
-    // Simple static content for the overlay
-    uint8_t buffer[16 * 16 * 4] = {0};
-    for (int i = 0; i < 16 * 16; i++) {
-        buffer[i * 4] = 255;  // Red
-        buffer[i * 4 + 3] = 255;  // Alpha
+    // Set action manifest path
+    EVRInputError input_error = vr_input->SetActionManifestPath("C:/GIT/OpenVRDenoBindgen/actions.json");
+    if (input_error != EVRInputError_VRInputError_None) {
+        printf("Failed to set action manifest path: %d\n", input_error);
+        return -1;
     }
-    overlay->SetOverlayRaw(overlayHandle, buffer, 16, 16, 4);
 
-    printf("Overlay created and displayed. Press Enter to exit...\n");
-    getchar();
+    // Get action set handle
+    VRActionSetHandle_t action_set_handle;
+    input_error = vr_input->GetActionSetHandle("/actions/main", &action_set_handle);
+    if (input_error != EVRInputError_VRInputError_None) {
+        printf("Failed to get action set handle: %d\n", input_error);
+        return -1;
+    }
 
-    overlay->DestroyOverlay(overlayHandle);
+    // Get action handles
+    VRActionHandle_t hand_pose_left_handle, hand_pose_right_handle;
+    input_error = vr_input->GetActionHandle("/actions/main/in/HandPoseLeft", &hand_pose_left_handle);
+    if (input_error != EVRInputError_VRInputError_None) {
+        printf("Failed to get left hand action handle: %d\n", input_error);
+        return -1;
+    }
+    input_error = vr_input->GetActionHandle("/actions/main/in/HandPoseRight", &hand_pose_right_handle);
+    if (input_error != EVRInputError_VRInputError_None) {
+        printf("Failed to get right hand action handle: %d\n", input_error);
+        return -1;
+    }
+
+    // Create overlay
+    VROverlayHandle_t overlay_handle = 0;
+    overlay->CreateOverlay("image", "image", &overlay_handle);
+    printf("Overlay created with handle: %llu\n", overlay_handle);
+
+    overlay->SetOverlayFromFile(overlay_handle, "C:/GIT/petplay/resources/PetPlay.png");
+    overlay->SetOverlayWidthInMeters(overlay_handle, 0.1f);
+    overlay->ShowOverlay(overlay_handle);
+
+    // Set initial transform
+    HmdMatrix34_t initial_transform = {
+        .m = {
+            {1.0f, 0.0f, 0.0f, 0.0f},
+            {0.0f, 1.0f, 0.0f, 1.0f},
+            {0.0f, 0.0f, 1.0f, -2.0f}
+        }
+    };
+    overlay->SetOverlayTransformAbsolute(overlay_handle, ETrackingUniverseOrigin_TrackingUniverseStanding, &initial_transform);
+
+    printf("Overlay created and shown. Press Ctrl+C to exit.\n");
+
+    // Main loop
+    while (1) {
+        VRActiveActionSet_t active_action_set = {
+            .ulActionSet = action_set_handle,
+            .ulRestrictedToDevice = k_ulInvalidInputValueHandle,
+            .ulSecondaryActionSet = 0,
+            .unPadding = 0,
+            .nPriority = 0
+        };
+
+        input_error = vr_input->UpdateActionState(&active_action_set, sizeof(VRActiveActionSet_t), 1);
+        if (input_error != EVRInputError_VRInputError_None) {
+            printf("Failed to update action state: %d\n", input_error);
+            break;
+        }
+
+        InputPoseActionData_t pose_data_left = {0};
+        InputPoseActionData_t pose_data_right = {0};
+
+        input_error = vr_input->GetPoseActionDataRelativeToNow(hand_pose_left_handle, ETrackingUniverseOrigin_TrackingUniverseStanding, 0, &pose_data_left, sizeof(InputPoseActionData_t), k_ulInvalidInputValueHandle);
+        /* if (input_error == EVRInputError_VRInputError_None && pose_data_left.bActive && pose_data_left.pose.bPoseIsValid) {
+            printf("Left hand position:\n");
+            for (int i = 0; i < 3; i++) {
+                for (int j = 0; j < 4; j++) {
+                    printf("%f ", pose_data_left.pose.mDeviceToAbsoluteTracking.m[i][j]);
+                }
+                printf("\n");
+            }
+        } */
+
+        input_error = vr_input->GetPoseActionDataRelativeToNow(hand_pose_right_handle, ETrackingUniverseOrigin_TrackingUniverseStanding, 0, &pose_data_right, sizeof(InputPoseActionData_t), k_ulInvalidInputValueHandle);
+        if (input_error == EVRInputError_VRInputError_None && pose_data_right.bActive && pose_data_right.pose.bPoseIsValid) {
+            printf("Right hand position:\n");
+            for (int i = 0; i < 3; i++) {
+                for (int j = 0; j < 4; j++) {
+                    printf("%f ", pose_data_right.pose.mDeviceToAbsoluteTracking.m[i][j]);
+                }
+                printf("\n");
+            }
+        }
+
+        // Uncomment the following line to update overlay position based on left hand
+        // overlay->SetOverlayTransformAbsolute(overlay_handle, ETrackingUniverseOrigin_TrackingUniverseStanding, &pose_data_left.pose.mDeviceToAbsoluteTracking);
+
+        Sleep(200); // Sleep for 200ms
+    }
+
+    overlay->DestroyOverlay(overlay_handle);
     VR_ShutdownInternal();
 
     return 0;

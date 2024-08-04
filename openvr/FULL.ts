@@ -1817,6 +1817,8 @@ export enum BlockQueueCreationFlag {
 //#endregion
 // Structs
 
+import { FFIType } from './ffiTypes.ts';
+
 //#region Structs
 /*vr::HmdMatrix34_t, [
   {
@@ -1828,6 +1830,7 @@ export interface HmdMatrix34 {
   m: [[number, number, number, number], [number, number, number, number], [number, number, number, number]];
 }
 
+
 /*vr::HmdMatrix33_t, [
   {
     "fieldname": "m",
@@ -1837,6 +1840,7 @@ export interface HmdMatrix34 {
 export interface HmdMatrix33 {
   m: [[number, number, number], [number, number, number], [number, number, number]];
 }
+
 
 /*vr::HmdMatrix44_t, [
   {
@@ -1848,6 +1852,7 @@ export interface HmdMatrix44 {
   m: [[number, number, number, number], [number, number, number, number], [number, number, number, number], [number, number, number, number]];
 }
 
+
 /*vr::HmdVector3_t, [
   {
     "fieldname": "v",
@@ -1857,6 +1862,7 @@ export interface HmdMatrix44 {
 export interface HmdVector3 {
   v: [number, number, number];
 }
+
 
 /*vr::HmdVector4_t, [
   {
@@ -1868,6 +1874,7 @@ export interface HmdVector4 {
   v: [number, number, number, number];
 }
 
+
 /*vr::HmdVector3d_t, [
   {
     "fieldname": "v",
@@ -1878,6 +1885,7 @@ export interface HmdVector3d {
   v: [number, number, number];
 }
 
+
 /*vr::HmdVector2_t, [
   {
     "fieldname": "v",
@@ -1887,6 +1895,7 @@ export interface HmdVector3d {
 export interface HmdVector2 {
   v: [number, number];
 }
+
 
 /*vr::HmdQuaternion_t, [
   {
@@ -1913,6 +1922,7 @@ export interface HmdQuaternion {
   z: number;
 }
 
+
 /*vr::HmdQuaternionf_t, [
   {
     "fieldname": "w",
@@ -1937,6 +1947,7 @@ export interface HmdQuaternionf {
   y: number;
   z: number;
 }
+
 
 /*vr::HmdColor_t, [
   {
@@ -1963,6 +1974,7 @@ export interface HmdColor {
   a: number;
 }
 
+
 /*vr::HmdQuad_t, [
   {
     "fieldname": "vCorners",
@@ -1972,6 +1984,7 @@ export interface HmdColor {
 export interface HmdQuad {
   vCorners: [HmdVector3, HmdVector3, HmdVector3, HmdVector3];
 }
+
 
 /*vr::HmdRect2_t, [
   {
@@ -1988,6 +2001,7 @@ export interface HmdRect2 {
   vBottomRight: HmdVector2;
 }
 
+
 /*vr::VRBoneTransform_t, [
   {
     "fieldname": "position",
@@ -2002,6 +2016,7 @@ export interface BoneTransform {
   position: HmdVector4;
   orientation: HmdQuaternionf;
 }
+
 
 /*vr::DistortionCoordinates_t, [
   {
@@ -2023,6 +2038,7 @@ export interface DistortionCoordinates {
   rfBlue: [number, number];
 }
 
+
 /*vr::Texture_t, [
   {
     "fieldname": "handle",
@@ -2042,6 +2058,7 @@ export interface Texture {
   eType: TextureType;
   eColorSpace: ColorSpace;
 }
+
 
 /*vr::VRTextureBounds_t, [
   {
@@ -2068,6 +2085,7 @@ export interface TextureBounds {
   vMax: number;
 }
 
+
 /*vr::VRTextureWithPose_t, [
   {
     "fieldname": "mDeviceToAbsoluteTracking",
@@ -2077,6 +2095,7 @@ export interface TextureBounds {
 export interface TextureWithPose {
   mDeviceToAbsoluteTracking: HmdMatrix34;
 }
+
 
 /*vr::VRTextureDepthInfo_t, [
   {
@@ -2098,6 +2117,7 @@ export interface TextureDepthInfo {
   vRange: HmdVector2;
 }
 
+
 /*vr::VRTextureWithDepth_t, [
   {
     "fieldname": "depth",
@@ -2108,6 +2128,7 @@ export interface TextureWithDepth {
   depth: TextureDepthInfo;
 }
 
+
 /*vr::VRTextureWithPoseAndDepth_t, [
   {
     "fieldname": "depth",
@@ -2117,6 +2138,7 @@ export interface TextureWithDepth {
 export interface TextureWithPoseAndDepth {
   depth: TextureDepthInfo;
 }
+
 
 /*vr::TrackedDevicePose_t, [
   {
@@ -2152,6 +2174,7 @@ export interface TrackedDevicePose {
   bPoseIsValid: boolean;
   bDeviceIsConnected: boolean;
 }
+
 
 /*vr::VRVulkanTextureData_t, [
   {
@@ -2208,6 +2231,7 @@ export interface VulkanTextureData {
   nSampleCount: number;
 }
 
+
 /*vr::VRVulkanTextureArrayData_t, [
   {
     "fieldname": "m_unArrayIndex",
@@ -2222,6 +2246,7 @@ export interface VulkanTextureArrayData {
   unArrayIndex: number;
   unArraySize: number;
 }
+
 
 /*vr::D3D12TextureData_t, [
   {
@@ -2243,6 +2268,7 @@ export interface D3D12TextureData {
   nNodeMask: number;
 }
 
+
 /*vr::VREvent_Controller_t, [
   {
     "fieldname": "button",
@@ -2252,6 +2278,7 @@ export interface D3D12TextureData {
 export interface Event_Controller {
   button: number;
 }
+
 
 /*vr::VREvent_Mouse_t, [
   {
@@ -2277,6 +2304,7 @@ export interface Event_Mouse {
   button: number;
   cursorIndex: number;
 }
+
 
 /*vr::VREvent_Scroll_t, [
   {
@@ -2307,6 +2335,7 @@ export interface Event_Scroll {
   viewportscale: number;
   cursorIndex: number;
 }
+
 
 /*vr::VREvent_TouchPadMove_t, [
   {
@@ -2343,6 +2372,7 @@ export interface Event_TouchPadMove {
   fValueYRaw: number;
 }
 
+
 /*vr::VREvent_Notification_t, [
   {
     "fieldname": "ulUserValue",
@@ -2357,6 +2387,7 @@ export interface Event_Notification {
   ulUserValue: bigint;
   notificationId: number;
 }
+
 
 /*vr::VREvent_Process_t, [
   {
@@ -2383,6 +2414,7 @@ export interface Event_Process {
   bConnectionLost: boolean;
 }
 
+
 /*vr::VREvent_Overlay_t, [
   {
     "fieldname": "overlayHandle",
@@ -2408,6 +2440,7 @@ export interface Event_Overlay {
   cursorIndex: number;
 }
 
+
 /*vr::VREvent_Status_t, [
   {
     "fieldname": "statusState",
@@ -2417,6 +2450,7 @@ export interface Event_Overlay {
 export interface Event_Status {
   statusState: number;
 }
+
 
 /*vr::VREvent_Keyboard_t, [
   {
@@ -2438,6 +2472,7 @@ export interface Event_Keyboard {
   overlayHandle: bigint;
 }
 
+
 /*vr::VREvent_Ipd_t, [
   {
     "fieldname": "ipdMeters",
@@ -2447,6 +2482,7 @@ export interface Event_Keyboard {
 export interface Event_Ipd {
   ipdMeters: number;
 }
+
 
 /*vr::VREvent_Chaperone_t, [
   {
@@ -2462,6 +2498,7 @@ export interface Event_Chaperone {
   nPreviousUniverse: bigint;
   nCurrentUniverse: bigint;
 }
+
 
 /*vr::VREvent_Reserved_t, [
   {
@@ -2498,6 +2535,7 @@ export interface Event_Reserved {
   reserved5: bigint;
 }
 
+
 /*vr::VREvent_PerformanceTest_t, [
   {
     "fieldname": "m_nFidelityLevel",
@@ -2508,6 +2546,7 @@ export interface Event_PerformanceTest {
   nFidelityLevel: number;
 }
 
+
 /*vr::VREvent_SeatedZeroPoseReset_t, [
   {
     "fieldname": "bResetBySystemMenu",
@@ -2517,6 +2556,7 @@ export interface Event_PerformanceTest {
 export interface Event_SeatedZeroPoseReset {
   bResetBySystemMenu: boolean;
 }
+
 
 /*vr::VREvent_Screenshot_t, [
   {
@@ -2533,6 +2573,7 @@ export interface Event_Screenshot {
   type: number;
 }
 
+
 /*vr::VREvent_ScreenshotProgress_t, [
   {
     "fieldname": "progress",
@@ -2542,6 +2583,7 @@ export interface Event_Screenshot {
 export interface Event_ScreenshotProgress {
   progress: number;
 }
+
 
 /*vr::VREvent_ApplicationLaunch_t, [
   {
@@ -2558,6 +2600,7 @@ export interface Event_ApplicationLaunch {
   unArgsHandle: number;
 }
 
+
 /*vr::VREvent_EditingCameraSurface_t, [
   {
     "fieldname": "overlayHandle",
@@ -2573,6 +2616,7 @@ export interface Event_EditingCameraSurface {
   nVisualMode: number;
 }
 
+
 /*vr::VREvent_MessageOverlay_t, [
   {
     "fieldname": "unVRMessageOverlayResponse",
@@ -2582,6 +2626,7 @@ export interface Event_EditingCameraSurface {
 export interface Event_MessageOverlay {
   unVRMessageOverlayResponse: number;
 }
+
 
 /*vr::VREvent_Property_t, [
   {
@@ -2597,6 +2642,7 @@ export interface Event_Property {
   container: PropertyContainerHandle;
   prop: TrackedDeviceProperty;
 }
+
 
 /*vr::VREvent_HapticVibration_t, [
   {
@@ -2628,6 +2674,7 @@ export interface Event_HapticVibration {
   fAmplitude: number;
 }
 
+
 /*vr::VREvent_WebConsole_t, [
   {
     "fieldname": "webConsoleHandle",
@@ -2637,6 +2684,7 @@ export interface Event_HapticVibration {
 export interface Event_WebConsole {
   webConsoleHandle: WebConsoleHandle;
 }
+
 
 /*vr::VREvent_InputBindingLoad_t, [
   {
@@ -2663,6 +2711,7 @@ export interface Event_InputBindingLoad {
   pathControllerType: bigint;
 }
 
+
 /*vr::VREvent_InputActionManifestLoad_t, [
   {
     "fieldname": "pathAppKey",
@@ -2688,6 +2737,7 @@ export interface Event_InputActionManifestLoad {
   pathManifestPath: bigint;
 }
 
+
 /*vr::VREvent_SpatialAnchor_t, [
   {
     "fieldname": "unHandle",
@@ -2697,6 +2747,7 @@ export interface Event_InputActionManifestLoad {
 export interface Event_SpatialAnchor {
   unHandle: SpatialAnchorHandle;
 }
+
 
 /*vr::VREvent_ProgressUpdate_t, [
   {
@@ -2733,6 +2784,7 @@ export interface Event_ProgressUpdate {
   fProgress: number;
 }
 
+
 /*vr::VREvent_ShowUI_t, [
   {
     "fieldname": "eType",
@@ -2742,6 +2794,7 @@ export interface Event_ProgressUpdate {
 export interface Event_ShowUI {
   eType: ShowUIType;
 }
+
 
 /*vr::VREvent_ShowDevTools_t, [
   {
@@ -2753,6 +2806,7 @@ export interface Event_ShowDevTools {
   nBrowserIdentifier: number;
 }
 
+
 /*vr::VREvent_HDCPError_t, [
   {
     "fieldname": "eCode",
@@ -2762,6 +2816,7 @@ export interface Event_ShowDevTools {
 export interface Event_HDCPError {
   eCode: HDCPError;
 }
+
 
 /*vr::VREvent_AudioVolumeControl_t, [
   {
@@ -2773,6 +2828,7 @@ export interface Event_AudioVolumeControl {
   fVolumeLevel: number;
 }
 
+
 /*vr::VREvent_AudioMuteControl_t, [
   {
     "fieldname": "bMute",
@@ -2782,6 +2838,7 @@ export interface Event_AudioVolumeControl {
 export interface Event_AudioMuteControl {
   bMute: boolean;
 }
+
 
 /*vr::(anonymous), [
   {
@@ -2943,6 +3000,7 @@ export interface Event_Data {
   audioMuteControl: Event_AudioMuteControl;
 }
 
+
 /*vr::VREvent_t, [
   {
     "fieldname": "eventType",
@@ -2968,6 +3026,7 @@ export interface Event {
   data: Event_Data;
 }
 
+
 /*vr::RenderModel_ComponentState_t, [
   {
     "fieldname": "mTrackingToComponentRenderModel",
@@ -2988,6 +3047,7 @@ export interface RenderModel_ComponentState {
   uProperties: ComponentProperties;
 }
 
+
 /*vr::HiddenAreaMesh_t, [
   {
     "fieldname": "pVertexData",
@@ -3003,6 +3063,7 @@ export interface HiddenAreaMesh {
   unTriangleCount: number;
 }
 
+
 /*vr::VRControllerAxis_t, [
   {
     "fieldname": "x",
@@ -3017,6 +3078,7 @@ export interface ControllerAxis {
   x: number;
   y: number;
 }
+
 
 /*vr::VRControllerState001_t, [
   {
@@ -3042,6 +3104,7 @@ export interface ControllerState001 {
   ulButtonTouched: bigint;
   rAxis: [ControllerAxis, ControllerAxis, ControllerAxis, ControllerAxis, ControllerAxis];
 }
+
 
 /*vr::CameraVideoStreamFrameHeader_t, [
   {
@@ -3082,6 +3145,7 @@ export interface CameraVideoStreamFrameHeader {
   trackedDevicePose: TrackedDevicePose;
   ulFrameExposureTime: bigint;
 }
+
 
 /*vr::Compositor_FrameTiming, [
   {
@@ -3223,6 +3287,7 @@ export interface Compositor_FrameTiming {
   flTransferLatencyMs: number;
 }
 
+
 /*vr::Compositor_BenchmarkResults, [
   {
     "fieldname": "m_flMegaPixelsPerSecond",
@@ -3237,6 +3302,7 @@ export interface Compositor_BenchmarkResults {
   flMegaPixelsPerSecond: number;
   flHmdRecommendedMegaPixelsPerSecond: number;
 }
+
 
 /*vr::DriverDirectMode_FrameTiming, [
   {
@@ -3268,6 +3334,7 @@ export interface DriverDirectMode_FrameTiming {
   nReprojectionFlags: number;
 }
 
+
 /*vr::ImuSample_t, [
   {
     "fieldname": "fSampleTime",
@@ -3293,6 +3360,7 @@ export interface ImuSample {
   unOffScaleFlags: number;
 }
 
+
 /*vr::AppOverrideKeys_t, [
   {
     "fieldname": "pchKey",
@@ -3307,6 +3375,7 @@ export interface AppOverrideKeys {
   pchKey: string;
   pchValue: string;
 }
+
 
 /*vr::Compositor_CumulativeStats, [
   {
@@ -3423,6 +3492,7 @@ export interface Compositor_CumulativeStats {
   nNumFramesWithDepth: number;
 }
 
+
 /*vr::Compositor_StageRenderSettings, [
   {
     "fieldname": "m_PrimaryColor",
@@ -3468,6 +3538,7 @@ export interface Compositor_StageRenderSettings {
   bWireframe: boolean;
 }
 
+
 /*vr::VROverlayIntersectionParams_t, [
   {
     "fieldname": "vSource",
@@ -3487,6 +3558,7 @@ export interface OverlayIntersectionParams {
   vDirection: HmdVector3;
   eOrigin: TrackingUniverseOrigin;
 }
+
 
 /*vr::VROverlayIntersectionResults_t, [
   {
@@ -3513,6 +3585,7 @@ export interface OverlayIntersectionResults {
   fDistance: number;
 }
 
+
 /*vr::IntersectionMaskRectangle_t, [
   {
     "fieldname": "m_flTopLeftX",
@@ -3538,6 +3611,7 @@ export interface IntersectionMaskRectangle {
   flHeight: number;
 }
 
+
 /*vr::IntersectionMaskCircle_t, [
   {
     "fieldname": "m_flCenterX",
@@ -3558,6 +3632,7 @@ export interface IntersectionMaskCircle {
   flRadius: number;
 }
 
+
 /*vr::(anonymous), [
   {
     "fieldname": "m_Rectangle",
@@ -3573,6 +3648,7 @@ export interface OverlayIntersectionMaskPrimitive_Data {
   Circle: IntersectionMaskCircle;
 }
 
+
 /*vr::VROverlayIntersectionMaskPrimitive_t, [
   {
     "fieldname": "m_nPrimitiveType",
@@ -3587,6 +3663,7 @@ export interface OverlayIntersectionMaskPrimitive {
   nPrimitiveType: OverlayIntersectionMaskPrimitiveType;
   Primitive: OverlayIntersectionMaskPrimitive_Data;
 }
+
 
 /*vr::VROverlayProjection_t, [
   {
@@ -3613,6 +3690,7 @@ export interface OverlayProjection {
   fBottom: number;
 }
 
+
 /*vr::VROverlayView_t, [
   {
     "fieldname": "overlayHandle",
@@ -3632,6 +3710,7 @@ export interface OverlayView {
   texture: Texture;
   textureBounds: TextureBounds;
 }
+
 
 /*vr::VRVulkanDevice_t, [
   {
@@ -3663,6 +3742,7 @@ export interface VulkanDevice {
   uQueueFamilyIndex: number;
 }
 
+
 /*vr::VRNativeDevice_t, [
   {
     "fieldname": "handle",
@@ -3677,6 +3757,7 @@ export interface NativeDevice {
   handle: Deno.PointerValue<unknown>;
   eType: DeviceType;
 }
+
 
 /*vr::RenderModel_Vertex_t, [
   {
@@ -3697,6 +3778,7 @@ export interface RenderModel_Vertex {
   vNormal: HmdVector3;
   rfTextureCoord: [number, number];
 }
+
 
 /*vr::RenderModel_TextureMap_t, [
   {
@@ -3728,6 +3810,7 @@ export interface RenderModel_TextureMap {
   unMipLevels: number;
 }
 
+
 /*vr::RenderModel_t, [
   {
     "fieldname": "rVertexData",
@@ -3758,6 +3841,7 @@ export interface RenderModel {
   diffuseTextureId: TextureID;
 }
 
+
 /*vr::RenderModel_ControllerMode_State_t, [
   {
     "fieldname": "bScrollWheelVisible",
@@ -3767,6 +3851,7 @@ export interface RenderModel {
 export interface RenderModel_ControllerMode_State {
   bScrollWheelVisible: boolean;
 }
+
 
 /*vr::NotificationBitmap_t, [
   {
@@ -3793,6 +3878,7 @@ export interface NotificationBitmap {
   nBytesPerPixel: number;
 }
 
+
 /*vr::CVRSettingHelper, [
   {
     "fieldname": "m_pSettings",
@@ -3802,6 +3888,7 @@ export interface NotificationBitmap {
 export interface CVRSettingHelper {
   pSettings: Deno.PointerValue<IVRSettings>;
 }
+
 
 /*vr::InputAnalogActionData_t, [
   {
@@ -3853,6 +3940,7 @@ export interface InputAnalogActionData {
   fUpdateTime: number;
 }
 
+
 /*vr::InputDigitalActionData_t, [
   {
     "fieldname": "bActive",
@@ -3883,6 +3971,7 @@ export interface InputDigitalActionData {
   fUpdateTime: number;
 }
 
+
 /*vr::InputPoseActionData_t, [
   {
     "fieldname": "bActive",
@@ -3903,6 +3992,7 @@ export interface InputPoseActionData {
   pose: TrackedDevicePose;
 }
 
+
 /*vr::InputSkeletalActionData_t, [
   {
     "fieldname": "bActive",
@@ -3917,6 +4007,7 @@ export interface InputSkeletalActionData {
   bActive: boolean;
   activeOrigin: InputValueHandle;
 }
+
 
 /*vr::InputOriginInfo_t, [
   {
@@ -3937,6 +4028,7 @@ export interface InputOriginInfo {
   trackedDeviceIndex: TrackedDeviceIndex;
   rchRenderModelComponentName: [number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number];
 }
+
 
 /*vr::InputBindingInfo_t, [
   {
@@ -3968,6 +4060,7 @@ export interface InputBindingInfo {
   rchInputSourceType: [number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number];
 }
 
+
 /*vr::VRActiveActionSet_t, [
   {
     "fieldname": "ulActionSet",
@@ -3998,6 +4091,7 @@ export interface ActiveActionSet {
   nPriority: number;
 }
 
+
 /*vr::VRSkeletalSummaryData_t, [
   {
     "fieldname": "flFingerCurl",
@@ -4013,6 +4107,7 @@ export interface SkeletalSummaryData {
   flFingerSplay: [number, number, number, number];
 }
 
+
 /*vr::SpatialAnchorPose_t, [
   {
     "fieldname": "mAnchorToAbsoluteTracking",
@@ -4022,6 +4117,7 @@ export interface SkeletalSummaryData {
 export interface SpatialAnchorPose {
   mAnchorToAbsoluteTracking: HmdMatrix34;
 }
+
 
 /*vr::COpenVRContext, [
   {
@@ -4128,6 +4224,7 @@ export interface COpenVRContext {
   pVRNotifications: Deno.PointerValue<IVRNotifications>;
 }
 
+
 /*vr::PropertyWrite_t, [
   {
     "fieldname": "prop",
@@ -4168,6 +4265,7 @@ export interface PropertyWrite {
   eError: TrackedPropertyError;
 }
 
+
 /*vr::PropertyRead_t, [
   {
     "fieldname": "prop",
@@ -4203,6 +4301,7 @@ export interface PropertyRead {
   eError: TrackedPropertyError;
 }
 
+
 /*vr::CVRPropertyHelpers, [
   {
     "fieldname": "m_pProperties",
@@ -4212,6 +4311,7 @@ export interface PropertyRead {
 export interface CVRPropertyHelpers {
   pProperties: Deno.PointerValue<IVRProperties>;
 }
+
 
 /*vr::PathWrite_t, [
   {
@@ -4258,6 +4358,7 @@ export interface PathWrite {
   pszPath: string;
 }
 
+
 /*vr::PathRead_t, [
   {
     "fieldname": "ulPath",
@@ -4297,6 +4398,7 @@ export interface PathRead {
   eError: TrackedPropertyError;
   pszPath: string;
 }
+
 
 //#endregion
 // Classes

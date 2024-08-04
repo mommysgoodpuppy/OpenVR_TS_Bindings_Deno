@@ -1,9 +1,10 @@
 import { typeMapping } from "./openvr_defs.ts";
 
 const openvrApiJson = await Deno.readTextFile("openvr_api.json");
+const api = JSON.parse(openvrApiJson) as any;
 
 async function main() {
-  const api = JSON.parse(openvrApiJson) as any;
+
   if (typeof api !== "object" || api === null) {
     console.log(typeof api);
     throw new Error("API was not object");
@@ -354,6 +355,8 @@ type FFIArray<T, N extends number> = T[];
 
 async function generateStructs(structs: any[]) {
   let output = "// Structs\n\n";
+  //output += "import { defineStruct, StructBase } from './structDecorator.ts';\n";
+  output += "import { FFIType } from './ffiTypes.ts';\n\n";
   output += "//#region Structs\n";
 
   for (const str of structs) {
@@ -362,30 +365,117 @@ async function generateStructs(structs: any[]) {
     output += `/*${structName}, ${JSON.stringify(structFields, null, 2)}*/\n`;
 
     const structTrim = trimStructName(structName);
+    let interfaceName = structTrim;
+    let className = structTrim;
+
     if (structTrim === "(anonymous)") {
       if (structFields.length === 2) {
-        output += `export interface OverlayIntersectionMaskPrimitive_Data {\n`;
+        interfaceName = "OverlayIntersectionMaskPrimitive_Data";
+        className = "OverlayIntersectionMaskPrimitiveData";
       } else {
-        output += `export interface Event_Data {\n`;
+        interfaceName = "Event_Data";
+        className = "EventData";
       }
-    } else {
-      output += `export interface ${structTrim} {\n`;
     }
 
+    // Generate interface
+    output += `export interface ${interfaceName} {\n`;
     for (const field of structFields) {
-      const fieldname = field.fieldname;
-      const fieldtype = field.fieldtype;
-      const tsType = fieldTypeConvert(fieldtype);
-
-      const fieldnameTrim = trimFieldName(fieldname);
-      output += `  ${fieldnameTrim}: ${tsType};\n`;
+      const fieldname = trimFieldName(field.fieldname);
+      const tsType = fieldTypeConvert(field.fieldtype);
+      output += `  ${fieldname}: ${tsType};\n`;
     }
+    output += "}\n";
 
-    output += "}\n\n";
+    // Generate decorated class
+    /* output += `@defineStruct({\n`;
+    for (const field of structFields) {
+      if (field.fieldname === 'vCorners') debugger;
+      const fieldname = trimFieldName(field.fieldname);
+      const fieldDef = getFieldDefinition(field, api);
+      output += `  ${fieldname}: ${fieldDef},\n`;
+    }
+    output += `})\n`;
+    output += `export class ${className} extends StructBase implements ${interfaceName} {\n`;
+    for (const field of structFields) {
+      const fieldname = trimFieldName(field.fieldname);
+      const tsType = fieldTypeConvert(field.fieldtype);
+      output += `  ${fieldname}!: ${tsType};\n`;
+    } */
+    output += "\n\n";
   }
 
   output += "//#endregion\n";
   return output;
+}
+function getFieldDefinition(field: any, api: any): string {
+  const fieldtype = field.fieldtype;
+  const ffiType = getFfiType(fieldtype, api.typedefs, api.enums);
+
+  switch (ffiType) {
+    case 'bool':
+      return "{ type: 'boolean', ffiType: FFIType.BOOL }";
+    case 'f32':
+    case 'f64':
+      return `{ type: 'number', ffiType: FFIType.${ffiType.toUpperCase()} }`;
+    case 'i64':
+    case 'u64':
+      return `{ type: 'bigint', ffiType: FFIType.${ffiType.toUpperCase()} }`;
+    case 'pointer':
+      if (fieldtype.includes("char[")) {
+        const match = fieldtype.match(/\[(\d+)\]/);
+        const length = match ? parseInt(match[1]) : 1;
+        return `{ type: 'float32array', length: ${length}, ffiType: FFIType.POINTER }`;
+      }
+      if (fieldtype.includes("struct") || fieldtype.includes("[")) {
+        return handleStructOrArray(fieldtype, api);
+      }
+      return `{ type: 'pointer', ffiType: FFIType.POINTER }`;
+    default:
+      return `{ type: 'number', ffiType: FFIType.${ffiType.toUpperCase()} }`;
+  }
+}
+function handleStructOrArray(fieldtype: string, api: any): string {
+  const structMatch = fieldtype.match(/struct\s+(\w+::)?(\w+)/);
+  const arrayMatch = fieldtype.match(/\[(\d+)\]/g);
+
+  if (structMatch) {
+    const structName = trimStructName(structMatch[2]);
+    const nestedStruct = api.structs.find(s => trimStructName(s.struct) === structName);
+
+    if (nestedStruct) {
+      const nestedFields = nestedStruct.fields.map(f =>
+        `${f.fieldname}: ${getFieldDefinition(f, api)}`
+      ).join(', ');
+
+      if (arrayMatch) {
+        const dimensions = arrayMatch.map(m => parseInt(m.slice(1, -1)));
+        return `{ 
+          type: 'struct', 
+          struct: { ${nestedFields} },
+          dimensions: [${dimensions.join(', ')}],
+          ffiType: FFIType.POINTER 
+        }`;
+      } else {
+        return `{ 
+          type: 'struct', 
+          struct: { ${nestedFields} },
+          ffiType: FFIType.POINTER 
+        }`;
+      }
+    }
+  } else if (arrayMatch) {
+    const dimensions = arrayMatch.map(m => parseInt(m.slice(1, -1)));
+    const baseType = fieldtype.split('[')[0].trim();
+    return `{ 
+      type: 'array', 
+      baseType: '${baseType}',
+      dimensions: [${dimensions.join(', ')}],
+      ffiType: FFIType.POINTER 
+    }`;
+  }
+
+  return `{ type: 'pointer', ffiType: FFIType.POINTER }`;
 }
 
 const INTERFACE_NAMES: string[] = [
@@ -414,8 +504,11 @@ const INTERFACE_NAMES: string[] = [
   "vr::IVRBlockQueue",
 ]
 
-function getFfiType(type: string, defs: any[], enums: any[]): any {
+function getFfiType(type: string, defs?: any[], enums?: any[]): any {
   // Check if it's a basic type in typeMapping
+  defs = api.typedefs;
+  enums = api.enums;
+
   if (typeMapping[type]) {
     return typeMapping[type].ffi;
   }
@@ -433,6 +526,7 @@ function getFfiType(type: string, defs: any[], enums: any[]): any {
   }
 
   // If all else fails, assume it's a pointer
+  console.warn(`Unknown type: ${type}`);
   return "pointer";
 }
 
@@ -489,7 +583,7 @@ async function generateMethods(methods: any[], defs: any[], enums: any[]) {
 
       output += `    const func = new Deno.UnsafeFnPointer(funcPtr, {\n`;
       output += `      parameters: [\n`;
- 
+
       if (methParams) {
         for (const param of methParams) {
           const ffiType = getFfiType(param.paramtype, defs, enums);
@@ -502,7 +596,7 @@ async function generateMethods(methods: any[], defs: any[], enums: any[]) {
 
       // Call the function
       output += `    const result = func.call(\n`;
- 
+
       if (methParams) {
         for (const param of methParams) {
           const paramType = fieldTypeConvert(param.paramtype);
