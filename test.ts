@@ -1,5 +1,5 @@
 import * as OpenVR from "./openvr/FULL.ts";
-import { fillBuffer, readBuffer, StructField, fillBufferOrdered, readBufferStructured } from "./openvr_defs.ts";
+import {fillBuffer, readBufferStructured } from "./openvr_defs.ts";
 import { P } from "./pointers.ts";
 
 const manifestPath = Deno.realPathSync("c:/GIT/OpenVRDenoBindgen/actions.json");
@@ -8,75 +8,6 @@ function stringToPointer(str: string): Deno.PointerValue {
     const encoder = new TextEncoder();
     const view = encoder.encode(str + '\0');
     return Deno.UnsafePointer.of(view);
-}
-
-const BOOL_SIZE = 1;
-const BOOL_PADDING = 7; // To align to 8 bytes
-const UINT64_SIZE = 8;
-const FLOAT_SIZE = 4;
-const MATRIX34_SIZE = 4 * 3 * 4; // 4 bytes per float, 3 rows, 4 columns
-const VECTOR3_SIZE = 4 * 3; // 4 bytes per float, 3 components
-
-function readInputPoseActionData(view: DataView, offset = 0): InputPoseActionData {
-    let currentOffset = offset;
-
-    const bActive = view.getUint8(currentOffset) !== 0;
-    currentOffset += BOOL_SIZE + BOOL_PADDING;
-
-    const activeOrigin = view.getBigUint64(currentOffset, true);
-    currentOffset += UINT64_SIZE;
-
-    const mDeviceToAbsoluteTracking = readMatrix34(view, currentOffset);
-    currentOffset += MATRIX34_SIZE;
-
-    const vVelocity = readVector3(view, currentOffset);
-    currentOffset += VECTOR3_SIZE;
-
-    const vAngularVelocity = readVector3(view, currentOffset);
-    currentOffset += VECTOR3_SIZE;
-
-    const eTrackingResult = view.getInt32(currentOffset, true);
-    currentOffset += FLOAT_SIZE;
-
-    const bPoseIsValid = view.getUint8(currentOffset) !== 0;
-    currentOffset += BOOL_SIZE;
-
-    const bDeviceIsConnected = view.getUint8(currentOffset) !== 0;
-    currentOffset += BOOL_SIZE;
-
-    return {
-        bActive,
-        activeOrigin,
-        pose: {
-            mDeviceToAbsoluteTracking,
-            vVelocity,
-            vAngularVelocity,
-            eTrackingResult,
-            bPoseIsValid,
-            bDeviceIsConnected
-        }
-    };
-}
-
-function readMatrix34(view: DataView, offset: number): number[][] {
-    const matrix = [];
-    for (let i = 0; i < 3; i++) {
-        const row = [];
-        for (let j = 0; j < 4; j++) {
-            row.push(view.getFloat32(offset, true));
-            offset += FLOAT_SIZE;
-        }
-        matrix.push(row);
-    }
-    return matrix;
-}
-
-function readVector3(view: DataView, offset: number): number[] {
-    return [
-        view.getFloat32(offset, true),
-        view.getFloat32(offset + FLOAT_SIZE, true),
-        view.getFloat32(offset + FLOAT_SIZE * 2, true)
-    ];
 }
 
 async function main() {
@@ -215,34 +146,34 @@ async function main() {
             [0, 0, 0, 0]
         ]
     }
-    
+
     const InputPoseActionDataTemplate: Record<string, StructField> = {
         bActive: { type: 'boolean' },
         activeOrigin: { type: 'uint64' },
         pose: {
-          type: 'object',
-          objectTemplate: {
-            mDeviceToAbsoluteTracking: {
-              type: 'array',
-              arrayType: { type: 'float32' },
-              arrayDimensions: [3, 4]
-            },
-            vVelocity: {
-              type: 'array',
-              arrayType: { type: 'float32' },
-              arrayDimensions: [3]
-            },
-            vAngularVelocity: {
-              type: 'array',
-              arrayType: { type: 'float32' },
-              arrayDimensions: [3]
-            },
-            eTrackingResult: { type: 'int32' },
-            bPoseIsValid: { type: 'boolean' },
-            bDeviceIsConnected: { type: 'boolean' }
-          }
+            type: 'object',
+            objectTemplate: {
+                mDeviceToAbsoluteTracking: {
+                    type: 'array',
+                    arrayType: { type: 'float32' },
+                    arrayDimensions: [3, 4]
+                },
+                vVelocity: {
+                    type: 'array',
+                    arrayType: { type: 'float32' },
+                    arrayDimensions: [3]
+                },
+                vAngularVelocity: {
+                    type: 'array',
+                    arrayType: { type: 'float32' },
+                    arrayDimensions: [3]
+                },
+                eTrackingResult: { type: 'int32' },
+                bPoseIsValid: { type: 'boolean' },
+                bDeviceIsConnected: { type: 'boolean' }
+            }
         }
-      };
+    };
 
 
     //#region Main loop
@@ -283,15 +214,8 @@ async function main() {
         const poseDataBufferL = new ArrayBuffer(poseDataSize);
         const poseDataViewR = new DataView(poseDataBufferR);
         const poseDataViewL = new DataView(poseDataBufferL);
-        fillBufferOrdered(poseDataViewR, EmptyPoseData, EmptyPoseData);
-        fillBufferOrdered(poseDataViewL, EmptyPoseData, EmptyPoseData);
-
-
-
-
-
-        //let [rightEmptyData, _1] = readBufferOrdered(poseDataViewR, EmptyPoseData);
-        //console.log(rightEmptyData)
+        fillBuffer(poseDataViewR, EmptyPoseData);
+        fillBuffer(poseDataViewL, EmptyPoseData);
 
         const posedataleftpointer = Deno.UnsafePointer.of<OpenVR.InputPoseActionData>(poseDataBufferL)!;
         const posedatarightpointer = Deno.UnsafePointer.of<OpenVR.InputPoseActionData>(poseDataBufferR)!;
@@ -306,13 +230,6 @@ async function main() {
             96,
             OpenVR.k_ulInvalidInputValueHandle
         );
-        if (error === OpenVR.InputError.VRInputError_None) {
-            const rightPoseData = readInputPoseActionData(poseDataViewR);
-            if (rightPoseData.bActive && rightPoseData.pose.bPoseIsValid) {
-                console.log("Right hand position:");
-                console.log(rightPoseData.pose.mDeviceToAbsoluteTracking);
-            }
-        }
         error = vrInput.GetPoseActionDataRelativeToNow(
             handPoseRightHandle,
             OpenVR.TrackingUniverseOrigin.TrackingUniverseStanding,

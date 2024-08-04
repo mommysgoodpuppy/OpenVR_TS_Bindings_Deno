@@ -27,30 +27,10 @@ export const typeMapping: Record<string, { ffi: Deno.NativeType | Deno.NativeVoi
     "double": { ffi: "f64", deno: "number", c: "double" }
 };
 
-export function fillBuffer(view: DataView, data: any, offset = 0): number {
-    for (const [key, value] of Object.entries(data)) {
-        if (typeof value === 'boolean') {
-            view.setUint8(offset, value ? 1 : 0);
-            offset += 1;
-        } else if (typeof value === 'number') {
-            view.setFloat32(offset, value, true);
-            offset += 4;
-        } else if (typeof value === 'bigint') {
-            view.setBigUint64(offset, value, true);
-            offset += 8;
-        } else if (Array.isArray(value)) {
-            for (const item of value.flat(Infinity)) {
-                view.setFloat32(offset, item, true);
-                offset += 4;
-            }
-        } else if (typeof value === 'object') {
-            offset = fillBuffer(view, value, offset);
-        }
-    }
-    return offset;
-}
 
-export function fillBufferOrdered(view: DataView, data: any, template: any, offset = 0): number {
+
+export function fillBuffer(view: DataView, data: any, offset = 0): number {
+    const template = data
     for (const [key, value] of Object.entries(template)) {
         if (typeof value === 'boolean') {
             view.setUint8(offset, data[key] ? 1 : 0);
@@ -68,7 +48,7 @@ export function fillBufferOrdered(view: DataView, data: any, template: any, offs
                 offset += 4;
             }
         } else if (typeof value === 'object') {
-            offset = fillBufferOrdered(view, data[key], value, offset);
+            offset = fillBuffer(view, data[key], offset);
         }
     }
     return offset;
@@ -196,56 +176,6 @@ function readArrayStructured(view: DataView, template: any[], offset: number): [
     return [result, offset];
 }
 
-
-
-function readFlatArray(view: DataView, template: any, offset: number): any {
-    if ('m' in template) {
-        // Matrix
-        const result = [];
-        for (let i = 0; i < template.m.length; i++) {
-            const row = [];
-            for (let j = 0; j < template.m[i].length; j++) {
-                row.push(view.getFloat32(offset, true));
-                offset += 4;
-            }
-            result.push(row);
-        }
-        return { m: result };
-    } else if ('v' in template) {
-        // Vector
-        const result = [];
-        for (let i = 0; i < template.v.length; i++) {
-            result.push(view.getFloat32(offset, true));
-            offset += 4;
-        }
-        return { v: result };
-    }
-}
-
-function getFlatArrayByteSize(template: any): number {
-    if ('m' in template) {
-        return template.m.flat().length * 4;
-    } else if ('v' in template) {
-        return template.v.length * 4;
-    }
-    return 0;
-}
-
-function getArrayByteSize(arr: any[]): number {
-    return arr.flat(Infinity).length * 4;
-}
-
-function getObjectByteSize(obj: any): number {
-    return Object.values(obj).reduce((sum, value) => {
-        if (typeof value === 'boolean') return sum + 1;
-        if (typeof value === 'number') return sum + 4;
-        if (typeof value === 'bigint') return sum + 8;
-        if (Array.isArray(value)) return sum + getArrayByteSize(value);
-        if (typeof value === 'object') return sum + getObjectByteSize(value);
-        return sum;
-    }, 0);
-}
-
 function getArrayShape(arr: any[]): number[] {
     if (!Array.isArray(arr)) return [];
     return [arr.length, ...getArrayShape(arr[0])];
@@ -261,27 +191,6 @@ function reshapeArray(flat: any[], shape: number[]): any[] {
     return result;
 }
 
-
-
-function mapOpenVRTypeToDenoFFI(type: string): Deno.NativeType | Deno.NativeVoidType | Deno.NativeStructType {
-    const mapped = typeMapping[type]?.ffi;
-    if (mapped) return mapped;
-    // Default to pointer if not found
-    return "pointer";
-}
-
-
-/* export function mapOpenVRTypeToDenoFFI(type: string): Deno.NativeType {
-    const typeMap: Record<string, Deno.NativeType> = {
-      "uint64_t": "u64",
-      "uint32_t": "u32",
-      "float": "f32",
-      "_Bool": "u8",
-      "void": "pointer",
-      // Add more mappings as needed
-    };
-    return typeMap[type] || "pointer";
-  } */
 
 
 export function mapOpenVRTypeToDeno(type: string): string {
