@@ -205,30 +205,25 @@ async function main() {
     const triggerDataViewL = new DataView(triggerDataBufferL);
     const triggerDataViewR = new DataView(triggerDataBufferR);
     const triggerLeftPointer = Deno.UnsafePointer.of<OpenVR.InputDigitalActionData>(triggerDataBufferL)!;
-    const triggerRightPointer = Deno.UnsafePointer.of<OpenVR.InputDigitalActionData>(triggerDataBufferL)!;
+    const triggerRightPointer = Deno.UnsafePointer.of<OpenVR.InputDigitalActionData>(triggerDataBufferR)!;
 
 
     while (true) {
 
 
-
-        const activeActionSetBuffer = new ArrayBuffer(OpenVR.ActiveActionSetStruct.byteSize); // Adjust size if needed
+        const activeActionSetSize = OpenVR.ActiveActionSetStruct.byteSize;
+        const activeActionSetBuffer = new ArrayBuffer(activeActionSetSize); 
         const activeActionSetView = new DataView(activeActionSetBuffer);
+        const activeActionSetPtr = Deno.UnsafePointer.of<OpenVR.ActiveActionSet>(activeActionSetBuffer)!;
 
-        //fillBuffer(activeActionSetView, activeActionSet);
         OpenVR.ActiveActionSetStruct.write(activeActionSet, activeActionSetView)
 
 
-        // Create a pointer to the buffer
-        const activeActionSetPtr = Deno.UnsafePointer.of<OpenVR.ActiveActionSet>(activeActionSetBuffer)!;
-        error = vrInput.UpdateActionState(activeActionSetPtr, 32, 1);
+        error = vrInput.UpdateActionState(activeActionSetPtr, activeActionSetSize, 1);
         if (error !== OpenVR.InputError.VRInputError_None) {
             console.error(`Failed to update action state: ${OpenVR.InputError[error]}`);
             throw new Error("Failed to update action state");
         }
-
-
-
 
         error = vrInput.GetPoseActionDataRelativeToNow(
             handPoseLeftHandle,
@@ -264,6 +259,7 @@ async function main() {
             OpenVR.k_ulInvalidInputValueHandle
         );
         const leftTriggerData = OpenVR.InputDigitalActionDataStruct.read(triggerDataViewL);
+        
         error = vrInput.GetDigitalActionData(
             triggerRightHandle,
             triggerRightPointer,
@@ -276,7 +272,7 @@ async function main() {
         //update overlay pos if trigger is pressed
         if (error === OpenVR.InputError.VRInputError_None) {
 
-            
+
             // Move the overlay if the trigger is pressed
             if (leftTriggerData.bState || rightTriggerData.bState) {
                 const activeHandPose = leftTriggerData.bState ? leftPoseData : rightPoseData;
