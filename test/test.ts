@@ -1,6 +1,7 @@
 import * as OpenVR from "./openvr_bindings.ts";
 import { fillBuffer, readBufferStructured } from "../utils.ts";
 import { P } from "../pointers.ts";
+import { Struct, calculateTotalSize, SizedStruct, ArrayType, u8, i8, u16, i16, u32, i32, f32, u64, i64, f64 } from "../../byte_type/mod.ts";
 
 const manifestPath = Deno.realPathSync("./test/actions.json");
 
@@ -187,14 +188,36 @@ async function main() {
 
     //#region Main loop
 
+    //init pose LR
+    const poseDataSize = OpenVR.InputPoseActionDataStruct.byteSize;
+    const bufferL = new ArrayBuffer(poseDataSize);
+    const bufferR = new ArrayBuffer(poseDataSize);
+    const poseDataViewL = new DataView(bufferL);
+    const poseDataViewR = new DataView(bufferR);
+    const posedataleftpointer = Deno.UnsafePointer.of<OpenVR.InputPoseActionData>(bufferL)!;
+    const posedatarightpointer = Deno.UnsafePointer.of<OpenVR.InputPoseActionData>(bufferR)!;
+
+
+    //init trigger LR
+    const triggerDataSize = OpenVR.InputDigitalActionDataStruct.byteSize;
+    const triggerDataBufferL = new ArrayBuffer(triggerDataSize);
+    const triggerDataBufferR = new ArrayBuffer(triggerDataSize);
+    const triggerDataViewL = new DataView(triggerDataBufferL);
+    const triggerDataViewR = new DataView(triggerDataBufferR);
+    const triggerLeftPointer = Deno.UnsafePointer.of<OpenVR.InputDigitalActionData>(triggerDataBufferL)!;
+    const triggerRightPointer = Deno.UnsafePointer.of<OpenVR.InputDigitalActionData>(triggerDataBufferL)!;
+
+
     while (true) {
 
 
 
-        const activeActionSetBuffer = new ArrayBuffer(32); // Adjust size if needed
+        const activeActionSetBuffer = new ArrayBuffer(OpenVR.ActiveActionSetStruct.byteSize); // Adjust size if needed
         const activeActionSetView = new DataView(activeActionSetBuffer);
 
-        fillBuffer(activeActionSetView, activeActionSet);
+        //fillBuffer(activeActionSetView, activeActionSet);
+        OpenVR.ActiveActionSetStruct.write(activeActionSet, activeActionSetView)
+
 
         // Create a pointer to the buffer
         const activeActionSetPtr = Deno.UnsafePointer.of<OpenVR.ActiveActionSet>(activeActionSetBuffer)!;
@@ -204,10 +227,8 @@ async function main() {
             throw new Error("Failed to update action state");
         }
 
-        //get pose data
-        const poseDataSize = 96;
-        const posedataleftpointer = Deno.UnsafePointer.of<OpenVR.InputPoseActionData>(new ArrayBuffer(poseDataSize))!;
-        const posedatarightpointer = Deno.UnsafePointer.of<OpenVR.InputPoseActionData>(new ArrayBuffer(poseDataSize))!;
+
+
 
         error = vrInput.GetPoseActionDataRelativeToNow(
             handPoseLeftHandle,
@@ -217,12 +238,10 @@ async function main() {
             96,
             OpenVR.k_ulInvalidInputValueHandle
         );
-        const bufferL = new Deno.UnsafePointerView(posedataleftpointer).getArrayBuffer(poseDataSize);
-        const poseDataViewL = new DataView(bufferL);
         if (error === OpenVR.InputError.VRInputError_None) {
-            [leftPoseData, _] = readBufferStructured(poseDataViewL, EmptyPoseData);
-
+            leftPoseData = OpenVR.InputPoseActionDataStruct.read(poseDataViewL);
         }
+
         error = vrInput.GetPoseActionDataRelativeToNow(
             handPoseRightHandle,
             OpenVR.TrackingUniverseOrigin.TrackingUniverseStanding,
@@ -231,45 +250,37 @@ async function main() {
             96,
             OpenVR.k_ulInvalidInputValueHandle
         );
-        const bufferR = new Deno.UnsafePointerView(posedatarightpointer).getArrayBuffer(poseDataSize);
-        const poseDataViewR = new DataView(bufferR);
         if (error === OpenVR.InputError.VRInputError_None) {
-            [rightPoseData, _] = readBufferStructured(poseDataViewR, EmptyPoseData);
+            rightPoseData = OpenVR.InputPoseActionDataStruct.read(poseDataViewR);
+
         }
 
-        //get trigger data
-        const triggerDataSize = 42;
-        const triggerLeftPointer = Deno.UnsafePointer.of<OpenVR.InputDigitalActionData>(new ArrayBuffer(triggerDataSize))!;
-        const triggerRightPointer = Deno.UnsafePointer.of<OpenVR.InputDigitalActionData>(new ArrayBuffer(triggerDataSize))!;
+
 
         error = vrInput.GetDigitalActionData(
             triggerLeftHandle,
             triggerLeftPointer,
-            42,
+            24,
             OpenVR.k_ulInvalidInputValueHandle
         );
-        const bufferLX = new Deno.UnsafePointerView(triggerLeftPointer).getArrayBuffer(triggerDataSize);
-        const triggerDataViewL = new DataView(bufferLX);
+        const leftTriggerData = OpenVR.InputDigitalActionDataStruct.read(triggerDataViewL);
         error = vrInput.GetDigitalActionData(
             triggerRightHandle,
             triggerRightPointer,
-            42,
+            24,
             OpenVR.k_ulInvalidInputValueHandle
         );
-        const bufferRX = new Deno.UnsafePointerView(triggerRightPointer).getArrayBuffer(triggerDataSize);
-        const triggerDataViewR = new DataView(bufferRX);
+        const rightTriggerData = OpenVR.InputDigitalActionDataStruct.read(triggerDataViewR);
+
 
         //update overlay pos if trigger is pressed
         if (error === OpenVR.InputError.VRInputError_None) {
-            const [leftTriggerData, _] = readBufferStructured(triggerDataViewL, EmptyDigitalActionData);
-            const [rightTriggerData, __] = readBufferStructured(triggerDataViewR, EmptyDigitalActionData);
 
-            //console.log(`Left trigger: ${leftTriggerData.bState ? "Pressed" : "Released"}`);
-            //console.log(`Right trigger: ${rightTriggerData.bState ? "Pressed" : "Released"}`);
-
+            
             // Move the overlay if the trigger is pressed
             if (leftTriggerData.bState || rightTriggerData.bState) {
                 const activeHandPose = leftTriggerData.bState ? leftPoseData : rightPoseData;
+                if (!activeHandPose) throw new Error("Invalid pose data");
                 if (activeHandPose.bActive && activeHandPose.pose.bPoseIsValid) {
                     const newTransform = activeHandPose.pose.mDeviceToAbsoluteTracking;
                     const newTransformPtr = Deno.UnsafePointer.of<OpenVR.HmdMatrix34>(new Float32Array(newTransform.m.flat()));

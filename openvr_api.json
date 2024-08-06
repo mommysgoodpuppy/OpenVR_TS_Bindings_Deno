@@ -2306,7 +2306,7 @@
 { "fieldname": "eventType", "fieldtype": "uint32_t"},
 { "fieldname": "trackedDeviceIndex", "fieldtype": "TrackedDeviceIndex_t"},
 { "fieldname": "eventAgeSeconds", "fieldtype": "float"},
-{ "fieldname": "data", "fieldtype": "VREvent_Data_t"}]}
+{ "fieldname": "data", "fieldtype": "struct VREventData_t"}]}
 ,{"struct": "vr::RenderModel_ComponentState_t","fields": [
 { "fieldname": "mTrackingToComponentRenderModel", "fieldtype": "struct vr::HmdMatrix34_t"},
 { "fieldname": "mTrackingToComponentLocal", "fieldtype": "struct vr::HmdMatrix34_t"},

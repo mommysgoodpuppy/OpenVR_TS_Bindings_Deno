@@ -105,6 +105,9 @@ int main() {
         InputPoseActionData_t pose_data_left = {0};
         InputPoseActionData_t pose_data_right = {0};
 
+        printf("sizeof InputPoseActionData_t %zu\n", sizeof(struct InputPoseActionData_t));
+        printf("sizeof TrackedDevicePose_t %zu\n", sizeof(struct TrackedDevicePose_t));
+
         input_error = vr_input->GetPoseActionDataRelativeToNow(hand_pose_left_handle, ETrackingUniverseOrigin_TrackingUniverseStanding, 0, &pose_data_left, sizeof(InputPoseActionData_t), k_ulInvalidInputValueHandle);
         /* if (input_error == EVRInputError_VRInputError_None && pose_data_left.bActive && pose_data_left.pose.bPoseIsValid) {
             printf("Left hand position:\n");

@@ -2169,8 +2169,8 @@ export interface TrackedDevicePose {
   vVelocity: HmdVector3;
   vAngularVelocity: HmdVector3;
   eTrackingResult: TrackingResult;
-  bPoseIsValid: boolean;
-  bDeviceIsConnected: boolean;
+  bPoseIsValid: number;
+  bDeviceIsConnected: number;
 }
 
 
@@ -2362,7 +2362,7 @@ export interface Event_Scroll {
   }
 ]*/
 export interface Event_TouchPadMove {
-  bFingerDown: boolean;
+  bFingerDown: number;
   flSecondsFingerDown: number;
   fValueXFirst: number;
   fValueYFirst: number;
@@ -2408,8 +2408,8 @@ export interface Event_Notification {
 export interface Event_Process {
   pid: number;
   oldPid: number;
-  bForced: boolean;
-  bConnectionLost: boolean;
+  bForced: number;
+  bConnectionLost: number;
 }
 
 
@@ -2552,7 +2552,7 @@ export interface Event_PerformanceTest {
   }
 ]*/
 export interface Event_SeatedZeroPoseReset {
-  bResetBySystemMenu: boolean;
+  bResetBySystemMenu: number;
 }
 
 
@@ -2834,7 +2834,7 @@ export interface Event_AudioVolumeControl {
   }
 ]*/
 export interface Event_AudioMuteControl {
-  bMute: boolean;
+  bMute: number;
 }
 
 
@@ -3014,14 +3014,14 @@ export interface Event_Data {
   },
   {
     "fieldname": "data",
-    "fieldtype": "VREvent_Data_t"
+    "fieldtype": "struct VREventData_t"
   }
 ]*/
 export interface Event {
   eventType: number;
   trackedDeviceIndex: TrackedDeviceIndex;
   eventAgeSeconds: number;
-  data: Event_Data;
+  data: EventData;
 }
 
 
@@ -3531,9 +3531,9 @@ export interface Compositor_StageRenderSettings {
   flVignetteInnerRadius: number;
   flVignetteOuterRadius: number;
   flFresnelStrength: number;
-  bBackfaceCulling: boolean;
-  bGreyscale: boolean;
-  bWireframe: boolean;
+  bBackfaceCulling: number;
+  bGreyscale: number;
+  bWireframe: number;
 }
 
 
@@ -3847,7 +3847,7 @@ export interface RenderModel {
   }
 ]*/
 export interface RenderModel_ControllerMode_State {
-  bScrollWheelVisible: boolean;
+  bScrollWheelVisible: number;
 }
 
 
@@ -3927,7 +3927,7 @@ export interface CVRSettingHelper {
   }
 ]*/
 export interface InputAnalogActionData {
-  bActive: boolean;
+  bActive: number;
   activeOrigin: InputValueHandle;
   x: number;
   y: number;
@@ -3962,10 +3962,10 @@ export interface InputAnalogActionData {
   }
 ]*/
 export interface InputDigitalActionData {
-  bActive: boolean;
+  bActive: number;
   activeOrigin: InputValueHandle;
-  bState: boolean;
-  bChanged: boolean;
+  bState: number;
+  bChanged: number;
   fUpdateTime: number;
 }
 
@@ -3985,7 +3985,7 @@ export interface InputDigitalActionData {
   }
 ]*/
 export interface InputPoseActionData {
-  bActive: boolean;
+  bActive: number;
   activeOrigin: InputValueHandle;
   pose: TrackedDevicePose;
 }
@@ -4002,7 +4002,7 @@ export interface InputPoseActionData {
   }
 ]*/
 export interface InputSkeletalActionData {
-  bActive: boolean;
+  bActive: number;
   activeOrigin: InputValueHandle;
 }
 
@@ -4401,7 +4401,7 @@ export interface PathRead {
 //#endregion
 // Byte Type Structs
 
-import { Struct, ArrayType, u8, i8, u16, i16, u32, i32, f32, u64, i64, f64 } from "jsr:@denosaurs/byte-type";;
+import { calculateTotalSize, SizedStruct, SizedArrayType, u8, i8, u16, i16, u32, i32, f32, u64, i64, f64} from "../../byte_type/mod.ts";
 
 /*vr::HmdMatrix34_t, [
   {
@@ -4409,8 +4409,8 @@ import { Struct, ArrayType, u8, i8, u16, i16, u32, i32, f32, u64, i64, f64 } fro
     "fieldtype": "float [3][4]"
   }
 ]*/
-export const HmdMatrix34Struct = new Struct({
-  m: new ArrayType(new ArrayType(f32, 4), 3),
+export const HmdMatrix34Struct = new SizedStruct({
+  m: new SizedArrayType(new SizedArrayType(f32, 4), 3),
 });
 
 /*vr::HmdMatrix33_t, [
@@ -4419,8 +4419,8 @@ export const HmdMatrix34Struct = new Struct({
     "fieldtype": "float [3][3]"
   }
 ]*/
-export const HmdMatrix33Struct = new Struct({
-  m: new ArrayType(new ArrayType(f32, 3), 3),
+export const HmdMatrix33Struct = new SizedStruct({
+  m: new SizedArrayType(new SizedArrayType(f32, 3), 3),
 });
 
 /*vr::HmdMatrix44_t, [
@@ -4429,8 +4429,8 @@ export const HmdMatrix33Struct = new Struct({
     "fieldtype": "float [4][4]"
   }
 ]*/
-export const HmdMatrix44Struct = new Struct({
-  m: new ArrayType(new ArrayType(f32, 4), 4),
+export const HmdMatrix44Struct = new SizedStruct({
+  m: new SizedArrayType(new SizedArrayType(f32, 4), 4),
 });
 
 /*vr::HmdVector3_t, [
@@ -4439,8 +4439,8 @@ export const HmdMatrix44Struct = new Struct({
     "fieldtype": "float [3]"
   }
 ]*/
-export const HmdVector3Struct = new Struct({
-  v: new ArrayType(f32, 3),
+export const HmdVector3Struct = new SizedStruct({
+  v: new SizedArrayType(f32, 3),
 });
 
 /*vr::HmdVector4_t, [
@@ -4449,8 +4449,8 @@ export const HmdVector3Struct = new Struct({
     "fieldtype": "float [4]"
   }
 ]*/
-export const HmdVector4Struct = new Struct({
-  v: new ArrayType(f32, 4),
+export const HmdVector4Struct = new SizedStruct({
+  v: new SizedArrayType(f32, 4),
 });
 
 /*vr::HmdVector3d_t, [
@@ -4459,8 +4459,8 @@ export const HmdVector4Struct = new Struct({
     "fieldtype": "double [3]"
   }
 ]*/
-export const HmdVector3dStruct = new Struct({
-  v: new ArrayType(f64, 3),
+export const HmdVector3dStruct = new SizedStruct({
+  v: new SizedArrayType(f64, 3),
 });
 
 /*vr::HmdVector2_t, [
@@ -4469,8 +4469,8 @@ export const HmdVector3dStruct = new Struct({
     "fieldtype": "float [2]"
   }
 ]*/
-export const HmdVector2Struct = new Struct({
-  v: new ArrayType(f32, 2),
+export const HmdVector2Struct = new SizedStruct({
+  v: new SizedArrayType(f32, 2),
 });
 
 /*vr::HmdQuaternion_t, [
@@ -4491,7 +4491,7 @@ export const HmdVector2Struct = new Struct({
     "fieldtype": "double"
   }
 ]*/
-export const HmdQuaternionStruct = new Struct({
+export const HmdQuaternionStruct = new SizedStruct({
   w: f64,
   x: f64,
   y: f64,
@@ -4516,7 +4516,7 @@ export const HmdQuaternionStruct = new Struct({
     "fieldtype": "float"
   }
 ]*/
-export const HmdQuaternionfStruct = new Struct({
+export const HmdQuaternionfStruct = new SizedStruct({
   w: f32,
   x: f32,
   y: f32,
@@ -4541,7 +4541,7 @@ export const HmdQuaternionfStruct = new Struct({
     "fieldtype": "float"
   }
 ]*/
-export const HmdColorStruct = new Struct({
+export const HmdColorStruct = new SizedStruct({
   r: f32,
   g: f32,
   b: f32,
@@ -4554,7 +4554,7 @@ export const HmdColorStruct = new Struct({
     "fieldtype": "struct vr::HmdVector3_t [4]"
   }
 ]*/
-export const HmdQuadStruct = new Struct({
+export const HmdQuadStruct = new SizedStruct({
   vCorners: HmdVector3Struct,
 });
 
@@ -4568,7 +4568,7 @@ export const HmdQuadStruct = new Struct({
     "fieldtype": "struct vr::HmdVector2_t"
   }
 ]*/
-export const HmdRect2Struct = new Struct({
+export const HmdRect2Struct = new SizedStruct({
   vTopLeft: HmdVector2Struct,
   vBottomRight: HmdVector2Struct,
 });
@@ -4583,7 +4583,7 @@ export const HmdRect2Struct = new Struct({
     "fieldtype": "struct vr::HmdQuaternionf_t"
   }
 ]*/
-export const BoneTransformStruct = new Struct({
+export const BoneTransformStruct = new SizedStruct({
   position: HmdVector4Struct,
   orientation: HmdQuaternionfStruct,
 });
@@ -4602,10 +4602,10 @@ export const BoneTransformStruct = new Struct({
     "fieldtype": "float [2]"
   }
 ]*/
-export const DistortionCoordinatesStruct = new Struct({
-  rfRed: new ArrayType(f32, 2),
-  rfGreen: new ArrayType(f32, 2),
-  rfBlue: new ArrayType(f32, 2),
+export const DistortionCoordinatesStruct = new SizedStruct({
+  rfRed: new SizedArrayType(f32, 2),
+  rfGreen: new SizedArrayType(f32, 2),
+  rfBlue: new SizedArrayType(f32, 2),
 });
 
 /*vr::Texture_t, [
@@ -4622,7 +4622,7 @@ export const DistortionCoordinatesStruct = new Struct({
     "fieldtype": "enum vr::EColorSpace"
   }
 ]*/
-export const TextureStruct = new Struct({
+export const TextureStruct = new SizedStruct({
   handle: u64,
   eType: u32,
   eColorSpace: u32,
@@ -4646,7 +4646,7 @@ export const TextureStruct = new Struct({
     "fieldtype": "float"
   }
 ]*/
-export const TextureBoundsStruct = new Struct({
+export const TextureBoundsStruct = new SizedStruct({
   uMin: f32,
   vMin: f32,
   uMax: f32,
@@ -4659,7 +4659,7 @@ export const TextureBoundsStruct = new Struct({
     "fieldtype": "struct vr::HmdMatrix34_t"
   }
 ]*/
-export const TextureWithPoseStruct = new Struct({
+export const TextureWithPoseStruct = new SizedStruct({
   mDeviceToAbsoluteTracking: HmdMatrix34Struct,
 });
 
@@ -4677,7 +4677,7 @@ export const TextureWithPoseStruct = new Struct({
     "fieldtype": "struct vr::HmdVector2_t"
   }
 ]*/
-export const TextureDepthInfoStruct = new Struct({
+export const TextureDepthInfoStruct = new SizedStruct({
   handle: u64,
   mProjection: HmdMatrix44Struct,
   vRange: HmdVector2Struct,
@@ -4689,7 +4689,7 @@ export const TextureDepthInfoStruct = new Struct({
     "fieldtype": "struct vr::VRTextureDepthInfo_t"
   }
 ]*/
-export const TextureWithDepthStruct = new Struct({
+export const TextureWithDepthStruct = new SizedStruct({
   depth: TextureDepthInfoStruct,
 });
 
@@ -4699,7 +4699,7 @@ export const TextureWithDepthStruct = new Struct({
     "fieldtype": "struct vr::VRTextureDepthInfo_t"
   }
 ]*/
-export const TextureWithPoseAndDepthStruct = new Struct({
+export const TextureWithPoseAndDepthStruct = new SizedStruct({
   depth: TextureDepthInfoStruct,
 });
 
@@ -4729,68 +4729,13 @@ export const TextureWithPoseAndDepthStruct = new Struct({
     "fieldtype": "_Bool"
   }
 ]*/
-export const TrackedDevicePoseStruct = new Struct({
+export const TrackedDevicePoseStruct = new SizedStruct({
   mDeviceToAbsoluteTracking: HmdMatrix34Struct,
   vVelocity: HmdVector3Struct,
   vAngularVelocity: HmdVector3Struct,
   eTrackingResult: u32,
   bPoseIsValid: u8,
   bDeviceIsConnected: u8,
-});
-
-/*vr::VRVulkanTextureData_t, [
-  {
-    "fieldname": "m_nImage",
-    "fieldtype": "uint64_t"
-  },
-  {
-    "fieldname": "m_pDevice",
-    "fieldtype": "struct VkDevice_T *"
-  },
-  {
-    "fieldname": "m_pPhysicalDevice",
-    "fieldtype": "struct VkPhysicalDevice_T *"
-  },
-  {
-    "fieldname": "m_pInstance",
-    "fieldtype": "struct VkInstance_T *"
-  },
-  {
-    "fieldname": "m_pQueue",
-    "fieldtype": "struct VkQueue_T *"
-  },
-  {
-    "fieldname": "m_nQueueFamilyIndex",
-    "fieldtype": "uint32_t"
-  },
-  {
-    "fieldname": "m_nWidth",
-    "fieldtype": "uint32_t"
-  },
-  {
-    "fieldname": "m_nHeight",
-    "fieldtype": "uint32_t"
-  },
-  {
-    "fieldname": "m_nFormat",
-    "fieldtype": "uint32_t"
-  },
-  {
-    "fieldname": "m_nSampleCount",
-    "fieldtype": "uint32_t"
-  }
-]*/
-export const VulkanTextureDataStruct = new Struct({
-  nImage: u64,
-  pDevice: VkDevice_TStruct,
-  pPhysicalDevice: VkPhysicalDevice_TStruct,
-  pInstance: VkInstance_TStruct,
-  pQueue: VkQueue_TStruct,
-  nQueueFamilyIndex: u32,
-  nWidth: u32,
-  nHeight: u32,
-  nFormat: u32,
-  nSampleCount: u32,
 });
 
 /*vr::VRVulkanTextureArrayData_t, [
@@ -4803,29 +4748,9 @@ export const VulkanTextureDataStruct = new Struct({
     "fieldtype": "uint32_t"
   }
 ]*/
-export const VulkanTextureArrayDataStruct = new Struct({
+export const VulkanTextureArrayDataStruct = new SizedStruct({
   unArrayIndex: u32,
   unArraySize: u32,
-});
-
-/*vr::D3D12TextureData_t, [
-  {
-    "fieldname": "m_pResource",
-    "fieldtype": "struct ID3D12Resource *"
-  },
-  {
-    "fieldname": "m_pCommandQueue",
-    "fieldtype": "struct ID3D12CommandQueue *"
-  },
-  {
-    "fieldname": "m_nNodeMask",
-    "fieldtype": "uint32_t"
-  }
-]*/
-export const D3D12TextureDataStruct = new Struct({
-  pResource: ID3D12ResourceStruct,
-  pCommandQueue: ID3D12CommandQueueStruct,
-  nNodeMask: u32,
 });
 
 /*vr::VREvent_Controller_t, [
@@ -4834,7 +4759,7 @@ export const D3D12TextureDataStruct = new Struct({
     "fieldtype": "uint32_t"
   }
 ]*/
-export const Event_ControllerStruct = new Struct({
+export const Event_ControllerStruct = new SizedStruct({
   button: u32,
 });
 
@@ -4856,7 +4781,7 @@ export const Event_ControllerStruct = new Struct({
     "fieldtype": "uint32_t"
   }
 ]*/
-export const Event_MouseStruct = new Struct({
+export const Event_MouseStruct = new SizedStruct({
   x: f32,
   y: f32,
   button: u32,
@@ -4885,7 +4810,7 @@ export const Event_MouseStruct = new Struct({
     "fieldtype": "uint32_t"
   }
 ]*/
-export const Event_ScrollStruct = new Struct({
+export const Event_ScrollStruct = new SizedStruct({
   xdelta: f32,
   ydelta: f32,
   unused: u32,
@@ -4919,7 +4844,7 @@ export const Event_ScrollStruct = new Struct({
     "fieldtype": "float"
   }
 ]*/
-export const Event_TouchPadMoveStruct = new Struct({
+export const Event_TouchPadMoveStruct = new SizedStruct({
   bFingerDown: u8,
   flSecondsFingerDown: f32,
   fValueXFirst: f32,
@@ -4938,7 +4863,7 @@ export const Event_TouchPadMoveStruct = new Struct({
     "fieldtype": "uint32_t"
   }
 ]*/
-export const Event_NotificationStruct = new Struct({
+export const Event_NotificationStruct = new SizedStruct({
   ulUserValue: u64,
   notificationId: u32,
 });
@@ -4961,7 +4886,7 @@ export const Event_NotificationStruct = new Struct({
     "fieldtype": "_Bool"
   }
 ]*/
-export const Event_ProcessStruct = new Struct({
+export const Event_ProcessStruct = new SizedStruct({
   pid: u32,
   oldPid: u32,
   bForced: u8,
@@ -4986,7 +4911,7 @@ export const Event_ProcessStruct = new Struct({
     "fieldtype": "uint32_t"
   }
 ]*/
-export const Event_OverlayStruct = new Struct({
+export const Event_OverlayStruct = new SizedStruct({
   overlayHandle: u64,
   devicePath: u64,
   memoryBlockId: u64,
@@ -4999,7 +4924,7 @@ export const Event_OverlayStruct = new Struct({
     "fieldtype": "uint32_t"
   }
 ]*/
-export const Event_StatusStruct = new Struct({
+export const Event_StatusStruct = new SizedStruct({
   statusState: u32,
 });
 
@@ -5017,8 +4942,8 @@ export const Event_StatusStruct = new Struct({
     "fieldtype": "uint64_t"
   }
 ]*/
-export const Event_KeyboardStruct = new Struct({
-  cNewInput: new ArrayType(i8, 8),
+export const Event_KeyboardStruct = new SizedStruct({
+  cNewInput: new SizedArrayType(i8, 8),
   uUserValue: u64,
   overlayHandle: u64,
 });
@@ -5029,7 +4954,7 @@ export const Event_KeyboardStruct = new Struct({
     "fieldtype": "float"
   }
 ]*/
-export const Event_IpdStruct = new Struct({
+export const Event_IpdStruct = new SizedStruct({
   ipdMeters: f32,
 });
 
@@ -5043,7 +4968,7 @@ export const Event_IpdStruct = new Struct({
     "fieldtype": "uint64_t"
   }
 ]*/
-export const Event_ChaperoneStruct = new Struct({
+export const Event_ChaperoneStruct = new SizedStruct({
   nPreviousUniverse: u64,
   nCurrentUniverse: u64,
 });
@@ -5074,7 +4999,7 @@ export const Event_ChaperoneStruct = new Struct({
     "fieldtype": "uint64_t"
   }
 ]*/
-export const Event_ReservedStruct = new Struct({
+export const Event_ReservedStruct = new SizedStruct({
   reserved0: u64,
   reserved1: u64,
   reserved2: u64,
@@ -5089,7 +5014,7 @@ export const Event_ReservedStruct = new Struct({
     "fieldtype": "uint32_t"
   }
 ]*/
-export const Event_PerformanceTestStruct = new Struct({
+export const Event_PerformanceTestStruct = new SizedStruct({
   nFidelityLevel: u32,
 });
 
@@ -5099,7 +5024,7 @@ export const Event_PerformanceTestStruct = new Struct({
     "fieldtype": "_Bool"
   }
 ]*/
-export const Event_SeatedZeroPoseResetStruct = new Struct({
+export const Event_SeatedZeroPoseResetStruct = new SizedStruct({
   bResetBySystemMenu: u8,
 });
 
@@ -5113,7 +5038,7 @@ export const Event_SeatedZeroPoseResetStruct = new Struct({
     "fieldtype": "uint32_t"
   }
 ]*/
-export const Event_ScreenshotStruct = new Struct({
+export const Event_ScreenshotStruct = new SizedStruct({
   handle: u32,
   type: u32,
 });
@@ -5124,7 +5049,7 @@ export const Event_ScreenshotStruct = new Struct({
     "fieldtype": "float"
   }
 ]*/
-export const Event_ScreenshotProgressStruct = new Struct({
+export const Event_ScreenshotProgressStruct = new SizedStruct({
   progress: f32,
 });
 
@@ -5138,7 +5063,7 @@ export const Event_ScreenshotProgressStruct = new Struct({
     "fieldtype": "uint32_t"
   }
 ]*/
-export const Event_ApplicationLaunchStruct = new Struct({
+export const Event_ApplicationLaunchStruct = new SizedStruct({
   pid: u32,
   unArgsHandle: u32,
 });
@@ -5153,7 +5078,7 @@ export const Event_ApplicationLaunchStruct = new Struct({
     "fieldtype": "uint32_t"
   }
 ]*/
-export const Event_EditingCameraSurfaceStruct = new Struct({
+export const Event_EditingCameraSurfaceStruct = new SizedStruct({
   overlayHandle: u64,
   nVisualMode: u32,
 });
@@ -5164,7 +5089,7 @@ export const Event_EditingCameraSurfaceStruct = new Struct({
     "fieldtype": "uint32_t"
   }
 ]*/
-export const Event_MessageOverlayStruct = new Struct({
+export const Event_MessageOverlayStruct = new SizedStruct({
   unVRMessageOverlayResponse: u32,
 });
 
@@ -5178,7 +5103,7 @@ export const Event_MessageOverlayStruct = new Struct({
     "fieldtype": "enum vr::ETrackedDeviceProperty"
   }
 ]*/
-export const Event_PropertyStruct = new Struct({
+export const Event_PropertyStruct = new SizedStruct({
   container: u64,
   prop: u32,
 });
@@ -5205,7 +5130,7 @@ export const Event_PropertyStruct = new Struct({
     "fieldtype": "float"
   }
 ]*/
-export const Event_HapticVibrationStruct = new Struct({
+export const Event_HapticVibrationStruct = new SizedStruct({
   containerHandle: u64,
   componentHandle: u64,
   fDurationSeconds: f32,
@@ -5219,7 +5144,7 @@ export const Event_HapticVibrationStruct = new Struct({
     "fieldtype": "WebConsoleHandle_t"
   }
 ]*/
-export const Event_WebConsoleStruct = new Struct({
+export const Event_WebConsoleStruct = new SizedStruct({
   webConsoleHandle: u64,
 });
 
@@ -5241,7 +5166,7 @@ export const Event_WebConsoleStruct = new Struct({
     "fieldtype": "uint64_t"
   }
 ]*/
-export const Event_InputBindingLoadStruct = new Struct({
+export const Event_InputBindingLoadStruct = new SizedStruct({
   ulAppContainer: u64,
   pathMessage: u64,
   pathUrl: u64,
@@ -5266,7 +5191,7 @@ export const Event_InputBindingLoadStruct = new Struct({
     "fieldtype": "uint64_t"
   }
 ]*/
-export const Event_InputActionManifestLoadStruct = new Struct({
+export const Event_InputActionManifestLoadStruct = new SizedStruct({
   pathAppKey: u64,
   pathMessage: u64,
   pathMessageParam: u64,
@@ -5279,7 +5204,7 @@ export const Event_InputActionManifestLoadStruct = new Struct({
     "fieldtype": "SpatialAnchorHandle_t"
   }
 ]*/
-export const Event_SpatialAnchorStruct = new Struct({
+export const Event_SpatialAnchorStruct = new SizedStruct({
   unHandle: u32,
 });
 
@@ -5309,7 +5234,7 @@ export const Event_SpatialAnchorStruct = new Struct({
     "fieldtype": "float"
   }
 ]*/
-export const Event_ProgressUpdateStruct = new Struct({
+export const Event_ProgressUpdateStruct = new SizedStruct({
   ulApplicationPropertyContainer: u64,
   pathDevice: u64,
   pathInputSource: u64,
@@ -5324,7 +5249,7 @@ export const Event_ProgressUpdateStruct = new Struct({
     "fieldtype": "enum vr::EShowUIType"
   }
 ]*/
-export const Event_ShowUIStruct = new Struct({
+export const Event_ShowUIStruct = new SizedStruct({
   eType: u32,
 });
 
@@ -5334,7 +5259,7 @@ export const Event_ShowUIStruct = new Struct({
     "fieldtype": "int32_t"
   }
 ]*/
-export const Event_ShowDevToolsStruct = new Struct({
+export const Event_ShowDevToolsStruct = new SizedStruct({
   nBrowserIdentifier: i32,
 });
 
@@ -5344,7 +5269,7 @@ export const Event_ShowDevToolsStruct = new Struct({
     "fieldtype": "enum vr::EHDCPError"
   }
 ]*/
-export const Event_HDCPErrorStruct = new Struct({
+export const Event_HDCPErrorStruct = new SizedStruct({
   eCode: u32,
 });
 
@@ -5354,7 +5279,7 @@ export const Event_HDCPErrorStruct = new Struct({
     "fieldtype": "float"
   }
 ]*/
-export const Event_AudioVolumeControlStruct = new Struct({
+export const Event_AudioVolumeControlStruct = new SizedStruct({
   fVolumeLevel: f32,
 });
 
@@ -5364,7 +5289,7 @@ export const Event_AudioVolumeControlStruct = new Struct({
     "fieldtype": "_Bool"
   }
 ]*/
-export const Event_AudioMuteControlStruct = new Struct({
+export const Event_AudioMuteControlStruct = new SizedStruct({
   bMute: u8,
 });
 
@@ -5494,7 +5419,7 @@ export const Event_AudioMuteControlStruct = new Struct({
     "fieldtype": "struct vr::VREvent_AudioMuteControl_t"
   }
 ]*/
-export const EventDataStruct = new Struct({
+export const EventDataStruct = new SizedStruct({
   reserved: Event_ReservedStruct,
   controller: Event_ControllerStruct,
   mouse: Event_MouseStruct,
@@ -5543,14 +5468,14 @@ export const EventDataStruct = new Struct({
   },
   {
     "fieldname": "data",
-    "fieldtype": "VREvent_Data_t"
+    "fieldtype": "struct VREventData_t"
   }
 ]*/
-export const EventStruct = new Struct({
+export const EventStruct = new SizedStruct({
   eventType: u32,
   trackedDeviceIndex: u32,
   eventAgeSeconds: f32,
-  data: null,
+  data: EventDataStruct,
 });
 
 /*vr::RenderModel_ComponentState_t, [
@@ -5567,7 +5492,7 @@ export const EventStruct = new Struct({
     "fieldtype": "VRComponentProperties"
   }
 ]*/
-export const RenderModel_ComponentStateStruct = new Struct({
+export const RenderModel_ComponentStateStruct = new SizedStruct({
   mTrackingToComponentRenderModel: HmdMatrix34Struct,
   mTrackingToComponentLocal: HmdMatrix34Struct,
   uProperties: u32,
@@ -5583,7 +5508,7 @@ export const RenderModel_ComponentStateStruct = new Struct({
     "fieldtype": "uint32_t"
   }
 ]*/
-export const HiddenAreaMeshStruct = new Struct({
+export const HiddenAreaMeshStruct = new SizedStruct({
   pVertexData: u64,
   unTriangleCount: u32,
 });
@@ -5598,7 +5523,7 @@ export const HiddenAreaMeshStruct = new Struct({
     "fieldtype": "float"
   }
 ]*/
-export const ControllerAxisStruct = new Struct({
+export const ControllerAxisStruct = new SizedStruct({
   x: f32,
   y: f32,
 });
@@ -5621,7 +5546,7 @@ export const ControllerAxisStruct = new Struct({
     "fieldtype": "struct vr::VRControllerAxis_t [5]"
   }
 ]*/
-export const ControllerState001Struct = new Struct({
+export const ControllerState001Struct = new SizedStruct({
   unPacketNum: u32,
   ulButtonPressed: u64,
   ulButtonTouched: u64,
@@ -5658,7 +5583,7 @@ export const ControllerState001Struct = new Struct({
     "fieldtype": "uint64_t"
   }
 ]*/
-export const CameraVideoStreamFrameHeaderStruct = new Struct({
+export const CameraVideoStreamFrameHeaderStruct = new SizedStruct({
   eFrameType: u32,
   nWidth: u32,
   nHeight: u32,
@@ -5778,7 +5703,7 @@ export const CameraVideoStreamFrameHeaderStruct = new Struct({
     "fieldtype": "float"
   }
 ]*/
-export const Compositor_FrameTimingStruct = new Struct({
+export const Compositor_FrameTimingStruct = new SizedStruct({
   nSize: u32,
   nFrameIndex: u32,
   nNumFramePresents: u32,
@@ -5818,7 +5743,7 @@ export const Compositor_FrameTimingStruct = new Struct({
     "fieldtype": "float"
   }
 ]*/
-export const Compositor_BenchmarkResultsStruct = new Struct({
+export const Compositor_BenchmarkResultsStruct = new SizedStruct({
   flMegaPixelsPerSecond: f32,
   flHmdRecommendedMegaPixelsPerSecond: f32,
 });
@@ -5845,7 +5770,7 @@ export const Compositor_BenchmarkResultsStruct = new Struct({
     "fieldtype": "uint32_t"
   }
 ]*/
-export const DriverDirectMode_FrameTimingStruct = new Struct({
+export const DriverDirectMode_FrameTimingStruct = new SizedStruct({
   nSize: u32,
   nNumFramePresents: u32,
   nNumMisPresented: u32,
@@ -5871,7 +5796,7 @@ export const DriverDirectMode_FrameTimingStruct = new Struct({
     "fieldtype": "uint32_t"
   }
 ]*/
-export const ImuSampleStruct = new Struct({
+export const ImuSampleStruct = new SizedStruct({
   fSampleTime: f64,
   vAccel: HmdVector3dStruct,
   vGyro: HmdVector3dStruct,
@@ -5888,7 +5813,7 @@ export const ImuSampleStruct = new Struct({
     "fieldtype": "const char *"
   }
 ]*/
-export const AppOverrideKeysStruct = new Struct({
+export const AppOverrideKeysStruct = new SizedStruct({
   pchKey: u64,
   pchValue: u64,
 });
@@ -5983,7 +5908,7 @@ export const AppOverrideKeysStruct = new Struct({
     "fieldtype": "uint32_t"
   }
 ]*/
-export const Compositor_CumulativeStatsStruct = new Struct({
+export const Compositor_CumulativeStatsStruct = new SizedStruct({
   nPid: u32,
   nNumFramePresents: u32,
   nNumDroppedFrames: u32,
@@ -6042,7 +5967,7 @@ export const Compositor_CumulativeStatsStruct = new Struct({
     "fieldtype": "_Bool"
   }
 ]*/
-export const Compositor_StageRenderSettingsStruct = new Struct({
+export const Compositor_StageRenderSettingsStruct = new SizedStruct({
   PrimaryColor: HmdColorStruct,
   SecondaryColor: HmdColorStruct,
   flVignetteInnerRadius: f32,
@@ -6067,7 +5992,7 @@ export const Compositor_StageRenderSettingsStruct = new Struct({
     "fieldtype": "enum vr::ETrackingUniverseOrigin"
   }
 ]*/
-export const OverlayIntersectionParamsStruct = new Struct({
+export const OverlayIntersectionParamsStruct = new SizedStruct({
   vSource: HmdVector3Struct,
   vDirection: HmdVector3Struct,
   eOrigin: u32,
@@ -6091,7 +6016,7 @@ export const OverlayIntersectionParamsStruct = new Struct({
     "fieldtype": "float"
   }
 ]*/
-export const OverlayIntersectionResultsStruct = new Struct({
+export const OverlayIntersectionResultsStruct = new SizedStruct({
   vPoint: HmdVector3Struct,
   vNormal: HmdVector3Struct,
   vUVs: HmdVector2Struct,
@@ -6116,7 +6041,7 @@ export const OverlayIntersectionResultsStruct = new Struct({
     "fieldtype": "float"
   }
 ]*/
-export const IntersectionMaskRectangleStruct = new Struct({
+export const IntersectionMaskRectangleStruct = new SizedStruct({
   flTopLeftX: f32,
   flTopLeftY: f32,
   flWidth: f32,
@@ -6137,7 +6062,7 @@ export const IntersectionMaskRectangleStruct = new Struct({
     "fieldtype": "float"
   }
 ]*/
-export const IntersectionMaskCircleStruct = new Struct({
+export const IntersectionMaskCircleStruct = new SizedStruct({
   flCenterX: f32,
   flCenterY: f32,
   flRadius: f32,
@@ -6153,24 +6078,9 @@ export const IntersectionMaskCircleStruct = new Struct({
     "fieldtype": "struct vr::IntersectionMaskCircle_t"
   }
 ]*/
-export const OverlayIntersectionMaskPrimitiveDataStruct = new Struct({
+export const OverlayIntersectionMaskPrimitiveDataStruct = new SizedStruct({
   Rectangle: IntersectionMaskRectangleStruct,
   Circle: IntersectionMaskCircleStruct,
-});
-
-/*vr::VROverlayIntersectionMaskPrimitive_t, [
-  {
-    "fieldname": "m_nPrimitiveType",
-    "fieldtype": "enum vr::EVROverlayIntersectionMaskPrimitiveType"
-  },
-  {
-    "fieldname": "m_Primitive",
-    "fieldtype": "VROverlayIntersectionMaskPrimitive_Data_t"
-  }
-]*/
-export const OverlayIntersectionMaskPrimitiveStruct = new Struct({
-  nPrimitiveType: u32,
-  Primitive: null,
 });
 
 /*vr::VROverlayProjection_t, [
@@ -6191,7 +6101,7 @@ export const OverlayIntersectionMaskPrimitiveStruct = new Struct({
     "fieldtype": "float"
   }
 ]*/
-export const OverlayProjectionStruct = new Struct({
+export const OverlayProjectionStruct = new SizedStruct({
   fLeft: f32,
   fRight: f32,
   fTop: f32,
@@ -6212,40 +6122,10 @@ export const OverlayProjectionStruct = new Struct({
     "fieldtype": "struct vr::VRTextureBounds_t"
   }
 ]*/
-export const OverlayViewStruct = new Struct({
+export const OverlayViewStruct = new SizedStruct({
   overlayHandle: u64,
   texture: TextureStruct,
   textureBounds: TextureBoundsStruct,
-});
-
-/*vr::VRVulkanDevice_t, [
-  {
-    "fieldname": "m_pInstance",
-    "fieldtype": "struct VkInstance_T *"
-  },
-  {
-    "fieldname": "m_pDevice",
-    "fieldtype": "struct VkDevice_T *"
-  },
-  {
-    "fieldname": "m_pPhysicalDevice",
-    "fieldtype": "struct VkPhysicalDevice_T *"
-  },
-  {
-    "fieldname": "m_pQueue",
-    "fieldtype": "struct VkQueue_T *"
-  },
-  {
-    "fieldname": "m_uQueueFamilyIndex",
-    "fieldtype": "uint32_t"
-  }
-]*/
-export const VulkanDeviceStruct = new Struct({
-  pInstance: VkInstance_TStruct,
-  pDevice: VkDevice_TStruct,
-  pPhysicalDevice: VkPhysicalDevice_TStruct,
-  pQueue: VkQueue_TStruct,
-  uQueueFamilyIndex: u32,
 });
 
 /*vr::VRNativeDevice_t, [
@@ -6258,7 +6138,7 @@ export const VulkanDeviceStruct = new Struct({
     "fieldtype": "enum vr::EDeviceType"
   }
 ]*/
-export const NativeDeviceStruct = new Struct({
+export const NativeDeviceStruct = new SizedStruct({
   handle: u64,
   eType: u32,
 });
@@ -6277,10 +6157,10 @@ export const NativeDeviceStruct = new Struct({
     "fieldtype": "float [2]"
   }
 ]*/
-export const RenderModel_VertexStruct = new Struct({
+export const RenderModel_VertexStruct = new SizedStruct({
   vPosition: HmdVector3Struct,
   vNormal: HmdVector3Struct,
-  rfTextureCoord: new ArrayType(f32, 2),
+  rfTextureCoord: new SizedArrayType(f32, 2),
 });
 
 /*vr::RenderModel_TextureMap_t, [
@@ -6305,7 +6185,7 @@ export const RenderModel_VertexStruct = new Struct({
     "fieldtype": "uint16_t"
   }
 ]*/
-export const RenderModel_TextureMapStruct = new Struct({
+export const RenderModel_TextureMapStruct = new SizedStruct({
   unWidth: u16,
   unHeight: u16,
   rubTextureMapData: u64,
@@ -6335,7 +6215,7 @@ export const RenderModel_TextureMapStruct = new Struct({
     "fieldtype": "TextureID_t"
   }
 ]*/
-export const RenderModelStruct = new Struct({
+export const RenderModelStruct = new SizedStruct({
   rVertexData: u64,
   unVertexCount: u32,
   rIndexData: u64,
@@ -6349,7 +6229,7 @@ export const RenderModelStruct = new Struct({
     "fieldtype": "_Bool"
   }
 ]*/
-export const RenderModel_ControllerMode_StateStruct = new Struct({
+export const RenderModel_ControllerMode_StateStruct = new SizedStruct({
   bScrollWheelVisible: u8,
 });
 
@@ -6371,7 +6251,7 @@ export const RenderModel_ControllerMode_StateStruct = new Struct({
     "fieldtype": "int32_t"
   }
 ]*/
-export const NotificationBitmapStruct = new Struct({
+export const NotificationBitmapStruct = new SizedStruct({
   pImageData: u64,
   nWidth: i32,
   nHeight: i32,
@@ -6384,7 +6264,7 @@ export const NotificationBitmapStruct = new Struct({
     "fieldtype": "class vr::IVRSettings *"
   }
 ]*/
-export const CVRSettingHelperStruct = new Struct({
+export const CVRSettingHelperStruct = new SizedStruct({
   pSettings: u64,
 });
 
@@ -6426,7 +6306,7 @@ export const CVRSettingHelperStruct = new Struct({
     "fieldtype": "float"
   }
 ]*/
-export const InputAnalogActionDataStruct = new Struct({
+export const InputAnalogActionDataStruct = new SizedStruct({
   bActive: u8,
   activeOrigin: u64,
   x: f32,
@@ -6460,7 +6340,7 @@ export const InputAnalogActionDataStruct = new Struct({
     "fieldtype": "float"
   }
 ]*/
-export const InputDigitalActionDataStruct = new Struct({
+export const InputDigitalActionDataStruct = new SizedStruct({
   bActive: u8,
   activeOrigin: u64,
   bState: u8,
@@ -6482,7 +6362,7 @@ export const InputDigitalActionDataStruct = new Struct({
     "fieldtype": "struct vr::TrackedDevicePose_t"
   }
 ]*/
-export const InputPoseActionDataStruct = new Struct({
+export const InputPoseActionDataStruct = new SizedStruct({
   bActive: u8,
   activeOrigin: u64,
   pose: TrackedDevicePoseStruct,
@@ -6498,7 +6378,7 @@ export const InputPoseActionDataStruct = new Struct({
     "fieldtype": "VRInputValueHandle_t"
   }
 ]*/
-export const InputSkeletalActionDataStruct = new Struct({
+export const InputSkeletalActionDataStruct = new SizedStruct({
   bActive: u8,
   activeOrigin: u64,
 });
@@ -6517,10 +6397,10 @@ export const InputSkeletalActionDataStruct = new Struct({
     "fieldtype": "char [128]"
   }
 ]*/
-export const InputOriginInfoStruct = new Struct({
+export const InputOriginInfoStruct = new SizedStruct({
   devicePath: u64,
   trackedDeviceIndex: u32,
-  rchRenderModelComponentName: new ArrayType(i8, 128),
+  rchRenderModelComponentName: new SizedArrayType(i8, 128),
 });
 
 /*vr::InputBindingInfo_t, [
@@ -6545,12 +6425,12 @@ export const InputOriginInfoStruct = new Struct({
     "fieldtype": "char [32]"
   }
 ]*/
-export const InputBindingInfoStruct = new Struct({
-  rchDevicePathName: new ArrayType(i8, 128),
-  rchInputPathName: new ArrayType(i8, 128),
-  rchModeName: new ArrayType(i8, 128),
-  rchSlotName: new ArrayType(i8, 128),
-  rchInputSourceType: new ArrayType(i8, 32),
+export const InputBindingInfoStruct = new SizedStruct({
+  rchDevicePathName: new SizedArrayType(i8, 128),
+  rchInputPathName: new SizedArrayType(i8, 128),
+  rchModeName: new SizedArrayType(i8, 128),
+  rchSlotName: new SizedArrayType(i8, 128),
+  rchInputSourceType: new SizedArrayType(i8, 32),
 });
 
 /*vr::VRActiveActionSet_t, [
@@ -6575,7 +6455,7 @@ export const InputBindingInfoStruct = new Struct({
     "fieldtype": "int32_t"
   }
 ]*/
-export const ActiveActionSetStruct = new Struct({
+export const ActiveActionSetStruct = new SizedStruct({
   ulActionSet: u64,
   ulRestrictedToDevice: u64,
   ulSecondaryActionSet: u64,
@@ -6593,9 +6473,9 @@ export const ActiveActionSetStruct = new Struct({
     "fieldtype": "float [4]"
   }
 ]*/
-export const SkeletalSummaryDataStruct = new Struct({
-  flFingerCurl: new ArrayType(f32, 5),
-  flFingerSplay: new ArrayType(f32, 4),
+export const SkeletalSummaryDataStruct = new SizedStruct({
+  flFingerCurl: new SizedArrayType(f32, 5),
+  flFingerSplay: new SizedArrayType(f32, 4),
 });
 
 /*vr::SpatialAnchorPose_t, [
@@ -6604,7 +6484,7 @@ export const SkeletalSummaryDataStruct = new Struct({
     "fieldtype": "struct vr::HmdMatrix34_t"
   }
 ]*/
-export const SpatialAnchorPoseStruct = new Struct({
+export const SpatialAnchorPoseStruct = new SizedStruct({
   mAnchorToAbsoluteTracking: HmdMatrix34Struct,
 });
 
@@ -6690,7 +6570,7 @@ export const SpatialAnchorPoseStruct = new Struct({
     "fieldtype": "class vr::IVRNotifications *"
   }
 ]*/
-export const COpenVRContextStruct = new Struct({
+export const COpenVRContextStruct = new SizedStruct({
   pVRSystem: u64,
   pVRChaperone: u64,
   pVRChaperoneSetup: u64,
@@ -6743,7 +6623,7 @@ export const COpenVRContextStruct = new Struct({
     "fieldtype": "enum vr::ETrackedPropertyError"
   }
 ]*/
-export const PropertyWriteStruct = new Struct({
+export const PropertyWriteStruct = new SizedStruct({
   prop: u32,
   writeType: u32,
   eSetError: u32,
@@ -6779,7 +6659,7 @@ export const PropertyWriteStruct = new Struct({
     "fieldtype": "enum vr::ETrackedPropertyError"
   }
 ]*/
-export const PropertyReadStruct = new Struct({
+export const PropertyReadStruct = new SizedStruct({
   prop: u32,
   pvBuffer: u64,
   unBufferSize: u32,
@@ -6794,7 +6674,7 @@ export const PropertyReadStruct = new Struct({
     "fieldtype": "class vr::IVRProperties *"
   }
 ]*/
-export const CVRPropertyHelpersStruct = new Struct({
+export const CVRPropertyHelpersStruct = new SizedStruct({
   pProperties: u64,
 });
 
@@ -6832,7 +6712,7 @@ export const CVRPropertyHelpersStruct = new Struct({
     "fieldtype": "const char *"
   }
 ]*/
-export const PathWriteStruct = new Struct({
+export const PathWriteStruct = new SizedStruct({
   ulPath: u64,
   writeType: u32,
   eSetError: u32,
@@ -6873,7 +6753,7 @@ export const PathWriteStruct = new Struct({
     "fieldtype": "const char *"
   }
 ]*/
-export const PathReadStruct = new Struct({
+export const PathReadStruct = new SizedStruct({
   ulPath: u64,
   pvBuffer: u64,
   unBufferSize: u32,

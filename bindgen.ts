@@ -1,5 +1,6 @@
 import { typeMapping } from "./utils.ts";
-import { Struct, ArrayType, u8, i8, u16, i16, u32, i32, f32, u64, i64, f64 } from "jsr:@denosaurs/byte-type";
+import { Struct, calculateTotalSize, SizedStruct, SizedArrayType, u8, i8, u16, i16, u32, i32, f32, u64, i64, f64 } from "../byte_type/mod.ts";
+
 
 const openvrApiJson = await Deno.readTextFile("openvr_api.json");
 const api = JSON.parse(openvrApiJson) as any;
@@ -37,7 +38,7 @@ const TYPEDEF_MAP: Record<string, string> = {
   "const void *": "Deno.PointerValue<unknown>",
   "void **": "Deno.PointerValue<Deno.PointerValue<unknown>>",
   "const void **": "Deno.PointerValue<Deno.PointerValue<unknown>>",
-  "_Bool": "boolean",
+  "_Bool": "number",
   "bool": "boolean",
   "char": "number",
   "float": "number",
@@ -397,12 +398,18 @@ async function generateStructs(structs: any[]) {
 
 async function generateByteTypeStructs(structs: any[], defs: any[]) {
   let output = "// Byte Type Structs\n\n";
-  output += "import { Struct, ArrayType, u8, i8, u16, i16, u32, i32, f32, u64, i64, f64 } from \"jsr:@denosaurs/byte-type\";;\n\n";
+
+  output += "import { calculateTotalSize, SizedStruct, SizedArrayType, u8, i8, u16, i16, u32, i32, f32, u64, i64, f64} from \"../../byte_type/mod.ts\";\n\n";
 
   for (const str of structs) {
     const structName = str.struct;
     const structFields = str.fields;
     const structTrim = trimStructName(structName);
+    if (structTrim == "VulkanTextureData") continue;
+    if (structTrim == "D3D12TextureData") continue;
+    if (structTrim == "OverlayIntersectionMaskPrimitive") continue;
+    if (structTrim == "VulkanDevice") continue;
+
 
     let className = structTrim;
 
@@ -414,17 +421,18 @@ async function generateByteTypeStructs(structs: any[], defs: any[]) {
       }
     }
     output += `/*${structName}, ${JSON.stringify(structFields, null, 2)}*/\n`;
-    output += `export const ${className}Struct = new Struct({\n`;
+    output += `export const ${className}Struct = new SizedStruct({\n`;
 
     for (const field of structFields) {
+
       const fieldname = trimFieldName(field.fieldname);
       const byteType = getByteType(field.fieldtype);
 
       if (byteType) {
-        if (byteType instanceof ArrayType) {
+        if (byteType instanceof SizedArrayType) {
           //debugger
           const ats = getArrayTypeString(byteType);
-          output += `  ${fieldname}: new ArrayType(${ats}),\n`;
+          output += `  ${fieldname}: new SizedArrayType(${ats}),\n`;
         } else {
           //debugger
           if (byteType == null) debugger
@@ -460,16 +468,16 @@ async function generateByteTypeStructs(structs: any[], defs: any[]) {
 
   return output;
 }
-function getArrayTypeString(arrayType: ArrayType<any>): string {
-  if (arrayType.type instanceof ArrayType) {
+function getArrayTypeString(arrayType: SizedArrayType<any>): string {
+  if (arrayType.type instanceof SizedArrayType) {
     const ats = getArrayTypeString(arrayType.type);
-    return `new ArrayType(${ats}), ${arrayType.length}`;
+    return `new SizedArrayType(${ats}), ${arrayType.length}`;
   } else {
     //debugger
     return `${arrayType.type}, ${arrayType.length}`;
   }
 }
-function getByteType(fieldtype: string) {
+function getByteType(fieldtype: string): SizedArrayType<unknown> | string {
   if (fieldtype.includes("[")) {
     //debugger
     const [baseType, ...dimensions] = fieldtype.split("[");
@@ -479,7 +487,7 @@ function getByteType(fieldtype: string) {
     for (let i = dimensions.length - 1; i >= 0; i--) {
       const length = parseInt(dimensions[i], 10);
       if (type == null) return //throw new Error(`Invalid array type: ${fieldtype}`);
-      type = new ArrayType(type, length);
+      type = new SizedArrayType(type, length);
     }
 
     return type;
@@ -488,7 +496,7 @@ function getByteType(fieldtype: string) {
   switch (fieldtype) {
     case "void *":
     case "void*":
-        return "u64";
+      return "u64";
     case "_Bool": return "u8";
     case "char": return "i8";
     case "uint8_t": return "u8";

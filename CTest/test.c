@@ -133,6 +133,8 @@ int main()
         InputDigitalActionData_t triggerDataLeft = {0};
         InputDigitalActionData_t triggerDataRight = {0};
 
+        printf("sizeof TrackedDevicePose_t %zu\n", sizeof(InputDigitalActionData_t));
+
         oInput->GetDigitalActionData(triggerLeftHandle, &triggerDataLeft, sizeof(InputDigitalActionData_t), k_ulInvalidInputValueHandle);
         oInput->GetDigitalActionData(triggerRightHandle, &triggerDataRight, sizeof(InputDigitalActionData_t), k_ulInvalidInputValueHandle);
 
