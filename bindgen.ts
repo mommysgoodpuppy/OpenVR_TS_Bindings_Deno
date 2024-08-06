@@ -1,4 +1,5 @@
 import { typeMapping } from "./utils.ts";
+import { Struct, ArrayType, u8, i8, u16, i16, u32, i32, f32, u64, i64, f64 } from "jsr:@denosaurs/byte-type";
 
 const openvrApiJson = await Deno.readTextFile("openvr_api.json");
 const api = JSON.parse(openvrApiJson) as any;
@@ -14,6 +15,7 @@ async function main() {
   output += await generateTypes(api.typedefs, api.consts);
   output += await generateEnums(api.enums);
   output += await generateStructs(api.structs);
+  output += await generateByteTypeStructs(api.structs, api.typedefs);
   output += await generateMethods(api.methods, api.typedefs, api.enums);
 
 
@@ -352,11 +354,9 @@ import D3D12 "vendor:directx/d3d12"
 `
 
 type FFIArray<T, N extends number> = T[];
-
+//#region Generate Structs
 async function generateStructs(structs: any[]) {
   let output = "// Structs\n\n";
-  //output += "import { defineStruct, StructBase } from './structDecorator.ts';\n";
-  //output += "import { FFIType } from './ffiTypes.ts';\n\n";
   output += "//#region Structs\n";
 
   for (const str of structs) {
@@ -387,27 +387,125 @@ async function generateStructs(structs: any[]) {
     }
     output += "}\n";
 
-    // Generate decorated class
-    /* output += `@defineStruct({\n`;
-    for (const field of structFields) {
-      if (field.fieldname === 'vCorners') debugger;
-      const fieldname = trimFieldName(field.fieldname);
-      const fieldDef = getFieldDefinition(field, api);
-      output += `  ${fieldname}: ${fieldDef},\n`;
-    }
-    output += `})\n`;
-    output += `export class ${className} extends StructBase implements ${interfaceName} {\n`;
-    for (const field of structFields) {
-      const fieldname = trimFieldName(field.fieldname);
-      const tsType = fieldTypeConvert(field.fieldtype);
-      output += `  ${fieldname}!: ${tsType};\n`;
-    } */
+
     output += "\n\n";
   }
 
   output += "//#endregion\n";
   return output;
 }
+
+async function generateByteTypeStructs(structs: any[], defs: any[]) {
+  let output = "// Byte Type Structs\n\n";
+  output += "import { Struct, ArrayType, u8, i8, u16, i16, u32, i32, f32, u64, i64, f64 } from \"jsr:@denosaurs/byte-type\";;\n\n";
+
+  for (const str of structs) {
+    const structName = str.struct;
+    const structFields = str.fields;
+    const structTrim = trimStructName(structName);
+
+    let className = structTrim;
+
+    if (structTrim === "(anonymous)") {
+      if (structFields.length === 2) {
+        className = "OverlayIntersectionMaskPrimitiveData";
+      } else {
+        className = "EventData";
+      }
+    }
+    output += `/*${structName}, ${JSON.stringify(structFields, null, 2)}*/\n`;
+    output += `export const ${className}Struct = new Struct({\n`;
+
+    for (const field of structFields) {
+      const fieldname = trimFieldName(field.fieldname);
+      const byteType = getByteType(field.fieldtype);
+
+      if (byteType) {
+        if (byteType instanceof ArrayType) {
+          //debugger
+          const ats = getArrayTypeString(byteType);
+          output += `  ${fieldname}: new ArrayType(${ats}),\n`;
+        } else {
+          //debugger
+          if (byteType == null) debugger
+          output += `  ${fieldname}: ${byteType},\n`;
+        }
+      } else {
+        // Handle custom types or nested structs
+        if (field.fieldtype.startsWith("struct")) {
+          const nestedStructName = field.fieldtype.split(" ")[1];
+          output += `  ${fieldname}: ${trimStructName(nestedStructName)}Struct,\n`;
+        } else if (field.fieldtype.startsWith("enum")) {
+          // Assume enums are represented as u32
+          output += `  ${fieldname}: u32,\n`;
+        } else if (field.fieldtype.endsWith("*")) {
+          output += `  ${fieldname}: u64,\n`;
+        } else {
+          const trimmedtype = trimStructName(field.fieldtype);
+          const dtype = defs.find(defs => trimStructName(defs.typedef) === trimmedtype);
+          if (dtype) {
+            const byteType = getByteType(dtype.type);
+            output += `  ${fieldname}: ${byteType},\n`;
+          }
+          else {
+            console.warn(`Unsupported field type: ${field.fieldtype} in struct ${className}`);
+            output += `  // TODO: Handle ${fieldname}: ${field.fieldtype}\n`;
+          }
+        }
+      }
+    }
+
+    output += "});\n\n";
+  }
+
+  return output;
+}
+function getArrayTypeString(arrayType: ArrayType<any>): string {
+  if (arrayType.type instanceof ArrayType) {
+    const ats = getArrayTypeString(arrayType.type);
+    return `new ArrayType(${ats}), ${arrayType.length}`;
+  } else {
+    //debugger
+    return `${arrayType.type}, ${arrayType.length}`;
+  }
+}
+function getByteType(fieldtype: string) {
+  if (fieldtype.includes("[")) {
+    //debugger
+    const [baseType, ...dimensions] = fieldtype.split("[");
+    let type = getByteType(baseType.trim());
+
+    // Create nested ArrayTypes for multidimensional arrays
+    for (let i = dimensions.length - 1; i >= 0; i--) {
+      const length = parseInt(dimensions[i], 10);
+      if (type == null) return //throw new Error(`Invalid array type: ${fieldtype}`);
+      type = new ArrayType(type, length);
+    }
+
+    return type;
+  }
+
+  switch (fieldtype) {
+    case "void *":
+    case "void*":
+        return "u64";
+    case "_Bool": return "u8";
+    case "char": return "i8";
+    case "uint8_t": return "u8";
+    case "int8_t": return "i8";
+    case "uint16_t": return "u16";
+    case "int16_t": return "i16";
+    case "uint32_t": return "u32";
+    case "int32_t": return "i32";
+    case "float": return "f32";
+    case "uint64_t": return "u64";
+    case "int64_t": return "i64";
+    case "double": return "f64";
+    default: return null; // For custom types or structs
+  }
+}
+
+//#endregion
 function getFieldDefinition(field: any, api: any): string {
   const fieldtype = field.fieldtype;
   const ffiType = getFfiType(fieldtype, api.typedefs, api.enums);
@@ -529,7 +627,7 @@ function getFfiType(type: string, defs?: any[], enums?: any[]): any {
   console.warn(`Unknown type: ${type}`);
   return "pointer";
 }
-
+//#region Generate Methods
 async function generateMethods(methods: any[], defs: any[], enums: any[]) {
   let output = "// Classes\n\n";
   output += "//#region Classes\n";
@@ -595,7 +693,8 @@ async function generateMethods(methods: any[], defs: any[], enums: any[]) {
       output += `    });\n\n`;
 
       // Call the function
-      output += `    const result = func.call(\n`;
+      if (methRet == "void") output += `    const _result = func.call(\n`;
+      else output += `    const result = func.call(\n`;
 
       if (methParams) {
         for (const param of methParams) {
@@ -614,7 +713,10 @@ async function generateMethods(methods: any[], defs: any[], enums: any[]) {
       // Handle the result
       if (retType !== "void") {
         const ffiType = getFfiType(methRet, defs, enums);
-        if (ffiType === "pointer") {
+        if (retType == "string") {
+          output += `    return result.toString();\n`;
+        }
+        else if (ffiType === "pointer") {
           output += `    return result// as unknown as ${retType};\n`;
         } else {
           output += `    return result// as ${retType};\n`;
@@ -630,7 +732,7 @@ async function generateMethods(methods: any[], defs: any[], enums: any[]) {
   return output;
 }
 
-
+//#endregion
 
 async function generateEntrypoints() {
   const entrypoints = `

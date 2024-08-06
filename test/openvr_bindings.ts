@@ -3240,7 +3240,7 @@ export interface CameraVideoStreamFrameHeader {
   },
   {
     "fieldname": "m_HmdPose",
-    "fieldtype": "vr::TrackedDevicePose_t"
+    "fieldtype": "struct vr::TrackedDevicePose_t"
   },
   {
     "fieldname": "m_nNumVSyncsReadyForUse",
@@ -4399,6 +4399,2490 @@ export interface PathRead {
 
 
 //#endregion
+// Byte Type Structs
+
+import { Struct, ArrayType, u8, i8, u16, i16, u32, i32, f32, u64, i64, f64 } from "jsr:@denosaurs/byte-type";;
+
+/*vr::HmdMatrix34_t, [
+  {
+    "fieldname": "m",
+    "fieldtype": "float [3][4]"
+  }
+]*/
+export const HmdMatrix34Struct = new Struct({
+  m: new ArrayType(new ArrayType(f32, 4), 3),
+});
+
+/*vr::HmdMatrix33_t, [
+  {
+    "fieldname": "m",
+    "fieldtype": "float [3][3]"
+  }
+]*/
+export const HmdMatrix33Struct = new Struct({
+  m: new ArrayType(new ArrayType(f32, 3), 3),
+});
+
+/*vr::HmdMatrix44_t, [
+  {
+    "fieldname": "m",
+    "fieldtype": "float [4][4]"
+  }
+]*/
+export const HmdMatrix44Struct = new Struct({
+  m: new ArrayType(new ArrayType(f32, 4), 4),
+});
+
+/*vr::HmdVector3_t, [
+  {
+    "fieldname": "v",
+    "fieldtype": "float [3]"
+  }
+]*/
+export const HmdVector3Struct = new Struct({
+  v: new ArrayType(f32, 3),
+});
+
+/*vr::HmdVector4_t, [
+  {
+    "fieldname": "v",
+    "fieldtype": "float [4]"
+  }
+]*/
+export const HmdVector4Struct = new Struct({
+  v: new ArrayType(f32, 4),
+});
+
+/*vr::HmdVector3d_t, [
+  {
+    "fieldname": "v",
+    "fieldtype": "double [3]"
+  }
+]*/
+export const HmdVector3dStruct = new Struct({
+  v: new ArrayType(f64, 3),
+});
+
+/*vr::HmdVector2_t, [
+  {
+    "fieldname": "v",
+    "fieldtype": "float [2]"
+  }
+]*/
+export const HmdVector2Struct = new Struct({
+  v: new ArrayType(f32, 2),
+});
+
+/*vr::HmdQuaternion_t, [
+  {
+    "fieldname": "w",
+    "fieldtype": "double"
+  },
+  {
+    "fieldname": "x",
+    "fieldtype": "double"
+  },
+  {
+    "fieldname": "y",
+    "fieldtype": "double"
+  },
+  {
+    "fieldname": "z",
+    "fieldtype": "double"
+  }
+]*/
+export const HmdQuaternionStruct = new Struct({
+  w: f64,
+  x: f64,
+  y: f64,
+  z: f64,
+});
+
+/*vr::HmdQuaternionf_t, [
+  {
+    "fieldname": "w",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "x",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "y",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "z",
+    "fieldtype": "float"
+  }
+]*/
+export const HmdQuaternionfStruct = new Struct({
+  w: f32,
+  x: f32,
+  y: f32,
+  z: f32,
+});
+
+/*vr::HmdColor_t, [
+  {
+    "fieldname": "r",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "g",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "b",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "a",
+    "fieldtype": "float"
+  }
+]*/
+export const HmdColorStruct = new Struct({
+  r: f32,
+  g: f32,
+  b: f32,
+  a: f32,
+});
+
+/*vr::HmdQuad_t, [
+  {
+    "fieldname": "vCorners",
+    "fieldtype": "struct vr::HmdVector3_t [4]"
+  }
+]*/
+export const HmdQuadStruct = new Struct({
+  vCorners: HmdVector3Struct,
+});
+
+/*vr::HmdRect2_t, [
+  {
+    "fieldname": "vTopLeft",
+    "fieldtype": "struct vr::HmdVector2_t"
+  },
+  {
+    "fieldname": "vBottomRight",
+    "fieldtype": "struct vr::HmdVector2_t"
+  }
+]*/
+export const HmdRect2Struct = new Struct({
+  vTopLeft: HmdVector2Struct,
+  vBottomRight: HmdVector2Struct,
+});
+
+/*vr::VRBoneTransform_t, [
+  {
+    "fieldname": "position",
+    "fieldtype": "struct vr::HmdVector4_t"
+  },
+  {
+    "fieldname": "orientation",
+    "fieldtype": "struct vr::HmdQuaternionf_t"
+  }
+]*/
+export const BoneTransformStruct = new Struct({
+  position: HmdVector4Struct,
+  orientation: HmdQuaternionfStruct,
+});
+
+/*vr::DistortionCoordinates_t, [
+  {
+    "fieldname": "rfRed",
+    "fieldtype": "float [2]"
+  },
+  {
+    "fieldname": "rfGreen",
+    "fieldtype": "float [2]"
+  },
+  {
+    "fieldname": "rfBlue",
+    "fieldtype": "float [2]"
+  }
+]*/
+export const DistortionCoordinatesStruct = new Struct({
+  rfRed: new ArrayType(f32, 2),
+  rfGreen: new ArrayType(f32, 2),
+  rfBlue: new ArrayType(f32, 2),
+});
+
+/*vr::Texture_t, [
+  {
+    "fieldname": "handle",
+    "fieldtype": "void *"
+  },
+  {
+    "fieldname": "eType",
+    "fieldtype": "enum vr::ETextureType"
+  },
+  {
+    "fieldname": "eColorSpace",
+    "fieldtype": "enum vr::EColorSpace"
+  }
+]*/
+export const TextureStruct = new Struct({
+  handle: u64,
+  eType: u32,
+  eColorSpace: u32,
+});
+
+/*vr::VRTextureBounds_t, [
+  {
+    "fieldname": "uMin",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "vMin",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "uMax",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "vMax",
+    "fieldtype": "float"
+  }
+]*/
+export const TextureBoundsStruct = new Struct({
+  uMin: f32,
+  vMin: f32,
+  uMax: f32,
+  vMax: f32,
+});
+
+/*vr::VRTextureWithPose_t, [
+  {
+    "fieldname": "mDeviceToAbsoluteTracking",
+    "fieldtype": "struct vr::HmdMatrix34_t"
+  }
+]*/
+export const TextureWithPoseStruct = new Struct({
+  mDeviceToAbsoluteTracking: HmdMatrix34Struct,
+});
+
+/*vr::VRTextureDepthInfo_t, [
+  {
+    "fieldname": "handle",
+    "fieldtype": "void *"
+  },
+  {
+    "fieldname": "mProjection",
+    "fieldtype": "struct vr::HmdMatrix44_t"
+  },
+  {
+    "fieldname": "vRange",
+    "fieldtype": "struct vr::HmdVector2_t"
+  }
+]*/
+export const TextureDepthInfoStruct = new Struct({
+  handle: u64,
+  mProjection: HmdMatrix44Struct,
+  vRange: HmdVector2Struct,
+});
+
+/*vr::VRTextureWithDepth_t, [
+  {
+    "fieldname": "depth",
+    "fieldtype": "struct vr::VRTextureDepthInfo_t"
+  }
+]*/
+export const TextureWithDepthStruct = new Struct({
+  depth: TextureDepthInfoStruct,
+});
+
+/*vr::VRTextureWithPoseAndDepth_t, [
+  {
+    "fieldname": "depth",
+    "fieldtype": "struct vr::VRTextureDepthInfo_t"
+  }
+]*/
+export const TextureWithPoseAndDepthStruct = new Struct({
+  depth: TextureDepthInfoStruct,
+});
+
+/*vr::TrackedDevicePose_t, [
+  {
+    "fieldname": "mDeviceToAbsoluteTracking",
+    "fieldtype": "struct vr::HmdMatrix34_t"
+  },
+  {
+    "fieldname": "vVelocity",
+    "fieldtype": "struct vr::HmdVector3_t"
+  },
+  {
+    "fieldname": "vAngularVelocity",
+    "fieldtype": "struct vr::HmdVector3_t"
+  },
+  {
+    "fieldname": "eTrackingResult",
+    "fieldtype": "enum vr::ETrackingResult"
+  },
+  {
+    "fieldname": "bPoseIsValid",
+    "fieldtype": "_Bool"
+  },
+  {
+    "fieldname": "bDeviceIsConnected",
+    "fieldtype": "_Bool"
+  }
+]*/
+export const TrackedDevicePoseStruct = new Struct({
+  mDeviceToAbsoluteTracking: HmdMatrix34Struct,
+  vVelocity: HmdVector3Struct,
+  vAngularVelocity: HmdVector3Struct,
+  eTrackingResult: u32,
+  bPoseIsValid: u8,
+  bDeviceIsConnected: u8,
+});
+
+/*vr::VRVulkanTextureData_t, [
+  {
+    "fieldname": "m_nImage",
+    "fieldtype": "uint64_t"
+  },
+  {
+    "fieldname": "m_pDevice",
+    "fieldtype": "struct VkDevice_T *"
+  },
+  {
+    "fieldname": "m_pPhysicalDevice",
+    "fieldtype": "struct VkPhysicalDevice_T *"
+  },
+  {
+    "fieldname": "m_pInstance",
+    "fieldtype": "struct VkInstance_T *"
+  },
+  {
+    "fieldname": "m_pQueue",
+    "fieldtype": "struct VkQueue_T *"
+  },
+  {
+    "fieldname": "m_nQueueFamilyIndex",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "m_nWidth",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "m_nHeight",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "m_nFormat",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "m_nSampleCount",
+    "fieldtype": "uint32_t"
+  }
+]*/
+export const VulkanTextureDataStruct = new Struct({
+  nImage: u64,
+  pDevice: VkDevice_TStruct,
+  pPhysicalDevice: VkPhysicalDevice_TStruct,
+  pInstance: VkInstance_TStruct,
+  pQueue: VkQueue_TStruct,
+  nQueueFamilyIndex: u32,
+  nWidth: u32,
+  nHeight: u32,
+  nFormat: u32,
+  nSampleCount: u32,
+});
+
+/*vr::VRVulkanTextureArrayData_t, [
+  {
+    "fieldname": "m_unArrayIndex",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "m_unArraySize",
+    "fieldtype": "uint32_t"
+  }
+]*/
+export const VulkanTextureArrayDataStruct = new Struct({
+  unArrayIndex: u32,
+  unArraySize: u32,
+});
+
+/*vr::D3D12TextureData_t, [
+  {
+    "fieldname": "m_pResource",
+    "fieldtype": "struct ID3D12Resource *"
+  },
+  {
+    "fieldname": "m_pCommandQueue",
+    "fieldtype": "struct ID3D12CommandQueue *"
+  },
+  {
+    "fieldname": "m_nNodeMask",
+    "fieldtype": "uint32_t"
+  }
+]*/
+export const D3D12TextureDataStruct = new Struct({
+  pResource: ID3D12ResourceStruct,
+  pCommandQueue: ID3D12CommandQueueStruct,
+  nNodeMask: u32,
+});
+
+/*vr::VREvent_Controller_t, [
+  {
+    "fieldname": "button",
+    "fieldtype": "uint32_t"
+  }
+]*/
+export const Event_ControllerStruct = new Struct({
+  button: u32,
+});
+
+/*vr::VREvent_Mouse_t, [
+  {
+    "fieldname": "x",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "y",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "button",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "cursorIndex",
+    "fieldtype": "uint32_t"
+  }
+]*/
+export const Event_MouseStruct = new Struct({
+  x: f32,
+  y: f32,
+  button: u32,
+  cursorIndex: u32,
+});
+
+/*vr::VREvent_Scroll_t, [
+  {
+    "fieldname": "xdelta",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "ydelta",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "unused",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "viewportscale",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "cursorIndex",
+    "fieldtype": "uint32_t"
+  }
+]*/
+export const Event_ScrollStruct = new Struct({
+  xdelta: f32,
+  ydelta: f32,
+  unused: u32,
+  viewportscale: f32,
+  cursorIndex: u32,
+});
+
+/*vr::VREvent_TouchPadMove_t, [
+  {
+    "fieldname": "bFingerDown",
+    "fieldtype": "_Bool"
+  },
+  {
+    "fieldname": "flSecondsFingerDown",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "fValueXFirst",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "fValueYFirst",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "fValueXRaw",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "fValueYRaw",
+    "fieldtype": "float"
+  }
+]*/
+export const Event_TouchPadMoveStruct = new Struct({
+  bFingerDown: u8,
+  flSecondsFingerDown: f32,
+  fValueXFirst: f32,
+  fValueYFirst: f32,
+  fValueXRaw: f32,
+  fValueYRaw: f32,
+});
+
+/*vr::VREvent_Notification_t, [
+  {
+    "fieldname": "ulUserValue",
+    "fieldtype": "uint64_t"
+  },
+  {
+    "fieldname": "notificationId",
+    "fieldtype": "uint32_t"
+  }
+]*/
+export const Event_NotificationStruct = new Struct({
+  ulUserValue: u64,
+  notificationId: u32,
+});
+
+/*vr::VREvent_Process_t, [
+  {
+    "fieldname": "pid",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "oldPid",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "bForced",
+    "fieldtype": "_Bool"
+  },
+  {
+    "fieldname": "bConnectionLost",
+    "fieldtype": "_Bool"
+  }
+]*/
+export const Event_ProcessStruct = new Struct({
+  pid: u32,
+  oldPid: u32,
+  bForced: u8,
+  bConnectionLost: u8,
+});
+
+/*vr::VREvent_Overlay_t, [
+  {
+    "fieldname": "overlayHandle",
+    "fieldtype": "uint64_t"
+  },
+  {
+    "fieldname": "devicePath",
+    "fieldtype": "uint64_t"
+  },
+  {
+    "fieldname": "memoryBlockId",
+    "fieldtype": "uint64_t"
+  },
+  {
+    "fieldname": "cursorIndex",
+    "fieldtype": "uint32_t"
+  }
+]*/
+export const Event_OverlayStruct = new Struct({
+  overlayHandle: u64,
+  devicePath: u64,
+  memoryBlockId: u64,
+  cursorIndex: u32,
+});
+
+/*vr::VREvent_Status_t, [
+  {
+    "fieldname": "statusState",
+    "fieldtype": "uint32_t"
+  }
+]*/
+export const Event_StatusStruct = new Struct({
+  statusState: u32,
+});
+
+/*vr::VREvent_Keyboard_t, [
+  {
+    "fieldname": "cNewInput",
+    "fieldtype": "char [8]"
+  },
+  {
+    "fieldname": "uUserValue",
+    "fieldtype": "uint64_t"
+  },
+  {
+    "fieldname": "overlayHandle",
+    "fieldtype": "uint64_t"
+  }
+]*/
+export const Event_KeyboardStruct = new Struct({
+  cNewInput: new ArrayType(i8, 8),
+  uUserValue: u64,
+  overlayHandle: u64,
+});
+
+/*vr::VREvent_Ipd_t, [
+  {
+    "fieldname": "ipdMeters",
+    "fieldtype": "float"
+  }
+]*/
+export const Event_IpdStruct = new Struct({
+  ipdMeters: f32,
+});
+
+/*vr::VREvent_Chaperone_t, [
+  {
+    "fieldname": "m_nPreviousUniverse",
+    "fieldtype": "uint64_t"
+  },
+  {
+    "fieldname": "m_nCurrentUniverse",
+    "fieldtype": "uint64_t"
+  }
+]*/
+export const Event_ChaperoneStruct = new Struct({
+  nPreviousUniverse: u64,
+  nCurrentUniverse: u64,
+});
+
+/*vr::VREvent_Reserved_t, [
+  {
+    "fieldname": "reserved0",
+    "fieldtype": "uint64_t"
+  },
+  {
+    "fieldname": "reserved1",
+    "fieldtype": "uint64_t"
+  },
+  {
+    "fieldname": "reserved2",
+    "fieldtype": "uint64_t"
+  },
+  {
+    "fieldname": "reserved3",
+    "fieldtype": "uint64_t"
+  },
+  {
+    "fieldname": "reserved4",
+    "fieldtype": "uint64_t"
+  },
+  {
+    "fieldname": "reserved5",
+    "fieldtype": "uint64_t"
+  }
+]*/
+export const Event_ReservedStruct = new Struct({
+  reserved0: u64,
+  reserved1: u64,
+  reserved2: u64,
+  reserved3: u64,
+  reserved4: u64,
+  reserved5: u64,
+});
+
+/*vr::VREvent_PerformanceTest_t, [
+  {
+    "fieldname": "m_nFidelityLevel",
+    "fieldtype": "uint32_t"
+  }
+]*/
+export const Event_PerformanceTestStruct = new Struct({
+  nFidelityLevel: u32,
+});
+
+/*vr::VREvent_SeatedZeroPoseReset_t, [
+  {
+    "fieldname": "bResetBySystemMenu",
+    "fieldtype": "_Bool"
+  }
+]*/
+export const Event_SeatedZeroPoseResetStruct = new Struct({
+  bResetBySystemMenu: u8,
+});
+
+/*vr::VREvent_Screenshot_t, [
+  {
+    "fieldname": "handle",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "type",
+    "fieldtype": "uint32_t"
+  }
+]*/
+export const Event_ScreenshotStruct = new Struct({
+  handle: u32,
+  type: u32,
+});
+
+/*vr::VREvent_ScreenshotProgress_t, [
+  {
+    "fieldname": "progress",
+    "fieldtype": "float"
+  }
+]*/
+export const Event_ScreenshotProgressStruct = new Struct({
+  progress: f32,
+});
+
+/*vr::VREvent_ApplicationLaunch_t, [
+  {
+    "fieldname": "pid",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "unArgsHandle",
+    "fieldtype": "uint32_t"
+  }
+]*/
+export const Event_ApplicationLaunchStruct = new Struct({
+  pid: u32,
+  unArgsHandle: u32,
+});
+
+/*vr::VREvent_EditingCameraSurface_t, [
+  {
+    "fieldname": "overlayHandle",
+    "fieldtype": "uint64_t"
+  },
+  {
+    "fieldname": "nVisualMode",
+    "fieldtype": "uint32_t"
+  }
+]*/
+export const Event_EditingCameraSurfaceStruct = new Struct({
+  overlayHandle: u64,
+  nVisualMode: u32,
+});
+
+/*vr::VREvent_MessageOverlay_t, [
+  {
+    "fieldname": "unVRMessageOverlayResponse",
+    "fieldtype": "uint32_t"
+  }
+]*/
+export const Event_MessageOverlayStruct = new Struct({
+  unVRMessageOverlayResponse: u32,
+});
+
+/*vr::VREvent_Property_t, [
+  {
+    "fieldname": "container",
+    "fieldtype": "PropertyContainerHandle_t"
+  },
+  {
+    "fieldname": "prop",
+    "fieldtype": "enum vr::ETrackedDeviceProperty"
+  }
+]*/
+export const Event_PropertyStruct = new Struct({
+  container: u64,
+  prop: u32,
+});
+
+/*vr::VREvent_HapticVibration_t, [
+  {
+    "fieldname": "containerHandle",
+    "fieldtype": "uint64_t"
+  },
+  {
+    "fieldname": "componentHandle",
+    "fieldtype": "uint64_t"
+  },
+  {
+    "fieldname": "fDurationSeconds",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "fFrequency",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "fAmplitude",
+    "fieldtype": "float"
+  }
+]*/
+export const Event_HapticVibrationStruct = new Struct({
+  containerHandle: u64,
+  componentHandle: u64,
+  fDurationSeconds: f32,
+  fFrequency: f32,
+  fAmplitude: f32,
+});
+
+/*vr::VREvent_WebConsole_t, [
+  {
+    "fieldname": "webConsoleHandle",
+    "fieldtype": "WebConsoleHandle_t"
+  }
+]*/
+export const Event_WebConsoleStruct = new Struct({
+  webConsoleHandle: u64,
+});
+
+/*vr::VREvent_InputBindingLoad_t, [
+  {
+    "fieldname": "ulAppContainer",
+    "fieldtype": "vr::PropertyContainerHandle_t"
+  },
+  {
+    "fieldname": "pathMessage",
+    "fieldtype": "uint64_t"
+  },
+  {
+    "fieldname": "pathUrl",
+    "fieldtype": "uint64_t"
+  },
+  {
+    "fieldname": "pathControllerType",
+    "fieldtype": "uint64_t"
+  }
+]*/
+export const Event_InputBindingLoadStruct = new Struct({
+  ulAppContainer: u64,
+  pathMessage: u64,
+  pathUrl: u64,
+  pathControllerType: u64,
+});
+
+/*vr::VREvent_InputActionManifestLoad_t, [
+  {
+    "fieldname": "pathAppKey",
+    "fieldtype": "uint64_t"
+  },
+  {
+    "fieldname": "pathMessage",
+    "fieldtype": "uint64_t"
+  },
+  {
+    "fieldname": "pathMessageParam",
+    "fieldtype": "uint64_t"
+  },
+  {
+    "fieldname": "pathManifestPath",
+    "fieldtype": "uint64_t"
+  }
+]*/
+export const Event_InputActionManifestLoadStruct = new Struct({
+  pathAppKey: u64,
+  pathMessage: u64,
+  pathMessageParam: u64,
+  pathManifestPath: u64,
+});
+
+/*vr::VREvent_SpatialAnchor_t, [
+  {
+    "fieldname": "unHandle",
+    "fieldtype": "SpatialAnchorHandle_t"
+  }
+]*/
+export const Event_SpatialAnchorStruct = new Struct({
+  unHandle: u32,
+});
+
+/*vr::VREvent_ProgressUpdate_t, [
+  {
+    "fieldname": "ulApplicationPropertyContainer",
+    "fieldtype": "uint64_t"
+  },
+  {
+    "fieldname": "pathDevice",
+    "fieldtype": "uint64_t"
+  },
+  {
+    "fieldname": "pathInputSource",
+    "fieldtype": "uint64_t"
+  },
+  {
+    "fieldname": "pathProgressAction",
+    "fieldtype": "uint64_t"
+  },
+  {
+    "fieldname": "pathIcon",
+    "fieldtype": "uint64_t"
+  },
+  {
+    "fieldname": "fProgress",
+    "fieldtype": "float"
+  }
+]*/
+export const Event_ProgressUpdateStruct = new Struct({
+  ulApplicationPropertyContainer: u64,
+  pathDevice: u64,
+  pathInputSource: u64,
+  pathProgressAction: u64,
+  pathIcon: u64,
+  fProgress: f32,
+});
+
+/*vr::VREvent_ShowUI_t, [
+  {
+    "fieldname": "eType",
+    "fieldtype": "enum vr::EShowUIType"
+  }
+]*/
+export const Event_ShowUIStruct = new Struct({
+  eType: u32,
+});
+
+/*vr::VREvent_ShowDevTools_t, [
+  {
+    "fieldname": "nBrowserIdentifier",
+    "fieldtype": "int32_t"
+  }
+]*/
+export const Event_ShowDevToolsStruct = new Struct({
+  nBrowserIdentifier: i32,
+});
+
+/*vr::VREvent_HDCPError_t, [
+  {
+    "fieldname": "eCode",
+    "fieldtype": "enum vr::EHDCPError"
+  }
+]*/
+export const Event_HDCPErrorStruct = new Struct({
+  eCode: u32,
+});
+
+/*vr::VREvent_AudioVolumeControl_t, [
+  {
+    "fieldname": "fVolumeLevel",
+    "fieldtype": "float"
+  }
+]*/
+export const Event_AudioVolumeControlStruct = new Struct({
+  fVolumeLevel: f32,
+});
+
+/*vr::VREvent_AudioMuteControl_t, [
+  {
+    "fieldname": "bMute",
+    "fieldtype": "_Bool"
+  }
+]*/
+export const Event_AudioMuteControlStruct = new Struct({
+  bMute: u8,
+});
+
+/*vr::(anonymous), [
+  {
+    "fieldname": "reserved",
+    "fieldtype": "struct vr::VREvent_Reserved_t"
+  },
+  {
+    "fieldname": "controller",
+    "fieldtype": "struct vr::VREvent_Controller_t"
+  },
+  {
+    "fieldname": "mouse",
+    "fieldtype": "struct vr::VREvent_Mouse_t"
+  },
+  {
+    "fieldname": "scroll",
+    "fieldtype": "struct vr::VREvent_Scroll_t"
+  },
+  {
+    "fieldname": "process",
+    "fieldtype": "struct vr::VREvent_Process_t"
+  },
+  {
+    "fieldname": "notification",
+    "fieldtype": "struct vr::VREvent_Notification_t"
+  },
+  {
+    "fieldname": "overlay",
+    "fieldtype": "struct vr::VREvent_Overlay_t"
+  },
+  {
+    "fieldname": "status",
+    "fieldtype": "struct vr::VREvent_Status_t"
+  },
+  {
+    "fieldname": "keyboard",
+    "fieldtype": "struct vr::VREvent_Keyboard_t"
+  },
+  {
+    "fieldname": "ipd",
+    "fieldtype": "struct vr::VREvent_Ipd_t"
+  },
+  {
+    "fieldname": "chaperone",
+    "fieldtype": "struct vr::VREvent_Chaperone_t"
+  },
+  {
+    "fieldname": "performanceTest",
+    "fieldtype": "struct vr::VREvent_PerformanceTest_t"
+  },
+  {
+    "fieldname": "touchPadMove",
+    "fieldtype": "struct vr::VREvent_TouchPadMove_t"
+  },
+  {
+    "fieldname": "seatedZeroPoseReset",
+    "fieldtype": "struct vr::VREvent_SeatedZeroPoseReset_t"
+  },
+  {
+    "fieldname": "screenshot",
+    "fieldtype": "struct vr::VREvent_Screenshot_t"
+  },
+  {
+    "fieldname": "screenshotProgress",
+    "fieldtype": "struct vr::VREvent_ScreenshotProgress_t"
+  },
+  {
+    "fieldname": "applicationLaunch",
+    "fieldtype": "struct vr::VREvent_ApplicationLaunch_t"
+  },
+  {
+    "fieldname": "cameraSurface",
+    "fieldtype": "struct vr::VREvent_EditingCameraSurface_t"
+  },
+  {
+    "fieldname": "messageOverlay",
+    "fieldtype": "struct vr::VREvent_MessageOverlay_t"
+  },
+  {
+    "fieldname": "property",
+    "fieldtype": "struct vr::VREvent_Property_t"
+  },
+  {
+    "fieldname": "hapticVibration",
+    "fieldtype": "struct vr::VREvent_HapticVibration_t"
+  },
+  {
+    "fieldname": "webConsole",
+    "fieldtype": "struct vr::VREvent_WebConsole_t"
+  },
+  {
+    "fieldname": "inputBinding",
+    "fieldtype": "struct vr::VREvent_InputBindingLoad_t"
+  },
+  {
+    "fieldname": "actionManifest",
+    "fieldtype": "struct vr::VREvent_InputActionManifestLoad_t"
+  },
+  {
+    "fieldname": "spatialAnchor",
+    "fieldtype": "struct vr::VREvent_SpatialAnchor_t"
+  },
+  {
+    "fieldname": "progressUpdate",
+    "fieldtype": "struct vr::VREvent_ProgressUpdate_t"
+  },
+  {
+    "fieldname": "showUi",
+    "fieldtype": "struct vr::VREvent_ShowUI_t"
+  },
+  {
+    "fieldname": "showDevTools",
+    "fieldtype": "struct vr::VREvent_ShowDevTools_t"
+  },
+  {
+    "fieldname": "hdcpError",
+    "fieldtype": "struct vr::VREvent_HDCPError_t"
+  },
+  {
+    "fieldname": "audioVolumeControl",
+    "fieldtype": "struct vr::VREvent_AudioVolumeControl_t"
+  },
+  {
+    "fieldname": "audioMuteControl",
+    "fieldtype": "struct vr::VREvent_AudioMuteControl_t"
+  }
+]*/
+export const EventDataStruct = new Struct({
+  reserved: Event_ReservedStruct,
+  controller: Event_ControllerStruct,
+  mouse: Event_MouseStruct,
+  scroll: Event_ScrollStruct,
+  process: Event_ProcessStruct,
+  notification: Event_NotificationStruct,
+  overlay: Event_OverlayStruct,
+  status: Event_StatusStruct,
+  keyboard: Event_KeyboardStruct,
+  ipd: Event_IpdStruct,
+  chaperone: Event_ChaperoneStruct,
+  performanceTest: Event_PerformanceTestStruct,
+  touchPadMove: Event_TouchPadMoveStruct,
+  seatedZeroPoseReset: Event_SeatedZeroPoseResetStruct,
+  screenshot: Event_ScreenshotStruct,
+  screenshotProgress: Event_ScreenshotProgressStruct,
+  applicationLaunch: Event_ApplicationLaunchStruct,
+  cameraSurface: Event_EditingCameraSurfaceStruct,
+  messageOverlay: Event_MessageOverlayStruct,
+  property: Event_PropertyStruct,
+  hapticVibration: Event_HapticVibrationStruct,
+  webConsole: Event_WebConsoleStruct,
+  inputBinding: Event_InputBindingLoadStruct,
+  actionManifest: Event_InputActionManifestLoadStruct,
+  spatialAnchor: Event_SpatialAnchorStruct,
+  progressUpdate: Event_ProgressUpdateStruct,
+  showUi: Event_ShowUIStruct,
+  showDevTools: Event_ShowDevToolsStruct,
+  hdcpError: Event_HDCPErrorStruct,
+  audioVolumeControl: Event_AudioVolumeControlStruct,
+  audioMuteControl: Event_AudioMuteControlStruct,
+});
+
+/*vr::VREvent_t, [
+  {
+    "fieldname": "eventType",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "trackedDeviceIndex",
+    "fieldtype": "TrackedDeviceIndex_t"
+  },
+  {
+    "fieldname": "eventAgeSeconds",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "data",
+    "fieldtype": "VREvent_Data_t"
+  }
+]*/
+export const EventStruct = new Struct({
+  eventType: u32,
+  trackedDeviceIndex: u32,
+  eventAgeSeconds: f32,
+  data: null,
+});
+
+/*vr::RenderModel_ComponentState_t, [
+  {
+    "fieldname": "mTrackingToComponentRenderModel",
+    "fieldtype": "struct vr::HmdMatrix34_t"
+  },
+  {
+    "fieldname": "mTrackingToComponentLocal",
+    "fieldtype": "struct vr::HmdMatrix34_t"
+  },
+  {
+    "fieldname": "uProperties",
+    "fieldtype": "VRComponentProperties"
+  }
+]*/
+export const RenderModel_ComponentStateStruct = new Struct({
+  mTrackingToComponentRenderModel: HmdMatrix34Struct,
+  mTrackingToComponentLocal: HmdMatrix34Struct,
+  uProperties: u32,
+});
+
+/*vr::HiddenAreaMesh_t, [
+  {
+    "fieldname": "pVertexData",
+    "fieldtype": "const struct vr::HmdVector2_t *"
+  },
+  {
+    "fieldname": "unTriangleCount",
+    "fieldtype": "uint32_t"
+  }
+]*/
+export const HiddenAreaMeshStruct = new Struct({
+  pVertexData: u64,
+  unTriangleCount: u32,
+});
+
+/*vr::VRControllerAxis_t, [
+  {
+    "fieldname": "x",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "y",
+    "fieldtype": "float"
+  }
+]*/
+export const ControllerAxisStruct = new Struct({
+  x: f32,
+  y: f32,
+});
+
+/*vr::VRControllerState001_t, [
+  {
+    "fieldname": "unPacketNum",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "ulButtonPressed",
+    "fieldtype": "uint64_t"
+  },
+  {
+    "fieldname": "ulButtonTouched",
+    "fieldtype": "uint64_t"
+  },
+  {
+    "fieldname": "rAxis",
+    "fieldtype": "struct vr::VRControllerAxis_t [5]"
+  }
+]*/
+export const ControllerState001Struct = new Struct({
+  unPacketNum: u32,
+  ulButtonPressed: u64,
+  ulButtonTouched: u64,
+  rAxis: ControllerAxisStruct,
+});
+
+/*vr::CameraVideoStreamFrameHeader_t, [
+  {
+    "fieldname": "eFrameType",
+    "fieldtype": "enum vr::EVRTrackedCameraFrameType"
+  },
+  {
+    "fieldname": "nWidth",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "nHeight",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "nBytesPerPixel",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "nFrameSequence",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "trackedDevicePose",
+    "fieldtype": "struct vr::TrackedDevicePose_t"
+  },
+  {
+    "fieldname": "ulFrameExposureTime",
+    "fieldtype": "uint64_t"
+  }
+]*/
+export const CameraVideoStreamFrameHeaderStruct = new Struct({
+  eFrameType: u32,
+  nWidth: u32,
+  nHeight: u32,
+  nBytesPerPixel: u32,
+  nFrameSequence: u32,
+  trackedDevicePose: TrackedDevicePoseStruct,
+  ulFrameExposureTime: u64,
+});
+
+/*vr::Compositor_FrameTiming, [
+  {
+    "fieldname": "m_nSize",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "m_nFrameIndex",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "m_nNumFramePresents",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "m_nNumMisPresented",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "m_nNumDroppedFrames",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "m_nReprojectionFlags",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "m_flSystemTimeInSeconds",
+    "fieldtype": "double"
+  },
+  {
+    "fieldname": "m_flPreSubmitGpuMs",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "m_flPostSubmitGpuMs",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "m_flTotalRenderGpuMs",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "m_flCompositorRenderGpuMs",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "m_flCompositorRenderCpuMs",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "m_flCompositorIdleCpuMs",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "m_flClientFrameIntervalMs",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "m_flPresentCallCpuMs",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "m_flWaitForPresentCpuMs",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "m_flSubmitFrameMs",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "m_flWaitGetPosesCalledMs",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "m_flNewPosesReadyMs",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "m_flNewFrameReadyMs",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "m_flCompositorUpdateStartMs",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "m_flCompositorUpdateEndMs",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "m_flCompositorRenderStartMs",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "m_HmdPose",
+    "fieldtype": "struct vr::TrackedDevicePose_t"
+  },
+  {
+    "fieldname": "m_nNumVSyncsReadyForUse",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "m_nNumVSyncsToFirstView",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "m_flTransferLatencyMs",
+    "fieldtype": "float"
+  }
+]*/
+export const Compositor_FrameTimingStruct = new Struct({
+  nSize: u32,
+  nFrameIndex: u32,
+  nNumFramePresents: u32,
+  nNumMisPresented: u32,
+  nNumDroppedFrames: u32,
+  nReprojectionFlags: u32,
+  flSystemTimeInSeconds: f64,
+  flPreSubmitGpuMs: f32,
+  flPostSubmitGpuMs: f32,
+  flTotalRenderGpuMs: f32,
+  flCompositorRenderGpuMs: f32,
+  flCompositorRenderCpuMs: f32,
+  flCompositorIdleCpuMs: f32,
+  flClientFrameIntervalMs: f32,
+  flPresentCallCpuMs: f32,
+  flWaitForPresentCpuMs: f32,
+  flSubmitFrameMs: f32,
+  flWaitGetPosesCalledMs: f32,
+  flNewPosesReadyMs: f32,
+  flNewFrameReadyMs: f32,
+  flCompositorUpdateStartMs: f32,
+  flCompositorUpdateEndMs: f32,
+  flCompositorRenderStartMs: f32,
+  HmdPose: TrackedDevicePoseStruct,
+  nNumVSyncsReadyForUse: u32,
+  nNumVSyncsToFirstView: u32,
+  flTransferLatencyMs: f32,
+});
+
+/*vr::Compositor_BenchmarkResults, [
+  {
+    "fieldname": "m_flMegaPixelsPerSecond",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "m_flHmdRecommendedMegaPixelsPerSecond",
+    "fieldtype": "float"
+  }
+]*/
+export const Compositor_BenchmarkResultsStruct = new Struct({
+  flMegaPixelsPerSecond: f32,
+  flHmdRecommendedMegaPixelsPerSecond: f32,
+});
+
+/*vr::DriverDirectMode_FrameTiming, [
+  {
+    "fieldname": "m_nSize",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "m_nNumFramePresents",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "m_nNumMisPresented",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "m_nNumDroppedFrames",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "m_nReprojectionFlags",
+    "fieldtype": "uint32_t"
+  }
+]*/
+export const DriverDirectMode_FrameTimingStruct = new Struct({
+  nSize: u32,
+  nNumFramePresents: u32,
+  nNumMisPresented: u32,
+  nNumDroppedFrames: u32,
+  nReprojectionFlags: u32,
+});
+
+/*vr::ImuSample_t, [
+  {
+    "fieldname": "fSampleTime",
+    "fieldtype": "double"
+  },
+  {
+    "fieldname": "vAccel",
+    "fieldtype": "struct vr::HmdVector3d_t"
+  },
+  {
+    "fieldname": "vGyro",
+    "fieldtype": "struct vr::HmdVector3d_t"
+  },
+  {
+    "fieldname": "unOffScaleFlags",
+    "fieldtype": "uint32_t"
+  }
+]*/
+export const ImuSampleStruct = new Struct({
+  fSampleTime: f64,
+  vAccel: HmdVector3dStruct,
+  vGyro: HmdVector3dStruct,
+  unOffScaleFlags: u32,
+});
+
+/*vr::AppOverrideKeys_t, [
+  {
+    "fieldname": "pchKey",
+    "fieldtype": "const char *"
+  },
+  {
+    "fieldname": "pchValue",
+    "fieldtype": "const char *"
+  }
+]*/
+export const AppOverrideKeysStruct = new Struct({
+  pchKey: u64,
+  pchValue: u64,
+});
+
+/*vr::Compositor_CumulativeStats, [
+  {
+    "fieldname": "m_nPid",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "m_nNumFramePresents",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "m_nNumDroppedFrames",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "m_nNumReprojectedFrames",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "m_nNumFramePresentsOnStartup",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "m_nNumDroppedFramesOnStartup",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "m_nNumReprojectedFramesOnStartup",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "m_nNumLoading",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "m_nNumFramePresentsLoading",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "m_nNumDroppedFramesLoading",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "m_nNumReprojectedFramesLoading",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "m_nNumTimedOut",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "m_nNumFramePresentsTimedOut",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "m_nNumDroppedFramesTimedOut",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "m_nNumReprojectedFramesTimedOut",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "m_nNumFrameSubmits",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "m_flSumCompositorCPUTimeMS",
+    "fieldtype": "vrshared_double"
+  },
+  {
+    "fieldname": "m_flSumCompositorGPUTimeMS",
+    "fieldtype": "vrshared_double"
+  },
+  {
+    "fieldname": "m_flSumTargetFrameTimes",
+    "fieldtype": "vrshared_double"
+  },
+  {
+    "fieldname": "m_flSumApplicationCPUTimeMS",
+    "fieldtype": "vrshared_double"
+  },
+  {
+    "fieldname": "m_flSumApplicationGPUTimeMS",
+    "fieldtype": "vrshared_double"
+  },
+  {
+    "fieldname": "m_nNumFramesWithDepth",
+    "fieldtype": "uint32_t"
+  }
+]*/
+export const Compositor_CumulativeStatsStruct = new Struct({
+  nPid: u32,
+  nNumFramePresents: u32,
+  nNumDroppedFrames: u32,
+  nNumReprojectedFrames: u32,
+  nNumFramePresentsOnStartup: u32,
+  nNumDroppedFramesOnStartup: u32,
+  nNumReprojectedFramesOnStartup: u32,
+  nNumLoading: u32,
+  nNumFramePresentsLoading: u32,
+  nNumDroppedFramesLoading: u32,
+  nNumReprojectedFramesLoading: u32,
+  nNumTimedOut: u32,
+  nNumFramePresentsTimedOut: u32,
+  nNumDroppedFramesTimedOut: u32,
+  nNumReprojectedFramesTimedOut: u32,
+  nNumFrameSubmits: u32,
+  flSumCompositorCPUTimeMS: f64,
+  flSumCompositorGPUTimeMS: f64,
+  flSumTargetFrameTimes: f64,
+  flSumApplicationCPUTimeMS: f64,
+  flSumApplicationGPUTimeMS: f64,
+  nNumFramesWithDepth: u32,
+});
+
+/*vr::Compositor_StageRenderSettings, [
+  {
+    "fieldname": "m_PrimaryColor",
+    "fieldtype": "struct vr::HmdColor_t"
+  },
+  {
+    "fieldname": "m_SecondaryColor",
+    "fieldtype": "struct vr::HmdColor_t"
+  },
+  {
+    "fieldname": "m_flVignetteInnerRadius",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "m_flVignetteOuterRadius",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "m_flFresnelStrength",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "m_bBackfaceCulling",
+    "fieldtype": "_Bool"
+  },
+  {
+    "fieldname": "m_bGreyscale",
+    "fieldtype": "_Bool"
+  },
+  {
+    "fieldname": "m_bWireframe",
+    "fieldtype": "_Bool"
+  }
+]*/
+export const Compositor_StageRenderSettingsStruct = new Struct({
+  PrimaryColor: HmdColorStruct,
+  SecondaryColor: HmdColorStruct,
+  flVignetteInnerRadius: f32,
+  flVignetteOuterRadius: f32,
+  flFresnelStrength: f32,
+  bBackfaceCulling: u8,
+  bGreyscale: u8,
+  bWireframe: u8,
+});
+
+/*vr::VROverlayIntersectionParams_t, [
+  {
+    "fieldname": "vSource",
+    "fieldtype": "struct vr::HmdVector3_t"
+  },
+  {
+    "fieldname": "vDirection",
+    "fieldtype": "struct vr::HmdVector3_t"
+  },
+  {
+    "fieldname": "eOrigin",
+    "fieldtype": "enum vr::ETrackingUniverseOrigin"
+  }
+]*/
+export const OverlayIntersectionParamsStruct = new Struct({
+  vSource: HmdVector3Struct,
+  vDirection: HmdVector3Struct,
+  eOrigin: u32,
+});
+
+/*vr::VROverlayIntersectionResults_t, [
+  {
+    "fieldname": "vPoint",
+    "fieldtype": "struct vr::HmdVector3_t"
+  },
+  {
+    "fieldname": "vNormal",
+    "fieldtype": "struct vr::HmdVector3_t"
+  },
+  {
+    "fieldname": "vUVs",
+    "fieldtype": "struct vr::HmdVector2_t"
+  },
+  {
+    "fieldname": "fDistance",
+    "fieldtype": "float"
+  }
+]*/
+export const OverlayIntersectionResultsStruct = new Struct({
+  vPoint: HmdVector3Struct,
+  vNormal: HmdVector3Struct,
+  vUVs: HmdVector2Struct,
+  fDistance: f32,
+});
+
+/*vr::IntersectionMaskRectangle_t, [
+  {
+    "fieldname": "m_flTopLeftX",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "m_flTopLeftY",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "m_flWidth",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "m_flHeight",
+    "fieldtype": "float"
+  }
+]*/
+export const IntersectionMaskRectangleStruct = new Struct({
+  flTopLeftX: f32,
+  flTopLeftY: f32,
+  flWidth: f32,
+  flHeight: f32,
+});
+
+/*vr::IntersectionMaskCircle_t, [
+  {
+    "fieldname": "m_flCenterX",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "m_flCenterY",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "m_flRadius",
+    "fieldtype": "float"
+  }
+]*/
+export const IntersectionMaskCircleStruct = new Struct({
+  flCenterX: f32,
+  flCenterY: f32,
+  flRadius: f32,
+});
+
+/*vr::(anonymous), [
+  {
+    "fieldname": "m_Rectangle",
+    "fieldtype": "struct vr::IntersectionMaskRectangle_t"
+  },
+  {
+    "fieldname": "m_Circle",
+    "fieldtype": "struct vr::IntersectionMaskCircle_t"
+  }
+]*/
+export const OverlayIntersectionMaskPrimitiveDataStruct = new Struct({
+  Rectangle: IntersectionMaskRectangleStruct,
+  Circle: IntersectionMaskCircleStruct,
+});
+
+/*vr::VROverlayIntersectionMaskPrimitive_t, [
+  {
+    "fieldname": "m_nPrimitiveType",
+    "fieldtype": "enum vr::EVROverlayIntersectionMaskPrimitiveType"
+  },
+  {
+    "fieldname": "m_Primitive",
+    "fieldtype": "VROverlayIntersectionMaskPrimitive_Data_t"
+  }
+]*/
+export const OverlayIntersectionMaskPrimitiveStruct = new Struct({
+  nPrimitiveType: u32,
+  Primitive: null,
+});
+
+/*vr::VROverlayProjection_t, [
+  {
+    "fieldname": "fLeft",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "fRight",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "fTop",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "fBottom",
+    "fieldtype": "float"
+  }
+]*/
+export const OverlayProjectionStruct = new Struct({
+  fLeft: f32,
+  fRight: f32,
+  fTop: f32,
+  fBottom: f32,
+});
+
+/*vr::VROverlayView_t, [
+  {
+    "fieldname": "overlayHandle",
+    "fieldtype": "VROverlayHandle_t"
+  },
+  {
+    "fieldname": "texture",
+    "fieldtype": "struct vr::Texture_t"
+  },
+  {
+    "fieldname": "textureBounds",
+    "fieldtype": "struct vr::VRTextureBounds_t"
+  }
+]*/
+export const OverlayViewStruct = new Struct({
+  overlayHandle: u64,
+  texture: TextureStruct,
+  textureBounds: TextureBoundsStruct,
+});
+
+/*vr::VRVulkanDevice_t, [
+  {
+    "fieldname": "m_pInstance",
+    "fieldtype": "struct VkInstance_T *"
+  },
+  {
+    "fieldname": "m_pDevice",
+    "fieldtype": "struct VkDevice_T *"
+  },
+  {
+    "fieldname": "m_pPhysicalDevice",
+    "fieldtype": "struct VkPhysicalDevice_T *"
+  },
+  {
+    "fieldname": "m_pQueue",
+    "fieldtype": "struct VkQueue_T *"
+  },
+  {
+    "fieldname": "m_uQueueFamilyIndex",
+    "fieldtype": "uint32_t"
+  }
+]*/
+export const VulkanDeviceStruct = new Struct({
+  pInstance: VkInstance_TStruct,
+  pDevice: VkDevice_TStruct,
+  pPhysicalDevice: VkPhysicalDevice_TStruct,
+  pQueue: VkQueue_TStruct,
+  uQueueFamilyIndex: u32,
+});
+
+/*vr::VRNativeDevice_t, [
+  {
+    "fieldname": "handle",
+    "fieldtype": "void *"
+  },
+  {
+    "fieldname": "eType",
+    "fieldtype": "enum vr::EDeviceType"
+  }
+]*/
+export const NativeDeviceStruct = new Struct({
+  handle: u64,
+  eType: u32,
+});
+
+/*vr::RenderModel_Vertex_t, [
+  {
+    "fieldname": "vPosition",
+    "fieldtype": "struct vr::HmdVector3_t"
+  },
+  {
+    "fieldname": "vNormal",
+    "fieldtype": "struct vr::HmdVector3_t"
+  },
+  {
+    "fieldname": "rfTextureCoord",
+    "fieldtype": "float [2]"
+  }
+]*/
+export const RenderModel_VertexStruct = new Struct({
+  vPosition: HmdVector3Struct,
+  vNormal: HmdVector3Struct,
+  rfTextureCoord: new ArrayType(f32, 2),
+});
+
+/*vr::RenderModel_TextureMap_t, [
+  {
+    "fieldname": "unWidth",
+    "fieldtype": "uint16_t"
+  },
+  {
+    "fieldname": "unHeight",
+    "fieldtype": "uint16_t"
+  },
+  {
+    "fieldname": "rubTextureMapData",
+    "fieldtype": "const uint8_t *"
+  },
+  {
+    "fieldname": "format",
+    "fieldtype": "enum vr::EVRRenderModelTextureFormat"
+  },
+  {
+    "fieldname": "unMipLevels",
+    "fieldtype": "uint16_t"
+  }
+]*/
+export const RenderModel_TextureMapStruct = new Struct({
+  unWidth: u16,
+  unHeight: u16,
+  rubTextureMapData: u64,
+  format: u32,
+  unMipLevels: u16,
+});
+
+/*vr::RenderModel_t, [
+  {
+    "fieldname": "rVertexData",
+    "fieldtype": "const struct vr::RenderModel_Vertex_t *"
+  },
+  {
+    "fieldname": "unVertexCount",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "rIndexData",
+    "fieldtype": "const uint16_t *"
+  },
+  {
+    "fieldname": "unTriangleCount",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "diffuseTextureId",
+    "fieldtype": "TextureID_t"
+  }
+]*/
+export const RenderModelStruct = new Struct({
+  rVertexData: u64,
+  unVertexCount: u32,
+  rIndexData: u64,
+  unTriangleCount: u32,
+  diffuseTextureId: i32,
+});
+
+/*vr::RenderModel_ControllerMode_State_t, [
+  {
+    "fieldname": "bScrollWheelVisible",
+    "fieldtype": "_Bool"
+  }
+]*/
+export const RenderModel_ControllerMode_StateStruct = new Struct({
+  bScrollWheelVisible: u8,
+});
+
+/*vr::NotificationBitmap_t, [
+  {
+    "fieldname": "m_pImageData",
+    "fieldtype": "void *"
+  },
+  {
+    "fieldname": "m_nWidth",
+    "fieldtype": "int32_t"
+  },
+  {
+    "fieldname": "m_nHeight",
+    "fieldtype": "int32_t"
+  },
+  {
+    "fieldname": "m_nBytesPerPixel",
+    "fieldtype": "int32_t"
+  }
+]*/
+export const NotificationBitmapStruct = new Struct({
+  pImageData: u64,
+  nWidth: i32,
+  nHeight: i32,
+  nBytesPerPixel: i32,
+});
+
+/*vr::CVRSettingHelper, [
+  {
+    "fieldname": "m_pSettings",
+    "fieldtype": "class vr::IVRSettings *"
+  }
+]*/
+export const CVRSettingHelperStruct = new Struct({
+  pSettings: u64,
+});
+
+/*vr::InputAnalogActionData_t, [
+  {
+    "fieldname": "bActive",
+    "fieldtype": "_Bool"
+  },
+  {
+    "fieldname": "activeOrigin",
+    "fieldtype": "VRInputValueHandle_t"
+  },
+  {
+    "fieldname": "x",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "y",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "z",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "deltaX",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "deltaY",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "deltaZ",
+    "fieldtype": "float"
+  },
+  {
+    "fieldname": "fUpdateTime",
+    "fieldtype": "float"
+  }
+]*/
+export const InputAnalogActionDataStruct = new Struct({
+  bActive: u8,
+  activeOrigin: u64,
+  x: f32,
+  y: f32,
+  z: f32,
+  deltaX: f32,
+  deltaY: f32,
+  deltaZ: f32,
+  fUpdateTime: f32,
+});
+
+/*vr::InputDigitalActionData_t, [
+  {
+    "fieldname": "bActive",
+    "fieldtype": "_Bool"
+  },
+  {
+    "fieldname": "activeOrigin",
+    "fieldtype": "VRInputValueHandle_t"
+  },
+  {
+    "fieldname": "bState",
+    "fieldtype": "_Bool"
+  },
+  {
+    "fieldname": "bChanged",
+    "fieldtype": "_Bool"
+  },
+  {
+    "fieldname": "fUpdateTime",
+    "fieldtype": "float"
+  }
+]*/
+export const InputDigitalActionDataStruct = new Struct({
+  bActive: u8,
+  activeOrigin: u64,
+  bState: u8,
+  bChanged: u8,
+  fUpdateTime: f32,
+});
+
+/*vr::InputPoseActionData_t, [
+  {
+    "fieldname": "bActive",
+    "fieldtype": "_Bool"
+  },
+  {
+    "fieldname": "activeOrigin",
+    "fieldtype": "VRInputValueHandle_t"
+  },
+  {
+    "fieldname": "pose",
+    "fieldtype": "struct vr::TrackedDevicePose_t"
+  }
+]*/
+export const InputPoseActionDataStruct = new Struct({
+  bActive: u8,
+  activeOrigin: u64,
+  pose: TrackedDevicePoseStruct,
+});
+
+/*vr::InputSkeletalActionData_t, [
+  {
+    "fieldname": "bActive",
+    "fieldtype": "_Bool"
+  },
+  {
+    "fieldname": "activeOrigin",
+    "fieldtype": "VRInputValueHandle_t"
+  }
+]*/
+export const InputSkeletalActionDataStruct = new Struct({
+  bActive: u8,
+  activeOrigin: u64,
+});
+
+/*vr::InputOriginInfo_t, [
+  {
+    "fieldname": "devicePath",
+    "fieldtype": "VRInputValueHandle_t"
+  },
+  {
+    "fieldname": "trackedDeviceIndex",
+    "fieldtype": "TrackedDeviceIndex_t"
+  },
+  {
+    "fieldname": "rchRenderModelComponentName",
+    "fieldtype": "char [128]"
+  }
+]*/
+export const InputOriginInfoStruct = new Struct({
+  devicePath: u64,
+  trackedDeviceIndex: u32,
+  rchRenderModelComponentName: new ArrayType(i8, 128),
+});
+
+/*vr::InputBindingInfo_t, [
+  {
+    "fieldname": "rchDevicePathName",
+    "fieldtype": "char [128]"
+  },
+  {
+    "fieldname": "rchInputPathName",
+    "fieldtype": "char [128]"
+  },
+  {
+    "fieldname": "rchModeName",
+    "fieldtype": "char [128]"
+  },
+  {
+    "fieldname": "rchSlotName",
+    "fieldtype": "char [128]"
+  },
+  {
+    "fieldname": "rchInputSourceType",
+    "fieldtype": "char [32]"
+  }
+]*/
+export const InputBindingInfoStruct = new Struct({
+  rchDevicePathName: new ArrayType(i8, 128),
+  rchInputPathName: new ArrayType(i8, 128),
+  rchModeName: new ArrayType(i8, 128),
+  rchSlotName: new ArrayType(i8, 128),
+  rchInputSourceType: new ArrayType(i8, 32),
+});
+
+/*vr::VRActiveActionSet_t, [
+  {
+    "fieldname": "ulActionSet",
+    "fieldtype": "VRActionSetHandle_t"
+  },
+  {
+    "fieldname": "ulRestrictedToDevice",
+    "fieldtype": "VRInputValueHandle_t"
+  },
+  {
+    "fieldname": "ulSecondaryActionSet",
+    "fieldtype": "VRActionSetHandle_t"
+  },
+  {
+    "fieldname": "unPadding",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "nPriority",
+    "fieldtype": "int32_t"
+  }
+]*/
+export const ActiveActionSetStruct = new Struct({
+  ulActionSet: u64,
+  ulRestrictedToDevice: u64,
+  ulSecondaryActionSet: u64,
+  unPadding: u32,
+  nPriority: i32,
+});
+
+/*vr::VRSkeletalSummaryData_t, [
+  {
+    "fieldname": "flFingerCurl",
+    "fieldtype": "float [5]"
+  },
+  {
+    "fieldname": "flFingerSplay",
+    "fieldtype": "float [4]"
+  }
+]*/
+export const SkeletalSummaryDataStruct = new Struct({
+  flFingerCurl: new ArrayType(f32, 5),
+  flFingerSplay: new ArrayType(f32, 4),
+});
+
+/*vr::SpatialAnchorPose_t, [
+  {
+    "fieldname": "mAnchorToAbsoluteTracking",
+    "fieldtype": "struct vr::HmdMatrix34_t"
+  }
+]*/
+export const SpatialAnchorPoseStruct = new Struct({
+  mAnchorToAbsoluteTracking: HmdMatrix34Struct,
+});
+
+/*vr::COpenVRContext, [
+  {
+    "fieldname": "m_pVRSystem",
+    "fieldtype": "class vr::IVRSystem *"
+  },
+  {
+    "fieldname": "m_pVRChaperone",
+    "fieldtype": "class vr::IVRChaperone *"
+  },
+  {
+    "fieldname": "m_pVRChaperoneSetup",
+    "fieldtype": "class vr::IVRChaperoneSetup *"
+  },
+  {
+    "fieldname": "m_pVRCompositor",
+    "fieldtype": "class vr::IVRCompositor *"
+  },
+  {
+    "fieldname": "m_pVRHeadsetView",
+    "fieldtype": "class vr::IVRHeadsetView *"
+  },
+  {
+    "fieldname": "m_pVROverlay",
+    "fieldtype": "class vr::IVROverlay *"
+  },
+  {
+    "fieldname": "m_pVROverlayView",
+    "fieldtype": "class vr::IVROverlayView *"
+  },
+  {
+    "fieldname": "m_pVRResources",
+    "fieldtype": "class vr::IVRResources *"
+  },
+  {
+    "fieldname": "m_pVRRenderModels",
+    "fieldtype": "class vr::IVRRenderModels *"
+  },
+  {
+    "fieldname": "m_pVRExtendedDisplay",
+    "fieldtype": "class vr::IVRExtendedDisplay *"
+  },
+  {
+    "fieldname": "m_pVRSettings",
+    "fieldtype": "class vr::IVRSettings *"
+  },
+  {
+    "fieldname": "m_pVRApplications",
+    "fieldtype": "class vr::IVRApplications *"
+  },
+  {
+    "fieldname": "m_pVRTrackedCamera",
+    "fieldtype": "class vr::IVRTrackedCamera *"
+  },
+  {
+    "fieldname": "m_pVRScreenshots",
+    "fieldtype": "class vr::IVRScreenshots *"
+  },
+  {
+    "fieldname": "m_pVRDriverManager",
+    "fieldtype": "class vr::IVRDriverManager *"
+  },
+  {
+    "fieldname": "m_pVRInput",
+    "fieldtype": "class vr::IVRInput *"
+  },
+  {
+    "fieldname": "m_pVRIOBuffer",
+    "fieldtype": "class vr::IVRIOBuffer *"
+  },
+  {
+    "fieldname": "m_pVRSpatialAnchors",
+    "fieldtype": "class vr::IVRSpatialAnchors *"
+  },
+  {
+    "fieldname": "m_pVRDebug",
+    "fieldtype": "class vr::IVRDebug *"
+  },
+  {
+    "fieldname": "m_pVRNotifications",
+    "fieldtype": "class vr::IVRNotifications *"
+  }
+]*/
+export const COpenVRContextStruct = new Struct({
+  pVRSystem: u64,
+  pVRChaperone: u64,
+  pVRChaperoneSetup: u64,
+  pVRCompositor: u64,
+  pVRHeadsetView: u64,
+  pVROverlay: u64,
+  pVROverlayView: u64,
+  pVRResources: u64,
+  pVRRenderModels: u64,
+  pVRExtendedDisplay: u64,
+  pVRSettings: u64,
+  pVRApplications: u64,
+  pVRTrackedCamera: u64,
+  pVRScreenshots: u64,
+  pVRDriverManager: u64,
+  pVRInput: u64,
+  pVRIOBuffer: u64,
+  pVRSpatialAnchors: u64,
+  pVRDebug: u64,
+  pVRNotifications: u64,
+});
+
+/*vr::PropertyWrite_t, [
+  {
+    "fieldname": "prop",
+    "fieldtype": "enum vr::ETrackedDeviceProperty"
+  },
+  {
+    "fieldname": "writeType",
+    "fieldtype": "enum vr::EPropertyWriteType"
+  },
+  {
+    "fieldname": "eSetError",
+    "fieldtype": "enum vr::ETrackedPropertyError"
+  },
+  {
+    "fieldname": "pvBuffer",
+    "fieldtype": "void *"
+  },
+  {
+    "fieldname": "unBufferSize",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "unTag",
+    "fieldtype": "PropertyTypeTag_t"
+  },
+  {
+    "fieldname": "eError",
+    "fieldtype": "enum vr::ETrackedPropertyError"
+  }
+]*/
+export const PropertyWriteStruct = new Struct({
+  prop: u32,
+  writeType: u32,
+  eSetError: u32,
+  pvBuffer: u64,
+  unBufferSize: u32,
+  unTag: u32,
+  eError: u32,
+});
+
+/*vr::PropertyRead_t, [
+  {
+    "fieldname": "prop",
+    "fieldtype": "enum vr::ETrackedDeviceProperty"
+  },
+  {
+    "fieldname": "pvBuffer",
+    "fieldtype": "void *"
+  },
+  {
+    "fieldname": "unBufferSize",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "unTag",
+    "fieldtype": "PropertyTypeTag_t"
+  },
+  {
+    "fieldname": "unRequiredBufferSize",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "eError",
+    "fieldtype": "enum vr::ETrackedPropertyError"
+  }
+]*/
+export const PropertyReadStruct = new Struct({
+  prop: u32,
+  pvBuffer: u64,
+  unBufferSize: u32,
+  unTag: u32,
+  unRequiredBufferSize: u32,
+  eError: u32,
+});
+
+/*vr::CVRPropertyHelpers, [
+  {
+    "fieldname": "m_pProperties",
+    "fieldtype": "class vr::IVRProperties *"
+  }
+]*/
+export const CVRPropertyHelpersStruct = new Struct({
+  pProperties: u64,
+});
+
+/*vr::PathWrite_t, [
+  {
+    "fieldname": "ulPath",
+    "fieldtype": "PathHandle_t"
+  },
+  {
+    "fieldname": "writeType",
+    "fieldtype": "enum vr::EPropertyWriteType"
+  },
+  {
+    "fieldname": "eSetError",
+    "fieldtype": "enum vr::ETrackedPropertyError"
+  },
+  {
+    "fieldname": "pvBuffer",
+    "fieldtype": "void *"
+  },
+  {
+    "fieldname": "unBufferSize",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "unTag",
+    "fieldtype": "PropertyTypeTag_t"
+  },
+  {
+    "fieldname": "eError",
+    "fieldtype": "enum vr::ETrackedPropertyError"
+  },
+  {
+    "fieldname": "pszPath",
+    "fieldtype": "const char *"
+  }
+]*/
+export const PathWriteStruct = new Struct({
+  ulPath: u64,
+  writeType: u32,
+  eSetError: u32,
+  pvBuffer: u64,
+  unBufferSize: u32,
+  unTag: u32,
+  eError: u32,
+  pszPath: u64,
+});
+
+/*vr::PathRead_t, [
+  {
+    "fieldname": "ulPath",
+    "fieldtype": "PathHandle_t"
+  },
+  {
+    "fieldname": "pvBuffer",
+    "fieldtype": "void *"
+  },
+  {
+    "fieldname": "unBufferSize",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "unTag",
+    "fieldtype": "PropertyTypeTag_t"
+  },
+  {
+    "fieldname": "unRequiredBufferSize",
+    "fieldtype": "uint32_t"
+  },
+  {
+    "fieldname": "eError",
+    "fieldtype": "enum vr::ETrackedPropertyError"
+  },
+  {
+    "fieldname": "pszPath",
+    "fieldtype": "const char *"
+  }
+]*/
+export const PathReadStruct = new Struct({
+  ulPath: u64,
+  pvBuffer: u64,
+  unBufferSize: u32,
+  unTag: u32,
+  unRequiredBufferSize: u32,
+  eError: u32,
+  pszPath: u64,
+});
+
 // Classes
 
 //#region Classes
@@ -4422,7 +6906,7 @@ export class IVRSystem {
       result: "void"
     });
 
-    const result = func.call(
+    const _result = func.call(
       pnWidth,
       pnHeight,
     );
@@ -4476,7 +6960,7 @@ export class IVRSystem {
       result: "void"
     });
 
-    const result = func.call(
+    const _result = func.call(
       eEye,
       pfLeft,
       pfRight,
@@ -4600,7 +7084,7 @@ export class IVRSystem {
       result: "void"
     });
 
-    const result = func.call(
+    const _result = func.call(
       pnAdapterIndex,
     );
 
@@ -4624,7 +7108,7 @@ export class IVRSystem {
       result: "void"
     });
 
-    const result = func.call(
+    const _result = func.call(
       pnDevice,
       textureType,
       pInstance,
@@ -4695,7 +7179,7 @@ export class IVRSystem {
       result: "void"
     });
 
-    const result = func.call(
+    const _result = func.call(
       eOrigin,
       fPredictedSecondsToPhotonsFromNow,
       pTrackedDevicePoseArray,
@@ -4816,7 +7300,7 @@ export class IVRSystem {
       result: "void"
     });
 
-    const result = func.call(
+    const _result = func.call(
       pOutputPose,
       pTrackedDevicePose,
       pTransform,
@@ -5135,7 +7619,7 @@ export class IVRSystem {
       error,
     );
 
-    return result// as unknown as string;
+    return result.toString();
   }
 
   /*
@@ -5212,7 +7696,7 @@ export class IVRSystem {
       eType,
     );
 
-    return result// as unknown as string;
+    return result.toString();
   }
 
   /*
@@ -5316,7 +7800,7 @@ export class IVRSystem {
       result: "void"
     });
 
-    const result = func.call(
+    const _result = func.call(
       unControllerDeviceIndex,
       unAxisId,
       usDurationMicroSec,
@@ -5344,7 +7828,7 @@ export class IVRSystem {
       eButtonId,
     );
 
-    return result// as unknown as string;
+    return result.toString();
   }
 
   /*
@@ -5367,7 +7851,7 @@ export class IVRSystem {
       eAxisType,
     );
 
-    return result// as unknown as string;
+    return result.toString();
   }
 
   /*
@@ -5492,7 +7976,7 @@ export class IVRSystem {
       result: "void"
     });
 
-    const result = func.call(
+    const _result = func.call(
     );
 
   }
@@ -5540,7 +8024,7 @@ export class IVRSystem {
     const result = func.call(
     );
 
-    return result// as unknown as string;
+    return result.toString();
   }
 
 }
@@ -5632,7 +8116,7 @@ export class IVRChaperone {
       result: "void"
     });
 
-    const result = func.call(
+    const _result = func.call(
     );
 
   }
@@ -5653,7 +8137,7 @@ export class IVRChaperone {
       result: "void"
     });
 
-    const result = func.call(
+    const _result = func.call(
       color,
     );
 
@@ -5678,7 +8162,7 @@ export class IVRChaperone {
       result: "void"
     });
 
-    const result = func.call(
+    const _result = func.call(
       pOutputColorArray,
       nNumOutputColors,
       flCollisionBoundsFadeDistance,
@@ -5724,7 +8208,7 @@ export class IVRChaperone {
       result: "void"
     });
 
-    const result = func.call(
+    const _result = func.call(
       bForce,
     );
 
@@ -5746,7 +8230,7 @@ export class IVRChaperone {
       result: "void"
     });
 
-    const result = func.call(
+    const _result = func.call(
       eTrackingUniverseOrigin,
     );
 
@@ -5795,7 +8279,7 @@ export class IVRChaperoneSetup {
       result: "void"
     });
 
-    const result = func.call(
+    const _result = func.call(
     );
 
   }
@@ -5961,7 +8445,7 @@ export class IVRChaperoneSetup {
       result: "void"
     });
 
-    const result = func.call(
+    const _result = func.call(
       sizeX,
       sizeZ,
     );
@@ -5985,7 +8469,7 @@ export class IVRChaperoneSetup {
       result: "void"
     });
 
-    const result = func.call(
+    const _result = func.call(
       pQuadsBuffer,
       unQuadsCount,
     );
@@ -6009,7 +8493,7 @@ export class IVRChaperoneSetup {
       result: "void"
     });
 
-    const result = func.call(
+    const _result = func.call(
       pPointBuffer,
       unPointCount,
     );
@@ -6032,7 +8516,7 @@ export class IVRChaperoneSetup {
       result: "void"
     });
 
-    const result = func.call(
+    const _result = func.call(
       pMatSeatedZeroPoseToRawTrackingPose,
     );
 
@@ -6054,7 +8538,7 @@ export class IVRChaperoneSetup {
       result: "void"
     });
 
-    const result = func.call(
+    const _result = func.call(
       pMatStandingZeroPoseToRawTrackingPose,
     );
 
@@ -6076,7 +8560,7 @@ export class IVRChaperoneSetup {
       result: "void"
     });
 
-    const result = func.call(
+    const _result = func.call(
       configFile,
     );
 
@@ -6170,7 +8654,7 @@ export class IVRChaperoneSetup {
       result: "void"
     });
 
-    const result = func.call(
+    const _result = func.call(
     );
 
   }
@@ -6190,7 +8674,7 @@ export class IVRChaperoneSetup {
       result: "void"
     });
 
-    const result = func.call(
+    const _result = func.call(
     );
 
   }
@@ -6210,7 +8694,7 @@ export class IVRChaperoneSetup {
       result: "void"
     });
 
-    const result = func.call(
+    const _result = func.call(
     );
 
   }
@@ -6236,7 +8720,7 @@ export class IVRCompositor {
       result: "void"
     });
 
-    const result = func.call(
+    const _result = func.call(
       eOrigin,
     );
 
@@ -6423,7 +8907,7 @@ export class IVRCompositor {
       result: "void"
     });
 
-    const result = func.call(
+    const _result = func.call(
     );
 
   }
@@ -6443,7 +8927,7 @@ export class IVRCompositor {
       result: "void"
     });
 
-    const result = func.call(
+    const _result = func.call(
     );
 
   }
@@ -6536,7 +9020,7 @@ export class IVRCompositor {
       result: "void"
     });
 
-    const result = func.call(
+    const _result = func.call(
       pStats,
       nStatsSizeInBytes,
     );
@@ -6564,7 +9048,7 @@ export class IVRCompositor {
       result: "void"
     });
 
-    const result = func.call(
+    const _result = func.call(
       fSeconds,
       fRed,
       fGreen,
@@ -6615,7 +9099,7 @@ export class IVRCompositor {
       result: "void"
     });
 
-    const result = func.call(
+    const _result = func.call(
       fSeconds,
       bFadeGridIn,
     );
@@ -6683,7 +9167,7 @@ export class IVRCompositor {
       result: "void"
     });
 
-    const result = func.call(
+    const _result = func.call(
     );
 
   }
@@ -6703,7 +9187,7 @@ export class IVRCompositor {
       result: "void"
     });
 
-    const result = func.call(
+    const _result = func.call(
     );
 
   }
@@ -6723,7 +9207,7 @@ export class IVRCompositor {
       result: "void"
     });
 
-    const result = func.call(
+    const _result = func.call(
     );
 
   }
@@ -6743,7 +9227,7 @@ export class IVRCompositor {
       result: "void"
     });
 
-    const result = func.call(
+    const _result = func.call(
     );
 
   }
@@ -6847,7 +9331,7 @@ export class IVRCompositor {
       result: "void"
     });
 
-    const result = func.call(
+    const _result = func.call(
     );
 
   }
@@ -6867,7 +9351,7 @@ export class IVRCompositor {
       result: "void"
     });
 
-    const result = func.call(
+    const _result = func.call(
     );
 
   }
@@ -6908,7 +9392,7 @@ export class IVRCompositor {
       result: "void"
     });
 
-    const result = func.call(
+    const _result = func.call(
     );
 
   }
@@ -6950,7 +9434,7 @@ export class IVRCompositor {
       result: "void"
     });
 
-    const result = func.call(
+    const _result = func.call(
       bOverride,
     );
 
@@ -6971,7 +9455,7 @@ export class IVRCompositor {
       result: "void"
     });
 
-    const result = func.call(
+    const _result = func.call(
     );
 
   }
@@ -6992,7 +9476,7 @@ export class IVRCompositor {
       result: "void"
     });
 
-    const result = func.call(
+    const _result = func.call(
       bSuspend,
     );
 
@@ -7041,7 +9525,7 @@ export class IVRCompositor {
       result: "void"
     });
 
-    const result = func.call(
+    const _result = func.call(
       pD3D11ShaderResourceView,
     );
 
@@ -7115,7 +9599,7 @@ export class IVRCompositor {
       result: "void"
     });
 
-    const result = func.call(
+    const _result = func.call(
       glSharedTextureHandle,
     );
 
@@ -7137,7 +9621,7 @@ export class IVRCompositor {
       result: "void"
     });
 
-    const result = func.call(
+    const _result = func.call(
       glSharedTextureHandle,
     );
 
@@ -7211,7 +9695,7 @@ export class IVRCompositor {
       result: "void"
     });
 
-    const result = func.call(
+    const _result = func.call(
       eTimingMode,
     );
 
@@ -7345,7 +9829,7 @@ export class IVRCompositor {
       result: "void"
     });
 
-    const result = func.call(
+    const _result = func.call(
     );
 
   }
@@ -7449,7 +9933,7 @@ export class IVRHeadsetView {
       result: "void"
     });
 
-    const result = func.call(
+    const _result = func.call(
       nWidth,
       nHeight,
     );
@@ -7473,7 +9957,7 @@ export class IVRHeadsetView {
       result: "void"
     });
 
-    const result = func.call(
+    const _result = func.call(
       pnWidth,
       pnHeight,
     );
@@ -7496,7 +9980,7 @@ export class IVRHeadsetView {
       result: "void"
     });
 
-    const result = func.call(
+    const _result = func.call(
       eHeadsetViewMode,
     );
 
@@ -7539,7 +10023,7 @@ export class IVRHeadsetView {
       result: "void"
     });
 
-    const result = func.call(
+    const _result = func.call(
       bCropped,
     );
 
@@ -7604,7 +10088,7 @@ export class IVRHeadsetView {
       result: "void"
     });
 
-    const result = func.call(
+    const _result = func.call(
       flStartPct,
       flEndPct,
     );
@@ -7628,7 +10112,7 @@ export class IVRHeadsetView {
       result: "void"
     });
 
-    const result = func.call(
+    const _result = func.call(
       pStartPct,
       pEndPct,
     );
@@ -7849,7 +10333,7 @@ export class IVROverlay {
       error,
     );
 
-    return result// as unknown as string;
+    return result.toString();
   }
 
   /*
@@ -9470,7 +11954,7 @@ export class IVROverlay {
       result: "void"
     });
 
-    const result = func.call(
+    const _result = func.call(
       Deno.UnsafePointer.of(new TextEncoder().encode(pchOverlayToShow + "\0")),
     );
 
@@ -9609,7 +12093,7 @@ export class IVROverlay {
       result: "void"
     });
 
-    const result = func.call(
+    const _result = func.call(
     );
 
   }
@@ -9631,7 +12115,7 @@ export class IVROverlay {
       result: "void"
     });
 
-    const result = func.call(
+    const _result = func.call(
       eTrackingOrigin,
       pmatTrackingOriginToKeyboardTransform,
     );
@@ -9655,7 +12139,7 @@ export class IVROverlay {
       result: "void"
     });
 
-    const result = func.call(
+    const _result = func.call(
       ulOverlayHandle,
       avoidRect,
     );
@@ -9710,7 +12194,7 @@ export class IVROverlay {
       result: "void"
     });
 
-    const result = func.call(
+    const _result = func.call(
     );
 
   }
@@ -9789,7 +12273,7 @@ export class IVROverlayView {
       result: "void"
     });
 
-    const result = func.call(
+    const _result = func.call(
       ulOverlayHandle,
       pvrEvent,
     );
@@ -9926,7 +12410,7 @@ export class IVRRenderModels {
       result: "void"
     });
 
-    const result = func.call(
+    const _result = func.call(
       pRenderModel,
     );
 
@@ -9973,7 +12457,7 @@ export class IVRRenderModels {
       result: "void"
     });
 
-    const result = func.call(
+    const _result = func.call(
       pTexture,
     );
 
@@ -10047,7 +12531,7 @@ export class IVRRenderModels {
       result: "void"
     });
 
-    const result = func.call(
+    const _result = func.call(
       pD3D11Texture2D,
     );
 
@@ -10372,7 +12856,7 @@ export class IVRRenderModels {
       error,
     );
 
-    return result// as unknown as string;
+    return result.toString();
   }
 
 }
@@ -10399,7 +12883,7 @@ export class IVRExtendedDisplay {
       result: "void"
     });
 
-    const result = func.call(
+    const _result = func.call(
       pnX,
       pnY,
       pnWidth,
@@ -10428,7 +12912,7 @@ export class IVRExtendedDisplay {
       result: "void"
     });
 
-    const result = func.call(
+    const _result = func.call(
       eEye,
       pnX,
       pnY,
@@ -10455,7 +12939,7 @@ export class IVRExtendedDisplay {
       result: "void"
     });
 
-    const result = func.call(
+    const _result = func.call(
       pnAdapterIndex,
       pnAdapterOutputIndex,
     );
@@ -10487,7 +12971,7 @@ export class IVRSettings {
       eError,
     );
 
-    return result// as unknown as string;
+    return result.toString();
   }
 
   /*
@@ -10509,7 +12993,7 @@ export class IVRSettings {
       result: "void"
     });
 
-    const result = func.call(
+    const _result = func.call(
       Deno.UnsafePointer.of(new TextEncoder().encode(pchSection + "\0")),
       Deno.UnsafePointer.of(new TextEncoder().encode(pchSettingsKey + "\0")),
       bValue,
@@ -10537,7 +13021,7 @@ export class IVRSettings {
       result: "void"
     });
 
-    const result = func.call(
+    const _result = func.call(
       Deno.UnsafePointer.of(new TextEncoder().encode(pchSection + "\0")),
       Deno.UnsafePointer.of(new TextEncoder().encode(pchSettingsKey + "\0")),
       nValue,
@@ -10565,7 +13049,7 @@ export class IVRSettings {
       result: "void"
     });
 
-    const result = func.call(
+    const _result = func.call(
       Deno.UnsafePointer.of(new TextEncoder().encode(pchSection + "\0")),
       Deno.UnsafePointer.of(new TextEncoder().encode(pchSettingsKey + "\0")),
       flValue,
@@ -10593,7 +13077,7 @@ export class IVRSettings {
       result: "void"
     });
 
-    const result = func.call(
+    const _result = func.call(
       Deno.UnsafePointer.of(new TextEncoder().encode(pchSection + "\0")),
       Deno.UnsafePointer.of(new TextEncoder().encode(pchSettingsKey + "\0")),
       Deno.UnsafePointer.of(new TextEncoder().encode(pchValue + "\0")),
@@ -10703,7 +13187,7 @@ export class IVRSettings {
       result: "void"
     });
 
-    const result = func.call(
+    const _result = func.call(
       Deno.UnsafePointer.of(new TextEncoder().encode(pchSection + "\0")),
       Deno.UnsafePointer.of(new TextEncoder().encode(pchSettingsKey + "\0")),
       Deno.UnsafePointer.of(new TextEncoder().encode(pchValue + "\0")),
@@ -10730,7 +13214,7 @@ export class IVRSettings {
       result: "void"
     });
 
-    const result = func.call(
+    const _result = func.call(
       Deno.UnsafePointer.of(new TextEncoder().encode(pchSection + "\0")),
       peError,
     );
@@ -10755,7 +13239,7 @@ export class IVRSettings {
       result: "void"
     });
 
-    const result = func.call(
+    const _result = func.call(
       Deno.UnsafePointer.of(new TextEncoder().encode(pchSection + "\0")),
       Deno.UnsafePointer.of(new TextEncoder().encode(pchSettingsKey + "\0")),
       peError,
@@ -11105,7 +13589,7 @@ export class IVRApplications {
       error,
     );
 
-    return result// as unknown as string;
+    return result.toString();
   }
 
   /*
@@ -11463,7 +13947,7 @@ export class IVRApplications {
       state,
     );
 
-    return result// as unknown as string;
+    return result.toString();
   }
 
   /*
@@ -11539,7 +14023,7 @@ export class IVRTrackedCamera {
       eCameraError,
     );
 
-    return result// as unknown as string;
+    return result.toString();
   }
 
   /*
@@ -11879,7 +14363,7 @@ export class IVRTrackedCamera {
       result: "void"
     });
 
-    const result = func.call(
+    const _result = func.call(
       eUniverse,
     );
 
@@ -13617,7 +16101,7 @@ export class IVRProperties {
       error,
     );
 
-    return result// as unknown as string;
+    return result.toString();
   }
 
   /*

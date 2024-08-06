@@ -2354,7 +2354,7 @@
 { "fieldname": "m_flCompositorUpdateStartMs", "fieldtype": "float"},
 { "fieldname": "m_flCompositorUpdateEndMs", "fieldtype": "float"},
 { "fieldname": "m_flCompositorRenderStartMs", "fieldtype": "float"},
-{ "fieldname": "m_HmdPose", "fieldtype": "vr::TrackedDevicePose_t"},
+{ "fieldname": "m_HmdPose", "fieldtype": "struct vr::TrackedDevicePose_t"},
 { "fieldname": "m_nNumVSyncsReadyForUse", "fieldtype": "uint32_t"},
 { "fieldname": "m_nNumVSyncsToFirstView", "fieldtype": "uint32_t"},
 { "fieldname": "m_flTransferLatencyMs", "fieldtype": "float"}]}
