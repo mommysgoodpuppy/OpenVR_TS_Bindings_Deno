@@ -133,6 +133,12 @@ function readMatrix(view: DataView, template: number[][], offset: number): [numb
     return [result, offset];
 }
 
+export function stringToPointer(str: string): Deno.PointerValue {
+    const encoder = new TextEncoder();
+    const view = encoder.encode(str + '\0');
+    return Deno.UnsafePointer.of(view);
+}
+
 function readVector(view: DataView, template: number[], offset: number): [number[], number] {
     const result = [];
     for (let i = 0; i < template.length; i++) {
