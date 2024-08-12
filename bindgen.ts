@@ -1,5 +1,5 @@
 import { typeMapping } from "./utils.ts";
-import { Struct, calculateTotalSize, SizedStruct, SizedArrayType, u8, i8, u16, i16, u32, i32, f32, u64, i64, f64 } from "../byte_type/mod.ts";
+import { Struct, calculateTotalSize, SizedStruct, SizedArrayType, u8, i8, u16, i16, u32, i32, f32, u64, i64, f64 } from "https://raw.githubusercontent.com/mommysgoodpuppy/byte_type_C/main/mod.ts";
 
 
 const openvrApiJson = await Deno.readTextFile("openvr_api.json");
@@ -19,7 +19,7 @@ async function main() {
   output += await generateByteTypeStructs(api.structs, api.typedefs);
   output += await generateMethods(api.methods, api.typedefs, api.enums);
 
-
+  await Deno.writeTextFile("openvr_bindings.ts", output);
   await Deno.writeTextFile("test/openvr_bindings.ts", output);
 }
 
@@ -399,7 +399,7 @@ async function generateStructs(structs: any[]) {
 async function generateByteTypeStructs(structs: any[], defs: any[]) {
   let output = "// Byte Type Structs\n\n";
 
-  output += "import { calculateTotalSize, SizedStruct, SizedArrayType, u8, i8, u16, i16, u32, i32, f32, u64, i64, f64} from \"../../byte_type/mod.ts\";\n\n";
+  output += "import { calculateTotalSize, SizedStruct, SizedArrayType, u8, i8, u16, i16, u32, i32, f32, u64, i64, f64} from \"https://raw.githubusercontent.com/mommysgoodpuppy/byte_type_C/main/mod.ts\";\n\n";
 
   for (const str of structs) {
     const structName = str.struct;
