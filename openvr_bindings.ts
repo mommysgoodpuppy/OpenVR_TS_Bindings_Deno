@@ -2964,7 +2964,7 @@ export interface Event_AudioMuteControl {
     "fieldtype": "struct vr::VREvent_AudioMuteControl_t"
   }
 ]*/
-export interface Event_Data {
+export interface EventData {
   reserved: Event_Reserved;
   controller: Event_Controller;
   mouse: Event_Mouse;

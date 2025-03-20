@@ -374,7 +374,7 @@ async function generateStructs(structs: any[]) {
         interfaceName = "OverlayIntersectionMaskPrimitive_Data";
         className = "OverlayIntersectionMaskPrimitiveData";
       } else {
-        interfaceName = "Event_Data";
+        interfaceName = "EventData";
         className = "EventData";
       }
     }
