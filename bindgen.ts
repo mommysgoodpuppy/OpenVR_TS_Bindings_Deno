@@ -750,7 +750,8 @@ declare const brand: unique symbol;
 export type InitErrorPTRType = Deno.PointerObject<InitError>
 const TypedInitErrorPTR = "pointer" as Deno.NativeTypedPointer<InitErrorPTRType>;
 
-const { symbols } = await Deno.dlopen("openvr_api.dll", {
+// Define the symbols types
+const symbolDefinitions = {
   VR_InitInternal: { parameters: ["pointer", "i32"], result: "pointer" },
   VR_ShutdownInternal: { parameters: [], result: "void" },
   VR_IsHmdPresent: { parameters: [], result: "bool" },
@@ -758,17 +759,120 @@ const { symbols } = await Deno.dlopen("openvr_api.dll", {
   VR_IsRuntimeInstalled: { parameters: [], result: "bool" },
   VR_GetVRInitErrorAsSymbol: { parameters: ["i32"], result: "pointer" },
   VR_GetVRInitErrorAsEnglishDescription: { parameters: ["i32"], result: "pointer" },
-});
+} as const;
 
-export const {
-  VR_InitInternal,
-  VR_ShutdownInternal,
-  VR_IsHmdPresent,
-  VR_GetGenericInterface,
-  VR_IsRuntimeInstalled,
-  VR_GetVRInitErrorAsSymbol,
-  VR_GetVRInitErrorAsEnglishDescription,
-} = symbols;
+// Library and symbols will be set when initialized
+let openvrLib: Deno.DynamicLibrary<typeof symbolDefinitions> | null = null;
+
+/**
+ * Initialize the OpenVR library with the specified DLL path
+ * @param dllPath Path to the OpenVR API DLL. If not provided, 
+ *                uses "openvr_api.dll" in the current working directory.
+ * @returns Promise resolving to true if initialization was successful
+ */
+export async function initializeOpenVR(dllPath: string = "openvr_api.dll"): Promise<boolean> {
+  try {
+    openvrLib = await Deno.dlopen(dllPath, symbolDefinitions);
+    return true;
+  } catch (error) {
+    console.error("Failed to load OpenVR from ", dllPath, error);
+    return false;
+  }
+}
+
+/**
+ * Close the OpenVR library and release resources
+ */
+export function closeOpenVR(): void {
+  if (openvrLib) {
+    openvrLib.close();
+    openvrLib = null;
+  }
+}
+
+/**
+ * Check if the OpenVR library has been initialized
+ */
+export function isInitialized(): boolean {
+  return openvrLib !== null;
+}
+
+/**
+ * Helper function to ensure the library is initialized before calling any functions
+ */
+function ensureInitialized(): void {
+  if (!openvrLib) {
+    throw new Error("OpenVR library not initialized. Call initializeOpenVR() first.");
+  }
+}
+
+/**
+ * Initialize the VR system
+ * @param type The application type
+ * @returns Pointer to the IVRSystem instance or null on failure
+ */
+export function VR_InitInternal(type: Deno.PointerValue, applicationType: number): Deno.PointerValue {
+  ensureInitialized();
+  return openvrLib!.symbols.VR_InitInternal(type, applicationType);
+}
+
+/**
+ * Shut down the VR system
+ */
+export function VR_ShutdownInternal(): void {
+  ensureInitialized();
+  return openvrLib!.symbols.VR_ShutdownInternal();
+}
+
+/**
+ * Check if an HMD is present
+ * @returns True if an HMD is present, false otherwise
+ */
+export function VR_IsHmdPresent(): boolean {
+  ensureInitialized();
+  return openvrLib!.symbols.VR_IsHmdPresent();
+}
+
+/**
+ * Get a generic interface from OpenVR
+ * @param pchInterfaceVersion The interface name/version
+ * @param peError Error code output
+ * @returns Pointer to the requested interface or null on failure
+ */
+export function VR_GetGenericInterface(pchInterfaceVersion: Deno.PointerValue, peError: InitErrorPTRType): Deno.PointerValue {
+  ensureInitialized();
+  return openvrLib!.symbols.VR_GetGenericInterface(pchInterfaceVersion, peError);
+}
+
+/**
+ * Check if OpenVR runtime is installed
+ * @returns True if runtime is installed, false otherwise
+ */
+export function VR_IsRuntimeInstalled(): boolean {
+  ensureInitialized();
+  return openvrLib!.symbols.VR_IsRuntimeInstalled();
+}
+
+/**
+ * Get error symbol for an error code
+ * @param error Error code
+ * @returns Pointer to error symbol string
+ */
+export function VR_GetVRInitErrorAsSymbol(error: number): Deno.PointerValue {
+  ensureInitialized();
+  return openvrLib!.symbols.VR_GetVRInitErrorAsSymbol(error);
+}
+
+/**
+ * Get human-readable error description for an error code
+ * @param error Error code
+ * @returns Pointer to error description string
+ */
+export function VR_GetVRInitErrorAsEnglishDescription(error: number): Deno.PointerValue {
+  ensureInitialized();
+  return openvrLib!.symbols.VR_GetVRInitErrorAsEnglishDescription(error);
+}
+
 //#endregion
 `;
   return entrypoints;
