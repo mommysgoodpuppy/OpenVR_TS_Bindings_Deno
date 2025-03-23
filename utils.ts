@@ -211,6 +211,29 @@ export type OpenVRType = {
 };
 
 
+
+export function createStruct<T>(
+    data: any,
+    structDef: { byteSize: number; write: (data: any, view: DataView) => void }
+): ArrayBuffer;
+export function createStruct<T>(
+    data: any,
+    structDef: { byteSize: number; write: (data: any, view: DataView) => void },
+    returnPointer: true
+): Deno.PointerValue<T>;
+export function createStruct<T>(
+    data: any,
+    structDef: { byteSize: number; write: (data: any, view: DataView) => void },
+    returnPointer = false
+): ArrayBuffer | Deno.PointerValue<T> {
+    const buffer = new ArrayBuffer(structDef.byteSize);
+    structDef.write(data, new DataView(buffer));
+
+    return returnPointer
+        ? (Deno.UnsafePointer.of(buffer) as Deno.PointerValue<T>)
+        : buffer;
+}
+
 //#region stuff
 /* export function generateOpenVRBindings(functions: typeof openVRFunctions) {
     let output = `// Auto-generated OpenVR bindings for Deno
