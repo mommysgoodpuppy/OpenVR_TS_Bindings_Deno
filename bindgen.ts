@@ -356,7 +356,7 @@ import D3D12 "vendor:directx/d3d12"
 
 type FFIArray<T, N extends number> = T[];
 //#region Generate Structs
-async function generateStructs(structs: any[]) {
+function generateStructs(structs: any[]) {
   let output = "// Structs\n\n";
   output += "//#region Structs\n";
 
@@ -396,7 +396,7 @@ async function generateStructs(structs: any[]) {
   return output;
 }
 
-async function generateByteTypeStructs(structs: any[], defs: any[]) {
+function generateByteTypeStructs(structs: any[], defs: any[]) {
   let output = "// Byte Type Structs\n\n";
 
   output += "import { calculateTotalSize, SizedStruct, SizedArrayType, u8, i8, u16, i16, u32, i32, f32, u64, i64, f64} from \"https://raw.githubusercontent.com/mommysgoodpuppy/byte_type_C/main/mod.ts\";\n\n";

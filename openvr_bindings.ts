@@ -1,6 +1,9 @@
 
 //#region Entrypoints
 
+import { fromFileUrl } from "jsr:@std/path/windows/from-file-url";
+import { dirname, join } from "jsr:@std/path";
+
 declare const brand: unique symbol;
 export type InitErrorPTRType = Deno.PointerObject<InitError>
 const TypedInitErrorPTR = "pointer" as Deno.NativeTypedPointer<InitErrorPTRType>;
@@ -25,9 +28,17 @@ let openvrLib: Deno.DynamicLibrary<typeof symbolDefinitions> | null = null;
  *                uses "openvr_api.dll" in the current working directory.
  * @returns Promise resolving to true if initialization was successful
  */
-export async function initializeOpenVR(dllPath: string = "openvr_api.dll"): Promise<boolean> {
+export function initializeOpenVR(dllPath: string = "openvr_api.dll", base?: string | URL): boolean {
   try {
-    openvrLib = await Deno.dlopen(dllPath, symbolDefinitions);
+    const fullPath = join(fromFileUrl(base!), "../"+dllPath);
+    console.log("Trying to read", fullPath);
+    const dll = Deno.readFileSync(fullPath);
+    const tmp = Deno.makeTempFileSync({ suffix: '.dll' });
+
+    Deno.writeFileSync(tmp, dll);
+    console.log("Temporary file dumped:", tmp);
+
+    openvrLib = Deno.dlopen(tmp, symbolDefinitions);
     return true;
   } catch (error) {
     console.error("Failed to load OpenVR from ", dllPath, error);
