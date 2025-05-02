@@ -1,4 +1,6 @@
 
+import { fromFileUrl } from "jsr:@std/path/windows/from-file-url";
+import { join } from "jsr:@std/path";
 //#region Entrypoints
 
 declare const brand: unique symbol;
@@ -25,9 +27,10 @@ let openvrLib: Deno.DynamicLibrary<typeof symbolDefinitions> | null = null;
  *                uses "openvr_api.dll" in the current working directory.
  * @returns Promise resolving to true if initialization was successful
  */
-export async function initializeOpenVR(dllPath: string = "openvr_api.dll"): Promise<boolean> {
+export function initializeOpenVR(dllPath: string = "openvr_api.dll", base?: string | URL): boolean {
   try {
-    openvrLib = await Deno.dlopen(dllPath, symbolDefinitions);
+    const fullPath = join(fromFileUrl(base!), "../"+dllPath);
+    openvrLib = Deno.dlopen(fullPath, symbolDefinitions);
     return true;
   } catch (error) {
     console.error("Failed to load OpenVR from ", dllPath, error);
@@ -4505,7 +4508,7 @@ export interface PathRead {
 //#endregion
 // Byte Type Structs
 
-import { calculateTotalSize, SizedStruct, SizedArrayType, u8, i8, u16, i16, u32, i32, f32, u64, i64, f64} from "https://raw.githubusercontent.com/mommysgoodpuppy/byte_type_C/main/mod.ts";
+import { SizedStruct, SizedArrayType, u8, i8, u16, u32, i32, f32, u64, f64} from "https://raw.githubusercontent.com/mommysgoodpuppy/byte_type_C/main/mod.ts";
 
 /*vr::HmdMatrix34_t, [
   {

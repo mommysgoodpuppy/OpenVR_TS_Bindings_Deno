@@ -1,5 +1,5 @@
 import { typeMapping } from "./utils.ts";
-import { Struct, calculateTotalSize, SizedStruct, SizedArrayType, u8, i8, u16, i16, u32, i32, f32, u64, i64, f64 } from "https://raw.githubusercontent.com/mommysgoodpuppy/byte_type_C/main/mod.ts";
+import {  SizedArrayType } from "https://raw.githubusercontent.com/mommysgoodpuppy/byte_type_C/main/mod.ts";
 
 
 const openvrApiJson = await Deno.readTextFile("openvr_api.json");
@@ -65,7 +65,7 @@ const REDUNDANT_TYPEDEFS: Record<string, boolean> = {
   "OverlayIntersectionMaskPrimitive_Data": true,
 };
 
-async function generateTypes(defs: any[], consts: any[]): Promise<string> {
+function generateTypes(defs: any[], consts: any[]): string {
   let output = "// Typedefs and Constants\n\n";
 
   //#region Generate Typedefs
@@ -142,42 +142,7 @@ async function generateTypes(defs: any[], consts: any[]): Promise<string> {
   //#endregion
 
   return output;
-
-  //await Deno.writeTextFile("openvr/types.ts", output); // Write to a single file
 }
-
-const ENUM_NONSTANDARD_PREFIXES: string[] = [
-  "k_",
-  "Prop_",
-  "TrackedProp_",
-  "Submit_",
-  "VREvent_",
-  "EDeviceActivityLevel_",
-  "EButton_",
-  "ShowUI_",
-  "eHiddenAreaMesh_",
-  "eControllerAxis_",
-  "ControllerEventOutput_",
-  "VRApplication_",
-  "VRSkeletalTracking_",
-  "EVRTrackedCameraFrameLayout_",
-  "OffScale_",
-  "Error_",
-  "Property_",
-  "EVRSceneApplicationState_",
-  "VROverlayTransform_",
-  "EGamepadTextInputMode",
-  "EGamepadTextInputLineMode",
-  "OverlayIntersectionPrimitiveType_",
-  "KeyboardFlag_",
-  "HeadsetViewMode_",
-  "EVRNotificationType_",
-  "EVRNotificationStyle_",
-  "VRInputFilterCancel_",
-  "VRInputString_",
-  "IOBuffer_",
-  "BlockQueueRead_",
-]
 
 function trimEnumName(name: string): string {
   let enumTrim = name;
@@ -207,14 +172,12 @@ async function generateEnums(enums: any[]) {
     for (const val of e.values) {
       const memName = val.name;
       const memVal = val.value;
-      //const nameTrim = trimEnumMemberName(memName, enumTrim);
       output += `  ${memName} = ${memVal},\n`;
     }
     output += "}\n\n";
   }
   output += "//#endregion\n";
   return output;
-  await Deno.writeTextFile("openvr/enums.ts", output);
 }
 
 // Trim struct names
@@ -224,15 +187,6 @@ function trimStructName(name: string): string {
   structTrim = structTrim.startsWith("VR") ? structTrim.slice(2) : structTrim;
   structTrim = structTrim.endsWith("_t") ? structTrim.slice(0, -2) : structTrim;
   return structTrim;
-}
-
-// Trim handle names
-function trimHandleName(name: string): string {
-  let handleTrim = name;
-  handleTrim = handleTrim.startsWith("vr::") ? handleTrim.slice(4) : handleTrim;
-  handleTrim = handleTrim.startsWith("VR") ? handleTrim.slice(2) : handleTrim;
-  handleTrim = handleTrim.endsWith("_t") ? handleTrim.slice(0, -2) : handleTrim;
-  return handleTrim;
 }
 
 // Trim field names
@@ -348,13 +302,7 @@ function fieldTypeConvert(name: string): string {
   return result;
 }
 //#endregion
-const STRUCT_PRELUDE = `
-import vk "vendor:vulkan"
-import D3D11 "vendor:directx/d3d11"
-import D3D12 "vendor:directx/d3d12"
-`
 
-type FFIArray<T, N extends number> = T[];
 //#region Generate Structs
 function generateStructs(structs: any[]) {
   let output = "// Structs\n\n";
@@ -399,7 +347,7 @@ function generateStructs(structs: any[]) {
 function generateByteTypeStructs(structs: any[], defs: any[]) {
   let output = "// Byte Type Structs\n\n";
 
-  output += "import { calculateTotalSize, SizedStruct, SizedArrayType, u8, i8, u16, i16, u32, i32, f32, u64, i64, f64} from \"https://raw.githubusercontent.com/mommysgoodpuppy/byte_type_C/main/mod.ts\";\n\n";
+  output += "import { SizedStruct, SizedArrayType, u8, i8, u16, u32, i32, f32, u64, f64} from \"https://raw.githubusercontent.com/mommysgoodpuppy/byte_type_C/main/mod.ts\";\n\n";
 
   for (const str of structs) {
     const structName = str.struct;
@@ -468,16 +416,16 @@ function generateByteTypeStructs(structs: any[], defs: any[]) {
 
   return output;
 }
+
 function getArrayTypeString(arrayType: SizedArrayType<any>): string {
   if (arrayType.type instanceof SizedArrayType) {
     const ats = getArrayTypeString(arrayType.type);
     return `new SizedArrayType(${ats}), ${arrayType.length}`;
   } else {
-    //debugger
     return `${arrayType.type}, ${arrayType.length}`;
   }
 }
-function getByteType(fieldtype: string): SizedArrayType<unknown> | string {
+function getByteType(fieldtype: string): SizedArrayType<unknown> | string | null {
   if (fieldtype.includes("[")) {
     //debugger
     const [baseType, ...dimensions] = fieldtype.split("[");
@@ -486,7 +434,10 @@ function getByteType(fieldtype: string): SizedArrayType<unknown> | string {
     // Create nested ArrayTypes for multidimensional arrays
     for (let i = dimensions.length - 1; i >= 0; i--) {
       const length = parseInt(dimensions[i], 10);
-      if (type == null) return //throw new Error(`Invalid array type: ${fieldtype}`);
+      if (type == null) return null //todo handle these
+      // @ts-expect-error - really fucking stupid recursive unwrap code:
+      // by illegally passing a string here
+      // type.type becomes the value of the string which getArrayTypeString relies on
       type = new SizedArrayType(type, length);
     }
 
@@ -547,10 +498,10 @@ function handleStructOrArray(fieldtype: string, api: any): string {
 
   if (structMatch) {
     const structName = trimStructName(structMatch[2]);
-    const nestedStruct = api.structs.find(s => trimStructName(s.struct) === structName);
+    const nestedStruct = api.structs.find((s: { struct: string; }) => trimStructName(s.struct) === structName);
 
     if (nestedStruct) {
-      const nestedFields = nestedStruct.fields.map(f =>
+      const nestedFields = nestedStruct.fields.map((f: { fieldname: any; }) =>
         `${f.fieldname}: ${getFieldDefinition(f, api)}`
       ).join(', ');
 
@@ -620,13 +571,13 @@ function getFfiType(type: string, defs?: any[], enums?: any[]): any {
   }
 
   // Check if it's a typedef
-  const typedef = defs.find(def => def.typedef === type);
+  const typedef = defs!.find(def => def.typedef === type);
   if (typedef) {
     return getFfiType(typedef.type, defs, enums);
   }
 
   // Check if it's an enum
-  const isEnum = enums.some(e => e.enumname === type);
+  const isEnum = enums!.some(e => e.enumname === type);
   if (isEnum) {
     return "i32";
   }
@@ -636,7 +587,7 @@ function getFfiType(type: string, defs?: any[], enums?: any[]): any {
   return "pointer";
 }
 //#region Generate Methods
-async function generateMethods(methods: any[], defs: any[], enums: any[]) {
+function generateMethods(methods: any[], defs: any[], enums: any[]) {
   let output = "// Classes\n\n";
   output += "//#region Classes\n";
 
@@ -744,6 +695,8 @@ async function generateMethods(methods: any[], defs: any[], enums: any[]) {
 
 async function generateEntrypoints() {
   const entrypoints = `
+import { fromFileUrl } from "jsr:@std/path/windows/from-file-url";
+import { join } from "jsr:@std/path";
 //#region Entrypoints
 
 declare const brand: unique symbol;
@@ -770,9 +723,10 @@ let openvrLib: Deno.DynamicLibrary<typeof symbolDefinitions> | null = null;
  *                uses "openvr_api.dll" in the current working directory.
  * @returns Promise resolving to true if initialization was successful
  */
-export async function initializeOpenVR(dllPath: string = "openvr_api.dll"): Promise<boolean> {
+export function initializeOpenVR(dllPath: string = "openvr_api.dll", base?: string | URL): boolean {
   try {
-    openvrLib = await Deno.dlopen(dllPath, symbolDefinitions);
+    const fullPath = join(fromFileUrl(base!), "../"+dllPath);
+    openvrLib = Deno.dlopen(fullPath, symbolDefinitions);
     return true;
   } catch (error) {
     console.error("Failed to load OpenVR from ", dllPath, error);
@@ -876,7 +830,6 @@ export function VR_GetVRInitErrorAsEnglishDescription(error: number): Deno.Point
 //#endregion
 `;
   return entrypoints;
-  await Deno.writeTextFile("openvr/entrypoints.ts", entrypoints);
 }
 
 // Run the main function

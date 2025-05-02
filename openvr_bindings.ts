@@ -1,8 +1,7 @@
 
-//#region Entrypoints
-
 import { fromFileUrl } from "jsr:@std/path/windows/from-file-url";
-import { dirname, join } from "jsr:@std/path";
+import { join } from "jsr:@std/path";
+//#region Entrypoints
 
 declare const brand: unique symbol;
 export type InitErrorPTRType = Deno.PointerObject<InitError>
@@ -4509,7 +4508,7 @@ export interface PathRead {
 //#endregion
 // Byte Type Structs
 
-import { calculateTotalSize, SizedStruct, SizedArrayType, u8, i8, u16, i16, u32, i32, f32, u64, i64, f64} from "https://raw.githubusercontent.com/mommysgoodpuppy/byte_type_C/main/mod.ts";
+import { SizedStruct, SizedArrayType, u8, i8, u16, u32, i32, f32, u64, f64} from "https://raw.githubusercontent.com/mommysgoodpuppy/byte_type_C/main/mod.ts";
 
 /*vr::HmdMatrix34_t, [
   {
