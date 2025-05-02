@@ -6874,7 +6874,423 @@ export const PathReadStruct = new SizedStruct({
 
 //#region Classes
 export class IVRSystem {
-  constructor(private ptr: Deno.PointerValue<IVRSystem|unknown>) {}
+  readonly #GetRecommendedRenderTargetSizeFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetProjectionMatrixFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetProjectionRawFn: Deno.UnsafeFnPointer<any>;
+  readonly #ComputeDistortionFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetEyeToHeadTransformFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetTimeSinceLastVsyncFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetD3D9AdapterIndexFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetDXGIOutputInfoFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetOutputDeviceFn: Deno.UnsafeFnPointer<any>;
+  readonly #IsDisplayOnDesktopFn: Deno.UnsafeFnPointer<any>;
+  readonly #SetDisplayVisibilityFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetDeviceToAbsoluteTrackingPoseFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetSeatedZeroPoseToStandingAbsoluteTrackingPoseFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetRawZeroPoseToStandingAbsoluteTrackingPoseFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetSortedTrackedDeviceIndicesOfClassFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetTrackedDeviceActivityLevelFn: Deno.UnsafeFnPointer<any>;
+  readonly #ApplyTransformFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetTrackedDeviceIndexForControllerRoleFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetControllerRoleForTrackedDeviceIndexFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetTrackedDeviceClassFn: Deno.UnsafeFnPointer<any>;
+  readonly #IsTrackedDeviceConnectedFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetBoolTrackedDevicePropertyFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetFloatTrackedDevicePropertyFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetInt32TrackedDevicePropertyFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetUint64TrackedDevicePropertyFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetMatrix34TrackedDevicePropertyFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetArrayTrackedDevicePropertyFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetStringTrackedDevicePropertyFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetPropErrorNameFromEnumFn: Deno.UnsafeFnPointer<any>;
+  readonly #PollNextEventFn: Deno.UnsafeFnPointer<any>;
+  readonly #PollNextEventWithPoseFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetEventTypeNameFromEnumFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetHiddenAreaMeshFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetControllerStateFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetControllerStateWithPoseFn: Deno.UnsafeFnPointer<any>;
+  readonly #TriggerHapticPulseFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetButtonIdNameFromEnumFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetControllerAxisTypeNameFromEnumFn: Deno.UnsafeFnPointer<any>;
+  readonly #IsInputAvailableFn: Deno.UnsafeFnPointer<any>;
+  readonly #IsSteamVRDrawingControllersFn: Deno.UnsafeFnPointer<any>;
+  readonly #ShouldApplicationPauseFn: Deno.UnsafeFnPointer<any>;
+  readonly #ShouldApplicationReduceRenderingWorkFn: Deno.UnsafeFnPointer<any>;
+  readonly #PerformFirmwareUpdateFn: Deno.UnsafeFnPointer<any>;
+  readonly #AcknowledgeQuit_ExitingFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetAppContainerFilePathsFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetRuntimeVersionFn: Deno.UnsafeFnPointer<any>;
+
+  constructor(private ptr: Deno.PointerValue<IVRSystem|unknown>) {
+    if (this.ptr === null) throw new Error("IVRSystem pointer is null");
+    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSystem>);
+    const GetRecommendedRenderTargetSizeFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(0))!;
+    this.#GetRecommendedRenderTargetSizeFn = new Deno.UnsafeFnPointer(GetRecommendedRenderTargetSizeFuncPtr, {
+      parameters: [
+        "pointer", //(uint32_t *)  pnWidth
+        "pointer", //(uint32_t *)  pnHeight
+      ],
+      result: "void"
+    });
+    const GetProjectionMatrixFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(8))!;
+    this.#GetProjectionMatrixFn = new Deno.UnsafeFnPointer(GetProjectionMatrixFuncPtr, {
+      parameters: [
+        "i32", //(vr::EVREye)  eEye
+        "f32", //(float)  fNearZ
+        "f32", //(float)  fFarZ
+      ],
+      result: "pointer"
+    });
+    const GetProjectionRawFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(16))!;
+    this.#GetProjectionRawFn = new Deno.UnsafeFnPointer(GetProjectionRawFuncPtr, {
+      parameters: [
+        "i32", //(vr::EVREye)  eEye
+        "pointer", //(float *)  pfLeft
+        "pointer", //(float *)  pfRight
+        "pointer", //(float *)  pfTop
+        "pointer", //(float *)  pfBottom
+      ],
+      result: "void"
+    });
+    const ComputeDistortionFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(24))!;
+    this.#ComputeDistortionFn = new Deno.UnsafeFnPointer(ComputeDistortionFuncPtr, {
+      parameters: [
+        "i32", //(vr::EVREye)  eEye
+        "f32", //(float)  fU
+        "f32", //(float)  fV
+        "pointer", //(struct vr::DistortionCoordinates_t *)  pDistortionCoordinates
+      ],
+      result: "bool"
+    });
+    const GetEyeToHeadTransformFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(32))!;
+    this.#GetEyeToHeadTransformFn = new Deno.UnsafeFnPointer(GetEyeToHeadTransformFuncPtr, {
+      parameters: [
+        "i32", //(vr::EVREye)  eEye
+      ],
+      result: "pointer"
+    });
+    const GetTimeSinceLastVsyncFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(40))!;
+    this.#GetTimeSinceLastVsyncFn = new Deno.UnsafeFnPointer(GetTimeSinceLastVsyncFuncPtr, {
+      parameters: [
+        "pointer", //(float *)  pfSecondsSinceLastVsync
+        "pointer", //(uint64_t *)  pulFrameCounter
+      ],
+      result: "bool"
+    });
+    const GetD3D9AdapterIndexFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(48))!;
+    this.#GetD3D9AdapterIndexFn = new Deno.UnsafeFnPointer(GetD3D9AdapterIndexFuncPtr, {
+      parameters: [
+      ],
+      result: "i32"
+    });
+    const GetDXGIOutputInfoFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(56))!;
+    this.#GetDXGIOutputInfoFn = new Deno.UnsafeFnPointer(GetDXGIOutputInfoFuncPtr, {
+      parameters: [
+        "pointer", //(int32_t *)  pnAdapterIndex
+      ],
+      result: "void"
+    });
+    const GetOutputDeviceFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(64))!;
+    this.#GetOutputDeviceFn = new Deno.UnsafeFnPointer(GetOutputDeviceFuncPtr, {
+      parameters: [
+        "pointer", //(uint64_t *)  pnDevice
+        "i32", //(vr::ETextureType)  textureType
+        "pointer", //(struct VkInstance_T *)  pInstance
+      ],
+      result: "void"
+    });
+    const IsDisplayOnDesktopFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(72))!;
+    this.#IsDisplayOnDesktopFn = new Deno.UnsafeFnPointer(IsDisplayOnDesktopFuncPtr, {
+      parameters: [
+      ],
+      result: "bool"
+    });
+    const SetDisplayVisibilityFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(80))!;
+    this.#SetDisplayVisibilityFn = new Deno.UnsafeFnPointer(SetDisplayVisibilityFuncPtr, {
+      parameters: [
+        "bool", //(bool)  bIsVisibleOnDesktop
+      ],
+      result: "bool"
+    });
+    const GetDeviceToAbsoluteTrackingPoseFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(88))!;
+    this.#GetDeviceToAbsoluteTrackingPoseFn = new Deno.UnsafeFnPointer(GetDeviceToAbsoluteTrackingPoseFuncPtr, {
+      parameters: [
+        "i32", //(vr::ETrackingUniverseOrigin)  eOrigin
+        "f32", //(float)  fPredictedSecondsToPhotonsFromNow
+        "pointer", //(struct vr::TrackedDevicePose_t *)  pTrackedDevicePoseArray
+        "u32", //(uint32_t)  unTrackedDevicePoseArrayCount
+      ],
+      result: "void"
+    });
+    const GetSeatedZeroPoseToStandingAbsoluteTrackingPoseFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(96))!;
+    this.#GetSeatedZeroPoseToStandingAbsoluteTrackingPoseFn = new Deno.UnsafeFnPointer(GetSeatedZeroPoseToStandingAbsoluteTrackingPoseFuncPtr, {
+      parameters: [
+      ],
+      result: "pointer"
+    });
+    const GetRawZeroPoseToStandingAbsoluteTrackingPoseFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(104))!;
+    this.#GetRawZeroPoseToStandingAbsoluteTrackingPoseFn = new Deno.UnsafeFnPointer(GetRawZeroPoseToStandingAbsoluteTrackingPoseFuncPtr, {
+      parameters: [
+      ],
+      result: "pointer"
+    });
+    const GetSortedTrackedDeviceIndicesOfClassFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(112))!;
+    this.#GetSortedTrackedDeviceIndicesOfClassFn = new Deno.UnsafeFnPointer(GetSortedTrackedDeviceIndicesOfClassFuncPtr, {
+      parameters: [
+        "i32", //(vr::ETrackedDeviceClass)  eTrackedDeviceClass
+        "pointer", //(vr::TrackedDeviceIndex_t *)  punTrackedDeviceIndexArray
+        "u32", //(uint32_t)  unTrackedDeviceIndexArrayCount
+        "u32", //(vr::TrackedDeviceIndex_t)  unRelativeToTrackedDeviceIndex
+      ],
+      result: "u32"
+    });
+    const GetTrackedDeviceActivityLevelFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(120))!;
+    this.#GetTrackedDeviceActivityLevelFn = new Deno.UnsafeFnPointer(GetTrackedDeviceActivityLevelFuncPtr, {
+      parameters: [
+        "u32", //(vr::TrackedDeviceIndex_t)  unDeviceId
+      ],
+      result: "i32"
+    });
+    const ApplyTransformFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(128))!;
+    this.#ApplyTransformFn = new Deno.UnsafeFnPointer(ApplyTransformFuncPtr, {
+      parameters: [
+        "pointer", //(struct vr::TrackedDevicePose_t *)  pOutputPose
+        "pointer", //(const struct vr::TrackedDevicePose_t *)  pTrackedDevicePose
+        "pointer", //(const struct vr::HmdMatrix34_t *)  pTransform
+      ],
+      result: "void"
+    });
+    const GetTrackedDeviceIndexForControllerRoleFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(136))!;
+    this.#GetTrackedDeviceIndexForControllerRoleFn = new Deno.UnsafeFnPointer(GetTrackedDeviceIndexForControllerRoleFuncPtr, {
+      parameters: [
+        "i32", //(vr::ETrackedControllerRole)  unDeviceType
+      ],
+      result: "u32"
+    });
+    const GetControllerRoleForTrackedDeviceIndexFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(144))!;
+    this.#GetControllerRoleForTrackedDeviceIndexFn = new Deno.UnsafeFnPointer(GetControllerRoleForTrackedDeviceIndexFuncPtr, {
+      parameters: [
+        "u32", //(vr::TrackedDeviceIndex_t)  unDeviceIndex
+      ],
+      result: "i32"
+    });
+    const GetTrackedDeviceClassFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(152))!;
+    this.#GetTrackedDeviceClassFn = new Deno.UnsafeFnPointer(GetTrackedDeviceClassFuncPtr, {
+      parameters: [
+        "u32", //(vr::TrackedDeviceIndex_t)  unDeviceIndex
+      ],
+      result: "i32"
+    });
+    const IsTrackedDeviceConnectedFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(160))!;
+    this.#IsTrackedDeviceConnectedFn = new Deno.UnsafeFnPointer(IsTrackedDeviceConnectedFuncPtr, {
+      parameters: [
+        "u32", //(vr::TrackedDeviceIndex_t)  unDeviceIndex
+      ],
+      result: "bool"
+    });
+    const GetBoolTrackedDevicePropertyFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(168))!;
+    this.#GetBoolTrackedDevicePropertyFn = new Deno.UnsafeFnPointer(GetBoolTrackedDevicePropertyFuncPtr, {
+      parameters: [
+        "u32", //(vr::TrackedDeviceIndex_t)  unDeviceIndex
+        "i32", //(vr::ETrackedDeviceProperty)  prop
+        "pointer", //(vr::ETrackedPropertyError *)  pError
+      ],
+      result: "bool"
+    });
+    const GetFloatTrackedDevicePropertyFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(176))!;
+    this.#GetFloatTrackedDevicePropertyFn = new Deno.UnsafeFnPointer(GetFloatTrackedDevicePropertyFuncPtr, {
+      parameters: [
+        "u32", //(vr::TrackedDeviceIndex_t)  unDeviceIndex
+        "i32", //(vr::ETrackedDeviceProperty)  prop
+        "pointer", //(vr::ETrackedPropertyError *)  pError
+      ],
+      result: "f32"
+    });
+    const GetInt32TrackedDevicePropertyFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(184))!;
+    this.#GetInt32TrackedDevicePropertyFn = new Deno.UnsafeFnPointer(GetInt32TrackedDevicePropertyFuncPtr, {
+      parameters: [
+        "u32", //(vr::TrackedDeviceIndex_t)  unDeviceIndex
+        "i32", //(vr::ETrackedDeviceProperty)  prop
+        "pointer", //(vr::ETrackedPropertyError *)  pError
+      ],
+      result: "i32"
+    });
+    const GetUint64TrackedDevicePropertyFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(192))!;
+    this.#GetUint64TrackedDevicePropertyFn = new Deno.UnsafeFnPointer(GetUint64TrackedDevicePropertyFuncPtr, {
+      parameters: [
+        "u32", //(vr::TrackedDeviceIndex_t)  unDeviceIndex
+        "i32", //(vr::ETrackedDeviceProperty)  prop
+        "pointer", //(vr::ETrackedPropertyError *)  pError
+      ],
+      result: "u64"
+    });
+    const GetMatrix34TrackedDevicePropertyFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(200))!;
+    this.#GetMatrix34TrackedDevicePropertyFn = new Deno.UnsafeFnPointer(GetMatrix34TrackedDevicePropertyFuncPtr, {
+      parameters: [
+        "u32", //(vr::TrackedDeviceIndex_t)  unDeviceIndex
+        "i32", //(vr::ETrackedDeviceProperty)  prop
+        "pointer", //(vr::ETrackedPropertyError *)  pError
+      ],
+      result: "pointer"
+    });
+    const GetArrayTrackedDevicePropertyFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(208))!;
+    this.#GetArrayTrackedDevicePropertyFn = new Deno.UnsafeFnPointer(GetArrayTrackedDevicePropertyFuncPtr, {
+      parameters: [
+        "u32", //(vr::TrackedDeviceIndex_t)  unDeviceIndex
+        "i32", //(vr::ETrackedDeviceProperty)  prop
+        "u32", //(vr::PropertyTypeTag_t)  propType
+        "pointer", //(void *)  pBuffer
+        "u32", //(uint32_t)  unBufferSize
+        "pointer", //(vr::ETrackedPropertyError *)  pError
+      ],
+      result: "u32"
+    });
+    const GetStringTrackedDevicePropertyFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(216))!;
+    this.#GetStringTrackedDevicePropertyFn = new Deno.UnsafeFnPointer(GetStringTrackedDevicePropertyFuncPtr, {
+      parameters: [
+        "u32", //(vr::TrackedDeviceIndex_t)  unDeviceIndex
+        "i32", //(vr::ETrackedDeviceProperty)  prop
+        "pointer", //(char *)  pchValue
+        "u32", //(uint32_t)  unBufferSize
+        "pointer", //(vr::ETrackedPropertyError *)  pError
+      ],
+      result: "u32"
+    });
+    const GetPropErrorNameFromEnumFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(224))!;
+    this.#GetPropErrorNameFromEnumFn = new Deno.UnsafeFnPointer(GetPropErrorNameFromEnumFuncPtr, {
+      parameters: [
+        "i32", //(vr::ETrackedPropertyError)  error
+      ],
+      result: "pointer"
+    });
+    const PollNextEventFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(232))!;
+    this.#PollNextEventFn = new Deno.UnsafeFnPointer(PollNextEventFuncPtr, {
+      parameters: [
+        "pointer", //(struct vr::VREvent_t *)  pEvent
+        "u32", //(uint32_t)  uncbVREvent
+      ],
+      result: "bool"
+    });
+    const PollNextEventWithPoseFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(240))!;
+    this.#PollNextEventWithPoseFn = new Deno.UnsafeFnPointer(PollNextEventWithPoseFuncPtr, {
+      parameters: [
+        "i32", //(vr::ETrackingUniverseOrigin)  eOrigin
+        "pointer", //(struct vr::VREvent_t *)  pEvent
+        "u32", //(uint32_t)  uncbVREvent
+        "pointer", //(vr::TrackedDevicePose_t *)  pTrackedDevicePose
+      ],
+      result: "bool"
+    });
+    const GetEventTypeNameFromEnumFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(248))!;
+    this.#GetEventTypeNameFromEnumFn = new Deno.UnsafeFnPointer(GetEventTypeNameFromEnumFuncPtr, {
+      parameters: [
+        "i32", //(vr::EVREventType)  eType
+      ],
+      result: "pointer"
+    });
+    const GetHiddenAreaMeshFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(256))!;
+    this.#GetHiddenAreaMeshFn = new Deno.UnsafeFnPointer(GetHiddenAreaMeshFuncPtr, {
+      parameters: [
+        "i32", //(vr::EVREye)  eEye
+        "i32", //(vr::EHiddenAreaMeshType)  type
+      ],
+      result: "pointer"
+    });
+    const GetControllerStateFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(264))!;
+    this.#GetControllerStateFn = new Deno.UnsafeFnPointer(GetControllerStateFuncPtr, {
+      parameters: [
+        "u32", //(vr::TrackedDeviceIndex_t)  unControllerDeviceIndex
+        "pointer", //(vr::VRControllerState_t *)  pControllerState
+        "u32", //(uint32_t)  unControllerStateSize
+      ],
+      result: "bool"
+    });
+    const GetControllerStateWithPoseFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(272))!;
+    this.#GetControllerStateWithPoseFn = new Deno.UnsafeFnPointer(GetControllerStateWithPoseFuncPtr, {
+      parameters: [
+        "i32", //(vr::ETrackingUniverseOrigin)  eOrigin
+        "u32", //(vr::TrackedDeviceIndex_t)  unControllerDeviceIndex
+        "pointer", //(vr::VRControllerState_t *)  pControllerState
+        "u32", //(uint32_t)  unControllerStateSize
+        "pointer", //(struct vr::TrackedDevicePose_t *)  pTrackedDevicePose
+      ],
+      result: "bool"
+    });
+    const TriggerHapticPulseFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(280))!;
+    this.#TriggerHapticPulseFn = new Deno.UnsafeFnPointer(TriggerHapticPulseFuncPtr, {
+      parameters: [
+        "u32", //(vr::TrackedDeviceIndex_t)  unControllerDeviceIndex
+        "u32", //(uint32_t)  unAxisId
+        "pointer", //(unsigned short)  usDurationMicroSec
+      ],
+      result: "void"
+    });
+    const GetButtonIdNameFromEnumFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(288))!;
+    this.#GetButtonIdNameFromEnumFn = new Deno.UnsafeFnPointer(GetButtonIdNameFromEnumFuncPtr, {
+      parameters: [
+        "i32", //(vr::EVRButtonId)  eButtonId
+      ],
+      result: "pointer"
+    });
+    const GetControllerAxisTypeNameFromEnumFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(296))!;
+    this.#GetControllerAxisTypeNameFromEnumFn = new Deno.UnsafeFnPointer(GetControllerAxisTypeNameFromEnumFuncPtr, {
+      parameters: [
+        "i32", //(vr::EVRControllerAxisType)  eAxisType
+      ],
+      result: "pointer"
+    });
+    const IsInputAvailableFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(304))!;
+    this.#IsInputAvailableFn = new Deno.UnsafeFnPointer(IsInputAvailableFuncPtr, {
+      parameters: [
+      ],
+      result: "bool"
+    });
+    const IsSteamVRDrawingControllersFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(312))!;
+    this.#IsSteamVRDrawingControllersFn = new Deno.UnsafeFnPointer(IsSteamVRDrawingControllersFuncPtr, {
+      parameters: [
+      ],
+      result: "bool"
+    });
+    const ShouldApplicationPauseFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(320))!;
+    this.#ShouldApplicationPauseFn = new Deno.UnsafeFnPointer(ShouldApplicationPauseFuncPtr, {
+      parameters: [
+      ],
+      result: "bool"
+    });
+    const ShouldApplicationReduceRenderingWorkFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(328))!;
+    this.#ShouldApplicationReduceRenderingWorkFn = new Deno.UnsafeFnPointer(ShouldApplicationReduceRenderingWorkFuncPtr, {
+      parameters: [
+      ],
+      result: "bool"
+    });
+    const PerformFirmwareUpdateFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(336))!;
+    this.#PerformFirmwareUpdateFn = new Deno.UnsafeFnPointer(PerformFirmwareUpdateFuncPtr, {
+      parameters: [
+        "u32", //(vr::TrackedDeviceIndex_t)  unDeviceIndex
+      ],
+      result: "i32"
+    });
+    const AcknowledgeQuit_ExitingFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(344))!;
+    this.#AcknowledgeQuit_ExitingFn = new Deno.UnsafeFnPointer(AcknowledgeQuit_ExitingFuncPtr, {
+      parameters: [
+      ],
+      result: "void"
+    });
+    const GetAppContainerFilePathsFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(352))!;
+    this.#GetAppContainerFilePathsFn = new Deno.UnsafeFnPointer(GetAppContainerFilePathsFuncPtr, {
+      parameters: [
+        "pointer", //(char *)  pchBuffer
+        "u32", //(uint32_t)  unBufferSize
+      ],
+      result: "u32"
+    });
+    const GetRuntimeVersionFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(360))!;
+    this.#GetRuntimeVersionFn = new Deno.UnsafeFnPointer(GetRuntimeVersionFuncPtr, {
+      parameters: [
+      ],
+      result: "pointer"
+    });
+  }
 
   /*
   GetRecommendedRenderTargetSize
@@ -6882,18 +7298,7 @@ export class IVRSystem {
   Return: void
   */
   GetRecommendedRenderTargetSize(pnWidth: Deno.PointerValue<number>, pnHeight: Deno.PointerValue<number>): void {
-    if (this.ptr === null) throw new Error("IVRSystem pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSystem>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(0))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "pointer", //(uint32_t *)  pnWidth
-        "pointer", //(uint32_t *)  pnHeight
-      ],
-      result: "void"
-    });
-
-    const _result = func.call(
+    const _result = this.#GetRecommendedRenderTargetSizeFn.call(
       pnWidth,
       pnHeight,
     );
@@ -6906,25 +7311,13 @@ export class IVRSystem {
   Return: struct vr::HmdMatrix44_t
   */
   GetProjectionMatrix(eEye: Eye, fNearZ: number, fFarZ: number): HmdMatrix44 {
-    if (this.ptr === null) throw new Error("IVRSystem pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSystem>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(8))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "i32", //(vr::EVREye)  eEye
-        "f32", //(float)  fNearZ
-        "f32", //(float)  fFarZ
-      ],
-      result: "pointer"
-    });
-
-    const result = func.call(
+    const result = this.#GetProjectionMatrixFn.call(
       eEye,
       fNearZ,
       fFarZ,
     );
 
-    return result// as unknown as HmdMatrix44;
+    return result // as unknown as HmdMatrix44;
   }
 
   /*
@@ -6933,21 +7326,7 @@ export class IVRSystem {
   Return: void
   */
   GetProjectionRaw(eEye: Eye, pfLeft: Deno.PointerValue<number>, pfRight: Deno.PointerValue<number>, pfTop: Deno.PointerValue<number>, pfBottom: Deno.PointerValue<number>): void {
-    if (this.ptr === null) throw new Error("IVRSystem pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSystem>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(16))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "i32", //(vr::EVREye)  eEye
-        "pointer", //(float *)  pfLeft
-        "pointer", //(float *)  pfRight
-        "pointer", //(float *)  pfTop
-        "pointer", //(float *)  pfBottom
-      ],
-      result: "void"
-    });
-
-    const _result = func.call(
+    const _result = this.#GetProjectionRawFn.call(
       eEye,
       pfLeft,
       pfRight,
@@ -6963,27 +7342,14 @@ export class IVRSystem {
   Return: bool
   */
   ComputeDistortion(eEye: Eye, fU: number, fV: number, pDistortionCoordinates: Deno.PointerValue<DistortionCoordinates>): boolean {
-    if (this.ptr === null) throw new Error("IVRSystem pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSystem>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(24))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "i32", //(vr::EVREye)  eEye
-        "f32", //(float)  fU
-        "f32", //(float)  fV
-        "pointer", //(struct vr::DistortionCoordinates_t *)  pDistortionCoordinates
-      ],
-      result: "bool"
-    });
-
-    const result = func.call(
+    const result = this.#ComputeDistortionFn.call(
       eEye,
       fU,
       fV,
       pDistortionCoordinates,
     );
 
-    return result// as boolean;
+    return result // as boolean;
   }
 
   /*
@@ -6992,21 +7358,11 @@ export class IVRSystem {
   Return: struct vr::HmdMatrix34_t
   */
   GetEyeToHeadTransform(eEye: Eye): HmdMatrix34 {
-    if (this.ptr === null) throw new Error("IVRSystem pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSystem>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(32))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "i32", //(vr::EVREye)  eEye
-      ],
-      result: "pointer"
-    });
-
-    const result = func.call(
+    const result = this.#GetEyeToHeadTransformFn.call(
       eEye,
     );
 
-    return result// as unknown as HmdMatrix34;
+    return result // as unknown as HmdMatrix34;
   }
 
   /*
@@ -7015,23 +7371,12 @@ export class IVRSystem {
   Return: bool
   */
   GetTimeSinceLastVsync(pfSecondsSinceLastVsync: Deno.PointerValue<number>, pulFrameCounter: Deno.PointerValue<bigint>): boolean {
-    if (this.ptr === null) throw new Error("IVRSystem pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSystem>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(40))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "pointer", //(float *)  pfSecondsSinceLastVsync
-        "pointer", //(uint64_t *)  pulFrameCounter
-      ],
-      result: "bool"
-    });
-
-    const result = func.call(
+    const result = this.#GetTimeSinceLastVsyncFn.call(
       pfSecondsSinceLastVsync,
       pulFrameCounter,
     );
 
-    return result// as boolean;
+    return result // as boolean;
   }
 
   /*
@@ -7040,19 +7385,10 @@ export class IVRSystem {
   Return: int32_t
   */
   GetD3D9AdapterIndex(): number {
-    if (this.ptr === null) throw new Error("IVRSystem pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSystem>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(48))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-      ],
-      result: "i32"
-    });
-
-    const result = func.call(
+    const result = this.#GetD3D9AdapterIndexFn.call(
     );
 
-    return result// as number;
+    return result // as number;
   }
 
   /*
@@ -7061,17 +7397,7 @@ export class IVRSystem {
   Return: void
   */
   GetDXGIOutputInfo(pnAdapterIndex: Deno.PointerValue<number>): void {
-    if (this.ptr === null) throw new Error("IVRSystem pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSystem>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(56))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "pointer", //(int32_t *)  pnAdapterIndex
-      ],
-      result: "void"
-    });
-
-    const _result = func.call(
+    const _result = this.#GetDXGIOutputInfoFn.call(
       pnAdapterIndex,
     );
 
@@ -7083,19 +7409,7 @@ export class IVRSystem {
   Return: void
   */
   GetOutputDevice(pnDevice: Deno.PointerValue<bigint>, textureType: TextureType, pInstance: Deno.PointerValue<unknown>): void {
-    if (this.ptr === null) throw new Error("IVRSystem pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSystem>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(64))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "pointer", //(uint64_t *)  pnDevice
-        "i32", //(vr::ETextureType)  textureType
-        "pointer", //(struct VkInstance_T *)  pInstance
-      ],
-      result: "void"
-    });
-
-    const _result = func.call(
+    const _result = this.#GetOutputDeviceFn.call(
       pnDevice,
       textureType,
       pInstance,
@@ -7109,19 +7423,10 @@ export class IVRSystem {
   Return: bool
   */
   IsDisplayOnDesktop(): boolean {
-    if (this.ptr === null) throw new Error("IVRSystem pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSystem>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(72))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-      ],
-      result: "bool"
-    });
-
-    const result = func.call(
+    const result = this.#IsDisplayOnDesktopFn.call(
     );
 
-    return result// as boolean;
+    return result // as boolean;
   }
 
   /*
@@ -7130,21 +7435,11 @@ export class IVRSystem {
   Return: bool
   */
   SetDisplayVisibility(bIsVisibleOnDesktop: boolean): boolean {
-    if (this.ptr === null) throw new Error("IVRSystem pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSystem>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(80))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "bool", //(bool)  bIsVisibleOnDesktop
-      ],
-      result: "bool"
-    });
-
-    const result = func.call(
+    const result = this.#SetDisplayVisibilityFn.call(
       bIsVisibleOnDesktop,
     );
 
-    return result// as boolean;
+    return result // as boolean;
   }
 
   /*
@@ -7153,20 +7448,7 @@ export class IVRSystem {
   Return: void
   */
   GetDeviceToAbsoluteTrackingPose(eOrigin: TrackingUniverseOrigin, fPredictedSecondsToPhotonsFromNow: number, pTrackedDevicePoseArray: Deno.PointerValue<TrackedDevicePose>, unTrackedDevicePoseArrayCount: number): void {
-    if (this.ptr === null) throw new Error("IVRSystem pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSystem>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(88))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "i32", //(vr::ETrackingUniverseOrigin)  eOrigin
-        "f32", //(float)  fPredictedSecondsToPhotonsFromNow
-        "pointer", //(struct vr::TrackedDevicePose_t *)  pTrackedDevicePoseArray
-        "u32", //(uint32_t)  unTrackedDevicePoseArrayCount
-      ],
-      result: "void"
-    });
-
-    const _result = func.call(
+    const _result = this.#GetDeviceToAbsoluteTrackingPoseFn.call(
       eOrigin,
       fPredictedSecondsToPhotonsFromNow,
       pTrackedDevicePoseArray,
@@ -7181,19 +7463,10 @@ export class IVRSystem {
   Return: struct vr::HmdMatrix34_t
   */
   GetSeatedZeroPoseToStandingAbsoluteTrackingPose(): HmdMatrix34 {
-    if (this.ptr === null) throw new Error("IVRSystem pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSystem>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(96))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-      ],
-      result: "pointer"
-    });
-
-    const result = func.call(
+    const result = this.#GetSeatedZeroPoseToStandingAbsoluteTrackingPoseFn.call(
     );
 
-    return result// as unknown as HmdMatrix34;
+    return result // as unknown as HmdMatrix34;
   }
 
   /*
@@ -7202,19 +7475,10 @@ export class IVRSystem {
   Return: struct vr::HmdMatrix34_t
   */
   GetRawZeroPoseToStandingAbsoluteTrackingPose(): HmdMatrix34 {
-    if (this.ptr === null) throw new Error("IVRSystem pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSystem>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(104))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-      ],
-      result: "pointer"
-    });
-
-    const result = func.call(
+    const result = this.#GetRawZeroPoseToStandingAbsoluteTrackingPoseFn.call(
     );
 
-    return result// as unknown as HmdMatrix34;
+    return result // as unknown as HmdMatrix34;
   }
 
   /*
@@ -7223,27 +7487,14 @@ export class IVRSystem {
   Return: uint32_t
   */
   GetSortedTrackedDeviceIndicesOfClass(eTrackedDeviceClass: TrackedDeviceClass, punTrackedDeviceIndexArray: Deno.PointerValue<TrackedDeviceIndex>, unTrackedDeviceIndexArrayCount: number, unRelativeToTrackedDeviceIndex: TrackedDeviceIndex): number {
-    if (this.ptr === null) throw new Error("IVRSystem pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSystem>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(112))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "i32", //(vr::ETrackedDeviceClass)  eTrackedDeviceClass
-        "pointer", //(vr::TrackedDeviceIndex_t *)  punTrackedDeviceIndexArray
-        "u32", //(uint32_t)  unTrackedDeviceIndexArrayCount
-        "u32", //(vr::TrackedDeviceIndex_t)  unRelativeToTrackedDeviceIndex
-      ],
-      result: "u32"
-    });
-
-    const result = func.call(
+    const result = this.#GetSortedTrackedDeviceIndicesOfClassFn.call(
       eTrackedDeviceClass,
       punTrackedDeviceIndexArray,
       unTrackedDeviceIndexArrayCount,
       unRelativeToTrackedDeviceIndex,
     );
 
-    return result// as number;
+    return result // as number;
   }
 
   /*
@@ -7252,21 +7503,11 @@ export class IVRSystem {
   Return: vr::EDeviceActivityLevel
   */
   GetTrackedDeviceActivityLevel(unDeviceId: TrackedDeviceIndex): DeviceActivityLevel {
-    if (this.ptr === null) throw new Error("IVRSystem pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSystem>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(120))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "u32", //(vr::TrackedDeviceIndex_t)  unDeviceId
-      ],
-      result: "i32"
-    });
-
-    const result = func.call(
+    const result = this.#GetTrackedDeviceActivityLevelFn.call(
       unDeviceId,
     );
 
-    return result// as DeviceActivityLevel;
+    return result // as DeviceActivityLevel;
   }
 
   /*
@@ -7275,19 +7516,7 @@ export class IVRSystem {
   Return: void
   */
   ApplyTransform(pOutputPose: Deno.PointerValue<TrackedDevicePose>, pTrackedDevicePose: Deno.PointerValue<TrackedDevicePose>, pTransform: Deno.PointerValue<HmdMatrix34>): void {
-    if (this.ptr === null) throw new Error("IVRSystem pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSystem>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(128))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "pointer", //(struct vr::TrackedDevicePose_t *)  pOutputPose
-        "pointer", //(const struct vr::TrackedDevicePose_t *)  pTrackedDevicePose
-        "pointer", //(const struct vr::HmdMatrix34_t *)  pTransform
-      ],
-      result: "void"
-    });
-
-    const _result = func.call(
+    const _result = this.#ApplyTransformFn.call(
       pOutputPose,
       pTrackedDevicePose,
       pTransform,
@@ -7301,21 +7530,11 @@ export class IVRSystem {
   Return: vr::TrackedDeviceIndex_t
   */
   GetTrackedDeviceIndexForControllerRole(unDeviceType: TrackedControllerRole): TrackedDeviceIndex {
-    if (this.ptr === null) throw new Error("IVRSystem pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSystem>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(136))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "i32", //(vr::ETrackedControllerRole)  unDeviceType
-      ],
-      result: "u32"
-    });
-
-    const result = func.call(
+    const result = this.#GetTrackedDeviceIndexForControllerRoleFn.call(
       unDeviceType,
     );
 
-    return result// as TrackedDeviceIndex;
+    return result // as TrackedDeviceIndex;
   }
 
   /*
@@ -7324,21 +7543,11 @@ export class IVRSystem {
   Return: vr::ETrackedControllerRole
   */
   GetControllerRoleForTrackedDeviceIndex(unDeviceIndex: TrackedDeviceIndex): TrackedControllerRole {
-    if (this.ptr === null) throw new Error("IVRSystem pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSystem>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(144))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "u32", //(vr::TrackedDeviceIndex_t)  unDeviceIndex
-      ],
-      result: "i32"
-    });
-
-    const result = func.call(
+    const result = this.#GetControllerRoleForTrackedDeviceIndexFn.call(
       unDeviceIndex,
     );
 
-    return result// as TrackedControllerRole;
+    return result // as TrackedControllerRole;
   }
 
   /*
@@ -7347,21 +7556,11 @@ export class IVRSystem {
   Return: vr::ETrackedDeviceClass
   */
   GetTrackedDeviceClass(unDeviceIndex: TrackedDeviceIndex): TrackedDeviceClass {
-    if (this.ptr === null) throw new Error("IVRSystem pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSystem>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(152))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "u32", //(vr::TrackedDeviceIndex_t)  unDeviceIndex
-      ],
-      result: "i32"
-    });
-
-    const result = func.call(
+    const result = this.#GetTrackedDeviceClassFn.call(
       unDeviceIndex,
     );
 
-    return result// as TrackedDeviceClass;
+    return result // as TrackedDeviceClass;
   }
 
   /*
@@ -7370,21 +7569,11 @@ export class IVRSystem {
   Return: bool
   */
   IsTrackedDeviceConnected(unDeviceIndex: TrackedDeviceIndex): boolean {
-    if (this.ptr === null) throw new Error("IVRSystem pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSystem>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(160))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "u32", //(vr::TrackedDeviceIndex_t)  unDeviceIndex
-      ],
-      result: "bool"
-    });
-
-    const result = func.call(
+    const result = this.#IsTrackedDeviceConnectedFn.call(
       unDeviceIndex,
     );
 
-    return result// as boolean;
+    return result // as boolean;
   }
 
   /*
@@ -7393,25 +7582,13 @@ export class IVRSystem {
   Return: bool
   */
   GetBoolTrackedDeviceProperty(unDeviceIndex: TrackedDeviceIndex, prop: TrackedDeviceProperty, pError: Deno.PointerValue<TrackedPropertyError>): boolean {
-    if (this.ptr === null) throw new Error("IVRSystem pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSystem>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(168))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "u32", //(vr::TrackedDeviceIndex_t)  unDeviceIndex
-        "i32", //(vr::ETrackedDeviceProperty)  prop
-        "pointer", //(vr::ETrackedPropertyError *)  pError
-      ],
-      result: "bool"
-    });
-
-    const result = func.call(
+    const result = this.#GetBoolTrackedDevicePropertyFn.call(
       unDeviceIndex,
       prop,
       pError,
     );
 
-    return result// as boolean;
+    return result // as boolean;
   }
 
   /*
@@ -7420,25 +7597,13 @@ export class IVRSystem {
   Return: float
   */
   GetFloatTrackedDeviceProperty(unDeviceIndex: TrackedDeviceIndex, prop: TrackedDeviceProperty, pError: Deno.PointerValue<TrackedPropertyError>): number {
-    if (this.ptr === null) throw new Error("IVRSystem pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSystem>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(176))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "u32", //(vr::TrackedDeviceIndex_t)  unDeviceIndex
-        "i32", //(vr::ETrackedDeviceProperty)  prop
-        "pointer", //(vr::ETrackedPropertyError *)  pError
-      ],
-      result: "f32"
-    });
-
-    const result = func.call(
+    const result = this.#GetFloatTrackedDevicePropertyFn.call(
       unDeviceIndex,
       prop,
       pError,
     );
 
-    return result// as number;
+    return result // as number;
   }
 
   /*
@@ -7447,25 +7612,13 @@ export class IVRSystem {
   Return: int32_t
   */
   GetInt32TrackedDeviceProperty(unDeviceIndex: TrackedDeviceIndex, prop: TrackedDeviceProperty, pError: Deno.PointerValue<TrackedPropertyError>): number {
-    if (this.ptr === null) throw new Error("IVRSystem pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSystem>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(184))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "u32", //(vr::TrackedDeviceIndex_t)  unDeviceIndex
-        "i32", //(vr::ETrackedDeviceProperty)  prop
-        "pointer", //(vr::ETrackedPropertyError *)  pError
-      ],
-      result: "i32"
-    });
-
-    const result = func.call(
+    const result = this.#GetInt32TrackedDevicePropertyFn.call(
       unDeviceIndex,
       prop,
       pError,
     );
 
-    return result// as number;
+    return result // as number;
   }
 
   /*
@@ -7474,25 +7627,13 @@ export class IVRSystem {
   Return: uint64_t
   */
   GetUint64TrackedDeviceProperty(unDeviceIndex: TrackedDeviceIndex, prop: TrackedDeviceProperty, pError: Deno.PointerValue<TrackedPropertyError>): bigint {
-    if (this.ptr === null) throw new Error("IVRSystem pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSystem>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(192))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "u32", //(vr::TrackedDeviceIndex_t)  unDeviceIndex
-        "i32", //(vr::ETrackedDeviceProperty)  prop
-        "pointer", //(vr::ETrackedPropertyError *)  pError
-      ],
-      result: "u64"
-    });
-
-    const result = func.call(
+    const result = this.#GetUint64TrackedDevicePropertyFn.call(
       unDeviceIndex,
       prop,
       pError,
     );
 
-    return result// as bigint;
+    return result // as bigint;
   }
 
   /*
@@ -7501,25 +7642,13 @@ export class IVRSystem {
   Return: struct vr::HmdMatrix34_t
   */
   GetMatrix34TrackedDeviceProperty(unDeviceIndex: TrackedDeviceIndex, prop: TrackedDeviceProperty, pError: Deno.PointerValue<TrackedPropertyError>): HmdMatrix34 {
-    if (this.ptr === null) throw new Error("IVRSystem pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSystem>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(200))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "u32", //(vr::TrackedDeviceIndex_t)  unDeviceIndex
-        "i32", //(vr::ETrackedDeviceProperty)  prop
-        "pointer", //(vr::ETrackedPropertyError *)  pError
-      ],
-      result: "pointer"
-    });
-
-    const result = func.call(
+    const result = this.#GetMatrix34TrackedDevicePropertyFn.call(
       unDeviceIndex,
       prop,
       pError,
     );
 
-    return result// as unknown as HmdMatrix34;
+    return result // as unknown as HmdMatrix34;
   }
 
   /*
@@ -7528,22 +7657,7 @@ export class IVRSystem {
   Return: uint32_t
   */
   GetArrayTrackedDeviceProperty(unDeviceIndex: TrackedDeviceIndex, prop: TrackedDeviceProperty, propType: PropertyTypeTag, pBuffer: Deno.PointerValue<unknown>, unBufferSize: number, pError: Deno.PointerValue<TrackedPropertyError>): number {
-    if (this.ptr === null) throw new Error("IVRSystem pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSystem>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(208))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "u32", //(vr::TrackedDeviceIndex_t)  unDeviceIndex
-        "i32", //(vr::ETrackedDeviceProperty)  prop
-        "u32", //(vr::PropertyTypeTag_t)  propType
-        "pointer", //(void *)  pBuffer
-        "u32", //(uint32_t)  unBufferSize
-        "pointer", //(vr::ETrackedPropertyError *)  pError
-      ],
-      result: "u32"
-    });
-
-    const result = func.call(
+    const result = this.#GetArrayTrackedDevicePropertyFn.call(
       unDeviceIndex,
       prop,
       propType,
@@ -7552,7 +7666,7 @@ export class IVRSystem {
       pError,
     );
 
-    return result// as number;
+    return result // as number;
   }
 
   /*
@@ -7561,21 +7675,7 @@ export class IVRSystem {
   Return: uint32_t
   */
   GetStringTrackedDeviceProperty(unDeviceIndex: TrackedDeviceIndex, prop: TrackedDeviceProperty, pchValue: string, unBufferSize: number, pError: Deno.PointerValue<TrackedPropertyError>): number {
-    if (this.ptr === null) throw new Error("IVRSystem pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSystem>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(216))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "u32", //(vr::TrackedDeviceIndex_t)  unDeviceIndex
-        "i32", //(vr::ETrackedDeviceProperty)  prop
-        "pointer", //(char *)  pchValue
-        "u32", //(uint32_t)  unBufferSize
-        "pointer", //(vr::ETrackedPropertyError *)  pError
-      ],
-      result: "u32"
-    });
-
-    const result = func.call(
+    const result = this.#GetStringTrackedDevicePropertyFn.call(
       unDeviceIndex,
       prop,
       Deno.UnsafePointer.of(new TextEncoder().encode(pchValue + "\0")),
@@ -7583,7 +7683,7 @@ export class IVRSystem {
       pError,
     );
 
-    return result// as number;
+    return result // as number;
   }
 
   /*
@@ -7592,21 +7692,12 @@ export class IVRSystem {
   Return: const char *
   */
   GetPropErrorNameFromEnum(error: TrackedPropertyError): string {
-    if (this.ptr === null) throw new Error("IVRSystem pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSystem>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(224))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "i32", //(vr::ETrackedPropertyError)  error
-      ],
-      result: "pointer"
-    });
-
-    const result = func.call(
+    const result = this.#GetPropErrorNameFromEnumFn.call(
       error,
     );
 
-    return result.toString();
+    if (result === null) return ""; // Handle null pointer case
+    return Deno.UnsafePointerView.getCString(result);
   }
 
   /*
@@ -7615,23 +7706,12 @@ export class IVRSystem {
   Return: bool
   */
   PollNextEvent(pEvent: Deno.PointerValue<Event>, uncbVREvent: number): boolean {
-    if (this.ptr === null) throw new Error("IVRSystem pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSystem>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(232))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "pointer", //(struct vr::VREvent_t *)  pEvent
-        "u32", //(uint32_t)  uncbVREvent
-      ],
-      result: "bool"
-    });
-
-    const result = func.call(
+    const result = this.#PollNextEventFn.call(
       pEvent,
       uncbVREvent,
     );
 
-    return result// as boolean;
+    return result // as boolean;
   }
 
   /*
@@ -7640,27 +7720,14 @@ export class IVRSystem {
   Return: bool
   */
   PollNextEventWithPose(eOrigin: TrackingUniverseOrigin, pEvent: Deno.PointerValue<Event>, uncbVREvent: number, pTrackedDevicePose: Deno.PointerValue<TrackedDevicePose>): boolean {
-    if (this.ptr === null) throw new Error("IVRSystem pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSystem>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(240))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "i32", //(vr::ETrackingUniverseOrigin)  eOrigin
-        "pointer", //(struct vr::VREvent_t *)  pEvent
-        "u32", //(uint32_t)  uncbVREvent
-        "pointer", //(vr::TrackedDevicePose_t *)  pTrackedDevicePose
-      ],
-      result: "bool"
-    });
-
-    const result = func.call(
+    const result = this.#PollNextEventWithPoseFn.call(
       eOrigin,
       pEvent,
       uncbVREvent,
       pTrackedDevicePose,
     );
 
-    return result// as boolean;
+    return result // as boolean;
   }
 
   /*
@@ -7669,21 +7736,12 @@ export class IVRSystem {
   Return: const char *
   */
   GetEventTypeNameFromEnum(eType: EventType): string {
-    if (this.ptr === null) throw new Error("IVRSystem pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSystem>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(248))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "i32", //(vr::EVREventType)  eType
-      ],
-      result: "pointer"
-    });
-
-    const result = func.call(
+    const result = this.#GetEventTypeNameFromEnumFn.call(
       eType,
     );
 
-    return result.toString();
+    if (result === null) return ""; // Handle null pointer case
+    return Deno.UnsafePointerView.getCString(result);
   }
 
   /*
@@ -7692,23 +7750,12 @@ export class IVRSystem {
   Return: struct vr::HiddenAreaMesh_t
   */
   GetHiddenAreaMesh(eEye: Eye, type: HiddenAreaMeshType): HiddenAreaMesh {
-    if (this.ptr === null) throw new Error("IVRSystem pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSystem>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(256))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "i32", //(vr::EVREye)  eEye
-        "i32", //(vr::EHiddenAreaMeshType)  type
-      ],
-      result: "pointer"
-    });
-
-    const result = func.call(
+    const result = this.#GetHiddenAreaMeshFn.call(
       eEye,
       type,
     );
 
-    return result// as unknown as HiddenAreaMesh;
+    return result // as unknown as HiddenAreaMesh;
   }
 
   /*
@@ -7717,25 +7764,13 @@ export class IVRSystem {
   Return: bool
   */
   GetControllerState(unControllerDeviceIndex: TrackedDeviceIndex, pControllerState: Deno.PointerValue<ControllerState>, unControllerStateSize: number): boolean {
-    if (this.ptr === null) throw new Error("IVRSystem pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSystem>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(264))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "u32", //(vr::TrackedDeviceIndex_t)  unControllerDeviceIndex
-        "pointer", //(vr::VRControllerState_t *)  pControllerState
-        "u32", //(uint32_t)  unControllerStateSize
-      ],
-      result: "bool"
-    });
-
-    const result = func.call(
+    const result = this.#GetControllerStateFn.call(
       unControllerDeviceIndex,
       pControllerState,
       unControllerStateSize,
     );
 
-    return result// as boolean;
+    return result // as boolean;
   }
 
   /*
@@ -7744,21 +7779,7 @@ export class IVRSystem {
   Return: bool
   */
   GetControllerStateWithPose(eOrigin: TrackingUniverseOrigin, unControllerDeviceIndex: TrackedDeviceIndex, pControllerState: Deno.PointerValue<ControllerState>, unControllerStateSize: number, pTrackedDevicePose: Deno.PointerValue<TrackedDevicePose>): boolean {
-    if (this.ptr === null) throw new Error("IVRSystem pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSystem>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(272))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "i32", //(vr::ETrackingUniverseOrigin)  eOrigin
-        "u32", //(vr::TrackedDeviceIndex_t)  unControllerDeviceIndex
-        "pointer", //(vr::VRControllerState_t *)  pControllerState
-        "u32", //(uint32_t)  unControllerStateSize
-        "pointer", //(struct vr::TrackedDevicePose_t *)  pTrackedDevicePose
-      ],
-      result: "bool"
-    });
-
-    const result = func.call(
+    const result = this.#GetControllerStateWithPoseFn.call(
       eOrigin,
       unControllerDeviceIndex,
       pControllerState,
@@ -7766,7 +7787,7 @@ export class IVRSystem {
       pTrackedDevicePose,
     );
 
-    return result// as boolean;
+    return result // as boolean;
   }
 
   /*
@@ -7775,19 +7796,7 @@ export class IVRSystem {
   Return: void
   */
   TriggerHapticPulse(unControllerDeviceIndex: TrackedDeviceIndex, unAxisId: number, usDurationMicroSec: number): void {
-    if (this.ptr === null) throw new Error("IVRSystem pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSystem>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(280))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "u32", //(vr::TrackedDeviceIndex_t)  unControllerDeviceIndex
-        "u32", //(uint32_t)  unAxisId
-        "pointer", //(unsigned short)  usDurationMicroSec
-      ],
-      result: "void"
-    });
-
-    const _result = func.call(
+    const _result = this.#TriggerHapticPulseFn.call(
       unControllerDeviceIndex,
       unAxisId,
       usDurationMicroSec,
@@ -7801,21 +7810,12 @@ export class IVRSystem {
   Return: const char *
   */
   GetButtonIdNameFromEnum(eButtonId: ButtonId): string {
-    if (this.ptr === null) throw new Error("IVRSystem pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSystem>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(288))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "i32", //(vr::EVRButtonId)  eButtonId
-      ],
-      result: "pointer"
-    });
-
-    const result = func.call(
+    const result = this.#GetButtonIdNameFromEnumFn.call(
       eButtonId,
     );
 
-    return result.toString();
+    if (result === null) return ""; // Handle null pointer case
+    return Deno.UnsafePointerView.getCString(result);
   }
 
   /*
@@ -7824,21 +7824,12 @@ export class IVRSystem {
   Return: const char *
   */
   GetControllerAxisTypeNameFromEnum(eAxisType: ControllerAxisType): string {
-    if (this.ptr === null) throw new Error("IVRSystem pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSystem>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(296))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "i32", //(vr::EVRControllerAxisType)  eAxisType
-      ],
-      result: "pointer"
-    });
-
-    const result = func.call(
+    const result = this.#GetControllerAxisTypeNameFromEnumFn.call(
       eAxisType,
     );
 
-    return result.toString();
+    if (result === null) return ""; // Handle null pointer case
+    return Deno.UnsafePointerView.getCString(result);
   }
 
   /*
@@ -7847,19 +7838,10 @@ export class IVRSystem {
   Return: bool
   */
   IsInputAvailable(): boolean {
-    if (this.ptr === null) throw new Error("IVRSystem pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSystem>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(304))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-      ],
-      result: "bool"
-    });
-
-    const result = func.call(
+    const result = this.#IsInputAvailableFn.call(
     );
 
-    return result// as boolean;
+    return result // as boolean;
   }
 
   /*
@@ -7868,19 +7850,10 @@ export class IVRSystem {
   Return: bool
   */
   IsSteamVRDrawingControllers(): boolean {
-    if (this.ptr === null) throw new Error("IVRSystem pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSystem>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(312))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-      ],
-      result: "bool"
-    });
-
-    const result = func.call(
+    const result = this.#IsSteamVRDrawingControllersFn.call(
     );
 
-    return result// as boolean;
+    return result // as boolean;
   }
 
   /*
@@ -7889,19 +7862,10 @@ export class IVRSystem {
   Return: bool
   */
   ShouldApplicationPause(): boolean {
-    if (this.ptr === null) throw new Error("IVRSystem pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSystem>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(320))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-      ],
-      result: "bool"
-    });
-
-    const result = func.call(
+    const result = this.#ShouldApplicationPauseFn.call(
     );
 
-    return result// as boolean;
+    return result // as boolean;
   }
 
   /*
@@ -7910,19 +7874,10 @@ export class IVRSystem {
   Return: bool
   */
   ShouldApplicationReduceRenderingWork(): boolean {
-    if (this.ptr === null) throw new Error("IVRSystem pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSystem>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(328))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-      ],
-      result: "bool"
-    });
-
-    const result = func.call(
+    const result = this.#ShouldApplicationReduceRenderingWorkFn.call(
     );
 
-    return result// as boolean;
+    return result // as boolean;
   }
 
   /*
@@ -7931,21 +7886,11 @@ export class IVRSystem {
   Return: vr::EVRFirmwareError
   */
   PerformFirmwareUpdate(unDeviceIndex: TrackedDeviceIndex): FirmwareError {
-    if (this.ptr === null) throw new Error("IVRSystem pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSystem>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(336))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "u32", //(vr::TrackedDeviceIndex_t)  unDeviceIndex
-      ],
-      result: "i32"
-    });
-
-    const result = func.call(
+    const result = this.#PerformFirmwareUpdateFn.call(
       unDeviceIndex,
     );
 
-    return result// as FirmwareError;
+    return result // as FirmwareError;
   }
 
   /*
@@ -7954,16 +7899,7 @@ export class IVRSystem {
   Return: void
   */
   AcknowledgeQuit_Exiting(): void {
-    if (this.ptr === null) throw new Error("IVRSystem pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSystem>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(344))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-      ],
-      result: "void"
-    });
-
-    const _result = func.call(
+    const _result = this.#AcknowledgeQuit_ExitingFn.call(
     );
 
   }
@@ -7974,23 +7910,12 @@ export class IVRSystem {
   Return: uint32_t
   */
   GetAppContainerFilePaths(pchBuffer: string, unBufferSize: number): number {
-    if (this.ptr === null) throw new Error("IVRSystem pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSystem>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(352))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "pointer", //(char *)  pchBuffer
-        "u32", //(uint32_t)  unBufferSize
-      ],
-      result: "u32"
-    });
-
-    const result = func.call(
+    const result = this.#GetAppContainerFilePathsFn.call(
       Deno.UnsafePointer.of(new TextEncoder().encode(pchBuffer + "\0")),
       unBufferSize,
     );
 
-    return result// as number;
+    return result // as number;
   }
 
   /*
@@ -7999,25 +7924,94 @@ export class IVRSystem {
   Return: const char *
   */
   GetRuntimeVersion(): string {
-    if (this.ptr === null) throw new Error("IVRSystem pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSystem>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(360))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-      ],
-      result: "pointer"
-    });
-
-    const result = func.call(
+    const result = this.#GetRuntimeVersionFn.call(
     );
 
-    return result.toString();
+    if (result === null) return ""; // Handle null pointer case
+    return Deno.UnsafePointerView.getCString(result);
   }
 
 }
 
 export class IVRChaperone {
-  constructor(private ptr: Deno.PointerValue<IVRChaperone|unknown>) {}
+  readonly #GetCalibrationStateFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetPlayAreaSizeFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetPlayAreaRectFn: Deno.UnsafeFnPointer<any>;
+  readonly #ReloadInfoFn: Deno.UnsafeFnPointer<any>;
+  readonly #SetSceneColorFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetBoundsColorFn: Deno.UnsafeFnPointer<any>;
+  readonly #AreBoundsVisibleFn: Deno.UnsafeFnPointer<any>;
+  readonly #ForceBoundsVisibleFn: Deno.UnsafeFnPointer<any>;
+  readonly #ResetZeroPoseFn: Deno.UnsafeFnPointer<any>;
+
+  constructor(private ptr: Deno.PointerValue<IVRChaperone|unknown>) {
+    if (this.ptr === null) throw new Error("IVRChaperone pointer is null");
+    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRChaperone>);
+    const GetCalibrationStateFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(0))!;
+    this.#GetCalibrationStateFn = new Deno.UnsafeFnPointer(GetCalibrationStateFuncPtr, {
+      parameters: [
+      ],
+      result: "i32"
+    });
+    const GetPlayAreaSizeFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(8))!;
+    this.#GetPlayAreaSizeFn = new Deno.UnsafeFnPointer(GetPlayAreaSizeFuncPtr, {
+      parameters: [
+        "pointer", //(float *)  pSizeX
+        "pointer", //(float *)  pSizeZ
+      ],
+      result: "bool"
+    });
+    const GetPlayAreaRectFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(16))!;
+    this.#GetPlayAreaRectFn = new Deno.UnsafeFnPointer(GetPlayAreaRectFuncPtr, {
+      parameters: [
+        "pointer", //(struct vr::HmdQuad_t *)  rect
+      ],
+      result: "bool"
+    });
+    const ReloadInfoFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(24))!;
+    this.#ReloadInfoFn = new Deno.UnsafeFnPointer(ReloadInfoFuncPtr, {
+      parameters: [
+      ],
+      result: "void"
+    });
+    const SetSceneColorFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(32))!;
+    this.#SetSceneColorFn = new Deno.UnsafeFnPointer(SetSceneColorFuncPtr, {
+      parameters: [
+        "pointer", //(struct vr::HmdColor_t)  color
+      ],
+      result: "void"
+    });
+    const GetBoundsColorFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(40))!;
+    this.#GetBoundsColorFn = new Deno.UnsafeFnPointer(GetBoundsColorFuncPtr, {
+      parameters: [
+        "pointer", //(struct vr::HmdColor_t *)  pOutputColorArray
+        "pointer", //(int)  nNumOutputColors
+        "f32", //(float)  flCollisionBoundsFadeDistance
+        "pointer", //(struct vr::HmdColor_t *)  pOutputCameraColor
+      ],
+      result: "void"
+    });
+    const AreBoundsVisibleFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(48))!;
+    this.#AreBoundsVisibleFn = new Deno.UnsafeFnPointer(AreBoundsVisibleFuncPtr, {
+      parameters: [
+      ],
+      result: "bool"
+    });
+    const ForceBoundsVisibleFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(56))!;
+    this.#ForceBoundsVisibleFn = new Deno.UnsafeFnPointer(ForceBoundsVisibleFuncPtr, {
+      parameters: [
+        "bool", //(bool)  bForce
+      ],
+      result: "void"
+    });
+    const ResetZeroPoseFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(64))!;
+    this.#ResetZeroPoseFn = new Deno.UnsafeFnPointer(ResetZeroPoseFuncPtr, {
+      parameters: [
+        "i32", //(vr::ETrackingUniverseOrigin)  eTrackingUniverseOrigin
+      ],
+      result: "void"
+    });
+  }
 
   /*
   GetCalibrationState
@@ -8025,19 +8019,10 @@ export class IVRChaperone {
   Return: vr::ChaperoneCalibrationState
   */
   GetCalibrationState(): ChaperoneCalibrationState {
-    if (this.ptr === null) throw new Error("IVRChaperone pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRChaperone>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(0))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-      ],
-      result: "i32"
-    });
-
-    const result = func.call(
+    const result = this.#GetCalibrationStateFn.call(
     );
 
-    return result// as ChaperoneCalibrationState;
+    return result // as ChaperoneCalibrationState;
   }
 
   /*
@@ -8046,23 +8031,12 @@ export class IVRChaperone {
   Return: bool
   */
   GetPlayAreaSize(pSizeX: Deno.PointerValue<number>, pSizeZ: Deno.PointerValue<number>): boolean {
-    if (this.ptr === null) throw new Error("IVRChaperone pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRChaperone>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(8))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "pointer", //(float *)  pSizeX
-        "pointer", //(float *)  pSizeZ
-      ],
-      result: "bool"
-    });
-
-    const result = func.call(
+    const result = this.#GetPlayAreaSizeFn.call(
       pSizeX,
       pSizeZ,
     );
 
-    return result// as boolean;
+    return result // as boolean;
   }
 
   /*
@@ -8071,21 +8045,11 @@ export class IVRChaperone {
   Return: bool
   */
   GetPlayAreaRect(rect: Deno.PointerValue<HmdQuad>): boolean {
-    if (this.ptr === null) throw new Error("IVRChaperone pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRChaperone>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(16))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "pointer", //(struct vr::HmdQuad_t *)  rect
-      ],
-      result: "bool"
-    });
-
-    const result = func.call(
+    const result = this.#GetPlayAreaRectFn.call(
       rect,
     );
 
-    return result// as boolean;
+    return result // as boolean;
   }
 
   /*
@@ -8094,16 +8058,7 @@ export class IVRChaperone {
   Return: void
   */
   ReloadInfo(): void {
-    if (this.ptr === null) throw new Error("IVRChaperone pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRChaperone>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(24))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-      ],
-      result: "void"
-    });
-
-    const _result = func.call(
+    const _result = this.#ReloadInfoFn.call(
     );
 
   }
@@ -8114,17 +8069,7 @@ export class IVRChaperone {
   Return: void
   */
   SetSceneColor(color: HmdColor): void {
-    if (this.ptr === null) throw new Error("IVRChaperone pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRChaperone>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(32))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "pointer", //(struct vr::HmdColor_t)  color
-      ],
-      result: "void"
-    });
-
-    const _result = func.call(
+    const _result = this.#SetSceneColorFn.call(
       color,
     );
 
@@ -8136,20 +8081,7 @@ export class IVRChaperone {
   Return: void
   */
   GetBoundsColor(pOutputColorArray: Deno.PointerValue<HmdColor>, nNumOutputColors: number, flCollisionBoundsFadeDistance: number, pOutputCameraColor: Deno.PointerValue<HmdColor>): void {
-    if (this.ptr === null) throw new Error("IVRChaperone pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRChaperone>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(40))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "pointer", //(struct vr::HmdColor_t *)  pOutputColorArray
-        "pointer", //(int)  nNumOutputColors
-        "f32", //(float)  flCollisionBoundsFadeDistance
-        "pointer", //(struct vr::HmdColor_t *)  pOutputCameraColor
-      ],
-      result: "void"
-    });
-
-    const _result = func.call(
+    const _result = this.#GetBoundsColorFn.call(
       pOutputColorArray,
       nNumOutputColors,
       flCollisionBoundsFadeDistance,
@@ -8164,19 +8096,10 @@ export class IVRChaperone {
   Return: bool
   */
   AreBoundsVisible(): boolean {
-    if (this.ptr === null) throw new Error("IVRChaperone pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRChaperone>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(48))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-      ],
-      result: "bool"
-    });
-
-    const result = func.call(
+    const result = this.#AreBoundsVisibleFn.call(
     );
 
-    return result// as boolean;
+    return result // as boolean;
   }
 
   /*
@@ -8185,17 +8108,7 @@ export class IVRChaperone {
   Return: void
   */
   ForceBoundsVisible(bForce: boolean): void {
-    if (this.ptr === null) throw new Error("IVRChaperone pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRChaperone>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(56))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "bool", //(bool)  bForce
-      ],
-      result: "void"
-    });
-
-    const _result = func.call(
+    const _result = this.#ForceBoundsVisibleFn.call(
       bForce,
     );
 
@@ -8207,17 +8120,7 @@ export class IVRChaperone {
   Return: void
   */
   ResetZeroPose(eTrackingUniverseOrigin: TrackingUniverseOrigin): void {
-    if (this.ptr === null) throw new Error("IVRChaperone pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRChaperone>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(64))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "i32", //(vr::ETrackingUniverseOrigin)  eTrackingUniverseOrigin
-      ],
-      result: "void"
-    });
-
-    const _result = func.call(
+    const _result = this.#ResetZeroPoseFn.call(
       eTrackingUniverseOrigin,
     );
 
@@ -8226,7 +8129,175 @@ export class IVRChaperone {
 }
 
 export class IVRChaperoneSetup {
-  constructor(private ptr: Deno.PointerValue<IVRChaperoneSetup|unknown>) {}
+  readonly #CommitWorkingCopyFn: Deno.UnsafeFnPointer<any>;
+  readonly #RevertWorkingCopyFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetWorkingPlayAreaSizeFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetWorkingPlayAreaRectFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetWorkingCollisionBoundsInfoFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetLiveCollisionBoundsInfoFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetWorkingSeatedZeroPoseToRawTrackingPoseFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetWorkingStandingZeroPoseToRawTrackingPoseFn: Deno.UnsafeFnPointer<any>;
+  readonly #SetWorkingPlayAreaSizeFn: Deno.UnsafeFnPointer<any>;
+  readonly #SetWorkingCollisionBoundsInfoFn: Deno.UnsafeFnPointer<any>;
+  readonly #SetWorkingPerimeterFn: Deno.UnsafeFnPointer<any>;
+  readonly #SetWorkingSeatedZeroPoseToRawTrackingPoseFn: Deno.UnsafeFnPointer<any>;
+  readonly #SetWorkingStandingZeroPoseToRawTrackingPoseFn: Deno.UnsafeFnPointer<any>;
+  readonly #ReloadFromDiskFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetLiveSeatedZeroPoseToRawTrackingPoseFn: Deno.UnsafeFnPointer<any>;
+  readonly #ExportLiveToBufferFn: Deno.UnsafeFnPointer<any>;
+  readonly #ImportFromBufferToWorkingFn: Deno.UnsafeFnPointer<any>;
+  readonly #ShowWorkingSetPreviewFn: Deno.UnsafeFnPointer<any>;
+  readonly #HideWorkingSetPreviewFn: Deno.UnsafeFnPointer<any>;
+  readonly #RoomSetupStartingFn: Deno.UnsafeFnPointer<any>;
+
+  constructor(private ptr: Deno.PointerValue<IVRChaperoneSetup|unknown>) {
+    if (this.ptr === null) throw new Error("IVRChaperoneSetup pointer is null");
+    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRChaperoneSetup>);
+    const CommitWorkingCopyFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(0))!;
+    this.#CommitWorkingCopyFn = new Deno.UnsafeFnPointer(CommitWorkingCopyFuncPtr, {
+      parameters: [
+        "i32", //(vr::EChaperoneConfigFile)  configFile
+      ],
+      result: "bool"
+    });
+    const RevertWorkingCopyFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(8))!;
+    this.#RevertWorkingCopyFn = new Deno.UnsafeFnPointer(RevertWorkingCopyFuncPtr, {
+      parameters: [
+      ],
+      result: "void"
+    });
+    const GetWorkingPlayAreaSizeFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(16))!;
+    this.#GetWorkingPlayAreaSizeFn = new Deno.UnsafeFnPointer(GetWorkingPlayAreaSizeFuncPtr, {
+      parameters: [
+        "pointer", //(float *)  pSizeX
+        "pointer", //(float *)  pSizeZ
+      ],
+      result: "bool"
+    });
+    const GetWorkingPlayAreaRectFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(24))!;
+    this.#GetWorkingPlayAreaRectFn = new Deno.UnsafeFnPointer(GetWorkingPlayAreaRectFuncPtr, {
+      parameters: [
+        "pointer", //(struct vr::HmdQuad_t *)  rect
+      ],
+      result: "bool"
+    });
+    const GetWorkingCollisionBoundsInfoFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(32))!;
+    this.#GetWorkingCollisionBoundsInfoFn = new Deno.UnsafeFnPointer(GetWorkingCollisionBoundsInfoFuncPtr, {
+      parameters: [
+        "pointer", //(struct vr::HmdQuad_t *)  pQuadsBuffer
+        "pointer", //(uint32_t *)  punQuadsCount
+      ],
+      result: "bool"
+    });
+    const GetLiveCollisionBoundsInfoFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(40))!;
+    this.#GetLiveCollisionBoundsInfoFn = new Deno.UnsafeFnPointer(GetLiveCollisionBoundsInfoFuncPtr, {
+      parameters: [
+        "pointer", //(struct vr::HmdQuad_t *)  pQuadsBuffer
+        "pointer", //(uint32_t *)  punQuadsCount
+      ],
+      result: "bool"
+    });
+    const GetWorkingSeatedZeroPoseToRawTrackingPoseFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(48))!;
+    this.#GetWorkingSeatedZeroPoseToRawTrackingPoseFn = new Deno.UnsafeFnPointer(GetWorkingSeatedZeroPoseToRawTrackingPoseFuncPtr, {
+      parameters: [
+        "pointer", //(struct vr::HmdMatrix34_t *)  pmatSeatedZeroPoseToRawTrackingPose
+      ],
+      result: "bool"
+    });
+    const GetWorkingStandingZeroPoseToRawTrackingPoseFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(56))!;
+    this.#GetWorkingStandingZeroPoseToRawTrackingPoseFn = new Deno.UnsafeFnPointer(GetWorkingStandingZeroPoseToRawTrackingPoseFuncPtr, {
+      parameters: [
+        "pointer", //(struct vr::HmdMatrix34_t *)  pmatStandingZeroPoseToRawTrackingPose
+      ],
+      result: "bool"
+    });
+    const SetWorkingPlayAreaSizeFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(64))!;
+    this.#SetWorkingPlayAreaSizeFn = new Deno.UnsafeFnPointer(SetWorkingPlayAreaSizeFuncPtr, {
+      parameters: [
+        "f32", //(float)  sizeX
+        "f32", //(float)  sizeZ
+      ],
+      result: "void"
+    });
+    const SetWorkingCollisionBoundsInfoFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(72))!;
+    this.#SetWorkingCollisionBoundsInfoFn = new Deno.UnsafeFnPointer(SetWorkingCollisionBoundsInfoFuncPtr, {
+      parameters: [
+        "pointer", //(struct vr::HmdQuad_t *)  pQuadsBuffer
+        "u32", //(uint32_t)  unQuadsCount
+      ],
+      result: "void"
+    });
+    const SetWorkingPerimeterFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(80))!;
+    this.#SetWorkingPerimeterFn = new Deno.UnsafeFnPointer(SetWorkingPerimeterFuncPtr, {
+      parameters: [
+        "pointer", //(struct vr::HmdVector2_t *)  pPointBuffer
+        "u32", //(uint32_t)  unPointCount
+      ],
+      result: "void"
+    });
+    const SetWorkingSeatedZeroPoseToRawTrackingPoseFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(88))!;
+    this.#SetWorkingSeatedZeroPoseToRawTrackingPoseFn = new Deno.UnsafeFnPointer(SetWorkingSeatedZeroPoseToRawTrackingPoseFuncPtr, {
+      parameters: [
+        "pointer", //(const struct vr::HmdMatrix34_t *)  pMatSeatedZeroPoseToRawTrackingPose
+      ],
+      result: "void"
+    });
+    const SetWorkingStandingZeroPoseToRawTrackingPoseFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(96))!;
+    this.#SetWorkingStandingZeroPoseToRawTrackingPoseFn = new Deno.UnsafeFnPointer(SetWorkingStandingZeroPoseToRawTrackingPoseFuncPtr, {
+      parameters: [
+        "pointer", //(const struct vr::HmdMatrix34_t *)  pMatStandingZeroPoseToRawTrackingPose
+      ],
+      result: "void"
+    });
+    const ReloadFromDiskFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(104))!;
+    this.#ReloadFromDiskFn = new Deno.UnsafeFnPointer(ReloadFromDiskFuncPtr, {
+      parameters: [
+        "i32", //(vr::EChaperoneConfigFile)  configFile
+      ],
+      result: "void"
+    });
+    const GetLiveSeatedZeroPoseToRawTrackingPoseFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(112))!;
+    this.#GetLiveSeatedZeroPoseToRawTrackingPoseFn = new Deno.UnsafeFnPointer(GetLiveSeatedZeroPoseToRawTrackingPoseFuncPtr, {
+      parameters: [
+        "pointer", //(struct vr::HmdMatrix34_t *)  pmatSeatedZeroPoseToRawTrackingPose
+      ],
+      result: "bool"
+    });
+    const ExportLiveToBufferFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(120))!;
+    this.#ExportLiveToBufferFn = new Deno.UnsafeFnPointer(ExportLiveToBufferFuncPtr, {
+      parameters: [
+        "pointer", //(char *)  pBuffer
+        "pointer", //(uint32_t *)  pnBufferLength
+      ],
+      result: "bool"
+    });
+    const ImportFromBufferToWorkingFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(128))!;
+    this.#ImportFromBufferToWorkingFn = new Deno.UnsafeFnPointer(ImportFromBufferToWorkingFuncPtr, {
+      parameters: [
+        "pointer", //(const char *)  pBuffer
+        "u32", //(uint32_t)  nImportFlags
+      ],
+      result: "bool"
+    });
+    const ShowWorkingSetPreviewFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(136))!;
+    this.#ShowWorkingSetPreviewFn = new Deno.UnsafeFnPointer(ShowWorkingSetPreviewFuncPtr, {
+      parameters: [
+      ],
+      result: "void"
+    });
+    const HideWorkingSetPreviewFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(144))!;
+    this.#HideWorkingSetPreviewFn = new Deno.UnsafeFnPointer(HideWorkingSetPreviewFuncPtr, {
+      parameters: [
+      ],
+      result: "void"
+    });
+    const RoomSetupStartingFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(152))!;
+    this.#RoomSetupStartingFn = new Deno.UnsafeFnPointer(RoomSetupStartingFuncPtr, {
+      parameters: [
+      ],
+      result: "void"
+    });
+  }
 
   /*
   CommitWorkingCopy
@@ -8234,21 +8305,11 @@ export class IVRChaperoneSetup {
   Return: bool
   */
   CommitWorkingCopy(configFile: ChaperoneConfigFile): boolean {
-    if (this.ptr === null) throw new Error("IVRChaperoneSetup pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRChaperoneSetup>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(0))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "i32", //(vr::EChaperoneConfigFile)  configFile
-      ],
-      result: "bool"
-    });
-
-    const result = func.call(
+    const result = this.#CommitWorkingCopyFn.call(
       configFile,
     );
 
-    return result// as boolean;
+    return result // as boolean;
   }
 
   /*
@@ -8257,16 +8318,7 @@ export class IVRChaperoneSetup {
   Return: void
   */
   RevertWorkingCopy(): void {
-    if (this.ptr === null) throw new Error("IVRChaperoneSetup pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRChaperoneSetup>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(8))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-      ],
-      result: "void"
-    });
-
-    const _result = func.call(
+    const _result = this.#RevertWorkingCopyFn.call(
     );
 
   }
@@ -8277,23 +8329,12 @@ export class IVRChaperoneSetup {
   Return: bool
   */
   GetWorkingPlayAreaSize(pSizeX: Deno.PointerValue<number>, pSizeZ: Deno.PointerValue<number>): boolean {
-    if (this.ptr === null) throw new Error("IVRChaperoneSetup pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRChaperoneSetup>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(16))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "pointer", //(float *)  pSizeX
-        "pointer", //(float *)  pSizeZ
-      ],
-      result: "bool"
-    });
-
-    const result = func.call(
+    const result = this.#GetWorkingPlayAreaSizeFn.call(
       pSizeX,
       pSizeZ,
     );
 
-    return result// as boolean;
+    return result // as boolean;
   }
 
   /*
@@ -8302,21 +8343,11 @@ export class IVRChaperoneSetup {
   Return: bool
   */
   GetWorkingPlayAreaRect(rect: Deno.PointerValue<HmdQuad>): boolean {
-    if (this.ptr === null) throw new Error("IVRChaperoneSetup pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRChaperoneSetup>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(24))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "pointer", //(struct vr::HmdQuad_t *)  rect
-      ],
-      result: "bool"
-    });
-
-    const result = func.call(
+    const result = this.#GetWorkingPlayAreaRectFn.call(
       rect,
     );
 
-    return result// as boolean;
+    return result // as boolean;
   }
 
   /*
@@ -8325,23 +8356,12 @@ export class IVRChaperoneSetup {
   Return: bool
   */
   GetWorkingCollisionBoundsInfo(pQuadsBuffer: Deno.PointerValue<HmdQuad>, punQuadsCount: Deno.PointerValue<number>): boolean {
-    if (this.ptr === null) throw new Error("IVRChaperoneSetup pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRChaperoneSetup>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(32))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "pointer", //(struct vr::HmdQuad_t *)  pQuadsBuffer
-        "pointer", //(uint32_t *)  punQuadsCount
-      ],
-      result: "bool"
-    });
-
-    const result = func.call(
+    const result = this.#GetWorkingCollisionBoundsInfoFn.call(
       pQuadsBuffer,
       punQuadsCount,
     );
 
-    return result// as boolean;
+    return result // as boolean;
   }
 
   /*
@@ -8350,23 +8370,12 @@ export class IVRChaperoneSetup {
   Return: bool
   */
   GetLiveCollisionBoundsInfo(pQuadsBuffer: Deno.PointerValue<HmdQuad>, punQuadsCount: Deno.PointerValue<number>): boolean {
-    if (this.ptr === null) throw new Error("IVRChaperoneSetup pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRChaperoneSetup>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(40))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "pointer", //(struct vr::HmdQuad_t *)  pQuadsBuffer
-        "pointer", //(uint32_t *)  punQuadsCount
-      ],
-      result: "bool"
-    });
-
-    const result = func.call(
+    const result = this.#GetLiveCollisionBoundsInfoFn.call(
       pQuadsBuffer,
       punQuadsCount,
     );
 
-    return result// as boolean;
+    return result // as boolean;
   }
 
   /*
@@ -8375,21 +8384,11 @@ export class IVRChaperoneSetup {
   Return: bool
   */
   GetWorkingSeatedZeroPoseToRawTrackingPose(pmatSeatedZeroPoseToRawTrackingPose: Deno.PointerValue<HmdMatrix34>): boolean {
-    if (this.ptr === null) throw new Error("IVRChaperoneSetup pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRChaperoneSetup>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(48))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "pointer", //(struct vr::HmdMatrix34_t *)  pmatSeatedZeroPoseToRawTrackingPose
-      ],
-      result: "bool"
-    });
-
-    const result = func.call(
+    const result = this.#GetWorkingSeatedZeroPoseToRawTrackingPoseFn.call(
       pmatSeatedZeroPoseToRawTrackingPose,
     );
 
-    return result// as boolean;
+    return result // as boolean;
   }
 
   /*
@@ -8398,21 +8397,11 @@ export class IVRChaperoneSetup {
   Return: bool
   */
   GetWorkingStandingZeroPoseToRawTrackingPose(pmatStandingZeroPoseToRawTrackingPose: Deno.PointerValue<HmdMatrix34>): boolean {
-    if (this.ptr === null) throw new Error("IVRChaperoneSetup pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRChaperoneSetup>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(56))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "pointer", //(struct vr::HmdMatrix34_t *)  pmatStandingZeroPoseToRawTrackingPose
-      ],
-      result: "bool"
-    });
-
-    const result = func.call(
+    const result = this.#GetWorkingStandingZeroPoseToRawTrackingPoseFn.call(
       pmatStandingZeroPoseToRawTrackingPose,
     );
 
-    return result// as boolean;
+    return result // as boolean;
   }
 
   /*
@@ -8421,18 +8410,7 @@ export class IVRChaperoneSetup {
   Return: void
   */
   SetWorkingPlayAreaSize(sizeX: number, sizeZ: number): void {
-    if (this.ptr === null) throw new Error("IVRChaperoneSetup pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRChaperoneSetup>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(64))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "f32", //(float)  sizeX
-        "f32", //(float)  sizeZ
-      ],
-      result: "void"
-    });
-
-    const _result = func.call(
+    const _result = this.#SetWorkingPlayAreaSizeFn.call(
       sizeX,
       sizeZ,
     );
@@ -8445,18 +8423,7 @@ export class IVRChaperoneSetup {
   Return: void
   */
   SetWorkingCollisionBoundsInfo(pQuadsBuffer: Deno.PointerValue<HmdQuad>, unQuadsCount: number): void {
-    if (this.ptr === null) throw new Error("IVRChaperoneSetup pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRChaperoneSetup>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(72))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "pointer", //(struct vr::HmdQuad_t *)  pQuadsBuffer
-        "u32", //(uint32_t)  unQuadsCount
-      ],
-      result: "void"
-    });
-
-    const _result = func.call(
+    const _result = this.#SetWorkingCollisionBoundsInfoFn.call(
       pQuadsBuffer,
       unQuadsCount,
     );
@@ -8469,18 +8436,7 @@ export class IVRChaperoneSetup {
   Return: void
   */
   SetWorkingPerimeter(pPointBuffer: Deno.PointerValue<HmdVector2>, unPointCount: number): void {
-    if (this.ptr === null) throw new Error("IVRChaperoneSetup pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRChaperoneSetup>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(80))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "pointer", //(struct vr::HmdVector2_t *)  pPointBuffer
-        "u32", //(uint32_t)  unPointCount
-      ],
-      result: "void"
-    });
-
-    const _result = func.call(
+    const _result = this.#SetWorkingPerimeterFn.call(
       pPointBuffer,
       unPointCount,
     );
@@ -8493,17 +8449,7 @@ export class IVRChaperoneSetup {
   Return: void
   */
   SetWorkingSeatedZeroPoseToRawTrackingPose(pMatSeatedZeroPoseToRawTrackingPose: Deno.PointerValue<HmdMatrix34>): void {
-    if (this.ptr === null) throw new Error("IVRChaperoneSetup pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRChaperoneSetup>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(88))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "pointer", //(const struct vr::HmdMatrix34_t *)  pMatSeatedZeroPoseToRawTrackingPose
-      ],
-      result: "void"
-    });
-
-    const _result = func.call(
+    const _result = this.#SetWorkingSeatedZeroPoseToRawTrackingPoseFn.call(
       pMatSeatedZeroPoseToRawTrackingPose,
     );
 
@@ -8515,17 +8461,7 @@ export class IVRChaperoneSetup {
   Return: void
   */
   SetWorkingStandingZeroPoseToRawTrackingPose(pMatStandingZeroPoseToRawTrackingPose: Deno.PointerValue<HmdMatrix34>): void {
-    if (this.ptr === null) throw new Error("IVRChaperoneSetup pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRChaperoneSetup>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(96))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "pointer", //(const struct vr::HmdMatrix34_t *)  pMatStandingZeroPoseToRawTrackingPose
-      ],
-      result: "void"
-    });
-
-    const _result = func.call(
+    const _result = this.#SetWorkingStandingZeroPoseToRawTrackingPoseFn.call(
       pMatStandingZeroPoseToRawTrackingPose,
     );
 
@@ -8537,17 +8473,7 @@ export class IVRChaperoneSetup {
   Return: void
   */
   ReloadFromDisk(configFile: ChaperoneConfigFile): void {
-    if (this.ptr === null) throw new Error("IVRChaperoneSetup pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRChaperoneSetup>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(104))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "i32", //(vr::EChaperoneConfigFile)  configFile
-      ],
-      result: "void"
-    });
-
-    const _result = func.call(
+    const _result = this.#ReloadFromDiskFn.call(
       configFile,
     );
 
@@ -8559,21 +8485,11 @@ export class IVRChaperoneSetup {
   Return: bool
   */
   GetLiveSeatedZeroPoseToRawTrackingPose(pmatSeatedZeroPoseToRawTrackingPose: Deno.PointerValue<HmdMatrix34>): boolean {
-    if (this.ptr === null) throw new Error("IVRChaperoneSetup pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRChaperoneSetup>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(112))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "pointer", //(struct vr::HmdMatrix34_t *)  pmatSeatedZeroPoseToRawTrackingPose
-      ],
-      result: "bool"
-    });
-
-    const result = func.call(
+    const result = this.#GetLiveSeatedZeroPoseToRawTrackingPoseFn.call(
       pmatSeatedZeroPoseToRawTrackingPose,
     );
 
-    return result// as boolean;
+    return result // as boolean;
   }
 
   /*
@@ -8582,23 +8498,12 @@ export class IVRChaperoneSetup {
   Return: bool
   */
   ExportLiveToBuffer(pBuffer: string, pnBufferLength: Deno.PointerValue<number>): boolean {
-    if (this.ptr === null) throw new Error("IVRChaperoneSetup pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRChaperoneSetup>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(120))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "pointer", //(char *)  pBuffer
-        "pointer", //(uint32_t *)  pnBufferLength
-      ],
-      result: "bool"
-    });
-
-    const result = func.call(
+    const result = this.#ExportLiveToBufferFn.call(
       Deno.UnsafePointer.of(new TextEncoder().encode(pBuffer + "\0")),
       pnBufferLength,
     );
 
-    return result// as boolean;
+    return result // as boolean;
   }
 
   /*
@@ -8607,23 +8512,12 @@ export class IVRChaperoneSetup {
   Return: bool
   */
   ImportFromBufferToWorking(pBuffer: string, nImportFlags: number): boolean {
-    if (this.ptr === null) throw new Error("IVRChaperoneSetup pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRChaperoneSetup>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(128))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "pointer", //(const char *)  pBuffer
-        "u32", //(uint32_t)  nImportFlags
-      ],
-      result: "bool"
-    });
-
-    const result = func.call(
+    const result = this.#ImportFromBufferToWorkingFn.call(
       Deno.UnsafePointer.of(new TextEncoder().encode(pBuffer + "\0")),
       nImportFlags,
     );
 
-    return result// as boolean;
+    return result // as boolean;
   }
 
   /*
@@ -8632,16 +8526,7 @@ export class IVRChaperoneSetup {
   Return: void
   */
   ShowWorkingSetPreview(): void {
-    if (this.ptr === null) throw new Error("IVRChaperoneSetup pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRChaperoneSetup>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(136))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-      ],
-      result: "void"
-    });
-
-    const _result = func.call(
+    const _result = this.#ShowWorkingSetPreviewFn.call(
     );
 
   }
@@ -8652,16 +8537,7 @@ export class IVRChaperoneSetup {
   Return: void
   */
   HideWorkingSetPreview(): void {
-    if (this.ptr === null) throw new Error("IVRChaperoneSetup pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRChaperoneSetup>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(144))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-      ],
-      result: "void"
-    });
-
-    const _result = func.call(
+    const _result = this.#HideWorkingSetPreviewFn.call(
     );
 
   }
@@ -8672,16 +8548,7 @@ export class IVRChaperoneSetup {
   Return: void
   */
   RoomSetupStarting(): void {
-    if (this.ptr === null) throw new Error("IVRChaperoneSetup pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRChaperoneSetup>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(152))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-      ],
-      result: "void"
-    });
-
-    const _result = func.call(
+    const _result = this.#RoomSetupStartingFn.call(
     );
 
   }
@@ -8689,7 +8556,443 @@ export class IVRChaperoneSetup {
 }
 
 export class IVRCompositor {
-  constructor(private ptr: Deno.PointerValue<IVRCompositor|unknown>) {}
+  readonly #SetTrackingSpaceFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetTrackingSpaceFn: Deno.UnsafeFnPointer<any>;
+  readonly #WaitGetPosesFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetLastPosesFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetLastPoseForTrackedDeviceIndexFn: Deno.UnsafeFnPointer<any>;
+  readonly #SubmitFn: Deno.UnsafeFnPointer<any>;
+  readonly #SubmitWithArrayIndexFn: Deno.UnsafeFnPointer<any>;
+  readonly #ClearLastSubmittedFrameFn: Deno.UnsafeFnPointer<any>;
+  readonly #PostPresentHandoffFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetFrameTimingFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetFrameTimingsFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetFrameTimeRemainingFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetCumulativeStatsFn: Deno.UnsafeFnPointer<any>;
+  readonly #FadeToColorFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetCurrentFadeColorFn: Deno.UnsafeFnPointer<any>;
+  readonly #FadeGridFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetCurrentGridAlphaFn: Deno.UnsafeFnPointer<any>;
+  readonly #SetSkyboxOverrideFn: Deno.UnsafeFnPointer<any>;
+  readonly #ClearSkyboxOverrideFn: Deno.UnsafeFnPointer<any>;
+  readonly #CompositorBringToFrontFn: Deno.UnsafeFnPointer<any>;
+  readonly #CompositorGoToBackFn: Deno.UnsafeFnPointer<any>;
+  readonly #CompositorQuitFn: Deno.UnsafeFnPointer<any>;
+  readonly #IsFullscreenFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetCurrentSceneFocusProcessFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetLastFrameRendererFn: Deno.UnsafeFnPointer<any>;
+  readonly #CanRenderSceneFn: Deno.UnsafeFnPointer<any>;
+  readonly #ShowMirrorWindowFn: Deno.UnsafeFnPointer<any>;
+  readonly #HideMirrorWindowFn: Deno.UnsafeFnPointer<any>;
+  readonly #IsMirrorWindowVisibleFn: Deno.UnsafeFnPointer<any>;
+  readonly #CompositorDumpImagesFn: Deno.UnsafeFnPointer<any>;
+  readonly #ShouldAppRenderWithLowResourcesFn: Deno.UnsafeFnPointer<any>;
+  readonly #ForceInterleavedReprojectionOnFn: Deno.UnsafeFnPointer<any>;
+  readonly #ForceReconnectProcessFn: Deno.UnsafeFnPointer<any>;
+  readonly #SuspendRenderingFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetMirrorTextureD3D11Fn: Deno.UnsafeFnPointer<any>;
+  readonly #ReleaseMirrorTextureD3D11Fn: Deno.UnsafeFnPointer<any>;
+  readonly #GetMirrorTextureGLFn: Deno.UnsafeFnPointer<any>;
+  readonly #ReleaseSharedGLTextureFn: Deno.UnsafeFnPointer<any>;
+  readonly #LockGLSharedTextureForAccessFn: Deno.UnsafeFnPointer<any>;
+  readonly #UnlockGLSharedTextureForAccessFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetVulkanInstanceExtensionsRequiredFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetVulkanDeviceExtensionsRequiredFn: Deno.UnsafeFnPointer<any>;
+  readonly #SetExplicitTimingModeFn: Deno.UnsafeFnPointer<any>;
+  readonly #SubmitExplicitTimingDataFn: Deno.UnsafeFnPointer<any>;
+  readonly #IsMotionSmoothingEnabledFn: Deno.UnsafeFnPointer<any>;
+  readonly #IsMotionSmoothingSupportedFn: Deno.UnsafeFnPointer<any>;
+  readonly #IsCurrentSceneFocusAppLoadingFn: Deno.UnsafeFnPointer<any>;
+  readonly #SetStageOverride_AsyncFn: Deno.UnsafeFnPointer<any>;
+  readonly #ClearStageOverrideFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetCompositorBenchmarkResultsFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetLastPosePredictionIDsFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetPosesForFrameFn: Deno.UnsafeFnPointer<any>;
+
+  constructor(private ptr: Deno.PointerValue<IVRCompositor|unknown>) {
+    if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
+    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
+    const SetTrackingSpaceFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(0))!;
+    this.#SetTrackingSpaceFn = new Deno.UnsafeFnPointer(SetTrackingSpaceFuncPtr, {
+      parameters: [
+        "i32", //(vr::ETrackingUniverseOrigin)  eOrigin
+      ],
+      result: "void"
+    });
+    const GetTrackingSpaceFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(8))!;
+    this.#GetTrackingSpaceFn = new Deno.UnsafeFnPointer(GetTrackingSpaceFuncPtr, {
+      parameters: [
+      ],
+      result: "i32"
+    });
+    const WaitGetPosesFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(16))!;
+    this.#WaitGetPosesFn = new Deno.UnsafeFnPointer(WaitGetPosesFuncPtr, {
+      parameters: [
+        "pointer", //(struct vr::TrackedDevicePose_t *)  pRenderPoseArray
+        "u32", //(uint32_t)  unRenderPoseArrayCount
+        "pointer", //(struct vr::TrackedDevicePose_t *)  pGamePoseArray
+        "u32", //(uint32_t)  unGamePoseArrayCount
+      ],
+      result: "i32"
+    });
+    const GetLastPosesFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(24))!;
+    this.#GetLastPosesFn = new Deno.UnsafeFnPointer(GetLastPosesFuncPtr, {
+      parameters: [
+        "pointer", //(struct vr::TrackedDevicePose_t *)  pRenderPoseArray
+        "u32", //(uint32_t)  unRenderPoseArrayCount
+        "pointer", //(struct vr::TrackedDevicePose_t *)  pGamePoseArray
+        "u32", //(uint32_t)  unGamePoseArrayCount
+      ],
+      result: "i32"
+    });
+    const GetLastPoseForTrackedDeviceIndexFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(32))!;
+    this.#GetLastPoseForTrackedDeviceIndexFn = new Deno.UnsafeFnPointer(GetLastPoseForTrackedDeviceIndexFuncPtr, {
+      parameters: [
+        "u32", //(vr::TrackedDeviceIndex_t)  unDeviceIndex
+        "pointer", //(struct vr::TrackedDevicePose_t *)  pOutputPose
+        "pointer", //(struct vr::TrackedDevicePose_t *)  pOutputGamePose
+      ],
+      result: "i32"
+    });
+    const SubmitFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(40))!;
+    this.#SubmitFn = new Deno.UnsafeFnPointer(SubmitFuncPtr, {
+      parameters: [
+        "i32", //(vr::EVREye)  eEye
+        "pointer", //(const struct vr::Texture_t *)  pTexture
+        "pointer", //(const struct vr::VRTextureBounds_t *)  pBounds
+        "i32", //(vr::EVRSubmitFlags)  nSubmitFlags
+      ],
+      result: "i32"
+    });
+    const SubmitWithArrayIndexFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(48))!;
+    this.#SubmitWithArrayIndexFn = new Deno.UnsafeFnPointer(SubmitWithArrayIndexFuncPtr, {
+      parameters: [
+        "i32", //(vr::EVREye)  eEye
+        "pointer", //(const struct vr::Texture_t *)  pTexture
+        "u32", //(uint32_t)  unTextureArrayIndex
+        "pointer", //(const struct vr::VRTextureBounds_t *)  pBounds
+        "i32", //(vr::EVRSubmitFlags)  nSubmitFlags
+      ],
+      result: "i32"
+    });
+    const ClearLastSubmittedFrameFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(56))!;
+    this.#ClearLastSubmittedFrameFn = new Deno.UnsafeFnPointer(ClearLastSubmittedFrameFuncPtr, {
+      parameters: [
+      ],
+      result: "void"
+    });
+    const PostPresentHandoffFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(64))!;
+    this.#PostPresentHandoffFn = new Deno.UnsafeFnPointer(PostPresentHandoffFuncPtr, {
+      parameters: [
+      ],
+      result: "void"
+    });
+    const GetFrameTimingFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(72))!;
+    this.#GetFrameTimingFn = new Deno.UnsafeFnPointer(GetFrameTimingFuncPtr, {
+      parameters: [
+        "pointer", //(struct vr::Compositor_FrameTiming *)  pTiming
+        "u32", //(uint32_t)  unFramesAgo
+      ],
+      result: "bool"
+    });
+    const GetFrameTimingsFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(80))!;
+    this.#GetFrameTimingsFn = new Deno.UnsafeFnPointer(GetFrameTimingsFuncPtr, {
+      parameters: [
+        "pointer", //(struct vr::Compositor_FrameTiming *)  pTiming
+        "u32", //(uint32_t)  nFrames
+      ],
+      result: "u32"
+    });
+    const GetFrameTimeRemainingFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(88))!;
+    this.#GetFrameTimeRemainingFn = new Deno.UnsafeFnPointer(GetFrameTimeRemainingFuncPtr, {
+      parameters: [
+      ],
+      result: "f32"
+    });
+    const GetCumulativeStatsFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(96))!;
+    this.#GetCumulativeStatsFn = new Deno.UnsafeFnPointer(GetCumulativeStatsFuncPtr, {
+      parameters: [
+        "pointer", //(struct vr::Compositor_CumulativeStats *)  pStats
+        "u32", //(uint32_t)  nStatsSizeInBytes
+      ],
+      result: "void"
+    });
+    const FadeToColorFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(104))!;
+    this.#FadeToColorFn = new Deno.UnsafeFnPointer(FadeToColorFuncPtr, {
+      parameters: [
+        "f32", //(float)  fSeconds
+        "f32", //(float)  fRed
+        "f32", //(float)  fGreen
+        "f32", //(float)  fBlue
+        "f32", //(float)  fAlpha
+        "bool", //(bool)  bBackground
+      ],
+      result: "void"
+    });
+    const GetCurrentFadeColorFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(112))!;
+    this.#GetCurrentFadeColorFn = new Deno.UnsafeFnPointer(GetCurrentFadeColorFuncPtr, {
+      parameters: [
+        "bool", //(bool)  bBackground
+      ],
+      result: "pointer"
+    });
+    const FadeGridFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(120))!;
+    this.#FadeGridFn = new Deno.UnsafeFnPointer(FadeGridFuncPtr, {
+      parameters: [
+        "f32", //(float)  fSeconds
+        "bool", //(bool)  bFadeGridIn
+      ],
+      result: "void"
+    });
+    const GetCurrentGridAlphaFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(128))!;
+    this.#GetCurrentGridAlphaFn = new Deno.UnsafeFnPointer(GetCurrentGridAlphaFuncPtr, {
+      parameters: [
+      ],
+      result: "f32"
+    });
+    const SetSkyboxOverrideFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(136))!;
+    this.#SetSkyboxOverrideFn = new Deno.UnsafeFnPointer(SetSkyboxOverrideFuncPtr, {
+      parameters: [
+        "pointer", //(const struct vr::Texture_t *)  pTextures
+        "u32", //(uint32_t)  unTextureCount
+      ],
+      result: "i32"
+    });
+    const ClearSkyboxOverrideFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(144))!;
+    this.#ClearSkyboxOverrideFn = new Deno.UnsafeFnPointer(ClearSkyboxOverrideFuncPtr, {
+      parameters: [
+      ],
+      result: "void"
+    });
+    const CompositorBringToFrontFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(152))!;
+    this.#CompositorBringToFrontFn = new Deno.UnsafeFnPointer(CompositorBringToFrontFuncPtr, {
+      parameters: [
+      ],
+      result: "void"
+    });
+    const CompositorGoToBackFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(160))!;
+    this.#CompositorGoToBackFn = new Deno.UnsafeFnPointer(CompositorGoToBackFuncPtr, {
+      parameters: [
+      ],
+      result: "void"
+    });
+    const CompositorQuitFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(168))!;
+    this.#CompositorQuitFn = new Deno.UnsafeFnPointer(CompositorQuitFuncPtr, {
+      parameters: [
+      ],
+      result: "void"
+    });
+    const IsFullscreenFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(176))!;
+    this.#IsFullscreenFn = new Deno.UnsafeFnPointer(IsFullscreenFuncPtr, {
+      parameters: [
+      ],
+      result: "bool"
+    });
+    const GetCurrentSceneFocusProcessFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(184))!;
+    this.#GetCurrentSceneFocusProcessFn = new Deno.UnsafeFnPointer(GetCurrentSceneFocusProcessFuncPtr, {
+      parameters: [
+      ],
+      result: "u32"
+    });
+    const GetLastFrameRendererFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(192))!;
+    this.#GetLastFrameRendererFn = new Deno.UnsafeFnPointer(GetLastFrameRendererFuncPtr, {
+      parameters: [
+      ],
+      result: "u32"
+    });
+    const CanRenderSceneFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(200))!;
+    this.#CanRenderSceneFn = new Deno.UnsafeFnPointer(CanRenderSceneFuncPtr, {
+      parameters: [
+      ],
+      result: "bool"
+    });
+    const ShowMirrorWindowFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(208))!;
+    this.#ShowMirrorWindowFn = new Deno.UnsafeFnPointer(ShowMirrorWindowFuncPtr, {
+      parameters: [
+      ],
+      result: "void"
+    });
+    const HideMirrorWindowFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(216))!;
+    this.#HideMirrorWindowFn = new Deno.UnsafeFnPointer(HideMirrorWindowFuncPtr, {
+      parameters: [
+      ],
+      result: "void"
+    });
+    const IsMirrorWindowVisibleFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(224))!;
+    this.#IsMirrorWindowVisibleFn = new Deno.UnsafeFnPointer(IsMirrorWindowVisibleFuncPtr, {
+      parameters: [
+      ],
+      result: "bool"
+    });
+    const CompositorDumpImagesFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(232))!;
+    this.#CompositorDumpImagesFn = new Deno.UnsafeFnPointer(CompositorDumpImagesFuncPtr, {
+      parameters: [
+      ],
+      result: "void"
+    });
+    const ShouldAppRenderWithLowResourcesFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(240))!;
+    this.#ShouldAppRenderWithLowResourcesFn = new Deno.UnsafeFnPointer(ShouldAppRenderWithLowResourcesFuncPtr, {
+      parameters: [
+      ],
+      result: "bool"
+    });
+    const ForceInterleavedReprojectionOnFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(248))!;
+    this.#ForceInterleavedReprojectionOnFn = new Deno.UnsafeFnPointer(ForceInterleavedReprojectionOnFuncPtr, {
+      parameters: [
+        "bool", //(bool)  bOverride
+      ],
+      result: "void"
+    });
+    const ForceReconnectProcessFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(256))!;
+    this.#ForceReconnectProcessFn = new Deno.UnsafeFnPointer(ForceReconnectProcessFuncPtr, {
+      parameters: [
+      ],
+      result: "void"
+    });
+    const SuspendRenderingFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(264))!;
+    this.#SuspendRenderingFn = new Deno.UnsafeFnPointer(SuspendRenderingFuncPtr, {
+      parameters: [
+        "bool", //(bool)  bSuspend
+      ],
+      result: "void"
+    });
+    const GetMirrorTextureD3D11FuncPtr = Deno.UnsafePointer.create(view.getBigUint64(272))!;
+    this.#GetMirrorTextureD3D11Fn = new Deno.UnsafeFnPointer(GetMirrorTextureD3D11FuncPtr, {
+      parameters: [
+        "i32", //(vr::EVREye)  eEye
+        "pointer", //(void *)  pD3D11DeviceOrResource
+        "pointer", //(void **)  ppD3D11ShaderResourceView
+      ],
+      result: "i32"
+    });
+    const ReleaseMirrorTextureD3D11FuncPtr = Deno.UnsafePointer.create(view.getBigUint64(280))!;
+    this.#ReleaseMirrorTextureD3D11Fn = new Deno.UnsafeFnPointer(ReleaseMirrorTextureD3D11FuncPtr, {
+      parameters: [
+        "pointer", //(void *)  pD3D11ShaderResourceView
+      ],
+      result: "void"
+    });
+    const GetMirrorTextureGLFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(288))!;
+    this.#GetMirrorTextureGLFn = new Deno.UnsafeFnPointer(GetMirrorTextureGLFuncPtr, {
+      parameters: [
+        "i32", //(vr::EVREye)  eEye
+        "pointer", //(vr::glUInt_t *)  pglTextureId
+        "pointer", //(vr::glSharedTextureHandle_t *)  pglSharedTextureHandle
+      ],
+      result: "i32"
+    });
+    const ReleaseSharedGLTextureFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(296))!;
+    this.#ReleaseSharedGLTextureFn = new Deno.UnsafeFnPointer(ReleaseSharedGLTextureFuncPtr, {
+      parameters: [
+        "u32", //(vr::glUInt_t)  glTextureId
+        "pointer", //(vr::glSharedTextureHandle_t)  glSharedTextureHandle
+      ],
+      result: "bool"
+    });
+    const LockGLSharedTextureForAccessFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(304))!;
+    this.#LockGLSharedTextureForAccessFn = new Deno.UnsafeFnPointer(LockGLSharedTextureForAccessFuncPtr, {
+      parameters: [
+        "pointer", //(vr::glSharedTextureHandle_t)  glSharedTextureHandle
+      ],
+      result: "void"
+    });
+    const UnlockGLSharedTextureForAccessFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(312))!;
+    this.#UnlockGLSharedTextureForAccessFn = new Deno.UnsafeFnPointer(UnlockGLSharedTextureForAccessFuncPtr, {
+      parameters: [
+        "pointer", //(vr::glSharedTextureHandle_t)  glSharedTextureHandle
+      ],
+      result: "void"
+    });
+    const GetVulkanInstanceExtensionsRequiredFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(320))!;
+    this.#GetVulkanInstanceExtensionsRequiredFn = new Deno.UnsafeFnPointer(GetVulkanInstanceExtensionsRequiredFuncPtr, {
+      parameters: [
+        "pointer", //(char *)  pchValue
+        "u32", //(uint32_t)  unBufferSize
+      ],
+      result: "u32"
+    });
+    const GetVulkanDeviceExtensionsRequiredFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(328))!;
+    this.#GetVulkanDeviceExtensionsRequiredFn = new Deno.UnsafeFnPointer(GetVulkanDeviceExtensionsRequiredFuncPtr, {
+      parameters: [
+        "pointer", //(struct VkPhysicalDevice_T *)  pPhysicalDevice
+        "pointer", //(char *)  pchValue
+        "u32", //(uint32_t)  unBufferSize
+      ],
+      result: "u32"
+    });
+    const SetExplicitTimingModeFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(336))!;
+    this.#SetExplicitTimingModeFn = new Deno.UnsafeFnPointer(SetExplicitTimingModeFuncPtr, {
+      parameters: [
+        "i32", //(vr::EVRCompositorTimingMode)  eTimingMode
+      ],
+      result: "void"
+    });
+    const SubmitExplicitTimingDataFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(344))!;
+    this.#SubmitExplicitTimingDataFn = new Deno.UnsafeFnPointer(SubmitExplicitTimingDataFuncPtr, {
+      parameters: [
+      ],
+      result: "i32"
+    });
+    const IsMotionSmoothingEnabledFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(352))!;
+    this.#IsMotionSmoothingEnabledFn = new Deno.UnsafeFnPointer(IsMotionSmoothingEnabledFuncPtr, {
+      parameters: [
+      ],
+      result: "bool"
+    });
+    const IsMotionSmoothingSupportedFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(360))!;
+    this.#IsMotionSmoothingSupportedFn = new Deno.UnsafeFnPointer(IsMotionSmoothingSupportedFuncPtr, {
+      parameters: [
+      ],
+      result: "bool"
+    });
+    const IsCurrentSceneFocusAppLoadingFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(368))!;
+    this.#IsCurrentSceneFocusAppLoadingFn = new Deno.UnsafeFnPointer(IsCurrentSceneFocusAppLoadingFuncPtr, {
+      parameters: [
+      ],
+      result: "bool"
+    });
+    const SetStageOverride_AsyncFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(376))!;
+    this.#SetStageOverride_AsyncFn = new Deno.UnsafeFnPointer(SetStageOverride_AsyncFuncPtr, {
+      parameters: [
+        "pointer", //(const char *)  pchRenderModelPath
+        "pointer", //(const struct vr::HmdMatrix34_t *)  pTransform
+        "pointer", //(const struct vr::Compositor_StageRenderSettings *)  pRenderSettings
+        "u32", //(uint32_t)  nSizeOfRenderSettings
+      ],
+      result: "i32"
+    });
+    const ClearStageOverrideFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(384))!;
+    this.#ClearStageOverrideFn = new Deno.UnsafeFnPointer(ClearStageOverrideFuncPtr, {
+      parameters: [
+      ],
+      result: "void"
+    });
+    const GetCompositorBenchmarkResultsFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(392))!;
+    this.#GetCompositorBenchmarkResultsFn = new Deno.UnsafeFnPointer(GetCompositorBenchmarkResultsFuncPtr, {
+      parameters: [
+        "pointer", //(struct vr::Compositor_BenchmarkResults *)  pBenchmarkResults
+        "u32", //(uint32_t)  nSizeOfBenchmarkResults
+      ],
+      result: "bool"
+    });
+    const GetLastPosePredictionIDsFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(400))!;
+    this.#GetLastPosePredictionIDsFn = new Deno.UnsafeFnPointer(GetLastPosePredictionIDsFuncPtr, {
+      parameters: [
+        "pointer", //(uint32_t *)  pRenderPosePredictionID
+        "pointer", //(uint32_t *)  pGamePosePredictionID
+      ],
+      result: "i32"
+    });
+    const GetPosesForFrameFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(408))!;
+    this.#GetPosesForFrameFn = new Deno.UnsafeFnPointer(GetPosesForFrameFuncPtr, {
+      parameters: [
+        "u32", //(uint32_t)  unPosePredictionID
+        "pointer", //(struct vr::TrackedDevicePose_t *)  pPoseArray
+        "u32", //(uint32_t)  unPoseArrayCount
+      ],
+      result: "i32"
+    });
+  }
 
   /*
   SetTrackingSpace
@@ -8697,17 +9000,7 @@ export class IVRCompositor {
   Return: void
   */
   SetTrackingSpace(eOrigin: TrackingUniverseOrigin): void {
-    if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(0))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "i32", //(vr::ETrackingUniverseOrigin)  eOrigin
-      ],
-      result: "void"
-    });
-
-    const _result = func.call(
+    const _result = this.#SetTrackingSpaceFn.call(
       eOrigin,
     );
 
@@ -8719,19 +9012,10 @@ export class IVRCompositor {
   Return: vr::ETrackingUniverseOrigin
   */
   GetTrackingSpace(): TrackingUniverseOrigin {
-    if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(8))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-      ],
-      result: "i32"
-    });
-
-    const result = func.call(
+    const result = this.#GetTrackingSpaceFn.call(
     );
 
-    return result// as TrackingUniverseOrigin;
+    return result // as TrackingUniverseOrigin;
   }
 
   /*
@@ -8740,27 +9024,14 @@ export class IVRCompositor {
   Return: vr::EVRCompositorError
   */
   WaitGetPoses(pRenderPoseArray: Deno.PointerValue<TrackedDevicePose>, unRenderPoseArrayCount: number, pGamePoseArray: Deno.PointerValue<TrackedDevicePose>, unGamePoseArrayCount: number): CompositorError {
-    if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(16))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "pointer", //(struct vr::TrackedDevicePose_t *)  pRenderPoseArray
-        "u32", //(uint32_t)  unRenderPoseArrayCount
-        "pointer", //(struct vr::TrackedDevicePose_t *)  pGamePoseArray
-        "u32", //(uint32_t)  unGamePoseArrayCount
-      ],
-      result: "i32"
-    });
-
-    const result = func.call(
+    const result = this.#WaitGetPosesFn.call(
       pRenderPoseArray,
       unRenderPoseArrayCount,
       pGamePoseArray,
       unGamePoseArrayCount,
     );
 
-    return result// as CompositorError;
+    return result // as CompositorError;
   }
 
   /*
@@ -8769,27 +9040,14 @@ export class IVRCompositor {
   Return: vr::EVRCompositorError
   */
   GetLastPoses(pRenderPoseArray: Deno.PointerValue<TrackedDevicePose>, unRenderPoseArrayCount: number, pGamePoseArray: Deno.PointerValue<TrackedDevicePose>, unGamePoseArrayCount: number): CompositorError {
-    if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(24))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "pointer", //(struct vr::TrackedDevicePose_t *)  pRenderPoseArray
-        "u32", //(uint32_t)  unRenderPoseArrayCount
-        "pointer", //(struct vr::TrackedDevicePose_t *)  pGamePoseArray
-        "u32", //(uint32_t)  unGamePoseArrayCount
-      ],
-      result: "i32"
-    });
-
-    const result = func.call(
+    const result = this.#GetLastPosesFn.call(
       pRenderPoseArray,
       unRenderPoseArrayCount,
       pGamePoseArray,
       unGamePoseArrayCount,
     );
 
-    return result// as CompositorError;
+    return result // as CompositorError;
   }
 
   /*
@@ -8798,25 +9056,13 @@ export class IVRCompositor {
   Return: vr::EVRCompositorError
   */
   GetLastPoseForTrackedDeviceIndex(unDeviceIndex: TrackedDeviceIndex, pOutputPose: Deno.PointerValue<TrackedDevicePose>, pOutputGamePose: Deno.PointerValue<TrackedDevicePose>): CompositorError {
-    if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(32))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "u32", //(vr::TrackedDeviceIndex_t)  unDeviceIndex
-        "pointer", //(struct vr::TrackedDevicePose_t *)  pOutputPose
-        "pointer", //(struct vr::TrackedDevicePose_t *)  pOutputGamePose
-      ],
-      result: "i32"
-    });
-
-    const result = func.call(
+    const result = this.#GetLastPoseForTrackedDeviceIndexFn.call(
       unDeviceIndex,
       pOutputPose,
       pOutputGamePose,
     );
 
-    return result// as CompositorError;
+    return result // as CompositorError;
   }
 
   /*
@@ -8825,27 +9071,14 @@ export class IVRCompositor {
   Return: vr::EVRCompositorError
   */
   Submit(eEye: Eye, pTexture: Deno.PointerValue<Texture>, pBounds: Deno.PointerValue<TextureBounds>, nSubmitFlags: SubmitFlags): CompositorError {
-    if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(40))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "i32", //(vr::EVREye)  eEye
-        "pointer", //(const struct vr::Texture_t *)  pTexture
-        "pointer", //(const struct vr::VRTextureBounds_t *)  pBounds
-        "i32", //(vr::EVRSubmitFlags)  nSubmitFlags
-      ],
-      result: "i32"
-    });
-
-    const result = func.call(
+    const result = this.#SubmitFn.call(
       eEye,
       pTexture,
       pBounds,
       nSubmitFlags,
     );
 
-    return result// as CompositorError;
+    return result // as CompositorError;
   }
 
   /*
@@ -8854,21 +9087,7 @@ export class IVRCompositor {
   Return: vr::EVRCompositorError
   */
   SubmitWithArrayIndex(eEye: Eye, pTexture: Deno.PointerValue<Texture>, unTextureArrayIndex: number, pBounds: Deno.PointerValue<TextureBounds>, nSubmitFlags: SubmitFlags): CompositorError {
-    if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(48))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "i32", //(vr::EVREye)  eEye
-        "pointer", //(const struct vr::Texture_t *)  pTexture
-        "u32", //(uint32_t)  unTextureArrayIndex
-        "pointer", //(const struct vr::VRTextureBounds_t *)  pBounds
-        "i32", //(vr::EVRSubmitFlags)  nSubmitFlags
-      ],
-      result: "i32"
-    });
-
-    const result = func.call(
+    const result = this.#SubmitWithArrayIndexFn.call(
       eEye,
       pTexture,
       unTextureArrayIndex,
@@ -8876,7 +9095,7 @@ export class IVRCompositor {
       nSubmitFlags,
     );
 
-    return result// as CompositorError;
+    return result // as CompositorError;
   }
 
   /*
@@ -8885,16 +9104,7 @@ export class IVRCompositor {
   Return: void
   */
   ClearLastSubmittedFrame(): void {
-    if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(56))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-      ],
-      result: "void"
-    });
-
-    const _result = func.call(
+    const _result = this.#ClearLastSubmittedFrameFn.call(
     );
 
   }
@@ -8905,16 +9115,7 @@ export class IVRCompositor {
   Return: void
   */
   PostPresentHandoff(): void {
-    if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(64))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-      ],
-      result: "void"
-    });
-
-    const _result = func.call(
+    const _result = this.#PostPresentHandoffFn.call(
     );
 
   }
@@ -8925,23 +9126,12 @@ export class IVRCompositor {
   Return: bool
   */
   GetFrameTiming(pTiming: Deno.PointerValue<Compositor_FrameTiming>, unFramesAgo: number): boolean {
-    if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(72))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "pointer", //(struct vr::Compositor_FrameTiming *)  pTiming
-        "u32", //(uint32_t)  unFramesAgo
-      ],
-      result: "bool"
-    });
-
-    const result = func.call(
+    const result = this.#GetFrameTimingFn.call(
       pTiming,
       unFramesAgo,
     );
 
-    return result// as boolean;
+    return result // as boolean;
   }
 
   /*
@@ -8950,23 +9140,12 @@ export class IVRCompositor {
   Return: uint32_t
   */
   GetFrameTimings(pTiming: Deno.PointerValue<Compositor_FrameTiming>, nFrames: number): number {
-    if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(80))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "pointer", //(struct vr::Compositor_FrameTiming *)  pTiming
-        "u32", //(uint32_t)  nFrames
-      ],
-      result: "u32"
-    });
-
-    const result = func.call(
+    const result = this.#GetFrameTimingsFn.call(
       pTiming,
       nFrames,
     );
 
-    return result// as number;
+    return result // as number;
   }
 
   /*
@@ -8975,19 +9154,10 @@ export class IVRCompositor {
   Return: float
   */
   GetFrameTimeRemaining(): number {
-    if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(88))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-      ],
-      result: "f32"
-    });
-
-    const result = func.call(
+    const result = this.#GetFrameTimeRemainingFn.call(
     );
 
-    return result// as number;
+    return result // as number;
   }
 
   /*
@@ -8996,18 +9166,7 @@ export class IVRCompositor {
   Return: void
   */
   GetCumulativeStats(pStats: Deno.PointerValue<Compositor_CumulativeStats>, nStatsSizeInBytes: number): void {
-    if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(96))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "pointer", //(struct vr::Compositor_CumulativeStats *)  pStats
-        "u32", //(uint32_t)  nStatsSizeInBytes
-      ],
-      result: "void"
-    });
-
-    const _result = func.call(
+    const _result = this.#GetCumulativeStatsFn.call(
       pStats,
       nStatsSizeInBytes,
     );
@@ -9020,22 +9179,7 @@ export class IVRCompositor {
   Return: void
   */
   FadeToColor(fSeconds: number, fRed: number, fGreen: number, fBlue: number, fAlpha: number, bBackground: boolean): void {
-    if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(104))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "f32", //(float)  fSeconds
-        "f32", //(float)  fRed
-        "f32", //(float)  fGreen
-        "f32", //(float)  fBlue
-        "f32", //(float)  fAlpha
-        "bool", //(bool)  bBackground
-      ],
-      result: "void"
-    });
-
-    const _result = func.call(
+    const _result = this.#FadeToColorFn.call(
       fSeconds,
       fRed,
       fGreen,
@@ -9052,21 +9196,11 @@ export class IVRCompositor {
   Return: struct vr::HmdColor_t
   */
   GetCurrentFadeColor(bBackground: boolean): HmdColor {
-    if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(112))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "bool", //(bool)  bBackground
-      ],
-      result: "pointer"
-    });
-
-    const result = func.call(
+    const result = this.#GetCurrentFadeColorFn.call(
       bBackground,
     );
 
-    return result// as unknown as HmdColor;
+    return result // as unknown as HmdColor;
   }
 
   /*
@@ -9075,18 +9209,7 @@ export class IVRCompositor {
   Return: void
   */
   FadeGrid(fSeconds: number, bFadeGridIn: boolean): void {
-    if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(120))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "f32", //(float)  fSeconds
-        "bool", //(bool)  bFadeGridIn
-      ],
-      result: "void"
-    });
-
-    const _result = func.call(
+    const _result = this.#FadeGridFn.call(
       fSeconds,
       bFadeGridIn,
     );
@@ -9099,19 +9222,10 @@ export class IVRCompositor {
   Return: float
   */
   GetCurrentGridAlpha(): number {
-    if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(128))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-      ],
-      result: "f32"
-    });
-
-    const result = func.call(
+    const result = this.#GetCurrentGridAlphaFn.call(
     );
 
-    return result// as number;
+    return result // as number;
   }
 
   /*
@@ -9120,23 +9234,12 @@ export class IVRCompositor {
   Return: vr::EVRCompositorError
   */
   SetSkyboxOverride(pTextures: Deno.PointerValue<Texture>, unTextureCount: number): CompositorError {
-    if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(136))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "pointer", //(const struct vr::Texture_t *)  pTextures
-        "u32", //(uint32_t)  unTextureCount
-      ],
-      result: "i32"
-    });
-
-    const result = func.call(
+    const result = this.#SetSkyboxOverrideFn.call(
       pTextures,
       unTextureCount,
     );
 
-    return result// as CompositorError;
+    return result // as CompositorError;
   }
 
   /*
@@ -9145,16 +9248,7 @@ export class IVRCompositor {
   Return: void
   */
   ClearSkyboxOverride(): void {
-    if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(144))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-      ],
-      result: "void"
-    });
-
-    const _result = func.call(
+    const _result = this.#ClearSkyboxOverrideFn.call(
     );
 
   }
@@ -9165,16 +9259,7 @@ export class IVRCompositor {
   Return: void
   */
   CompositorBringToFront(): void {
-    if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(152))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-      ],
-      result: "void"
-    });
-
-    const _result = func.call(
+    const _result = this.#CompositorBringToFrontFn.call(
     );
 
   }
@@ -9185,16 +9270,7 @@ export class IVRCompositor {
   Return: void
   */
   CompositorGoToBack(): void {
-    if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(160))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-      ],
-      result: "void"
-    });
-
-    const _result = func.call(
+    const _result = this.#CompositorGoToBackFn.call(
     );
 
   }
@@ -9205,16 +9281,7 @@ export class IVRCompositor {
   Return: void
   */
   CompositorQuit(): void {
-    if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(168))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-      ],
-      result: "void"
-    });
-
-    const _result = func.call(
+    const _result = this.#CompositorQuitFn.call(
     );
 
   }
@@ -9225,19 +9292,10 @@ export class IVRCompositor {
   Return: bool
   */
   IsFullscreen(): boolean {
-    if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(176))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-      ],
-      result: "bool"
-    });
-
-    const result = func.call(
+    const result = this.#IsFullscreenFn.call(
     );
 
-    return result// as boolean;
+    return result // as boolean;
   }
 
   /*
@@ -9246,19 +9304,10 @@ export class IVRCompositor {
   Return: uint32_t
   */
   GetCurrentSceneFocusProcess(): number {
-    if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(184))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-      ],
-      result: "u32"
-    });
-
-    const result = func.call(
+    const result = this.#GetCurrentSceneFocusProcessFn.call(
     );
 
-    return result// as number;
+    return result // as number;
   }
 
   /*
@@ -9267,19 +9316,10 @@ export class IVRCompositor {
   Return: uint32_t
   */
   GetLastFrameRenderer(): number {
-    if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(192))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-      ],
-      result: "u32"
-    });
-
-    const result = func.call(
+    const result = this.#GetLastFrameRendererFn.call(
     );
 
-    return result// as number;
+    return result // as number;
   }
 
   /*
@@ -9288,19 +9328,10 @@ export class IVRCompositor {
   Return: bool
   */
   CanRenderScene(): boolean {
-    if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(200))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-      ],
-      result: "bool"
-    });
-
-    const result = func.call(
+    const result = this.#CanRenderSceneFn.call(
     );
 
-    return result// as boolean;
+    return result // as boolean;
   }
 
   /*
@@ -9309,16 +9340,7 @@ export class IVRCompositor {
   Return: void
   */
   ShowMirrorWindow(): void {
-    if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(208))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-      ],
-      result: "void"
-    });
-
-    const _result = func.call(
+    const _result = this.#ShowMirrorWindowFn.call(
     );
 
   }
@@ -9329,16 +9351,7 @@ export class IVRCompositor {
   Return: void
   */
   HideMirrorWindow(): void {
-    if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(216))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-      ],
-      result: "void"
-    });
-
-    const _result = func.call(
+    const _result = this.#HideMirrorWindowFn.call(
     );
 
   }
@@ -9349,19 +9362,10 @@ export class IVRCompositor {
   Return: bool
   */
   IsMirrorWindowVisible(): boolean {
-    if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(224))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-      ],
-      result: "bool"
-    });
-
-    const result = func.call(
+    const result = this.#IsMirrorWindowVisibleFn.call(
     );
 
-    return result// as boolean;
+    return result // as boolean;
   }
 
   /*
@@ -9370,16 +9374,7 @@ export class IVRCompositor {
   Return: void
   */
   CompositorDumpImages(): void {
-    if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(232))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-      ],
-      result: "void"
-    });
-
-    const _result = func.call(
+    const _result = this.#CompositorDumpImagesFn.call(
     );
 
   }
@@ -9390,19 +9385,10 @@ export class IVRCompositor {
   Return: bool
   */
   ShouldAppRenderWithLowResources(): boolean {
-    if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(240))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-      ],
-      result: "bool"
-    });
-
-    const result = func.call(
+    const result = this.#ShouldAppRenderWithLowResourcesFn.call(
     );
 
-    return result// as boolean;
+    return result // as boolean;
   }
 
   /*
@@ -9411,17 +9397,7 @@ export class IVRCompositor {
   Return: void
   */
   ForceInterleavedReprojectionOn(bOverride: boolean): void {
-    if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(248))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "bool", //(bool)  bOverride
-      ],
-      result: "void"
-    });
-
-    const _result = func.call(
+    const _result = this.#ForceInterleavedReprojectionOnFn.call(
       bOverride,
     );
 
@@ -9433,16 +9409,7 @@ export class IVRCompositor {
   Return: void
   */
   ForceReconnectProcess(): void {
-    if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(256))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-      ],
-      result: "void"
-    });
-
-    const _result = func.call(
+    const _result = this.#ForceReconnectProcessFn.call(
     );
 
   }
@@ -9453,17 +9420,7 @@ export class IVRCompositor {
   Return: void
   */
   SuspendRendering(bSuspend: boolean): void {
-    if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(264))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "bool", //(bool)  bSuspend
-      ],
-      result: "void"
-    });
-
-    const _result = func.call(
+    const _result = this.#SuspendRenderingFn.call(
       bSuspend,
     );
 
@@ -9475,25 +9432,13 @@ export class IVRCompositor {
   Return: vr::EVRCompositorError
   */
   GetMirrorTextureD3D11(eEye: Eye, pD3D11DeviceOrResource: Deno.PointerValue<unknown>, ppD3D11ShaderResourceView: Deno.PointerValue<Deno.PointerValue<unknown>>): CompositorError {
-    if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(272))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "i32", //(vr::EVREye)  eEye
-        "pointer", //(void *)  pD3D11DeviceOrResource
-        "pointer", //(void **)  ppD3D11ShaderResourceView
-      ],
-      result: "i32"
-    });
-
-    const result = func.call(
+    const result = this.#GetMirrorTextureD3D11Fn.call(
       eEye,
       pD3D11DeviceOrResource,
       ppD3D11ShaderResourceView,
     );
 
-    return result// as CompositorError;
+    return result // as CompositorError;
   }
 
   /*
@@ -9502,17 +9447,7 @@ export class IVRCompositor {
   Return: void
   */
   ReleaseMirrorTextureD3D11(pD3D11ShaderResourceView: Deno.PointerValue<unknown>): void {
-    if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(280))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "pointer", //(void *)  pD3D11ShaderResourceView
-      ],
-      result: "void"
-    });
-
-    const _result = func.call(
+    const _result = this.#ReleaseMirrorTextureD3D11Fn.call(
       pD3D11ShaderResourceView,
     );
 
@@ -9524,25 +9459,13 @@ export class IVRCompositor {
   Return: vr::EVRCompositorError
   */
   GetMirrorTextureGL(eEye: Eye, pglTextureId: Deno.PointerValue<glUInt>, pglSharedTextureHandle: Deno.PointerValue<glSharedTextureHandle>): CompositorError {
-    if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(288))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "i32", //(vr::EVREye)  eEye
-        "pointer", //(vr::glUInt_t *)  pglTextureId
-        "pointer", //(vr::glSharedTextureHandle_t *)  pglSharedTextureHandle
-      ],
-      result: "i32"
-    });
-
-    const result = func.call(
+    const result = this.#GetMirrorTextureGLFn.call(
       eEye,
       pglTextureId,
       pglSharedTextureHandle,
     );
 
-    return result// as CompositorError;
+    return result // as CompositorError;
   }
 
   /*
@@ -9551,23 +9474,12 @@ export class IVRCompositor {
   Return: bool
   */
   ReleaseSharedGLTexture(glTextureId: glUInt, glSharedTextureHandle: glSharedTextureHandle): boolean {
-    if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(296))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "u32", //(vr::glUInt_t)  glTextureId
-        "pointer", //(vr::glSharedTextureHandle_t)  glSharedTextureHandle
-      ],
-      result: "bool"
-    });
-
-    const result = func.call(
+    const result = this.#ReleaseSharedGLTextureFn.call(
       glTextureId,
       glSharedTextureHandle,
     );
 
-    return result// as boolean;
+    return result // as boolean;
   }
 
   /*
@@ -9576,17 +9488,7 @@ export class IVRCompositor {
   Return: void
   */
   LockGLSharedTextureForAccess(glSharedTextureHandle: glSharedTextureHandle): void {
-    if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(304))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "pointer", //(vr::glSharedTextureHandle_t)  glSharedTextureHandle
-      ],
-      result: "void"
-    });
-
-    const _result = func.call(
+    const _result = this.#LockGLSharedTextureForAccessFn.call(
       glSharedTextureHandle,
     );
 
@@ -9598,17 +9500,7 @@ export class IVRCompositor {
   Return: void
   */
   UnlockGLSharedTextureForAccess(glSharedTextureHandle: glSharedTextureHandle): void {
-    if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(312))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "pointer", //(vr::glSharedTextureHandle_t)  glSharedTextureHandle
-      ],
-      result: "void"
-    });
-
-    const _result = func.call(
+    const _result = this.#UnlockGLSharedTextureForAccessFn.call(
       glSharedTextureHandle,
     );
 
@@ -9620,23 +9512,12 @@ export class IVRCompositor {
   Return: uint32_t
   */
   GetVulkanInstanceExtensionsRequired(pchValue: string, unBufferSize: number): number {
-    if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(320))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "pointer", //(char *)  pchValue
-        "u32", //(uint32_t)  unBufferSize
-      ],
-      result: "u32"
-    });
-
-    const result = func.call(
+    const result = this.#GetVulkanInstanceExtensionsRequiredFn.call(
       Deno.UnsafePointer.of(new TextEncoder().encode(pchValue + "\0")),
       unBufferSize,
     );
 
-    return result// as number;
+    return result // as number;
   }
 
   /*
@@ -9645,25 +9526,13 @@ export class IVRCompositor {
   Return: uint32_t
   */
   GetVulkanDeviceExtensionsRequired(pPhysicalDevice: Deno.PointerValue<unknown>, pchValue: string, unBufferSize: number): number {
-    if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(328))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "pointer", //(struct VkPhysicalDevice_T *)  pPhysicalDevice
-        "pointer", //(char *)  pchValue
-        "u32", //(uint32_t)  unBufferSize
-      ],
-      result: "u32"
-    });
-
-    const result = func.call(
+    const result = this.#GetVulkanDeviceExtensionsRequiredFn.call(
       pPhysicalDevice,
       Deno.UnsafePointer.of(new TextEncoder().encode(pchValue + "\0")),
       unBufferSize,
     );
 
-    return result// as number;
+    return result // as number;
   }
 
   /*
@@ -9672,17 +9541,7 @@ export class IVRCompositor {
   Return: void
   */
   SetExplicitTimingMode(eTimingMode: CompositorTimingMode): void {
-    if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(336))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "i32", //(vr::EVRCompositorTimingMode)  eTimingMode
-      ],
-      result: "void"
-    });
-
-    const _result = func.call(
+    const _result = this.#SetExplicitTimingModeFn.call(
       eTimingMode,
     );
 
@@ -9694,19 +9553,10 @@ export class IVRCompositor {
   Return: vr::EVRCompositorError
   */
   SubmitExplicitTimingData(): CompositorError {
-    if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(344))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-      ],
-      result: "i32"
-    });
-
-    const result = func.call(
+    const result = this.#SubmitExplicitTimingDataFn.call(
     );
 
-    return result// as CompositorError;
+    return result // as CompositorError;
   }
 
   /*
@@ -9715,19 +9565,10 @@ export class IVRCompositor {
   Return: bool
   */
   IsMotionSmoothingEnabled(): boolean {
-    if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(352))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-      ],
-      result: "bool"
-    });
-
-    const result = func.call(
+    const result = this.#IsMotionSmoothingEnabledFn.call(
     );
 
-    return result// as boolean;
+    return result // as boolean;
   }
 
   /*
@@ -9736,19 +9577,10 @@ export class IVRCompositor {
   Return: bool
   */
   IsMotionSmoothingSupported(): boolean {
-    if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(360))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-      ],
-      result: "bool"
-    });
-
-    const result = func.call(
+    const result = this.#IsMotionSmoothingSupportedFn.call(
     );
 
-    return result// as boolean;
+    return result // as boolean;
   }
 
   /*
@@ -9757,19 +9589,10 @@ export class IVRCompositor {
   Return: bool
   */
   IsCurrentSceneFocusAppLoading(): boolean {
-    if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(368))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-      ],
-      result: "bool"
-    });
-
-    const result = func.call(
+    const result = this.#IsCurrentSceneFocusAppLoadingFn.call(
     );
 
-    return result// as boolean;
+    return result // as boolean;
   }
 
   /*
@@ -9778,27 +9601,14 @@ export class IVRCompositor {
   Return: vr::EVRCompositorError
   */
   SetStageOverride_Async(pchRenderModelPath: string, pTransform: Deno.PointerValue<HmdMatrix34>, pRenderSettings: Deno.PointerValue<Compositor_StageRenderSettings>, nSizeOfRenderSettings: number): CompositorError {
-    if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(376))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "pointer", //(const char *)  pchRenderModelPath
-        "pointer", //(const struct vr::HmdMatrix34_t *)  pTransform
-        "pointer", //(const struct vr::Compositor_StageRenderSettings *)  pRenderSettings
-        "u32", //(uint32_t)  nSizeOfRenderSettings
-      ],
-      result: "i32"
-    });
-
-    const result = func.call(
+    const result = this.#SetStageOverride_AsyncFn.call(
       Deno.UnsafePointer.of(new TextEncoder().encode(pchRenderModelPath + "\0")),
       pTransform,
       pRenderSettings,
       nSizeOfRenderSettings,
     );
 
-    return result// as CompositorError;
+    return result // as CompositorError;
   }
 
   /*
@@ -9807,16 +9617,7 @@ export class IVRCompositor {
   Return: void
   */
   ClearStageOverride(): void {
-    if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(384))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-      ],
-      result: "void"
-    });
-
-    const _result = func.call(
+    const _result = this.#ClearStageOverrideFn.call(
     );
 
   }
@@ -9827,23 +9628,12 @@ export class IVRCompositor {
   Return: bool
   */
   GetCompositorBenchmarkResults(pBenchmarkResults: Deno.PointerValue<Compositor_BenchmarkResults>, nSizeOfBenchmarkResults: number): boolean {
-    if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(392))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "pointer", //(struct vr::Compositor_BenchmarkResults *)  pBenchmarkResults
-        "u32", //(uint32_t)  nSizeOfBenchmarkResults
-      ],
-      result: "bool"
-    });
-
-    const result = func.call(
+    const result = this.#GetCompositorBenchmarkResultsFn.call(
       pBenchmarkResults,
       nSizeOfBenchmarkResults,
     );
 
-    return result// as boolean;
+    return result // as boolean;
   }
 
   /*
@@ -9852,23 +9642,12 @@ export class IVRCompositor {
   Return: vr::EVRCompositorError
   */
   GetLastPosePredictionIDs(pRenderPosePredictionID: Deno.PointerValue<number>, pGamePosePredictionID: Deno.PointerValue<number>): CompositorError {
-    if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(400))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "pointer", //(uint32_t *)  pRenderPosePredictionID
-        "pointer", //(uint32_t *)  pGamePosePredictionID
-      ],
-      result: "i32"
-    });
-
-    const result = func.call(
+    const result = this.#GetLastPosePredictionIDsFn.call(
       pRenderPosePredictionID,
       pGamePosePredictionID,
     );
 
-    return result// as CompositorError;
+    return result // as CompositorError;
   }
 
   /*
@@ -9877,31 +9656,96 @@ export class IVRCompositor {
   Return: vr::EVRCompositorError
   */
   GetPosesForFrame(unPosePredictionID: number, pPoseArray: Deno.PointerValue<TrackedDevicePose>, unPoseArrayCount: number): CompositorError {
-    if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(408))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "u32", //(uint32_t)  unPosePredictionID
-        "pointer", //(struct vr::TrackedDevicePose_t *)  pPoseArray
-        "u32", //(uint32_t)  unPoseArrayCount
-      ],
-      result: "i32"
-    });
-
-    const result = func.call(
+    const result = this.#GetPosesForFrameFn.call(
       unPosePredictionID,
       pPoseArray,
       unPoseArrayCount,
     );
 
-    return result// as CompositorError;
+    return result // as CompositorError;
   }
 
 }
 
 export class IVRHeadsetView {
-  constructor(private ptr: Deno.PointerValue<IVRHeadsetView|unknown>) {}
+  readonly #SetHeadsetViewSizeFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetHeadsetViewSizeFn: Deno.UnsafeFnPointer<any>;
+  readonly #SetHeadsetViewModeFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetHeadsetViewModeFn: Deno.UnsafeFnPointer<any>;
+  readonly #SetHeadsetViewCroppedFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetHeadsetViewCroppedFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetHeadsetViewAspectRatioFn: Deno.UnsafeFnPointer<any>;
+  readonly #SetHeadsetViewBlendRangeFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetHeadsetViewBlendRangeFn: Deno.UnsafeFnPointer<any>;
+
+  constructor(private ptr: Deno.PointerValue<IVRHeadsetView|unknown>) {
+    if (this.ptr === null) throw new Error("IVRHeadsetView pointer is null");
+    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRHeadsetView>);
+    const SetHeadsetViewSizeFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(0))!;
+    this.#SetHeadsetViewSizeFn = new Deno.UnsafeFnPointer(SetHeadsetViewSizeFuncPtr, {
+      parameters: [
+        "u32", //(uint32_t)  nWidth
+        "u32", //(uint32_t)  nHeight
+      ],
+      result: "void"
+    });
+    const GetHeadsetViewSizeFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(8))!;
+    this.#GetHeadsetViewSizeFn = new Deno.UnsafeFnPointer(GetHeadsetViewSizeFuncPtr, {
+      parameters: [
+        "pointer", //(uint32_t *)  pnWidth
+        "pointer", //(uint32_t *)  pnHeight
+      ],
+      result: "void"
+    });
+    const SetHeadsetViewModeFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(16))!;
+    this.#SetHeadsetViewModeFn = new Deno.UnsafeFnPointer(SetHeadsetViewModeFuncPtr, {
+      parameters: [
+        "i32", //(vr::HeadsetViewMode_t)  eHeadsetViewMode
+      ],
+      result: "void"
+    });
+    const GetHeadsetViewModeFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(24))!;
+    this.#GetHeadsetViewModeFn = new Deno.UnsafeFnPointer(GetHeadsetViewModeFuncPtr, {
+      parameters: [
+      ],
+      result: "i32"
+    });
+    const SetHeadsetViewCroppedFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(32))!;
+    this.#SetHeadsetViewCroppedFn = new Deno.UnsafeFnPointer(SetHeadsetViewCroppedFuncPtr, {
+      parameters: [
+        "bool", //(bool)  bCropped
+      ],
+      result: "void"
+    });
+    const GetHeadsetViewCroppedFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(40))!;
+    this.#GetHeadsetViewCroppedFn = new Deno.UnsafeFnPointer(GetHeadsetViewCroppedFuncPtr, {
+      parameters: [
+      ],
+      result: "bool"
+    });
+    const GetHeadsetViewAspectRatioFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(48))!;
+    this.#GetHeadsetViewAspectRatioFn = new Deno.UnsafeFnPointer(GetHeadsetViewAspectRatioFuncPtr, {
+      parameters: [
+      ],
+      result: "f32"
+    });
+    const SetHeadsetViewBlendRangeFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(56))!;
+    this.#SetHeadsetViewBlendRangeFn = new Deno.UnsafeFnPointer(SetHeadsetViewBlendRangeFuncPtr, {
+      parameters: [
+        "f32", //(float)  flStartPct
+        "f32", //(float)  flEndPct
+      ],
+      result: "void"
+    });
+    const GetHeadsetViewBlendRangeFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(64))!;
+    this.#GetHeadsetViewBlendRangeFn = new Deno.UnsafeFnPointer(GetHeadsetViewBlendRangeFuncPtr, {
+      parameters: [
+        "pointer", //(float *)  pStartPct
+        "pointer", //(float *)  pEndPct
+      ],
+      result: "void"
+    });
+  }
 
   /*
   SetHeadsetViewSize
@@ -9909,18 +9753,7 @@ export class IVRHeadsetView {
   Return: void
   */
   SetHeadsetViewSize(nWidth: number, nHeight: number): void {
-    if (this.ptr === null) throw new Error("IVRHeadsetView pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRHeadsetView>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(0))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "u32", //(uint32_t)  nWidth
-        "u32", //(uint32_t)  nHeight
-      ],
-      result: "void"
-    });
-
-    const _result = func.call(
+    const _result = this.#SetHeadsetViewSizeFn.call(
       nWidth,
       nHeight,
     );
@@ -9933,18 +9766,7 @@ export class IVRHeadsetView {
   Return: void
   */
   GetHeadsetViewSize(pnWidth: Deno.PointerValue<number>, pnHeight: Deno.PointerValue<number>): void {
-    if (this.ptr === null) throw new Error("IVRHeadsetView pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRHeadsetView>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(8))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "pointer", //(uint32_t *)  pnWidth
-        "pointer", //(uint32_t *)  pnHeight
-      ],
-      result: "void"
-    });
-
-    const _result = func.call(
+    const _result = this.#GetHeadsetViewSizeFn.call(
       pnWidth,
       pnHeight,
     );
@@ -9957,17 +9779,7 @@ export class IVRHeadsetView {
   Return: void
   */
   SetHeadsetViewMode(eHeadsetViewMode: HeadsetViewMode): void {
-    if (this.ptr === null) throw new Error("IVRHeadsetView pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRHeadsetView>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(16))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "i32", //(vr::HeadsetViewMode_t)  eHeadsetViewMode
-      ],
-      result: "void"
-    });
-
-    const _result = func.call(
+    const _result = this.#SetHeadsetViewModeFn.call(
       eHeadsetViewMode,
     );
 
@@ -9979,19 +9791,10 @@ export class IVRHeadsetView {
   Return: vr::HeadsetViewMode_t
   */
   GetHeadsetViewMode(): HeadsetViewMode {
-    if (this.ptr === null) throw new Error("IVRHeadsetView pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRHeadsetView>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(24))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-      ],
-      result: "i32"
-    });
-
-    const result = func.call(
+    const result = this.#GetHeadsetViewModeFn.call(
     );
 
-    return result// as HeadsetViewMode;
+    return result // as HeadsetViewMode;
   }
 
   /*
@@ -10000,17 +9803,7 @@ export class IVRHeadsetView {
   Return: void
   */
   SetHeadsetViewCropped(bCropped: boolean): void {
-    if (this.ptr === null) throw new Error("IVRHeadsetView pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRHeadsetView>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(32))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "bool", //(bool)  bCropped
-      ],
-      result: "void"
-    });
-
-    const _result = func.call(
+    const _result = this.#SetHeadsetViewCroppedFn.call(
       bCropped,
     );
 
@@ -10022,19 +9815,10 @@ export class IVRHeadsetView {
   Return: bool
   */
   GetHeadsetViewCropped(): boolean {
-    if (this.ptr === null) throw new Error("IVRHeadsetView pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRHeadsetView>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(40))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-      ],
-      result: "bool"
-    });
-
-    const result = func.call(
+    const result = this.#GetHeadsetViewCroppedFn.call(
     );
 
-    return result// as boolean;
+    return result // as boolean;
   }
 
   /*
@@ -10043,19 +9827,10 @@ export class IVRHeadsetView {
   Return: float
   */
   GetHeadsetViewAspectRatio(): number {
-    if (this.ptr === null) throw new Error("IVRHeadsetView pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRHeadsetView>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(48))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-      ],
-      result: "f32"
-    });
-
-    const result = func.call(
+    const result = this.#GetHeadsetViewAspectRatioFn.call(
     );
 
-    return result// as number;
+    return result // as number;
   }
 
   /*
@@ -10064,18 +9839,7 @@ export class IVRHeadsetView {
   Return: void
   */
   SetHeadsetViewBlendRange(flStartPct: number, flEndPct: number): void {
-    if (this.ptr === null) throw new Error("IVRHeadsetView pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRHeadsetView>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(56))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "f32", //(float)  flStartPct
-        "f32", //(float)  flEndPct
-      ],
-      result: "void"
-    });
-
-    const _result = func.call(
+    const _result = this.#SetHeadsetViewBlendRangeFn.call(
       flStartPct,
       flEndPct,
     );
@@ -10088,18 +9852,7 @@ export class IVRHeadsetView {
   Return: void
   */
   GetHeadsetViewBlendRange(pStartPct: Deno.PointerValue<number>, pEndPct: Deno.PointerValue<number>): void {
-    if (this.ptr === null) throw new Error("IVRHeadsetView pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRHeadsetView>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(64))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "pointer", //(float *)  pStartPct
-        "pointer", //(float *)  pEndPct
-      ],
-      result: "void"
-    });
-
-    const _result = func.call(
+    const _result = this.#GetHeadsetViewBlendRangeFn.call(
       pStartPct,
       pEndPct,
     );
@@ -10109,43 +9862,100 @@ export class IVRHeadsetView {
 }
 
 export class IVROverlay {
-  constructor(private ptr: Deno.PointerValue<IVROverlay|unknown>) {}
+  readonly #FindOverlayFn: Deno.UnsafeFnPointer<any>;
+  readonly #CreateOverlayFn: Deno.UnsafeFnPointer<any>;
+  readonly #DestroyOverlayFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetOverlayKeyFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetOverlayNameFn: Deno.UnsafeFnPointer<any>;
+  readonly #SetOverlayNameFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetOverlayImageDataFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetOverlayErrorNameFromEnumFn: Deno.UnsafeFnPointer<any>;
+  readonly #SetOverlayRenderingPidFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetOverlayRenderingPidFn: Deno.UnsafeFnPointer<any>;
+  readonly #SetOverlayFlagFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetOverlayFlagFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetOverlayFlagsFn: Deno.UnsafeFnPointer<any>;
+  readonly #SetOverlayColorFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetOverlayColorFn: Deno.UnsafeFnPointer<any>;
+  readonly #SetOverlayAlphaFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetOverlayAlphaFn: Deno.UnsafeFnPointer<any>;
+  readonly #SetOverlayTexelAspectFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetOverlayTexelAspectFn: Deno.UnsafeFnPointer<any>;
+  readonly #SetOverlaySortOrderFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetOverlaySortOrderFn: Deno.UnsafeFnPointer<any>;
+  readonly #SetOverlayWidthInMetersFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetOverlayWidthInMetersFn: Deno.UnsafeFnPointer<any>;
+  readonly #SetOverlayCurvatureFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetOverlayCurvatureFn: Deno.UnsafeFnPointer<any>;
+  readonly #SetOverlayPreCurvePitchFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetOverlayPreCurvePitchFn: Deno.UnsafeFnPointer<any>;
+  readonly #SetOverlayTextureColorSpaceFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetOverlayTextureColorSpaceFn: Deno.UnsafeFnPointer<any>;
+  readonly #SetOverlayTextureBoundsFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetOverlayTextureBoundsFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetOverlayTransformTypeFn: Deno.UnsafeFnPointer<any>;
+  readonly #SetOverlayTransformAbsoluteFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetOverlayTransformAbsoluteFn: Deno.UnsafeFnPointer<any>;
+  readonly #SetOverlayTransformTrackedDeviceRelativeFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetOverlayTransformTrackedDeviceRelativeFn: Deno.UnsafeFnPointer<any>;
+  readonly #SetOverlayTransformTrackedDeviceComponentFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetOverlayTransformTrackedDeviceComponentFn: Deno.UnsafeFnPointer<any>;
+  readonly #SetOverlayTransformCursorFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetOverlayTransformCursorFn: Deno.UnsafeFnPointer<any>;
+  readonly #SetOverlayTransformProjectionFn: Deno.UnsafeFnPointer<any>;
+  readonly #ShowOverlayFn: Deno.UnsafeFnPointer<any>;
+  readonly #HideOverlayFn: Deno.UnsafeFnPointer<any>;
+  readonly #IsOverlayVisibleFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetTransformForOverlayCoordinatesFn: Deno.UnsafeFnPointer<any>;
+  readonly #WaitFrameSyncFn: Deno.UnsafeFnPointer<any>;
+  readonly #PollNextOverlayEventFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetOverlayInputMethodFn: Deno.UnsafeFnPointer<any>;
+  readonly #SetOverlayInputMethodFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetOverlayMouseScaleFn: Deno.UnsafeFnPointer<any>;
+  readonly #SetOverlayMouseScaleFn: Deno.UnsafeFnPointer<any>;
+  readonly #ComputeOverlayIntersectionFn: Deno.UnsafeFnPointer<any>;
+  readonly #IsHoverTargetOverlayFn: Deno.UnsafeFnPointer<any>;
+  readonly #SetOverlayIntersectionMaskFn: Deno.UnsafeFnPointer<any>;
+  readonly #TriggerLaserMouseHapticVibrationFn: Deno.UnsafeFnPointer<any>;
+  readonly #SetOverlayCursorFn: Deno.UnsafeFnPointer<any>;
+  readonly #SetOverlayCursorPositionOverrideFn: Deno.UnsafeFnPointer<any>;
+  readonly #ClearOverlayCursorPositionOverrideFn: Deno.UnsafeFnPointer<any>;
+  readonly #SetOverlayTextureFn: Deno.UnsafeFnPointer<any>;
+  readonly #ClearOverlayTextureFn: Deno.UnsafeFnPointer<any>;
+  readonly #SetOverlayRawFn: Deno.UnsafeFnPointer<any>;
+  readonly #SetOverlayFromFileFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetOverlayTextureFn: Deno.UnsafeFnPointer<any>;
+  readonly #ReleaseNativeOverlayHandleFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetOverlayTextureSizeFn: Deno.UnsafeFnPointer<any>;
+  readonly #CreateDashboardOverlayFn: Deno.UnsafeFnPointer<any>;
+  readonly #IsDashboardVisibleFn: Deno.UnsafeFnPointer<any>;
+  readonly #IsActiveDashboardOverlayFn: Deno.UnsafeFnPointer<any>;
+  readonly #SetDashboardOverlaySceneProcessFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetDashboardOverlaySceneProcessFn: Deno.UnsafeFnPointer<any>;
+  readonly #ShowDashboardFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetPrimaryDashboardDeviceFn: Deno.UnsafeFnPointer<any>;
+  readonly #ShowKeyboardFn: Deno.UnsafeFnPointer<any>;
+  readonly #ShowKeyboardForOverlayFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetKeyboardTextFn: Deno.UnsafeFnPointer<any>;
+  readonly #HideKeyboardFn: Deno.UnsafeFnPointer<any>;
+  readonly #SetKeyboardTransformAbsoluteFn: Deno.UnsafeFnPointer<any>;
+  readonly #SetKeyboardPositionForOverlayFn: Deno.UnsafeFnPointer<any>;
+  readonly #ShowMessageOverlayFn: Deno.UnsafeFnPointer<any>;
+  readonly #CloseMessageOverlayFn: Deno.UnsafeFnPointer<any>;
 
-  /*
-  FindOverlay
-  Parameters: [{"paramname":"pchOverlayKey","paramtype":"const char *"},{"paramname":"pOverlayHandle","paramtype":"vr::VROverlayHandle_t *"}]
-  Return: vr::EVROverlayError
-  */
-  FindOverlay(pchOverlayKey: string, pOverlayHandle: Deno.PointerValue<OverlayHandle>): OverlayError {
+  constructor(private ptr: Deno.PointerValue<IVROverlay|unknown>) {
     if (this.ptr === null) throw new Error("IVROverlay pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(0))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const FindOverlayFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(0))!;
+    this.#FindOverlayFn = new Deno.UnsafeFnPointer(FindOverlayFuncPtr, {
       parameters: [
         "pointer", //(const char *)  pchOverlayKey
         "pointer", //(vr::VROverlayHandle_t *)  pOverlayHandle
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      Deno.UnsafePointer.of(new TextEncoder().encode(pchOverlayKey + "\0")),
-      pOverlayHandle,
-    );
-
-    return result// as OverlayError;
-  }
-
-  /*
-  CreateOverlay
-  Parameters: [{"paramname":"pchOverlayKey","paramtype":"const char *"},{"paramname":"pchOverlayName","paramtype":"const char *"},{"paramname":"pOverlayHandle","paramtype":"vr::VROverlayHandle_t *"}]
-  Return: vr::EVROverlayError
-  */
-  CreateOverlay(pchOverlayKey: string, pchOverlayName: string, pOverlayHandle: Deno.PointerValue<OverlayHandle>): OverlayError {
-    if (this.ptr === null) throw new Error("IVROverlay pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(8))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const CreateOverlayFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(8))!;
+    this.#CreateOverlayFn = new Deno.UnsafeFnPointer(CreateOverlayFuncPtr, {
       parameters: [
         "pointer", //(const char *)  pchOverlayKey
         "pointer", //(const char *)  pchOverlayName
@@ -10153,49 +9963,15 @@ export class IVROverlay {
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      Deno.UnsafePointer.of(new TextEncoder().encode(pchOverlayKey + "\0")),
-      Deno.UnsafePointer.of(new TextEncoder().encode(pchOverlayName + "\0")),
-      pOverlayHandle,
-    );
-
-    return result// as OverlayError;
-  }
-
-  /*
-  DestroyOverlay
-  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"}]
-  Return: vr::EVROverlayError
-  */
-  DestroyOverlay(ulOverlayHandle: OverlayHandle): OverlayError {
-    if (this.ptr === null) throw new Error("IVROverlay pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(16))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const DestroyOverlayFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(16))!;
+    this.#DestroyOverlayFn = new Deno.UnsafeFnPointer(DestroyOverlayFuncPtr, {
       parameters: [
         "u64", //(vr::VROverlayHandle_t)  ulOverlayHandle
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      ulOverlayHandle,
-    );
-
-    return result// as OverlayError;
-  }
-
-  /*
-  GetOverlayKey
-  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"pchValue","out_string":" ","paramtype":"char *"},{"paramname":"unBufferSize","paramtype":"uint32_t"},{"paramname":"pError","paramtype":"vr::EVROverlayError *"}]
-  Return: uint32_t
-  */
-  GetOverlayKey(ulOverlayHandle: OverlayHandle, pchValue: string, unBufferSize: number, pError: Deno.PointerValue<OverlayError>): number {
-    if (this.ptr === null) throw new Error("IVROverlay pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(24))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const GetOverlayKeyFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(24))!;
+    this.#GetOverlayKeyFn = new Deno.UnsafeFnPointer(GetOverlayKeyFuncPtr, {
       parameters: [
         "u64", //(vr::VROverlayHandle_t)  ulOverlayHandle
         "pointer", //(char *)  pchValue
@@ -10204,27 +9980,8 @@ export class IVROverlay {
       ],
       result: "u32"
     });
-
-    const result = func.call(
-      ulOverlayHandle,
-      Deno.UnsafePointer.of(new TextEncoder().encode(pchValue + "\0")),
-      unBufferSize,
-      pError,
-    );
-
-    return result// as number;
-  }
-
-  /*
-  GetOverlayName
-  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"pchValue","out_string":" ","paramtype":"char *"},{"paramname":"unBufferSize","paramtype":"uint32_t"},{"paramname":"pError","paramtype":"vr::EVROverlayError *"}]
-  Return: uint32_t
-  */
-  GetOverlayName(ulOverlayHandle: OverlayHandle, pchValue: string, unBufferSize: number, pError: Deno.PointerValue<OverlayError>): number {
-    if (this.ptr === null) throw new Error("IVROverlay pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(32))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const GetOverlayNameFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(32))!;
+    this.#GetOverlayNameFn = new Deno.UnsafeFnPointer(GetOverlayNameFuncPtr, {
       parameters: [
         "u64", //(vr::VROverlayHandle_t)  ulOverlayHandle
         "pointer", //(char *)  pchValue
@@ -10233,52 +9990,16 @@ export class IVROverlay {
       ],
       result: "u32"
     });
-
-    const result = func.call(
-      ulOverlayHandle,
-      Deno.UnsafePointer.of(new TextEncoder().encode(pchValue + "\0")),
-      unBufferSize,
-      pError,
-    );
-
-    return result// as number;
-  }
-
-  /*
-  SetOverlayName
-  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"pchName","paramtype":"const char *"}]
-  Return: vr::EVROverlayError
-  */
-  SetOverlayName(ulOverlayHandle: OverlayHandle, pchName: string): OverlayError {
-    if (this.ptr === null) throw new Error("IVROverlay pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(40))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const SetOverlayNameFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(40))!;
+    this.#SetOverlayNameFn = new Deno.UnsafeFnPointer(SetOverlayNameFuncPtr, {
       parameters: [
         "u64", //(vr::VROverlayHandle_t)  ulOverlayHandle
         "pointer", //(const char *)  pchName
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      ulOverlayHandle,
-      Deno.UnsafePointer.of(new TextEncoder().encode(pchName + "\0")),
-    );
-
-    return result// as OverlayError;
-  }
-
-  /*
-  GetOverlayImageData
-  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"pvBuffer","paramtype":"void *"},{"paramname":"unBufferSize","paramtype":"uint32_t"},{"paramname":"punWidth","paramtype":"uint32_t *"},{"paramname":"punHeight","paramtype":"uint32_t *"}]
-  Return: vr::EVROverlayError
-  */
-  GetOverlayImageData(ulOverlayHandle: OverlayHandle, pvBuffer: Deno.PointerValue<unknown>, unBufferSize: number, punWidth: Deno.PointerValue<number>, punHeight: Deno.PointerValue<number>): OverlayError {
-    if (this.ptr === null) throw new Error("IVROverlay pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(48))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const GetOverlayImageDataFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(48))!;
+    this.#GetOverlayImageDataFn = new Deno.UnsafeFnPointer(GetOverlayImageDataFuncPtr, {
       parameters: [
         "u64", //(vr::VROverlayHandle_t)  ulOverlayHandle
         "pointer", //(void *)  pvBuffer
@@ -10288,99 +10009,30 @@ export class IVROverlay {
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      ulOverlayHandle,
-      pvBuffer,
-      unBufferSize,
-      punWidth,
-      punHeight,
-    );
-
-    return result// as OverlayError;
-  }
-
-  /*
-  GetOverlayErrorNameFromEnum
-  Parameters: [{"paramname":"error","paramtype":"vr::EVROverlayError"}]
-  Return: const char *
-  */
-  GetOverlayErrorNameFromEnum(error: OverlayError): string {
-    if (this.ptr === null) throw new Error("IVROverlay pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(56))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const GetOverlayErrorNameFromEnumFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(56))!;
+    this.#GetOverlayErrorNameFromEnumFn = new Deno.UnsafeFnPointer(GetOverlayErrorNameFromEnumFuncPtr, {
       parameters: [
         "i32", //(vr::EVROverlayError)  error
       ],
       result: "pointer"
     });
-
-    const result = func.call(
-      error,
-    );
-
-    return result.toString();
-  }
-
-  /*
-  SetOverlayRenderingPid
-  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"unPID","paramtype":"uint32_t"}]
-  Return: vr::EVROverlayError
-  */
-  SetOverlayRenderingPid(ulOverlayHandle: OverlayHandle, unPID: number): OverlayError {
-    if (this.ptr === null) throw new Error("IVROverlay pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(64))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const SetOverlayRenderingPidFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(64))!;
+    this.#SetOverlayRenderingPidFn = new Deno.UnsafeFnPointer(SetOverlayRenderingPidFuncPtr, {
       parameters: [
         "u64", //(vr::VROverlayHandle_t)  ulOverlayHandle
         "u32", //(uint32_t)  unPID
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      ulOverlayHandle,
-      unPID,
-    );
-
-    return result// as OverlayError;
-  }
-
-  /*
-  GetOverlayRenderingPid
-  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"}]
-  Return: uint32_t
-  */
-  GetOverlayRenderingPid(ulOverlayHandle: OverlayHandle): number {
-    if (this.ptr === null) throw new Error("IVROverlay pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(72))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const GetOverlayRenderingPidFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(72))!;
+    this.#GetOverlayRenderingPidFn = new Deno.UnsafeFnPointer(GetOverlayRenderingPidFuncPtr, {
       parameters: [
         "u64", //(vr::VROverlayHandle_t)  ulOverlayHandle
       ],
       result: "u32"
     });
-
-    const result = func.call(
-      ulOverlayHandle,
-    );
-
-    return result// as number;
-  }
-
-  /*
-  SetOverlayFlag
-  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"eOverlayFlag","paramtype":"vr::VROverlayFlags"},{"paramname":"bEnabled","paramtype":"bool"}]
-  Return: vr::EVROverlayError
-  */
-  SetOverlayFlag(ulOverlayHandle: OverlayHandle, eOverlayFlag: OverlayFlags, bEnabled: boolean): OverlayError {
-    if (this.ptr === null) throw new Error("IVROverlay pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(80))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const SetOverlayFlagFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(80))!;
+    this.#SetOverlayFlagFn = new Deno.UnsafeFnPointer(SetOverlayFlagFuncPtr, {
       parameters: [
         "u64", //(vr::VROverlayHandle_t)  ulOverlayHandle
         "i32", //(vr::VROverlayFlags)  eOverlayFlag
@@ -10388,26 +10040,8 @@ export class IVROverlay {
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      ulOverlayHandle,
-      eOverlayFlag,
-      bEnabled,
-    );
-
-    return result// as OverlayError;
-  }
-
-  /*
-  GetOverlayFlag
-  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"eOverlayFlag","paramtype":"vr::VROverlayFlags"},{"paramname":"pbEnabled","paramtype":"bool *"}]
-  Return: vr::EVROverlayError
-  */
-  GetOverlayFlag(ulOverlayHandle: OverlayHandle, eOverlayFlag: OverlayFlags, pbEnabled: Deno.PointerValue<boolean>): OverlayError {
-    if (this.ptr === null) throw new Error("IVROverlay pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(88))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const GetOverlayFlagFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(88))!;
+    this.#GetOverlayFlagFn = new Deno.UnsafeFnPointer(GetOverlayFlagFuncPtr, {
       parameters: [
         "u64", //(vr::VROverlayHandle_t)  ulOverlayHandle
         "i32", //(vr::VROverlayFlags)  eOverlayFlag
@@ -10415,51 +10049,16 @@ export class IVROverlay {
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      ulOverlayHandle,
-      eOverlayFlag,
-      pbEnabled,
-    );
-
-    return result// as OverlayError;
-  }
-
-  /*
-  GetOverlayFlags
-  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"pFlags","paramtype":"uint32_t *"}]
-  Return: vr::EVROverlayError
-  */
-  GetOverlayFlags(ulOverlayHandle: OverlayHandle, pFlags: Deno.PointerValue<number>): OverlayError {
-    if (this.ptr === null) throw new Error("IVROverlay pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(96))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const GetOverlayFlagsFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(96))!;
+    this.#GetOverlayFlagsFn = new Deno.UnsafeFnPointer(GetOverlayFlagsFuncPtr, {
       parameters: [
         "u64", //(vr::VROverlayHandle_t)  ulOverlayHandle
         "pointer", //(uint32_t *)  pFlags
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      ulOverlayHandle,
-      pFlags,
-    );
-
-    return result// as OverlayError;
-  }
-
-  /*
-  SetOverlayColor
-  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"fRed","paramtype":"float"},{"paramname":"fGreen","paramtype":"float"},{"paramname":"fBlue","paramtype":"float"}]
-  Return: vr::EVROverlayError
-  */
-  SetOverlayColor(ulOverlayHandle: OverlayHandle, fRed: number, fGreen: number, fBlue: number): OverlayError {
-    if (this.ptr === null) throw new Error("IVROverlay pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(104))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const SetOverlayColorFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(104))!;
+    this.#SetOverlayColorFn = new Deno.UnsafeFnPointer(SetOverlayColorFuncPtr, {
       parameters: [
         "u64", //(vr::VROverlayHandle_t)  ulOverlayHandle
         "f32", //(float)  fRed
@@ -10468,27 +10067,8 @@ export class IVROverlay {
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      ulOverlayHandle,
-      fRed,
-      fGreen,
-      fBlue,
-    );
-
-    return result// as OverlayError;
-  }
-
-  /*
-  GetOverlayColor
-  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"pfRed","paramtype":"float *"},{"paramname":"pfGreen","paramtype":"float *"},{"paramname":"pfBlue","paramtype":"float *"}]
-  Return: vr::EVROverlayError
-  */
-  GetOverlayColor(ulOverlayHandle: OverlayHandle, pfRed: Deno.PointerValue<number>, pfGreen: Deno.PointerValue<number>, pfBlue: Deno.PointerValue<number>): OverlayError {
-    if (this.ptr === null) throw new Error("IVROverlay pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(112))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const GetOverlayColorFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(112))!;
+    this.#GetOverlayColorFn = new Deno.UnsafeFnPointer(GetOverlayColorFuncPtr, {
       parameters: [
         "u64", //(vr::VROverlayHandle_t)  ulOverlayHandle
         "pointer", //(float *)  pfRed
@@ -10497,452 +10077,144 @@ export class IVROverlay {
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      ulOverlayHandle,
-      pfRed,
-      pfGreen,
-      pfBlue,
-    );
-
-    return result// as OverlayError;
-  }
-
-  /*
-  SetOverlayAlpha
-  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"fAlpha","paramtype":"float"}]
-  Return: vr::EVROverlayError
-  */
-  SetOverlayAlpha(ulOverlayHandle: OverlayHandle, fAlpha: number): OverlayError {
-    if (this.ptr === null) throw new Error("IVROverlay pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(120))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const SetOverlayAlphaFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(120))!;
+    this.#SetOverlayAlphaFn = new Deno.UnsafeFnPointer(SetOverlayAlphaFuncPtr, {
       parameters: [
         "u64", //(vr::VROverlayHandle_t)  ulOverlayHandle
         "f32", //(float)  fAlpha
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      ulOverlayHandle,
-      fAlpha,
-    );
-
-    return result// as OverlayError;
-  }
-
-  /*
-  GetOverlayAlpha
-  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"pfAlpha","paramtype":"float *"}]
-  Return: vr::EVROverlayError
-  */
-  GetOverlayAlpha(ulOverlayHandle: OverlayHandle, pfAlpha: Deno.PointerValue<number>): OverlayError {
-    if (this.ptr === null) throw new Error("IVROverlay pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(128))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const GetOverlayAlphaFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(128))!;
+    this.#GetOverlayAlphaFn = new Deno.UnsafeFnPointer(GetOverlayAlphaFuncPtr, {
       parameters: [
         "u64", //(vr::VROverlayHandle_t)  ulOverlayHandle
         "pointer", //(float *)  pfAlpha
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      ulOverlayHandle,
-      pfAlpha,
-    );
-
-    return result// as OverlayError;
-  }
-
-  /*
-  SetOverlayTexelAspect
-  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"fTexelAspect","paramtype":"float"}]
-  Return: vr::EVROverlayError
-  */
-  SetOverlayTexelAspect(ulOverlayHandle: OverlayHandle, fTexelAspect: number): OverlayError {
-    if (this.ptr === null) throw new Error("IVROverlay pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(136))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const SetOverlayTexelAspectFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(136))!;
+    this.#SetOverlayTexelAspectFn = new Deno.UnsafeFnPointer(SetOverlayTexelAspectFuncPtr, {
       parameters: [
         "u64", //(vr::VROverlayHandle_t)  ulOverlayHandle
         "f32", //(float)  fTexelAspect
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      ulOverlayHandle,
-      fTexelAspect,
-    );
-
-    return result// as OverlayError;
-  }
-
-  /*
-  GetOverlayTexelAspect
-  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"pfTexelAspect","paramtype":"float *"}]
-  Return: vr::EVROverlayError
-  */
-  GetOverlayTexelAspect(ulOverlayHandle: OverlayHandle, pfTexelAspect: Deno.PointerValue<number>): OverlayError {
-    if (this.ptr === null) throw new Error("IVROverlay pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(144))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const GetOverlayTexelAspectFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(144))!;
+    this.#GetOverlayTexelAspectFn = new Deno.UnsafeFnPointer(GetOverlayTexelAspectFuncPtr, {
       parameters: [
         "u64", //(vr::VROverlayHandle_t)  ulOverlayHandle
         "pointer", //(float *)  pfTexelAspect
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      ulOverlayHandle,
-      pfTexelAspect,
-    );
-
-    return result// as OverlayError;
-  }
-
-  /*
-  SetOverlaySortOrder
-  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"unSortOrder","paramtype":"uint32_t"}]
-  Return: vr::EVROverlayError
-  */
-  SetOverlaySortOrder(ulOverlayHandle: OverlayHandle, unSortOrder: number): OverlayError {
-    if (this.ptr === null) throw new Error("IVROverlay pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(152))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const SetOverlaySortOrderFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(152))!;
+    this.#SetOverlaySortOrderFn = new Deno.UnsafeFnPointer(SetOverlaySortOrderFuncPtr, {
       parameters: [
         "u64", //(vr::VROverlayHandle_t)  ulOverlayHandle
         "u32", //(uint32_t)  unSortOrder
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      ulOverlayHandle,
-      unSortOrder,
-    );
-
-    return result// as OverlayError;
-  }
-
-  /*
-  GetOverlaySortOrder
-  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"punSortOrder","paramtype":"uint32_t *"}]
-  Return: vr::EVROverlayError
-  */
-  GetOverlaySortOrder(ulOverlayHandle: OverlayHandle, punSortOrder: Deno.PointerValue<number>): OverlayError {
-    if (this.ptr === null) throw new Error("IVROverlay pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(160))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const GetOverlaySortOrderFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(160))!;
+    this.#GetOverlaySortOrderFn = new Deno.UnsafeFnPointer(GetOverlaySortOrderFuncPtr, {
       parameters: [
         "u64", //(vr::VROverlayHandle_t)  ulOverlayHandle
         "pointer", //(uint32_t *)  punSortOrder
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      ulOverlayHandle,
-      punSortOrder,
-    );
-
-    return result// as OverlayError;
-  }
-
-  /*
-  SetOverlayWidthInMeters
-  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"fWidthInMeters","paramtype":"float"}]
-  Return: vr::EVROverlayError
-  */
-  SetOverlayWidthInMeters(ulOverlayHandle: OverlayHandle, fWidthInMeters: number): OverlayError {
-    if (this.ptr === null) throw new Error("IVROverlay pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(168))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const SetOverlayWidthInMetersFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(168))!;
+    this.#SetOverlayWidthInMetersFn = new Deno.UnsafeFnPointer(SetOverlayWidthInMetersFuncPtr, {
       parameters: [
         "u64", //(vr::VROverlayHandle_t)  ulOverlayHandle
         "f32", //(float)  fWidthInMeters
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      ulOverlayHandle,
-      fWidthInMeters,
-    );
-
-    return result// as OverlayError;
-  }
-
-  /*
-  GetOverlayWidthInMeters
-  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"pfWidthInMeters","paramtype":"float *"}]
-  Return: vr::EVROverlayError
-  */
-  GetOverlayWidthInMeters(ulOverlayHandle: OverlayHandle, pfWidthInMeters: Deno.PointerValue<number>): OverlayError {
-    if (this.ptr === null) throw new Error("IVROverlay pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(176))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const GetOverlayWidthInMetersFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(176))!;
+    this.#GetOverlayWidthInMetersFn = new Deno.UnsafeFnPointer(GetOverlayWidthInMetersFuncPtr, {
       parameters: [
         "u64", //(vr::VROverlayHandle_t)  ulOverlayHandle
         "pointer", //(float *)  pfWidthInMeters
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      ulOverlayHandle,
-      pfWidthInMeters,
-    );
-
-    return result// as OverlayError;
-  }
-
-  /*
-  SetOverlayCurvature
-  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"fCurvature","paramtype":"float"}]
-  Return: vr::EVROverlayError
-  */
-  SetOverlayCurvature(ulOverlayHandle: OverlayHandle, fCurvature: number): OverlayError {
-    if (this.ptr === null) throw new Error("IVROverlay pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(184))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const SetOverlayCurvatureFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(184))!;
+    this.#SetOverlayCurvatureFn = new Deno.UnsafeFnPointer(SetOverlayCurvatureFuncPtr, {
       parameters: [
         "u64", //(vr::VROverlayHandle_t)  ulOverlayHandle
         "f32", //(float)  fCurvature
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      ulOverlayHandle,
-      fCurvature,
-    );
-
-    return result// as OverlayError;
-  }
-
-  /*
-  GetOverlayCurvature
-  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"pfCurvature","paramtype":"float *"}]
-  Return: vr::EVROverlayError
-  */
-  GetOverlayCurvature(ulOverlayHandle: OverlayHandle, pfCurvature: Deno.PointerValue<number>): OverlayError {
-    if (this.ptr === null) throw new Error("IVROverlay pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(192))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const GetOverlayCurvatureFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(192))!;
+    this.#GetOverlayCurvatureFn = new Deno.UnsafeFnPointer(GetOverlayCurvatureFuncPtr, {
       parameters: [
         "u64", //(vr::VROverlayHandle_t)  ulOverlayHandle
         "pointer", //(float *)  pfCurvature
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      ulOverlayHandle,
-      pfCurvature,
-    );
-
-    return result// as OverlayError;
-  }
-
-  /*
-  SetOverlayPreCurvePitch
-  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"fRadians","paramtype":"float"}]
-  Return: vr::EVROverlayError
-  */
-  SetOverlayPreCurvePitch(ulOverlayHandle: OverlayHandle, fRadians: number): OverlayError {
-    if (this.ptr === null) throw new Error("IVROverlay pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(200))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const SetOverlayPreCurvePitchFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(200))!;
+    this.#SetOverlayPreCurvePitchFn = new Deno.UnsafeFnPointer(SetOverlayPreCurvePitchFuncPtr, {
       parameters: [
         "u64", //(vr::VROverlayHandle_t)  ulOverlayHandle
         "f32", //(float)  fRadians
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      ulOverlayHandle,
-      fRadians,
-    );
-
-    return result// as OverlayError;
-  }
-
-  /*
-  GetOverlayPreCurvePitch
-  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"pfRadians","paramtype":"float *"}]
-  Return: vr::EVROverlayError
-  */
-  GetOverlayPreCurvePitch(ulOverlayHandle: OverlayHandle, pfRadians: Deno.PointerValue<number>): OverlayError {
-    if (this.ptr === null) throw new Error("IVROverlay pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(208))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const GetOverlayPreCurvePitchFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(208))!;
+    this.#GetOverlayPreCurvePitchFn = new Deno.UnsafeFnPointer(GetOverlayPreCurvePitchFuncPtr, {
       parameters: [
         "u64", //(vr::VROverlayHandle_t)  ulOverlayHandle
         "pointer", //(float *)  pfRadians
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      ulOverlayHandle,
-      pfRadians,
-    );
-
-    return result// as OverlayError;
-  }
-
-  /*
-  SetOverlayTextureColorSpace
-  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"eTextureColorSpace","paramtype":"vr::EColorSpace"}]
-  Return: vr::EVROverlayError
-  */
-  SetOverlayTextureColorSpace(ulOverlayHandle: OverlayHandle, eTextureColorSpace: ColorSpace): OverlayError {
-    if (this.ptr === null) throw new Error("IVROverlay pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(216))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const SetOverlayTextureColorSpaceFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(216))!;
+    this.#SetOverlayTextureColorSpaceFn = new Deno.UnsafeFnPointer(SetOverlayTextureColorSpaceFuncPtr, {
       parameters: [
         "u64", //(vr::VROverlayHandle_t)  ulOverlayHandle
         "i32", //(vr::EColorSpace)  eTextureColorSpace
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      ulOverlayHandle,
-      eTextureColorSpace,
-    );
-
-    return result// as OverlayError;
-  }
-
-  /*
-  GetOverlayTextureColorSpace
-  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"peTextureColorSpace","paramtype":"vr::EColorSpace *"}]
-  Return: vr::EVROverlayError
-  */
-  GetOverlayTextureColorSpace(ulOverlayHandle: OverlayHandle, peTextureColorSpace: Deno.PointerValue<ColorSpace>): OverlayError {
-    if (this.ptr === null) throw new Error("IVROverlay pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(224))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const GetOverlayTextureColorSpaceFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(224))!;
+    this.#GetOverlayTextureColorSpaceFn = new Deno.UnsafeFnPointer(GetOverlayTextureColorSpaceFuncPtr, {
       parameters: [
         "u64", //(vr::VROverlayHandle_t)  ulOverlayHandle
         "pointer", //(vr::EColorSpace *)  peTextureColorSpace
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      ulOverlayHandle,
-      peTextureColorSpace,
-    );
-
-    return result// as OverlayError;
-  }
-
-  /*
-  SetOverlayTextureBounds
-  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"pOverlayTextureBounds","paramtype":"const struct vr::VRTextureBounds_t *"}]
-  Return: vr::EVROverlayError
-  */
-  SetOverlayTextureBounds(ulOverlayHandle: OverlayHandle, pOverlayTextureBounds: Deno.PointerValue<TextureBounds>): OverlayError {
-    if (this.ptr === null) throw new Error("IVROverlay pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(232))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const SetOverlayTextureBoundsFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(232))!;
+    this.#SetOverlayTextureBoundsFn = new Deno.UnsafeFnPointer(SetOverlayTextureBoundsFuncPtr, {
       parameters: [
         "u64", //(vr::VROverlayHandle_t)  ulOverlayHandle
         "pointer", //(const struct vr::VRTextureBounds_t *)  pOverlayTextureBounds
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      ulOverlayHandle,
-      pOverlayTextureBounds,
-    );
-
-    return result// as OverlayError;
-  }
-
-  /*
-  GetOverlayTextureBounds
-  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"pOverlayTextureBounds","paramtype":"struct vr::VRTextureBounds_t *"}]
-  Return: vr::EVROverlayError
-  */
-  GetOverlayTextureBounds(ulOverlayHandle: OverlayHandle, pOverlayTextureBounds: Deno.PointerValue<TextureBounds>): OverlayError {
-    if (this.ptr === null) throw new Error("IVROverlay pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(240))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const GetOverlayTextureBoundsFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(240))!;
+    this.#GetOverlayTextureBoundsFn = new Deno.UnsafeFnPointer(GetOverlayTextureBoundsFuncPtr, {
       parameters: [
         "u64", //(vr::VROverlayHandle_t)  ulOverlayHandle
         "pointer", //(struct vr::VRTextureBounds_t *)  pOverlayTextureBounds
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      ulOverlayHandle,
-      pOverlayTextureBounds,
-    );
-
-    return result// as OverlayError;
-  }
-
-  /*
-  GetOverlayTransformType
-  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"peTransformType","paramtype":"vr::VROverlayTransformType *"}]
-  Return: vr::EVROverlayError
-  */
-  GetOverlayTransformType(ulOverlayHandle: OverlayHandle, peTransformType: Deno.PointerValue<OverlayTransformType>): OverlayError {
-    if (this.ptr === null) throw new Error("IVROverlay pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(248))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const GetOverlayTransformTypeFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(248))!;
+    this.#GetOverlayTransformTypeFn = new Deno.UnsafeFnPointer(GetOverlayTransformTypeFuncPtr, {
       parameters: [
         "u64", //(vr::VROverlayHandle_t)  ulOverlayHandle
         "pointer", //(vr::VROverlayTransformType *)  peTransformType
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      ulOverlayHandle,
-      peTransformType,
-    );
-
-    return result// as OverlayError;
-  }
-
-  /*
-  SetOverlayTransformAbsolute
-  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"eTrackingOrigin","paramtype":"vr::ETrackingUniverseOrigin"},{"paramname":"pmatTrackingOriginToOverlayTransform","paramtype":"const struct vr::HmdMatrix34_t *"}]
-  Return: vr::EVROverlayError
-  */
-  SetOverlayTransformAbsolute(ulOverlayHandle: OverlayHandle, eTrackingOrigin: TrackingUniverseOrigin, pmatTrackingOriginToOverlayTransform: Deno.PointerValue<HmdMatrix34>): OverlayError {
-    if (this.ptr === null) throw new Error("IVROverlay pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(256))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const SetOverlayTransformAbsoluteFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(256))!;
+    this.#SetOverlayTransformAbsoluteFn = new Deno.UnsafeFnPointer(SetOverlayTransformAbsoluteFuncPtr, {
       parameters: [
         "u64", //(vr::VROverlayHandle_t)  ulOverlayHandle
         "i32", //(vr::ETrackingUniverseOrigin)  eTrackingOrigin
@@ -10950,26 +10222,8 @@ export class IVROverlay {
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      ulOverlayHandle,
-      eTrackingOrigin,
-      pmatTrackingOriginToOverlayTransform,
-    );
-
-    return result// as OverlayError;
-  }
-
-  /*
-  GetOverlayTransformAbsolute
-  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"peTrackingOrigin","paramtype":"vr::ETrackingUniverseOrigin *"},{"paramname":"pmatTrackingOriginToOverlayTransform","paramtype":"struct vr::HmdMatrix34_t *"}]
-  Return: vr::EVROverlayError
-  */
-  GetOverlayTransformAbsolute(ulOverlayHandle: OverlayHandle, peTrackingOrigin: Deno.PointerValue<TrackingUniverseOrigin>, pmatTrackingOriginToOverlayTransform: Deno.PointerValue<HmdMatrix34>): OverlayError {
-    if (this.ptr === null) throw new Error("IVROverlay pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(264))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const GetOverlayTransformAbsoluteFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(264))!;
+    this.#GetOverlayTransformAbsoluteFn = new Deno.UnsafeFnPointer(GetOverlayTransformAbsoluteFuncPtr, {
       parameters: [
         "u64", //(vr::VROverlayHandle_t)  ulOverlayHandle
         "pointer", //(vr::ETrackingUniverseOrigin *)  peTrackingOrigin
@@ -10977,26 +10231,8 @@ export class IVROverlay {
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      ulOverlayHandle,
-      peTrackingOrigin,
-      pmatTrackingOriginToOverlayTransform,
-    );
-
-    return result// as OverlayError;
-  }
-
-  /*
-  SetOverlayTransformTrackedDeviceRelative
-  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"unTrackedDevice","paramtype":"vr::TrackedDeviceIndex_t"},{"paramname":"pmatTrackedDeviceToOverlayTransform","paramtype":"const struct vr::HmdMatrix34_t *"}]
-  Return: vr::EVROverlayError
-  */
-  SetOverlayTransformTrackedDeviceRelative(ulOverlayHandle: OverlayHandle, unTrackedDevice: TrackedDeviceIndex, pmatTrackedDeviceToOverlayTransform: Deno.PointerValue<HmdMatrix34>): OverlayError {
-    if (this.ptr === null) throw new Error("IVROverlay pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(272))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const SetOverlayTransformTrackedDeviceRelativeFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(272))!;
+    this.#SetOverlayTransformTrackedDeviceRelativeFn = new Deno.UnsafeFnPointer(SetOverlayTransformTrackedDeviceRelativeFuncPtr, {
       parameters: [
         "u64", //(vr::VROverlayHandle_t)  ulOverlayHandle
         "u32", //(vr::TrackedDeviceIndex_t)  unTrackedDevice
@@ -11004,26 +10240,8 @@ export class IVROverlay {
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      ulOverlayHandle,
-      unTrackedDevice,
-      pmatTrackedDeviceToOverlayTransform,
-    );
-
-    return result// as OverlayError;
-  }
-
-  /*
-  GetOverlayTransformTrackedDeviceRelative
-  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"punTrackedDevice","paramtype":"vr::TrackedDeviceIndex_t *"},{"paramname":"pmatTrackedDeviceToOverlayTransform","paramtype":"struct vr::HmdMatrix34_t *"}]
-  Return: vr::EVROverlayError
-  */
-  GetOverlayTransformTrackedDeviceRelative(ulOverlayHandle: OverlayHandle, punTrackedDevice: Deno.PointerValue<TrackedDeviceIndex>, pmatTrackedDeviceToOverlayTransform: Deno.PointerValue<HmdMatrix34>): OverlayError {
-    if (this.ptr === null) throw new Error("IVROverlay pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(280))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const GetOverlayTransformTrackedDeviceRelativeFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(280))!;
+    this.#GetOverlayTransformTrackedDeviceRelativeFn = new Deno.UnsafeFnPointer(GetOverlayTransformTrackedDeviceRelativeFuncPtr, {
       parameters: [
         "u64", //(vr::VROverlayHandle_t)  ulOverlayHandle
         "pointer", //(vr::TrackedDeviceIndex_t *)  punTrackedDevice
@@ -11031,26 +10249,8 @@ export class IVROverlay {
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      ulOverlayHandle,
-      punTrackedDevice,
-      pmatTrackedDeviceToOverlayTransform,
-    );
-
-    return result// as OverlayError;
-  }
-
-  /*
-  SetOverlayTransformTrackedDeviceComponent
-  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"unDeviceIndex","paramtype":"vr::TrackedDeviceIndex_t"},{"paramname":"pchComponentName","paramtype":"const char *"}]
-  Return: vr::EVROverlayError
-  */
-  SetOverlayTransformTrackedDeviceComponent(ulOverlayHandle: OverlayHandle, unDeviceIndex: TrackedDeviceIndex, pchComponentName: string): OverlayError {
-    if (this.ptr === null) throw new Error("IVROverlay pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(288))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const SetOverlayTransformTrackedDeviceComponentFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(288))!;
+    this.#SetOverlayTransformTrackedDeviceComponentFn = new Deno.UnsafeFnPointer(SetOverlayTransformTrackedDeviceComponentFuncPtr, {
       parameters: [
         "u64", //(vr::VROverlayHandle_t)  ulOverlayHandle
         "u32", //(vr::TrackedDeviceIndex_t)  unDeviceIndex
@@ -11058,26 +10258,8 @@ export class IVROverlay {
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      ulOverlayHandle,
-      unDeviceIndex,
-      Deno.UnsafePointer.of(new TextEncoder().encode(pchComponentName + "\0")),
-    );
-
-    return result// as OverlayError;
-  }
-
-  /*
-  GetOverlayTransformTrackedDeviceComponent
-  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"punDeviceIndex","paramtype":"vr::TrackedDeviceIndex_t *"},{"paramname":"pchComponentName","out_string":" ","paramtype":"char *"},{"paramname":"unComponentNameSize","paramtype":"uint32_t"}]
-  Return: vr::EVROverlayError
-  */
-  GetOverlayTransformTrackedDeviceComponent(ulOverlayHandle: OverlayHandle, punDeviceIndex: Deno.PointerValue<TrackedDeviceIndex>, pchComponentName: string, unComponentNameSize: number): OverlayError {
-    if (this.ptr === null) throw new Error("IVROverlay pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(296))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const GetOverlayTransformTrackedDeviceComponentFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(296))!;
+    this.#GetOverlayTransformTrackedDeviceComponentFn = new Deno.UnsafeFnPointer(GetOverlayTransformTrackedDeviceComponentFuncPtr, {
       parameters: [
         "u64", //(vr::VROverlayHandle_t)  ulOverlayHandle
         "pointer", //(vr::TrackedDeviceIndex_t *)  punDeviceIndex
@@ -11086,77 +10268,24 @@ export class IVROverlay {
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      ulOverlayHandle,
-      punDeviceIndex,
-      Deno.UnsafePointer.of(new TextEncoder().encode(pchComponentName + "\0")),
-      unComponentNameSize,
-    );
-
-    return result// as OverlayError;
-  }
-
-  /*
-  SetOverlayTransformCursor
-  Parameters: [{"paramname":"ulCursorOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"pvHotspot","paramtype":"const struct vr::HmdVector2_t *"}]
-  Return: vr::EVROverlayError
-  */
-  SetOverlayTransformCursor(ulCursorOverlayHandle: OverlayHandle, pvHotspot: Deno.PointerValue<HmdVector2>): OverlayError {
-    if (this.ptr === null) throw new Error("IVROverlay pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(304))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const SetOverlayTransformCursorFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(304))!;
+    this.#SetOverlayTransformCursorFn = new Deno.UnsafeFnPointer(SetOverlayTransformCursorFuncPtr, {
       parameters: [
         "u64", //(vr::VROverlayHandle_t)  ulCursorOverlayHandle
         "pointer", //(const struct vr::HmdVector2_t *)  pvHotspot
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      ulCursorOverlayHandle,
-      pvHotspot,
-    );
-
-    return result// as OverlayError;
-  }
-
-  /*
-  GetOverlayTransformCursor
-  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"pvHotspot","paramtype":"struct vr::HmdVector2_t *"}]
-  Return: vr::EVROverlayError
-  */
-  GetOverlayTransformCursor(ulOverlayHandle: OverlayHandle, pvHotspot: Deno.PointerValue<HmdVector2>): OverlayError {
-    if (this.ptr === null) throw new Error("IVROverlay pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(312))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const GetOverlayTransformCursorFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(312))!;
+    this.#GetOverlayTransformCursorFn = new Deno.UnsafeFnPointer(GetOverlayTransformCursorFuncPtr, {
       parameters: [
         "u64", //(vr::VROverlayHandle_t)  ulOverlayHandle
         "pointer", //(struct vr::HmdVector2_t *)  pvHotspot
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      ulOverlayHandle,
-      pvHotspot,
-    );
-
-    return result// as OverlayError;
-  }
-
-  /*
-  SetOverlayTransformProjection
-  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"eTrackingOrigin","paramtype":"vr::ETrackingUniverseOrigin"},{"paramname":"pmatTrackingOriginToOverlayTransform","paramtype":"const struct vr::HmdMatrix34_t *"},{"paramname":"pProjection","paramtype":"const struct vr::VROverlayProjection_t *"},{"paramname":"eEye","paramtype":"vr::EVREye"}]
-  Return: vr::EVROverlayError
-  */
-  SetOverlayTransformProjection(ulOverlayHandle: OverlayHandle, eTrackingOrigin: TrackingUniverseOrigin, pmatTrackingOriginToOverlayTransform: Deno.PointerValue<HmdMatrix34>, pProjection: Deno.PointerValue<OverlayProjection>, eEye: Eye): OverlayError {
-    if (this.ptr === null) throw new Error("IVROverlay pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(320))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const SetOverlayTransformProjectionFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(320))!;
+    this.#SetOverlayTransformProjectionFn = new Deno.UnsafeFnPointer(SetOverlayTransformProjectionFuncPtr, {
       parameters: [
         "u64", //(vr::VROverlayHandle_t)  ulOverlayHandle
         "i32", //(vr::ETrackingUniverseOrigin)  eTrackingOrigin
@@ -11166,97 +10295,29 @@ export class IVROverlay {
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      ulOverlayHandle,
-      eTrackingOrigin,
-      pmatTrackingOriginToOverlayTransform,
-      pProjection,
-      eEye,
-    );
-
-    return result// as OverlayError;
-  }
-
-  /*
-  ShowOverlay
-  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"}]
-  Return: vr::EVROverlayError
-  */
-  ShowOverlay(ulOverlayHandle: OverlayHandle): OverlayError {
-    if (this.ptr === null) throw new Error("IVROverlay pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(328))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const ShowOverlayFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(328))!;
+    this.#ShowOverlayFn = new Deno.UnsafeFnPointer(ShowOverlayFuncPtr, {
       parameters: [
         "u64", //(vr::VROverlayHandle_t)  ulOverlayHandle
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      ulOverlayHandle,
-    );
-
-    return result// as OverlayError;
-  }
-
-  /*
-  HideOverlay
-  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"}]
-  Return: vr::EVROverlayError
-  */
-  HideOverlay(ulOverlayHandle: OverlayHandle): OverlayError {
-    if (this.ptr === null) throw new Error("IVROverlay pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(336))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const HideOverlayFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(336))!;
+    this.#HideOverlayFn = new Deno.UnsafeFnPointer(HideOverlayFuncPtr, {
       parameters: [
         "u64", //(vr::VROverlayHandle_t)  ulOverlayHandle
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      ulOverlayHandle,
-    );
-
-    return result// as OverlayError;
-  }
-
-  /*
-  IsOverlayVisible
-  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"}]
-  Return: bool
-  */
-  IsOverlayVisible(ulOverlayHandle: OverlayHandle): boolean {
-    if (this.ptr === null) throw new Error("IVROverlay pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(344))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const IsOverlayVisibleFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(344))!;
+    this.#IsOverlayVisibleFn = new Deno.UnsafeFnPointer(IsOverlayVisibleFuncPtr, {
       parameters: [
         "u64", //(vr::VROverlayHandle_t)  ulOverlayHandle
       ],
       result: "bool"
     });
-
-    const result = func.call(
-      ulOverlayHandle,
-    );
-
-    return result// as boolean;
-  }
-
-  /*
-  GetTransformForOverlayCoordinates
-  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"eTrackingOrigin","paramtype":"vr::ETrackingUniverseOrigin"},{"paramname":"coordinatesInOverlay","paramtype":"struct vr::HmdVector2_t"},{"paramname":"pmatTransform","paramtype":"struct vr::HmdMatrix34_t *"}]
-  Return: vr::EVROverlayError
-  */
-  GetTransformForOverlayCoordinates(ulOverlayHandle: OverlayHandle, eTrackingOrigin: TrackingUniverseOrigin, coordinatesInOverlay: HmdVector2, pmatTransform: Deno.PointerValue<HmdMatrix34>): OverlayError {
-    if (this.ptr === null) throw new Error("IVROverlay pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(352))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const GetTransformForOverlayCoordinatesFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(352))!;
+    this.#GetTransformForOverlayCoordinatesFn = new Deno.UnsafeFnPointer(GetTransformForOverlayCoordinatesFuncPtr, {
       parameters: [
         "u64", //(vr::VROverlayHandle_t)  ulOverlayHandle
         "i32", //(vr::ETrackingUniverseOrigin)  eTrackingOrigin
@@ -11265,50 +10326,15 @@ export class IVROverlay {
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      ulOverlayHandle,
-      eTrackingOrigin,
-      coordinatesInOverlay,
-      pmatTransform,
-    );
-
-    return result// as OverlayError;
-  }
-
-  /*
-  WaitFrameSync
-  Parameters: [{"paramname":"nTimeoutMs","paramtype":"uint32_t"}]
-  Return: vr::EVROverlayError
-  */
-  WaitFrameSync(nTimeoutMs: number): OverlayError {
-    if (this.ptr === null) throw new Error("IVROverlay pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(360))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const WaitFrameSyncFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(360))!;
+    this.#WaitFrameSyncFn = new Deno.UnsafeFnPointer(WaitFrameSyncFuncPtr, {
       parameters: [
         "u32", //(uint32_t)  nTimeoutMs
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      nTimeoutMs,
-    );
-
-    return result// as OverlayError;
-  }
-
-  /*
-  PollNextOverlayEvent
-  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"pEvent","paramtype":"struct vr::VREvent_t *"},{"paramname":"uncbVREvent","paramtype":"uint32_t"}]
-  Return: bool
-  */
-  PollNextOverlayEvent(ulOverlayHandle: OverlayHandle, pEvent: Deno.PointerValue<Event>, uncbVREvent: number): boolean {
-    if (this.ptr === null) throw new Error("IVROverlay pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(368))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const PollNextOverlayEventFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(368))!;
+    this.#PollNextOverlayEventFn = new Deno.UnsafeFnPointer(PollNextOverlayEventFuncPtr, {
       parameters: [
         "u64", //(vr::VROverlayHandle_t)  ulOverlayHandle
         "pointer", //(struct vr::VREvent_t *)  pEvent
@@ -11316,126 +10342,40 @@ export class IVROverlay {
       ],
       result: "bool"
     });
-
-    const result = func.call(
-      ulOverlayHandle,
-      pEvent,
-      uncbVREvent,
-    );
-
-    return result// as boolean;
-  }
-
-  /*
-  GetOverlayInputMethod
-  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"peInputMethod","paramtype":"vr::VROverlayInputMethod *"}]
-  Return: vr::EVROverlayError
-  */
-  GetOverlayInputMethod(ulOverlayHandle: OverlayHandle, peInputMethod: Deno.PointerValue<OverlayInputMethod>): OverlayError {
-    if (this.ptr === null) throw new Error("IVROverlay pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(376))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const GetOverlayInputMethodFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(376))!;
+    this.#GetOverlayInputMethodFn = new Deno.UnsafeFnPointer(GetOverlayInputMethodFuncPtr, {
       parameters: [
         "u64", //(vr::VROverlayHandle_t)  ulOverlayHandle
         "pointer", //(vr::VROverlayInputMethod *)  peInputMethod
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      ulOverlayHandle,
-      peInputMethod,
-    );
-
-    return result// as OverlayError;
-  }
-
-  /*
-  SetOverlayInputMethod
-  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"eInputMethod","paramtype":"vr::VROverlayInputMethod"}]
-  Return: vr::EVROverlayError
-  */
-  SetOverlayInputMethod(ulOverlayHandle: OverlayHandle, eInputMethod: OverlayInputMethod): OverlayError {
-    if (this.ptr === null) throw new Error("IVROverlay pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(384))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const SetOverlayInputMethodFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(384))!;
+    this.#SetOverlayInputMethodFn = new Deno.UnsafeFnPointer(SetOverlayInputMethodFuncPtr, {
       parameters: [
         "u64", //(vr::VROverlayHandle_t)  ulOverlayHandle
         "i32", //(vr::VROverlayInputMethod)  eInputMethod
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      ulOverlayHandle,
-      eInputMethod,
-    );
-
-    return result// as OverlayError;
-  }
-
-  /*
-  GetOverlayMouseScale
-  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"pvecMouseScale","paramtype":"struct vr::HmdVector2_t *"}]
-  Return: vr::EVROverlayError
-  */
-  GetOverlayMouseScale(ulOverlayHandle: OverlayHandle, pvecMouseScale: Deno.PointerValue<HmdVector2>): OverlayError {
-    if (this.ptr === null) throw new Error("IVROverlay pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(392))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const GetOverlayMouseScaleFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(392))!;
+    this.#GetOverlayMouseScaleFn = new Deno.UnsafeFnPointer(GetOverlayMouseScaleFuncPtr, {
       parameters: [
         "u64", //(vr::VROverlayHandle_t)  ulOverlayHandle
         "pointer", //(struct vr::HmdVector2_t *)  pvecMouseScale
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      ulOverlayHandle,
-      pvecMouseScale,
-    );
-
-    return result// as OverlayError;
-  }
-
-  /*
-  SetOverlayMouseScale
-  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"pvecMouseScale","paramtype":"const struct vr::HmdVector2_t *"}]
-  Return: vr::EVROverlayError
-  */
-  SetOverlayMouseScale(ulOverlayHandle: OverlayHandle, pvecMouseScale: Deno.PointerValue<HmdVector2>): OverlayError {
-    if (this.ptr === null) throw new Error("IVROverlay pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(400))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const SetOverlayMouseScaleFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(400))!;
+    this.#SetOverlayMouseScaleFn = new Deno.UnsafeFnPointer(SetOverlayMouseScaleFuncPtr, {
       parameters: [
         "u64", //(vr::VROverlayHandle_t)  ulOverlayHandle
         "pointer", //(const struct vr::HmdVector2_t *)  pvecMouseScale
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      ulOverlayHandle,
-      pvecMouseScale,
-    );
-
-    return result// as OverlayError;
-  }
-
-  /*
-  ComputeOverlayIntersection
-  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"pParams","paramtype":"const struct vr::VROverlayIntersectionParams_t *"},{"paramname":"pResults","paramtype":"struct vr::VROverlayIntersectionResults_t *"}]
-  Return: bool
-  */
-  ComputeOverlayIntersection(ulOverlayHandle: OverlayHandle, pParams: Deno.PointerValue<OverlayIntersectionParams>, pResults: Deno.PointerValue<OverlayIntersectionResults>): boolean {
-    if (this.ptr === null) throw new Error("IVROverlay pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(408))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const ComputeOverlayIntersectionFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(408))!;
+    this.#ComputeOverlayIntersectionFn = new Deno.UnsafeFnPointer(ComputeOverlayIntersectionFuncPtr, {
       parameters: [
         "u64", //(vr::VROverlayHandle_t)  ulOverlayHandle
         "pointer", //(const struct vr::VROverlayIntersectionParams_t *)  pParams
@@ -11443,49 +10383,15 @@ export class IVROverlay {
       ],
       result: "bool"
     });
-
-    const result = func.call(
-      ulOverlayHandle,
-      pParams,
-      pResults,
-    );
-
-    return result// as boolean;
-  }
-
-  /*
-  IsHoverTargetOverlay
-  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"}]
-  Return: bool
-  */
-  IsHoverTargetOverlay(ulOverlayHandle: OverlayHandle): boolean {
-    if (this.ptr === null) throw new Error("IVROverlay pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(416))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const IsHoverTargetOverlayFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(416))!;
+    this.#IsHoverTargetOverlayFn = new Deno.UnsafeFnPointer(IsHoverTargetOverlayFuncPtr, {
       parameters: [
         "u64", //(vr::VROverlayHandle_t)  ulOverlayHandle
       ],
       result: "bool"
     });
-
-    const result = func.call(
-      ulOverlayHandle,
-    );
-
-    return result// as boolean;
-  }
-
-  /*
-  SetOverlayIntersectionMask
-  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"pMaskPrimitives","paramtype":"struct vr::VROverlayIntersectionMaskPrimitive_t *"},{"paramname":"unNumMaskPrimitives","paramtype":"uint32_t"},{"paramname":"unPrimitiveSize","paramtype":"uint32_t"}]
-  Return: vr::EVROverlayError
-  */
-  SetOverlayIntersectionMask(ulOverlayHandle: OverlayHandle, pMaskPrimitives: Deno.PointerValue<OverlayIntersectionMaskPrimitive>, unNumMaskPrimitives: number, unPrimitiveSize: number): OverlayError {
-    if (this.ptr === null) throw new Error("IVROverlay pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(424))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const SetOverlayIntersectionMaskFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(424))!;
+    this.#SetOverlayIntersectionMaskFn = new Deno.UnsafeFnPointer(SetOverlayIntersectionMaskFuncPtr, {
       parameters: [
         "u64", //(vr::VROverlayHandle_t)  ulOverlayHandle
         "pointer", //(struct vr::VROverlayIntersectionMaskPrimitive_t *)  pMaskPrimitives
@@ -11494,27 +10400,8 @@ export class IVROverlay {
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      ulOverlayHandle,
-      pMaskPrimitives,
-      unNumMaskPrimitives,
-      unPrimitiveSize,
-    );
-
-    return result// as OverlayError;
-  }
-
-  /*
-  TriggerLaserMouseHapticVibration
-  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"fDurationSeconds","paramtype":"float"},{"paramname":"fFrequency","paramtype":"float"},{"paramname":"fAmplitude","paramtype":"float"}]
-  Return: vr::EVROverlayError
-  */
-  TriggerLaserMouseHapticVibration(ulOverlayHandle: OverlayHandle, fDurationSeconds: number, fFrequency: number, fAmplitude: number): OverlayError {
-    if (this.ptr === null) throw new Error("IVROverlay pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(432))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const TriggerLaserMouseHapticVibrationFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(432))!;
+    this.#TriggerLaserMouseHapticVibrationFn = new Deno.UnsafeFnPointer(TriggerLaserMouseHapticVibrationFuncPtr, {
       parameters: [
         "u64", //(vr::VROverlayHandle_t)  ulOverlayHandle
         "f32", //(float)  fDurationSeconds
@@ -11523,148 +10410,46 @@ export class IVROverlay {
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      ulOverlayHandle,
-      fDurationSeconds,
-      fFrequency,
-      fAmplitude,
-    );
-
-    return result// as OverlayError;
-  }
-
-  /*
-  SetOverlayCursor
-  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"ulCursorHandle","paramtype":"vr::VROverlayHandle_t"}]
-  Return: vr::EVROverlayError
-  */
-  SetOverlayCursor(ulOverlayHandle: OverlayHandle, ulCursorHandle: OverlayHandle): OverlayError {
-    if (this.ptr === null) throw new Error("IVROverlay pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(440))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const SetOverlayCursorFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(440))!;
+    this.#SetOverlayCursorFn = new Deno.UnsafeFnPointer(SetOverlayCursorFuncPtr, {
       parameters: [
         "u64", //(vr::VROverlayHandle_t)  ulOverlayHandle
         "u64", //(vr::VROverlayHandle_t)  ulCursorHandle
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      ulOverlayHandle,
-      ulCursorHandle,
-    );
-
-    return result// as OverlayError;
-  }
-
-  /*
-  SetOverlayCursorPositionOverride
-  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"pvCursor","paramtype":"const struct vr::HmdVector2_t *"}]
-  Return: vr::EVROverlayError
-  */
-  SetOverlayCursorPositionOverride(ulOverlayHandle: OverlayHandle, pvCursor: Deno.PointerValue<HmdVector2>): OverlayError {
-    if (this.ptr === null) throw new Error("IVROverlay pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(448))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const SetOverlayCursorPositionOverrideFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(448))!;
+    this.#SetOverlayCursorPositionOverrideFn = new Deno.UnsafeFnPointer(SetOverlayCursorPositionOverrideFuncPtr, {
       parameters: [
         "u64", //(vr::VROverlayHandle_t)  ulOverlayHandle
         "pointer", //(const struct vr::HmdVector2_t *)  pvCursor
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      ulOverlayHandle,
-      pvCursor,
-    );
-
-    return result// as OverlayError;
-  }
-
-  /*
-  ClearOverlayCursorPositionOverride
-  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"}]
-  Return: vr::EVROverlayError
-  */
-  ClearOverlayCursorPositionOverride(ulOverlayHandle: OverlayHandle): OverlayError {
-    if (this.ptr === null) throw new Error("IVROverlay pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(456))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const ClearOverlayCursorPositionOverrideFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(456))!;
+    this.#ClearOverlayCursorPositionOverrideFn = new Deno.UnsafeFnPointer(ClearOverlayCursorPositionOverrideFuncPtr, {
       parameters: [
         "u64", //(vr::VROverlayHandle_t)  ulOverlayHandle
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      ulOverlayHandle,
-    );
-
-    return result// as OverlayError;
-  }
-
-  /*
-  SetOverlayTexture
-  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"pTexture","paramtype":"const struct vr::Texture_t *"}]
-  Return: vr::EVROverlayError
-  */
-  SetOverlayTexture(ulOverlayHandle: OverlayHandle, pTexture: Deno.PointerValue<Texture>): OverlayError {
-    if (this.ptr === null) throw new Error("IVROverlay pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(464))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const SetOverlayTextureFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(464))!;
+    this.#SetOverlayTextureFn = new Deno.UnsafeFnPointer(SetOverlayTextureFuncPtr, {
       parameters: [
         "u64", //(vr::VROverlayHandle_t)  ulOverlayHandle
         "pointer", //(const struct vr::Texture_t *)  pTexture
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      ulOverlayHandle,
-      pTexture,
-    );
-
-    return result// as OverlayError;
-  }
-
-  /*
-  ClearOverlayTexture
-  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"}]
-  Return: vr::EVROverlayError
-  */
-  ClearOverlayTexture(ulOverlayHandle: OverlayHandle): OverlayError {
-    if (this.ptr === null) throw new Error("IVROverlay pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(472))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const ClearOverlayTextureFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(472))!;
+    this.#ClearOverlayTextureFn = new Deno.UnsafeFnPointer(ClearOverlayTextureFuncPtr, {
       parameters: [
         "u64", //(vr::VROverlayHandle_t)  ulOverlayHandle
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      ulOverlayHandle,
-    );
-
-    return result// as OverlayError;
-  }
-
-  /*
-  SetOverlayRaw
-  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"pvBuffer","paramtype":"void *"},{"paramname":"unWidth","paramtype":"uint32_t"},{"paramname":"unHeight","paramtype":"uint32_t"},{"paramname":"unBytesPerPixel","paramtype":"uint32_t"}]
-  Return: vr::EVROverlayError
-  */
-  SetOverlayRaw(ulOverlayHandle: OverlayHandle, pvBuffer: Deno.PointerValue<unknown>, unWidth: number, unHeight: number, unBytesPerPixel: number): OverlayError {
-    if (this.ptr === null) throw new Error("IVROverlay pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(480))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const SetOverlayRawFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(480))!;
+    this.#SetOverlayRawFn = new Deno.UnsafeFnPointer(SetOverlayRawFuncPtr, {
       parameters: [
         "u64", //(vr::VROverlayHandle_t)  ulOverlayHandle
         "pointer", //(void *)  pvBuffer
@@ -11674,53 +10459,16 @@ export class IVROverlay {
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      ulOverlayHandle,
-      pvBuffer,
-      unWidth,
-      unHeight,
-      unBytesPerPixel,
-    );
-
-    return result// as OverlayError;
-  }
-
-  /*
-  SetOverlayFromFile
-  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"pchFilePath","paramtype":"const char *"}]
-  Return: vr::EVROverlayError
-  */
-  SetOverlayFromFile(ulOverlayHandle: OverlayHandle, pchFilePath: string): OverlayError {
-    if (this.ptr === null) throw new Error("IVROverlay pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(488))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const SetOverlayFromFileFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(488))!;
+    this.#SetOverlayFromFileFn = new Deno.UnsafeFnPointer(SetOverlayFromFileFuncPtr, {
       parameters: [
         "u64", //(vr::VROverlayHandle_t)  ulOverlayHandle
         "pointer", //(const char *)  pchFilePath
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      ulOverlayHandle,
-      Deno.UnsafePointer.of(new TextEncoder().encode(pchFilePath + "\0")),
-    );
-
-    return result// as OverlayError;
-  }
-
-  /*
-  GetOverlayTexture
-  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"pNativeTextureHandle","paramtype":"void **"},{"paramname":"pNativeTextureRef","paramtype":"void *"},{"paramname":"pWidth","paramtype":"uint32_t *"},{"paramname":"pHeight","paramtype":"uint32_t *"},{"paramname":"pNativeFormat","paramtype":"uint32_t *"},{"paramname":"pAPIType","paramtype":"vr::ETextureType *"},{"paramname":"pColorSpace","paramtype":"vr::EColorSpace *"},{"paramname":"pTextureBounds","paramtype":"struct vr::VRTextureBounds_t *"}]
-  Return: vr::EVROverlayError
-  */
-  GetOverlayTexture(ulOverlayHandle: OverlayHandle, pNativeTextureHandle: Deno.PointerValue<Deno.PointerValue<unknown>>, pNativeTextureRef: Deno.PointerValue<unknown>, pWidth: Deno.PointerValue<number>, pHeight: Deno.PointerValue<number>, pNativeFormat: Deno.PointerValue<number>, pAPIType: Deno.PointerValue<TextureType>, pColorSpace: Deno.PointerValue<ColorSpace>, pTextureBounds: Deno.PointerValue<TextureBounds>): OverlayError {
-    if (this.ptr === null) throw new Error("IVROverlay pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(496))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const GetOverlayTextureFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(496))!;
+    this.#GetOverlayTextureFn = new Deno.UnsafeFnPointer(GetOverlayTextureFuncPtr, {
       parameters: [
         "u64", //(vr::VROverlayHandle_t)  ulOverlayHandle
         "pointer", //(void **)  pNativeTextureHandle
@@ -11734,8 +10482,1053 @@ export class IVROverlay {
       ],
       result: "i32"
     });
+    const ReleaseNativeOverlayHandleFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(504))!;
+    this.#ReleaseNativeOverlayHandleFn = new Deno.UnsafeFnPointer(ReleaseNativeOverlayHandleFuncPtr, {
+      parameters: [
+        "u64", //(vr::VROverlayHandle_t)  ulOverlayHandle
+        "pointer", //(void *)  pNativeTextureHandle
+      ],
+      result: "i32"
+    });
+    const GetOverlayTextureSizeFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(512))!;
+    this.#GetOverlayTextureSizeFn = new Deno.UnsafeFnPointer(GetOverlayTextureSizeFuncPtr, {
+      parameters: [
+        "u64", //(vr::VROverlayHandle_t)  ulOverlayHandle
+        "pointer", //(uint32_t *)  pWidth
+        "pointer", //(uint32_t *)  pHeight
+      ],
+      result: "i32"
+    });
+    const CreateDashboardOverlayFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(520))!;
+    this.#CreateDashboardOverlayFn = new Deno.UnsafeFnPointer(CreateDashboardOverlayFuncPtr, {
+      parameters: [
+        "pointer", //(const char *)  pchOverlayKey
+        "pointer", //(const char *)  pchOverlayFriendlyName
+        "pointer", //(vr::VROverlayHandle_t *)  pMainHandle
+        "pointer", //(vr::VROverlayHandle_t *)  pThumbnailHandle
+      ],
+      result: "i32"
+    });
+    const IsDashboardVisibleFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(528))!;
+    this.#IsDashboardVisibleFn = new Deno.UnsafeFnPointer(IsDashboardVisibleFuncPtr, {
+      parameters: [
+      ],
+      result: "bool"
+    });
+    const IsActiveDashboardOverlayFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(536))!;
+    this.#IsActiveDashboardOverlayFn = new Deno.UnsafeFnPointer(IsActiveDashboardOverlayFuncPtr, {
+      parameters: [
+        "u64", //(vr::VROverlayHandle_t)  ulOverlayHandle
+      ],
+      result: "bool"
+    });
+    const SetDashboardOverlaySceneProcessFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(544))!;
+    this.#SetDashboardOverlaySceneProcessFn = new Deno.UnsafeFnPointer(SetDashboardOverlaySceneProcessFuncPtr, {
+      parameters: [
+        "u64", //(vr::VROverlayHandle_t)  ulOverlayHandle
+        "u32", //(uint32_t)  unProcessId
+      ],
+      result: "i32"
+    });
+    const GetDashboardOverlaySceneProcessFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(552))!;
+    this.#GetDashboardOverlaySceneProcessFn = new Deno.UnsafeFnPointer(GetDashboardOverlaySceneProcessFuncPtr, {
+      parameters: [
+        "u64", //(vr::VROverlayHandle_t)  ulOverlayHandle
+        "pointer", //(uint32_t *)  punProcessId
+      ],
+      result: "i32"
+    });
+    const ShowDashboardFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(560))!;
+    this.#ShowDashboardFn = new Deno.UnsafeFnPointer(ShowDashboardFuncPtr, {
+      parameters: [
+        "pointer", //(const char *)  pchOverlayToShow
+      ],
+      result: "void"
+    });
+    const GetPrimaryDashboardDeviceFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(568))!;
+    this.#GetPrimaryDashboardDeviceFn = new Deno.UnsafeFnPointer(GetPrimaryDashboardDeviceFuncPtr, {
+      parameters: [
+      ],
+      result: "u32"
+    });
+    const ShowKeyboardFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(576))!;
+    this.#ShowKeyboardFn = new Deno.UnsafeFnPointer(ShowKeyboardFuncPtr, {
+      parameters: [
+        "i32", //(vr::EGamepadTextInputMode)  eInputMode
+        "i32", //(vr::EGamepadTextInputLineMode)  eLineInputMode
+        "u32", //(uint32_t)  unFlags
+        "pointer", //(const char *)  pchDescription
+        "u32", //(uint32_t)  unCharMax
+        "pointer", //(const char *)  pchExistingText
+        "u64", //(uint64_t)  uUserValue
+      ],
+      result: "i32"
+    });
+    const ShowKeyboardForOverlayFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(584))!;
+    this.#ShowKeyboardForOverlayFn = new Deno.UnsafeFnPointer(ShowKeyboardForOverlayFuncPtr, {
+      parameters: [
+        "u64", //(vr::VROverlayHandle_t)  ulOverlayHandle
+        "i32", //(vr::EGamepadTextInputMode)  eInputMode
+        "i32", //(vr::EGamepadTextInputLineMode)  eLineInputMode
+        "u32", //(uint32_t)  unFlags
+        "pointer", //(const char *)  pchDescription
+        "u32", //(uint32_t)  unCharMax
+        "pointer", //(const char *)  pchExistingText
+        "u64", //(uint64_t)  uUserValue
+      ],
+      result: "i32"
+    });
+    const GetKeyboardTextFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(592))!;
+    this.#GetKeyboardTextFn = new Deno.UnsafeFnPointer(GetKeyboardTextFuncPtr, {
+      parameters: [
+        "pointer", //(char *)  pchText
+        "u32", //(uint32_t)  cchText
+      ],
+      result: "u32"
+    });
+    const HideKeyboardFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(600))!;
+    this.#HideKeyboardFn = new Deno.UnsafeFnPointer(HideKeyboardFuncPtr, {
+      parameters: [
+      ],
+      result: "void"
+    });
+    const SetKeyboardTransformAbsoluteFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(608))!;
+    this.#SetKeyboardTransformAbsoluteFn = new Deno.UnsafeFnPointer(SetKeyboardTransformAbsoluteFuncPtr, {
+      parameters: [
+        "i32", //(vr::ETrackingUniverseOrigin)  eTrackingOrigin
+        "pointer", //(const struct vr::HmdMatrix34_t *)  pmatTrackingOriginToKeyboardTransform
+      ],
+      result: "void"
+    });
+    const SetKeyboardPositionForOverlayFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(616))!;
+    this.#SetKeyboardPositionForOverlayFn = new Deno.UnsafeFnPointer(SetKeyboardPositionForOverlayFuncPtr, {
+      parameters: [
+        "u64", //(vr::VROverlayHandle_t)  ulOverlayHandle
+        "pointer", //(struct vr::HmdRect2_t)  avoidRect
+      ],
+      result: "void"
+    });
+    const ShowMessageOverlayFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(624))!;
+    this.#ShowMessageOverlayFn = new Deno.UnsafeFnPointer(ShowMessageOverlayFuncPtr, {
+      parameters: [
+        "pointer", //(const char *)  pchText
+        "pointer", //(const char *)  pchCaption
+        "pointer", //(const char *)  pchButton0Text
+        "pointer", //(const char *)  pchButton1Text
+        "pointer", //(const char *)  pchButton2Text
+        "pointer", //(const char *)  pchButton3Text
+      ],
+      result: "i32"
+    });
+    const CloseMessageOverlayFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(632))!;
+    this.#CloseMessageOverlayFn = new Deno.UnsafeFnPointer(CloseMessageOverlayFuncPtr, {
+      parameters: [
+      ],
+      result: "void"
+    });
+  }
 
-    const result = func.call(
+  /*
+  FindOverlay
+  Parameters: [{"paramname":"pchOverlayKey","paramtype":"const char *"},{"paramname":"pOverlayHandle","paramtype":"vr::VROverlayHandle_t *"}]
+  Return: vr::EVROverlayError
+  */
+  FindOverlay(pchOverlayKey: string, pOverlayHandle: Deno.PointerValue<OverlayHandle>): OverlayError {
+    const result = this.#FindOverlayFn.call(
+      Deno.UnsafePointer.of(new TextEncoder().encode(pchOverlayKey + "\0")),
+      pOverlayHandle,
+    );
+
+    return result // as OverlayError;
+  }
+
+  /*
+  CreateOverlay
+  Parameters: [{"paramname":"pchOverlayKey","paramtype":"const char *"},{"paramname":"pchOverlayName","paramtype":"const char *"},{"paramname":"pOverlayHandle","paramtype":"vr::VROverlayHandle_t *"}]
+  Return: vr::EVROverlayError
+  */
+  CreateOverlay(pchOverlayKey: string, pchOverlayName: string, pOverlayHandle: Deno.PointerValue<OverlayHandle>): OverlayError {
+    const result = this.#CreateOverlayFn.call(
+      Deno.UnsafePointer.of(new TextEncoder().encode(pchOverlayKey + "\0")),
+      Deno.UnsafePointer.of(new TextEncoder().encode(pchOverlayName + "\0")),
+      pOverlayHandle,
+    );
+
+    return result // as OverlayError;
+  }
+
+  /*
+  DestroyOverlay
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"}]
+  Return: vr::EVROverlayError
+  */
+  DestroyOverlay(ulOverlayHandle: OverlayHandle): OverlayError {
+    const result = this.#DestroyOverlayFn.call(
+      ulOverlayHandle,
+    );
+
+    return result // as OverlayError;
+  }
+
+  /*
+  GetOverlayKey
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"pchValue","out_string":" ","paramtype":"char *"},{"paramname":"unBufferSize","paramtype":"uint32_t"},{"paramname":"pError","paramtype":"vr::EVROverlayError *"}]
+  Return: uint32_t
+  */
+  GetOverlayKey(ulOverlayHandle: OverlayHandle, pchValue: string, unBufferSize: number, pError: Deno.PointerValue<OverlayError>): number {
+    const result = this.#GetOverlayKeyFn.call(
+      ulOverlayHandle,
+      Deno.UnsafePointer.of(new TextEncoder().encode(pchValue + "\0")),
+      unBufferSize,
+      pError,
+    );
+
+    return result // as number;
+  }
+
+  /*
+  GetOverlayName
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"pchValue","out_string":" ","paramtype":"char *"},{"paramname":"unBufferSize","paramtype":"uint32_t"},{"paramname":"pError","paramtype":"vr::EVROverlayError *"}]
+  Return: uint32_t
+  */
+  GetOverlayName(ulOverlayHandle: OverlayHandle, pchValue: string, unBufferSize: number, pError: Deno.PointerValue<OverlayError>): number {
+    const result = this.#GetOverlayNameFn.call(
+      ulOverlayHandle,
+      Deno.UnsafePointer.of(new TextEncoder().encode(pchValue + "\0")),
+      unBufferSize,
+      pError,
+    );
+
+    return result // as number;
+  }
+
+  /*
+  SetOverlayName
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"pchName","paramtype":"const char *"}]
+  Return: vr::EVROverlayError
+  */
+  SetOverlayName(ulOverlayHandle: OverlayHandle, pchName: string): OverlayError {
+    const result = this.#SetOverlayNameFn.call(
+      ulOverlayHandle,
+      Deno.UnsafePointer.of(new TextEncoder().encode(pchName + "\0")),
+    );
+
+    return result // as OverlayError;
+  }
+
+  /*
+  GetOverlayImageData
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"pvBuffer","paramtype":"void *"},{"paramname":"unBufferSize","paramtype":"uint32_t"},{"paramname":"punWidth","paramtype":"uint32_t *"},{"paramname":"punHeight","paramtype":"uint32_t *"}]
+  Return: vr::EVROverlayError
+  */
+  GetOverlayImageData(ulOverlayHandle: OverlayHandle, pvBuffer: Deno.PointerValue<unknown>, unBufferSize: number, punWidth: Deno.PointerValue<number>, punHeight: Deno.PointerValue<number>): OverlayError {
+    const result = this.#GetOverlayImageDataFn.call(
+      ulOverlayHandle,
+      pvBuffer,
+      unBufferSize,
+      punWidth,
+      punHeight,
+    );
+
+    return result // as OverlayError;
+  }
+
+  /*
+  GetOverlayErrorNameFromEnum
+  Parameters: [{"paramname":"error","paramtype":"vr::EVROverlayError"}]
+  Return: const char *
+  */
+  GetOverlayErrorNameFromEnum(error: OverlayError): string {
+    const result = this.#GetOverlayErrorNameFromEnumFn.call(
+      error,
+    );
+
+    if (result === null) return ""; // Handle null pointer case
+    return Deno.UnsafePointerView.getCString(result);
+  }
+
+  /*
+  SetOverlayRenderingPid
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"unPID","paramtype":"uint32_t"}]
+  Return: vr::EVROverlayError
+  */
+  SetOverlayRenderingPid(ulOverlayHandle: OverlayHandle, unPID: number): OverlayError {
+    const result = this.#SetOverlayRenderingPidFn.call(
+      ulOverlayHandle,
+      unPID,
+    );
+
+    return result // as OverlayError;
+  }
+
+  /*
+  GetOverlayRenderingPid
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"}]
+  Return: uint32_t
+  */
+  GetOverlayRenderingPid(ulOverlayHandle: OverlayHandle): number {
+    const result = this.#GetOverlayRenderingPidFn.call(
+      ulOverlayHandle,
+    );
+
+    return result // as number;
+  }
+
+  /*
+  SetOverlayFlag
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"eOverlayFlag","paramtype":"vr::VROverlayFlags"},{"paramname":"bEnabled","paramtype":"bool"}]
+  Return: vr::EVROverlayError
+  */
+  SetOverlayFlag(ulOverlayHandle: OverlayHandle, eOverlayFlag: OverlayFlags, bEnabled: boolean): OverlayError {
+    const result = this.#SetOverlayFlagFn.call(
+      ulOverlayHandle,
+      eOverlayFlag,
+      bEnabled,
+    );
+
+    return result // as OverlayError;
+  }
+
+  /*
+  GetOverlayFlag
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"eOverlayFlag","paramtype":"vr::VROverlayFlags"},{"paramname":"pbEnabled","paramtype":"bool *"}]
+  Return: vr::EVROverlayError
+  */
+  GetOverlayFlag(ulOverlayHandle: OverlayHandle, eOverlayFlag: OverlayFlags, pbEnabled: Deno.PointerValue<boolean>): OverlayError {
+    const result = this.#GetOverlayFlagFn.call(
+      ulOverlayHandle,
+      eOverlayFlag,
+      pbEnabled,
+    );
+
+    return result // as OverlayError;
+  }
+
+  /*
+  GetOverlayFlags
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"pFlags","paramtype":"uint32_t *"}]
+  Return: vr::EVROverlayError
+  */
+  GetOverlayFlags(ulOverlayHandle: OverlayHandle, pFlags: Deno.PointerValue<number>): OverlayError {
+    const result = this.#GetOverlayFlagsFn.call(
+      ulOverlayHandle,
+      pFlags,
+    );
+
+    return result // as OverlayError;
+  }
+
+  /*
+  SetOverlayColor
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"fRed","paramtype":"float"},{"paramname":"fGreen","paramtype":"float"},{"paramname":"fBlue","paramtype":"float"}]
+  Return: vr::EVROverlayError
+  */
+  SetOverlayColor(ulOverlayHandle: OverlayHandle, fRed: number, fGreen: number, fBlue: number): OverlayError {
+    const result = this.#SetOverlayColorFn.call(
+      ulOverlayHandle,
+      fRed,
+      fGreen,
+      fBlue,
+    );
+
+    return result // as OverlayError;
+  }
+
+  /*
+  GetOverlayColor
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"pfRed","paramtype":"float *"},{"paramname":"pfGreen","paramtype":"float *"},{"paramname":"pfBlue","paramtype":"float *"}]
+  Return: vr::EVROverlayError
+  */
+  GetOverlayColor(ulOverlayHandle: OverlayHandle, pfRed: Deno.PointerValue<number>, pfGreen: Deno.PointerValue<number>, pfBlue: Deno.PointerValue<number>): OverlayError {
+    const result = this.#GetOverlayColorFn.call(
+      ulOverlayHandle,
+      pfRed,
+      pfGreen,
+      pfBlue,
+    );
+
+    return result // as OverlayError;
+  }
+
+  /*
+  SetOverlayAlpha
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"fAlpha","paramtype":"float"}]
+  Return: vr::EVROverlayError
+  */
+  SetOverlayAlpha(ulOverlayHandle: OverlayHandle, fAlpha: number): OverlayError {
+    const result = this.#SetOverlayAlphaFn.call(
+      ulOverlayHandle,
+      fAlpha,
+    );
+
+    return result // as OverlayError;
+  }
+
+  /*
+  GetOverlayAlpha
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"pfAlpha","paramtype":"float *"}]
+  Return: vr::EVROverlayError
+  */
+  GetOverlayAlpha(ulOverlayHandle: OverlayHandle, pfAlpha: Deno.PointerValue<number>): OverlayError {
+    const result = this.#GetOverlayAlphaFn.call(
+      ulOverlayHandle,
+      pfAlpha,
+    );
+
+    return result // as OverlayError;
+  }
+
+  /*
+  SetOverlayTexelAspect
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"fTexelAspect","paramtype":"float"}]
+  Return: vr::EVROverlayError
+  */
+  SetOverlayTexelAspect(ulOverlayHandle: OverlayHandle, fTexelAspect: number): OverlayError {
+    const result = this.#SetOverlayTexelAspectFn.call(
+      ulOverlayHandle,
+      fTexelAspect,
+    );
+
+    return result // as OverlayError;
+  }
+
+  /*
+  GetOverlayTexelAspect
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"pfTexelAspect","paramtype":"float *"}]
+  Return: vr::EVROverlayError
+  */
+  GetOverlayTexelAspect(ulOverlayHandle: OverlayHandle, pfTexelAspect: Deno.PointerValue<number>): OverlayError {
+    const result = this.#GetOverlayTexelAspectFn.call(
+      ulOverlayHandle,
+      pfTexelAspect,
+    );
+
+    return result // as OverlayError;
+  }
+
+  /*
+  SetOverlaySortOrder
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"unSortOrder","paramtype":"uint32_t"}]
+  Return: vr::EVROverlayError
+  */
+  SetOverlaySortOrder(ulOverlayHandle: OverlayHandle, unSortOrder: number): OverlayError {
+    const result = this.#SetOverlaySortOrderFn.call(
+      ulOverlayHandle,
+      unSortOrder,
+    );
+
+    return result // as OverlayError;
+  }
+
+  /*
+  GetOverlaySortOrder
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"punSortOrder","paramtype":"uint32_t *"}]
+  Return: vr::EVROverlayError
+  */
+  GetOverlaySortOrder(ulOverlayHandle: OverlayHandle, punSortOrder: Deno.PointerValue<number>): OverlayError {
+    const result = this.#GetOverlaySortOrderFn.call(
+      ulOverlayHandle,
+      punSortOrder,
+    );
+
+    return result // as OverlayError;
+  }
+
+  /*
+  SetOverlayWidthInMeters
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"fWidthInMeters","paramtype":"float"}]
+  Return: vr::EVROverlayError
+  */
+  SetOverlayWidthInMeters(ulOverlayHandle: OverlayHandle, fWidthInMeters: number): OverlayError {
+    const result = this.#SetOverlayWidthInMetersFn.call(
+      ulOverlayHandle,
+      fWidthInMeters,
+    );
+
+    return result // as OverlayError;
+  }
+
+  /*
+  GetOverlayWidthInMeters
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"pfWidthInMeters","paramtype":"float *"}]
+  Return: vr::EVROverlayError
+  */
+  GetOverlayWidthInMeters(ulOverlayHandle: OverlayHandle, pfWidthInMeters: Deno.PointerValue<number>): OverlayError {
+    const result = this.#GetOverlayWidthInMetersFn.call(
+      ulOverlayHandle,
+      pfWidthInMeters,
+    );
+
+    return result // as OverlayError;
+  }
+
+  /*
+  SetOverlayCurvature
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"fCurvature","paramtype":"float"}]
+  Return: vr::EVROverlayError
+  */
+  SetOverlayCurvature(ulOverlayHandle: OverlayHandle, fCurvature: number): OverlayError {
+    const result = this.#SetOverlayCurvatureFn.call(
+      ulOverlayHandle,
+      fCurvature,
+    );
+
+    return result // as OverlayError;
+  }
+
+  /*
+  GetOverlayCurvature
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"pfCurvature","paramtype":"float *"}]
+  Return: vr::EVROverlayError
+  */
+  GetOverlayCurvature(ulOverlayHandle: OverlayHandle, pfCurvature: Deno.PointerValue<number>): OverlayError {
+    const result = this.#GetOverlayCurvatureFn.call(
+      ulOverlayHandle,
+      pfCurvature,
+    );
+
+    return result // as OverlayError;
+  }
+
+  /*
+  SetOverlayPreCurvePitch
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"fRadians","paramtype":"float"}]
+  Return: vr::EVROverlayError
+  */
+  SetOverlayPreCurvePitch(ulOverlayHandle: OverlayHandle, fRadians: number): OverlayError {
+    const result = this.#SetOverlayPreCurvePitchFn.call(
+      ulOverlayHandle,
+      fRadians,
+    );
+
+    return result // as OverlayError;
+  }
+
+  /*
+  GetOverlayPreCurvePitch
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"pfRadians","paramtype":"float *"}]
+  Return: vr::EVROverlayError
+  */
+  GetOverlayPreCurvePitch(ulOverlayHandle: OverlayHandle, pfRadians: Deno.PointerValue<number>): OverlayError {
+    const result = this.#GetOverlayPreCurvePitchFn.call(
+      ulOverlayHandle,
+      pfRadians,
+    );
+
+    return result // as OverlayError;
+  }
+
+  /*
+  SetOverlayTextureColorSpace
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"eTextureColorSpace","paramtype":"vr::EColorSpace"}]
+  Return: vr::EVROverlayError
+  */
+  SetOverlayTextureColorSpace(ulOverlayHandle: OverlayHandle, eTextureColorSpace: ColorSpace): OverlayError {
+    const result = this.#SetOverlayTextureColorSpaceFn.call(
+      ulOverlayHandle,
+      eTextureColorSpace,
+    );
+
+    return result // as OverlayError;
+  }
+
+  /*
+  GetOverlayTextureColorSpace
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"peTextureColorSpace","paramtype":"vr::EColorSpace *"}]
+  Return: vr::EVROverlayError
+  */
+  GetOverlayTextureColorSpace(ulOverlayHandle: OverlayHandle, peTextureColorSpace: Deno.PointerValue<ColorSpace>): OverlayError {
+    const result = this.#GetOverlayTextureColorSpaceFn.call(
+      ulOverlayHandle,
+      peTextureColorSpace,
+    );
+
+    return result // as OverlayError;
+  }
+
+  /*
+  SetOverlayTextureBounds
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"pOverlayTextureBounds","paramtype":"const struct vr::VRTextureBounds_t *"}]
+  Return: vr::EVROverlayError
+  */
+  SetOverlayTextureBounds(ulOverlayHandle: OverlayHandle, pOverlayTextureBounds: Deno.PointerValue<TextureBounds>): OverlayError {
+    const result = this.#SetOverlayTextureBoundsFn.call(
+      ulOverlayHandle,
+      pOverlayTextureBounds,
+    );
+
+    return result // as OverlayError;
+  }
+
+  /*
+  GetOverlayTextureBounds
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"pOverlayTextureBounds","paramtype":"struct vr::VRTextureBounds_t *"}]
+  Return: vr::EVROverlayError
+  */
+  GetOverlayTextureBounds(ulOverlayHandle: OverlayHandle, pOverlayTextureBounds: Deno.PointerValue<TextureBounds>): OverlayError {
+    const result = this.#GetOverlayTextureBoundsFn.call(
+      ulOverlayHandle,
+      pOverlayTextureBounds,
+    );
+
+    return result // as OverlayError;
+  }
+
+  /*
+  GetOverlayTransformType
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"peTransformType","paramtype":"vr::VROverlayTransformType *"}]
+  Return: vr::EVROverlayError
+  */
+  GetOverlayTransformType(ulOverlayHandle: OverlayHandle, peTransformType: Deno.PointerValue<OverlayTransformType>): OverlayError {
+    const result = this.#GetOverlayTransformTypeFn.call(
+      ulOverlayHandle,
+      peTransformType,
+    );
+
+    return result // as OverlayError;
+  }
+
+  /*
+  SetOverlayTransformAbsolute
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"eTrackingOrigin","paramtype":"vr::ETrackingUniverseOrigin"},{"paramname":"pmatTrackingOriginToOverlayTransform","paramtype":"const struct vr::HmdMatrix34_t *"}]
+  Return: vr::EVROverlayError
+  */
+  SetOverlayTransformAbsolute(ulOverlayHandle: OverlayHandle, eTrackingOrigin: TrackingUniverseOrigin, pmatTrackingOriginToOverlayTransform: Deno.PointerValue<HmdMatrix34>): OverlayError {
+    const result = this.#SetOverlayTransformAbsoluteFn.call(
+      ulOverlayHandle,
+      eTrackingOrigin,
+      pmatTrackingOriginToOverlayTransform,
+    );
+
+    return result // as OverlayError;
+  }
+
+  /*
+  GetOverlayTransformAbsolute
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"peTrackingOrigin","paramtype":"vr::ETrackingUniverseOrigin *"},{"paramname":"pmatTrackingOriginToOverlayTransform","paramtype":"struct vr::HmdMatrix34_t *"}]
+  Return: vr::EVROverlayError
+  */
+  GetOverlayTransformAbsolute(ulOverlayHandle: OverlayHandle, peTrackingOrigin: Deno.PointerValue<TrackingUniverseOrigin>, pmatTrackingOriginToOverlayTransform: Deno.PointerValue<HmdMatrix34>): OverlayError {
+    const result = this.#GetOverlayTransformAbsoluteFn.call(
+      ulOverlayHandle,
+      peTrackingOrigin,
+      pmatTrackingOriginToOverlayTransform,
+    );
+
+    return result // as OverlayError;
+  }
+
+  /*
+  SetOverlayTransformTrackedDeviceRelative
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"unTrackedDevice","paramtype":"vr::TrackedDeviceIndex_t"},{"paramname":"pmatTrackedDeviceToOverlayTransform","paramtype":"const struct vr::HmdMatrix34_t *"}]
+  Return: vr::EVROverlayError
+  */
+  SetOverlayTransformTrackedDeviceRelative(ulOverlayHandle: OverlayHandle, unTrackedDevice: TrackedDeviceIndex, pmatTrackedDeviceToOverlayTransform: Deno.PointerValue<HmdMatrix34>): OverlayError {
+    const result = this.#SetOverlayTransformTrackedDeviceRelativeFn.call(
+      ulOverlayHandle,
+      unTrackedDevice,
+      pmatTrackedDeviceToOverlayTransform,
+    );
+
+    return result // as OverlayError;
+  }
+
+  /*
+  GetOverlayTransformTrackedDeviceRelative
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"punTrackedDevice","paramtype":"vr::TrackedDeviceIndex_t *"},{"paramname":"pmatTrackedDeviceToOverlayTransform","paramtype":"struct vr::HmdMatrix34_t *"}]
+  Return: vr::EVROverlayError
+  */
+  GetOverlayTransformTrackedDeviceRelative(ulOverlayHandle: OverlayHandle, punTrackedDevice: Deno.PointerValue<TrackedDeviceIndex>, pmatTrackedDeviceToOverlayTransform: Deno.PointerValue<HmdMatrix34>): OverlayError {
+    const result = this.#GetOverlayTransformTrackedDeviceRelativeFn.call(
+      ulOverlayHandle,
+      punTrackedDevice,
+      pmatTrackedDeviceToOverlayTransform,
+    );
+
+    return result // as OverlayError;
+  }
+
+  /*
+  SetOverlayTransformTrackedDeviceComponent
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"unDeviceIndex","paramtype":"vr::TrackedDeviceIndex_t"},{"paramname":"pchComponentName","paramtype":"const char *"}]
+  Return: vr::EVROverlayError
+  */
+  SetOverlayTransformTrackedDeviceComponent(ulOverlayHandle: OverlayHandle, unDeviceIndex: TrackedDeviceIndex, pchComponentName: string): OverlayError {
+    const result = this.#SetOverlayTransformTrackedDeviceComponentFn.call(
+      ulOverlayHandle,
+      unDeviceIndex,
+      Deno.UnsafePointer.of(new TextEncoder().encode(pchComponentName + "\0")),
+    );
+
+    return result // as OverlayError;
+  }
+
+  /*
+  GetOverlayTransformTrackedDeviceComponent
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"punDeviceIndex","paramtype":"vr::TrackedDeviceIndex_t *"},{"paramname":"pchComponentName","out_string":" ","paramtype":"char *"},{"paramname":"unComponentNameSize","paramtype":"uint32_t"}]
+  Return: vr::EVROverlayError
+  */
+  GetOverlayTransformTrackedDeviceComponent(ulOverlayHandle: OverlayHandle, punDeviceIndex: Deno.PointerValue<TrackedDeviceIndex>, pchComponentName: string, unComponentNameSize: number): OverlayError {
+    const result = this.#GetOverlayTransformTrackedDeviceComponentFn.call(
+      ulOverlayHandle,
+      punDeviceIndex,
+      Deno.UnsafePointer.of(new TextEncoder().encode(pchComponentName + "\0")),
+      unComponentNameSize,
+    );
+
+    return result // as OverlayError;
+  }
+
+  /*
+  SetOverlayTransformCursor
+  Parameters: [{"paramname":"ulCursorOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"pvHotspot","paramtype":"const struct vr::HmdVector2_t *"}]
+  Return: vr::EVROverlayError
+  */
+  SetOverlayTransformCursor(ulCursorOverlayHandle: OverlayHandle, pvHotspot: Deno.PointerValue<HmdVector2>): OverlayError {
+    const result = this.#SetOverlayTransformCursorFn.call(
+      ulCursorOverlayHandle,
+      pvHotspot,
+    );
+
+    return result // as OverlayError;
+  }
+
+  /*
+  GetOverlayTransformCursor
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"pvHotspot","paramtype":"struct vr::HmdVector2_t *"}]
+  Return: vr::EVROverlayError
+  */
+  GetOverlayTransformCursor(ulOverlayHandle: OverlayHandle, pvHotspot: Deno.PointerValue<HmdVector2>): OverlayError {
+    const result = this.#GetOverlayTransformCursorFn.call(
+      ulOverlayHandle,
+      pvHotspot,
+    );
+
+    return result // as OverlayError;
+  }
+
+  /*
+  SetOverlayTransformProjection
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"eTrackingOrigin","paramtype":"vr::ETrackingUniverseOrigin"},{"paramname":"pmatTrackingOriginToOverlayTransform","paramtype":"const struct vr::HmdMatrix34_t *"},{"paramname":"pProjection","paramtype":"const struct vr::VROverlayProjection_t *"},{"paramname":"eEye","paramtype":"vr::EVREye"}]
+  Return: vr::EVROverlayError
+  */
+  SetOverlayTransformProjection(ulOverlayHandle: OverlayHandle, eTrackingOrigin: TrackingUniverseOrigin, pmatTrackingOriginToOverlayTransform: Deno.PointerValue<HmdMatrix34>, pProjection: Deno.PointerValue<OverlayProjection>, eEye: Eye): OverlayError {
+    const result = this.#SetOverlayTransformProjectionFn.call(
+      ulOverlayHandle,
+      eTrackingOrigin,
+      pmatTrackingOriginToOverlayTransform,
+      pProjection,
+      eEye,
+    );
+
+    return result // as OverlayError;
+  }
+
+  /*
+  ShowOverlay
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"}]
+  Return: vr::EVROverlayError
+  */
+  ShowOverlay(ulOverlayHandle: OverlayHandle): OverlayError {
+    const result = this.#ShowOverlayFn.call(
+      ulOverlayHandle,
+    );
+
+    return result // as OverlayError;
+  }
+
+  /*
+  HideOverlay
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"}]
+  Return: vr::EVROverlayError
+  */
+  HideOverlay(ulOverlayHandle: OverlayHandle): OverlayError {
+    const result = this.#HideOverlayFn.call(
+      ulOverlayHandle,
+    );
+
+    return result // as OverlayError;
+  }
+
+  /*
+  IsOverlayVisible
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"}]
+  Return: bool
+  */
+  IsOverlayVisible(ulOverlayHandle: OverlayHandle): boolean {
+    const result = this.#IsOverlayVisibleFn.call(
+      ulOverlayHandle,
+    );
+
+    return result // as boolean;
+  }
+
+  /*
+  GetTransformForOverlayCoordinates
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"eTrackingOrigin","paramtype":"vr::ETrackingUniverseOrigin"},{"paramname":"coordinatesInOverlay","paramtype":"struct vr::HmdVector2_t"},{"paramname":"pmatTransform","paramtype":"struct vr::HmdMatrix34_t *"}]
+  Return: vr::EVROverlayError
+  */
+  GetTransformForOverlayCoordinates(ulOverlayHandle: OverlayHandle, eTrackingOrigin: TrackingUniverseOrigin, coordinatesInOverlay: HmdVector2, pmatTransform: Deno.PointerValue<HmdMatrix34>): OverlayError {
+    const result = this.#GetTransformForOverlayCoordinatesFn.call(
+      ulOverlayHandle,
+      eTrackingOrigin,
+      coordinatesInOverlay,
+      pmatTransform,
+    );
+
+    return result // as OverlayError;
+  }
+
+  /*
+  WaitFrameSync
+  Parameters: [{"paramname":"nTimeoutMs","paramtype":"uint32_t"}]
+  Return: vr::EVROverlayError
+  */
+  WaitFrameSync(nTimeoutMs: number): OverlayError {
+    const result = this.#WaitFrameSyncFn.call(
+      nTimeoutMs,
+    );
+
+    return result // as OverlayError;
+  }
+
+  /*
+  PollNextOverlayEvent
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"pEvent","paramtype":"struct vr::VREvent_t *"},{"paramname":"uncbVREvent","paramtype":"uint32_t"}]
+  Return: bool
+  */
+  PollNextOverlayEvent(ulOverlayHandle: OverlayHandle, pEvent: Deno.PointerValue<Event>, uncbVREvent: number): boolean {
+    const result = this.#PollNextOverlayEventFn.call(
+      ulOverlayHandle,
+      pEvent,
+      uncbVREvent,
+    );
+
+    return result // as boolean;
+  }
+
+  /*
+  GetOverlayInputMethod
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"peInputMethod","paramtype":"vr::VROverlayInputMethod *"}]
+  Return: vr::EVROverlayError
+  */
+  GetOverlayInputMethod(ulOverlayHandle: OverlayHandle, peInputMethod: Deno.PointerValue<OverlayInputMethod>): OverlayError {
+    const result = this.#GetOverlayInputMethodFn.call(
+      ulOverlayHandle,
+      peInputMethod,
+    );
+
+    return result // as OverlayError;
+  }
+
+  /*
+  SetOverlayInputMethod
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"eInputMethod","paramtype":"vr::VROverlayInputMethod"}]
+  Return: vr::EVROverlayError
+  */
+  SetOverlayInputMethod(ulOverlayHandle: OverlayHandle, eInputMethod: OverlayInputMethod): OverlayError {
+    const result = this.#SetOverlayInputMethodFn.call(
+      ulOverlayHandle,
+      eInputMethod,
+    );
+
+    return result // as OverlayError;
+  }
+
+  /*
+  GetOverlayMouseScale
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"pvecMouseScale","paramtype":"struct vr::HmdVector2_t *"}]
+  Return: vr::EVROverlayError
+  */
+  GetOverlayMouseScale(ulOverlayHandle: OverlayHandle, pvecMouseScale: Deno.PointerValue<HmdVector2>): OverlayError {
+    const result = this.#GetOverlayMouseScaleFn.call(
+      ulOverlayHandle,
+      pvecMouseScale,
+    );
+
+    return result // as OverlayError;
+  }
+
+  /*
+  SetOverlayMouseScale
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"pvecMouseScale","paramtype":"const struct vr::HmdVector2_t *"}]
+  Return: vr::EVROverlayError
+  */
+  SetOverlayMouseScale(ulOverlayHandle: OverlayHandle, pvecMouseScale: Deno.PointerValue<HmdVector2>): OverlayError {
+    const result = this.#SetOverlayMouseScaleFn.call(
+      ulOverlayHandle,
+      pvecMouseScale,
+    );
+
+    return result // as OverlayError;
+  }
+
+  /*
+  ComputeOverlayIntersection
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"pParams","paramtype":"const struct vr::VROverlayIntersectionParams_t *"},{"paramname":"pResults","paramtype":"struct vr::VROverlayIntersectionResults_t *"}]
+  Return: bool
+  */
+  ComputeOverlayIntersection(ulOverlayHandle: OverlayHandle, pParams: Deno.PointerValue<OverlayIntersectionParams>, pResults: Deno.PointerValue<OverlayIntersectionResults>): boolean {
+    const result = this.#ComputeOverlayIntersectionFn.call(
+      ulOverlayHandle,
+      pParams,
+      pResults,
+    );
+
+    return result // as boolean;
+  }
+
+  /*
+  IsHoverTargetOverlay
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"}]
+  Return: bool
+  */
+  IsHoverTargetOverlay(ulOverlayHandle: OverlayHandle): boolean {
+    const result = this.#IsHoverTargetOverlayFn.call(
+      ulOverlayHandle,
+    );
+
+    return result // as boolean;
+  }
+
+  /*
+  SetOverlayIntersectionMask
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"pMaskPrimitives","paramtype":"struct vr::VROverlayIntersectionMaskPrimitive_t *"},{"paramname":"unNumMaskPrimitives","paramtype":"uint32_t"},{"paramname":"unPrimitiveSize","paramtype":"uint32_t"}]
+  Return: vr::EVROverlayError
+  */
+  SetOverlayIntersectionMask(ulOverlayHandle: OverlayHandle, pMaskPrimitives: Deno.PointerValue<OverlayIntersectionMaskPrimitive>, unNumMaskPrimitives: number, unPrimitiveSize: number): OverlayError {
+    const result = this.#SetOverlayIntersectionMaskFn.call(
+      ulOverlayHandle,
+      pMaskPrimitives,
+      unNumMaskPrimitives,
+      unPrimitiveSize,
+    );
+
+    return result // as OverlayError;
+  }
+
+  /*
+  TriggerLaserMouseHapticVibration
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"fDurationSeconds","paramtype":"float"},{"paramname":"fFrequency","paramtype":"float"},{"paramname":"fAmplitude","paramtype":"float"}]
+  Return: vr::EVROverlayError
+  */
+  TriggerLaserMouseHapticVibration(ulOverlayHandle: OverlayHandle, fDurationSeconds: number, fFrequency: number, fAmplitude: number): OverlayError {
+    const result = this.#TriggerLaserMouseHapticVibrationFn.call(
+      ulOverlayHandle,
+      fDurationSeconds,
+      fFrequency,
+      fAmplitude,
+    );
+
+    return result // as OverlayError;
+  }
+
+  /*
+  SetOverlayCursor
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"ulCursorHandle","paramtype":"vr::VROverlayHandle_t"}]
+  Return: vr::EVROverlayError
+  */
+  SetOverlayCursor(ulOverlayHandle: OverlayHandle, ulCursorHandle: OverlayHandle): OverlayError {
+    const result = this.#SetOverlayCursorFn.call(
+      ulOverlayHandle,
+      ulCursorHandle,
+    );
+
+    return result // as OverlayError;
+  }
+
+  /*
+  SetOverlayCursorPositionOverride
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"pvCursor","paramtype":"const struct vr::HmdVector2_t *"}]
+  Return: vr::EVROverlayError
+  */
+  SetOverlayCursorPositionOverride(ulOverlayHandle: OverlayHandle, pvCursor: Deno.PointerValue<HmdVector2>): OverlayError {
+    const result = this.#SetOverlayCursorPositionOverrideFn.call(
+      ulOverlayHandle,
+      pvCursor,
+    );
+
+    return result // as OverlayError;
+  }
+
+  /*
+  ClearOverlayCursorPositionOverride
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"}]
+  Return: vr::EVROverlayError
+  */
+  ClearOverlayCursorPositionOverride(ulOverlayHandle: OverlayHandle): OverlayError {
+    const result = this.#ClearOverlayCursorPositionOverrideFn.call(
+      ulOverlayHandle,
+    );
+
+    return result // as OverlayError;
+  }
+
+  /*
+  SetOverlayTexture
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"pTexture","paramtype":"const struct vr::Texture_t *"}]
+  Return: vr::EVROverlayError
+  */
+  SetOverlayTexture(ulOverlayHandle: OverlayHandle, pTexture: Deno.PointerValue<Texture>): OverlayError {
+    const result = this.#SetOverlayTextureFn.call(
+      ulOverlayHandle,
+      pTexture,
+    );
+
+    return result // as OverlayError;
+  }
+
+  /*
+  ClearOverlayTexture
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"}]
+  Return: vr::EVROverlayError
+  */
+  ClearOverlayTexture(ulOverlayHandle: OverlayHandle): OverlayError {
+    const result = this.#ClearOverlayTextureFn.call(
+      ulOverlayHandle,
+    );
+
+    return result // as OverlayError;
+  }
+
+  /*
+  SetOverlayRaw
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"pvBuffer","paramtype":"void *"},{"paramname":"unWidth","paramtype":"uint32_t"},{"paramname":"unHeight","paramtype":"uint32_t"},{"paramname":"unBytesPerPixel","paramtype":"uint32_t"}]
+  Return: vr::EVROverlayError
+  */
+  SetOverlayRaw(ulOverlayHandle: OverlayHandle, pvBuffer: Deno.PointerValue<unknown>, unWidth: number, unHeight: number, unBytesPerPixel: number): OverlayError {
+    const result = this.#SetOverlayRawFn.call(
+      ulOverlayHandle,
+      pvBuffer,
+      unWidth,
+      unHeight,
+      unBytesPerPixel,
+    );
+
+    return result // as OverlayError;
+  }
+
+  /*
+  SetOverlayFromFile
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"pchFilePath","paramtype":"const char *"}]
+  Return: vr::EVROverlayError
+  */
+  SetOverlayFromFile(ulOverlayHandle: OverlayHandle, pchFilePath: string): OverlayError {
+    const result = this.#SetOverlayFromFileFn.call(
+      ulOverlayHandle,
+      Deno.UnsafePointer.of(new TextEncoder().encode(pchFilePath + "\0")),
+    );
+
+    return result // as OverlayError;
+  }
+
+  /*
+  GetOverlayTexture
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"pNativeTextureHandle","paramtype":"void **"},{"paramname":"pNativeTextureRef","paramtype":"void *"},{"paramname":"pWidth","paramtype":"uint32_t *"},{"paramname":"pHeight","paramtype":"uint32_t *"},{"paramname":"pNativeFormat","paramtype":"uint32_t *"},{"paramname":"pAPIType","paramtype":"vr::ETextureType *"},{"paramname":"pColorSpace","paramtype":"vr::EColorSpace *"},{"paramname":"pTextureBounds","paramtype":"struct vr::VRTextureBounds_t *"}]
+  Return: vr::EVROverlayError
+  */
+  GetOverlayTexture(ulOverlayHandle: OverlayHandle, pNativeTextureHandle: Deno.PointerValue<Deno.PointerValue<unknown>>, pNativeTextureRef: Deno.PointerValue<unknown>, pWidth: Deno.PointerValue<number>, pHeight: Deno.PointerValue<number>, pNativeFormat: Deno.PointerValue<number>, pAPIType: Deno.PointerValue<TextureType>, pColorSpace: Deno.PointerValue<ColorSpace>, pTextureBounds: Deno.PointerValue<TextureBounds>): OverlayError {
+    const result = this.#GetOverlayTextureFn.call(
       ulOverlayHandle,
       pNativeTextureHandle,
       pNativeTextureRef,
@@ -11747,7 +11540,7 @@ export class IVROverlay {
       pTextureBounds,
     );
 
-    return result// as OverlayError;
+    return result // as OverlayError;
   }
 
   /*
@@ -11756,23 +11549,12 @@ export class IVROverlay {
   Return: vr::EVROverlayError
   */
   ReleaseNativeOverlayHandle(ulOverlayHandle: OverlayHandle, pNativeTextureHandle: Deno.PointerValue<unknown>): OverlayError {
-    if (this.ptr === null) throw new Error("IVROverlay pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(504))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "u64", //(vr::VROverlayHandle_t)  ulOverlayHandle
-        "pointer", //(void *)  pNativeTextureHandle
-      ],
-      result: "i32"
-    });
-
-    const result = func.call(
+    const result = this.#ReleaseNativeOverlayHandleFn.call(
       ulOverlayHandle,
       pNativeTextureHandle,
     );
 
-    return result// as OverlayError;
+    return result // as OverlayError;
   }
 
   /*
@@ -11781,25 +11563,13 @@ export class IVROverlay {
   Return: vr::EVROverlayError
   */
   GetOverlayTextureSize(ulOverlayHandle: OverlayHandle, pWidth: Deno.PointerValue<number>, pHeight: Deno.PointerValue<number>): OverlayError {
-    if (this.ptr === null) throw new Error("IVROverlay pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(512))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "u64", //(vr::VROverlayHandle_t)  ulOverlayHandle
-        "pointer", //(uint32_t *)  pWidth
-        "pointer", //(uint32_t *)  pHeight
-      ],
-      result: "i32"
-    });
-
-    const result = func.call(
+    const result = this.#GetOverlayTextureSizeFn.call(
       ulOverlayHandle,
       pWidth,
       pHeight,
     );
 
-    return result// as OverlayError;
+    return result // as OverlayError;
   }
 
   /*
@@ -11808,27 +11578,14 @@ export class IVROverlay {
   Return: vr::EVROverlayError
   */
   CreateDashboardOverlay(pchOverlayKey: string, pchOverlayFriendlyName: string, pMainHandle: Deno.PointerValue<OverlayHandle>, pThumbnailHandle: Deno.PointerValue<OverlayHandle>): OverlayError {
-    if (this.ptr === null) throw new Error("IVROverlay pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(520))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "pointer", //(const char *)  pchOverlayKey
-        "pointer", //(const char *)  pchOverlayFriendlyName
-        "pointer", //(vr::VROverlayHandle_t *)  pMainHandle
-        "pointer", //(vr::VROverlayHandle_t *)  pThumbnailHandle
-      ],
-      result: "i32"
-    });
-
-    const result = func.call(
+    const result = this.#CreateDashboardOverlayFn.call(
       Deno.UnsafePointer.of(new TextEncoder().encode(pchOverlayKey + "\0")),
       Deno.UnsafePointer.of(new TextEncoder().encode(pchOverlayFriendlyName + "\0")),
       pMainHandle,
       pThumbnailHandle,
     );
 
-    return result// as OverlayError;
+    return result // as OverlayError;
   }
 
   /*
@@ -11837,19 +11594,10 @@ export class IVROverlay {
   Return: bool
   */
   IsDashboardVisible(): boolean {
-    if (this.ptr === null) throw new Error("IVROverlay pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(528))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-      ],
-      result: "bool"
-    });
-
-    const result = func.call(
+    const result = this.#IsDashboardVisibleFn.call(
     );
 
-    return result// as boolean;
+    return result // as boolean;
   }
 
   /*
@@ -11858,21 +11606,11 @@ export class IVROverlay {
   Return: bool
   */
   IsActiveDashboardOverlay(ulOverlayHandle: OverlayHandle): boolean {
-    if (this.ptr === null) throw new Error("IVROverlay pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(536))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "u64", //(vr::VROverlayHandle_t)  ulOverlayHandle
-      ],
-      result: "bool"
-    });
-
-    const result = func.call(
+    const result = this.#IsActiveDashboardOverlayFn.call(
       ulOverlayHandle,
     );
 
-    return result// as boolean;
+    return result // as boolean;
   }
 
   /*
@@ -11881,23 +11619,12 @@ export class IVROverlay {
   Return: vr::EVROverlayError
   */
   SetDashboardOverlaySceneProcess(ulOverlayHandle: OverlayHandle, unProcessId: number): OverlayError {
-    if (this.ptr === null) throw new Error("IVROverlay pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(544))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "u64", //(vr::VROverlayHandle_t)  ulOverlayHandle
-        "u32", //(uint32_t)  unProcessId
-      ],
-      result: "i32"
-    });
-
-    const result = func.call(
+    const result = this.#SetDashboardOverlaySceneProcessFn.call(
       ulOverlayHandle,
       unProcessId,
     );
 
-    return result// as OverlayError;
+    return result // as OverlayError;
   }
 
   /*
@@ -11906,23 +11633,12 @@ export class IVROverlay {
   Return: vr::EVROverlayError
   */
   GetDashboardOverlaySceneProcess(ulOverlayHandle: OverlayHandle, punProcessId: Deno.PointerValue<number>): OverlayError {
-    if (this.ptr === null) throw new Error("IVROverlay pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(552))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "u64", //(vr::VROverlayHandle_t)  ulOverlayHandle
-        "pointer", //(uint32_t *)  punProcessId
-      ],
-      result: "i32"
-    });
-
-    const result = func.call(
+    const result = this.#GetDashboardOverlaySceneProcessFn.call(
       ulOverlayHandle,
       punProcessId,
     );
 
-    return result// as OverlayError;
+    return result // as OverlayError;
   }
 
   /*
@@ -11931,17 +11647,7 @@ export class IVROverlay {
   Return: void
   */
   ShowDashboard(pchOverlayToShow: string): void {
-    if (this.ptr === null) throw new Error("IVROverlay pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(560))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "pointer", //(const char *)  pchOverlayToShow
-      ],
-      result: "void"
-    });
-
-    const _result = func.call(
+    const _result = this.#ShowDashboardFn.call(
       Deno.UnsafePointer.of(new TextEncoder().encode(pchOverlayToShow + "\0")),
     );
 
@@ -11953,19 +11659,10 @@ export class IVROverlay {
   Return: vr::TrackedDeviceIndex_t
   */
   GetPrimaryDashboardDevice(): TrackedDeviceIndex {
-    if (this.ptr === null) throw new Error("IVROverlay pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(568))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-      ],
-      result: "u32"
-    });
-
-    const result = func.call(
+    const result = this.#GetPrimaryDashboardDeviceFn.call(
     );
 
-    return result// as TrackedDeviceIndex;
+    return result // as TrackedDeviceIndex;
   }
 
   /*
@@ -11974,23 +11671,7 @@ export class IVROverlay {
   Return: vr::EVROverlayError
   */
   ShowKeyboard(eInputMode: GamepadTextInputMode, eLineInputMode: GamepadTextInputLineMode, unFlags: number, pchDescription: string, unCharMax: number, pchExistingText: string, uUserValue: bigint): OverlayError {
-    if (this.ptr === null) throw new Error("IVROverlay pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(576))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "i32", //(vr::EGamepadTextInputMode)  eInputMode
-        "i32", //(vr::EGamepadTextInputLineMode)  eLineInputMode
-        "u32", //(uint32_t)  unFlags
-        "pointer", //(const char *)  pchDescription
-        "u32", //(uint32_t)  unCharMax
-        "pointer", //(const char *)  pchExistingText
-        "u64", //(uint64_t)  uUserValue
-      ],
-      result: "i32"
-    });
-
-    const result = func.call(
+    const result = this.#ShowKeyboardFn.call(
       eInputMode,
       eLineInputMode,
       unFlags,
@@ -12000,7 +11681,7 @@ export class IVROverlay {
       uUserValue,
     );
 
-    return result// as OverlayError;
+    return result // as OverlayError;
   }
 
   /*
@@ -12009,24 +11690,7 @@ export class IVROverlay {
   Return: vr::EVROverlayError
   */
   ShowKeyboardForOverlay(ulOverlayHandle: OverlayHandle, eInputMode: GamepadTextInputMode, eLineInputMode: GamepadTextInputLineMode, unFlags: number, pchDescription: string, unCharMax: number, pchExistingText: string, uUserValue: bigint): OverlayError {
-    if (this.ptr === null) throw new Error("IVROverlay pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(584))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "u64", //(vr::VROverlayHandle_t)  ulOverlayHandle
-        "i32", //(vr::EGamepadTextInputMode)  eInputMode
-        "i32", //(vr::EGamepadTextInputLineMode)  eLineInputMode
-        "u32", //(uint32_t)  unFlags
-        "pointer", //(const char *)  pchDescription
-        "u32", //(uint32_t)  unCharMax
-        "pointer", //(const char *)  pchExistingText
-        "u64", //(uint64_t)  uUserValue
-      ],
-      result: "i32"
-    });
-
-    const result = func.call(
+    const result = this.#ShowKeyboardForOverlayFn.call(
       ulOverlayHandle,
       eInputMode,
       eLineInputMode,
@@ -12037,7 +11701,7 @@ export class IVROverlay {
       uUserValue,
     );
 
-    return result// as OverlayError;
+    return result // as OverlayError;
   }
 
   /*
@@ -12046,23 +11710,12 @@ export class IVROverlay {
   Return: uint32_t
   */
   GetKeyboardText(pchText: string, cchText: number): number {
-    if (this.ptr === null) throw new Error("IVROverlay pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(592))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "pointer", //(char *)  pchText
-        "u32", //(uint32_t)  cchText
-      ],
-      result: "u32"
-    });
-
-    const result = func.call(
+    const result = this.#GetKeyboardTextFn.call(
       Deno.UnsafePointer.of(new TextEncoder().encode(pchText + "\0")),
       cchText,
     );
 
-    return result// as number;
+    return result // as number;
   }
 
   /*
@@ -12071,16 +11724,7 @@ export class IVROverlay {
   Return: void
   */
   HideKeyboard(): void {
-    if (this.ptr === null) throw new Error("IVROverlay pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(600))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-      ],
-      result: "void"
-    });
-
-    const _result = func.call(
+    const _result = this.#HideKeyboardFn.call(
     );
 
   }
@@ -12091,18 +11735,7 @@ export class IVROverlay {
   Return: void
   */
   SetKeyboardTransformAbsolute(eTrackingOrigin: TrackingUniverseOrigin, pmatTrackingOriginToKeyboardTransform: Deno.PointerValue<HmdMatrix34>): void {
-    if (this.ptr === null) throw new Error("IVROverlay pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(608))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "i32", //(vr::ETrackingUniverseOrigin)  eTrackingOrigin
-        "pointer", //(const struct vr::HmdMatrix34_t *)  pmatTrackingOriginToKeyboardTransform
-      ],
-      result: "void"
-    });
-
-    const _result = func.call(
+    const _result = this.#SetKeyboardTransformAbsoluteFn.call(
       eTrackingOrigin,
       pmatTrackingOriginToKeyboardTransform,
     );
@@ -12115,18 +11748,7 @@ export class IVROverlay {
   Return: void
   */
   SetKeyboardPositionForOverlay(ulOverlayHandle: OverlayHandle, avoidRect: HmdRect2): void {
-    if (this.ptr === null) throw new Error("IVROverlay pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(616))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "u64", //(vr::VROverlayHandle_t)  ulOverlayHandle
-        "pointer", //(struct vr::HmdRect2_t)  avoidRect
-      ],
-      result: "void"
-    });
-
-    const _result = func.call(
+    const _result = this.#SetKeyboardPositionForOverlayFn.call(
       ulOverlayHandle,
       avoidRect,
     );
@@ -12139,22 +11761,7 @@ export class IVROverlay {
   Return: vr::VRMessageOverlayResponse
   */
   ShowMessageOverlay(pchText: string, pchCaption: string, pchButton0Text: string, pchButton1Text: string, pchButton2Text: string, pchButton3Text: string): MessageOverlayResponse {
-    if (this.ptr === null) throw new Error("IVROverlay pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(624))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "pointer", //(const char *)  pchText
-        "pointer", //(const char *)  pchCaption
-        "pointer", //(const char *)  pchButton0Text
-        "pointer", //(const char *)  pchButton1Text
-        "pointer", //(const char *)  pchButton2Text
-        "pointer", //(const char *)  pchButton3Text
-      ],
-      result: "i32"
-    });
-
-    const result = func.call(
+    const result = this.#ShowMessageOverlayFn.call(
       Deno.UnsafePointer.of(new TextEncoder().encode(pchText + "\0")),
       Deno.UnsafePointer.of(new TextEncoder().encode(pchCaption + "\0")),
       Deno.UnsafePointer.of(new TextEncoder().encode(pchButton0Text + "\0")),
@@ -12163,7 +11770,7 @@ export class IVROverlay {
       Deno.UnsafePointer.of(new TextEncoder().encode(pchButton3Text + "\0")),
     );
 
-    return result// as MessageOverlayResponse;
+    return result // as MessageOverlayResponse;
   }
 
   /*
@@ -12172,16 +11779,7 @@ export class IVROverlay {
   Return: void
   */
   CloseMessageOverlay(): void {
-    if (this.ptr === null) throw new Error("IVROverlay pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlay>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(632))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-      ],
-      result: "void"
-    });
-
-    const _result = func.call(
+    const _result = this.#CloseMessageOverlayFn.call(
     );
 
   }
@@ -12189,18 +11787,16 @@ export class IVROverlay {
 }
 
 export class IVROverlayView {
-  constructor(private ptr: Deno.PointerValue<IVROverlayView|unknown>) {}
+  readonly #AcquireOverlayViewFn: Deno.UnsafeFnPointer<any>;
+  readonly #ReleaseOverlayViewFn: Deno.UnsafeFnPointer<any>;
+  readonly #PostOverlayEventFn: Deno.UnsafeFnPointer<any>;
+  readonly #IsViewingPermittedFn: Deno.UnsafeFnPointer<any>;
 
-  /*
-  AcquireOverlayView
-  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"pNativeDevice","paramtype":"struct vr::VRNativeDevice_t *"},{"paramname":"pOverlayView","paramtype":"struct vr::VROverlayView_t *"},{"paramname":"unOverlayViewSize","paramtype":"uint32_t"}]
-  Return: vr::EVROverlayError
-  */
-  AcquireOverlayView(ulOverlayHandle: OverlayHandle, pNativeDevice: Deno.PointerValue<NativeDevice>, pOverlayView: Deno.PointerValue<OverlayView>, unOverlayViewSize: number): OverlayError {
+  constructor(private ptr: Deno.PointerValue<IVROverlayView|unknown>) {
     if (this.ptr === null) throw new Error("IVROverlayView pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlayView>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(0))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const AcquireOverlayViewFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(0))!;
+    this.#AcquireOverlayViewFn = new Deno.UnsafeFnPointer(AcquireOverlayViewFuncPtr, {
       parameters: [
         "u64", //(vr::VROverlayHandle_t)  ulOverlayHandle
         "pointer", //(struct vr::VRNativeDevice_t *)  pNativeDevice
@@ -12209,15 +11805,44 @@ export class IVROverlayView {
       ],
       result: "i32"
     });
+    const ReleaseOverlayViewFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(8))!;
+    this.#ReleaseOverlayViewFn = new Deno.UnsafeFnPointer(ReleaseOverlayViewFuncPtr, {
+      parameters: [
+        "pointer", //(struct vr::VROverlayView_t *)  pOverlayView
+      ],
+      result: "i32"
+    });
+    const PostOverlayEventFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(16))!;
+    this.#PostOverlayEventFn = new Deno.UnsafeFnPointer(PostOverlayEventFuncPtr, {
+      parameters: [
+        "u64", //(vr::VROverlayHandle_t)  ulOverlayHandle
+        "pointer", //(const struct vr::VREvent_t *)  pvrEvent
+      ],
+      result: "void"
+    });
+    const IsViewingPermittedFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(24))!;
+    this.#IsViewingPermittedFn = new Deno.UnsafeFnPointer(IsViewingPermittedFuncPtr, {
+      parameters: [
+        "u64", //(vr::VROverlayHandle_t)  ulOverlayHandle
+      ],
+      result: "bool"
+    });
+  }
 
-    const result = func.call(
+  /*
+  AcquireOverlayView
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"pNativeDevice","paramtype":"struct vr::VRNativeDevice_t *"},{"paramname":"pOverlayView","paramtype":"struct vr::VROverlayView_t *"},{"paramname":"unOverlayViewSize","paramtype":"uint32_t"}]
+  Return: vr::EVROverlayError
+  */
+  AcquireOverlayView(ulOverlayHandle: OverlayHandle, pNativeDevice: Deno.PointerValue<NativeDevice>, pOverlayView: Deno.PointerValue<OverlayView>, unOverlayViewSize: number): OverlayError {
+    const result = this.#AcquireOverlayViewFn.call(
       ulOverlayHandle,
       pNativeDevice,
       pOverlayView,
       unOverlayViewSize,
     );
 
-    return result// as OverlayError;
+    return result // as OverlayError;
   }
 
   /*
@@ -12226,21 +11851,11 @@ export class IVROverlayView {
   Return: vr::EVROverlayError
   */
   ReleaseOverlayView(pOverlayView: Deno.PointerValue<OverlayView>): OverlayError {
-    if (this.ptr === null) throw new Error("IVROverlayView pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlayView>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(8))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "pointer", //(struct vr::VROverlayView_t *)  pOverlayView
-      ],
-      result: "i32"
-    });
-
-    const result = func.call(
+    const result = this.#ReleaseOverlayViewFn.call(
       pOverlayView,
     );
 
-    return result// as OverlayError;
+    return result // as OverlayError;
   }
 
   /*
@@ -12249,18 +11864,7 @@ export class IVROverlayView {
   Return: void
   */
   PostOverlayEvent(ulOverlayHandle: OverlayHandle, pvrEvent: Deno.PointerValue<Event>): void {
-    if (this.ptr === null) throw new Error("IVROverlayView pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlayView>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(16))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "u64", //(vr::VROverlayHandle_t)  ulOverlayHandle
-        "pointer", //(const struct vr::VREvent_t *)  pvrEvent
-      ],
-      result: "void"
-    });
-
-    const _result = func.call(
+    const _result = this.#PostOverlayEventFn.call(
       ulOverlayHandle,
       pvrEvent,
     );
@@ -12273,38 +11877,24 @@ export class IVROverlayView {
   Return: bool
   */
   IsViewingPermitted(ulOverlayHandle: OverlayHandle): boolean {
-    if (this.ptr === null) throw new Error("IVROverlayView pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVROverlayView>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(24))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "u64", //(vr::VROverlayHandle_t)  ulOverlayHandle
-      ],
-      result: "bool"
-    });
-
-    const result = func.call(
+    const result = this.#IsViewingPermittedFn.call(
       ulOverlayHandle,
     );
 
-    return result// as boolean;
+    return result // as boolean;
   }
 
 }
 
 export class IVRResources {
-  constructor(private ptr: Deno.PointerValue<IVRResources|unknown>) {}
+  readonly #LoadSharedResourceFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetResourceFullPathFn: Deno.UnsafeFnPointer<any>;
 
-  /*
-  LoadSharedResource
-  Parameters: [{"paramname":"pchResourceName","paramtype":"const char *"},{"paramname":"pchBuffer","paramtype":"char *"},{"paramname":"unBufferLen","paramtype":"uint32_t"}]
-  Return: uint32_t
-  */
-  LoadSharedResource(pchResourceName: string, pchBuffer: string, unBufferLen: number): number {
+  constructor(private ptr: Deno.PointerValue<IVRResources|unknown>) {
     if (this.ptr === null) throw new Error("IVRResources pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRResources>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(0))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const LoadSharedResourceFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(0))!;
+    this.#LoadSharedResourceFn = new Deno.UnsafeFnPointer(LoadSharedResourceFuncPtr, {
       parameters: [
         "pointer", //(const char *)  pchResourceName
         "pointer", //(char *)  pchBuffer
@@ -12312,26 +11902,8 @@ export class IVRResources {
       ],
       result: "u32"
     });
-
-    const result = func.call(
-      Deno.UnsafePointer.of(new TextEncoder().encode(pchResourceName + "\0")),
-      Deno.UnsafePointer.of(new TextEncoder().encode(pchBuffer + "\0")),
-      unBufferLen,
-    );
-
-    return result// as number;
-  }
-
-  /*
-  GetResourceFullPath
-  Parameters: [{"paramname":"pchResourceName","paramtype":"const char *"},{"paramname":"pchResourceTypeDirectory","paramtype":"const char *"},{"paramname":"pchPathBuffer","out_string":" ","paramtype":"char *"},{"paramname":"unBufferLen","paramtype":"uint32_t"}]
-  Return: uint32_t
-  */
-  GetResourceFullPath(pchResourceName: string, pchResourceTypeDirectory: string, pchPathBuffer: string, unBufferLen: number): number {
-    if (this.ptr === null) throw new Error("IVRResources pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRResources>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(8))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const GetResourceFullPathFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(8))!;
+    this.#GetResourceFullPathFn = new Deno.UnsafeFnPointer(GetResourceFullPathFuncPtr, {
       parameters: [
         "pointer", //(const char *)  pchResourceName
         "pointer", //(const char *)  pchResourceTypeDirectory
@@ -12340,21 +11912,227 @@ export class IVRResources {
       ],
       result: "u32"
     });
+  }
 
-    const result = func.call(
+  /*
+  LoadSharedResource
+  Parameters: [{"paramname":"pchResourceName","paramtype":"const char *"},{"paramname":"pchBuffer","paramtype":"char *"},{"paramname":"unBufferLen","paramtype":"uint32_t"}]
+  Return: uint32_t
+  */
+  LoadSharedResource(pchResourceName: string, pchBuffer: string, unBufferLen: number): number {
+    const result = this.#LoadSharedResourceFn.call(
+      Deno.UnsafePointer.of(new TextEncoder().encode(pchResourceName + "\0")),
+      Deno.UnsafePointer.of(new TextEncoder().encode(pchBuffer + "\0")),
+      unBufferLen,
+    );
+
+    return result // as number;
+  }
+
+  /*
+  GetResourceFullPath
+  Parameters: [{"paramname":"pchResourceName","paramtype":"const char *"},{"paramname":"pchResourceTypeDirectory","paramtype":"const char *"},{"paramname":"pchPathBuffer","out_string":" ","paramtype":"char *"},{"paramname":"unBufferLen","paramtype":"uint32_t"}]
+  Return: uint32_t
+  */
+  GetResourceFullPath(pchResourceName: string, pchResourceTypeDirectory: string, pchPathBuffer: string, unBufferLen: number): number {
+    const result = this.#GetResourceFullPathFn.call(
       Deno.UnsafePointer.of(new TextEncoder().encode(pchResourceName + "\0")),
       Deno.UnsafePointer.of(new TextEncoder().encode(pchResourceTypeDirectory + "\0")),
       Deno.UnsafePointer.of(new TextEncoder().encode(pchPathBuffer + "\0")),
       unBufferLen,
     );
 
-    return result// as number;
+    return result // as number;
   }
 
 }
 
 export class IVRRenderModels {
-  constructor(private ptr: Deno.PointerValue<IVRRenderModels|unknown>) {}
+  readonly #LoadRenderModel_AsyncFn: Deno.UnsafeFnPointer<any>;
+  readonly #FreeRenderModelFn: Deno.UnsafeFnPointer<any>;
+  readonly #LoadTexture_AsyncFn: Deno.UnsafeFnPointer<any>;
+  readonly #FreeTextureFn: Deno.UnsafeFnPointer<any>;
+  readonly #LoadTextureD3D11_AsyncFn: Deno.UnsafeFnPointer<any>;
+  readonly #LoadIntoTextureD3D11_AsyncFn: Deno.UnsafeFnPointer<any>;
+  readonly #FreeTextureD3D11Fn: Deno.UnsafeFnPointer<any>;
+  readonly #GetRenderModelNameFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetRenderModelCountFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetComponentCountFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetComponentNameFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetComponentButtonMaskFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetComponentRenderModelNameFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetComponentStateForDevicePathFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetComponentStateFn: Deno.UnsafeFnPointer<any>;
+  readonly #RenderModelHasComponentFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetRenderModelThumbnailURLFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetRenderModelOriginalPathFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetRenderModelErrorNameFromEnumFn: Deno.UnsafeFnPointer<any>;
+
+  constructor(private ptr: Deno.PointerValue<IVRRenderModels|unknown>) {
+    if (this.ptr === null) throw new Error("IVRRenderModels pointer is null");
+    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRRenderModels>);
+    const LoadRenderModel_AsyncFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(0))!;
+    this.#LoadRenderModel_AsyncFn = new Deno.UnsafeFnPointer(LoadRenderModel_AsyncFuncPtr, {
+      parameters: [
+        "pointer", //(const char *)  pchRenderModelName
+        "pointer", //(struct vr::RenderModel_t **)  ppRenderModel
+      ],
+      result: "i32"
+    });
+    const FreeRenderModelFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(8))!;
+    this.#FreeRenderModelFn = new Deno.UnsafeFnPointer(FreeRenderModelFuncPtr, {
+      parameters: [
+        "pointer", //(struct vr::RenderModel_t *)  pRenderModel
+      ],
+      result: "void"
+    });
+    const LoadTexture_AsyncFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(16))!;
+    this.#LoadTexture_AsyncFn = new Deno.UnsafeFnPointer(LoadTexture_AsyncFuncPtr, {
+      parameters: [
+        "i32", //(vr::TextureID_t)  textureId
+        "pointer", //(struct vr::RenderModel_TextureMap_t **)  ppTexture
+      ],
+      result: "i32"
+    });
+    const FreeTextureFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(24))!;
+    this.#FreeTextureFn = new Deno.UnsafeFnPointer(FreeTextureFuncPtr, {
+      parameters: [
+        "pointer", //(struct vr::RenderModel_TextureMap_t *)  pTexture
+      ],
+      result: "void"
+    });
+    const LoadTextureD3D11_AsyncFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(32))!;
+    this.#LoadTextureD3D11_AsyncFn = new Deno.UnsafeFnPointer(LoadTextureD3D11_AsyncFuncPtr, {
+      parameters: [
+        "i32", //(vr::TextureID_t)  textureId
+        "pointer", //(void *)  pD3D11Device
+        "pointer", //(void **)  ppD3D11Texture2D
+      ],
+      result: "i32"
+    });
+    const LoadIntoTextureD3D11_AsyncFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(40))!;
+    this.#LoadIntoTextureD3D11_AsyncFn = new Deno.UnsafeFnPointer(LoadIntoTextureD3D11_AsyncFuncPtr, {
+      parameters: [
+        "i32", //(vr::TextureID_t)  textureId
+        "pointer", //(void *)  pDstTexture
+      ],
+      result: "i32"
+    });
+    const FreeTextureD3D11FuncPtr = Deno.UnsafePointer.create(view.getBigUint64(48))!;
+    this.#FreeTextureD3D11Fn = new Deno.UnsafeFnPointer(FreeTextureD3D11FuncPtr, {
+      parameters: [
+        "pointer", //(void *)  pD3D11Texture2D
+      ],
+      result: "void"
+    });
+    const GetRenderModelNameFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(56))!;
+    this.#GetRenderModelNameFn = new Deno.UnsafeFnPointer(GetRenderModelNameFuncPtr, {
+      parameters: [
+        "u32", //(uint32_t)  unRenderModelIndex
+        "pointer", //(char *)  pchRenderModelName
+        "u32", //(uint32_t)  unRenderModelNameLen
+      ],
+      result: "u32"
+    });
+    const GetRenderModelCountFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(64))!;
+    this.#GetRenderModelCountFn = new Deno.UnsafeFnPointer(GetRenderModelCountFuncPtr, {
+      parameters: [
+      ],
+      result: "u32"
+    });
+    const GetComponentCountFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(72))!;
+    this.#GetComponentCountFn = new Deno.UnsafeFnPointer(GetComponentCountFuncPtr, {
+      parameters: [
+        "pointer", //(const char *)  pchRenderModelName
+      ],
+      result: "u32"
+    });
+    const GetComponentNameFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(80))!;
+    this.#GetComponentNameFn = new Deno.UnsafeFnPointer(GetComponentNameFuncPtr, {
+      parameters: [
+        "pointer", //(const char *)  pchRenderModelName
+        "u32", //(uint32_t)  unComponentIndex
+        "pointer", //(char *)  pchComponentName
+        "u32", //(uint32_t)  unComponentNameLen
+      ],
+      result: "u32"
+    });
+    const GetComponentButtonMaskFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(88))!;
+    this.#GetComponentButtonMaskFn = new Deno.UnsafeFnPointer(GetComponentButtonMaskFuncPtr, {
+      parameters: [
+        "pointer", //(const char *)  pchRenderModelName
+        "pointer", //(const char *)  pchComponentName
+      ],
+      result: "u64"
+    });
+    const GetComponentRenderModelNameFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(96))!;
+    this.#GetComponentRenderModelNameFn = new Deno.UnsafeFnPointer(GetComponentRenderModelNameFuncPtr, {
+      parameters: [
+        "pointer", //(const char *)  pchRenderModelName
+        "pointer", //(const char *)  pchComponentName
+        "pointer", //(char *)  pchComponentRenderModelName
+        "u32", //(uint32_t)  unComponentRenderModelNameLen
+      ],
+      result: "u32"
+    });
+    const GetComponentStateForDevicePathFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(104))!;
+    this.#GetComponentStateForDevicePathFn = new Deno.UnsafeFnPointer(GetComponentStateForDevicePathFuncPtr, {
+      parameters: [
+        "pointer", //(const char *)  pchRenderModelName
+        "pointer", //(const char *)  pchComponentName
+        "u64", //(vr::VRInputValueHandle_t)  devicePath
+        "pointer", //(const vr::RenderModel_ControllerMode_State_t *)  pState
+        "pointer", //(vr::RenderModel_ComponentState_t *)  pComponentState
+      ],
+      result: "bool"
+    });
+    const GetComponentStateFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(112))!;
+    this.#GetComponentStateFn = new Deno.UnsafeFnPointer(GetComponentStateFuncPtr, {
+      parameters: [
+        "pointer", //(const char *)  pchRenderModelName
+        "pointer", //(const char *)  pchComponentName
+        "pointer", //(const vr::VRControllerState_t *)  pControllerState
+        "pointer", //(const struct vr::RenderModel_ControllerMode_State_t *)  pState
+        "pointer", //(struct vr::RenderModel_ComponentState_t *)  pComponentState
+      ],
+      result: "bool"
+    });
+    const RenderModelHasComponentFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(120))!;
+    this.#RenderModelHasComponentFn = new Deno.UnsafeFnPointer(RenderModelHasComponentFuncPtr, {
+      parameters: [
+        "pointer", //(const char *)  pchRenderModelName
+        "pointer", //(const char *)  pchComponentName
+      ],
+      result: "bool"
+    });
+    const GetRenderModelThumbnailURLFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(128))!;
+    this.#GetRenderModelThumbnailURLFn = new Deno.UnsafeFnPointer(GetRenderModelThumbnailURLFuncPtr, {
+      parameters: [
+        "pointer", //(const char *)  pchRenderModelName
+        "pointer", //(char *)  pchThumbnailURL
+        "u32", //(uint32_t)  unThumbnailURLLen
+        "pointer", //(vr::EVRRenderModelError *)  peError
+      ],
+      result: "u32"
+    });
+    const GetRenderModelOriginalPathFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(136))!;
+    this.#GetRenderModelOriginalPathFn = new Deno.UnsafeFnPointer(GetRenderModelOriginalPathFuncPtr, {
+      parameters: [
+        "pointer", //(const char *)  pchRenderModelName
+        "pointer", //(char *)  pchOriginalPath
+        "u32", //(uint32_t)  unOriginalPathLen
+        "pointer", //(vr::EVRRenderModelError *)  peError
+      ],
+      result: "u32"
+    });
+    const GetRenderModelErrorNameFromEnumFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(144))!;
+    this.#GetRenderModelErrorNameFromEnumFn = new Deno.UnsafeFnPointer(GetRenderModelErrorNameFromEnumFuncPtr, {
+      parameters: [
+        "i32", //(vr::EVRRenderModelError)  error
+      ],
+      result: "pointer"
+    });
+  }
 
   /*
   LoadRenderModel_Async
@@ -12362,23 +12140,12 @@ export class IVRRenderModels {
   Return: vr::EVRRenderModelError
   */
   LoadRenderModel_Async(pchRenderModelName: string, ppRenderModel: Deno.PointerValue<Deno.PointerValue<RenderModel>>): RenderModelError {
-    if (this.ptr === null) throw new Error("IVRRenderModels pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRRenderModels>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(0))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "pointer", //(const char *)  pchRenderModelName
-        "pointer", //(struct vr::RenderModel_t **)  ppRenderModel
-      ],
-      result: "i32"
-    });
-
-    const result = func.call(
+    const result = this.#LoadRenderModel_AsyncFn.call(
       Deno.UnsafePointer.of(new TextEncoder().encode(pchRenderModelName + "\0")),
       ppRenderModel,
     );
 
-    return result// as RenderModelError;
+    return result // as RenderModelError;
   }
 
   /*
@@ -12387,17 +12154,7 @@ export class IVRRenderModels {
   Return: void
   */
   FreeRenderModel(pRenderModel: Deno.PointerValue<RenderModel>): void {
-    if (this.ptr === null) throw new Error("IVRRenderModels pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRRenderModels>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(8))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "pointer", //(struct vr::RenderModel_t *)  pRenderModel
-      ],
-      result: "void"
-    });
-
-    const _result = func.call(
+    const _result = this.#FreeRenderModelFn.call(
       pRenderModel,
     );
 
@@ -12409,23 +12166,12 @@ export class IVRRenderModels {
   Return: vr::EVRRenderModelError
   */
   LoadTexture_Async(textureId: TextureID, ppTexture: Deno.PointerValue<Deno.PointerValue<RenderModel_TextureMap>>): RenderModelError {
-    if (this.ptr === null) throw new Error("IVRRenderModels pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRRenderModels>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(16))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "i32", //(vr::TextureID_t)  textureId
-        "pointer", //(struct vr::RenderModel_TextureMap_t **)  ppTexture
-      ],
-      result: "i32"
-    });
-
-    const result = func.call(
+    const result = this.#LoadTexture_AsyncFn.call(
       textureId,
       ppTexture,
     );
 
-    return result// as RenderModelError;
+    return result // as RenderModelError;
   }
 
   /*
@@ -12434,17 +12180,7 @@ export class IVRRenderModels {
   Return: void
   */
   FreeTexture(pTexture: Deno.PointerValue<RenderModel_TextureMap>): void {
-    if (this.ptr === null) throw new Error("IVRRenderModels pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRRenderModels>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(24))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "pointer", //(struct vr::RenderModel_TextureMap_t *)  pTexture
-      ],
-      result: "void"
-    });
-
-    const _result = func.call(
+    const _result = this.#FreeTextureFn.call(
       pTexture,
     );
 
@@ -12456,25 +12192,13 @@ export class IVRRenderModels {
   Return: vr::EVRRenderModelError
   */
   LoadTextureD3D11_Async(textureId: TextureID, pD3D11Device: Deno.PointerValue<unknown>, ppD3D11Texture2D: Deno.PointerValue<Deno.PointerValue<unknown>>): RenderModelError {
-    if (this.ptr === null) throw new Error("IVRRenderModels pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRRenderModels>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(32))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "i32", //(vr::TextureID_t)  textureId
-        "pointer", //(void *)  pD3D11Device
-        "pointer", //(void **)  ppD3D11Texture2D
-      ],
-      result: "i32"
-    });
-
-    const result = func.call(
+    const result = this.#LoadTextureD3D11_AsyncFn.call(
       textureId,
       pD3D11Device,
       ppD3D11Texture2D,
     );
 
-    return result// as RenderModelError;
+    return result // as RenderModelError;
   }
 
   /*
@@ -12483,23 +12207,12 @@ export class IVRRenderModels {
   Return: vr::EVRRenderModelError
   */
   LoadIntoTextureD3D11_Async(textureId: TextureID, pDstTexture: Deno.PointerValue<unknown>): RenderModelError {
-    if (this.ptr === null) throw new Error("IVRRenderModels pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRRenderModels>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(40))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "i32", //(vr::TextureID_t)  textureId
-        "pointer", //(void *)  pDstTexture
-      ],
-      result: "i32"
-    });
-
-    const result = func.call(
+    const result = this.#LoadIntoTextureD3D11_AsyncFn.call(
       textureId,
       pDstTexture,
     );
 
-    return result// as RenderModelError;
+    return result // as RenderModelError;
   }
 
   /*
@@ -12508,17 +12221,7 @@ export class IVRRenderModels {
   Return: void
   */
   FreeTextureD3D11(pD3D11Texture2D: Deno.PointerValue<unknown>): void {
-    if (this.ptr === null) throw new Error("IVRRenderModels pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRRenderModels>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(48))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "pointer", //(void *)  pD3D11Texture2D
-      ],
-      result: "void"
-    });
-
-    const _result = func.call(
+    const _result = this.#FreeTextureD3D11Fn.call(
       pD3D11Texture2D,
     );
 
@@ -12530,25 +12233,13 @@ export class IVRRenderModels {
   Return: uint32_t
   */
   GetRenderModelName(unRenderModelIndex: number, pchRenderModelName: string, unRenderModelNameLen: number): number {
-    if (this.ptr === null) throw new Error("IVRRenderModels pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRRenderModels>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(56))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "u32", //(uint32_t)  unRenderModelIndex
-        "pointer", //(char *)  pchRenderModelName
-        "u32", //(uint32_t)  unRenderModelNameLen
-      ],
-      result: "u32"
-    });
-
-    const result = func.call(
+    const result = this.#GetRenderModelNameFn.call(
       unRenderModelIndex,
       Deno.UnsafePointer.of(new TextEncoder().encode(pchRenderModelName + "\0")),
       unRenderModelNameLen,
     );
 
-    return result// as number;
+    return result // as number;
   }
 
   /*
@@ -12557,19 +12248,10 @@ export class IVRRenderModels {
   Return: uint32_t
   */
   GetRenderModelCount(): number {
-    if (this.ptr === null) throw new Error("IVRRenderModels pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRRenderModels>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(64))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-      ],
-      result: "u32"
-    });
-
-    const result = func.call(
+    const result = this.#GetRenderModelCountFn.call(
     );
 
-    return result// as number;
+    return result // as number;
   }
 
   /*
@@ -12578,21 +12260,11 @@ export class IVRRenderModels {
   Return: uint32_t
   */
   GetComponentCount(pchRenderModelName: string): number {
-    if (this.ptr === null) throw new Error("IVRRenderModels pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRRenderModels>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(72))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "pointer", //(const char *)  pchRenderModelName
-      ],
-      result: "u32"
-    });
-
-    const result = func.call(
+    const result = this.#GetComponentCountFn.call(
       Deno.UnsafePointer.of(new TextEncoder().encode(pchRenderModelName + "\0")),
     );
 
-    return result// as number;
+    return result // as number;
   }
 
   /*
@@ -12601,27 +12273,14 @@ export class IVRRenderModels {
   Return: uint32_t
   */
   GetComponentName(pchRenderModelName: string, unComponentIndex: number, pchComponentName: string, unComponentNameLen: number): number {
-    if (this.ptr === null) throw new Error("IVRRenderModels pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRRenderModels>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(80))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "pointer", //(const char *)  pchRenderModelName
-        "u32", //(uint32_t)  unComponentIndex
-        "pointer", //(char *)  pchComponentName
-        "u32", //(uint32_t)  unComponentNameLen
-      ],
-      result: "u32"
-    });
-
-    const result = func.call(
+    const result = this.#GetComponentNameFn.call(
       Deno.UnsafePointer.of(new TextEncoder().encode(pchRenderModelName + "\0")),
       unComponentIndex,
       Deno.UnsafePointer.of(new TextEncoder().encode(pchComponentName + "\0")),
       unComponentNameLen,
     );
 
-    return result// as number;
+    return result // as number;
   }
 
   /*
@@ -12630,23 +12289,12 @@ export class IVRRenderModels {
   Return: uint64_t
   */
   GetComponentButtonMask(pchRenderModelName: string, pchComponentName: string): bigint {
-    if (this.ptr === null) throw new Error("IVRRenderModels pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRRenderModels>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(88))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "pointer", //(const char *)  pchRenderModelName
-        "pointer", //(const char *)  pchComponentName
-      ],
-      result: "u64"
-    });
-
-    const result = func.call(
+    const result = this.#GetComponentButtonMaskFn.call(
       Deno.UnsafePointer.of(new TextEncoder().encode(pchRenderModelName + "\0")),
       Deno.UnsafePointer.of(new TextEncoder().encode(pchComponentName + "\0")),
     );
 
-    return result// as bigint;
+    return result // as bigint;
   }
 
   /*
@@ -12655,27 +12303,14 @@ export class IVRRenderModels {
   Return: uint32_t
   */
   GetComponentRenderModelName(pchRenderModelName: string, pchComponentName: string, pchComponentRenderModelName: string, unComponentRenderModelNameLen: number): number {
-    if (this.ptr === null) throw new Error("IVRRenderModels pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRRenderModels>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(96))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "pointer", //(const char *)  pchRenderModelName
-        "pointer", //(const char *)  pchComponentName
-        "pointer", //(char *)  pchComponentRenderModelName
-        "u32", //(uint32_t)  unComponentRenderModelNameLen
-      ],
-      result: "u32"
-    });
-
-    const result = func.call(
+    const result = this.#GetComponentRenderModelNameFn.call(
       Deno.UnsafePointer.of(new TextEncoder().encode(pchRenderModelName + "\0")),
       Deno.UnsafePointer.of(new TextEncoder().encode(pchComponentName + "\0")),
       Deno.UnsafePointer.of(new TextEncoder().encode(pchComponentRenderModelName + "\0")),
       unComponentRenderModelNameLen,
     );
 
-    return result// as number;
+    return result // as number;
   }
 
   /*
@@ -12684,21 +12319,7 @@ export class IVRRenderModels {
   Return: bool
   */
   GetComponentStateForDevicePath(pchRenderModelName: string, pchComponentName: string, devicePath: InputValueHandle, pState: Deno.PointerValue<RenderModel_ControllerMode_State>, pComponentState: Deno.PointerValue<RenderModel_ComponentState>): boolean {
-    if (this.ptr === null) throw new Error("IVRRenderModels pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRRenderModels>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(104))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "pointer", //(const char *)  pchRenderModelName
-        "pointer", //(const char *)  pchComponentName
-        "u64", //(vr::VRInputValueHandle_t)  devicePath
-        "pointer", //(const vr::RenderModel_ControllerMode_State_t *)  pState
-        "pointer", //(vr::RenderModel_ComponentState_t *)  pComponentState
-      ],
-      result: "bool"
-    });
-
-    const result = func.call(
+    const result = this.#GetComponentStateForDevicePathFn.call(
       Deno.UnsafePointer.of(new TextEncoder().encode(pchRenderModelName + "\0")),
       Deno.UnsafePointer.of(new TextEncoder().encode(pchComponentName + "\0")),
       devicePath,
@@ -12706,7 +12327,7 @@ export class IVRRenderModels {
       pComponentState,
     );
 
-    return result// as boolean;
+    return result // as boolean;
   }
 
   /*
@@ -12715,21 +12336,7 @@ export class IVRRenderModels {
   Return: bool
   */
   GetComponentState(pchRenderModelName: string, pchComponentName: string, pControllerState: Deno.PointerValue<ControllerState>, pState: Deno.PointerValue<RenderModel_ControllerMode_State>, pComponentState: Deno.PointerValue<RenderModel_ComponentState>): boolean {
-    if (this.ptr === null) throw new Error("IVRRenderModels pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRRenderModels>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(112))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "pointer", //(const char *)  pchRenderModelName
-        "pointer", //(const char *)  pchComponentName
-        "pointer", //(const vr::VRControllerState_t *)  pControllerState
-        "pointer", //(const struct vr::RenderModel_ControllerMode_State_t *)  pState
-        "pointer", //(struct vr::RenderModel_ComponentState_t *)  pComponentState
-      ],
-      result: "bool"
-    });
-
-    const result = func.call(
+    const result = this.#GetComponentStateFn.call(
       Deno.UnsafePointer.of(new TextEncoder().encode(pchRenderModelName + "\0")),
       Deno.UnsafePointer.of(new TextEncoder().encode(pchComponentName + "\0")),
       pControllerState,
@@ -12737,7 +12344,7 @@ export class IVRRenderModels {
       pComponentState,
     );
 
-    return result// as boolean;
+    return result // as boolean;
   }
 
   /*
@@ -12746,23 +12353,12 @@ export class IVRRenderModels {
   Return: bool
   */
   RenderModelHasComponent(pchRenderModelName: string, pchComponentName: string): boolean {
-    if (this.ptr === null) throw new Error("IVRRenderModels pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRRenderModels>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(120))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "pointer", //(const char *)  pchRenderModelName
-        "pointer", //(const char *)  pchComponentName
-      ],
-      result: "bool"
-    });
-
-    const result = func.call(
+    const result = this.#RenderModelHasComponentFn.call(
       Deno.UnsafePointer.of(new TextEncoder().encode(pchRenderModelName + "\0")),
       Deno.UnsafePointer.of(new TextEncoder().encode(pchComponentName + "\0")),
     );
 
-    return result// as boolean;
+    return result // as boolean;
   }
 
   /*
@@ -12771,27 +12367,14 @@ export class IVRRenderModels {
   Return: uint32_t
   */
   GetRenderModelThumbnailURL(pchRenderModelName: string, pchThumbnailURL: string, unThumbnailURLLen: number, peError: Deno.PointerValue<RenderModelError>): number {
-    if (this.ptr === null) throw new Error("IVRRenderModels pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRRenderModels>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(128))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "pointer", //(const char *)  pchRenderModelName
-        "pointer", //(char *)  pchThumbnailURL
-        "u32", //(uint32_t)  unThumbnailURLLen
-        "pointer", //(vr::EVRRenderModelError *)  peError
-      ],
-      result: "u32"
-    });
-
-    const result = func.call(
+    const result = this.#GetRenderModelThumbnailURLFn.call(
       Deno.UnsafePointer.of(new TextEncoder().encode(pchRenderModelName + "\0")),
       Deno.UnsafePointer.of(new TextEncoder().encode(pchThumbnailURL + "\0")),
       unThumbnailURLLen,
       peError,
     );
 
-    return result// as number;
+    return result // as number;
   }
 
   /*
@@ -12800,27 +12383,14 @@ export class IVRRenderModels {
   Return: uint32_t
   */
   GetRenderModelOriginalPath(pchRenderModelName: string, pchOriginalPath: string, unOriginalPathLen: number, peError: Deno.PointerValue<RenderModelError>): number {
-    if (this.ptr === null) throw new Error("IVRRenderModels pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRRenderModels>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(136))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "pointer", //(const char *)  pchRenderModelName
-        "pointer", //(char *)  pchOriginalPath
-        "u32", //(uint32_t)  unOriginalPathLen
-        "pointer", //(vr::EVRRenderModelError *)  peError
-      ],
-      result: "u32"
-    });
-
-    const result = func.call(
+    const result = this.#GetRenderModelOriginalPathFn.call(
       Deno.UnsafePointer.of(new TextEncoder().encode(pchRenderModelName + "\0")),
       Deno.UnsafePointer.of(new TextEncoder().encode(pchOriginalPath + "\0")),
       unOriginalPathLen,
       peError,
     );
 
-    return result// as number;
+    return result // as number;
   }
 
   /*
@@ -12829,38 +12399,26 @@ export class IVRRenderModels {
   Return: const char *
   */
   GetRenderModelErrorNameFromEnum(error: RenderModelError): string {
-    if (this.ptr === null) throw new Error("IVRRenderModels pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRRenderModels>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(144))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "i32", //(vr::EVRRenderModelError)  error
-      ],
-      result: "pointer"
-    });
-
-    const result = func.call(
+    const result = this.#GetRenderModelErrorNameFromEnumFn.call(
       error,
     );
 
-    return result.toString();
+    if (result === null) return ""; // Handle null pointer case
+    return Deno.UnsafePointerView.getCString(result);
   }
 
 }
 
 export class IVRExtendedDisplay {
-  constructor(private ptr: Deno.PointerValue<IVRExtendedDisplay|unknown>) {}
+  readonly #GetWindowBoundsFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetEyeOutputViewportFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetDXGIOutputInfoFn: Deno.UnsafeFnPointer<any>;
 
-  /*
-  GetWindowBounds
-  Parameters: [{"paramname":"pnX","paramtype":"int32_t *"},{"paramname":"pnY","paramtype":"int32_t *"},{"paramname":"pnWidth","paramtype":"uint32_t *"},{"paramname":"pnHeight","paramtype":"uint32_t *"}]
-  Return: void
-  */
-  GetWindowBounds(pnX: Deno.PointerValue<number>, pnY: Deno.PointerValue<number>, pnWidth: Deno.PointerValue<number>, pnHeight: Deno.PointerValue<number>): void {
+  constructor(private ptr: Deno.PointerValue<IVRExtendedDisplay|unknown>) {
     if (this.ptr === null) throw new Error("IVRExtendedDisplay pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRExtendedDisplay>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(0))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const GetWindowBoundsFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(0))!;
+    this.#GetWindowBoundsFn = new Deno.UnsafeFnPointer(GetWindowBoundsFuncPtr, {
       parameters: [
         "pointer", //(int32_t *)  pnX
         "pointer", //(int32_t *)  pnY
@@ -12869,8 +12427,34 @@ export class IVRExtendedDisplay {
       ],
       result: "void"
     });
+    const GetEyeOutputViewportFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(8))!;
+    this.#GetEyeOutputViewportFn = new Deno.UnsafeFnPointer(GetEyeOutputViewportFuncPtr, {
+      parameters: [
+        "i32", //(vr::EVREye)  eEye
+        "pointer", //(uint32_t *)  pnX
+        "pointer", //(uint32_t *)  pnY
+        "pointer", //(uint32_t *)  pnWidth
+        "pointer", //(uint32_t *)  pnHeight
+      ],
+      result: "void"
+    });
+    const GetDXGIOutputInfoFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(16))!;
+    this.#GetDXGIOutputInfoFn = new Deno.UnsafeFnPointer(GetDXGIOutputInfoFuncPtr, {
+      parameters: [
+        "pointer", //(int32_t *)  pnAdapterIndex
+        "pointer", //(int32_t *)  pnAdapterOutputIndex
+      ],
+      result: "void"
+    });
+  }
 
-    const _result = func.call(
+  /*
+  GetWindowBounds
+  Parameters: [{"paramname":"pnX","paramtype":"int32_t *"},{"paramname":"pnY","paramtype":"int32_t *"},{"paramname":"pnWidth","paramtype":"uint32_t *"},{"paramname":"pnHeight","paramtype":"uint32_t *"}]
+  Return: void
+  */
+  GetWindowBounds(pnX: Deno.PointerValue<number>, pnY: Deno.PointerValue<number>, pnWidth: Deno.PointerValue<number>, pnHeight: Deno.PointerValue<number>): void {
+    const _result = this.#GetWindowBoundsFn.call(
       pnX,
       pnY,
       pnWidth,
@@ -12885,21 +12469,7 @@ export class IVRExtendedDisplay {
   Return: void
   */
   GetEyeOutputViewport(eEye: Eye, pnX: Deno.PointerValue<number>, pnY: Deno.PointerValue<number>, pnWidth: Deno.PointerValue<number>, pnHeight: Deno.PointerValue<number>): void {
-    if (this.ptr === null) throw new Error("IVRExtendedDisplay pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRExtendedDisplay>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(8))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "i32", //(vr::EVREye)  eEye
-        "pointer", //(uint32_t *)  pnX
-        "pointer", //(uint32_t *)  pnY
-        "pointer", //(uint32_t *)  pnWidth
-        "pointer", //(uint32_t *)  pnHeight
-      ],
-      result: "void"
-    });
-
-    const _result = func.call(
+    const _result = this.#GetEyeOutputViewportFn.call(
       eEye,
       pnX,
       pnY,
@@ -12915,18 +12485,7 @@ export class IVRExtendedDisplay {
   Return: void
   */
   GetDXGIOutputInfo(pnAdapterIndex: Deno.PointerValue<number>, pnAdapterOutputIndex: Deno.PointerValue<number>): void {
-    if (this.ptr === null) throw new Error("IVRExtendedDisplay pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRExtendedDisplay>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(16))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "pointer", //(int32_t *)  pnAdapterIndex
-        "pointer", //(int32_t *)  pnAdapterOutputIndex
-      ],
-      result: "void"
-    });
-
-    const _result = func.call(
+    const _result = this.#GetDXGIOutputInfoFn.call(
       pnAdapterIndex,
       pnAdapterOutputIndex,
     );
@@ -12936,41 +12495,30 @@ export class IVRExtendedDisplay {
 }
 
 export class IVRSettings {
-  constructor(private ptr: Deno.PointerValue<IVRSettings|unknown>) {}
+  readonly #GetSettingsErrorNameFromEnumFn: Deno.UnsafeFnPointer<any>;
+  readonly #SetBoolFn: Deno.UnsafeFnPointer<any>;
+  readonly #SetInt32Fn: Deno.UnsafeFnPointer<any>;
+  readonly #SetFloatFn: Deno.UnsafeFnPointer<any>;
+  readonly #SetStringFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetBoolFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetInt32Fn: Deno.UnsafeFnPointer<any>;
+  readonly #GetFloatFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetStringFn: Deno.UnsafeFnPointer<any>;
+  readonly #RemoveSectionFn: Deno.UnsafeFnPointer<any>;
+  readonly #RemoveKeyInSectionFn: Deno.UnsafeFnPointer<any>;
 
-  /*
-  GetSettingsErrorNameFromEnum
-  Parameters: [{"paramname":"eError","paramtype":"vr::EVRSettingsError"}]
-  Return: const char *
-  */
-  GetSettingsErrorNameFromEnum(eError: SettingsError): string {
+  constructor(private ptr: Deno.PointerValue<IVRSettings|unknown>) {
     if (this.ptr === null) throw new Error("IVRSettings pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSettings>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(0))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const GetSettingsErrorNameFromEnumFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(0))!;
+    this.#GetSettingsErrorNameFromEnumFn = new Deno.UnsafeFnPointer(GetSettingsErrorNameFromEnumFuncPtr, {
       parameters: [
         "i32", //(vr::EVRSettingsError)  eError
       ],
       result: "pointer"
     });
-
-    const result = func.call(
-      eError,
-    );
-
-    return result.toString();
-  }
-
-  /*
-  SetBool
-  Parameters: [{"paramname":"pchSection","paramtype":"const char *"},{"paramname":"pchSettingsKey","paramtype":"const char *"},{"paramname":"bValue","paramtype":"bool"},{"paramname":"peError","paramtype":"vr::EVRSettingsError *"}]
-  Return: void
-  */
-  SetBool(pchSection: string, pchSettingsKey: string, bValue: boolean, peError: Deno.PointerValue<SettingsError>): void {
-    if (this.ptr === null) throw new Error("IVRSettings pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSettings>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(8))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const SetBoolFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(8))!;
+    this.#SetBoolFn = new Deno.UnsafeFnPointer(SetBoolFuncPtr, {
       parameters: [
         "pointer", //(const char *)  pchSection
         "pointer", //(const char *)  pchSettingsKey
@@ -12979,8 +12527,114 @@ export class IVRSettings {
       ],
       result: "void"
     });
+    const SetInt32FuncPtr = Deno.UnsafePointer.create(view.getBigUint64(16))!;
+    this.#SetInt32Fn = new Deno.UnsafeFnPointer(SetInt32FuncPtr, {
+      parameters: [
+        "pointer", //(const char *)  pchSection
+        "pointer", //(const char *)  pchSettingsKey
+        "i32", //(int32_t)  nValue
+        "pointer", //(vr::EVRSettingsError *)  peError
+      ],
+      result: "void"
+    });
+    const SetFloatFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(24))!;
+    this.#SetFloatFn = new Deno.UnsafeFnPointer(SetFloatFuncPtr, {
+      parameters: [
+        "pointer", //(const char *)  pchSection
+        "pointer", //(const char *)  pchSettingsKey
+        "f32", //(float)  flValue
+        "pointer", //(vr::EVRSettingsError *)  peError
+      ],
+      result: "void"
+    });
+    const SetStringFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(32))!;
+    this.#SetStringFn = new Deno.UnsafeFnPointer(SetStringFuncPtr, {
+      parameters: [
+        "pointer", //(const char *)  pchSection
+        "pointer", //(const char *)  pchSettingsKey
+        "pointer", //(const char *)  pchValue
+        "pointer", //(vr::EVRSettingsError *)  peError
+      ],
+      result: "void"
+    });
+    const GetBoolFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(40))!;
+    this.#GetBoolFn = new Deno.UnsafeFnPointer(GetBoolFuncPtr, {
+      parameters: [
+        "pointer", //(const char *)  pchSection
+        "pointer", //(const char *)  pchSettingsKey
+        "pointer", //(vr::EVRSettingsError *)  peError
+      ],
+      result: "bool"
+    });
+    const GetInt32FuncPtr = Deno.UnsafePointer.create(view.getBigUint64(48))!;
+    this.#GetInt32Fn = new Deno.UnsafeFnPointer(GetInt32FuncPtr, {
+      parameters: [
+        "pointer", //(const char *)  pchSection
+        "pointer", //(const char *)  pchSettingsKey
+        "pointer", //(vr::EVRSettingsError *)  peError
+      ],
+      result: "i32"
+    });
+    const GetFloatFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(56))!;
+    this.#GetFloatFn = new Deno.UnsafeFnPointer(GetFloatFuncPtr, {
+      parameters: [
+        "pointer", //(const char *)  pchSection
+        "pointer", //(const char *)  pchSettingsKey
+        "pointer", //(vr::EVRSettingsError *)  peError
+      ],
+      result: "f32"
+    });
+    const GetStringFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(64))!;
+    this.#GetStringFn = new Deno.UnsafeFnPointer(GetStringFuncPtr, {
+      parameters: [
+        "pointer", //(const char *)  pchSection
+        "pointer", //(const char *)  pchSettingsKey
+        "pointer", //(char *)  pchValue
+        "u32", //(uint32_t)  unValueLen
+        "pointer", //(vr::EVRSettingsError *)  peError
+      ],
+      result: "void"
+    });
+    const RemoveSectionFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(72))!;
+    this.#RemoveSectionFn = new Deno.UnsafeFnPointer(RemoveSectionFuncPtr, {
+      parameters: [
+        "pointer", //(const char *)  pchSection
+        "pointer", //(vr::EVRSettingsError *)  peError
+      ],
+      result: "void"
+    });
+    const RemoveKeyInSectionFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(80))!;
+    this.#RemoveKeyInSectionFn = new Deno.UnsafeFnPointer(RemoveKeyInSectionFuncPtr, {
+      parameters: [
+        "pointer", //(const char *)  pchSection
+        "pointer", //(const char *)  pchSettingsKey
+        "pointer", //(vr::EVRSettingsError *)  peError
+      ],
+      result: "void"
+    });
+  }
 
-    const _result = func.call(
+  /*
+  GetSettingsErrorNameFromEnum
+  Parameters: [{"paramname":"eError","paramtype":"vr::EVRSettingsError"}]
+  Return: const char *
+  */
+  GetSettingsErrorNameFromEnum(eError: SettingsError): string {
+    const result = this.#GetSettingsErrorNameFromEnumFn.call(
+      eError,
+    );
+
+    if (result === null) return ""; // Handle null pointer case
+    return Deno.UnsafePointerView.getCString(result);
+  }
+
+  /*
+  SetBool
+  Parameters: [{"paramname":"pchSection","paramtype":"const char *"},{"paramname":"pchSettingsKey","paramtype":"const char *"},{"paramname":"bValue","paramtype":"bool"},{"paramname":"peError","paramtype":"vr::EVRSettingsError *"}]
+  Return: void
+  */
+  SetBool(pchSection: string, pchSettingsKey: string, bValue: boolean, peError: Deno.PointerValue<SettingsError>): void {
+    const _result = this.#SetBoolFn.call(
       Deno.UnsafePointer.of(new TextEncoder().encode(pchSection + "\0")),
       Deno.UnsafePointer.of(new TextEncoder().encode(pchSettingsKey + "\0")),
       bValue,
@@ -12995,20 +12649,7 @@ export class IVRSettings {
   Return: void
   */
   SetInt32(pchSection: string, pchSettingsKey: string, nValue: number, peError: Deno.PointerValue<SettingsError>): void {
-    if (this.ptr === null) throw new Error("IVRSettings pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSettings>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(16))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "pointer", //(const char *)  pchSection
-        "pointer", //(const char *)  pchSettingsKey
-        "i32", //(int32_t)  nValue
-        "pointer", //(vr::EVRSettingsError *)  peError
-      ],
-      result: "void"
-    });
-
-    const _result = func.call(
+    const _result = this.#SetInt32Fn.call(
       Deno.UnsafePointer.of(new TextEncoder().encode(pchSection + "\0")),
       Deno.UnsafePointer.of(new TextEncoder().encode(pchSettingsKey + "\0")),
       nValue,
@@ -13023,20 +12664,7 @@ export class IVRSettings {
   Return: void
   */
   SetFloat(pchSection: string, pchSettingsKey: string, flValue: number, peError: Deno.PointerValue<SettingsError>): void {
-    if (this.ptr === null) throw new Error("IVRSettings pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSettings>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(24))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "pointer", //(const char *)  pchSection
-        "pointer", //(const char *)  pchSettingsKey
-        "f32", //(float)  flValue
-        "pointer", //(vr::EVRSettingsError *)  peError
-      ],
-      result: "void"
-    });
-
-    const _result = func.call(
+    const _result = this.#SetFloatFn.call(
       Deno.UnsafePointer.of(new TextEncoder().encode(pchSection + "\0")),
       Deno.UnsafePointer.of(new TextEncoder().encode(pchSettingsKey + "\0")),
       flValue,
@@ -13051,20 +12679,7 @@ export class IVRSettings {
   Return: void
   */
   SetString(pchSection: string, pchSettingsKey: string, pchValue: string, peError: Deno.PointerValue<SettingsError>): void {
-    if (this.ptr === null) throw new Error("IVRSettings pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSettings>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(32))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "pointer", //(const char *)  pchSection
-        "pointer", //(const char *)  pchSettingsKey
-        "pointer", //(const char *)  pchValue
-        "pointer", //(vr::EVRSettingsError *)  peError
-      ],
-      result: "void"
-    });
-
-    const _result = func.call(
+    const _result = this.#SetStringFn.call(
       Deno.UnsafePointer.of(new TextEncoder().encode(pchSection + "\0")),
       Deno.UnsafePointer.of(new TextEncoder().encode(pchSettingsKey + "\0")),
       Deno.UnsafePointer.of(new TextEncoder().encode(pchValue + "\0")),
@@ -13079,25 +12694,13 @@ export class IVRSettings {
   Return: bool
   */
   GetBool(pchSection: string, pchSettingsKey: string, peError: Deno.PointerValue<SettingsError>): boolean {
-    if (this.ptr === null) throw new Error("IVRSettings pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSettings>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(40))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "pointer", //(const char *)  pchSection
-        "pointer", //(const char *)  pchSettingsKey
-        "pointer", //(vr::EVRSettingsError *)  peError
-      ],
-      result: "bool"
-    });
-
-    const result = func.call(
+    const result = this.#GetBoolFn.call(
       Deno.UnsafePointer.of(new TextEncoder().encode(pchSection + "\0")),
       Deno.UnsafePointer.of(new TextEncoder().encode(pchSettingsKey + "\0")),
       peError,
     );
 
-    return result// as boolean;
+    return result // as boolean;
   }
 
   /*
@@ -13106,25 +12709,13 @@ export class IVRSettings {
   Return: int32_t
   */
   GetInt32(pchSection: string, pchSettingsKey: string, peError: Deno.PointerValue<SettingsError>): number {
-    if (this.ptr === null) throw new Error("IVRSettings pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSettings>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(48))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "pointer", //(const char *)  pchSection
-        "pointer", //(const char *)  pchSettingsKey
-        "pointer", //(vr::EVRSettingsError *)  peError
-      ],
-      result: "i32"
-    });
-
-    const result = func.call(
+    const result = this.#GetInt32Fn.call(
       Deno.UnsafePointer.of(new TextEncoder().encode(pchSection + "\0")),
       Deno.UnsafePointer.of(new TextEncoder().encode(pchSettingsKey + "\0")),
       peError,
     );
 
-    return result// as number;
+    return result // as number;
   }
 
   /*
@@ -13133,25 +12724,13 @@ export class IVRSettings {
   Return: float
   */
   GetFloat(pchSection: string, pchSettingsKey: string, peError: Deno.PointerValue<SettingsError>): number {
-    if (this.ptr === null) throw new Error("IVRSettings pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSettings>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(56))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "pointer", //(const char *)  pchSection
-        "pointer", //(const char *)  pchSettingsKey
-        "pointer", //(vr::EVRSettingsError *)  peError
-      ],
-      result: "f32"
-    });
-
-    const result = func.call(
+    const result = this.#GetFloatFn.call(
       Deno.UnsafePointer.of(new TextEncoder().encode(pchSection + "\0")),
       Deno.UnsafePointer.of(new TextEncoder().encode(pchSettingsKey + "\0")),
       peError,
     );
 
-    return result// as number;
+    return result // as number;
   }
 
   /*
@@ -13160,21 +12739,7 @@ export class IVRSettings {
   Return: void
   */
   GetString(pchSection: string, pchSettingsKey: string, pchValue: string, unValueLen: number, peError: Deno.PointerValue<SettingsError>): void {
-    if (this.ptr === null) throw new Error("IVRSettings pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSettings>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(64))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "pointer", //(const char *)  pchSection
-        "pointer", //(const char *)  pchSettingsKey
-        "pointer", //(char *)  pchValue
-        "u32", //(uint32_t)  unValueLen
-        "pointer", //(vr::EVRSettingsError *)  peError
-      ],
-      result: "void"
-    });
-
-    const _result = func.call(
+    const _result = this.#GetStringFn.call(
       Deno.UnsafePointer.of(new TextEncoder().encode(pchSection + "\0")),
       Deno.UnsafePointer.of(new TextEncoder().encode(pchSettingsKey + "\0")),
       Deno.UnsafePointer.of(new TextEncoder().encode(pchValue + "\0")),
@@ -13190,18 +12755,7 @@ export class IVRSettings {
   Return: void
   */
   RemoveSection(pchSection: string, peError: Deno.PointerValue<SettingsError>): void {
-    if (this.ptr === null) throw new Error("IVRSettings pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSettings>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(72))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "pointer", //(const char *)  pchSection
-        "pointer", //(vr::EVRSettingsError *)  peError
-      ],
-      result: "void"
-    });
-
-    const _result = func.call(
+    const _result = this.#RemoveSectionFn.call(
       Deno.UnsafePointer.of(new TextEncoder().encode(pchSection + "\0")),
       peError,
     );
@@ -13214,19 +12768,7 @@ export class IVRSettings {
   Return: void
   */
   RemoveKeyInSection(pchSection: string, pchSettingsKey: string, peError: Deno.PointerValue<SettingsError>): void {
-    if (this.ptr === null) throw new Error("IVRSettings pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSettings>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(80))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "pointer", //(const char *)  pchSection
-        "pointer", //(const char *)  pchSettingsKey
-        "pointer", //(vr::EVRSettingsError *)  peError
-      ],
-      result: "void"
-    });
-
-    const _result = func.call(
+    const _result = this.#RemoveKeyInSectionFn.call(
       Deno.UnsafePointer.of(new TextEncoder().encode(pchSection + "\0")),
       Deno.UnsafePointer.of(new TextEncoder().encode(pchSettingsKey + "\0")),
       peError,
@@ -13237,110 +12779,70 @@ export class IVRSettings {
 }
 
 export class IVRApplications {
-  constructor(private ptr: Deno.PointerValue<IVRApplications|unknown>) {}
+  readonly #AddApplicationManifestFn: Deno.UnsafeFnPointer<any>;
+  readonly #RemoveApplicationManifestFn: Deno.UnsafeFnPointer<any>;
+  readonly #IsApplicationInstalledFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetApplicationCountFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetApplicationKeyByIndexFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetApplicationKeyByProcessIdFn: Deno.UnsafeFnPointer<any>;
+  readonly #LaunchApplicationFn: Deno.UnsafeFnPointer<any>;
+  readonly #LaunchTemplateApplicationFn: Deno.UnsafeFnPointer<any>;
+  readonly #LaunchApplicationFromMimeTypeFn: Deno.UnsafeFnPointer<any>;
+  readonly #LaunchDashboardOverlayFn: Deno.UnsafeFnPointer<any>;
+  readonly #CancelApplicationLaunchFn: Deno.UnsafeFnPointer<any>;
+  readonly #IdentifyApplicationFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetApplicationProcessIdFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetApplicationsErrorNameFromEnumFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetApplicationPropertyStringFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetApplicationPropertyBoolFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetApplicationPropertyUint64Fn: Deno.UnsafeFnPointer<any>;
+  readonly #SetApplicationAutoLaunchFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetApplicationAutoLaunchFn: Deno.UnsafeFnPointer<any>;
+  readonly #SetDefaultApplicationForMimeTypeFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetDefaultApplicationForMimeTypeFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetApplicationSupportedMimeTypesFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetApplicationsThatSupportMimeTypeFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetApplicationLaunchArgumentsFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetStartingApplicationFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetSceneApplicationStateFn: Deno.UnsafeFnPointer<any>;
+  readonly #PerformApplicationPrelaunchCheckFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetSceneApplicationStateNameFromEnumFn: Deno.UnsafeFnPointer<any>;
+  readonly #LaunchInternalProcessFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetCurrentSceneProcessIdFn: Deno.UnsafeFnPointer<any>;
 
-  /*
-  AddApplicationManifest
-  Parameters: [{"paramname":"pchApplicationManifestFullPath","paramtype":"const char *"},{"paramname":"bTemporary","paramtype":"bool"}]
-  Return: vr::EVRApplicationError
-  */
-  AddApplicationManifest(pchApplicationManifestFullPath: string, bTemporary: boolean): ApplicationError {
+  constructor(private ptr: Deno.PointerValue<IVRApplications|unknown>) {
     if (this.ptr === null) throw new Error("IVRApplications pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRApplications>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(0))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const AddApplicationManifestFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(0))!;
+    this.#AddApplicationManifestFn = new Deno.UnsafeFnPointer(AddApplicationManifestFuncPtr, {
       parameters: [
         "pointer", //(const char *)  pchApplicationManifestFullPath
         "bool", //(bool)  bTemporary
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      Deno.UnsafePointer.of(new TextEncoder().encode(pchApplicationManifestFullPath + "\0")),
-      bTemporary,
-    );
-
-    return result// as ApplicationError;
-  }
-
-  /*
-  RemoveApplicationManifest
-  Parameters: [{"paramname":"pchApplicationManifestFullPath","paramtype":"const char *"}]
-  Return: vr::EVRApplicationError
-  */
-  RemoveApplicationManifest(pchApplicationManifestFullPath: string): ApplicationError {
-    if (this.ptr === null) throw new Error("IVRApplications pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRApplications>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(8))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const RemoveApplicationManifestFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(8))!;
+    this.#RemoveApplicationManifestFn = new Deno.UnsafeFnPointer(RemoveApplicationManifestFuncPtr, {
       parameters: [
         "pointer", //(const char *)  pchApplicationManifestFullPath
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      Deno.UnsafePointer.of(new TextEncoder().encode(pchApplicationManifestFullPath + "\0")),
-    );
-
-    return result// as ApplicationError;
-  }
-
-  /*
-  IsApplicationInstalled
-  Parameters: [{"paramname":"pchAppKey","paramtype":"const char *"}]
-  Return: bool
-  */
-  IsApplicationInstalled(pchAppKey: string): boolean {
-    if (this.ptr === null) throw new Error("IVRApplications pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRApplications>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(16))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const IsApplicationInstalledFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(16))!;
+    this.#IsApplicationInstalledFn = new Deno.UnsafeFnPointer(IsApplicationInstalledFuncPtr, {
       parameters: [
         "pointer", //(const char *)  pchAppKey
       ],
       result: "bool"
     });
-
-    const result = func.call(
-      Deno.UnsafePointer.of(new TextEncoder().encode(pchAppKey + "\0")),
-    );
-
-    return result// as boolean;
-  }
-
-  /*
-  GetApplicationCount
-  Parameters: undefined
-  Return: uint32_t
-  */
-  GetApplicationCount(): number {
-    if (this.ptr === null) throw new Error("IVRApplications pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRApplications>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(24))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const GetApplicationCountFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(24))!;
+    this.#GetApplicationCountFn = new Deno.UnsafeFnPointer(GetApplicationCountFuncPtr, {
       parameters: [
       ],
       result: "u32"
     });
-
-    const result = func.call(
-    );
-
-    return result// as number;
-  }
-
-  /*
-  GetApplicationKeyByIndex
-  Parameters: [{"paramname":"unApplicationIndex","paramtype":"uint32_t"},{"paramname":"pchAppKeyBuffer","out_string":" ","paramtype":"char *"},{"paramname":"unAppKeyBufferLen","paramtype":"uint32_t"}]
-  Return: vr::EVRApplicationError
-  */
-  GetApplicationKeyByIndex(unApplicationIndex: number, pchAppKeyBuffer: string, unAppKeyBufferLen: number): ApplicationError {
-    if (this.ptr === null) throw new Error("IVRApplications pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRApplications>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(32))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const GetApplicationKeyByIndexFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(32))!;
+    this.#GetApplicationKeyByIndexFn = new Deno.UnsafeFnPointer(GetApplicationKeyByIndexFuncPtr, {
       parameters: [
         "u32", //(uint32_t)  unApplicationIndex
         "pointer", //(char *)  pchAppKeyBuffer
@@ -13348,26 +12850,8 @@ export class IVRApplications {
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      unApplicationIndex,
-      Deno.UnsafePointer.of(new TextEncoder().encode(pchAppKeyBuffer + "\0")),
-      unAppKeyBufferLen,
-    );
-
-    return result// as ApplicationError;
-  }
-
-  /*
-  GetApplicationKeyByProcessId
-  Parameters: [{"paramname":"unProcessId","paramtype":"uint32_t"},{"paramname":"pchAppKeyBuffer","out_string":" ","paramtype":"char *"},{"paramname":"unAppKeyBufferLen","paramtype":"uint32_t"}]
-  Return: vr::EVRApplicationError
-  */
-  GetApplicationKeyByProcessId(unProcessId: number, pchAppKeyBuffer: string, unAppKeyBufferLen: number): ApplicationError {
-    if (this.ptr === null) throw new Error("IVRApplications pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRApplications>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(40))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const GetApplicationKeyByProcessIdFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(40))!;
+    this.#GetApplicationKeyByProcessIdFn = new Deno.UnsafeFnPointer(GetApplicationKeyByProcessIdFuncPtr, {
       parameters: [
         "u32", //(uint32_t)  unProcessId
         "pointer", //(char *)  pchAppKeyBuffer
@@ -13375,49 +12859,15 @@ export class IVRApplications {
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      unProcessId,
-      Deno.UnsafePointer.of(new TextEncoder().encode(pchAppKeyBuffer + "\0")),
-      unAppKeyBufferLen,
-    );
-
-    return result// as ApplicationError;
-  }
-
-  /*
-  LaunchApplication
-  Parameters: [{"paramname":"pchAppKey","paramtype":"const char *"}]
-  Return: vr::EVRApplicationError
-  */
-  LaunchApplication(pchAppKey: string): ApplicationError {
-    if (this.ptr === null) throw new Error("IVRApplications pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRApplications>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(48))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const LaunchApplicationFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(48))!;
+    this.#LaunchApplicationFn = new Deno.UnsafeFnPointer(LaunchApplicationFuncPtr, {
       parameters: [
         "pointer", //(const char *)  pchAppKey
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      Deno.UnsafePointer.of(new TextEncoder().encode(pchAppKey + "\0")),
-    );
-
-    return result// as ApplicationError;
-  }
-
-  /*
-  LaunchTemplateApplication
-  Parameters: [{"paramname":"pchTemplateAppKey","paramtype":"const char *"},{"paramname":"pchNewAppKey","paramtype":"const char *"},{"paramname":"pKeys","array_count":"unKeys","paramtype":"const struct vr::AppOverrideKeys_t *"},{"paramname":"unKeys","paramtype":"uint32_t"}]
-  Return: vr::EVRApplicationError
-  */
-  LaunchTemplateApplication(pchTemplateAppKey: string, pchNewAppKey: string, pKeys: Deno.PointerValue<AppOverrideKeys>, unKeys: number): ApplicationError {
-    if (this.ptr === null) throw new Error("IVRApplications pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRApplications>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(56))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const LaunchTemplateApplicationFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(56))!;
+    this.#LaunchTemplateApplicationFn = new Deno.UnsafeFnPointer(LaunchTemplateApplicationFuncPtr, {
       parameters: [
         "pointer", //(const char *)  pchTemplateAppKey
         "pointer", //(const char *)  pchNewAppKey
@@ -13426,169 +12876,52 @@ export class IVRApplications {
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      Deno.UnsafePointer.of(new TextEncoder().encode(pchTemplateAppKey + "\0")),
-      Deno.UnsafePointer.of(new TextEncoder().encode(pchNewAppKey + "\0")),
-      pKeys,
-      unKeys,
-    );
-
-    return result// as ApplicationError;
-  }
-
-  /*
-  LaunchApplicationFromMimeType
-  Parameters: [{"paramname":"pchMimeType","paramtype":"const char *"},{"paramname":"pchArgs","paramtype":"const char *"}]
-  Return: vr::EVRApplicationError
-  */
-  LaunchApplicationFromMimeType(pchMimeType: string, pchArgs: string): ApplicationError {
-    if (this.ptr === null) throw new Error("IVRApplications pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRApplications>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(64))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const LaunchApplicationFromMimeTypeFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(64))!;
+    this.#LaunchApplicationFromMimeTypeFn = new Deno.UnsafeFnPointer(LaunchApplicationFromMimeTypeFuncPtr, {
       parameters: [
         "pointer", //(const char *)  pchMimeType
         "pointer", //(const char *)  pchArgs
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      Deno.UnsafePointer.of(new TextEncoder().encode(pchMimeType + "\0")),
-      Deno.UnsafePointer.of(new TextEncoder().encode(pchArgs + "\0")),
-    );
-
-    return result// as ApplicationError;
-  }
-
-  /*
-  LaunchDashboardOverlay
-  Parameters: [{"paramname":"pchAppKey","paramtype":"const char *"}]
-  Return: vr::EVRApplicationError
-  */
-  LaunchDashboardOverlay(pchAppKey: string): ApplicationError {
-    if (this.ptr === null) throw new Error("IVRApplications pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRApplications>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(72))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const LaunchDashboardOverlayFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(72))!;
+    this.#LaunchDashboardOverlayFn = new Deno.UnsafeFnPointer(LaunchDashboardOverlayFuncPtr, {
       parameters: [
         "pointer", //(const char *)  pchAppKey
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      Deno.UnsafePointer.of(new TextEncoder().encode(pchAppKey + "\0")),
-    );
-
-    return result// as ApplicationError;
-  }
-
-  /*
-  CancelApplicationLaunch
-  Parameters: [{"paramname":"pchAppKey","paramtype":"const char *"}]
-  Return: bool
-  */
-  CancelApplicationLaunch(pchAppKey: string): boolean {
-    if (this.ptr === null) throw new Error("IVRApplications pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRApplications>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(80))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const CancelApplicationLaunchFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(80))!;
+    this.#CancelApplicationLaunchFn = new Deno.UnsafeFnPointer(CancelApplicationLaunchFuncPtr, {
       parameters: [
         "pointer", //(const char *)  pchAppKey
       ],
       result: "bool"
     });
-
-    const result = func.call(
-      Deno.UnsafePointer.of(new TextEncoder().encode(pchAppKey + "\0")),
-    );
-
-    return result// as boolean;
-  }
-
-  /*
-  IdentifyApplication
-  Parameters: [{"paramname":"unProcessId","paramtype":"uint32_t"},{"paramname":"pchAppKey","paramtype":"const char *"}]
-  Return: vr::EVRApplicationError
-  */
-  IdentifyApplication(unProcessId: number, pchAppKey: string): ApplicationError {
-    if (this.ptr === null) throw new Error("IVRApplications pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRApplications>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(88))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const IdentifyApplicationFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(88))!;
+    this.#IdentifyApplicationFn = new Deno.UnsafeFnPointer(IdentifyApplicationFuncPtr, {
       parameters: [
         "u32", //(uint32_t)  unProcessId
         "pointer", //(const char *)  pchAppKey
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      unProcessId,
-      Deno.UnsafePointer.of(new TextEncoder().encode(pchAppKey + "\0")),
-    );
-
-    return result// as ApplicationError;
-  }
-
-  /*
-  GetApplicationProcessId
-  Parameters: [{"paramname":"pchAppKey","paramtype":"const char *"}]
-  Return: uint32_t
-  */
-  GetApplicationProcessId(pchAppKey: string): number {
-    if (this.ptr === null) throw new Error("IVRApplications pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRApplications>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(96))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const GetApplicationProcessIdFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(96))!;
+    this.#GetApplicationProcessIdFn = new Deno.UnsafeFnPointer(GetApplicationProcessIdFuncPtr, {
       parameters: [
         "pointer", //(const char *)  pchAppKey
       ],
       result: "u32"
     });
-
-    const result = func.call(
-      Deno.UnsafePointer.of(new TextEncoder().encode(pchAppKey + "\0")),
-    );
-
-    return result// as number;
-  }
-
-  /*
-  GetApplicationsErrorNameFromEnum
-  Parameters: [{"paramname":"error","paramtype":"vr::EVRApplicationError"}]
-  Return: const char *
-  */
-  GetApplicationsErrorNameFromEnum(error: ApplicationError): string {
-    if (this.ptr === null) throw new Error("IVRApplications pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRApplications>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(104))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const GetApplicationsErrorNameFromEnumFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(104))!;
+    this.#GetApplicationsErrorNameFromEnumFn = new Deno.UnsafeFnPointer(GetApplicationsErrorNameFromEnumFuncPtr, {
       parameters: [
         "i32", //(vr::EVRApplicationError)  error
       ],
       result: "pointer"
     });
-
-    const result = func.call(
-      error,
-    );
-
-    return result.toString();
-  }
-
-  /*
-  GetApplicationPropertyString
-  Parameters: [{"paramname":"pchAppKey","paramtype":"const char *"},{"paramname":"eProperty","paramtype":"vr::EVRApplicationProperty"},{"paramname":"pchPropertyValueBuffer","out_string":" ","paramtype":"char *"},{"paramname":"unPropertyValueBufferLen","paramtype":"uint32_t"},{"paramname":"peError","paramtype":"vr::EVRApplicationError *"}]
-  Return: uint32_t
-  */
-  GetApplicationPropertyString(pchAppKey: string, eProperty: ApplicationProperty, pchPropertyValueBuffer: string, unPropertyValueBufferLen: number, peError: Deno.PointerValue<ApplicationError>): number {
-    if (this.ptr === null) throw new Error("IVRApplications pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRApplications>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(112))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const GetApplicationPropertyStringFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(112))!;
+    this.#GetApplicationPropertyStringFn = new Deno.UnsafeFnPointer(GetApplicationPropertyStringFuncPtr, {
       parameters: [
         "pointer", //(const char *)  pchAppKey
         "i32", //(vr::EVRApplicationProperty)  eProperty
@@ -13598,8 +12931,327 @@ export class IVRApplications {
       ],
       result: "u32"
     });
+    const GetApplicationPropertyBoolFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(120))!;
+    this.#GetApplicationPropertyBoolFn = new Deno.UnsafeFnPointer(GetApplicationPropertyBoolFuncPtr, {
+      parameters: [
+        "pointer", //(const char *)  pchAppKey
+        "i32", //(vr::EVRApplicationProperty)  eProperty
+        "pointer", //(vr::EVRApplicationError *)  peError
+      ],
+      result: "bool"
+    });
+    const GetApplicationPropertyUint64FuncPtr = Deno.UnsafePointer.create(view.getBigUint64(128))!;
+    this.#GetApplicationPropertyUint64Fn = new Deno.UnsafeFnPointer(GetApplicationPropertyUint64FuncPtr, {
+      parameters: [
+        "pointer", //(const char *)  pchAppKey
+        "i32", //(vr::EVRApplicationProperty)  eProperty
+        "pointer", //(vr::EVRApplicationError *)  peError
+      ],
+      result: "u64"
+    });
+    const SetApplicationAutoLaunchFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(136))!;
+    this.#SetApplicationAutoLaunchFn = new Deno.UnsafeFnPointer(SetApplicationAutoLaunchFuncPtr, {
+      parameters: [
+        "pointer", //(const char *)  pchAppKey
+        "bool", //(bool)  bAutoLaunch
+      ],
+      result: "i32"
+    });
+    const GetApplicationAutoLaunchFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(144))!;
+    this.#GetApplicationAutoLaunchFn = new Deno.UnsafeFnPointer(GetApplicationAutoLaunchFuncPtr, {
+      parameters: [
+        "pointer", //(const char *)  pchAppKey
+      ],
+      result: "bool"
+    });
+    const SetDefaultApplicationForMimeTypeFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(152))!;
+    this.#SetDefaultApplicationForMimeTypeFn = new Deno.UnsafeFnPointer(SetDefaultApplicationForMimeTypeFuncPtr, {
+      parameters: [
+        "pointer", //(const char *)  pchAppKey
+        "pointer", //(const char *)  pchMimeType
+      ],
+      result: "i32"
+    });
+    const GetDefaultApplicationForMimeTypeFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(160))!;
+    this.#GetDefaultApplicationForMimeTypeFn = new Deno.UnsafeFnPointer(GetDefaultApplicationForMimeTypeFuncPtr, {
+      parameters: [
+        "pointer", //(const char *)  pchMimeType
+        "pointer", //(char *)  pchAppKeyBuffer
+        "u32", //(uint32_t)  unAppKeyBufferLen
+      ],
+      result: "bool"
+    });
+    const GetApplicationSupportedMimeTypesFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(168))!;
+    this.#GetApplicationSupportedMimeTypesFn = new Deno.UnsafeFnPointer(GetApplicationSupportedMimeTypesFuncPtr, {
+      parameters: [
+        "pointer", //(const char *)  pchAppKey
+        "pointer", //(char *)  pchMimeTypesBuffer
+        "u32", //(uint32_t)  unMimeTypesBuffer
+      ],
+      result: "bool"
+    });
+    const GetApplicationsThatSupportMimeTypeFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(176))!;
+    this.#GetApplicationsThatSupportMimeTypeFn = new Deno.UnsafeFnPointer(GetApplicationsThatSupportMimeTypeFuncPtr, {
+      parameters: [
+        "pointer", //(const char *)  pchMimeType
+        "pointer", //(char *)  pchAppKeysThatSupportBuffer
+        "u32", //(uint32_t)  unAppKeysThatSupportBuffer
+      ],
+      result: "u32"
+    });
+    const GetApplicationLaunchArgumentsFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(184))!;
+    this.#GetApplicationLaunchArgumentsFn = new Deno.UnsafeFnPointer(GetApplicationLaunchArgumentsFuncPtr, {
+      parameters: [
+        "u32", //(uint32_t)  unHandle
+        "pointer", //(char *)  pchArgs
+        "u32", //(uint32_t)  unArgs
+      ],
+      result: "u32"
+    });
+    const GetStartingApplicationFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(192))!;
+    this.#GetStartingApplicationFn = new Deno.UnsafeFnPointer(GetStartingApplicationFuncPtr, {
+      parameters: [
+        "pointer", //(char *)  pchAppKeyBuffer
+        "u32", //(uint32_t)  unAppKeyBufferLen
+      ],
+      result: "i32"
+    });
+    const GetSceneApplicationStateFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(200))!;
+    this.#GetSceneApplicationStateFn = new Deno.UnsafeFnPointer(GetSceneApplicationStateFuncPtr, {
+      parameters: [
+      ],
+      result: "i32"
+    });
+    const PerformApplicationPrelaunchCheckFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(208))!;
+    this.#PerformApplicationPrelaunchCheckFn = new Deno.UnsafeFnPointer(PerformApplicationPrelaunchCheckFuncPtr, {
+      parameters: [
+        "pointer", //(const char *)  pchAppKey
+      ],
+      result: "i32"
+    });
+    const GetSceneApplicationStateNameFromEnumFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(216))!;
+    this.#GetSceneApplicationStateNameFromEnumFn = new Deno.UnsafeFnPointer(GetSceneApplicationStateNameFromEnumFuncPtr, {
+      parameters: [
+        "i32", //(vr::EVRSceneApplicationState)  state
+      ],
+      result: "pointer"
+    });
+    const LaunchInternalProcessFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(224))!;
+    this.#LaunchInternalProcessFn = new Deno.UnsafeFnPointer(LaunchInternalProcessFuncPtr, {
+      parameters: [
+        "pointer", //(const char *)  pchBinaryPath
+        "pointer", //(const char *)  pchArguments
+        "pointer", //(const char *)  pchWorkingDirectory
+      ],
+      result: "i32"
+    });
+    const GetCurrentSceneProcessIdFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(232))!;
+    this.#GetCurrentSceneProcessIdFn = new Deno.UnsafeFnPointer(GetCurrentSceneProcessIdFuncPtr, {
+      parameters: [
+      ],
+      result: "u32"
+    });
+  }
 
-    const result = func.call(
+  /*
+  AddApplicationManifest
+  Parameters: [{"paramname":"pchApplicationManifestFullPath","paramtype":"const char *"},{"paramname":"bTemporary","paramtype":"bool"}]
+  Return: vr::EVRApplicationError
+  */
+  AddApplicationManifest(pchApplicationManifestFullPath: string, bTemporary: boolean): ApplicationError {
+    const result = this.#AddApplicationManifestFn.call(
+      Deno.UnsafePointer.of(new TextEncoder().encode(pchApplicationManifestFullPath + "\0")),
+      bTemporary,
+    );
+
+    return result // as ApplicationError;
+  }
+
+  /*
+  RemoveApplicationManifest
+  Parameters: [{"paramname":"pchApplicationManifestFullPath","paramtype":"const char *"}]
+  Return: vr::EVRApplicationError
+  */
+  RemoveApplicationManifest(pchApplicationManifestFullPath: string): ApplicationError {
+    const result = this.#RemoveApplicationManifestFn.call(
+      Deno.UnsafePointer.of(new TextEncoder().encode(pchApplicationManifestFullPath + "\0")),
+    );
+
+    return result // as ApplicationError;
+  }
+
+  /*
+  IsApplicationInstalled
+  Parameters: [{"paramname":"pchAppKey","paramtype":"const char *"}]
+  Return: bool
+  */
+  IsApplicationInstalled(pchAppKey: string): boolean {
+    const result = this.#IsApplicationInstalledFn.call(
+      Deno.UnsafePointer.of(new TextEncoder().encode(pchAppKey + "\0")),
+    );
+
+    return result // as boolean;
+  }
+
+  /*
+  GetApplicationCount
+  Parameters: undefined
+  Return: uint32_t
+  */
+  GetApplicationCount(): number {
+    const result = this.#GetApplicationCountFn.call(
+    );
+
+    return result // as number;
+  }
+
+  /*
+  GetApplicationKeyByIndex
+  Parameters: [{"paramname":"unApplicationIndex","paramtype":"uint32_t"},{"paramname":"pchAppKeyBuffer","out_string":" ","paramtype":"char *"},{"paramname":"unAppKeyBufferLen","paramtype":"uint32_t"}]
+  Return: vr::EVRApplicationError
+  */
+  GetApplicationKeyByIndex(unApplicationIndex: number, pchAppKeyBuffer: string, unAppKeyBufferLen: number): ApplicationError {
+    const result = this.#GetApplicationKeyByIndexFn.call(
+      unApplicationIndex,
+      Deno.UnsafePointer.of(new TextEncoder().encode(pchAppKeyBuffer + "\0")),
+      unAppKeyBufferLen,
+    );
+
+    return result // as ApplicationError;
+  }
+
+  /*
+  GetApplicationKeyByProcessId
+  Parameters: [{"paramname":"unProcessId","paramtype":"uint32_t"},{"paramname":"pchAppKeyBuffer","out_string":" ","paramtype":"char *"},{"paramname":"unAppKeyBufferLen","paramtype":"uint32_t"}]
+  Return: vr::EVRApplicationError
+  */
+  GetApplicationKeyByProcessId(unProcessId: number, pchAppKeyBuffer: string, unAppKeyBufferLen: number): ApplicationError {
+    const result = this.#GetApplicationKeyByProcessIdFn.call(
+      unProcessId,
+      Deno.UnsafePointer.of(new TextEncoder().encode(pchAppKeyBuffer + "\0")),
+      unAppKeyBufferLen,
+    );
+
+    return result // as ApplicationError;
+  }
+
+  /*
+  LaunchApplication
+  Parameters: [{"paramname":"pchAppKey","paramtype":"const char *"}]
+  Return: vr::EVRApplicationError
+  */
+  LaunchApplication(pchAppKey: string): ApplicationError {
+    const result = this.#LaunchApplicationFn.call(
+      Deno.UnsafePointer.of(new TextEncoder().encode(pchAppKey + "\0")),
+    );
+
+    return result // as ApplicationError;
+  }
+
+  /*
+  LaunchTemplateApplication
+  Parameters: [{"paramname":"pchTemplateAppKey","paramtype":"const char *"},{"paramname":"pchNewAppKey","paramtype":"const char *"},{"paramname":"pKeys","array_count":"unKeys","paramtype":"const struct vr::AppOverrideKeys_t *"},{"paramname":"unKeys","paramtype":"uint32_t"}]
+  Return: vr::EVRApplicationError
+  */
+  LaunchTemplateApplication(pchTemplateAppKey: string, pchNewAppKey: string, pKeys: Deno.PointerValue<AppOverrideKeys>, unKeys: number): ApplicationError {
+    const result = this.#LaunchTemplateApplicationFn.call(
+      Deno.UnsafePointer.of(new TextEncoder().encode(pchTemplateAppKey + "\0")),
+      Deno.UnsafePointer.of(new TextEncoder().encode(pchNewAppKey + "\0")),
+      pKeys,
+      unKeys,
+    );
+
+    return result // as ApplicationError;
+  }
+
+  /*
+  LaunchApplicationFromMimeType
+  Parameters: [{"paramname":"pchMimeType","paramtype":"const char *"},{"paramname":"pchArgs","paramtype":"const char *"}]
+  Return: vr::EVRApplicationError
+  */
+  LaunchApplicationFromMimeType(pchMimeType: string, pchArgs: string): ApplicationError {
+    const result = this.#LaunchApplicationFromMimeTypeFn.call(
+      Deno.UnsafePointer.of(new TextEncoder().encode(pchMimeType + "\0")),
+      Deno.UnsafePointer.of(new TextEncoder().encode(pchArgs + "\0")),
+    );
+
+    return result // as ApplicationError;
+  }
+
+  /*
+  LaunchDashboardOverlay
+  Parameters: [{"paramname":"pchAppKey","paramtype":"const char *"}]
+  Return: vr::EVRApplicationError
+  */
+  LaunchDashboardOverlay(pchAppKey: string): ApplicationError {
+    const result = this.#LaunchDashboardOverlayFn.call(
+      Deno.UnsafePointer.of(new TextEncoder().encode(pchAppKey + "\0")),
+    );
+
+    return result // as ApplicationError;
+  }
+
+  /*
+  CancelApplicationLaunch
+  Parameters: [{"paramname":"pchAppKey","paramtype":"const char *"}]
+  Return: bool
+  */
+  CancelApplicationLaunch(pchAppKey: string): boolean {
+    const result = this.#CancelApplicationLaunchFn.call(
+      Deno.UnsafePointer.of(new TextEncoder().encode(pchAppKey + "\0")),
+    );
+
+    return result // as boolean;
+  }
+
+  /*
+  IdentifyApplication
+  Parameters: [{"paramname":"unProcessId","paramtype":"uint32_t"},{"paramname":"pchAppKey","paramtype":"const char *"}]
+  Return: vr::EVRApplicationError
+  */
+  IdentifyApplication(unProcessId: number, pchAppKey: string): ApplicationError {
+    const result = this.#IdentifyApplicationFn.call(
+      unProcessId,
+      Deno.UnsafePointer.of(new TextEncoder().encode(pchAppKey + "\0")),
+    );
+
+    return result // as ApplicationError;
+  }
+
+  /*
+  GetApplicationProcessId
+  Parameters: [{"paramname":"pchAppKey","paramtype":"const char *"}]
+  Return: uint32_t
+  */
+  GetApplicationProcessId(pchAppKey: string): number {
+    const result = this.#GetApplicationProcessIdFn.call(
+      Deno.UnsafePointer.of(new TextEncoder().encode(pchAppKey + "\0")),
+    );
+
+    return result // as number;
+  }
+
+  /*
+  GetApplicationsErrorNameFromEnum
+  Parameters: [{"paramname":"error","paramtype":"vr::EVRApplicationError"}]
+  Return: const char *
+  */
+  GetApplicationsErrorNameFromEnum(error: ApplicationError): string {
+    const result = this.#GetApplicationsErrorNameFromEnumFn.call(
+      error,
+    );
+
+    if (result === null) return ""; // Handle null pointer case
+    return Deno.UnsafePointerView.getCString(result);
+  }
+
+  /*
+  GetApplicationPropertyString
+  Parameters: [{"paramname":"pchAppKey","paramtype":"const char *"},{"paramname":"eProperty","paramtype":"vr::EVRApplicationProperty"},{"paramname":"pchPropertyValueBuffer","out_string":" ","paramtype":"char *"},{"paramname":"unPropertyValueBufferLen","paramtype":"uint32_t"},{"paramname":"peError","paramtype":"vr::EVRApplicationError *"}]
+  Return: uint32_t
+  */
+  GetApplicationPropertyString(pchAppKey: string, eProperty: ApplicationProperty, pchPropertyValueBuffer: string, unPropertyValueBufferLen: number, peError: Deno.PointerValue<ApplicationError>): number {
+    const result = this.#GetApplicationPropertyStringFn.call(
       Deno.UnsafePointer.of(new TextEncoder().encode(pchAppKey + "\0")),
       eProperty,
       Deno.UnsafePointer.of(new TextEncoder().encode(pchPropertyValueBuffer + "\0")),
@@ -13607,7 +13259,7 @@ export class IVRApplications {
       peError,
     );
 
-    return result// as number;
+    return result // as number;
   }
 
   /*
@@ -13616,25 +13268,13 @@ export class IVRApplications {
   Return: bool
   */
   GetApplicationPropertyBool(pchAppKey: string, eProperty: ApplicationProperty, peError: Deno.PointerValue<ApplicationError>): boolean {
-    if (this.ptr === null) throw new Error("IVRApplications pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRApplications>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(120))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "pointer", //(const char *)  pchAppKey
-        "i32", //(vr::EVRApplicationProperty)  eProperty
-        "pointer", //(vr::EVRApplicationError *)  peError
-      ],
-      result: "bool"
-    });
-
-    const result = func.call(
+    const result = this.#GetApplicationPropertyBoolFn.call(
       Deno.UnsafePointer.of(new TextEncoder().encode(pchAppKey + "\0")),
       eProperty,
       peError,
     );
 
-    return result// as boolean;
+    return result // as boolean;
   }
 
   /*
@@ -13643,25 +13283,13 @@ export class IVRApplications {
   Return: uint64_t
   */
   GetApplicationPropertyUint64(pchAppKey: string, eProperty: ApplicationProperty, peError: Deno.PointerValue<ApplicationError>): bigint {
-    if (this.ptr === null) throw new Error("IVRApplications pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRApplications>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(128))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "pointer", //(const char *)  pchAppKey
-        "i32", //(vr::EVRApplicationProperty)  eProperty
-        "pointer", //(vr::EVRApplicationError *)  peError
-      ],
-      result: "u64"
-    });
-
-    const result = func.call(
+    const result = this.#GetApplicationPropertyUint64Fn.call(
       Deno.UnsafePointer.of(new TextEncoder().encode(pchAppKey + "\0")),
       eProperty,
       peError,
     );
 
-    return result// as bigint;
+    return result // as bigint;
   }
 
   /*
@@ -13670,23 +13298,12 @@ export class IVRApplications {
   Return: vr::EVRApplicationError
   */
   SetApplicationAutoLaunch(pchAppKey: string, bAutoLaunch: boolean): ApplicationError {
-    if (this.ptr === null) throw new Error("IVRApplications pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRApplications>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(136))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "pointer", //(const char *)  pchAppKey
-        "bool", //(bool)  bAutoLaunch
-      ],
-      result: "i32"
-    });
-
-    const result = func.call(
+    const result = this.#SetApplicationAutoLaunchFn.call(
       Deno.UnsafePointer.of(new TextEncoder().encode(pchAppKey + "\0")),
       bAutoLaunch,
     );
 
-    return result// as ApplicationError;
+    return result // as ApplicationError;
   }
 
   /*
@@ -13695,21 +13312,11 @@ export class IVRApplications {
   Return: bool
   */
   GetApplicationAutoLaunch(pchAppKey: string): boolean {
-    if (this.ptr === null) throw new Error("IVRApplications pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRApplications>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(144))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "pointer", //(const char *)  pchAppKey
-      ],
-      result: "bool"
-    });
-
-    const result = func.call(
+    const result = this.#GetApplicationAutoLaunchFn.call(
       Deno.UnsafePointer.of(new TextEncoder().encode(pchAppKey + "\0")),
     );
 
-    return result// as boolean;
+    return result // as boolean;
   }
 
   /*
@@ -13718,23 +13325,12 @@ export class IVRApplications {
   Return: vr::EVRApplicationError
   */
   SetDefaultApplicationForMimeType(pchAppKey: string, pchMimeType: string): ApplicationError {
-    if (this.ptr === null) throw new Error("IVRApplications pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRApplications>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(152))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "pointer", //(const char *)  pchAppKey
-        "pointer", //(const char *)  pchMimeType
-      ],
-      result: "i32"
-    });
-
-    const result = func.call(
+    const result = this.#SetDefaultApplicationForMimeTypeFn.call(
       Deno.UnsafePointer.of(new TextEncoder().encode(pchAppKey + "\0")),
       Deno.UnsafePointer.of(new TextEncoder().encode(pchMimeType + "\0")),
     );
 
-    return result// as ApplicationError;
+    return result // as ApplicationError;
   }
 
   /*
@@ -13743,25 +13339,13 @@ export class IVRApplications {
   Return: bool
   */
   GetDefaultApplicationForMimeType(pchMimeType: string, pchAppKeyBuffer: string, unAppKeyBufferLen: number): boolean {
-    if (this.ptr === null) throw new Error("IVRApplications pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRApplications>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(160))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "pointer", //(const char *)  pchMimeType
-        "pointer", //(char *)  pchAppKeyBuffer
-        "u32", //(uint32_t)  unAppKeyBufferLen
-      ],
-      result: "bool"
-    });
-
-    const result = func.call(
+    const result = this.#GetDefaultApplicationForMimeTypeFn.call(
       Deno.UnsafePointer.of(new TextEncoder().encode(pchMimeType + "\0")),
       Deno.UnsafePointer.of(new TextEncoder().encode(pchAppKeyBuffer + "\0")),
       unAppKeyBufferLen,
     );
 
-    return result// as boolean;
+    return result // as boolean;
   }
 
   /*
@@ -13770,25 +13354,13 @@ export class IVRApplications {
   Return: bool
   */
   GetApplicationSupportedMimeTypes(pchAppKey: string, pchMimeTypesBuffer: string, unMimeTypesBuffer: number): boolean {
-    if (this.ptr === null) throw new Error("IVRApplications pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRApplications>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(168))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "pointer", //(const char *)  pchAppKey
-        "pointer", //(char *)  pchMimeTypesBuffer
-        "u32", //(uint32_t)  unMimeTypesBuffer
-      ],
-      result: "bool"
-    });
-
-    const result = func.call(
+    const result = this.#GetApplicationSupportedMimeTypesFn.call(
       Deno.UnsafePointer.of(new TextEncoder().encode(pchAppKey + "\0")),
       Deno.UnsafePointer.of(new TextEncoder().encode(pchMimeTypesBuffer + "\0")),
       unMimeTypesBuffer,
     );
 
-    return result// as boolean;
+    return result // as boolean;
   }
 
   /*
@@ -13797,25 +13369,13 @@ export class IVRApplications {
   Return: uint32_t
   */
   GetApplicationsThatSupportMimeType(pchMimeType: string, pchAppKeysThatSupportBuffer: string, unAppKeysThatSupportBuffer: number): number {
-    if (this.ptr === null) throw new Error("IVRApplications pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRApplications>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(176))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "pointer", //(const char *)  pchMimeType
-        "pointer", //(char *)  pchAppKeysThatSupportBuffer
-        "u32", //(uint32_t)  unAppKeysThatSupportBuffer
-      ],
-      result: "u32"
-    });
-
-    const result = func.call(
+    const result = this.#GetApplicationsThatSupportMimeTypeFn.call(
       Deno.UnsafePointer.of(new TextEncoder().encode(pchMimeType + "\0")),
       Deno.UnsafePointer.of(new TextEncoder().encode(pchAppKeysThatSupportBuffer + "\0")),
       unAppKeysThatSupportBuffer,
     );
 
-    return result// as number;
+    return result // as number;
   }
 
   /*
@@ -13824,25 +13384,13 @@ export class IVRApplications {
   Return: uint32_t
   */
   GetApplicationLaunchArguments(unHandle: number, pchArgs: string, unArgs: number): number {
-    if (this.ptr === null) throw new Error("IVRApplications pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRApplications>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(184))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "u32", //(uint32_t)  unHandle
-        "pointer", //(char *)  pchArgs
-        "u32", //(uint32_t)  unArgs
-      ],
-      result: "u32"
-    });
-
-    const result = func.call(
+    const result = this.#GetApplicationLaunchArgumentsFn.call(
       unHandle,
       Deno.UnsafePointer.of(new TextEncoder().encode(pchArgs + "\0")),
       unArgs,
     );
 
-    return result// as number;
+    return result // as number;
   }
 
   /*
@@ -13851,23 +13399,12 @@ export class IVRApplications {
   Return: vr::EVRApplicationError
   */
   GetStartingApplication(pchAppKeyBuffer: string, unAppKeyBufferLen: number): ApplicationError {
-    if (this.ptr === null) throw new Error("IVRApplications pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRApplications>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(192))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "pointer", //(char *)  pchAppKeyBuffer
-        "u32", //(uint32_t)  unAppKeyBufferLen
-      ],
-      result: "i32"
-    });
-
-    const result = func.call(
+    const result = this.#GetStartingApplicationFn.call(
       Deno.UnsafePointer.of(new TextEncoder().encode(pchAppKeyBuffer + "\0")),
       unAppKeyBufferLen,
     );
 
-    return result// as ApplicationError;
+    return result // as ApplicationError;
   }
 
   /*
@@ -13876,19 +13413,10 @@ export class IVRApplications {
   Return: vr::EVRSceneApplicationState
   */
   GetSceneApplicationState(): SceneApplicationState {
-    if (this.ptr === null) throw new Error("IVRApplications pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRApplications>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(200))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-      ],
-      result: "i32"
-    });
-
-    const result = func.call(
+    const result = this.#GetSceneApplicationStateFn.call(
     );
 
-    return result// as SceneApplicationState;
+    return result // as SceneApplicationState;
   }
 
   /*
@@ -13897,21 +13425,11 @@ export class IVRApplications {
   Return: vr::EVRApplicationError
   */
   PerformApplicationPrelaunchCheck(pchAppKey: string): ApplicationError {
-    if (this.ptr === null) throw new Error("IVRApplications pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRApplications>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(208))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "pointer", //(const char *)  pchAppKey
-      ],
-      result: "i32"
-    });
-
-    const result = func.call(
+    const result = this.#PerformApplicationPrelaunchCheckFn.call(
       Deno.UnsafePointer.of(new TextEncoder().encode(pchAppKey + "\0")),
     );
 
-    return result// as ApplicationError;
+    return result // as ApplicationError;
   }
 
   /*
@@ -13920,21 +13438,12 @@ export class IVRApplications {
   Return: const char *
   */
   GetSceneApplicationStateNameFromEnum(state: SceneApplicationState): string {
-    if (this.ptr === null) throw new Error("IVRApplications pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRApplications>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(216))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "i32", //(vr::EVRSceneApplicationState)  state
-      ],
-      result: "pointer"
-    });
-
-    const result = func.call(
+    const result = this.#GetSceneApplicationStateNameFromEnumFn.call(
       state,
     );
 
-    return result.toString();
+    if (result === null) return ""; // Handle null pointer case
+    return Deno.UnsafePointerView.getCString(result);
   }
 
   /*
@@ -13943,25 +13452,13 @@ export class IVRApplications {
   Return: vr::EVRApplicationError
   */
   LaunchInternalProcess(pchBinaryPath: string, pchArguments: string, pchWorkingDirectory: string): ApplicationError {
-    if (this.ptr === null) throw new Error("IVRApplications pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRApplications>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(224))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "pointer", //(const char *)  pchBinaryPath
-        "pointer", //(const char *)  pchArguments
-        "pointer", //(const char *)  pchWorkingDirectory
-      ],
-      result: "i32"
-    });
-
-    const result = func.call(
+    const result = this.#LaunchInternalProcessFn.call(
       Deno.UnsafePointer.of(new TextEncoder().encode(pchBinaryPath + "\0")),
       Deno.UnsafePointer.of(new TextEncoder().encode(pchArguments + "\0")),
       Deno.UnsafePointer.of(new TextEncoder().encode(pchWorkingDirectory + "\0")),
     );
 
-    return result// as ApplicationError;
+    return result // as ApplicationError;
   }
 
   /*
@@ -13970,84 +13467,50 @@ export class IVRApplications {
   Return: uint32_t
   */
   GetCurrentSceneProcessId(): number {
-    if (this.ptr === null) throw new Error("IVRApplications pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRApplications>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(232))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-      ],
-      result: "u32"
-    });
-
-    const result = func.call(
+    const result = this.#GetCurrentSceneProcessIdFn.call(
     );
 
-    return result// as number;
+    return result // as number;
   }
 
 }
 
 export class IVRTrackedCamera {
-  constructor(private ptr: Deno.PointerValue<IVRTrackedCamera|unknown>) {}
+  readonly #GetCameraErrorNameFromEnumFn: Deno.UnsafeFnPointer<any>;
+  readonly #HasCameraFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetCameraFrameSizeFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetCameraIntrinsicsFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetCameraProjectionFn: Deno.UnsafeFnPointer<any>;
+  readonly #AcquireVideoStreamingServiceFn: Deno.UnsafeFnPointer<any>;
+  readonly #ReleaseVideoStreamingServiceFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetVideoStreamFrameBufferFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetVideoStreamTextureSizeFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetVideoStreamTextureD3D11Fn: Deno.UnsafeFnPointer<any>;
+  readonly #GetVideoStreamTextureGLFn: Deno.UnsafeFnPointer<any>;
+  readonly #ReleaseVideoStreamTextureGLFn: Deno.UnsafeFnPointer<any>;
+  readonly #SetCameraTrackingSpaceFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetCameraTrackingSpaceFn: Deno.UnsafeFnPointer<any>;
 
-  /*
-  GetCameraErrorNameFromEnum
-  Parameters: [{"paramname":"eCameraError","paramtype":"vr::EVRTrackedCameraError"}]
-  Return: const char *
-  */
-  GetCameraErrorNameFromEnum(eCameraError: TrackedCameraError): string {
+  constructor(private ptr: Deno.PointerValue<IVRTrackedCamera|unknown>) {
     if (this.ptr === null) throw new Error("IVRTrackedCamera pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRTrackedCamera>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(0))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const GetCameraErrorNameFromEnumFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(0))!;
+    this.#GetCameraErrorNameFromEnumFn = new Deno.UnsafeFnPointer(GetCameraErrorNameFromEnumFuncPtr, {
       parameters: [
         "i32", //(vr::EVRTrackedCameraError)  eCameraError
       ],
       result: "pointer"
     });
-
-    const result = func.call(
-      eCameraError,
-    );
-
-    return result.toString();
-  }
-
-  /*
-  HasCamera
-  Parameters: [{"paramname":"nDeviceIndex","paramtype":"vr::TrackedDeviceIndex_t"},{"paramname":"pHasCamera","paramtype":"bool *"}]
-  Return: vr::EVRTrackedCameraError
-  */
-  HasCamera(nDeviceIndex: TrackedDeviceIndex, pHasCamera: Deno.PointerValue<boolean>): TrackedCameraError {
-    if (this.ptr === null) throw new Error("IVRTrackedCamera pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRTrackedCamera>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(8))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const HasCameraFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(8))!;
+    this.#HasCameraFn = new Deno.UnsafeFnPointer(HasCameraFuncPtr, {
       parameters: [
         "u32", //(vr::TrackedDeviceIndex_t)  nDeviceIndex
         "pointer", //(bool *)  pHasCamera
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      nDeviceIndex,
-      pHasCamera,
-    );
-
-    return result// as TrackedCameraError;
-  }
-
-  /*
-  GetCameraFrameSize
-  Parameters: [{"paramname":"nDeviceIndex","paramtype":"vr::TrackedDeviceIndex_t"},{"paramname":"eFrameType","paramtype":"vr::EVRTrackedCameraFrameType"},{"paramname":"pnWidth","paramtype":"uint32_t *"},{"paramname":"pnHeight","paramtype":"uint32_t *"},{"paramname":"pnFrameBufferSize","paramtype":"uint32_t *"}]
-  Return: vr::EVRTrackedCameraError
-  */
-  GetCameraFrameSize(nDeviceIndex: TrackedDeviceIndex, eFrameType: TrackedCameraFrameType, pnWidth: Deno.PointerValue<number>, pnHeight: Deno.PointerValue<number>, pnFrameBufferSize: Deno.PointerValue<number>): TrackedCameraError {
-    if (this.ptr === null) throw new Error("IVRTrackedCamera pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRTrackedCamera>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(16))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const GetCameraFrameSizeFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(16))!;
+    this.#GetCameraFrameSizeFn = new Deno.UnsafeFnPointer(GetCameraFrameSizeFuncPtr, {
       parameters: [
         "u32", //(vr::TrackedDeviceIndex_t)  nDeviceIndex
         "i32", //(vr::EVRTrackedCameraFrameType)  eFrameType
@@ -14057,28 +13520,8 @@ export class IVRTrackedCamera {
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      nDeviceIndex,
-      eFrameType,
-      pnWidth,
-      pnHeight,
-      pnFrameBufferSize,
-    );
-
-    return result// as TrackedCameraError;
-  }
-
-  /*
-  GetCameraIntrinsics
-  Parameters: [{"paramname":"nDeviceIndex","paramtype":"vr::TrackedDeviceIndex_t"},{"paramname":"nCameraIndex","paramtype":"uint32_t"},{"paramname":"eFrameType","paramtype":"vr::EVRTrackedCameraFrameType"},{"paramname":"pFocalLength","paramtype":"vr::HmdVector2_t *"},{"paramname":"pCenter","paramtype":"vr::HmdVector2_t *"}]
-  Return: vr::EVRTrackedCameraError
-  */
-  GetCameraIntrinsics(nDeviceIndex: TrackedDeviceIndex, nCameraIndex: number, eFrameType: TrackedCameraFrameType, pFocalLength: Deno.PointerValue<HmdVector2>, pCenter: Deno.PointerValue<HmdVector2>): TrackedCameraError {
-    if (this.ptr === null) throw new Error("IVRTrackedCamera pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRTrackedCamera>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(24))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const GetCameraIntrinsicsFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(24))!;
+    this.#GetCameraIntrinsicsFn = new Deno.UnsafeFnPointer(GetCameraIntrinsicsFuncPtr, {
       parameters: [
         "u32", //(vr::TrackedDeviceIndex_t)  nDeviceIndex
         "u32", //(uint32_t)  nCameraIndex
@@ -14088,28 +13531,8 @@ export class IVRTrackedCamera {
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      nDeviceIndex,
-      nCameraIndex,
-      eFrameType,
-      pFocalLength,
-      pCenter,
-    );
-
-    return result// as TrackedCameraError;
-  }
-
-  /*
-  GetCameraProjection
-  Parameters: [{"paramname":"nDeviceIndex","paramtype":"vr::TrackedDeviceIndex_t"},{"paramname":"nCameraIndex","paramtype":"uint32_t"},{"paramname":"eFrameType","paramtype":"vr::EVRTrackedCameraFrameType"},{"paramname":"flZNear","paramtype":"float"},{"paramname":"flZFar","paramtype":"float"},{"paramname":"pProjection","paramtype":"vr::HmdMatrix44_t *"}]
-  Return: vr::EVRTrackedCameraError
-  */
-  GetCameraProjection(nDeviceIndex: TrackedDeviceIndex, nCameraIndex: number, eFrameType: TrackedCameraFrameType, flZNear: number, flZFar: number, pProjection: Deno.PointerValue<HmdMatrix44>): TrackedCameraError {
-    if (this.ptr === null) throw new Error("IVRTrackedCamera pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRTrackedCamera>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(32))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const GetCameraProjectionFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(32))!;
+    this.#GetCameraProjectionFn = new Deno.UnsafeFnPointer(GetCameraProjectionFuncPtr, {
       parameters: [
         "u32", //(vr::TrackedDeviceIndex_t)  nDeviceIndex
         "u32", //(uint32_t)  nCameraIndex
@@ -14120,77 +13543,23 @@ export class IVRTrackedCamera {
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      nDeviceIndex,
-      nCameraIndex,
-      eFrameType,
-      flZNear,
-      flZFar,
-      pProjection,
-    );
-
-    return result// as TrackedCameraError;
-  }
-
-  /*
-  AcquireVideoStreamingService
-  Parameters: [{"paramname":"nDeviceIndex","paramtype":"vr::TrackedDeviceIndex_t"},{"paramname":"pHandle","paramtype":"vr::TrackedCameraHandle_t *"}]
-  Return: vr::EVRTrackedCameraError
-  */
-  AcquireVideoStreamingService(nDeviceIndex: TrackedDeviceIndex, pHandle: Deno.PointerValue<TrackedCameraHandle>): TrackedCameraError {
-    if (this.ptr === null) throw new Error("IVRTrackedCamera pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRTrackedCamera>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(40))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const AcquireVideoStreamingServiceFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(40))!;
+    this.#AcquireVideoStreamingServiceFn = new Deno.UnsafeFnPointer(AcquireVideoStreamingServiceFuncPtr, {
       parameters: [
         "u32", //(vr::TrackedDeviceIndex_t)  nDeviceIndex
         "pointer", //(vr::TrackedCameraHandle_t *)  pHandle
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      nDeviceIndex,
-      pHandle,
-    );
-
-    return result// as TrackedCameraError;
-  }
-
-  /*
-  ReleaseVideoStreamingService
-  Parameters: [{"paramname":"hTrackedCamera","paramtype":"vr::TrackedCameraHandle_t"}]
-  Return: vr::EVRTrackedCameraError
-  */
-  ReleaseVideoStreamingService(hTrackedCamera: TrackedCameraHandle): TrackedCameraError {
-    if (this.ptr === null) throw new Error("IVRTrackedCamera pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRTrackedCamera>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(48))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const ReleaseVideoStreamingServiceFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(48))!;
+    this.#ReleaseVideoStreamingServiceFn = new Deno.UnsafeFnPointer(ReleaseVideoStreamingServiceFuncPtr, {
       parameters: [
         "u64", //(vr::TrackedCameraHandle_t)  hTrackedCamera
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      hTrackedCamera,
-    );
-
-    return result// as TrackedCameraError;
-  }
-
-  /*
-  GetVideoStreamFrameBuffer
-  Parameters: [{"paramname":"hTrackedCamera","paramtype":"vr::TrackedCameraHandle_t"},{"paramname":"eFrameType","paramtype":"vr::EVRTrackedCameraFrameType"},{"paramname":"pFrameBuffer","paramtype":"void *"},{"paramname":"nFrameBufferSize","paramtype":"uint32_t"},{"paramname":"pFrameHeader","paramtype":"vr::CameraVideoStreamFrameHeader_t *"},{"paramname":"nFrameHeaderSize","paramtype":"uint32_t"}]
-  Return: vr::EVRTrackedCameraError
-  */
-  GetVideoStreamFrameBuffer(hTrackedCamera: TrackedCameraHandle, eFrameType: TrackedCameraFrameType, pFrameBuffer: Deno.PointerValue<unknown>, nFrameBufferSize: number, pFrameHeader: Deno.PointerValue<CameraVideoStreamFrameHeader>, nFrameHeaderSize: number): TrackedCameraError {
-    if (this.ptr === null) throw new Error("IVRTrackedCamera pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRTrackedCamera>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(56))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const GetVideoStreamFrameBufferFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(56))!;
+    this.#GetVideoStreamFrameBufferFn = new Deno.UnsafeFnPointer(GetVideoStreamFrameBufferFuncPtr, {
       parameters: [
         "u64", //(vr::TrackedCameraHandle_t)  hTrackedCamera
         "i32", //(vr::EVRTrackedCameraFrameType)  eFrameType
@@ -14201,29 +13570,8 @@ export class IVRTrackedCamera {
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      hTrackedCamera,
-      eFrameType,
-      pFrameBuffer,
-      nFrameBufferSize,
-      pFrameHeader,
-      nFrameHeaderSize,
-    );
-
-    return result// as TrackedCameraError;
-  }
-
-  /*
-  GetVideoStreamTextureSize
-  Parameters: [{"paramname":"nDeviceIndex","paramtype":"vr::TrackedDeviceIndex_t"},{"paramname":"eFrameType","paramtype":"vr::EVRTrackedCameraFrameType"},{"paramname":"pTextureBounds","paramtype":"vr::VRTextureBounds_t *"},{"paramname":"pnWidth","paramtype":"uint32_t *"},{"paramname":"pnHeight","paramtype":"uint32_t *"}]
-  Return: vr::EVRTrackedCameraError
-  */
-  GetVideoStreamTextureSize(nDeviceIndex: TrackedDeviceIndex, eFrameType: TrackedCameraFrameType, pTextureBounds: Deno.PointerValue<TextureBounds>, pnWidth: Deno.PointerValue<number>, pnHeight: Deno.PointerValue<number>): TrackedCameraError {
-    if (this.ptr === null) throw new Error("IVRTrackedCamera pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRTrackedCamera>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(64))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const GetVideoStreamTextureSizeFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(64))!;
+    this.#GetVideoStreamTextureSizeFn = new Deno.UnsafeFnPointer(GetVideoStreamTextureSizeFuncPtr, {
       parameters: [
         "u32", //(vr::TrackedDeviceIndex_t)  nDeviceIndex
         "i32", //(vr::EVRTrackedCameraFrameType)  eFrameType
@@ -14233,28 +13581,8 @@ export class IVRTrackedCamera {
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      nDeviceIndex,
-      eFrameType,
-      pTextureBounds,
-      pnWidth,
-      pnHeight,
-    );
-
-    return result// as TrackedCameraError;
-  }
-
-  /*
-  GetVideoStreamTextureD3D11
-  Parameters: [{"paramname":"hTrackedCamera","paramtype":"vr::TrackedCameraHandle_t"},{"paramname":"eFrameType","paramtype":"vr::EVRTrackedCameraFrameType"},{"paramname":"pD3D11DeviceOrResource","paramtype":"void *"},{"paramname":"ppD3D11ShaderResourceView","paramtype":"void **"},{"paramname":"pFrameHeader","paramtype":"vr::CameraVideoStreamFrameHeader_t *"},{"paramname":"nFrameHeaderSize","paramtype":"uint32_t"}]
-  Return: vr::EVRTrackedCameraError
-  */
-  GetVideoStreamTextureD3D11(hTrackedCamera: TrackedCameraHandle, eFrameType: TrackedCameraFrameType, pD3D11DeviceOrResource: Deno.PointerValue<unknown>, ppD3D11ShaderResourceView: Deno.PointerValue<Deno.PointerValue<unknown>>, pFrameHeader: Deno.PointerValue<CameraVideoStreamFrameHeader>, nFrameHeaderSize: number): TrackedCameraError {
-    if (this.ptr === null) throw new Error("IVRTrackedCamera pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRTrackedCamera>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(72))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const GetVideoStreamTextureD3D11FuncPtr = Deno.UnsafePointer.create(view.getBigUint64(72))!;
+    this.#GetVideoStreamTextureD3D11Fn = new Deno.UnsafeFnPointer(GetVideoStreamTextureD3D11FuncPtr, {
       parameters: [
         "u64", //(vr::TrackedCameraHandle_t)  hTrackedCamera
         "i32", //(vr::EVRTrackedCameraFrameType)  eFrameType
@@ -14265,29 +13593,8 @@ export class IVRTrackedCamera {
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      hTrackedCamera,
-      eFrameType,
-      pD3D11DeviceOrResource,
-      ppD3D11ShaderResourceView,
-      pFrameHeader,
-      nFrameHeaderSize,
-    );
-
-    return result// as TrackedCameraError;
-  }
-
-  /*
-  GetVideoStreamTextureGL
-  Parameters: [{"paramname":"hTrackedCamera","paramtype":"vr::TrackedCameraHandle_t"},{"paramname":"eFrameType","paramtype":"vr::EVRTrackedCameraFrameType"},{"paramname":"pglTextureId","paramtype":"vr::glUInt_t *"},{"paramname":"pFrameHeader","paramtype":"vr::CameraVideoStreamFrameHeader_t *"},{"paramname":"nFrameHeaderSize","paramtype":"uint32_t"}]
-  Return: vr::EVRTrackedCameraError
-  */
-  GetVideoStreamTextureGL(hTrackedCamera: TrackedCameraHandle, eFrameType: TrackedCameraFrameType, pglTextureId: Deno.PointerValue<glUInt>, pFrameHeader: Deno.PointerValue<CameraVideoStreamFrameHeader>, nFrameHeaderSize: number): TrackedCameraError {
-    if (this.ptr === null) throw new Error("IVRTrackedCamera pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRTrackedCamera>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(80))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const GetVideoStreamTextureGLFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(80))!;
+    this.#GetVideoStreamTextureGLFn = new Deno.UnsafeFnPointer(GetVideoStreamTextureGLFuncPtr, {
       parameters: [
         "u64", //(vr::TrackedCameraHandle_t)  hTrackedCamera
         "i32", //(vr::EVRTrackedCameraFrameType)  eFrameType
@@ -14297,8 +13604,196 @@ export class IVRTrackedCamera {
       ],
       result: "i32"
     });
+    const ReleaseVideoStreamTextureGLFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(88))!;
+    this.#ReleaseVideoStreamTextureGLFn = new Deno.UnsafeFnPointer(ReleaseVideoStreamTextureGLFuncPtr, {
+      parameters: [
+        "u64", //(vr::TrackedCameraHandle_t)  hTrackedCamera
+        "u32", //(vr::glUInt_t)  glTextureId
+      ],
+      result: "i32"
+    });
+    const SetCameraTrackingSpaceFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(96))!;
+    this.#SetCameraTrackingSpaceFn = new Deno.UnsafeFnPointer(SetCameraTrackingSpaceFuncPtr, {
+      parameters: [
+        "i32", //(vr::ETrackingUniverseOrigin)  eUniverse
+      ],
+      result: "void"
+    });
+    const GetCameraTrackingSpaceFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(104))!;
+    this.#GetCameraTrackingSpaceFn = new Deno.UnsafeFnPointer(GetCameraTrackingSpaceFuncPtr, {
+      parameters: [
+      ],
+      result: "i32"
+    });
+  }
 
-    const result = func.call(
+  /*
+  GetCameraErrorNameFromEnum
+  Parameters: [{"paramname":"eCameraError","paramtype":"vr::EVRTrackedCameraError"}]
+  Return: const char *
+  */
+  GetCameraErrorNameFromEnum(eCameraError: TrackedCameraError): string {
+    const result = this.#GetCameraErrorNameFromEnumFn.call(
+      eCameraError,
+    );
+
+    if (result === null) return ""; // Handle null pointer case
+    return Deno.UnsafePointerView.getCString(result);
+  }
+
+  /*
+  HasCamera
+  Parameters: [{"paramname":"nDeviceIndex","paramtype":"vr::TrackedDeviceIndex_t"},{"paramname":"pHasCamera","paramtype":"bool *"}]
+  Return: vr::EVRTrackedCameraError
+  */
+  HasCamera(nDeviceIndex: TrackedDeviceIndex, pHasCamera: Deno.PointerValue<boolean>): TrackedCameraError {
+    const result = this.#HasCameraFn.call(
+      nDeviceIndex,
+      pHasCamera,
+    );
+
+    return result // as TrackedCameraError;
+  }
+
+  /*
+  GetCameraFrameSize
+  Parameters: [{"paramname":"nDeviceIndex","paramtype":"vr::TrackedDeviceIndex_t"},{"paramname":"eFrameType","paramtype":"vr::EVRTrackedCameraFrameType"},{"paramname":"pnWidth","paramtype":"uint32_t *"},{"paramname":"pnHeight","paramtype":"uint32_t *"},{"paramname":"pnFrameBufferSize","paramtype":"uint32_t *"}]
+  Return: vr::EVRTrackedCameraError
+  */
+  GetCameraFrameSize(nDeviceIndex: TrackedDeviceIndex, eFrameType: TrackedCameraFrameType, pnWidth: Deno.PointerValue<number>, pnHeight: Deno.PointerValue<number>, pnFrameBufferSize: Deno.PointerValue<number>): TrackedCameraError {
+    const result = this.#GetCameraFrameSizeFn.call(
+      nDeviceIndex,
+      eFrameType,
+      pnWidth,
+      pnHeight,
+      pnFrameBufferSize,
+    );
+
+    return result // as TrackedCameraError;
+  }
+
+  /*
+  GetCameraIntrinsics
+  Parameters: [{"paramname":"nDeviceIndex","paramtype":"vr::TrackedDeviceIndex_t"},{"paramname":"nCameraIndex","paramtype":"uint32_t"},{"paramname":"eFrameType","paramtype":"vr::EVRTrackedCameraFrameType"},{"paramname":"pFocalLength","paramtype":"vr::HmdVector2_t *"},{"paramname":"pCenter","paramtype":"vr::HmdVector2_t *"}]
+  Return: vr::EVRTrackedCameraError
+  */
+  GetCameraIntrinsics(nDeviceIndex: TrackedDeviceIndex, nCameraIndex: number, eFrameType: TrackedCameraFrameType, pFocalLength: Deno.PointerValue<HmdVector2>, pCenter: Deno.PointerValue<HmdVector2>): TrackedCameraError {
+    const result = this.#GetCameraIntrinsicsFn.call(
+      nDeviceIndex,
+      nCameraIndex,
+      eFrameType,
+      pFocalLength,
+      pCenter,
+    );
+
+    return result // as TrackedCameraError;
+  }
+
+  /*
+  GetCameraProjection
+  Parameters: [{"paramname":"nDeviceIndex","paramtype":"vr::TrackedDeviceIndex_t"},{"paramname":"nCameraIndex","paramtype":"uint32_t"},{"paramname":"eFrameType","paramtype":"vr::EVRTrackedCameraFrameType"},{"paramname":"flZNear","paramtype":"float"},{"paramname":"flZFar","paramtype":"float"},{"paramname":"pProjection","paramtype":"vr::HmdMatrix44_t *"}]
+  Return: vr::EVRTrackedCameraError
+  */
+  GetCameraProjection(nDeviceIndex: TrackedDeviceIndex, nCameraIndex: number, eFrameType: TrackedCameraFrameType, flZNear: number, flZFar: number, pProjection: Deno.PointerValue<HmdMatrix44>): TrackedCameraError {
+    const result = this.#GetCameraProjectionFn.call(
+      nDeviceIndex,
+      nCameraIndex,
+      eFrameType,
+      flZNear,
+      flZFar,
+      pProjection,
+    );
+
+    return result // as TrackedCameraError;
+  }
+
+  /*
+  AcquireVideoStreamingService
+  Parameters: [{"paramname":"nDeviceIndex","paramtype":"vr::TrackedDeviceIndex_t"},{"paramname":"pHandle","paramtype":"vr::TrackedCameraHandle_t *"}]
+  Return: vr::EVRTrackedCameraError
+  */
+  AcquireVideoStreamingService(nDeviceIndex: TrackedDeviceIndex, pHandle: Deno.PointerValue<TrackedCameraHandle>): TrackedCameraError {
+    const result = this.#AcquireVideoStreamingServiceFn.call(
+      nDeviceIndex,
+      pHandle,
+    );
+
+    return result // as TrackedCameraError;
+  }
+
+  /*
+  ReleaseVideoStreamingService
+  Parameters: [{"paramname":"hTrackedCamera","paramtype":"vr::TrackedCameraHandle_t"}]
+  Return: vr::EVRTrackedCameraError
+  */
+  ReleaseVideoStreamingService(hTrackedCamera: TrackedCameraHandle): TrackedCameraError {
+    const result = this.#ReleaseVideoStreamingServiceFn.call(
+      hTrackedCamera,
+    );
+
+    return result // as TrackedCameraError;
+  }
+
+  /*
+  GetVideoStreamFrameBuffer
+  Parameters: [{"paramname":"hTrackedCamera","paramtype":"vr::TrackedCameraHandle_t"},{"paramname":"eFrameType","paramtype":"vr::EVRTrackedCameraFrameType"},{"paramname":"pFrameBuffer","paramtype":"void *"},{"paramname":"nFrameBufferSize","paramtype":"uint32_t"},{"paramname":"pFrameHeader","paramtype":"vr::CameraVideoStreamFrameHeader_t *"},{"paramname":"nFrameHeaderSize","paramtype":"uint32_t"}]
+  Return: vr::EVRTrackedCameraError
+  */
+  GetVideoStreamFrameBuffer(hTrackedCamera: TrackedCameraHandle, eFrameType: TrackedCameraFrameType, pFrameBuffer: Deno.PointerValue<unknown>, nFrameBufferSize: number, pFrameHeader: Deno.PointerValue<CameraVideoStreamFrameHeader>, nFrameHeaderSize: number): TrackedCameraError {
+    const result = this.#GetVideoStreamFrameBufferFn.call(
+      hTrackedCamera,
+      eFrameType,
+      pFrameBuffer,
+      nFrameBufferSize,
+      pFrameHeader,
+      nFrameHeaderSize,
+    );
+
+    return result // as TrackedCameraError;
+  }
+
+  /*
+  GetVideoStreamTextureSize
+  Parameters: [{"paramname":"nDeviceIndex","paramtype":"vr::TrackedDeviceIndex_t"},{"paramname":"eFrameType","paramtype":"vr::EVRTrackedCameraFrameType"},{"paramname":"pTextureBounds","paramtype":"vr::VRTextureBounds_t *"},{"paramname":"pnWidth","paramtype":"uint32_t *"},{"paramname":"pnHeight","paramtype":"uint32_t *"}]
+  Return: vr::EVRTrackedCameraError
+  */
+  GetVideoStreamTextureSize(nDeviceIndex: TrackedDeviceIndex, eFrameType: TrackedCameraFrameType, pTextureBounds: Deno.PointerValue<TextureBounds>, pnWidth: Deno.PointerValue<number>, pnHeight: Deno.PointerValue<number>): TrackedCameraError {
+    const result = this.#GetVideoStreamTextureSizeFn.call(
+      nDeviceIndex,
+      eFrameType,
+      pTextureBounds,
+      pnWidth,
+      pnHeight,
+    );
+
+    return result // as TrackedCameraError;
+  }
+
+  /*
+  GetVideoStreamTextureD3D11
+  Parameters: [{"paramname":"hTrackedCamera","paramtype":"vr::TrackedCameraHandle_t"},{"paramname":"eFrameType","paramtype":"vr::EVRTrackedCameraFrameType"},{"paramname":"pD3D11DeviceOrResource","paramtype":"void *"},{"paramname":"ppD3D11ShaderResourceView","paramtype":"void **"},{"paramname":"pFrameHeader","paramtype":"vr::CameraVideoStreamFrameHeader_t *"},{"paramname":"nFrameHeaderSize","paramtype":"uint32_t"}]
+  Return: vr::EVRTrackedCameraError
+  */
+  GetVideoStreamTextureD3D11(hTrackedCamera: TrackedCameraHandle, eFrameType: TrackedCameraFrameType, pD3D11DeviceOrResource: Deno.PointerValue<unknown>, ppD3D11ShaderResourceView: Deno.PointerValue<Deno.PointerValue<unknown>>, pFrameHeader: Deno.PointerValue<CameraVideoStreamFrameHeader>, nFrameHeaderSize: number): TrackedCameraError {
+    const result = this.#GetVideoStreamTextureD3D11Fn.call(
+      hTrackedCamera,
+      eFrameType,
+      pD3D11DeviceOrResource,
+      ppD3D11ShaderResourceView,
+      pFrameHeader,
+      nFrameHeaderSize,
+    );
+
+    return result // as TrackedCameraError;
+  }
+
+  /*
+  GetVideoStreamTextureGL
+  Parameters: [{"paramname":"hTrackedCamera","paramtype":"vr::TrackedCameraHandle_t"},{"paramname":"eFrameType","paramtype":"vr::EVRTrackedCameraFrameType"},{"paramname":"pglTextureId","paramtype":"vr::glUInt_t *"},{"paramname":"pFrameHeader","paramtype":"vr::CameraVideoStreamFrameHeader_t *"},{"paramname":"nFrameHeaderSize","paramtype":"uint32_t"}]
+  Return: vr::EVRTrackedCameraError
+  */
+  GetVideoStreamTextureGL(hTrackedCamera: TrackedCameraHandle, eFrameType: TrackedCameraFrameType, pglTextureId: Deno.PointerValue<glUInt>, pFrameHeader: Deno.PointerValue<CameraVideoStreamFrameHeader>, nFrameHeaderSize: number): TrackedCameraError {
+    const result = this.#GetVideoStreamTextureGLFn.call(
       hTrackedCamera,
       eFrameType,
       pglTextureId,
@@ -14306,7 +13801,7 @@ export class IVRTrackedCamera {
       nFrameHeaderSize,
     );
 
-    return result// as TrackedCameraError;
+    return result // as TrackedCameraError;
   }
 
   /*
@@ -14315,23 +13810,12 @@ export class IVRTrackedCamera {
   Return: vr::EVRTrackedCameraError
   */
   ReleaseVideoStreamTextureGL(hTrackedCamera: TrackedCameraHandle, glTextureId: glUInt): TrackedCameraError {
-    if (this.ptr === null) throw new Error("IVRTrackedCamera pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRTrackedCamera>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(88))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "u64", //(vr::TrackedCameraHandle_t)  hTrackedCamera
-        "u32", //(vr::glUInt_t)  glTextureId
-      ],
-      result: "i32"
-    });
-
-    const result = func.call(
+    const result = this.#ReleaseVideoStreamTextureGLFn.call(
       hTrackedCamera,
       glTextureId,
     );
 
-    return result// as TrackedCameraError;
+    return result // as TrackedCameraError;
   }
 
   /*
@@ -14340,17 +13824,7 @@ export class IVRTrackedCamera {
   Return: void
   */
   SetCameraTrackingSpace(eUniverse: TrackingUniverseOrigin): void {
-    if (this.ptr === null) throw new Error("IVRTrackedCamera pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRTrackedCamera>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(96))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "i32", //(vr::ETrackingUniverseOrigin)  eUniverse
-      ],
-      result: "void"
-    });
-
-    const _result = func.call(
+    const _result = this.#SetCameraTrackingSpaceFn.call(
       eUniverse,
     );
 
@@ -14362,36 +13836,28 @@ export class IVRTrackedCamera {
   Return: vr::ETrackingUniverseOrigin
   */
   GetCameraTrackingSpace(): TrackingUniverseOrigin {
-    if (this.ptr === null) throw new Error("IVRTrackedCamera pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRTrackedCamera>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(104))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-      ],
-      result: "i32"
-    });
-
-    const result = func.call(
+    const result = this.#GetCameraTrackingSpaceFn.call(
     );
 
-    return result// as TrackingUniverseOrigin;
+    return result // as TrackingUniverseOrigin;
   }
 
 }
 
 export class IVRScreenshots {
-  constructor(private ptr: Deno.PointerValue<IVRScreenshots|unknown>) {}
+  readonly #RequestScreenshotFn: Deno.UnsafeFnPointer<any>;
+  readonly #HookScreenshotFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetScreenshotPropertyTypeFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetScreenshotPropertyFilenameFn: Deno.UnsafeFnPointer<any>;
+  readonly #UpdateScreenshotProgressFn: Deno.UnsafeFnPointer<any>;
+  readonly #TakeStereoScreenshotFn: Deno.UnsafeFnPointer<any>;
+  readonly #SubmitScreenshotFn: Deno.UnsafeFnPointer<any>;
 
-  /*
-  RequestScreenshot
-  Parameters: [{"paramname":"pOutScreenshotHandle","paramtype":"vr::ScreenshotHandle_t *"},{"paramname":"type","paramtype":"vr::EVRScreenshotType"},{"paramname":"pchPreviewFilename","paramtype":"const char *"},{"paramname":"pchVRFilename","paramtype":"const char *"}]
-  Return: vr::EVRScreenshotError
-  */
-  RequestScreenshot(pOutScreenshotHandle: Deno.PointerValue<ScreenshotHandle>, type: ScreenshotType, pchPreviewFilename: string, pchVRFilename: string): ScreenshotError {
+  constructor(private ptr: Deno.PointerValue<IVRScreenshots|unknown>) {
     if (this.ptr === null) throw new Error("IVRScreenshots pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRScreenshots>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(0))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const RequestScreenshotFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(0))!;
+    this.#RequestScreenshotFn = new Deno.UnsafeFnPointer(RequestScreenshotFuncPtr, {
       parameters: [
         "pointer", //(vr::ScreenshotHandle_t *)  pOutScreenshotHandle
         "i32", //(vr::EVRScreenshotType)  type
@@ -14400,77 +13866,24 @@ export class IVRScreenshots {
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      pOutScreenshotHandle,
-      type,
-      Deno.UnsafePointer.of(new TextEncoder().encode(pchPreviewFilename + "\0")),
-      Deno.UnsafePointer.of(new TextEncoder().encode(pchVRFilename + "\0")),
-    );
-
-    return result// as ScreenshotError;
-  }
-
-  /*
-  HookScreenshot
-  Parameters: [{"paramname":"pSupportedTypes","array_count":"numTypes","paramtype":"const vr::EVRScreenshotType *"},{"paramname":"numTypes","paramtype":"int"}]
-  Return: vr::EVRScreenshotError
-  */
-  HookScreenshot(pSupportedTypes: Deno.PointerValue<ScreenshotType>, numTypes: number): ScreenshotError {
-    if (this.ptr === null) throw new Error("IVRScreenshots pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRScreenshots>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(8))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const HookScreenshotFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(8))!;
+    this.#HookScreenshotFn = new Deno.UnsafeFnPointer(HookScreenshotFuncPtr, {
       parameters: [
         "pointer", //(const vr::EVRScreenshotType *)  pSupportedTypes
         "pointer", //(int)  numTypes
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      pSupportedTypes,
-      numTypes,
-    );
-
-    return result// as ScreenshotError;
-  }
-
-  /*
-  GetScreenshotPropertyType
-  Parameters: [{"paramname":"screenshotHandle","paramtype":"vr::ScreenshotHandle_t"},{"paramname":"pError","paramtype":"vr::EVRScreenshotError *"}]
-  Return: vr::EVRScreenshotType
-  */
-  GetScreenshotPropertyType(screenshotHandle: ScreenshotHandle, pError: Deno.PointerValue<ScreenshotError>): ScreenshotType {
-    if (this.ptr === null) throw new Error("IVRScreenshots pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRScreenshots>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(16))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const GetScreenshotPropertyTypeFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(16))!;
+    this.#GetScreenshotPropertyTypeFn = new Deno.UnsafeFnPointer(GetScreenshotPropertyTypeFuncPtr, {
       parameters: [
         "u32", //(vr::ScreenshotHandle_t)  screenshotHandle
         "pointer", //(vr::EVRScreenshotError *)  pError
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      screenshotHandle,
-      pError,
-    );
-
-    return result// as ScreenshotType;
-  }
-
-  /*
-  GetScreenshotPropertyFilename
-  Parameters: [{"paramname":"screenshotHandle","paramtype":"vr::ScreenshotHandle_t"},{"paramname":"filenameType","paramtype":"vr::EVRScreenshotPropertyFilenames"},{"paramname":"pchFilename","out_string":" ","paramtype":"char *"},{"paramname":"cchFilename","paramtype":"uint32_t"},{"paramname":"pError","paramtype":"vr::EVRScreenshotError *"}]
-  Return: uint32_t
-  */
-  GetScreenshotPropertyFilename(screenshotHandle: ScreenshotHandle, filenameType: ScreenshotPropertyFilenames, pchFilename: string, cchFilename: number, pError: Deno.PointerValue<ScreenshotError>): number {
-    if (this.ptr === null) throw new Error("IVRScreenshots pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRScreenshots>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(24))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const GetScreenshotPropertyFilenameFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(24))!;
+    this.#GetScreenshotPropertyFilenameFn = new Deno.UnsafeFnPointer(GetScreenshotPropertyFilenameFuncPtr, {
       parameters: [
         "u32", //(vr::ScreenshotHandle_t)  screenshotHandle
         "i32", //(vr::EVRScreenshotPropertyFilenames)  filenameType
@@ -14480,53 +13893,16 @@ export class IVRScreenshots {
       ],
       result: "u32"
     });
-
-    const result = func.call(
-      screenshotHandle,
-      filenameType,
-      Deno.UnsafePointer.of(new TextEncoder().encode(pchFilename + "\0")),
-      cchFilename,
-      pError,
-    );
-
-    return result// as number;
-  }
-
-  /*
-  UpdateScreenshotProgress
-  Parameters: [{"paramname":"screenshotHandle","paramtype":"vr::ScreenshotHandle_t"},{"paramname":"flProgress","paramtype":"float"}]
-  Return: vr::EVRScreenshotError
-  */
-  UpdateScreenshotProgress(screenshotHandle: ScreenshotHandle, flProgress: number): ScreenshotError {
-    if (this.ptr === null) throw new Error("IVRScreenshots pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRScreenshots>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(32))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const UpdateScreenshotProgressFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(32))!;
+    this.#UpdateScreenshotProgressFn = new Deno.UnsafeFnPointer(UpdateScreenshotProgressFuncPtr, {
       parameters: [
         "u32", //(vr::ScreenshotHandle_t)  screenshotHandle
         "f32", //(float)  flProgress
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      screenshotHandle,
-      flProgress,
-    );
-
-    return result// as ScreenshotError;
-  }
-
-  /*
-  TakeStereoScreenshot
-  Parameters: [{"paramname":"pOutScreenshotHandle","paramtype":"vr::ScreenshotHandle_t *"},{"paramname":"pchPreviewFilename","paramtype":"const char *"},{"paramname":"pchVRFilename","paramtype":"const char *"}]
-  Return: vr::EVRScreenshotError
-  */
-  TakeStereoScreenshot(pOutScreenshotHandle: Deno.PointerValue<ScreenshotHandle>, pchPreviewFilename: string, pchVRFilename: string): ScreenshotError {
-    if (this.ptr === null) throw new Error("IVRScreenshots pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRScreenshots>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(40))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const TakeStereoScreenshotFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(40))!;
+    this.#TakeStereoScreenshotFn = new Deno.UnsafeFnPointer(TakeStereoScreenshotFuncPtr, {
       parameters: [
         "pointer", //(vr::ScreenshotHandle_t *)  pOutScreenshotHandle
         "pointer", //(const char *)  pchPreviewFilename
@@ -14534,26 +13910,8 @@ export class IVRScreenshots {
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      pOutScreenshotHandle,
-      Deno.UnsafePointer.of(new TextEncoder().encode(pchPreviewFilename + "\0")),
-      Deno.UnsafePointer.of(new TextEncoder().encode(pchVRFilename + "\0")),
-    );
-
-    return result// as ScreenshotError;
-  }
-
-  /*
-  SubmitScreenshot
-  Parameters: [{"paramname":"screenshotHandle","paramtype":"vr::ScreenshotHandle_t"},{"paramname":"type","paramtype":"vr::EVRScreenshotType"},{"paramname":"pchSourcePreviewFilename","paramtype":"const char *"},{"paramname":"pchSourceVRFilename","paramtype":"const char *"}]
-  Return: vr::EVRScreenshotError
-  */
-  SubmitScreenshot(screenshotHandle: ScreenshotHandle, type: ScreenshotType, pchSourcePreviewFilename: string, pchSourceVRFilename: string): ScreenshotError {
-    if (this.ptr === null) throw new Error("IVRScreenshots pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRScreenshots>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(48))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const SubmitScreenshotFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(48))!;
+    this.#SubmitScreenshotFn = new Deno.UnsafeFnPointer(SubmitScreenshotFuncPtr, {
       parameters: [
         "u32", //(vr::ScreenshotHandle_t)  screenshotHandle
         "i32", //(vr::EVRScreenshotType)  type
@@ -14562,21 +13920,155 @@ export class IVRScreenshots {
       ],
       result: "i32"
     });
+  }
 
-    const result = func.call(
+  /*
+  RequestScreenshot
+  Parameters: [{"paramname":"pOutScreenshotHandle","paramtype":"vr::ScreenshotHandle_t *"},{"paramname":"type","paramtype":"vr::EVRScreenshotType"},{"paramname":"pchPreviewFilename","paramtype":"const char *"},{"paramname":"pchVRFilename","paramtype":"const char *"}]
+  Return: vr::EVRScreenshotError
+  */
+  RequestScreenshot(pOutScreenshotHandle: Deno.PointerValue<ScreenshotHandle>, type: ScreenshotType, pchPreviewFilename: string, pchVRFilename: string): ScreenshotError {
+    const result = this.#RequestScreenshotFn.call(
+      pOutScreenshotHandle,
+      type,
+      Deno.UnsafePointer.of(new TextEncoder().encode(pchPreviewFilename + "\0")),
+      Deno.UnsafePointer.of(new TextEncoder().encode(pchVRFilename + "\0")),
+    );
+
+    return result // as ScreenshotError;
+  }
+
+  /*
+  HookScreenshot
+  Parameters: [{"paramname":"pSupportedTypes","array_count":"numTypes","paramtype":"const vr::EVRScreenshotType *"},{"paramname":"numTypes","paramtype":"int"}]
+  Return: vr::EVRScreenshotError
+  */
+  HookScreenshot(pSupportedTypes: Deno.PointerValue<ScreenshotType>, numTypes: number): ScreenshotError {
+    const result = this.#HookScreenshotFn.call(
+      pSupportedTypes,
+      numTypes,
+    );
+
+    return result // as ScreenshotError;
+  }
+
+  /*
+  GetScreenshotPropertyType
+  Parameters: [{"paramname":"screenshotHandle","paramtype":"vr::ScreenshotHandle_t"},{"paramname":"pError","paramtype":"vr::EVRScreenshotError *"}]
+  Return: vr::EVRScreenshotType
+  */
+  GetScreenshotPropertyType(screenshotHandle: ScreenshotHandle, pError: Deno.PointerValue<ScreenshotError>): ScreenshotType {
+    const result = this.#GetScreenshotPropertyTypeFn.call(
+      screenshotHandle,
+      pError,
+    );
+
+    return result // as ScreenshotType;
+  }
+
+  /*
+  GetScreenshotPropertyFilename
+  Parameters: [{"paramname":"screenshotHandle","paramtype":"vr::ScreenshotHandle_t"},{"paramname":"filenameType","paramtype":"vr::EVRScreenshotPropertyFilenames"},{"paramname":"pchFilename","out_string":" ","paramtype":"char *"},{"paramname":"cchFilename","paramtype":"uint32_t"},{"paramname":"pError","paramtype":"vr::EVRScreenshotError *"}]
+  Return: uint32_t
+  */
+  GetScreenshotPropertyFilename(screenshotHandle: ScreenshotHandle, filenameType: ScreenshotPropertyFilenames, pchFilename: string, cchFilename: number, pError: Deno.PointerValue<ScreenshotError>): number {
+    const result = this.#GetScreenshotPropertyFilenameFn.call(
+      screenshotHandle,
+      filenameType,
+      Deno.UnsafePointer.of(new TextEncoder().encode(pchFilename + "\0")),
+      cchFilename,
+      pError,
+    );
+
+    return result // as number;
+  }
+
+  /*
+  UpdateScreenshotProgress
+  Parameters: [{"paramname":"screenshotHandle","paramtype":"vr::ScreenshotHandle_t"},{"paramname":"flProgress","paramtype":"float"}]
+  Return: vr::EVRScreenshotError
+  */
+  UpdateScreenshotProgress(screenshotHandle: ScreenshotHandle, flProgress: number): ScreenshotError {
+    const result = this.#UpdateScreenshotProgressFn.call(
+      screenshotHandle,
+      flProgress,
+    );
+
+    return result // as ScreenshotError;
+  }
+
+  /*
+  TakeStereoScreenshot
+  Parameters: [{"paramname":"pOutScreenshotHandle","paramtype":"vr::ScreenshotHandle_t *"},{"paramname":"pchPreviewFilename","paramtype":"const char *"},{"paramname":"pchVRFilename","paramtype":"const char *"}]
+  Return: vr::EVRScreenshotError
+  */
+  TakeStereoScreenshot(pOutScreenshotHandle: Deno.PointerValue<ScreenshotHandle>, pchPreviewFilename: string, pchVRFilename: string): ScreenshotError {
+    const result = this.#TakeStereoScreenshotFn.call(
+      pOutScreenshotHandle,
+      Deno.UnsafePointer.of(new TextEncoder().encode(pchPreviewFilename + "\0")),
+      Deno.UnsafePointer.of(new TextEncoder().encode(pchVRFilename + "\0")),
+    );
+
+    return result // as ScreenshotError;
+  }
+
+  /*
+  SubmitScreenshot
+  Parameters: [{"paramname":"screenshotHandle","paramtype":"vr::ScreenshotHandle_t"},{"paramname":"type","paramtype":"vr::EVRScreenshotType"},{"paramname":"pchSourcePreviewFilename","paramtype":"const char *"},{"paramname":"pchSourceVRFilename","paramtype":"const char *"}]
+  Return: vr::EVRScreenshotError
+  */
+  SubmitScreenshot(screenshotHandle: ScreenshotHandle, type: ScreenshotType, pchSourcePreviewFilename: string, pchSourceVRFilename: string): ScreenshotError {
+    const result = this.#SubmitScreenshotFn.call(
       screenshotHandle,
       type,
       Deno.UnsafePointer.of(new TextEncoder().encode(pchSourcePreviewFilename + "\0")),
       Deno.UnsafePointer.of(new TextEncoder().encode(pchSourceVRFilename + "\0")),
     );
 
-    return result// as ScreenshotError;
+    return result // as ScreenshotError;
   }
 
 }
 
 export class IVRDriverManager {
-  constructor(private ptr: Deno.PointerValue<IVRDriverManager|unknown>) {}
+  readonly #GetDriverCountFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetDriverNameFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetDriverHandleFn: Deno.UnsafeFnPointer<any>;
+  readonly #IsEnabledFn: Deno.UnsafeFnPointer<any>;
+
+  constructor(private ptr: Deno.PointerValue<IVRDriverManager|unknown>) {
+    if (this.ptr === null) throw new Error("IVRDriverManager pointer is null");
+    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRDriverManager>);
+    const GetDriverCountFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(0))!;
+    this.#GetDriverCountFn = new Deno.UnsafeFnPointer(GetDriverCountFuncPtr, {
+      parameters: [
+      ],
+      result: "u32"
+    });
+    const GetDriverNameFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(8))!;
+    this.#GetDriverNameFn = new Deno.UnsafeFnPointer(GetDriverNameFuncPtr, {
+      parameters: [
+        "u32", //(vr::DriverId_t)  nDriver
+        "pointer", //(char *)  pchValue
+        "u32", //(uint32_t)  unBufferSize
+      ],
+      result: "u32"
+    });
+    const GetDriverHandleFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(16))!;
+    this.#GetDriverHandleFn = new Deno.UnsafeFnPointer(GetDriverHandleFuncPtr, {
+      parameters: [
+        "pointer", //(const char *)  pchDriverName
+      ],
+      result: "pointer"
+    });
+    const IsEnabledFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(24))!;
+    this.#IsEnabledFn = new Deno.UnsafeFnPointer(IsEnabledFuncPtr, {
+      parameters: [
+        "u32", //(vr::DriverId_t)  nDriver
+      ],
+      result: "bool"
+    });
+  }
 
   /*
   GetDriverCount
@@ -14584,19 +14076,10 @@ export class IVRDriverManager {
   Return: uint32_t
   */
   GetDriverCount(): number {
-    if (this.ptr === null) throw new Error("IVRDriverManager pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRDriverManager>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(0))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-      ],
-      result: "u32"
-    });
-
-    const result = func.call(
+    const result = this.#GetDriverCountFn.call(
     );
 
-    return result// as number;
+    return result // as number;
   }
 
   /*
@@ -14605,25 +14088,13 @@ export class IVRDriverManager {
   Return: uint32_t
   */
   GetDriverName(nDriver: DriverId, pchValue: string, unBufferSize: number): number {
-    if (this.ptr === null) throw new Error("IVRDriverManager pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRDriverManager>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(8))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "u32", //(vr::DriverId_t)  nDriver
-        "pointer", //(char *)  pchValue
-        "u32", //(uint32_t)  unBufferSize
-      ],
-      result: "u32"
-    });
-
-    const result = func.call(
+    const result = this.#GetDriverNameFn.call(
       nDriver,
       Deno.UnsafePointer.of(new TextEncoder().encode(pchValue + "\0")),
       unBufferSize,
     );
 
-    return result// as number;
+    return result // as number;
   }
 
   /*
@@ -14632,21 +14103,11 @@ export class IVRDriverManager {
   Return: DriverHandle_t
   */
   GetDriverHandle(pchDriverName: string): DriverHandle {
-    if (this.ptr === null) throw new Error("IVRDriverManager pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRDriverManager>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(16))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "pointer", //(const char *)  pchDriverName
-      ],
-      result: "pointer"
-    });
-
-    const result = func.call(
+    const result = this.#GetDriverHandleFn.call(
       Deno.UnsafePointer.of(new TextEncoder().encode(pchDriverName + "\0")),
     );
 
-    return result// as unknown as DriverHandle;
+    return result // as unknown as DriverHandle;
   }
 
   /*
@@ -14655,136 +14116,85 @@ export class IVRDriverManager {
   Return: bool
   */
   IsEnabled(nDriver: DriverId): boolean {
-    if (this.ptr === null) throw new Error("IVRDriverManager pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRDriverManager>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(24))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "u32", //(vr::DriverId_t)  nDriver
-      ],
-      result: "bool"
-    });
-
-    const result = func.call(
+    const result = this.#IsEnabledFn.call(
       nDriver,
     );
 
-    return result// as boolean;
+    return result // as boolean;
   }
 
 }
 
 export class IVRInput {
-  constructor(private ptr: Deno.PointerValue<IVRInput|unknown>) {}
+  readonly #SetActionManifestPathFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetActionSetHandleFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetActionHandleFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetInputSourceHandleFn: Deno.UnsafeFnPointer<any>;
+  readonly #UpdateActionStateFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetDigitalActionDataFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetAnalogActionDataFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetPoseActionDataRelativeToNowFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetPoseActionDataForNextFrameFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetSkeletalActionDataFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetDominantHandFn: Deno.UnsafeFnPointer<any>;
+  readonly #SetDominantHandFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetBoneCountFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetBoneHierarchyFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetBoneNameFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetSkeletalReferenceTransformsFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetSkeletalTrackingLevelFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetSkeletalBoneDataFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetSkeletalSummaryDataFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetSkeletalBoneDataCompressedFn: Deno.UnsafeFnPointer<any>;
+  readonly #DecompressSkeletalBoneDataFn: Deno.UnsafeFnPointer<any>;
+  readonly #TriggerHapticVibrationActionFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetActionOriginsFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetOriginLocalizedNameFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetOriginTrackedDeviceInfoFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetActionBindingInfoFn: Deno.UnsafeFnPointer<any>;
+  readonly #ShowActionOriginsFn: Deno.UnsafeFnPointer<any>;
+  readonly #ShowBindingsForActionSetFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetComponentStateForBindingFn: Deno.UnsafeFnPointer<any>;
+  readonly #IsUsingLegacyInputFn: Deno.UnsafeFnPointer<any>;
+  readonly #OpenBindingUIFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetBindingVariantFn: Deno.UnsafeFnPointer<any>;
 
-  /*
-  SetActionManifestPath
-  Parameters: [{"paramname":"pchActionManifestPath","paramtype":"const char *"}]
-  Return: vr::EVRInputError
-  */
-  SetActionManifestPath(pchActionManifestPath: string): InputError {
+  constructor(private ptr: Deno.PointerValue<IVRInput|unknown>) {
     if (this.ptr === null) throw new Error("IVRInput pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRInput>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(0))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const SetActionManifestPathFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(0))!;
+    this.#SetActionManifestPathFn = new Deno.UnsafeFnPointer(SetActionManifestPathFuncPtr, {
       parameters: [
         "pointer", //(const char *)  pchActionManifestPath
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      Deno.UnsafePointer.of(new TextEncoder().encode(pchActionManifestPath + "\0")),
-    );
-
-    return result// as InputError;
-  }
-
-  /*
-  GetActionSetHandle
-  Parameters: [{"paramname":"pchActionSetName","paramtype":"const char *"},{"paramname":"pHandle","paramtype":"vr::VRActionSetHandle_t *"}]
-  Return: vr::EVRInputError
-  */
-  GetActionSetHandle(pchActionSetName: string, pHandle: Deno.PointerValue<ActionSetHandle>): InputError {
-    if (this.ptr === null) throw new Error("IVRInput pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRInput>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(8))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const GetActionSetHandleFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(8))!;
+    this.#GetActionSetHandleFn = new Deno.UnsafeFnPointer(GetActionSetHandleFuncPtr, {
       parameters: [
         "pointer", //(const char *)  pchActionSetName
         "pointer", //(vr::VRActionSetHandle_t *)  pHandle
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      Deno.UnsafePointer.of(new TextEncoder().encode(pchActionSetName + "\0")),
-      pHandle,
-    );
-
-    return result// as InputError;
-  }
-
-  /*
-  GetActionHandle
-  Parameters: [{"paramname":"pchActionName","paramtype":"const char *"},{"paramname":"pHandle","paramtype":"vr::VRActionHandle_t *"}]
-  Return: vr::EVRInputError
-  */
-  GetActionHandle(pchActionName: string, pHandle: Deno.PointerValue<ActionHandle>): InputError {
-    if (this.ptr === null) throw new Error("IVRInput pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRInput>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(16))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const GetActionHandleFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(16))!;
+    this.#GetActionHandleFn = new Deno.UnsafeFnPointer(GetActionHandleFuncPtr, {
       parameters: [
         "pointer", //(const char *)  pchActionName
         "pointer", //(vr::VRActionHandle_t *)  pHandle
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      Deno.UnsafePointer.of(new TextEncoder().encode(pchActionName + "\0")),
-      pHandle,
-    );
-
-    return result// as InputError;
-  }
-
-  /*
-  GetInputSourceHandle
-  Parameters: [{"paramname":"pchInputSourcePath","paramtype":"const char *"},{"paramname":"pHandle","paramtype":"vr::VRInputValueHandle_t *"}]
-  Return: vr::EVRInputError
-  */
-  GetInputSourceHandle(pchInputSourcePath: string, pHandle: Deno.PointerValue<InputValueHandle>): InputError {
-    if (this.ptr === null) throw new Error("IVRInput pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRInput>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(24))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const GetInputSourceHandleFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(24))!;
+    this.#GetInputSourceHandleFn = new Deno.UnsafeFnPointer(GetInputSourceHandleFuncPtr, {
       parameters: [
         "pointer", //(const char *)  pchInputSourcePath
         "pointer", //(vr::VRInputValueHandle_t *)  pHandle
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      Deno.UnsafePointer.of(new TextEncoder().encode(pchInputSourcePath + "\0")),
-      pHandle,
-    );
-
-    return result// as InputError;
-  }
-
-  /*
-  UpdateActionState
-  Parameters: [{"paramname":"pSets","array_count":"unSetCount","paramtype":"struct vr::VRActiveActionSet_t *"},{"paramname":"unSizeOfVRSelectedActionSet_t","paramtype":"uint32_t"},{"paramname":"unSetCount","paramtype":"uint32_t"}]
-  Return: vr::EVRInputError
-  */
-  UpdateActionState(pSets: Deno.PointerValue<ActiveActionSet>, unSizeOfVRSelectedActionSet_t: number, unSetCount: number): InputError {
-    if (this.ptr === null) throw new Error("IVRInput pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRInput>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(32))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const UpdateActionStateFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(32))!;
+    this.#UpdateActionStateFn = new Deno.UnsafeFnPointer(UpdateActionStateFuncPtr, {
       parameters: [
         "pointer", //(struct vr::VRActiveActionSet_t *)  pSets
         "u32", //(uint32_t)  unSizeOfVRSelectedActionSet_t
@@ -14792,26 +14202,8 @@ export class IVRInput {
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      pSets,
-      unSizeOfVRSelectedActionSet_t,
-      unSetCount,
-    );
-
-    return result// as InputError;
-  }
-
-  /*
-  GetDigitalActionData
-  Parameters: [{"paramname":"action","paramtype":"vr::VRActionHandle_t"},{"paramname":"pActionData","paramtype":"struct vr::InputDigitalActionData_t *"},{"paramname":"unActionDataSize","paramtype":"uint32_t"},{"paramname":"ulRestrictToDevice","paramtype":"vr::VRInputValueHandle_t"}]
-  Return: vr::EVRInputError
-  */
-  GetDigitalActionData(action: ActionHandle, pActionData: Deno.PointerValue<InputDigitalActionData>, unActionDataSize: number, ulRestrictToDevice: InputValueHandle): InputError {
-    if (this.ptr === null) throw new Error("IVRInput pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRInput>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(40))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const GetDigitalActionDataFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(40))!;
+    this.#GetDigitalActionDataFn = new Deno.UnsafeFnPointer(GetDigitalActionDataFuncPtr, {
       parameters: [
         "u64", //(vr::VRActionHandle_t)  action
         "pointer", //(struct vr::InputDigitalActionData_t *)  pActionData
@@ -14820,27 +14212,8 @@ export class IVRInput {
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      action,
-      pActionData,
-      unActionDataSize,
-      ulRestrictToDevice,
-    );
-
-    return result// as InputError;
-  }
-
-  /*
-  GetAnalogActionData
-  Parameters: [{"paramname":"action","paramtype":"vr::VRActionHandle_t"},{"paramname":"pActionData","paramtype":"struct vr::InputAnalogActionData_t *"},{"paramname":"unActionDataSize","paramtype":"uint32_t"},{"paramname":"ulRestrictToDevice","paramtype":"vr::VRInputValueHandle_t"}]
-  Return: vr::EVRInputError
-  */
-  GetAnalogActionData(action: ActionHandle, pActionData: Deno.PointerValue<InputAnalogActionData>, unActionDataSize: number, ulRestrictToDevice: InputValueHandle): InputError {
-    if (this.ptr === null) throw new Error("IVRInput pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRInput>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(48))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const GetAnalogActionDataFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(48))!;
+    this.#GetAnalogActionDataFn = new Deno.UnsafeFnPointer(GetAnalogActionDataFuncPtr, {
       parameters: [
         "u64", //(vr::VRActionHandle_t)  action
         "pointer", //(struct vr::InputAnalogActionData_t *)  pActionData
@@ -14849,27 +14222,8 @@ export class IVRInput {
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      action,
-      pActionData,
-      unActionDataSize,
-      ulRestrictToDevice,
-    );
-
-    return result// as InputError;
-  }
-
-  /*
-  GetPoseActionDataRelativeToNow
-  Parameters: [{"paramname":"action","paramtype":"vr::VRActionHandle_t"},{"paramname":"eOrigin","paramtype":"vr::ETrackingUniverseOrigin"},{"paramname":"fPredictedSecondsFromNow","paramtype":"float"},{"paramname":"pActionData","paramtype":"struct vr::InputPoseActionData_t *"},{"paramname":"unActionDataSize","paramtype":"uint32_t"},{"paramname":"ulRestrictToDevice","paramtype":"vr::VRInputValueHandle_t"}]
-  Return: vr::EVRInputError
-  */
-  GetPoseActionDataRelativeToNow(action: ActionHandle, eOrigin: TrackingUniverseOrigin, fPredictedSecondsFromNow: number, pActionData: Deno.PointerValue<InputPoseActionData>, unActionDataSize: number, ulRestrictToDevice: InputValueHandle): InputError {
-    if (this.ptr === null) throw new Error("IVRInput pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRInput>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(56))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const GetPoseActionDataRelativeToNowFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(56))!;
+    this.#GetPoseActionDataRelativeToNowFn = new Deno.UnsafeFnPointer(GetPoseActionDataRelativeToNowFuncPtr, {
       parameters: [
         "u64", //(vr::VRActionHandle_t)  action
         "i32", //(vr::ETrackingUniverseOrigin)  eOrigin
@@ -14880,29 +14234,8 @@ export class IVRInput {
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      action,
-      eOrigin,
-      fPredictedSecondsFromNow,
-      pActionData,
-      unActionDataSize,
-      ulRestrictToDevice,
-    );
-
-    return result// as InputError;
-  }
-
-  /*
-  GetPoseActionDataForNextFrame
-  Parameters: [{"paramname":"action","paramtype":"vr::VRActionHandle_t"},{"paramname":"eOrigin","paramtype":"vr::ETrackingUniverseOrigin"},{"paramname":"pActionData","paramtype":"struct vr::InputPoseActionData_t *"},{"paramname":"unActionDataSize","paramtype":"uint32_t"},{"paramname":"ulRestrictToDevice","paramtype":"vr::VRInputValueHandle_t"}]
-  Return: vr::EVRInputError
-  */
-  GetPoseActionDataForNextFrame(action: ActionHandle, eOrigin: TrackingUniverseOrigin, pActionData: Deno.PointerValue<InputPoseActionData>, unActionDataSize: number, ulRestrictToDevice: InputValueHandle): InputError {
-    if (this.ptr === null) throw new Error("IVRInput pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRInput>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(64))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const GetPoseActionDataForNextFrameFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(64))!;
+    this.#GetPoseActionDataForNextFrameFn = new Deno.UnsafeFnPointer(GetPoseActionDataForNextFrameFuncPtr, {
       parameters: [
         "u64", //(vr::VRActionHandle_t)  action
         "i32", //(vr::ETrackingUniverseOrigin)  eOrigin
@@ -14912,28 +14245,8 @@ export class IVRInput {
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      action,
-      eOrigin,
-      pActionData,
-      unActionDataSize,
-      ulRestrictToDevice,
-    );
-
-    return result// as InputError;
-  }
-
-  /*
-  GetSkeletalActionData
-  Parameters: [{"paramname":"action","paramtype":"vr::VRActionHandle_t"},{"paramname":"pActionData","paramtype":"struct vr::InputSkeletalActionData_t *"},{"paramname":"unActionDataSize","paramtype":"uint32_t"}]
-  Return: vr::EVRInputError
-  */
-  GetSkeletalActionData(action: ActionHandle, pActionData: Deno.PointerValue<InputSkeletalActionData>, unActionDataSize: number): InputError {
-    if (this.ptr === null) throw new Error("IVRInput pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRInput>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(72))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const GetSkeletalActionDataFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(72))!;
+    this.#GetSkeletalActionDataFn = new Deno.UnsafeFnPointer(GetSkeletalActionDataFuncPtr, {
       parameters: [
         "u64", //(vr::VRActionHandle_t)  action
         "pointer", //(struct vr::InputSkeletalActionData_t *)  pActionData
@@ -14941,97 +14254,30 @@ export class IVRInput {
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      action,
-      pActionData,
-      unActionDataSize,
-    );
-
-    return result// as InputError;
-  }
-
-  /*
-  GetDominantHand
-  Parameters: [{"paramname":"peDominantHand","paramtype":"vr::ETrackedControllerRole *"}]
-  Return: vr::EVRInputError
-  */
-  GetDominantHand(peDominantHand: Deno.PointerValue<TrackedControllerRole>): InputError {
-    if (this.ptr === null) throw new Error("IVRInput pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRInput>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(80))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const GetDominantHandFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(80))!;
+    this.#GetDominantHandFn = new Deno.UnsafeFnPointer(GetDominantHandFuncPtr, {
       parameters: [
         "pointer", //(vr::ETrackedControllerRole *)  peDominantHand
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      peDominantHand,
-    );
-
-    return result// as InputError;
-  }
-
-  /*
-  SetDominantHand
-  Parameters: [{"paramname":"eDominantHand","paramtype":"vr::ETrackedControllerRole"}]
-  Return: vr::EVRInputError
-  */
-  SetDominantHand(eDominantHand: TrackedControllerRole): InputError {
-    if (this.ptr === null) throw new Error("IVRInput pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRInput>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(88))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const SetDominantHandFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(88))!;
+    this.#SetDominantHandFn = new Deno.UnsafeFnPointer(SetDominantHandFuncPtr, {
       parameters: [
         "i32", //(vr::ETrackedControllerRole)  eDominantHand
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      eDominantHand,
-    );
-
-    return result// as InputError;
-  }
-
-  /*
-  GetBoneCount
-  Parameters: [{"paramname":"action","paramtype":"vr::VRActionHandle_t"},{"paramname":"pBoneCount","paramtype":"uint32_t *"}]
-  Return: vr::EVRInputError
-  */
-  GetBoneCount(action: ActionHandle, pBoneCount: Deno.PointerValue<number>): InputError {
-    if (this.ptr === null) throw new Error("IVRInput pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRInput>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(96))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const GetBoneCountFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(96))!;
+    this.#GetBoneCountFn = new Deno.UnsafeFnPointer(GetBoneCountFuncPtr, {
       parameters: [
         "u64", //(vr::VRActionHandle_t)  action
         "pointer", //(uint32_t *)  pBoneCount
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      action,
-      pBoneCount,
-    );
-
-    return result// as InputError;
-  }
-
-  /*
-  GetBoneHierarchy
-  Parameters: [{"paramname":"action","paramtype":"vr::VRActionHandle_t"},{"paramname":"pParentIndices","array_count":"unIndexArayCount","paramtype":"vr::BoneIndex_t *"},{"paramname":"unIndexArayCount","paramtype":"uint32_t"}]
-  Return: vr::EVRInputError
-  */
-  GetBoneHierarchy(action: ActionHandle, pParentIndices: Deno.PointerValue<BoneIndex>, unIndexArayCount: number): InputError {
-    if (this.ptr === null) throw new Error("IVRInput pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRInput>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(104))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const GetBoneHierarchyFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(104))!;
+    this.#GetBoneHierarchyFn = new Deno.UnsafeFnPointer(GetBoneHierarchyFuncPtr, {
       parameters: [
         "u64", //(vr::VRActionHandle_t)  action
         "pointer", //(vr::BoneIndex_t *)  pParentIndices
@@ -15039,26 +14285,8 @@ export class IVRInput {
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      action,
-      pParentIndices,
-      unIndexArayCount,
-    );
-
-    return result// as InputError;
-  }
-
-  /*
-  GetBoneName
-  Parameters: [{"paramname":"action","paramtype":"vr::VRActionHandle_t"},{"paramname":"nBoneIndex","paramtype":"vr::BoneIndex_t"},{"paramname":"pchBoneName","out_string":" ","paramtype":"char *"},{"paramname":"unNameBufferSize","paramtype":"uint32_t"}]
-  Return: vr::EVRInputError
-  */
-  GetBoneName(action: ActionHandle, nBoneIndex: BoneIndex, pchBoneName: string, unNameBufferSize: number): InputError {
-    if (this.ptr === null) throw new Error("IVRInput pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRInput>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(112))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const GetBoneNameFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(112))!;
+    this.#GetBoneNameFn = new Deno.UnsafeFnPointer(GetBoneNameFuncPtr, {
       parameters: [
         "u64", //(vr::VRActionHandle_t)  action
         "i32", //(vr::BoneIndex_t)  nBoneIndex
@@ -15067,27 +14295,8 @@ export class IVRInput {
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      action,
-      nBoneIndex,
-      Deno.UnsafePointer.of(new TextEncoder().encode(pchBoneName + "\0")),
-      unNameBufferSize,
-    );
-
-    return result// as InputError;
-  }
-
-  /*
-  GetSkeletalReferenceTransforms
-  Parameters: [{"paramname":"action","paramtype":"vr::VRActionHandle_t"},{"paramname":"eTransformSpace","paramtype":"vr::EVRSkeletalTransformSpace"},{"paramname":"eReferencePose","paramtype":"vr::EVRSkeletalReferencePose"},{"paramname":"pTransformArray","array_count":"unTransformArrayCount","paramtype":"struct vr::VRBoneTransform_t *"},{"paramname":"unTransformArrayCount","paramtype":"uint32_t"}]
-  Return: vr::EVRInputError
-  */
-  GetSkeletalReferenceTransforms(action: ActionHandle, eTransformSpace: SkeletalTransformSpace, eReferencePose: SkeletalReferencePose, pTransformArray: Deno.PointerValue<BoneTransform>, unTransformArrayCount: number): InputError {
-    if (this.ptr === null) throw new Error("IVRInput pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRInput>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(120))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const GetSkeletalReferenceTransformsFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(120))!;
+    this.#GetSkeletalReferenceTransformsFn = new Deno.UnsafeFnPointer(GetSkeletalReferenceTransformsFuncPtr, {
       parameters: [
         "u64", //(vr::VRActionHandle_t)  action
         "i32", //(vr::EVRSkeletalTransformSpace)  eTransformSpace
@@ -15097,53 +14306,16 @@ export class IVRInput {
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      action,
-      eTransformSpace,
-      eReferencePose,
-      pTransformArray,
-      unTransformArrayCount,
-    );
-
-    return result// as InputError;
-  }
-
-  /*
-  GetSkeletalTrackingLevel
-  Parameters: [{"paramname":"action","paramtype":"vr::VRActionHandle_t"},{"paramname":"pSkeletalTrackingLevel","paramtype":"vr::EVRSkeletalTrackingLevel *"}]
-  Return: vr::EVRInputError
-  */
-  GetSkeletalTrackingLevel(action: ActionHandle, pSkeletalTrackingLevel: Deno.PointerValue<SkeletalTrackingLevel>): InputError {
-    if (this.ptr === null) throw new Error("IVRInput pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRInput>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(128))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const GetSkeletalTrackingLevelFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(128))!;
+    this.#GetSkeletalTrackingLevelFn = new Deno.UnsafeFnPointer(GetSkeletalTrackingLevelFuncPtr, {
       parameters: [
         "u64", //(vr::VRActionHandle_t)  action
         "pointer", //(vr::EVRSkeletalTrackingLevel *)  pSkeletalTrackingLevel
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      action,
-      pSkeletalTrackingLevel,
-    );
-
-    return result// as InputError;
-  }
-
-  /*
-  GetSkeletalBoneData
-  Parameters: [{"paramname":"action","paramtype":"vr::VRActionHandle_t"},{"paramname":"eTransformSpace","paramtype":"vr::EVRSkeletalTransformSpace"},{"paramname":"eMotionRange","paramtype":"vr::EVRSkeletalMotionRange"},{"paramname":"pTransformArray","array_count":"unTransformArrayCount","paramtype":"struct vr::VRBoneTransform_t *"},{"paramname":"unTransformArrayCount","paramtype":"uint32_t"}]
-  Return: vr::EVRInputError
-  */
-  GetSkeletalBoneData(action: ActionHandle, eTransformSpace: SkeletalTransformSpace, eMotionRange: SkeletalMotionRange, pTransformArray: Deno.PointerValue<BoneTransform>, unTransformArrayCount: number): InputError {
-    if (this.ptr === null) throw new Error("IVRInput pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRInput>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(136))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const GetSkeletalBoneDataFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(136))!;
+    this.#GetSkeletalBoneDataFn = new Deno.UnsafeFnPointer(GetSkeletalBoneDataFuncPtr, {
       parameters: [
         "u64", //(vr::VRActionHandle_t)  action
         "i32", //(vr::EVRSkeletalTransformSpace)  eTransformSpace
@@ -15153,28 +14325,8 @@ export class IVRInput {
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      action,
-      eTransformSpace,
-      eMotionRange,
-      pTransformArray,
-      unTransformArrayCount,
-    );
-
-    return result// as InputError;
-  }
-
-  /*
-  GetSkeletalSummaryData
-  Parameters: [{"paramname":"action","paramtype":"vr::VRActionHandle_t"},{"paramname":"eSummaryType","paramtype":"vr::EVRSummaryType"},{"paramname":"pSkeletalSummaryData","paramtype":"struct vr::VRSkeletalSummaryData_t *"}]
-  Return: vr::EVRInputError
-  */
-  GetSkeletalSummaryData(action: ActionHandle, eSummaryType: SummaryType, pSkeletalSummaryData: Deno.PointerValue<SkeletalSummaryData>): InputError {
-    if (this.ptr === null) throw new Error("IVRInput pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRInput>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(144))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const GetSkeletalSummaryDataFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(144))!;
+    this.#GetSkeletalSummaryDataFn = new Deno.UnsafeFnPointer(GetSkeletalSummaryDataFuncPtr, {
       parameters: [
         "u64", //(vr::VRActionHandle_t)  action
         "i32", //(vr::EVRSummaryType)  eSummaryType
@@ -15182,26 +14334,8 @@ export class IVRInput {
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      action,
-      eSummaryType,
-      pSkeletalSummaryData,
-    );
-
-    return result// as InputError;
-  }
-
-  /*
-  GetSkeletalBoneDataCompressed
-  Parameters: [{"paramname":"action","paramtype":"vr::VRActionHandle_t"},{"paramname":"eMotionRange","paramtype":"vr::EVRSkeletalMotionRange"},{"paramname":"pvCompressedData","out_buffer_count":"unCompressedSize","paramtype":"void *"},{"paramname":"unCompressedSize","paramtype":"uint32_t"},{"paramname":"punRequiredCompressedSize","paramtype":"uint32_t *"}]
-  Return: vr::EVRInputError
-  */
-  GetSkeletalBoneDataCompressed(action: ActionHandle, eMotionRange: SkeletalMotionRange, pvCompressedData: Deno.PointerValue<unknown>, unCompressedSize: number, punRequiredCompressedSize: Deno.PointerValue<number>): InputError {
-    if (this.ptr === null) throw new Error("IVRInput pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRInput>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(152))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const GetSkeletalBoneDataCompressedFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(152))!;
+    this.#GetSkeletalBoneDataCompressedFn = new Deno.UnsafeFnPointer(GetSkeletalBoneDataCompressedFuncPtr, {
       parameters: [
         "u64", //(vr::VRActionHandle_t)  action
         "i32", //(vr::EVRSkeletalMotionRange)  eMotionRange
@@ -15211,28 +14345,8 @@ export class IVRInput {
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      action,
-      eMotionRange,
-      pvCompressedData,
-      unCompressedSize,
-      punRequiredCompressedSize,
-    );
-
-    return result// as InputError;
-  }
-
-  /*
-  DecompressSkeletalBoneData
-  Parameters: [{"paramname":"pvCompressedBuffer","paramtype":"const void *"},{"paramname":"unCompressedBufferSize","paramtype":"uint32_t"},{"paramname":"eTransformSpace","paramtype":"vr::EVRSkeletalTransformSpace"},{"paramname":"pTransformArray","array_count":"unTransformArrayCount","paramtype":"struct vr::VRBoneTransform_t *"},{"paramname":"unTransformArrayCount","paramtype":"uint32_t"}]
-  Return: vr::EVRInputError
-  */
-  DecompressSkeletalBoneData(pvCompressedBuffer: Deno.PointerValue<unknown>, unCompressedBufferSize: number, eTransformSpace: SkeletalTransformSpace, pTransformArray: Deno.PointerValue<BoneTransform>, unTransformArrayCount: number): InputError {
-    if (this.ptr === null) throw new Error("IVRInput pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRInput>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(160))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const DecompressSkeletalBoneDataFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(160))!;
+    this.#DecompressSkeletalBoneDataFn = new Deno.UnsafeFnPointer(DecompressSkeletalBoneDataFuncPtr, {
       parameters: [
         "pointer", //(const void *)  pvCompressedBuffer
         "u32", //(uint32_t)  unCompressedBufferSize
@@ -15242,28 +14356,8 @@ export class IVRInput {
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      pvCompressedBuffer,
-      unCompressedBufferSize,
-      eTransformSpace,
-      pTransformArray,
-      unTransformArrayCount,
-    );
-
-    return result// as InputError;
-  }
-
-  /*
-  TriggerHapticVibrationAction
-  Parameters: [{"paramname":"action","paramtype":"vr::VRActionHandle_t"},{"paramname":"fStartSecondsFromNow","paramtype":"float"},{"paramname":"fDurationSeconds","paramtype":"float"},{"paramname":"fFrequency","paramtype":"float"},{"paramname":"fAmplitude","paramtype":"float"},{"paramname":"ulRestrictToDevice","paramtype":"vr::VRInputValueHandle_t"}]
-  Return: vr::EVRInputError
-  */
-  TriggerHapticVibrationAction(action: ActionHandle, fStartSecondsFromNow: number, fDurationSeconds: number, fFrequency: number, fAmplitude: number, ulRestrictToDevice: InputValueHandle): InputError {
-    if (this.ptr === null) throw new Error("IVRInput pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRInput>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(168))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const TriggerHapticVibrationActionFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(168))!;
+    this.#TriggerHapticVibrationActionFn = new Deno.UnsafeFnPointer(TriggerHapticVibrationActionFuncPtr, {
       parameters: [
         "u64", //(vr::VRActionHandle_t)  action
         "f32", //(float)  fStartSecondsFromNow
@@ -15274,29 +14368,8 @@ export class IVRInput {
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      action,
-      fStartSecondsFromNow,
-      fDurationSeconds,
-      fFrequency,
-      fAmplitude,
-      ulRestrictToDevice,
-    );
-
-    return result// as InputError;
-  }
-
-  /*
-  GetActionOrigins
-  Parameters: [{"paramname":"actionSetHandle","paramtype":"vr::VRActionSetHandle_t"},{"paramname":"digitalActionHandle","paramtype":"vr::VRActionHandle_t"},{"paramname":"originsOut","array_count":"originOutCount","paramtype":"vr::VRInputValueHandle_t *"},{"paramname":"originOutCount","paramtype":"uint32_t"}]
-  Return: vr::EVRInputError
-  */
-  GetActionOrigins(actionSetHandle: ActionSetHandle, digitalActionHandle: ActionHandle, originsOut: Deno.PointerValue<InputValueHandle>, originOutCount: number): InputError {
-    if (this.ptr === null) throw new Error("IVRInput pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRInput>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(176))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const GetActionOriginsFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(176))!;
+    this.#GetActionOriginsFn = new Deno.UnsafeFnPointer(GetActionOriginsFuncPtr, {
       parameters: [
         "u64", //(vr::VRActionSetHandle_t)  actionSetHandle
         "u64", //(vr::VRActionHandle_t)  digitalActionHandle
@@ -15305,27 +14378,8 @@ export class IVRInput {
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      actionSetHandle,
-      digitalActionHandle,
-      originsOut,
-      originOutCount,
-    );
-
-    return result// as InputError;
-  }
-
-  /*
-  GetOriginLocalizedName
-  Parameters: [{"paramname":"origin","paramtype":"vr::VRInputValueHandle_t"},{"paramname":"pchNameArray","out_string":" ","paramtype":"char *"},{"paramname":"unNameArraySize","paramtype":"uint32_t"},{"paramname":"unStringSectionsToInclude","paramtype":"int32_t"}]
-  Return: vr::EVRInputError
-  */
-  GetOriginLocalizedName(origin: InputValueHandle, pchNameArray: string, unNameArraySize: number, unStringSectionsToInclude: number): InputError {
-    if (this.ptr === null) throw new Error("IVRInput pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRInput>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(184))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const GetOriginLocalizedNameFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(184))!;
+    this.#GetOriginLocalizedNameFn = new Deno.UnsafeFnPointer(GetOriginLocalizedNameFuncPtr, {
       parameters: [
         "u64", //(vr::VRInputValueHandle_t)  origin
         "pointer", //(char *)  pchNameArray
@@ -15334,27 +14388,8 @@ export class IVRInput {
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      origin,
-      Deno.UnsafePointer.of(new TextEncoder().encode(pchNameArray + "\0")),
-      unNameArraySize,
-      unStringSectionsToInclude,
-    );
-
-    return result// as InputError;
-  }
-
-  /*
-  GetOriginTrackedDeviceInfo
-  Parameters: [{"paramname":"origin","paramtype":"vr::VRInputValueHandle_t"},{"paramname":"pOriginInfo","paramtype":"struct vr::InputOriginInfo_t *"},{"paramname":"unOriginInfoSize","paramtype":"uint32_t"}]
-  Return: vr::EVRInputError
-  */
-  GetOriginTrackedDeviceInfo(origin: InputValueHandle, pOriginInfo: Deno.PointerValue<InputOriginInfo>, unOriginInfoSize: number): InputError {
-    if (this.ptr === null) throw new Error("IVRInput pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRInput>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(192))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const GetOriginTrackedDeviceInfoFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(192))!;
+    this.#GetOriginTrackedDeviceInfoFn = new Deno.UnsafeFnPointer(GetOriginTrackedDeviceInfoFuncPtr, {
       parameters: [
         "u64", //(vr::VRInputValueHandle_t)  origin
         "pointer", //(struct vr::InputOriginInfo_t *)  pOriginInfo
@@ -15362,26 +14397,8 @@ export class IVRInput {
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      origin,
-      pOriginInfo,
-      unOriginInfoSize,
-    );
-
-    return result// as InputError;
-  }
-
-  /*
-  GetActionBindingInfo
-  Parameters: [{"paramname":"action","paramtype":"vr::VRActionHandle_t"},{"paramname":"pOriginInfo","array_count":"unBindingInfoCount","paramtype":"struct vr::InputBindingInfo_t *"},{"paramname":"unBindingInfoSize","paramtype":"uint32_t"},{"paramname":"unBindingInfoCount","paramtype":"uint32_t"},{"paramname":"punReturnedBindingInfoCount","paramtype":"uint32_t *"}]
-  Return: vr::EVRInputError
-  */
-  GetActionBindingInfo(action: ActionHandle, pOriginInfo: Deno.PointerValue<InputBindingInfo>, unBindingInfoSize: number, unBindingInfoCount: number, punReturnedBindingInfoCount: Deno.PointerValue<number>): InputError {
-    if (this.ptr === null) throw new Error("IVRInput pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRInput>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(200))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const GetActionBindingInfoFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(200))!;
+    this.#GetActionBindingInfoFn = new Deno.UnsafeFnPointer(GetActionBindingInfoFuncPtr, {
       parameters: [
         "u64", //(vr::VRActionHandle_t)  action
         "pointer", //(struct vr::InputBindingInfo_t *)  pOriginInfo
@@ -15391,53 +14408,16 @@ export class IVRInput {
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      action,
-      pOriginInfo,
-      unBindingInfoSize,
-      unBindingInfoCount,
-      punReturnedBindingInfoCount,
-    );
-
-    return result// as InputError;
-  }
-
-  /*
-  ShowActionOrigins
-  Parameters: [{"paramname":"actionSetHandle","paramtype":"vr::VRActionSetHandle_t"},{"paramname":"ulActionHandle","paramtype":"vr::VRActionHandle_t"}]
-  Return: vr::EVRInputError
-  */
-  ShowActionOrigins(actionSetHandle: ActionSetHandle, ulActionHandle: ActionHandle): InputError {
-    if (this.ptr === null) throw new Error("IVRInput pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRInput>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(208))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const ShowActionOriginsFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(208))!;
+    this.#ShowActionOriginsFn = new Deno.UnsafeFnPointer(ShowActionOriginsFuncPtr, {
       parameters: [
         "u64", //(vr::VRActionSetHandle_t)  actionSetHandle
         "u64", //(vr::VRActionHandle_t)  ulActionHandle
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      actionSetHandle,
-      ulActionHandle,
-    );
-
-    return result// as InputError;
-  }
-
-  /*
-  ShowBindingsForActionSet
-  Parameters: [{"paramname":"pSets","array_count":"unSetCount","paramtype":"struct vr::VRActiveActionSet_t *"},{"paramname":"unSizeOfVRSelectedActionSet_t","paramtype":"uint32_t"},{"paramname":"unSetCount","paramtype":"uint32_t"},{"paramname":"originToHighlight","paramtype":"vr::VRInputValueHandle_t"}]
-  Return: vr::EVRInputError
-  */
-  ShowBindingsForActionSet(pSets: Deno.PointerValue<ActiveActionSet>, unSizeOfVRSelectedActionSet_t: number, unSetCount: number, originToHighlight: InputValueHandle): InputError {
-    if (this.ptr === null) throw new Error("IVRInput pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRInput>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(216))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const ShowBindingsForActionSetFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(216))!;
+    this.#ShowBindingsForActionSetFn = new Deno.UnsafeFnPointer(ShowBindingsForActionSetFuncPtr, {
       parameters: [
         "pointer", //(struct vr::VRActiveActionSet_t *)  pSets
         "u32", //(uint32_t)  unSizeOfVRSelectedActionSet_t
@@ -15446,27 +14426,8 @@ export class IVRInput {
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      pSets,
-      unSizeOfVRSelectedActionSet_t,
-      unSetCount,
-      originToHighlight,
-    );
-
-    return result// as InputError;
-  }
-
-  /*
-  GetComponentStateForBinding
-  Parameters: [{"paramname":"pchRenderModelName","paramtype":"const char *"},{"paramname":"pchComponentName","paramtype":"const char *"},{"paramname":"pOriginInfo","paramtype":"const struct vr::InputBindingInfo_t *"},{"paramname":"unBindingInfoSize","paramtype":"uint32_t"},{"paramname":"unBindingInfoCount","paramtype":"uint32_t"},{"paramname":"pComponentState","paramtype":"vr::RenderModel_ComponentState_t *"}]
-  Return: vr::EVRInputError
-  */
-  GetComponentStateForBinding(pchRenderModelName: string, pchComponentName: string, pOriginInfo: Deno.PointerValue<InputBindingInfo>, unBindingInfoSize: number, unBindingInfoCount: number, pComponentState: Deno.PointerValue<RenderModel_ComponentState>): InputError {
-    if (this.ptr === null) throw new Error("IVRInput pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRInput>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(224))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const GetComponentStateForBindingFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(224))!;
+    this.#GetComponentStateForBindingFn = new Deno.UnsafeFnPointer(GetComponentStateForBindingFuncPtr, {
       parameters: [
         "pointer", //(const char *)  pchRenderModelName
         "pointer", //(const char *)  pchComponentName
@@ -15477,50 +14438,14 @@ export class IVRInput {
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      Deno.UnsafePointer.of(new TextEncoder().encode(pchRenderModelName + "\0")),
-      Deno.UnsafePointer.of(new TextEncoder().encode(pchComponentName + "\0")),
-      pOriginInfo,
-      unBindingInfoSize,
-      unBindingInfoCount,
-      pComponentState,
-    );
-
-    return result// as InputError;
-  }
-
-  /*
-  IsUsingLegacyInput
-  Parameters: undefined
-  Return: bool
-  */
-  IsUsingLegacyInput(): boolean {
-    if (this.ptr === null) throw new Error("IVRInput pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRInput>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(232))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const IsUsingLegacyInputFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(232))!;
+    this.#IsUsingLegacyInputFn = new Deno.UnsafeFnPointer(IsUsingLegacyInputFuncPtr, {
       parameters: [
       ],
       result: "bool"
     });
-
-    const result = func.call(
-    );
-
-    return result// as boolean;
-  }
-
-  /*
-  OpenBindingUI
-  Parameters: [{"paramname":"pchAppKey","paramtype":"const char *"},{"paramname":"ulActionSetHandle","paramtype":"vr::VRActionSetHandle_t"},{"paramname":"ulDeviceHandle","paramtype":"vr::VRInputValueHandle_t"},{"paramname":"bShowOnDesktop","paramtype":"bool"}]
-  Return: vr::EVRInputError
-  */
-  OpenBindingUI(pchAppKey: string, ulActionSetHandle: ActionSetHandle, ulDeviceHandle: InputValueHandle, bShowOnDesktop: boolean): InputError {
-    if (this.ptr === null) throw new Error("IVRInput pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRInput>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(240))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const OpenBindingUIFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(240))!;
+    this.#OpenBindingUIFn = new Deno.UnsafeFnPointer(OpenBindingUIFuncPtr, {
       parameters: [
         "pointer", //(const char *)  pchAppKey
         "u64", //(vr::VRActionSetHandle_t)  ulActionSetHandle
@@ -15529,15 +14454,493 @@ export class IVRInput {
       ],
       result: "i32"
     });
+    const GetBindingVariantFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(248))!;
+    this.#GetBindingVariantFn = new Deno.UnsafeFnPointer(GetBindingVariantFuncPtr, {
+      parameters: [
+        "u64", //(vr::VRInputValueHandle_t)  ulDevicePath
+        "pointer", //(char *)  pchVariantArray
+        "u32", //(uint32_t)  unVariantArraySize
+      ],
+      result: "i32"
+    });
+  }
 
-    const result = func.call(
+  /*
+  SetActionManifestPath
+  Parameters: [{"paramname":"pchActionManifestPath","paramtype":"const char *"}]
+  Return: vr::EVRInputError
+  */
+  SetActionManifestPath(pchActionManifestPath: string): InputError {
+    const result = this.#SetActionManifestPathFn.call(
+      Deno.UnsafePointer.of(new TextEncoder().encode(pchActionManifestPath + "\0")),
+    );
+
+    return result // as InputError;
+  }
+
+  /*
+  GetActionSetHandle
+  Parameters: [{"paramname":"pchActionSetName","paramtype":"const char *"},{"paramname":"pHandle","paramtype":"vr::VRActionSetHandle_t *"}]
+  Return: vr::EVRInputError
+  */
+  GetActionSetHandle(pchActionSetName: string, pHandle: Deno.PointerValue<ActionSetHandle>): InputError {
+    const result = this.#GetActionSetHandleFn.call(
+      Deno.UnsafePointer.of(new TextEncoder().encode(pchActionSetName + "\0")),
+      pHandle,
+    );
+
+    return result // as InputError;
+  }
+
+  /*
+  GetActionHandle
+  Parameters: [{"paramname":"pchActionName","paramtype":"const char *"},{"paramname":"pHandle","paramtype":"vr::VRActionHandle_t *"}]
+  Return: vr::EVRInputError
+  */
+  GetActionHandle(pchActionName: string, pHandle: Deno.PointerValue<ActionHandle>): InputError {
+    const result = this.#GetActionHandleFn.call(
+      Deno.UnsafePointer.of(new TextEncoder().encode(pchActionName + "\0")),
+      pHandle,
+    );
+
+    return result // as InputError;
+  }
+
+  /*
+  GetInputSourceHandle
+  Parameters: [{"paramname":"pchInputSourcePath","paramtype":"const char *"},{"paramname":"pHandle","paramtype":"vr::VRInputValueHandle_t *"}]
+  Return: vr::EVRInputError
+  */
+  GetInputSourceHandle(pchInputSourcePath: string, pHandle: Deno.PointerValue<InputValueHandle>): InputError {
+    const result = this.#GetInputSourceHandleFn.call(
+      Deno.UnsafePointer.of(new TextEncoder().encode(pchInputSourcePath + "\0")),
+      pHandle,
+    );
+
+    return result // as InputError;
+  }
+
+  /*
+  UpdateActionState
+  Parameters: [{"paramname":"pSets","array_count":"unSetCount","paramtype":"struct vr::VRActiveActionSet_t *"},{"paramname":"unSizeOfVRSelectedActionSet_t","paramtype":"uint32_t"},{"paramname":"unSetCount","paramtype":"uint32_t"}]
+  Return: vr::EVRInputError
+  */
+  UpdateActionState(pSets: Deno.PointerValue<ActiveActionSet>, unSizeOfVRSelectedActionSet_t: number, unSetCount: number): InputError {
+    const result = this.#UpdateActionStateFn.call(
+      pSets,
+      unSizeOfVRSelectedActionSet_t,
+      unSetCount,
+    );
+
+    return result // as InputError;
+  }
+
+  /*
+  GetDigitalActionData
+  Parameters: [{"paramname":"action","paramtype":"vr::VRActionHandle_t"},{"paramname":"pActionData","paramtype":"struct vr::InputDigitalActionData_t *"},{"paramname":"unActionDataSize","paramtype":"uint32_t"},{"paramname":"ulRestrictToDevice","paramtype":"vr::VRInputValueHandle_t"}]
+  Return: vr::EVRInputError
+  */
+  GetDigitalActionData(action: ActionHandle, pActionData: Deno.PointerValue<InputDigitalActionData>, unActionDataSize: number, ulRestrictToDevice: InputValueHandle): InputError {
+    const result = this.#GetDigitalActionDataFn.call(
+      action,
+      pActionData,
+      unActionDataSize,
+      ulRestrictToDevice,
+    );
+
+    return result // as InputError;
+  }
+
+  /*
+  GetAnalogActionData
+  Parameters: [{"paramname":"action","paramtype":"vr::VRActionHandle_t"},{"paramname":"pActionData","paramtype":"struct vr::InputAnalogActionData_t *"},{"paramname":"unActionDataSize","paramtype":"uint32_t"},{"paramname":"ulRestrictToDevice","paramtype":"vr::VRInputValueHandle_t"}]
+  Return: vr::EVRInputError
+  */
+  GetAnalogActionData(action: ActionHandle, pActionData: Deno.PointerValue<InputAnalogActionData>, unActionDataSize: number, ulRestrictToDevice: InputValueHandle): InputError {
+    const result = this.#GetAnalogActionDataFn.call(
+      action,
+      pActionData,
+      unActionDataSize,
+      ulRestrictToDevice,
+    );
+
+    return result // as InputError;
+  }
+
+  /*
+  GetPoseActionDataRelativeToNow
+  Parameters: [{"paramname":"action","paramtype":"vr::VRActionHandle_t"},{"paramname":"eOrigin","paramtype":"vr::ETrackingUniverseOrigin"},{"paramname":"fPredictedSecondsFromNow","paramtype":"float"},{"paramname":"pActionData","paramtype":"struct vr::InputPoseActionData_t *"},{"paramname":"unActionDataSize","paramtype":"uint32_t"},{"paramname":"ulRestrictToDevice","paramtype":"vr::VRInputValueHandle_t"}]
+  Return: vr::EVRInputError
+  */
+  GetPoseActionDataRelativeToNow(action: ActionHandle, eOrigin: TrackingUniverseOrigin, fPredictedSecondsFromNow: number, pActionData: Deno.PointerValue<InputPoseActionData>, unActionDataSize: number, ulRestrictToDevice: InputValueHandle): InputError {
+    const result = this.#GetPoseActionDataRelativeToNowFn.call(
+      action,
+      eOrigin,
+      fPredictedSecondsFromNow,
+      pActionData,
+      unActionDataSize,
+      ulRestrictToDevice,
+    );
+
+    return result // as InputError;
+  }
+
+  /*
+  GetPoseActionDataForNextFrame
+  Parameters: [{"paramname":"action","paramtype":"vr::VRActionHandle_t"},{"paramname":"eOrigin","paramtype":"vr::ETrackingUniverseOrigin"},{"paramname":"pActionData","paramtype":"struct vr::InputPoseActionData_t *"},{"paramname":"unActionDataSize","paramtype":"uint32_t"},{"paramname":"ulRestrictToDevice","paramtype":"vr::VRInputValueHandle_t"}]
+  Return: vr::EVRInputError
+  */
+  GetPoseActionDataForNextFrame(action: ActionHandle, eOrigin: TrackingUniverseOrigin, pActionData: Deno.PointerValue<InputPoseActionData>, unActionDataSize: number, ulRestrictToDevice: InputValueHandle): InputError {
+    const result = this.#GetPoseActionDataForNextFrameFn.call(
+      action,
+      eOrigin,
+      pActionData,
+      unActionDataSize,
+      ulRestrictToDevice,
+    );
+
+    return result // as InputError;
+  }
+
+  /*
+  GetSkeletalActionData
+  Parameters: [{"paramname":"action","paramtype":"vr::VRActionHandle_t"},{"paramname":"pActionData","paramtype":"struct vr::InputSkeletalActionData_t *"},{"paramname":"unActionDataSize","paramtype":"uint32_t"}]
+  Return: vr::EVRInputError
+  */
+  GetSkeletalActionData(action: ActionHandle, pActionData: Deno.PointerValue<InputSkeletalActionData>, unActionDataSize: number): InputError {
+    const result = this.#GetSkeletalActionDataFn.call(
+      action,
+      pActionData,
+      unActionDataSize,
+    );
+
+    return result // as InputError;
+  }
+
+  /*
+  GetDominantHand
+  Parameters: [{"paramname":"peDominantHand","paramtype":"vr::ETrackedControllerRole *"}]
+  Return: vr::EVRInputError
+  */
+  GetDominantHand(peDominantHand: Deno.PointerValue<TrackedControllerRole>): InputError {
+    const result = this.#GetDominantHandFn.call(
+      peDominantHand,
+    );
+
+    return result // as InputError;
+  }
+
+  /*
+  SetDominantHand
+  Parameters: [{"paramname":"eDominantHand","paramtype":"vr::ETrackedControllerRole"}]
+  Return: vr::EVRInputError
+  */
+  SetDominantHand(eDominantHand: TrackedControllerRole): InputError {
+    const result = this.#SetDominantHandFn.call(
+      eDominantHand,
+    );
+
+    return result // as InputError;
+  }
+
+  /*
+  GetBoneCount
+  Parameters: [{"paramname":"action","paramtype":"vr::VRActionHandle_t"},{"paramname":"pBoneCount","paramtype":"uint32_t *"}]
+  Return: vr::EVRInputError
+  */
+  GetBoneCount(action: ActionHandle, pBoneCount: Deno.PointerValue<number>): InputError {
+    const result = this.#GetBoneCountFn.call(
+      action,
+      pBoneCount,
+    );
+
+    return result // as InputError;
+  }
+
+  /*
+  GetBoneHierarchy
+  Parameters: [{"paramname":"action","paramtype":"vr::VRActionHandle_t"},{"paramname":"pParentIndices","array_count":"unIndexArayCount","paramtype":"vr::BoneIndex_t *"},{"paramname":"unIndexArayCount","paramtype":"uint32_t"}]
+  Return: vr::EVRInputError
+  */
+  GetBoneHierarchy(action: ActionHandle, pParentIndices: Deno.PointerValue<BoneIndex>, unIndexArayCount: number): InputError {
+    const result = this.#GetBoneHierarchyFn.call(
+      action,
+      pParentIndices,
+      unIndexArayCount,
+    );
+
+    return result // as InputError;
+  }
+
+  /*
+  GetBoneName
+  Parameters: [{"paramname":"action","paramtype":"vr::VRActionHandle_t"},{"paramname":"nBoneIndex","paramtype":"vr::BoneIndex_t"},{"paramname":"pchBoneName","out_string":" ","paramtype":"char *"},{"paramname":"unNameBufferSize","paramtype":"uint32_t"}]
+  Return: vr::EVRInputError
+  */
+  GetBoneName(action: ActionHandle, nBoneIndex: BoneIndex, pchBoneName: string, unNameBufferSize: number): InputError {
+    const result = this.#GetBoneNameFn.call(
+      action,
+      nBoneIndex,
+      Deno.UnsafePointer.of(new TextEncoder().encode(pchBoneName + "\0")),
+      unNameBufferSize,
+    );
+
+    return result // as InputError;
+  }
+
+  /*
+  GetSkeletalReferenceTransforms
+  Parameters: [{"paramname":"action","paramtype":"vr::VRActionHandle_t"},{"paramname":"eTransformSpace","paramtype":"vr::EVRSkeletalTransformSpace"},{"paramname":"eReferencePose","paramtype":"vr::EVRSkeletalReferencePose"},{"paramname":"pTransformArray","array_count":"unTransformArrayCount","paramtype":"struct vr::VRBoneTransform_t *"},{"paramname":"unTransformArrayCount","paramtype":"uint32_t"}]
+  Return: vr::EVRInputError
+  */
+  GetSkeletalReferenceTransforms(action: ActionHandle, eTransformSpace: SkeletalTransformSpace, eReferencePose: SkeletalReferencePose, pTransformArray: Deno.PointerValue<BoneTransform>, unTransformArrayCount: number): InputError {
+    const result = this.#GetSkeletalReferenceTransformsFn.call(
+      action,
+      eTransformSpace,
+      eReferencePose,
+      pTransformArray,
+      unTransformArrayCount,
+    );
+
+    return result // as InputError;
+  }
+
+  /*
+  GetSkeletalTrackingLevel
+  Parameters: [{"paramname":"action","paramtype":"vr::VRActionHandle_t"},{"paramname":"pSkeletalTrackingLevel","paramtype":"vr::EVRSkeletalTrackingLevel *"}]
+  Return: vr::EVRInputError
+  */
+  GetSkeletalTrackingLevel(action: ActionHandle, pSkeletalTrackingLevel: Deno.PointerValue<SkeletalTrackingLevel>): InputError {
+    const result = this.#GetSkeletalTrackingLevelFn.call(
+      action,
+      pSkeletalTrackingLevel,
+    );
+
+    return result // as InputError;
+  }
+
+  /*
+  GetSkeletalBoneData
+  Parameters: [{"paramname":"action","paramtype":"vr::VRActionHandle_t"},{"paramname":"eTransformSpace","paramtype":"vr::EVRSkeletalTransformSpace"},{"paramname":"eMotionRange","paramtype":"vr::EVRSkeletalMotionRange"},{"paramname":"pTransformArray","array_count":"unTransformArrayCount","paramtype":"struct vr::VRBoneTransform_t *"},{"paramname":"unTransformArrayCount","paramtype":"uint32_t"}]
+  Return: vr::EVRInputError
+  */
+  GetSkeletalBoneData(action: ActionHandle, eTransformSpace: SkeletalTransformSpace, eMotionRange: SkeletalMotionRange, pTransformArray: Deno.PointerValue<BoneTransform>, unTransformArrayCount: number): InputError {
+    const result = this.#GetSkeletalBoneDataFn.call(
+      action,
+      eTransformSpace,
+      eMotionRange,
+      pTransformArray,
+      unTransformArrayCount,
+    );
+
+    return result // as InputError;
+  }
+
+  /*
+  GetSkeletalSummaryData
+  Parameters: [{"paramname":"action","paramtype":"vr::VRActionHandle_t"},{"paramname":"eSummaryType","paramtype":"vr::EVRSummaryType"},{"paramname":"pSkeletalSummaryData","paramtype":"struct vr::VRSkeletalSummaryData_t *"}]
+  Return: vr::EVRInputError
+  */
+  GetSkeletalSummaryData(action: ActionHandle, eSummaryType: SummaryType, pSkeletalSummaryData: Deno.PointerValue<SkeletalSummaryData>): InputError {
+    const result = this.#GetSkeletalSummaryDataFn.call(
+      action,
+      eSummaryType,
+      pSkeletalSummaryData,
+    );
+
+    return result // as InputError;
+  }
+
+  /*
+  GetSkeletalBoneDataCompressed
+  Parameters: [{"paramname":"action","paramtype":"vr::VRActionHandle_t"},{"paramname":"eMotionRange","paramtype":"vr::EVRSkeletalMotionRange"},{"paramname":"pvCompressedData","out_buffer_count":"unCompressedSize","paramtype":"void *"},{"paramname":"unCompressedSize","paramtype":"uint32_t"},{"paramname":"punRequiredCompressedSize","paramtype":"uint32_t *"}]
+  Return: vr::EVRInputError
+  */
+  GetSkeletalBoneDataCompressed(action: ActionHandle, eMotionRange: SkeletalMotionRange, pvCompressedData: Deno.PointerValue<unknown>, unCompressedSize: number, punRequiredCompressedSize: Deno.PointerValue<number>): InputError {
+    const result = this.#GetSkeletalBoneDataCompressedFn.call(
+      action,
+      eMotionRange,
+      pvCompressedData,
+      unCompressedSize,
+      punRequiredCompressedSize,
+    );
+
+    return result // as InputError;
+  }
+
+  /*
+  DecompressSkeletalBoneData
+  Parameters: [{"paramname":"pvCompressedBuffer","paramtype":"const void *"},{"paramname":"unCompressedBufferSize","paramtype":"uint32_t"},{"paramname":"eTransformSpace","paramtype":"vr::EVRSkeletalTransformSpace"},{"paramname":"pTransformArray","array_count":"unTransformArrayCount","paramtype":"struct vr::VRBoneTransform_t *"},{"paramname":"unTransformArrayCount","paramtype":"uint32_t"}]
+  Return: vr::EVRInputError
+  */
+  DecompressSkeletalBoneData(pvCompressedBuffer: Deno.PointerValue<unknown>, unCompressedBufferSize: number, eTransformSpace: SkeletalTransformSpace, pTransformArray: Deno.PointerValue<BoneTransform>, unTransformArrayCount: number): InputError {
+    const result = this.#DecompressSkeletalBoneDataFn.call(
+      pvCompressedBuffer,
+      unCompressedBufferSize,
+      eTransformSpace,
+      pTransformArray,
+      unTransformArrayCount,
+    );
+
+    return result // as InputError;
+  }
+
+  /*
+  TriggerHapticVibrationAction
+  Parameters: [{"paramname":"action","paramtype":"vr::VRActionHandle_t"},{"paramname":"fStartSecondsFromNow","paramtype":"float"},{"paramname":"fDurationSeconds","paramtype":"float"},{"paramname":"fFrequency","paramtype":"float"},{"paramname":"fAmplitude","paramtype":"float"},{"paramname":"ulRestrictToDevice","paramtype":"vr::VRInputValueHandle_t"}]
+  Return: vr::EVRInputError
+  */
+  TriggerHapticVibrationAction(action: ActionHandle, fStartSecondsFromNow: number, fDurationSeconds: number, fFrequency: number, fAmplitude: number, ulRestrictToDevice: InputValueHandle): InputError {
+    const result = this.#TriggerHapticVibrationActionFn.call(
+      action,
+      fStartSecondsFromNow,
+      fDurationSeconds,
+      fFrequency,
+      fAmplitude,
+      ulRestrictToDevice,
+    );
+
+    return result // as InputError;
+  }
+
+  /*
+  GetActionOrigins
+  Parameters: [{"paramname":"actionSetHandle","paramtype":"vr::VRActionSetHandle_t"},{"paramname":"digitalActionHandle","paramtype":"vr::VRActionHandle_t"},{"paramname":"originsOut","array_count":"originOutCount","paramtype":"vr::VRInputValueHandle_t *"},{"paramname":"originOutCount","paramtype":"uint32_t"}]
+  Return: vr::EVRInputError
+  */
+  GetActionOrigins(actionSetHandle: ActionSetHandle, digitalActionHandle: ActionHandle, originsOut: Deno.PointerValue<InputValueHandle>, originOutCount: number): InputError {
+    const result = this.#GetActionOriginsFn.call(
+      actionSetHandle,
+      digitalActionHandle,
+      originsOut,
+      originOutCount,
+    );
+
+    return result // as InputError;
+  }
+
+  /*
+  GetOriginLocalizedName
+  Parameters: [{"paramname":"origin","paramtype":"vr::VRInputValueHandle_t"},{"paramname":"pchNameArray","out_string":" ","paramtype":"char *"},{"paramname":"unNameArraySize","paramtype":"uint32_t"},{"paramname":"unStringSectionsToInclude","paramtype":"int32_t"}]
+  Return: vr::EVRInputError
+  */
+  GetOriginLocalizedName(origin: InputValueHandle, pchNameArray: string, unNameArraySize: number, unStringSectionsToInclude: number): InputError {
+    const result = this.#GetOriginLocalizedNameFn.call(
+      origin,
+      Deno.UnsafePointer.of(new TextEncoder().encode(pchNameArray + "\0")),
+      unNameArraySize,
+      unStringSectionsToInclude,
+    );
+
+    return result // as InputError;
+  }
+
+  /*
+  GetOriginTrackedDeviceInfo
+  Parameters: [{"paramname":"origin","paramtype":"vr::VRInputValueHandle_t"},{"paramname":"pOriginInfo","paramtype":"struct vr::InputOriginInfo_t *"},{"paramname":"unOriginInfoSize","paramtype":"uint32_t"}]
+  Return: vr::EVRInputError
+  */
+  GetOriginTrackedDeviceInfo(origin: InputValueHandle, pOriginInfo: Deno.PointerValue<InputOriginInfo>, unOriginInfoSize: number): InputError {
+    const result = this.#GetOriginTrackedDeviceInfoFn.call(
+      origin,
+      pOriginInfo,
+      unOriginInfoSize,
+    );
+
+    return result // as InputError;
+  }
+
+  /*
+  GetActionBindingInfo
+  Parameters: [{"paramname":"action","paramtype":"vr::VRActionHandle_t"},{"paramname":"pOriginInfo","array_count":"unBindingInfoCount","paramtype":"struct vr::InputBindingInfo_t *"},{"paramname":"unBindingInfoSize","paramtype":"uint32_t"},{"paramname":"unBindingInfoCount","paramtype":"uint32_t"},{"paramname":"punReturnedBindingInfoCount","paramtype":"uint32_t *"}]
+  Return: vr::EVRInputError
+  */
+  GetActionBindingInfo(action: ActionHandle, pOriginInfo: Deno.PointerValue<InputBindingInfo>, unBindingInfoSize: number, unBindingInfoCount: number, punReturnedBindingInfoCount: Deno.PointerValue<number>): InputError {
+    const result = this.#GetActionBindingInfoFn.call(
+      action,
+      pOriginInfo,
+      unBindingInfoSize,
+      unBindingInfoCount,
+      punReturnedBindingInfoCount,
+    );
+
+    return result // as InputError;
+  }
+
+  /*
+  ShowActionOrigins
+  Parameters: [{"paramname":"actionSetHandle","paramtype":"vr::VRActionSetHandle_t"},{"paramname":"ulActionHandle","paramtype":"vr::VRActionHandle_t"}]
+  Return: vr::EVRInputError
+  */
+  ShowActionOrigins(actionSetHandle: ActionSetHandle, ulActionHandle: ActionHandle): InputError {
+    const result = this.#ShowActionOriginsFn.call(
+      actionSetHandle,
+      ulActionHandle,
+    );
+
+    return result // as InputError;
+  }
+
+  /*
+  ShowBindingsForActionSet
+  Parameters: [{"paramname":"pSets","array_count":"unSetCount","paramtype":"struct vr::VRActiveActionSet_t *"},{"paramname":"unSizeOfVRSelectedActionSet_t","paramtype":"uint32_t"},{"paramname":"unSetCount","paramtype":"uint32_t"},{"paramname":"originToHighlight","paramtype":"vr::VRInputValueHandle_t"}]
+  Return: vr::EVRInputError
+  */
+  ShowBindingsForActionSet(pSets: Deno.PointerValue<ActiveActionSet>, unSizeOfVRSelectedActionSet_t: number, unSetCount: number, originToHighlight: InputValueHandle): InputError {
+    const result = this.#ShowBindingsForActionSetFn.call(
+      pSets,
+      unSizeOfVRSelectedActionSet_t,
+      unSetCount,
+      originToHighlight,
+    );
+
+    return result // as InputError;
+  }
+
+  /*
+  GetComponentStateForBinding
+  Parameters: [{"paramname":"pchRenderModelName","paramtype":"const char *"},{"paramname":"pchComponentName","paramtype":"const char *"},{"paramname":"pOriginInfo","paramtype":"const struct vr::InputBindingInfo_t *"},{"paramname":"unBindingInfoSize","paramtype":"uint32_t"},{"paramname":"unBindingInfoCount","paramtype":"uint32_t"},{"paramname":"pComponentState","paramtype":"vr::RenderModel_ComponentState_t *"}]
+  Return: vr::EVRInputError
+  */
+  GetComponentStateForBinding(pchRenderModelName: string, pchComponentName: string, pOriginInfo: Deno.PointerValue<InputBindingInfo>, unBindingInfoSize: number, unBindingInfoCount: number, pComponentState: Deno.PointerValue<RenderModel_ComponentState>): InputError {
+    const result = this.#GetComponentStateForBindingFn.call(
+      Deno.UnsafePointer.of(new TextEncoder().encode(pchRenderModelName + "\0")),
+      Deno.UnsafePointer.of(new TextEncoder().encode(pchComponentName + "\0")),
+      pOriginInfo,
+      unBindingInfoSize,
+      unBindingInfoCount,
+      pComponentState,
+    );
+
+    return result // as InputError;
+  }
+
+  /*
+  IsUsingLegacyInput
+  Parameters: undefined
+  Return: bool
+  */
+  IsUsingLegacyInput(): boolean {
+    const result = this.#IsUsingLegacyInputFn.call(
+    );
+
+    return result // as boolean;
+  }
+
+  /*
+  OpenBindingUI
+  Parameters: [{"paramname":"pchAppKey","paramtype":"const char *"},{"paramname":"ulActionSetHandle","paramtype":"vr::VRActionSetHandle_t"},{"paramname":"ulDeviceHandle","paramtype":"vr::VRInputValueHandle_t"},{"paramname":"bShowOnDesktop","paramtype":"bool"}]
+  Return: vr::EVRInputError
+  */
+  OpenBindingUI(pchAppKey: string, ulActionSetHandle: ActionSetHandle, ulDeviceHandle: InputValueHandle, bShowOnDesktop: boolean): InputError {
+    const result = this.#OpenBindingUIFn.call(
       Deno.UnsafePointer.of(new TextEncoder().encode(pchAppKey + "\0")),
       ulActionSetHandle,
       ulDeviceHandle,
       bShowOnDesktop,
     );
 
-    return result// as InputError;
+    return result // as InputError;
   }
 
   /*
@@ -15546,42 +14949,30 @@ export class IVRInput {
   Return: vr::EVRInputError
   */
   GetBindingVariant(ulDevicePath: InputValueHandle, pchVariantArray: string, unVariantArraySize: number): InputError {
-    if (this.ptr === null) throw new Error("IVRInput pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRInput>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(248))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "u64", //(vr::VRInputValueHandle_t)  ulDevicePath
-        "pointer", //(char *)  pchVariantArray
-        "u32", //(uint32_t)  unVariantArraySize
-      ],
-      result: "i32"
-    });
-
-    const result = func.call(
+    const result = this.#GetBindingVariantFn.call(
       ulDevicePath,
       Deno.UnsafePointer.of(new TextEncoder().encode(pchVariantArray + "\0")),
       unVariantArraySize,
     );
 
-    return result// as InputError;
+    return result // as InputError;
   }
 
 }
 
 export class IVRIOBuffer {
-  constructor(private ptr: Deno.PointerValue<IVRIOBuffer|unknown>) {}
+  readonly #OpenFn: Deno.UnsafeFnPointer<any>;
+  readonly #CloseFn: Deno.UnsafeFnPointer<any>;
+  readonly #ReadFn: Deno.UnsafeFnPointer<any>;
+  readonly #WriteFn: Deno.UnsafeFnPointer<any>;
+  readonly #PropertyContainerFn: Deno.UnsafeFnPointer<any>;
+  readonly #HasReadersFn: Deno.UnsafeFnPointer<any>;
 
-  /*
-  Open
-  Parameters: [{"paramname":"pchPath","paramtype":"const char *"},{"paramname":"mode","paramtype":"vr::EIOBufferMode"},{"paramname":"unElementSize","paramtype":"uint32_t"},{"paramname":"unElements","paramtype":"uint32_t"},{"paramname":"pulBuffer","paramtype":"vr::IOBufferHandle_t *"}]
-  Return: vr::EIOBufferError
-  */
-  Open(pchPath: string, mode: IOBufferMode, unElementSize: number, unElements: number, pulBuffer: Deno.PointerValue<IOBufferHandle>): IOBufferError {
+  constructor(private ptr: Deno.PointerValue<IVRIOBuffer|unknown>) {
     if (this.ptr === null) throw new Error("IVRIOBuffer pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRIOBuffer>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(0))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const OpenFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(0))!;
+    this.#OpenFn = new Deno.UnsafeFnPointer(OpenFuncPtr, {
       parameters: [
         "pointer", //(const char *)  pchPath
         "i32", //(vr::EIOBufferMode)  mode
@@ -15591,51 +14982,15 @@ export class IVRIOBuffer {
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      Deno.UnsafePointer.of(new TextEncoder().encode(pchPath + "\0")),
-      mode,
-      unElementSize,
-      unElements,
-      pulBuffer,
-    );
-
-    return result// as IOBufferError;
-  }
-
-  /*
-  Close
-  Parameters: [{"paramname":"ulBuffer","paramtype":"vr::IOBufferHandle_t"}]
-  Return: vr::EIOBufferError
-  */
-  Close(ulBuffer: IOBufferHandle): IOBufferError {
-    if (this.ptr === null) throw new Error("IVRIOBuffer pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRIOBuffer>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(8))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const CloseFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(8))!;
+    this.#CloseFn = new Deno.UnsafeFnPointer(CloseFuncPtr, {
       parameters: [
         "u64", //(vr::IOBufferHandle_t)  ulBuffer
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      ulBuffer,
-    );
-
-    return result// as IOBufferError;
-  }
-
-  /*
-  Read
-  Parameters: [{"paramname":"ulBuffer","paramtype":"vr::IOBufferHandle_t"},{"paramname":"pDst","paramtype":"void *"},{"paramname":"unBytes","paramtype":"uint32_t"},{"paramname":"punRead","paramtype":"uint32_t *"}]
-  Return: vr::EIOBufferError
-  */
-  Read(ulBuffer: IOBufferHandle, pDst: Deno.PointerValue<unknown>, unBytes: number, punRead: Deno.PointerValue<number>): IOBufferError {
-    if (this.ptr === null) throw new Error("IVRIOBuffer pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRIOBuffer>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(16))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const ReadFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(16))!;
+    this.#ReadFn = new Deno.UnsafeFnPointer(ReadFuncPtr, {
       parameters: [
         "u64", //(vr::IOBufferHandle_t)  ulBuffer
         "pointer", //(void *)  pDst
@@ -15644,15 +14999,75 @@ export class IVRIOBuffer {
       ],
       result: "i32"
     });
+    const WriteFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(24))!;
+    this.#WriteFn = new Deno.UnsafeFnPointer(WriteFuncPtr, {
+      parameters: [
+        "u64", //(vr::IOBufferHandle_t)  ulBuffer
+        "pointer", //(void *)  pSrc
+        "u32", //(uint32_t)  unBytes
+      ],
+      result: "i32"
+    });
+    const PropertyContainerFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(32))!;
+    this.#PropertyContainerFn = new Deno.UnsafeFnPointer(PropertyContainerFuncPtr, {
+      parameters: [
+        "u64", //(vr::IOBufferHandle_t)  ulBuffer
+      ],
+      result: "u64"
+    });
+    const HasReadersFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(40))!;
+    this.#HasReadersFn = new Deno.UnsafeFnPointer(HasReadersFuncPtr, {
+      parameters: [
+        "u64", //(vr::IOBufferHandle_t)  ulBuffer
+      ],
+      result: "bool"
+    });
+  }
 
-    const result = func.call(
+  /*
+  Open
+  Parameters: [{"paramname":"pchPath","paramtype":"const char *"},{"paramname":"mode","paramtype":"vr::EIOBufferMode"},{"paramname":"unElementSize","paramtype":"uint32_t"},{"paramname":"unElements","paramtype":"uint32_t"},{"paramname":"pulBuffer","paramtype":"vr::IOBufferHandle_t *"}]
+  Return: vr::EIOBufferError
+  */
+  Open(pchPath: string, mode: IOBufferMode, unElementSize: number, unElements: number, pulBuffer: Deno.PointerValue<IOBufferHandle>): IOBufferError {
+    const result = this.#OpenFn.call(
+      Deno.UnsafePointer.of(new TextEncoder().encode(pchPath + "\0")),
+      mode,
+      unElementSize,
+      unElements,
+      pulBuffer,
+    );
+
+    return result // as IOBufferError;
+  }
+
+  /*
+  Close
+  Parameters: [{"paramname":"ulBuffer","paramtype":"vr::IOBufferHandle_t"}]
+  Return: vr::EIOBufferError
+  */
+  Close(ulBuffer: IOBufferHandle): IOBufferError {
+    const result = this.#CloseFn.call(
+      ulBuffer,
+    );
+
+    return result // as IOBufferError;
+  }
+
+  /*
+  Read
+  Parameters: [{"paramname":"ulBuffer","paramtype":"vr::IOBufferHandle_t"},{"paramname":"pDst","paramtype":"void *"},{"paramname":"unBytes","paramtype":"uint32_t"},{"paramname":"punRead","paramtype":"uint32_t *"}]
+  Return: vr::EIOBufferError
+  */
+  Read(ulBuffer: IOBufferHandle, pDst: Deno.PointerValue<unknown>, unBytes: number, punRead: Deno.PointerValue<number>): IOBufferError {
+    const result = this.#ReadFn.call(
       ulBuffer,
       pDst,
       unBytes,
       punRead,
     );
 
-    return result// as IOBufferError;
+    return result // as IOBufferError;
   }
 
   /*
@@ -15661,25 +15076,13 @@ export class IVRIOBuffer {
   Return: vr::EIOBufferError
   */
   Write(ulBuffer: IOBufferHandle, pSrc: Deno.PointerValue<unknown>, unBytes: number): IOBufferError {
-    if (this.ptr === null) throw new Error("IVRIOBuffer pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRIOBuffer>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(24))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "u64", //(vr::IOBufferHandle_t)  ulBuffer
-        "pointer", //(void *)  pSrc
-        "u32", //(uint32_t)  unBytes
-      ],
-      result: "i32"
-    });
-
-    const result = func.call(
+    const result = this.#WriteFn.call(
       ulBuffer,
       pSrc,
       unBytes,
     );
 
-    return result// as IOBufferError;
+    return result // as IOBufferError;
   }
 
   /*
@@ -15688,21 +15091,11 @@ export class IVRIOBuffer {
   Return: vr::PropertyContainerHandle_t
   */
   PropertyContainer(ulBuffer: IOBufferHandle): PropertyContainerHandle {
-    if (this.ptr === null) throw new Error("IVRIOBuffer pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRIOBuffer>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(32))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "u64", //(vr::IOBufferHandle_t)  ulBuffer
-      ],
-      result: "u64"
-    });
-
-    const result = func.call(
+    const result = this.#PropertyContainerFn.call(
       ulBuffer,
     );
 
-    return result// as PropertyContainerHandle;
+    return result // as PropertyContainerHandle;
   }
 
   /*
@@ -15711,63 +15104,34 @@ export class IVRIOBuffer {
   Return: bool
   */
   HasReaders(ulBuffer: IOBufferHandle): boolean {
-    if (this.ptr === null) throw new Error("IVRIOBuffer pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRIOBuffer>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(40))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "u64", //(vr::IOBufferHandle_t)  ulBuffer
-      ],
-      result: "bool"
-    });
-
-    const result = func.call(
+    const result = this.#HasReadersFn.call(
       ulBuffer,
     );
 
-    return result// as boolean;
+    return result // as boolean;
   }
 
 }
 
 export class IVRSpatialAnchors {
-  constructor(private ptr: Deno.PointerValue<IVRSpatialAnchors|unknown>) {}
+  readonly #CreateSpatialAnchorFromDescriptorFn: Deno.UnsafeFnPointer<any>;
+  readonly #CreateSpatialAnchorFromPoseFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetSpatialAnchorPoseFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetSpatialAnchorDescriptorFn: Deno.UnsafeFnPointer<any>;
 
-  /*
-  CreateSpatialAnchorFromDescriptor
-  Parameters: [{"paramname":"pchDescriptor","paramtype":"const char *"},{"paramname":"pHandleOut","paramtype":"vr::SpatialAnchorHandle_t *"}]
-  Return: vr::EVRSpatialAnchorError
-  */
-  CreateSpatialAnchorFromDescriptor(pchDescriptor: string, pHandleOut: Deno.PointerValue<SpatialAnchorHandle>): SpatialAnchorError {
+  constructor(private ptr: Deno.PointerValue<IVRSpatialAnchors|unknown>) {
     if (this.ptr === null) throw new Error("IVRSpatialAnchors pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSpatialAnchors>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(0))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const CreateSpatialAnchorFromDescriptorFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(0))!;
+    this.#CreateSpatialAnchorFromDescriptorFn = new Deno.UnsafeFnPointer(CreateSpatialAnchorFromDescriptorFuncPtr, {
       parameters: [
         "pointer", //(const char *)  pchDescriptor
         "pointer", //(vr::SpatialAnchorHandle_t *)  pHandleOut
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      Deno.UnsafePointer.of(new TextEncoder().encode(pchDescriptor + "\0")),
-      pHandleOut,
-    );
-
-    return result// as SpatialAnchorError;
-  }
-
-  /*
-  CreateSpatialAnchorFromPose
-  Parameters: [{"paramname":"unDeviceIndex","paramtype":"vr::TrackedDeviceIndex_t"},{"paramname":"eOrigin","paramtype":"vr::ETrackingUniverseOrigin"},{"paramname":"pPose","paramtype":"struct vr::SpatialAnchorPose_t *"},{"paramname":"pHandleOut","paramtype":"vr::SpatialAnchorHandle_t *"}]
-  Return: vr::EVRSpatialAnchorError
-  */
-  CreateSpatialAnchorFromPose(unDeviceIndex: TrackedDeviceIndex, eOrigin: TrackingUniverseOrigin, pPose: Deno.PointerValue<SpatialAnchorPose>, pHandleOut: Deno.PointerValue<SpatialAnchorHandle>): SpatialAnchorError {
-    if (this.ptr === null) throw new Error("IVRSpatialAnchors pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSpatialAnchors>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(8))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const CreateSpatialAnchorFromPoseFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(8))!;
+    this.#CreateSpatialAnchorFromPoseFn = new Deno.UnsafeFnPointer(CreateSpatialAnchorFromPoseFuncPtr, {
       parameters: [
         "u32", //(vr::TrackedDeviceIndex_t)  unDeviceIndex
         "i32", //(vr::ETrackingUniverseOrigin)  eOrigin
@@ -15776,15 +15140,54 @@ export class IVRSpatialAnchors {
       ],
       result: "i32"
     });
+    const GetSpatialAnchorPoseFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(16))!;
+    this.#GetSpatialAnchorPoseFn = new Deno.UnsafeFnPointer(GetSpatialAnchorPoseFuncPtr, {
+      parameters: [
+        "u32", //(vr::SpatialAnchorHandle_t)  unHandle
+        "i32", //(vr::ETrackingUniverseOrigin)  eOrigin
+        "pointer", //(struct vr::SpatialAnchorPose_t *)  pPoseOut
+      ],
+      result: "i32"
+    });
+    const GetSpatialAnchorDescriptorFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(24))!;
+    this.#GetSpatialAnchorDescriptorFn = new Deno.UnsafeFnPointer(GetSpatialAnchorDescriptorFuncPtr, {
+      parameters: [
+        "u32", //(vr::SpatialAnchorHandle_t)  unHandle
+        "pointer", //(char *)  pchDescriptorOut
+        "pointer", //(uint32_t *)  punDescriptorBufferLenInOut
+      ],
+      result: "i32"
+    });
+  }
 
-    const result = func.call(
+  /*
+  CreateSpatialAnchorFromDescriptor
+  Parameters: [{"paramname":"pchDescriptor","paramtype":"const char *"},{"paramname":"pHandleOut","paramtype":"vr::SpatialAnchorHandle_t *"}]
+  Return: vr::EVRSpatialAnchorError
+  */
+  CreateSpatialAnchorFromDescriptor(pchDescriptor: string, pHandleOut: Deno.PointerValue<SpatialAnchorHandle>): SpatialAnchorError {
+    const result = this.#CreateSpatialAnchorFromDescriptorFn.call(
+      Deno.UnsafePointer.of(new TextEncoder().encode(pchDescriptor + "\0")),
+      pHandleOut,
+    );
+
+    return result // as SpatialAnchorError;
+  }
+
+  /*
+  CreateSpatialAnchorFromPose
+  Parameters: [{"paramname":"unDeviceIndex","paramtype":"vr::TrackedDeviceIndex_t"},{"paramname":"eOrigin","paramtype":"vr::ETrackingUniverseOrigin"},{"paramname":"pPose","paramtype":"struct vr::SpatialAnchorPose_t *"},{"paramname":"pHandleOut","paramtype":"vr::SpatialAnchorHandle_t *"}]
+  Return: vr::EVRSpatialAnchorError
+  */
+  CreateSpatialAnchorFromPose(unDeviceIndex: TrackedDeviceIndex, eOrigin: TrackingUniverseOrigin, pPose: Deno.PointerValue<SpatialAnchorPose>, pHandleOut: Deno.PointerValue<SpatialAnchorHandle>): SpatialAnchorError {
+    const result = this.#CreateSpatialAnchorFromPoseFn.call(
       unDeviceIndex,
       eOrigin,
       pPose,
       pHandleOut,
     );
 
-    return result// as SpatialAnchorError;
+    return result // as SpatialAnchorError;
   }
 
   /*
@@ -15793,25 +15196,13 @@ export class IVRSpatialAnchors {
   Return: vr::EVRSpatialAnchorError
   */
   GetSpatialAnchorPose(unHandle: SpatialAnchorHandle, eOrigin: TrackingUniverseOrigin, pPoseOut: Deno.PointerValue<SpatialAnchorPose>): SpatialAnchorError {
-    if (this.ptr === null) throw new Error("IVRSpatialAnchors pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSpatialAnchors>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(16))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "u32", //(vr::SpatialAnchorHandle_t)  unHandle
-        "i32", //(vr::ETrackingUniverseOrigin)  eOrigin
-        "pointer", //(struct vr::SpatialAnchorPose_t *)  pPoseOut
-      ],
-      result: "i32"
-    });
-
-    const result = func.call(
+    const result = this.#GetSpatialAnchorPoseFn.call(
       unHandle,
       eOrigin,
       pPoseOut,
     );
 
-    return result// as SpatialAnchorError;
+    return result // as SpatialAnchorError;
   }
 
   /*
@@ -15820,113 +15211,50 @@ export class IVRSpatialAnchors {
   Return: vr::EVRSpatialAnchorError
   */
   GetSpatialAnchorDescriptor(unHandle: SpatialAnchorHandle, pchDescriptorOut: string, punDescriptorBufferLenInOut: Deno.PointerValue<number>): SpatialAnchorError {
-    if (this.ptr === null) throw new Error("IVRSpatialAnchors pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSpatialAnchors>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(24))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "u32", //(vr::SpatialAnchorHandle_t)  unHandle
-        "pointer", //(char *)  pchDescriptorOut
-        "pointer", //(uint32_t *)  punDescriptorBufferLenInOut
-      ],
-      result: "i32"
-    });
-
-    const result = func.call(
+    const result = this.#GetSpatialAnchorDescriptorFn.call(
       unHandle,
       Deno.UnsafePointer.of(new TextEncoder().encode(pchDescriptorOut + "\0")),
       punDescriptorBufferLenInOut,
     );
 
-    return result// as SpatialAnchorError;
+    return result // as SpatialAnchorError;
   }
 
 }
 
 export class IVRDebug {
-  constructor(private ptr: Deno.PointerValue<IVRDebug|unknown>) {}
+  readonly #EmitVrProfilerEventFn: Deno.UnsafeFnPointer<any>;
+  readonly #BeginVrProfilerEventFn: Deno.UnsafeFnPointer<any>;
+  readonly #FinishVrProfilerEventFn: Deno.UnsafeFnPointer<any>;
+  readonly #DriverDebugRequestFn: Deno.UnsafeFnPointer<any>;
 
-  /*
-  EmitVrProfilerEvent
-  Parameters: [{"paramname":"pchMessage","paramtype":"const char *"}]
-  Return: vr::EVRDebugError
-  */
-  EmitVrProfilerEvent(pchMessage: string): DebugError {
+  constructor(private ptr: Deno.PointerValue<IVRDebug|unknown>) {
     if (this.ptr === null) throw new Error("IVRDebug pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRDebug>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(0))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const EmitVrProfilerEventFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(0))!;
+    this.#EmitVrProfilerEventFn = new Deno.UnsafeFnPointer(EmitVrProfilerEventFuncPtr, {
       parameters: [
         "pointer", //(const char *)  pchMessage
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      Deno.UnsafePointer.of(new TextEncoder().encode(pchMessage + "\0")),
-    );
-
-    return result// as DebugError;
-  }
-
-  /*
-  BeginVrProfilerEvent
-  Parameters: [{"paramname":"pHandleOut","paramtype":"vr::VrProfilerEventHandle_t *"}]
-  Return: vr::EVRDebugError
-  */
-  BeginVrProfilerEvent(pHandleOut: Deno.PointerValue<VrProfilerEventHandle>): DebugError {
-    if (this.ptr === null) throw new Error("IVRDebug pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRDebug>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(8))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const BeginVrProfilerEventFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(8))!;
+    this.#BeginVrProfilerEventFn = new Deno.UnsafeFnPointer(BeginVrProfilerEventFuncPtr, {
       parameters: [
         "pointer", //(vr::VrProfilerEventHandle_t *)  pHandleOut
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      pHandleOut,
-    );
-
-    return result// as DebugError;
-  }
-
-  /*
-  FinishVrProfilerEvent
-  Parameters: [{"paramname":"hHandle","paramtype":"vr::VrProfilerEventHandle_t"},{"paramname":"pchMessage","paramtype":"const char *"}]
-  Return: vr::EVRDebugError
-  */
-  FinishVrProfilerEvent(hHandle: VrProfilerEventHandle, pchMessage: string): DebugError {
-    if (this.ptr === null) throw new Error("IVRDebug pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRDebug>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(16))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const FinishVrProfilerEventFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(16))!;
+    this.#FinishVrProfilerEventFn = new Deno.UnsafeFnPointer(FinishVrProfilerEventFuncPtr, {
       parameters: [
         "u64", //(vr::VrProfilerEventHandle_t)  hHandle
         "pointer", //(const char *)  pchMessage
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      hHandle,
-      Deno.UnsafePointer.of(new TextEncoder().encode(pchMessage + "\0")),
-    );
-
-    return result// as DebugError;
-  }
-
-  /*
-  DriverDebugRequest
-  Parameters: [{"paramname":"unDeviceIndex","paramtype":"vr::TrackedDeviceIndex_t"},{"paramname":"pchRequest","paramtype":"const char *"},{"paramname":"pchResponseBuffer","out_string":" ","paramtype":"char *"},{"paramname":"unResponseBufferSize","paramtype":"uint32_t"}]
-  Return: uint32_t
-  */
-  DriverDebugRequest(unDeviceIndex: TrackedDeviceIndex, pchRequest: string, pchResponseBuffer: string, unResponseBufferSize: number): number {
-    if (this.ptr === null) throw new Error("IVRDebug pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRDebug>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(24))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const DriverDebugRequestFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(24))!;
+    this.#DriverDebugRequestFn = new Deno.UnsafeFnPointer(DriverDebugRequestFuncPtr, {
       parameters: [
         "u32", //(vr::TrackedDeviceIndex_t)  unDeviceIndex
         "pointer", //(const char *)  pchRequest
@@ -15935,32 +15263,75 @@ export class IVRDebug {
       ],
       result: "u32"
     });
+  }
 
-    const result = func.call(
+  /*
+  EmitVrProfilerEvent
+  Parameters: [{"paramname":"pchMessage","paramtype":"const char *"}]
+  Return: vr::EVRDebugError
+  */
+  EmitVrProfilerEvent(pchMessage: string): DebugError {
+    const result = this.#EmitVrProfilerEventFn.call(
+      Deno.UnsafePointer.of(new TextEncoder().encode(pchMessage + "\0")),
+    );
+
+    return result // as DebugError;
+  }
+
+  /*
+  BeginVrProfilerEvent
+  Parameters: [{"paramname":"pHandleOut","paramtype":"vr::VrProfilerEventHandle_t *"}]
+  Return: vr::EVRDebugError
+  */
+  BeginVrProfilerEvent(pHandleOut: Deno.PointerValue<VrProfilerEventHandle>): DebugError {
+    const result = this.#BeginVrProfilerEventFn.call(
+      pHandleOut,
+    );
+
+    return result // as DebugError;
+  }
+
+  /*
+  FinishVrProfilerEvent
+  Parameters: [{"paramname":"hHandle","paramtype":"vr::VrProfilerEventHandle_t"},{"paramname":"pchMessage","paramtype":"const char *"}]
+  Return: vr::EVRDebugError
+  */
+  FinishVrProfilerEvent(hHandle: VrProfilerEventHandle, pchMessage: string): DebugError {
+    const result = this.#FinishVrProfilerEventFn.call(
+      hHandle,
+      Deno.UnsafePointer.of(new TextEncoder().encode(pchMessage + "\0")),
+    );
+
+    return result // as DebugError;
+  }
+
+  /*
+  DriverDebugRequest
+  Parameters: [{"paramname":"unDeviceIndex","paramtype":"vr::TrackedDeviceIndex_t"},{"paramname":"pchRequest","paramtype":"const char *"},{"paramname":"pchResponseBuffer","out_string":" ","paramtype":"char *"},{"paramname":"unResponseBufferSize","paramtype":"uint32_t"}]
+  Return: uint32_t
+  */
+  DriverDebugRequest(unDeviceIndex: TrackedDeviceIndex, pchRequest: string, pchResponseBuffer: string, unResponseBufferSize: number): number {
+    const result = this.#DriverDebugRequestFn.call(
       unDeviceIndex,
       Deno.UnsafePointer.of(new TextEncoder().encode(pchRequest + "\0")),
       Deno.UnsafePointer.of(new TextEncoder().encode(pchResponseBuffer + "\0")),
       unResponseBufferSize,
     );
 
-    return result// as number;
+    return result // as number;
   }
 
 }
 
 export class IVRNotifications {
-  constructor(private ptr: Deno.PointerValue<IVRNotifications|unknown>) {}
+  readonly #CreateNotificationFn: Deno.UnsafeFnPointer<any>;
+  readonly #RemoveNotificationFn: Deno.UnsafeFnPointer<any>;
 
-  /*
-  CreateNotification
-  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"ulUserValue","paramtype":"uint64_t"},{"paramname":"type","paramtype":"vr::EVRNotificationType"},{"paramname":"pchText","paramtype":"const char *"},{"paramname":"style","paramtype":"vr::EVRNotificationStyle"},{"paramname":"pImage","paramtype":"const struct vr::NotificationBitmap_t *"},{"paramname":"pNotificationId","paramtype":"vr::VRNotificationId *"}]
-  Return: vr::EVRNotificationError
-  */
-  CreateNotification(ulOverlayHandle: OverlayHandle, ulUserValue: bigint, type: NotificationType, pchText: string, style: NotificationStyle, pImage: Deno.PointerValue<NotificationBitmap>, pNotificationId: Deno.PointerValue<NotificationId>): NotificationError {
+  constructor(private ptr: Deno.PointerValue<IVRNotifications|unknown>) {
     if (this.ptr === null) throw new Error("IVRNotifications pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRNotifications>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(0))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const CreateNotificationFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(0))!;
+    this.#CreateNotificationFn = new Deno.UnsafeFnPointer(CreateNotificationFuncPtr, {
       parameters: [
         "u64", //(vr::VROverlayHandle_t)  ulOverlayHandle
         "u64", //(uint64_t)  ulUserValue
@@ -15972,8 +15343,22 @@ export class IVRNotifications {
       ],
       result: "i32"
     });
+    const RemoveNotificationFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(8))!;
+    this.#RemoveNotificationFn = new Deno.UnsafeFnPointer(RemoveNotificationFuncPtr, {
+      parameters: [
+        "u32", //(vr::VRNotificationId)  notificationId
+      ],
+      result: "i32"
+    });
+  }
 
-    const result = func.call(
+  /*
+  CreateNotification
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"ulUserValue","paramtype":"uint64_t"},{"paramname":"type","paramtype":"vr::EVRNotificationType"},{"paramname":"pchText","paramtype":"const char *"},{"paramname":"style","paramtype":"vr::EVRNotificationStyle"},{"paramname":"pImage","paramtype":"const struct vr::NotificationBitmap_t *"},{"paramname":"pNotificationId","paramtype":"vr::VRNotificationId *"}]
+  Return: vr::EVRNotificationError
+  */
+  CreateNotification(ulOverlayHandle: OverlayHandle, ulUserValue: bigint, type: NotificationType, pchText: string, style: NotificationStyle, pImage: Deno.PointerValue<NotificationBitmap>, pNotificationId: Deno.PointerValue<NotificationId>): NotificationError {
+    const result = this.#CreateNotificationFn.call(
       ulOverlayHandle,
       ulUserValue,
       type,
@@ -15983,7 +15368,7 @@ export class IVRNotifications {
       pNotificationId,
     );
 
-    return result// as NotificationError;
+    return result // as NotificationError;
   }
 
   /*
@@ -15992,38 +15377,26 @@ export class IVRNotifications {
   Return: vr::EVRNotificationError
   */
   RemoveNotification(notificationId: NotificationId): NotificationError {
-    if (this.ptr === null) throw new Error("IVRNotifications pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRNotifications>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(8))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "u32", //(vr::VRNotificationId)  notificationId
-      ],
-      result: "i32"
-    });
-
-    const result = func.call(
+    const result = this.#RemoveNotificationFn.call(
       notificationId,
     );
 
-    return result// as NotificationError;
+    return result // as NotificationError;
   }
 
 }
 
 export class IVRProperties {
-  constructor(private ptr: Deno.PointerValue<IVRProperties|unknown>) {}
+  readonly #ReadPropertyBatchFn: Deno.UnsafeFnPointer<any>;
+  readonly #WritePropertyBatchFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetPropErrorNameFromEnumFn: Deno.UnsafeFnPointer<any>;
+  readonly #TrackedDeviceToPropertyContainerFn: Deno.UnsafeFnPointer<any>;
 
-  /*
-  ReadPropertyBatch
-  Parameters: [{"paramname":"ulContainerHandle","paramtype":"vr::PropertyContainerHandle_t"},{"paramname":"pBatch","paramtype":"struct vr::PropertyRead_t *"},{"paramname":"unBatchEntryCount","paramtype":"uint32_t"}]
-  Return: vr::ETrackedPropertyError
-  */
-  ReadPropertyBatch(ulContainerHandle: PropertyContainerHandle, pBatch: Deno.PointerValue<PropertyRead>, unBatchEntryCount: number): TrackedPropertyError {
+  constructor(private ptr: Deno.PointerValue<IVRProperties|unknown>) {
     if (this.ptr === null) throw new Error("IVRProperties pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRProperties>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(0))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const ReadPropertyBatchFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(0))!;
+    this.#ReadPropertyBatchFn = new Deno.UnsafeFnPointer(ReadPropertyBatchFuncPtr, {
       parameters: [
         "u64", //(vr::PropertyContainerHandle_t)  ulContainerHandle
         "pointer", //(struct vr::PropertyRead_t *)  pBatch
@@ -16031,14 +15404,44 @@ export class IVRProperties {
       ],
       result: "i32"
     });
+    const WritePropertyBatchFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(8))!;
+    this.#WritePropertyBatchFn = new Deno.UnsafeFnPointer(WritePropertyBatchFuncPtr, {
+      parameters: [
+        "u64", //(vr::PropertyContainerHandle_t)  ulContainerHandle
+        "pointer", //(struct vr::PropertyWrite_t *)  pBatch
+        "u32", //(uint32_t)  unBatchEntryCount
+      ],
+      result: "i32"
+    });
+    const GetPropErrorNameFromEnumFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(16))!;
+    this.#GetPropErrorNameFromEnumFn = new Deno.UnsafeFnPointer(GetPropErrorNameFromEnumFuncPtr, {
+      parameters: [
+        "i32", //(vr::ETrackedPropertyError)  error
+      ],
+      result: "pointer"
+    });
+    const TrackedDeviceToPropertyContainerFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(24))!;
+    this.#TrackedDeviceToPropertyContainerFn = new Deno.UnsafeFnPointer(TrackedDeviceToPropertyContainerFuncPtr, {
+      parameters: [
+        "u32", //(vr::TrackedDeviceIndex_t)  nDevice
+      ],
+      result: "pointer"
+    });
+  }
 
-    const result = func.call(
+  /*
+  ReadPropertyBatch
+  Parameters: [{"paramname":"ulContainerHandle","paramtype":"vr::PropertyContainerHandle_t"},{"paramname":"pBatch","paramtype":"struct vr::PropertyRead_t *"},{"paramname":"unBatchEntryCount","paramtype":"uint32_t"}]
+  Return: vr::ETrackedPropertyError
+  */
+  ReadPropertyBatch(ulContainerHandle: PropertyContainerHandle, pBatch: Deno.PointerValue<PropertyRead>, unBatchEntryCount: number): TrackedPropertyError {
+    const result = this.#ReadPropertyBatchFn.call(
       ulContainerHandle,
       pBatch,
       unBatchEntryCount,
     );
 
-    return result// as TrackedPropertyError;
+    return result // as TrackedPropertyError;
   }
 
   /*
@@ -16047,25 +15450,13 @@ export class IVRProperties {
   Return: vr::ETrackedPropertyError
   */
   WritePropertyBatch(ulContainerHandle: PropertyContainerHandle, pBatch: Deno.PointerValue<PropertyWrite>, unBatchEntryCount: number): TrackedPropertyError {
-    if (this.ptr === null) throw new Error("IVRProperties pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRProperties>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(8))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "u64", //(vr::PropertyContainerHandle_t)  ulContainerHandle
-        "pointer", //(struct vr::PropertyWrite_t *)  pBatch
-        "u32", //(uint32_t)  unBatchEntryCount
-      ],
-      result: "i32"
-    });
-
-    const result = func.call(
+    const result = this.#WritePropertyBatchFn.call(
       ulContainerHandle,
       pBatch,
       unBatchEntryCount,
     );
 
-    return result// as TrackedPropertyError;
+    return result // as TrackedPropertyError;
   }
 
   /*
@@ -16074,21 +15465,12 @@ export class IVRProperties {
   Return: const char *
   */
   GetPropErrorNameFromEnum(error: TrackedPropertyError): string {
-    if (this.ptr === null) throw new Error("IVRProperties pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRProperties>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(16))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "i32", //(vr::ETrackedPropertyError)  error
-      ],
-      result: "pointer"
-    });
-
-    const result = func.call(
+    const result = this.#GetPropErrorNameFromEnumFn.call(
       error,
     );
 
-    return result.toString();
+    if (result === null) return ""; // Handle null pointer case
+    return Deno.UnsafePointerView.getCString(result);
   }
 
   /*
@@ -16097,38 +15479,26 @@ export class IVRProperties {
   Return: PropertyContainerHandle_t
   */
   TrackedDeviceToPropertyContainer(nDevice: TrackedDeviceIndex): PropertyContainerHandle {
-    if (this.ptr === null) throw new Error("IVRProperties pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRProperties>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(24))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "u32", //(vr::TrackedDeviceIndex_t)  nDevice
-      ],
-      result: "pointer"
-    });
-
-    const result = func.call(
+    const result = this.#TrackedDeviceToPropertyContainerFn.call(
       nDevice,
     );
 
-    return result// as unknown as PropertyContainerHandle;
+    return result // as unknown as PropertyContainerHandle;
   }
 
 }
 
 export class IVRPaths {
-  constructor(private ptr: Deno.PointerValue<IVRPaths|unknown>) {}
+  readonly #ReadPathBatchFn: Deno.UnsafeFnPointer<any>;
+  readonly #WritePathBatchFn: Deno.UnsafeFnPointer<any>;
+  readonly #StringToHandleFn: Deno.UnsafeFnPointer<any>;
+  readonly #HandleToStringFn: Deno.UnsafeFnPointer<any>;
 
-  /*
-  ReadPathBatch
-  Parameters: [{"paramname":"ulRootHandle","paramtype":"vr::PropertyContainerHandle_t"},{"paramname":"pBatch","paramtype":"struct vr::PathRead_t *"},{"paramname":"unBatchEntryCount","paramtype":"uint32_t"}]
-  Return: vr::ETrackedPropertyError
-  */
-  ReadPathBatch(ulRootHandle: PropertyContainerHandle, pBatch: Deno.PointerValue<PathRead>, unBatchEntryCount: number): TrackedPropertyError {
+  constructor(private ptr: Deno.PointerValue<IVRPaths|unknown>) {
     if (this.ptr === null) throw new Error("IVRPaths pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRPaths>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(0))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const ReadPathBatchFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(0))!;
+    this.#ReadPathBatchFn = new Deno.UnsafeFnPointer(ReadPathBatchFuncPtr, {
       parameters: [
         "u64", //(vr::PropertyContainerHandle_t)  ulRootHandle
         "pointer", //(struct vr::PathRead_t *)  pBatch
@@ -16136,26 +15506,8 @@ export class IVRPaths {
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      ulRootHandle,
-      pBatch,
-      unBatchEntryCount,
-    );
-
-    return result// as TrackedPropertyError;
-  }
-
-  /*
-  WritePathBatch
-  Parameters: [{"paramname":"ulRootHandle","paramtype":"vr::PropertyContainerHandle_t"},{"paramname":"pBatch","paramtype":"struct vr::PathWrite_t *"},{"paramname":"unBatchEntryCount","paramtype":"uint32_t"}]
-  Return: vr::ETrackedPropertyError
-  */
-  WritePathBatch(ulRootHandle: PropertyContainerHandle, pBatch: Deno.PointerValue<PathWrite>, unBatchEntryCount: number): TrackedPropertyError {
-    if (this.ptr === null) throw new Error("IVRPaths pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRPaths>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(8))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const WritePathBatchFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(8))!;
+    this.#WritePathBatchFn = new Deno.UnsafeFnPointer(WritePathBatchFuncPtr, {
       parameters: [
         "u64", //(vr::PropertyContainerHandle_t)  ulRootHandle
         "pointer", //(struct vr::PathWrite_t *)  pBatch
@@ -16163,51 +15515,16 @@ export class IVRPaths {
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      ulRootHandle,
-      pBatch,
-      unBatchEntryCount,
-    );
-
-    return result// as TrackedPropertyError;
-  }
-
-  /*
-  StringToHandle
-  Parameters: [{"paramname":"pHandle","paramtype":"vr::PathHandle_t *"},{"paramname":"pchPath","paramtype":"const char *"}]
-  Return: vr::ETrackedPropertyError
-  */
-  StringToHandle(pHandle: Deno.PointerValue<PathHandle>, pchPath: string): TrackedPropertyError {
-    if (this.ptr === null) throw new Error("IVRPaths pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRPaths>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(16))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const StringToHandleFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(16))!;
+    this.#StringToHandleFn = new Deno.UnsafeFnPointer(StringToHandleFuncPtr, {
       parameters: [
         "pointer", //(vr::PathHandle_t *)  pHandle
         "pointer", //(const char *)  pchPath
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      pHandle,
-      Deno.UnsafePointer.of(new TextEncoder().encode(pchPath + "\0")),
-    );
-
-    return result// as TrackedPropertyError;
-  }
-
-  /*
-  HandleToString
-  Parameters: [{"paramname":"pHandle","paramtype":"vr::PathHandle_t"},{"paramname":"pchBuffer","paramtype":"char *"},{"paramname":"unBufferSize","paramtype":"uint32_t"},{"paramname":"punBufferSizeUsed","paramtype":"uint32_t *"}]
-  Return: vr::ETrackedPropertyError
-  */
-  HandleToString(pHandle: PathHandle, pchBuffer: string, unBufferSize: number, punBufferSizeUsed: Deno.PointerValue<number>): TrackedPropertyError {
-    if (this.ptr === null) throw new Error("IVRPaths pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRPaths>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(24))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const HandleToStringFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(24))!;
+    this.#HandleToStringFn = new Deno.UnsafeFnPointer(HandleToStringFuncPtr, {
       parameters: [
         "u64", //(vr::PathHandle_t)  pHandle
         "pointer", //(char *)  pchBuffer
@@ -16216,32 +15533,86 @@ export class IVRPaths {
       ],
       result: "i32"
     });
+  }
 
-    const result = func.call(
+  /*
+  ReadPathBatch
+  Parameters: [{"paramname":"ulRootHandle","paramtype":"vr::PropertyContainerHandle_t"},{"paramname":"pBatch","paramtype":"struct vr::PathRead_t *"},{"paramname":"unBatchEntryCount","paramtype":"uint32_t"}]
+  Return: vr::ETrackedPropertyError
+  */
+  ReadPathBatch(ulRootHandle: PropertyContainerHandle, pBatch: Deno.PointerValue<PathRead>, unBatchEntryCount: number): TrackedPropertyError {
+    const result = this.#ReadPathBatchFn.call(
+      ulRootHandle,
+      pBatch,
+      unBatchEntryCount,
+    );
+
+    return result // as TrackedPropertyError;
+  }
+
+  /*
+  WritePathBatch
+  Parameters: [{"paramname":"ulRootHandle","paramtype":"vr::PropertyContainerHandle_t"},{"paramname":"pBatch","paramtype":"struct vr::PathWrite_t *"},{"paramname":"unBatchEntryCount","paramtype":"uint32_t"}]
+  Return: vr::ETrackedPropertyError
+  */
+  WritePathBatch(ulRootHandle: PropertyContainerHandle, pBatch: Deno.PointerValue<PathWrite>, unBatchEntryCount: number): TrackedPropertyError {
+    const result = this.#WritePathBatchFn.call(
+      ulRootHandle,
+      pBatch,
+      unBatchEntryCount,
+    );
+
+    return result // as TrackedPropertyError;
+  }
+
+  /*
+  StringToHandle
+  Parameters: [{"paramname":"pHandle","paramtype":"vr::PathHandle_t *"},{"paramname":"pchPath","paramtype":"const char *"}]
+  Return: vr::ETrackedPropertyError
+  */
+  StringToHandle(pHandle: Deno.PointerValue<PathHandle>, pchPath: string): TrackedPropertyError {
+    const result = this.#StringToHandleFn.call(
+      pHandle,
+      Deno.UnsafePointer.of(new TextEncoder().encode(pchPath + "\0")),
+    );
+
+    return result // as TrackedPropertyError;
+  }
+
+  /*
+  HandleToString
+  Parameters: [{"paramname":"pHandle","paramtype":"vr::PathHandle_t"},{"paramname":"pchBuffer","paramtype":"char *"},{"paramname":"unBufferSize","paramtype":"uint32_t"},{"paramname":"punBufferSizeUsed","paramtype":"uint32_t *"}]
+  Return: vr::ETrackedPropertyError
+  */
+  HandleToString(pHandle: PathHandle, pchBuffer: string, unBufferSize: number, punBufferSizeUsed: Deno.PointerValue<number>): TrackedPropertyError {
+    const result = this.#HandleToStringFn.call(
       pHandle,
       Deno.UnsafePointer.of(new TextEncoder().encode(pchBuffer + "\0")),
       unBufferSize,
       punBufferSizeUsed,
     );
 
-    return result// as TrackedPropertyError;
+    return result // as TrackedPropertyError;
   }
 
 }
 
 export class IVRBlockQueue {
-  constructor(private ptr: Deno.PointerValue<IVRBlockQueue|unknown>) {}
+  readonly #CreateFn: Deno.UnsafeFnPointer<any>;
+  readonly #ConnectFn: Deno.UnsafeFnPointer<any>;
+  readonly #DestroyFn: Deno.UnsafeFnPointer<any>;
+  readonly #AcquireWriteOnlyBlockFn: Deno.UnsafeFnPointer<any>;
+  readonly #ReleaseWriteOnlyBlockFn: Deno.UnsafeFnPointer<any>;
+  readonly #WaitAndAcquireReadOnlyBlockFn: Deno.UnsafeFnPointer<any>;
+  readonly #AcquireReadOnlyBlockFn: Deno.UnsafeFnPointer<any>;
+  readonly #ReleaseReadOnlyBlockFn: Deno.UnsafeFnPointer<any>;
+  readonly #QueueHasReaderFn: Deno.UnsafeFnPointer<any>;
 
-  /*
-  Create
-  Parameters: [{"paramname":"pulQueueHandle","paramtype":"vr::PropertyContainerHandle_t *"},{"paramname":"pchPath","paramtype":"const char *"},{"paramname":"unBlockDataSize","paramtype":"uint32_t"},{"paramname":"unBlockHeaderSize","paramtype":"uint32_t"},{"paramname":"unBlockCount","paramtype":"uint32_t"},{"paramname":"unFlags","paramtype":"uint32_t"}]
-  Return: vr::EBlockQueueError
-  */
-  Create(pulQueueHandle: Deno.PointerValue<PropertyContainerHandle>, pchPath: string, unBlockDataSize: number, unBlockHeaderSize: number, unBlockCount: number, unFlags: number): BlockQueueError {
+  constructor(private ptr: Deno.PointerValue<IVRBlockQueue|unknown>) {
     if (this.ptr === null) throw new Error("IVRBlockQueue pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRBlockQueue>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(0))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const CreateFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(0))!;
+    this.#CreateFn = new Deno.UnsafeFnPointer(CreateFuncPtr, {
       parameters: [
         "pointer", //(vr::PropertyContainerHandle_t *)  pulQueueHandle
         "pointer", //(const char *)  pchPath
@@ -16252,77 +15623,23 @@ export class IVRBlockQueue {
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      pulQueueHandle,
-      Deno.UnsafePointer.of(new TextEncoder().encode(pchPath + "\0")),
-      unBlockDataSize,
-      unBlockHeaderSize,
-      unBlockCount,
-      unFlags,
-    );
-
-    return result// as BlockQueueError;
-  }
-
-  /*
-  Connect
-  Parameters: [{"paramname":"pulQueueHandle","paramtype":"vr::PropertyContainerHandle_t *"},{"paramname":"pchPath","paramtype":"const char *"}]
-  Return: vr::EBlockQueueError
-  */
-  Connect(pulQueueHandle: Deno.PointerValue<PropertyContainerHandle>, pchPath: string): BlockQueueError {
-    if (this.ptr === null) throw new Error("IVRBlockQueue pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRBlockQueue>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(8))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const ConnectFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(8))!;
+    this.#ConnectFn = new Deno.UnsafeFnPointer(ConnectFuncPtr, {
       parameters: [
         "pointer", //(vr::PropertyContainerHandle_t *)  pulQueueHandle
         "pointer", //(const char *)  pchPath
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      pulQueueHandle,
-      Deno.UnsafePointer.of(new TextEncoder().encode(pchPath + "\0")),
-    );
-
-    return result// as BlockQueueError;
-  }
-
-  /*
-  Destroy
-  Parameters: [{"paramname":"ulQueueHandle","paramtype":"vr::PropertyContainerHandle_t"}]
-  Return: vr::EBlockQueueError
-  */
-  Destroy(ulQueueHandle: PropertyContainerHandle): BlockQueueError {
-    if (this.ptr === null) throw new Error("IVRBlockQueue pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRBlockQueue>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(16))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const DestroyFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(16))!;
+    this.#DestroyFn = new Deno.UnsafeFnPointer(DestroyFuncPtr, {
       parameters: [
         "u64", //(vr::PropertyContainerHandle_t)  ulQueueHandle
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      ulQueueHandle,
-    );
-
-    return result// as BlockQueueError;
-  }
-
-  /*
-  AcquireWriteOnlyBlock
-  Parameters: [{"paramname":"ulQueueHandle","paramtype":"vr::PropertyContainerHandle_t"},{"paramname":"pulBlockHandle","paramtype":"vr::PropertyContainerHandle_t *"},{"paramname":"ppvBuffer","paramtype":"void **"}]
-  Return: vr::EBlockQueueError
-  */
-  AcquireWriteOnlyBlock(ulQueueHandle: PropertyContainerHandle, pulBlockHandle: Deno.PointerValue<PropertyContainerHandle>, ppvBuffer: Deno.PointerValue<Deno.PointerValue<unknown>>): BlockQueueError {
-    if (this.ptr === null) throw new Error("IVRBlockQueue pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRBlockQueue>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(24))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const AcquireWriteOnlyBlockFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(24))!;
+    this.#AcquireWriteOnlyBlockFn = new Deno.UnsafeFnPointer(AcquireWriteOnlyBlockFuncPtr, {
       parameters: [
         "u64", //(vr::PropertyContainerHandle_t)  ulQueueHandle
         "pointer", //(vr::PropertyContainerHandle_t *)  pulBlockHandle
@@ -16330,51 +15647,16 @@ export class IVRBlockQueue {
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      ulQueueHandle,
-      pulBlockHandle,
-      ppvBuffer,
-    );
-
-    return result// as BlockQueueError;
-  }
-
-  /*
-  ReleaseWriteOnlyBlock
-  Parameters: [{"paramname":"ulQueueHandle","paramtype":"vr::PropertyContainerHandle_t"},{"paramname":"ulBlockHandle","paramtype":"vr::PropertyContainerHandle_t"}]
-  Return: vr::EBlockQueueError
-  */
-  ReleaseWriteOnlyBlock(ulQueueHandle: PropertyContainerHandle, ulBlockHandle: PropertyContainerHandle): BlockQueueError {
-    if (this.ptr === null) throw new Error("IVRBlockQueue pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRBlockQueue>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(32))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const ReleaseWriteOnlyBlockFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(32))!;
+    this.#ReleaseWriteOnlyBlockFn = new Deno.UnsafeFnPointer(ReleaseWriteOnlyBlockFuncPtr, {
       parameters: [
         "u64", //(vr::PropertyContainerHandle_t)  ulQueueHandle
         "u64", //(vr::PropertyContainerHandle_t)  ulBlockHandle
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      ulQueueHandle,
-      ulBlockHandle,
-    );
-
-    return result// as BlockQueueError;
-  }
-
-  /*
-  WaitAndAcquireReadOnlyBlock
-  Parameters: [{"paramname":"ulQueueHandle","paramtype":"vr::PropertyContainerHandle_t"},{"paramname":"pulBlockHandle","paramtype":"vr::PropertyContainerHandle_t *"},{"paramname":"ppvBuffer","paramtype":"const void **"},{"paramname":"eReadType","paramtype":"vr::EBlockQueueReadType"},{"paramname":"unTimeoutMs","paramtype":"uint32_t"}]
-  Return: vr::EBlockQueueError
-  */
-  WaitAndAcquireReadOnlyBlock(ulQueueHandle: PropertyContainerHandle, pulBlockHandle: Deno.PointerValue<PropertyContainerHandle>, ppvBuffer: Deno.PointerValue<Deno.PointerValue<unknown>>, eReadType: BlockQueueReadType, unTimeoutMs: number): BlockQueueError {
-    if (this.ptr === null) throw new Error("IVRBlockQueue pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRBlockQueue>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(40))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const WaitAndAcquireReadOnlyBlockFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(40))!;
+    this.#WaitAndAcquireReadOnlyBlockFn = new Deno.UnsafeFnPointer(WaitAndAcquireReadOnlyBlockFuncPtr, {
       parameters: [
         "u64", //(vr::PropertyContainerHandle_t)  ulQueueHandle
         "pointer", //(vr::PropertyContainerHandle_t *)  pulBlockHandle
@@ -16384,28 +15666,8 @@ export class IVRBlockQueue {
       ],
       result: "i32"
     });
-
-    const result = func.call(
-      ulQueueHandle,
-      pulBlockHandle,
-      ppvBuffer,
-      eReadType,
-      unTimeoutMs,
-    );
-
-    return result// as BlockQueueError;
-  }
-
-  /*
-  AcquireReadOnlyBlock
-  Parameters: [{"paramname":"ulQueueHandle","paramtype":"vr::PropertyContainerHandle_t"},{"paramname":"pulBlockHandle","paramtype":"vr::PropertyContainerHandle_t *"},{"paramname":"ppvBuffer","paramtype":"const void **"},{"paramname":"eReadType","paramtype":"vr::EBlockQueueReadType"}]
-  Return: vr::EBlockQueueError
-  */
-  AcquireReadOnlyBlock(ulQueueHandle: PropertyContainerHandle, pulBlockHandle: Deno.PointerValue<PropertyContainerHandle>, ppvBuffer: Deno.PointerValue<Deno.PointerValue<unknown>>, eReadType: BlockQueueReadType): BlockQueueError {
-    if (this.ptr === null) throw new Error("IVRBlockQueue pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRBlockQueue>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(48))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
+    const AcquireReadOnlyBlockFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(48))!;
+    this.#AcquireReadOnlyBlockFn = new Deno.UnsafeFnPointer(AcquireReadOnlyBlockFuncPtr, {
       parameters: [
         "u64", //(vr::PropertyContainerHandle_t)  ulQueueHandle
         "pointer", //(vr::PropertyContainerHandle_t *)  pulBlockHandle
@@ -16414,15 +15676,129 @@ export class IVRBlockQueue {
       ],
       result: "i32"
     });
+    const ReleaseReadOnlyBlockFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(56))!;
+    this.#ReleaseReadOnlyBlockFn = new Deno.UnsafeFnPointer(ReleaseReadOnlyBlockFuncPtr, {
+      parameters: [
+        "u64", //(vr::PropertyContainerHandle_t)  ulQueueHandle
+        "u64", //(vr::PropertyContainerHandle_t)  ulBlockHandle
+      ],
+      result: "i32"
+    });
+    const QueueHasReaderFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(64))!;
+    this.#QueueHasReaderFn = new Deno.UnsafeFnPointer(QueueHasReaderFuncPtr, {
+      parameters: [
+        "u64", //(vr::PropertyContainerHandle_t)  ulQueueHandle
+        "pointer", //(bool *)  pbHasReaders
+      ],
+      result: "i32"
+    });
+  }
 
-    const result = func.call(
+  /*
+  Create
+  Parameters: [{"paramname":"pulQueueHandle","paramtype":"vr::PropertyContainerHandle_t *"},{"paramname":"pchPath","paramtype":"const char *"},{"paramname":"unBlockDataSize","paramtype":"uint32_t"},{"paramname":"unBlockHeaderSize","paramtype":"uint32_t"},{"paramname":"unBlockCount","paramtype":"uint32_t"},{"paramname":"unFlags","paramtype":"uint32_t"}]
+  Return: vr::EBlockQueueError
+  */
+  Create(pulQueueHandle: Deno.PointerValue<PropertyContainerHandle>, pchPath: string, unBlockDataSize: number, unBlockHeaderSize: number, unBlockCount: number, unFlags: number): BlockQueueError {
+    const result = this.#CreateFn.call(
+      pulQueueHandle,
+      Deno.UnsafePointer.of(new TextEncoder().encode(pchPath + "\0")),
+      unBlockDataSize,
+      unBlockHeaderSize,
+      unBlockCount,
+      unFlags,
+    );
+
+    return result // as BlockQueueError;
+  }
+
+  /*
+  Connect
+  Parameters: [{"paramname":"pulQueueHandle","paramtype":"vr::PropertyContainerHandle_t *"},{"paramname":"pchPath","paramtype":"const char *"}]
+  Return: vr::EBlockQueueError
+  */
+  Connect(pulQueueHandle: Deno.PointerValue<PropertyContainerHandle>, pchPath: string): BlockQueueError {
+    const result = this.#ConnectFn.call(
+      pulQueueHandle,
+      Deno.UnsafePointer.of(new TextEncoder().encode(pchPath + "\0")),
+    );
+
+    return result // as BlockQueueError;
+  }
+
+  /*
+  Destroy
+  Parameters: [{"paramname":"ulQueueHandle","paramtype":"vr::PropertyContainerHandle_t"}]
+  Return: vr::EBlockQueueError
+  */
+  Destroy(ulQueueHandle: PropertyContainerHandle): BlockQueueError {
+    const result = this.#DestroyFn.call(
+      ulQueueHandle,
+    );
+
+    return result // as BlockQueueError;
+  }
+
+  /*
+  AcquireWriteOnlyBlock
+  Parameters: [{"paramname":"ulQueueHandle","paramtype":"vr::PropertyContainerHandle_t"},{"paramname":"pulBlockHandle","paramtype":"vr::PropertyContainerHandle_t *"},{"paramname":"ppvBuffer","paramtype":"void **"}]
+  Return: vr::EBlockQueueError
+  */
+  AcquireWriteOnlyBlock(ulQueueHandle: PropertyContainerHandle, pulBlockHandle: Deno.PointerValue<PropertyContainerHandle>, ppvBuffer: Deno.PointerValue<Deno.PointerValue<unknown>>): BlockQueueError {
+    const result = this.#AcquireWriteOnlyBlockFn.call(
+      ulQueueHandle,
+      pulBlockHandle,
+      ppvBuffer,
+    );
+
+    return result // as BlockQueueError;
+  }
+
+  /*
+  ReleaseWriteOnlyBlock
+  Parameters: [{"paramname":"ulQueueHandle","paramtype":"vr::PropertyContainerHandle_t"},{"paramname":"ulBlockHandle","paramtype":"vr::PropertyContainerHandle_t"}]
+  Return: vr::EBlockQueueError
+  */
+  ReleaseWriteOnlyBlock(ulQueueHandle: PropertyContainerHandle, ulBlockHandle: PropertyContainerHandle): BlockQueueError {
+    const result = this.#ReleaseWriteOnlyBlockFn.call(
+      ulQueueHandle,
+      ulBlockHandle,
+    );
+
+    return result // as BlockQueueError;
+  }
+
+  /*
+  WaitAndAcquireReadOnlyBlock
+  Parameters: [{"paramname":"ulQueueHandle","paramtype":"vr::PropertyContainerHandle_t"},{"paramname":"pulBlockHandle","paramtype":"vr::PropertyContainerHandle_t *"},{"paramname":"ppvBuffer","paramtype":"const void **"},{"paramname":"eReadType","paramtype":"vr::EBlockQueueReadType"},{"paramname":"unTimeoutMs","paramtype":"uint32_t"}]
+  Return: vr::EBlockQueueError
+  */
+  WaitAndAcquireReadOnlyBlock(ulQueueHandle: PropertyContainerHandle, pulBlockHandle: Deno.PointerValue<PropertyContainerHandle>, ppvBuffer: Deno.PointerValue<Deno.PointerValue<unknown>>, eReadType: BlockQueueReadType, unTimeoutMs: number): BlockQueueError {
+    const result = this.#WaitAndAcquireReadOnlyBlockFn.call(
+      ulQueueHandle,
+      pulBlockHandle,
+      ppvBuffer,
+      eReadType,
+      unTimeoutMs,
+    );
+
+    return result // as BlockQueueError;
+  }
+
+  /*
+  AcquireReadOnlyBlock
+  Parameters: [{"paramname":"ulQueueHandle","paramtype":"vr::PropertyContainerHandle_t"},{"paramname":"pulBlockHandle","paramtype":"vr::PropertyContainerHandle_t *"},{"paramname":"ppvBuffer","paramtype":"const void **"},{"paramname":"eReadType","paramtype":"vr::EBlockQueueReadType"}]
+  Return: vr::EBlockQueueError
+  */
+  AcquireReadOnlyBlock(ulQueueHandle: PropertyContainerHandle, pulBlockHandle: Deno.PointerValue<PropertyContainerHandle>, ppvBuffer: Deno.PointerValue<Deno.PointerValue<unknown>>, eReadType: BlockQueueReadType): BlockQueueError {
+    const result = this.#AcquireReadOnlyBlockFn.call(
       ulQueueHandle,
       pulBlockHandle,
       ppvBuffer,
       eReadType,
     );
 
-    return result// as BlockQueueError;
+    return result // as BlockQueueError;
   }
 
   /*
@@ -16431,23 +15807,12 @@ export class IVRBlockQueue {
   Return: vr::EBlockQueueError
   */
   ReleaseReadOnlyBlock(ulQueueHandle: PropertyContainerHandle, ulBlockHandle: PropertyContainerHandle): BlockQueueError {
-    if (this.ptr === null) throw new Error("IVRBlockQueue pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRBlockQueue>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(56))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "u64", //(vr::PropertyContainerHandle_t)  ulQueueHandle
-        "u64", //(vr::PropertyContainerHandle_t)  ulBlockHandle
-      ],
-      result: "i32"
-    });
-
-    const result = func.call(
+    const result = this.#ReleaseReadOnlyBlockFn.call(
       ulQueueHandle,
       ulBlockHandle,
     );
 
-    return result// as BlockQueueError;
+    return result // as BlockQueueError;
   }
 
   /*
@@ -16456,23 +15821,12 @@ export class IVRBlockQueue {
   Return: vr::EBlockQueueError
   */
   QueueHasReader(ulQueueHandle: PropertyContainerHandle, pbHasReaders: Deno.PointerValue<boolean>): BlockQueueError {
-    if (this.ptr === null) throw new Error("IVRBlockQueue pointer is null");
-    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRBlockQueue>);
-    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(64))!;
-    const func = new Deno.UnsafeFnPointer(funcPtr, {
-      parameters: [
-        "u64", //(vr::PropertyContainerHandle_t)  ulQueueHandle
-        "pointer", //(bool *)  pbHasReaders
-      ],
-      result: "i32"
-    });
-
-    const result = func.call(
+    const result = this.#QueueHasReaderFn.call(
       ulQueueHandle,
       pbHasReaders,
     );
 
-    return result// as BlockQueueError;
+    return result // as BlockQueueError;
   }
 
 }

@@ -12,12 +12,12 @@ async function main() {
     throw new Error("API was not object");
   }
   let output = "";
-  output += await generateEntrypoints();
-  output += await generateTypes(api.typedefs, api.consts);
-  output += await generateEnums(api.enums);
-  output += await generateStructs(api.structs);
-  output += await generateByteTypeStructs(api.structs, api.typedefs);
-  output += await generateMethods(api.methods, api.typedefs, api.enums);
+  output += generateEntrypoints();
+  output += generateTypes(api.typedefs, api.consts);
+  output += generateEnums(api.enums);
+  output += generateStructs(api.structs);
+  output += generateByteTypeStructs(api.structs, api.typedefs);
+  output += generateMethods(api.methods, api.typedefs, api.enums);
 
   await Deno.writeTextFile("openvr_bindings.ts", output);
   await Deno.writeTextFile("test/openvr_bindings.ts", output);
@@ -613,10 +613,44 @@ function generateMethods(methods: any[], defs: any[], enums: any[]) {
   for (const iface of INTERFACE_NAMES) {
     const ifaceTrim = iface.replace("vr::", "");
     output += `export class ${ifaceTrim} {\n`;
-    output += `  constructor(private ptr: Deno.PointerValue<${ifaceTrim}|unknown>) {}\n\n`;
+
+    // Add private properties for function pointers
+    for (const meth of methods) {
+      if (meth.classname !== iface) continue;
+      const methName = meth.methodname;
+      output += `  readonly #${methName}Fn: Deno.UnsafeFnPointer<any>;\n`;
+    }
+    output += `\n`;
+
+    // Constructor
+    output += `  constructor(private ptr: Deno.PointerValue<${ifaceTrim}|unknown>) {\n`;
+    output += `    if (this.ptr === null) throw new Error("${ifaceTrim} pointer is null");\n`;
+    output += `    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<${ifaceTrim}>);\n`;
 
     let methodIndex = 0;
+    for (const meth of methods) {
+      if (meth.classname !== iface) continue;
+      const methName = meth.methodname;
+      const methParams = meth.params;
+      const methRet = meth.returntype;
 
+      output += `    const ${methName}FuncPtr = Deno.UnsafePointer.create(view.getBigUint64(${methodIndex * 8}))!;\n`;
+      output += `    this.#${methName}Fn = new Deno.UnsafeFnPointer(${methName}FuncPtr, {\n`;
+      output += `      parameters: [\n`;
+      if (methParams) {
+        for (const param of methParams) {
+          const ffiType = getFfiType(param.paramtype, defs, enums);
+          output += `        "${ffiType}", //(${param.paramtype})  ${param.paramname}\n`;
+        }
+      }
+      output += `      ],\n`;
+      output += `      result: "${getFfiType(methRet, defs, enums)}"\n`;
+      output += `    });\n`;
+      methodIndex++;
+    }
+    output += `  }\n\n`; // End constructor
+
+    // Methods
     for (const meth of methods) {
       if (meth.classname !== iface) continue;
       const methName = meth.methodname;
@@ -647,32 +681,9 @@ function generateMethods(methods: any[], defs: any[], enums: any[]) {
         output += `): ${retType} {\n`;
       }
 
-      // Add method implementation
-      output += `    if (this.ptr === null) throw new Error("${ifaceTrim} pointer is null");\n`;
-
-      output += `    const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<${ifaceTrim}>);\n`;
-
-
-      output += `    const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(${methodIndex * 8}))!;\n`;
-
-
-
-      output += `    const func = new Deno.UnsafeFnPointer(funcPtr, {\n`;
-      output += `      parameters: [\n`;
-
-      if (methParams) {
-        for (const param of methParams) {
-          const ffiType = getFfiType(param.paramtype, defs, enums);
-          output += `        "${ffiType}", //(${param.paramtype})  ${param.paramname}\n`;
-        }
-      }
-      output += `      ],\n`;
-      output += `      result: "${getFfiType(methRet, defs, enums)}"\n`;
-      output += `    });\n\n`;
-
-      // Call the function
-      if (methRet == "void") output += `    const _result = func.call(\n`;
-      else output += `    const result = func.call(\n`;
+      // Call the function using the pre-defined function pointer
+      if (methRet == "void") output += `    const _result = this.#${methName}Fn.call(\n`;
+      else output += `    const result = this.#${methName}Fn.call(\n`;
 
       if (methParams) {
         for (const param of methParams) {
@@ -682,6 +693,7 @@ function generateMethods(methods: any[], defs: any[], enums: any[]) {
           } else if (typeMapping[param.paramtype]?.deno === "number") {
             output += `      ${param.paramname},\n`;
           } else {
+            // Assume pointers or other types are passed directly
             output += `      ${param.paramname},\n`;
           }
         }
@@ -692,17 +704,18 @@ function generateMethods(methods: any[], defs: any[], enums: any[]) {
       if (retType !== "void") {
         const ffiType = getFfiType(methRet, defs, enums);
         if (retType == "string") {
-          output += `    return result.toString();\n`;
+          // Assuming the pointer returned is a C string (null-terminated)
+          output += `    if (result === null) return ""; // Handle null pointer case\n`;
+          output += `    return Deno.UnsafePointerView.getCString(result);\n`;
         }
         else if (ffiType === "pointer") {
-          output += `    return result// as unknown as ${retType};\n`;
+          output += `    return result // as unknown as ${retType};\n`;
         } else {
-          output += `    return result// as ${retType};\n`;
+          output += `    return result // as ${retType};\n`;
         }
       }
 
       output += "  }\n\n";
-      methodIndex++;
     }
     output += "}\n\n";
   }
@@ -712,7 +725,7 @@ function generateMethods(methods: any[], defs: any[], enums: any[]) {
 
 //#endregion
 
-async function generateEntrypoints() {
+function generateEntrypoints() {
   const entrypoints = `
 import { fromFileUrl } from "jsr:@std/path/windows/from-file-url";
 import { join } from "jsr:@std/path";
