@@ -6874,52 +6874,52 @@ export const PathReadStruct = new SizedStruct({
 
 //#region Classes
 export class IVRSystem {
-  readonly #GetRecommendedRenderTargetSizeFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetProjectionMatrixFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetProjectionRawFn: Deno.UnsafeFnPointer<any>;
-  readonly #ComputeDistortionFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetEyeToHeadTransformFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetTimeSinceLastVsyncFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetD3D9AdapterIndexFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetDXGIOutputInfoFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetOutputDeviceFn: Deno.UnsafeFnPointer<any>;
-  readonly #IsDisplayOnDesktopFn: Deno.UnsafeFnPointer<any>;
-  readonly #SetDisplayVisibilityFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetDeviceToAbsoluteTrackingPoseFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetSeatedZeroPoseToStandingAbsoluteTrackingPoseFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetRawZeroPoseToStandingAbsoluteTrackingPoseFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetSortedTrackedDeviceIndicesOfClassFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetTrackedDeviceActivityLevelFn: Deno.UnsafeFnPointer<any>;
-  readonly #ApplyTransformFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetTrackedDeviceIndexForControllerRoleFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetControllerRoleForTrackedDeviceIndexFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetTrackedDeviceClassFn: Deno.UnsafeFnPointer<any>;
-  readonly #IsTrackedDeviceConnectedFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetBoolTrackedDevicePropertyFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetFloatTrackedDevicePropertyFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetInt32TrackedDevicePropertyFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetUint64TrackedDevicePropertyFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetMatrix34TrackedDevicePropertyFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetArrayTrackedDevicePropertyFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetStringTrackedDevicePropertyFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetPropErrorNameFromEnumFn: Deno.UnsafeFnPointer<any>;
-  readonly #PollNextEventFn: Deno.UnsafeFnPointer<any>;
-  readonly #PollNextEventWithPoseFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetEventTypeNameFromEnumFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetHiddenAreaMeshFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetControllerStateFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetControllerStateWithPoseFn: Deno.UnsafeFnPointer<any>;
-  readonly #TriggerHapticPulseFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetButtonIdNameFromEnumFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetControllerAxisTypeNameFromEnumFn: Deno.UnsafeFnPointer<any>;
-  readonly #IsInputAvailableFn: Deno.UnsafeFnPointer<any>;
-  readonly #IsSteamVRDrawingControllersFn: Deno.UnsafeFnPointer<any>;
-  readonly #ShouldApplicationPauseFn: Deno.UnsafeFnPointer<any>;
-  readonly #ShouldApplicationReduceRenderingWorkFn: Deno.UnsafeFnPointer<any>;
-  readonly #PerformFirmwareUpdateFn: Deno.UnsafeFnPointer<any>;
-  readonly #AcknowledgeQuit_ExitingFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetAppContainerFilePathsFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetRuntimeVersionFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetRecommendedRenderTargetSizeFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetProjectionMatrixFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetProjectionRawFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #ComputeDistortionFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetEyeToHeadTransformFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetTimeSinceLastVsyncFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetD3D9AdapterIndexFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetDXGIOutputInfoFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetOutputDeviceFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #IsDisplayOnDesktopFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #SetDisplayVisibilityFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetDeviceToAbsoluteTrackingPoseFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetSeatedZeroPoseToStandingAbsoluteTrackingPoseFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetRawZeroPoseToStandingAbsoluteTrackingPoseFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetSortedTrackedDeviceIndicesOfClassFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetTrackedDeviceActivityLevelFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #ApplyTransformFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetTrackedDeviceIndexForControllerRoleFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetControllerRoleForTrackedDeviceIndexFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetTrackedDeviceClassFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #IsTrackedDeviceConnectedFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetBoolTrackedDevicePropertyFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetFloatTrackedDevicePropertyFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetInt32TrackedDevicePropertyFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetUint64TrackedDevicePropertyFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetMatrix34TrackedDevicePropertyFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetArrayTrackedDevicePropertyFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetStringTrackedDevicePropertyFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetPropErrorNameFromEnumFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #PollNextEventFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #PollNextEventWithPoseFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetEventTypeNameFromEnumFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetHiddenAreaMeshFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetControllerStateFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetControllerStateWithPoseFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #TriggerHapticPulseFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetButtonIdNameFromEnumFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetControllerAxisTypeNameFromEnumFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #IsInputAvailableFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #IsSteamVRDrawingControllersFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #ShouldApplicationPauseFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #ShouldApplicationReduceRenderingWorkFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #PerformFirmwareUpdateFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #AcknowledgeQuit_ExitingFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetAppContainerFilePathsFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetRuntimeVersionFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
 
   constructor(private ptr: Deno.PointerValue<IVRSystem|unknown>) {
     if (this.ptr === null) throw new Error("IVRSystem pointer is null");
@@ -7980,15 +7980,15 @@ export class IVRSystem {
 }
 
 export class IVRChaperone {
-  readonly #GetCalibrationStateFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetPlayAreaSizeFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetPlayAreaRectFn: Deno.UnsafeFnPointer<any>;
-  readonly #ReloadInfoFn: Deno.UnsafeFnPointer<any>;
-  readonly #SetSceneColorFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetBoundsColorFn: Deno.UnsafeFnPointer<any>;
-  readonly #AreBoundsVisibleFn: Deno.UnsafeFnPointer<any>;
-  readonly #ForceBoundsVisibleFn: Deno.UnsafeFnPointer<any>;
-  readonly #ResetZeroPoseFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetCalibrationStateFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetPlayAreaSizeFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetPlayAreaRectFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #ReloadInfoFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #SetSceneColorFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetBoundsColorFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #AreBoundsVisibleFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #ForceBoundsVisibleFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #ResetZeroPoseFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
 
   constructor(private ptr: Deno.PointerValue<IVRChaperone|unknown>) {
     if (this.ptr === null) throw new Error("IVRChaperone pointer is null");
@@ -8028,7 +8028,7 @@ export class IVRChaperone {
     // @ts-expect-error - not fixing these
     this.#SetSceneColorFn = new Deno.UnsafeFnPointer(SetSceneColorFuncPtr, {
       parameters: [
-        "pointer", //(struct vr::HmdColor_t)  color
+        "pointer", //(struct vr::HmdColor_t *)  color
       ],
       result: "void"
     });
@@ -8120,10 +8120,10 @@ export class IVRChaperone {
 
   /*
   SetSceneColor
-  Parameters: [{"paramname":"color","paramtype":"struct vr::HmdColor_t"}]
+  Parameters: [{"paramname":"color","paramtype":"struct vr::HmdColor_t *"}]
   Return: void
   */
-  SetSceneColor(color: HmdColor): void {
+  SetSceneColor(color: Deno.PointerValue<HmdColor>): void {
     const _result = this.#SetSceneColorFn.call(
       color,
     );
@@ -8184,26 +8184,26 @@ export class IVRChaperone {
 }
 
 export class IVRChaperoneSetup {
-  readonly #CommitWorkingCopyFn: Deno.UnsafeFnPointer<any>;
-  readonly #RevertWorkingCopyFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetWorkingPlayAreaSizeFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetWorkingPlayAreaRectFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetWorkingCollisionBoundsInfoFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetLiveCollisionBoundsInfoFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetWorkingSeatedZeroPoseToRawTrackingPoseFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetWorkingStandingZeroPoseToRawTrackingPoseFn: Deno.UnsafeFnPointer<any>;
-  readonly #SetWorkingPlayAreaSizeFn: Deno.UnsafeFnPointer<any>;
-  readonly #SetWorkingCollisionBoundsInfoFn: Deno.UnsafeFnPointer<any>;
-  readonly #SetWorkingPerimeterFn: Deno.UnsafeFnPointer<any>;
-  readonly #SetWorkingSeatedZeroPoseToRawTrackingPoseFn: Deno.UnsafeFnPointer<any>;
-  readonly #SetWorkingStandingZeroPoseToRawTrackingPoseFn: Deno.UnsafeFnPointer<any>;
-  readonly #ReloadFromDiskFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetLiveSeatedZeroPoseToRawTrackingPoseFn: Deno.UnsafeFnPointer<any>;
-  readonly #ExportLiveToBufferFn: Deno.UnsafeFnPointer<any>;
-  readonly #ImportFromBufferToWorkingFn: Deno.UnsafeFnPointer<any>;
-  readonly #ShowWorkingSetPreviewFn: Deno.UnsafeFnPointer<any>;
-  readonly #HideWorkingSetPreviewFn: Deno.UnsafeFnPointer<any>;
-  readonly #RoomSetupStartingFn: Deno.UnsafeFnPointer<any>;
+  readonly #CommitWorkingCopyFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #RevertWorkingCopyFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetWorkingPlayAreaSizeFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetWorkingPlayAreaRectFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetWorkingCollisionBoundsInfoFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetLiveCollisionBoundsInfoFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetWorkingSeatedZeroPoseToRawTrackingPoseFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetWorkingStandingZeroPoseToRawTrackingPoseFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #SetWorkingPlayAreaSizeFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #SetWorkingCollisionBoundsInfoFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #SetWorkingPerimeterFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #SetWorkingSeatedZeroPoseToRawTrackingPoseFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #SetWorkingStandingZeroPoseToRawTrackingPoseFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #ReloadFromDiskFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetLiveSeatedZeroPoseToRawTrackingPoseFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #ExportLiveToBufferFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #ImportFromBufferToWorkingFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #ShowWorkingSetPreviewFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #HideWorkingSetPreviewFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #RoomSetupStartingFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
 
   constructor(private ptr: Deno.PointerValue<IVRChaperoneSetup|unknown>) {
     if (this.ptr === null) throw new Error("IVRChaperoneSetup pointer is null");
@@ -8631,58 +8631,58 @@ export class IVRChaperoneSetup {
 }
 
 export class IVRCompositor {
-  readonly #SetTrackingSpaceFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetTrackingSpaceFn: Deno.UnsafeFnPointer<any>;
-  readonly #WaitGetPosesFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetLastPosesFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetLastPoseForTrackedDeviceIndexFn: Deno.UnsafeFnPointer<any>;
-  readonly #SubmitFn: Deno.UnsafeFnPointer<any>;
-  readonly #SubmitWithArrayIndexFn: Deno.UnsafeFnPointer<any>;
-  readonly #ClearLastSubmittedFrameFn: Deno.UnsafeFnPointer<any>;
-  readonly #PostPresentHandoffFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetFrameTimingFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetFrameTimingsFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetFrameTimeRemainingFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetCumulativeStatsFn: Deno.UnsafeFnPointer<any>;
-  readonly #FadeToColorFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetCurrentFadeColorFn: Deno.UnsafeFnPointer<any>;
-  readonly #FadeGridFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetCurrentGridAlphaFn: Deno.UnsafeFnPointer<any>;
-  readonly #SetSkyboxOverrideFn: Deno.UnsafeFnPointer<any>;
-  readonly #ClearSkyboxOverrideFn: Deno.UnsafeFnPointer<any>;
-  readonly #CompositorBringToFrontFn: Deno.UnsafeFnPointer<any>;
-  readonly #CompositorGoToBackFn: Deno.UnsafeFnPointer<any>;
-  readonly #CompositorQuitFn: Deno.UnsafeFnPointer<any>;
-  readonly #IsFullscreenFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetCurrentSceneFocusProcessFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetLastFrameRendererFn: Deno.UnsafeFnPointer<any>;
-  readonly #CanRenderSceneFn: Deno.UnsafeFnPointer<any>;
-  readonly #ShowMirrorWindowFn: Deno.UnsafeFnPointer<any>;
-  readonly #HideMirrorWindowFn: Deno.UnsafeFnPointer<any>;
-  readonly #IsMirrorWindowVisibleFn: Deno.UnsafeFnPointer<any>;
-  readonly #CompositorDumpImagesFn: Deno.UnsafeFnPointer<any>;
-  readonly #ShouldAppRenderWithLowResourcesFn: Deno.UnsafeFnPointer<any>;
-  readonly #ForceInterleavedReprojectionOnFn: Deno.UnsafeFnPointer<any>;
-  readonly #ForceReconnectProcessFn: Deno.UnsafeFnPointer<any>;
-  readonly #SuspendRenderingFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetMirrorTextureD3D11Fn: Deno.UnsafeFnPointer<any>;
-  readonly #ReleaseMirrorTextureD3D11Fn: Deno.UnsafeFnPointer<any>;
-  readonly #GetMirrorTextureGLFn: Deno.UnsafeFnPointer<any>;
-  readonly #ReleaseSharedGLTextureFn: Deno.UnsafeFnPointer<any>;
-  readonly #LockGLSharedTextureForAccessFn: Deno.UnsafeFnPointer<any>;
-  readonly #UnlockGLSharedTextureForAccessFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetVulkanInstanceExtensionsRequiredFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetVulkanDeviceExtensionsRequiredFn: Deno.UnsafeFnPointer<any>;
-  readonly #SetExplicitTimingModeFn: Deno.UnsafeFnPointer<any>;
-  readonly #SubmitExplicitTimingDataFn: Deno.UnsafeFnPointer<any>;
-  readonly #IsMotionSmoothingEnabledFn: Deno.UnsafeFnPointer<any>;
-  readonly #IsMotionSmoothingSupportedFn: Deno.UnsafeFnPointer<any>;
-  readonly #IsCurrentSceneFocusAppLoadingFn: Deno.UnsafeFnPointer<any>;
-  readonly #SetStageOverride_AsyncFn: Deno.UnsafeFnPointer<any>;
-  readonly #ClearStageOverrideFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetCompositorBenchmarkResultsFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetLastPosePredictionIDsFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetPosesForFrameFn: Deno.UnsafeFnPointer<any>;
+  readonly #SetTrackingSpaceFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetTrackingSpaceFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #WaitGetPosesFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetLastPosesFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetLastPoseForTrackedDeviceIndexFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #SubmitFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #SubmitWithArrayIndexFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #ClearLastSubmittedFrameFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #PostPresentHandoffFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetFrameTimingFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetFrameTimingsFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetFrameTimeRemainingFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetCumulativeStatsFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #FadeToColorFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetCurrentFadeColorFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #FadeGridFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetCurrentGridAlphaFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #SetSkyboxOverrideFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #ClearSkyboxOverrideFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #CompositorBringToFrontFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #CompositorGoToBackFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #CompositorQuitFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #IsFullscreenFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetCurrentSceneFocusProcessFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetLastFrameRendererFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #CanRenderSceneFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #ShowMirrorWindowFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #HideMirrorWindowFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #IsMirrorWindowVisibleFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #CompositorDumpImagesFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #ShouldAppRenderWithLowResourcesFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #ForceInterleavedReprojectionOnFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #ForceReconnectProcessFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #SuspendRenderingFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetMirrorTextureD3D11Fn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #ReleaseMirrorTextureD3D11Fn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetMirrorTextureGLFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #ReleaseSharedGLTextureFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #LockGLSharedTextureForAccessFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #UnlockGLSharedTextureForAccessFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetVulkanInstanceExtensionsRequiredFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetVulkanDeviceExtensionsRequiredFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #SetExplicitTimingModeFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #SubmitExplicitTimingDataFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #IsMotionSmoothingEnabledFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #IsMotionSmoothingSupportedFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #IsCurrentSceneFocusAppLoadingFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #SetStageOverride_AsyncFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #ClearStageOverrideFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetCompositorBenchmarkResultsFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetLastPosePredictionIDsFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetPosesForFrameFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
 
   constructor(private ptr: Deno.PointerValue<IVRCompositor|unknown>) {
     if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
@@ -9795,15 +9795,15 @@ export class IVRCompositor {
 }
 
 export class IVRHeadsetView {
-  readonly #SetHeadsetViewSizeFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetHeadsetViewSizeFn: Deno.UnsafeFnPointer<any>;
-  readonly #SetHeadsetViewModeFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetHeadsetViewModeFn: Deno.UnsafeFnPointer<any>;
-  readonly #SetHeadsetViewCroppedFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetHeadsetViewCroppedFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetHeadsetViewAspectRatioFn: Deno.UnsafeFnPointer<any>;
-  readonly #SetHeadsetViewBlendRangeFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetHeadsetViewBlendRangeFn: Deno.UnsafeFnPointer<any>;
+  readonly #SetHeadsetViewSizeFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetHeadsetViewSizeFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #SetHeadsetViewModeFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetHeadsetViewModeFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #SetHeadsetViewCroppedFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetHeadsetViewCroppedFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetHeadsetViewAspectRatioFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #SetHeadsetViewBlendRangeFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetHeadsetViewBlendRangeFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
 
   constructor(private ptr: Deno.PointerValue<IVRHeadsetView|unknown>) {
     if (this.ptr === null) throw new Error("IVRHeadsetView pointer is null");
@@ -9998,86 +9998,86 @@ export class IVRHeadsetView {
 }
 
 export class IVROverlay {
-  readonly #FindOverlayFn: Deno.UnsafeFnPointer<any>;
-  readonly #CreateOverlayFn: Deno.UnsafeFnPointer<any>;
-  readonly #DestroyOverlayFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetOverlayKeyFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetOverlayNameFn: Deno.UnsafeFnPointer<any>;
-  readonly #SetOverlayNameFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetOverlayImageDataFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetOverlayErrorNameFromEnumFn: Deno.UnsafeFnPointer<any>;
-  readonly #SetOverlayRenderingPidFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetOverlayRenderingPidFn: Deno.UnsafeFnPointer<any>;
-  readonly #SetOverlayFlagFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetOverlayFlagFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetOverlayFlagsFn: Deno.UnsafeFnPointer<any>;
-  readonly #SetOverlayColorFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetOverlayColorFn: Deno.UnsafeFnPointer<any>;
-  readonly #SetOverlayAlphaFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetOverlayAlphaFn: Deno.UnsafeFnPointer<any>;
-  readonly #SetOverlayTexelAspectFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetOverlayTexelAspectFn: Deno.UnsafeFnPointer<any>;
-  readonly #SetOverlaySortOrderFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetOverlaySortOrderFn: Deno.UnsafeFnPointer<any>;
-  readonly #SetOverlayWidthInMetersFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetOverlayWidthInMetersFn: Deno.UnsafeFnPointer<any>;
-  readonly #SetOverlayCurvatureFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetOverlayCurvatureFn: Deno.UnsafeFnPointer<any>;
-  readonly #SetOverlayPreCurvePitchFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetOverlayPreCurvePitchFn: Deno.UnsafeFnPointer<any>;
-  readonly #SetOverlayTextureColorSpaceFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetOverlayTextureColorSpaceFn: Deno.UnsafeFnPointer<any>;
-  readonly #SetOverlayTextureBoundsFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetOverlayTextureBoundsFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetOverlayTransformTypeFn: Deno.UnsafeFnPointer<any>;
-  readonly #SetOverlayTransformAbsoluteFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetOverlayTransformAbsoluteFn: Deno.UnsafeFnPointer<any>;
-  readonly #SetOverlayTransformTrackedDeviceRelativeFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetOverlayTransformTrackedDeviceRelativeFn: Deno.UnsafeFnPointer<any>;
-  readonly #SetOverlayTransformTrackedDeviceComponentFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetOverlayTransformTrackedDeviceComponentFn: Deno.UnsafeFnPointer<any>;
-  readonly #SetOverlayTransformCursorFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetOverlayTransformCursorFn: Deno.UnsafeFnPointer<any>;
-  readonly #SetOverlayTransformProjectionFn: Deno.UnsafeFnPointer<any>;
-  readonly #ShowOverlayFn: Deno.UnsafeFnPointer<any>;
-  readonly #HideOverlayFn: Deno.UnsafeFnPointer<any>;
-  readonly #IsOverlayVisibleFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetTransformForOverlayCoordinatesFn: Deno.UnsafeFnPointer<any>;
-  readonly #WaitFrameSyncFn: Deno.UnsafeFnPointer<any>;
-  readonly #PollNextOverlayEventFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetOverlayInputMethodFn: Deno.UnsafeFnPointer<any>;
-  readonly #SetOverlayInputMethodFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetOverlayMouseScaleFn: Deno.UnsafeFnPointer<any>;
-  readonly #SetOverlayMouseScaleFn: Deno.UnsafeFnPointer<any>;
-  readonly #ComputeOverlayIntersectionFn: Deno.UnsafeFnPointer<any>;
-  readonly #IsHoverTargetOverlayFn: Deno.UnsafeFnPointer<any>;
-  readonly #SetOverlayIntersectionMaskFn: Deno.UnsafeFnPointer<any>;
-  readonly #TriggerLaserMouseHapticVibrationFn: Deno.UnsafeFnPointer<any>;
-  readonly #SetOverlayCursorFn: Deno.UnsafeFnPointer<any>;
-  readonly #SetOverlayCursorPositionOverrideFn: Deno.UnsafeFnPointer<any>;
-  readonly #ClearOverlayCursorPositionOverrideFn: Deno.UnsafeFnPointer<any>;
-  readonly #SetOverlayTextureFn: Deno.UnsafeFnPointer<any>;
-  readonly #ClearOverlayTextureFn: Deno.UnsafeFnPointer<any>;
-  readonly #SetOverlayRawFn: Deno.UnsafeFnPointer<any>;
-  readonly #SetOverlayFromFileFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetOverlayTextureFn: Deno.UnsafeFnPointer<any>;
-  readonly #ReleaseNativeOverlayHandleFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetOverlayTextureSizeFn: Deno.UnsafeFnPointer<any>;
-  readonly #CreateDashboardOverlayFn: Deno.UnsafeFnPointer<any>;
-  readonly #IsDashboardVisibleFn: Deno.UnsafeFnPointer<any>;
-  readonly #IsActiveDashboardOverlayFn: Deno.UnsafeFnPointer<any>;
-  readonly #SetDashboardOverlaySceneProcessFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetDashboardOverlaySceneProcessFn: Deno.UnsafeFnPointer<any>;
-  readonly #ShowDashboardFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetPrimaryDashboardDeviceFn: Deno.UnsafeFnPointer<any>;
-  readonly #ShowKeyboardFn: Deno.UnsafeFnPointer<any>;
-  readonly #ShowKeyboardForOverlayFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetKeyboardTextFn: Deno.UnsafeFnPointer<any>;
-  readonly #HideKeyboardFn: Deno.UnsafeFnPointer<any>;
-  readonly #SetKeyboardTransformAbsoluteFn: Deno.UnsafeFnPointer<any>;
-  readonly #SetKeyboardPositionForOverlayFn: Deno.UnsafeFnPointer<any>;
-  readonly #ShowMessageOverlayFn: Deno.UnsafeFnPointer<any>;
-  readonly #CloseMessageOverlayFn: Deno.UnsafeFnPointer<any>;
+  readonly #FindOverlayFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #CreateOverlayFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #DestroyOverlayFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetOverlayKeyFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetOverlayNameFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #SetOverlayNameFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetOverlayImageDataFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetOverlayErrorNameFromEnumFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #SetOverlayRenderingPidFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetOverlayRenderingPidFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #SetOverlayFlagFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetOverlayFlagFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetOverlayFlagsFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #SetOverlayColorFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetOverlayColorFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #SetOverlayAlphaFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetOverlayAlphaFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #SetOverlayTexelAspectFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetOverlayTexelAspectFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #SetOverlaySortOrderFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetOverlaySortOrderFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #SetOverlayWidthInMetersFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetOverlayWidthInMetersFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #SetOverlayCurvatureFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetOverlayCurvatureFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #SetOverlayPreCurvePitchFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetOverlayPreCurvePitchFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #SetOverlayTextureColorSpaceFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetOverlayTextureColorSpaceFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #SetOverlayTextureBoundsFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetOverlayTextureBoundsFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetOverlayTransformTypeFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #SetOverlayTransformAbsoluteFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetOverlayTransformAbsoluteFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #SetOverlayTransformTrackedDeviceRelativeFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetOverlayTransformTrackedDeviceRelativeFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #SetOverlayTransformTrackedDeviceComponentFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetOverlayTransformTrackedDeviceComponentFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #SetOverlayTransformCursorFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetOverlayTransformCursorFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #SetOverlayTransformProjectionFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #ShowOverlayFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #HideOverlayFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #IsOverlayVisibleFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetTransformForOverlayCoordinatesFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #WaitFrameSyncFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #PollNextOverlayEventFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetOverlayInputMethodFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #SetOverlayInputMethodFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetOverlayMouseScaleFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #SetOverlayMouseScaleFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #ComputeOverlayIntersectionFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #IsHoverTargetOverlayFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #SetOverlayIntersectionMaskFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #TriggerLaserMouseHapticVibrationFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #SetOverlayCursorFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #SetOverlayCursorPositionOverrideFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #ClearOverlayCursorPositionOverrideFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #SetOverlayTextureFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #ClearOverlayTextureFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #SetOverlayRawFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #SetOverlayFromFileFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetOverlayTextureFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #ReleaseNativeOverlayHandleFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetOverlayTextureSizeFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #CreateDashboardOverlayFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #IsDashboardVisibleFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #IsActiveDashboardOverlayFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #SetDashboardOverlaySceneProcessFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetDashboardOverlaySceneProcessFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #ShowDashboardFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetPrimaryDashboardDeviceFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #ShowKeyboardFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #ShowKeyboardForOverlayFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetKeyboardTextFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #HideKeyboardFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #SetKeyboardTransformAbsoluteFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #SetKeyboardPositionForOverlayFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #ShowMessageOverlayFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #CloseMessageOverlayFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
 
   constructor(private ptr: Deno.PointerValue<IVROverlay|unknown>) {
     if (this.ptr === null) throw new Error("IVROverlay pointer is null");
@@ -10502,7 +10502,7 @@ export class IVROverlay {
       parameters: [
         "u64", //(vr::VROverlayHandle_t)  ulOverlayHandle
         "i32", //(vr::ETrackingUniverseOrigin)  eTrackingOrigin
-        "pointer", //(struct vr::HmdVector2_t)  coordinatesInOverlay
+        "pointer", //(struct vr::HmdVector2_t *)  coordinatesInOverlay
         "pointer", //(struct vr::HmdMatrix34_t *)  pmatTransform
       ],
       result: "i32"
@@ -10818,7 +10818,7 @@ export class IVROverlay {
     this.#SetKeyboardPositionForOverlayFn = new Deno.UnsafeFnPointer(SetKeyboardPositionForOverlayFuncPtr, {
       parameters: [
         "u64", //(vr::VROverlayHandle_t)  ulOverlayHandle
-        "pointer", //(struct vr::HmdRect2_t)  avoidRect
+        "pointer", //(struct vr::HmdRect2_t *)  avoidRect
       ],
       result: "void"
     });
@@ -11481,10 +11481,10 @@ export class IVROverlay {
 
   /*
   GetTransformForOverlayCoordinates
-  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"eTrackingOrigin","paramtype":"vr::ETrackingUniverseOrigin"},{"paramname":"coordinatesInOverlay","paramtype":"struct vr::HmdVector2_t"},{"paramname":"pmatTransform","paramtype":"struct vr::HmdMatrix34_t *"}]
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"eTrackingOrigin","paramtype":"vr::ETrackingUniverseOrigin"},{"paramname":"coordinatesInOverlay","paramtype":"struct vr::HmdVector2_t *"},{"paramname":"pmatTransform","paramtype":"struct vr::HmdMatrix34_t *"}]
   Return: vr::EVROverlayError
   */
-  GetTransformForOverlayCoordinates(ulOverlayHandle: OverlayHandle, eTrackingOrigin: TrackingUniverseOrigin, coordinatesInOverlay: HmdVector2, pmatTransform: Deno.PointerValue<HmdMatrix34>): OverlayError {
+  GetTransformForOverlayCoordinates(ulOverlayHandle: OverlayHandle, eTrackingOrigin: TrackingUniverseOrigin, coordinatesInOverlay: Deno.PointerValue<HmdVector2>, pmatTransform: Deno.PointerValue<HmdMatrix34>): OverlayError {
     const result = this.#GetTransformForOverlayCoordinatesFn.call(
       ulOverlayHandle,
       eTrackingOrigin,
@@ -11960,10 +11960,10 @@ export class IVROverlay {
 
   /*
   SetKeyboardPositionForOverlay
-  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"avoidRect","paramtype":"struct vr::HmdRect2_t"}]
+  Parameters: [{"paramname":"ulOverlayHandle","paramtype":"vr::VROverlayHandle_t"},{"paramname":"avoidRect","paramtype":"struct vr::HmdRect2_t *"}]
   Return: void
   */
-  SetKeyboardPositionForOverlay(ulOverlayHandle: OverlayHandle, avoidRect: HmdRect2): void {
+  SetKeyboardPositionForOverlay(ulOverlayHandle: OverlayHandle, avoidRect: Deno.PointerValue<HmdRect2>): void {
     const _result = this.#SetKeyboardPositionForOverlayFn.call(
       ulOverlayHandle,
       avoidRect,
@@ -12003,10 +12003,10 @@ export class IVROverlay {
 }
 
 export class IVROverlayView {
-  readonly #AcquireOverlayViewFn: Deno.UnsafeFnPointer<any>;
-  readonly #ReleaseOverlayViewFn: Deno.UnsafeFnPointer<any>;
-  readonly #PostOverlayEventFn: Deno.UnsafeFnPointer<any>;
-  readonly #IsViewingPermittedFn: Deno.UnsafeFnPointer<any>;
+  readonly #AcquireOverlayViewFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #ReleaseOverlayViewFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #PostOverlayEventFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #IsViewingPermittedFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
 
   constructor(private ptr: Deno.PointerValue<IVROverlayView|unknown>) {
     if (this.ptr === null) throw new Error("IVROverlayView pointer is null");
@@ -12107,8 +12107,8 @@ export class IVROverlayView {
 }
 
 export class IVRResources {
-  readonly #LoadSharedResourceFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetResourceFullPathFn: Deno.UnsafeFnPointer<any>;
+  readonly #LoadSharedResourceFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetResourceFullPathFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
 
   constructor(private ptr: Deno.PointerValue<IVRResources|unknown>) {
     if (this.ptr === null) throw new Error("IVRResources pointer is null");
@@ -12170,25 +12170,25 @@ export class IVRResources {
 }
 
 export class IVRRenderModels {
-  readonly #LoadRenderModel_AsyncFn: Deno.UnsafeFnPointer<any>;
-  readonly #FreeRenderModelFn: Deno.UnsafeFnPointer<any>;
-  readonly #LoadTexture_AsyncFn: Deno.UnsafeFnPointer<any>;
-  readonly #FreeTextureFn: Deno.UnsafeFnPointer<any>;
-  readonly #LoadTextureD3D11_AsyncFn: Deno.UnsafeFnPointer<any>;
-  readonly #LoadIntoTextureD3D11_AsyncFn: Deno.UnsafeFnPointer<any>;
-  readonly #FreeTextureD3D11Fn: Deno.UnsafeFnPointer<any>;
-  readonly #GetRenderModelNameFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetRenderModelCountFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetComponentCountFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetComponentNameFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetComponentButtonMaskFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetComponentRenderModelNameFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetComponentStateForDevicePathFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetComponentStateFn: Deno.UnsafeFnPointer<any>;
-  readonly #RenderModelHasComponentFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetRenderModelThumbnailURLFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetRenderModelOriginalPathFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetRenderModelErrorNameFromEnumFn: Deno.UnsafeFnPointer<any>;
+  readonly #LoadRenderModel_AsyncFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #FreeRenderModelFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #LoadTexture_AsyncFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #FreeTextureFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #LoadTextureD3D11_AsyncFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #LoadIntoTextureD3D11_AsyncFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #FreeTextureD3D11Fn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetRenderModelNameFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetRenderModelCountFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetComponentCountFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetComponentNameFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetComponentButtonMaskFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetComponentRenderModelNameFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetComponentStateForDevicePathFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetComponentStateFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #RenderModelHasComponentFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetRenderModelThumbnailURLFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetRenderModelOriginalPathFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetRenderModelErrorNameFromEnumFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
 
   constructor(private ptr: Deno.PointerValue<IVRRenderModels|unknown>) {
     if (this.ptr === null) throw new Error("IVRRenderModels pointer is null");
@@ -12651,9 +12651,9 @@ export class IVRRenderModels {
 }
 
 export class IVRExtendedDisplay {
-  readonly #GetWindowBoundsFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetEyeOutputViewportFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetDXGIOutputInfoFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetWindowBoundsFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetEyeOutputViewportFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetDXGIOutputInfoFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
 
   constructor(private ptr: Deno.PointerValue<IVRExtendedDisplay|unknown>) {
     if (this.ptr === null) throw new Error("IVRExtendedDisplay pointer is null");
@@ -12739,17 +12739,17 @@ export class IVRExtendedDisplay {
 }
 
 export class IVRSettings {
-  readonly #GetSettingsErrorNameFromEnumFn: Deno.UnsafeFnPointer<any>;
-  readonly #SetBoolFn: Deno.UnsafeFnPointer<any>;
-  readonly #SetInt32Fn: Deno.UnsafeFnPointer<any>;
-  readonly #SetFloatFn: Deno.UnsafeFnPointer<any>;
-  readonly #SetStringFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetBoolFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetInt32Fn: Deno.UnsafeFnPointer<any>;
-  readonly #GetFloatFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetStringFn: Deno.UnsafeFnPointer<any>;
-  readonly #RemoveSectionFn: Deno.UnsafeFnPointer<any>;
-  readonly #RemoveKeyInSectionFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetSettingsErrorNameFromEnumFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #SetBoolFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #SetInt32Fn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #SetFloatFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #SetStringFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetBoolFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetInt32Fn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetFloatFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetStringFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #RemoveSectionFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #RemoveKeyInSectionFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
 
   constructor(private ptr: Deno.PointerValue<IVRSettings|unknown>) {
     if (this.ptr === null) throw new Error("IVRSettings pointer is null");
@@ -13034,36 +13034,36 @@ export class IVRSettings {
 }
 
 export class IVRApplications {
-  readonly #AddApplicationManifestFn: Deno.UnsafeFnPointer<any>;
-  readonly #RemoveApplicationManifestFn: Deno.UnsafeFnPointer<any>;
-  readonly #IsApplicationInstalledFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetApplicationCountFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetApplicationKeyByIndexFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetApplicationKeyByProcessIdFn: Deno.UnsafeFnPointer<any>;
-  readonly #LaunchApplicationFn: Deno.UnsafeFnPointer<any>;
-  readonly #LaunchTemplateApplicationFn: Deno.UnsafeFnPointer<any>;
-  readonly #LaunchApplicationFromMimeTypeFn: Deno.UnsafeFnPointer<any>;
-  readonly #LaunchDashboardOverlayFn: Deno.UnsafeFnPointer<any>;
-  readonly #CancelApplicationLaunchFn: Deno.UnsafeFnPointer<any>;
-  readonly #IdentifyApplicationFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetApplicationProcessIdFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetApplicationsErrorNameFromEnumFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetApplicationPropertyStringFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetApplicationPropertyBoolFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetApplicationPropertyUint64Fn: Deno.UnsafeFnPointer<any>;
-  readonly #SetApplicationAutoLaunchFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetApplicationAutoLaunchFn: Deno.UnsafeFnPointer<any>;
-  readonly #SetDefaultApplicationForMimeTypeFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetDefaultApplicationForMimeTypeFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetApplicationSupportedMimeTypesFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetApplicationsThatSupportMimeTypeFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetApplicationLaunchArgumentsFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetStartingApplicationFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetSceneApplicationStateFn: Deno.UnsafeFnPointer<any>;
-  readonly #PerformApplicationPrelaunchCheckFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetSceneApplicationStateNameFromEnumFn: Deno.UnsafeFnPointer<any>;
-  readonly #LaunchInternalProcessFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetCurrentSceneProcessIdFn: Deno.UnsafeFnPointer<any>;
+  readonly #AddApplicationManifestFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #RemoveApplicationManifestFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #IsApplicationInstalledFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetApplicationCountFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetApplicationKeyByIndexFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetApplicationKeyByProcessIdFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #LaunchApplicationFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #LaunchTemplateApplicationFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #LaunchApplicationFromMimeTypeFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #LaunchDashboardOverlayFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #CancelApplicationLaunchFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #IdentifyApplicationFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetApplicationProcessIdFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetApplicationsErrorNameFromEnumFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetApplicationPropertyStringFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetApplicationPropertyBoolFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetApplicationPropertyUint64Fn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #SetApplicationAutoLaunchFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetApplicationAutoLaunchFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #SetDefaultApplicationForMimeTypeFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetDefaultApplicationForMimeTypeFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetApplicationSupportedMimeTypesFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetApplicationsThatSupportMimeTypeFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetApplicationLaunchArgumentsFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetStartingApplicationFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetSceneApplicationStateFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #PerformApplicationPrelaunchCheckFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetSceneApplicationStateNameFromEnumFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #LaunchInternalProcessFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetCurrentSceneProcessIdFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
 
   constructor(private ptr: Deno.PointerValue<IVRApplications|unknown>) {
     if (this.ptr === null) throw new Error("IVRApplications pointer is null");
@@ -13761,20 +13761,20 @@ export class IVRApplications {
 }
 
 export class IVRTrackedCamera {
-  readonly #GetCameraErrorNameFromEnumFn: Deno.UnsafeFnPointer<any>;
-  readonly #HasCameraFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetCameraFrameSizeFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetCameraIntrinsicsFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetCameraProjectionFn: Deno.UnsafeFnPointer<any>;
-  readonly #AcquireVideoStreamingServiceFn: Deno.UnsafeFnPointer<any>;
-  readonly #ReleaseVideoStreamingServiceFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetVideoStreamFrameBufferFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetVideoStreamTextureSizeFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetVideoStreamTextureD3D11Fn: Deno.UnsafeFnPointer<any>;
-  readonly #GetVideoStreamTextureGLFn: Deno.UnsafeFnPointer<any>;
-  readonly #ReleaseVideoStreamTextureGLFn: Deno.UnsafeFnPointer<any>;
-  readonly #SetCameraTrackingSpaceFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetCameraTrackingSpaceFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetCameraErrorNameFromEnumFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #HasCameraFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetCameraFrameSizeFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetCameraIntrinsicsFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetCameraProjectionFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #AcquireVideoStreamingServiceFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #ReleaseVideoStreamingServiceFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetVideoStreamFrameBufferFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetVideoStreamTextureSizeFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetVideoStreamTextureD3D11Fn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetVideoStreamTextureGLFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #ReleaseVideoStreamTextureGLFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #SetCameraTrackingSpaceFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetCameraTrackingSpaceFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
 
   constructor(private ptr: Deno.PointerValue<IVRTrackedCamera|unknown>) {
     if (this.ptr === null) throw new Error("IVRTrackedCamera pointer is null");
@@ -14144,13 +14144,13 @@ export class IVRTrackedCamera {
 }
 
 export class IVRScreenshots {
-  readonly #RequestScreenshotFn: Deno.UnsafeFnPointer<any>;
-  readonly #HookScreenshotFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetScreenshotPropertyTypeFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetScreenshotPropertyFilenameFn: Deno.UnsafeFnPointer<any>;
-  readonly #UpdateScreenshotProgressFn: Deno.UnsafeFnPointer<any>;
-  readonly #TakeStereoScreenshotFn: Deno.UnsafeFnPointer<any>;
-  readonly #SubmitScreenshotFn: Deno.UnsafeFnPointer<any>;
+  readonly #RequestScreenshotFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #HookScreenshotFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetScreenshotPropertyTypeFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetScreenshotPropertyFilenameFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #UpdateScreenshotProgressFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #TakeStereoScreenshotFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #SubmitScreenshotFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
 
   constructor(private ptr: Deno.PointerValue<IVRScreenshots|unknown>) {
     if (this.ptr === null) throw new Error("IVRScreenshots pointer is null");
@@ -14337,10 +14337,10 @@ export class IVRScreenshots {
 }
 
 export class IVRDriverManager {
-  readonly #GetDriverCountFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetDriverNameFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetDriverHandleFn: Deno.UnsafeFnPointer<any>;
-  readonly #IsEnabledFn: Deno.UnsafeFnPointer<any>;
+  readonly #GetDriverCountFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetDriverNameFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetDriverHandleFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #IsEnabledFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
 
   constructor(private ptr: Deno.PointerValue<IVRDriverManager|unknown>) {
     if (this.ptr === null) throw new Error("IVRDriverManager pointer is null");
@@ -14436,38 +14436,38 @@ export class IVRDriverManager {
 }
 
 export class IVRInput {
-  readonly #SetActionManifestPathFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetActionSetHandleFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetActionHandleFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetInputSourceHandleFn: Deno.UnsafeFnPointer<any>;
-  readonly #UpdateActionStateFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetDigitalActionDataFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetAnalogActionDataFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetPoseActionDataRelativeToNowFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetPoseActionDataForNextFrameFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetSkeletalActionDataFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetDominantHandFn: Deno.UnsafeFnPointer<any>;
-  readonly #SetDominantHandFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetBoneCountFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetBoneHierarchyFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetBoneNameFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetSkeletalReferenceTransformsFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetSkeletalTrackingLevelFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetSkeletalBoneDataFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetSkeletalSummaryDataFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetSkeletalBoneDataCompressedFn: Deno.UnsafeFnPointer<any>;
-  readonly #DecompressSkeletalBoneDataFn: Deno.UnsafeFnPointer<any>;
-  readonly #TriggerHapticVibrationActionFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetActionOriginsFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetOriginLocalizedNameFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetOriginTrackedDeviceInfoFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetActionBindingInfoFn: Deno.UnsafeFnPointer<any>;
-  readonly #ShowActionOriginsFn: Deno.UnsafeFnPointer<any>;
-  readonly #ShowBindingsForActionSetFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetComponentStateForBindingFn: Deno.UnsafeFnPointer<any>;
-  readonly #IsUsingLegacyInputFn: Deno.UnsafeFnPointer<any>;
-  readonly #OpenBindingUIFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetBindingVariantFn: Deno.UnsafeFnPointer<any>;
+  readonly #SetActionManifestPathFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetActionSetHandleFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetActionHandleFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetInputSourceHandleFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #UpdateActionStateFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetDigitalActionDataFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetAnalogActionDataFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetPoseActionDataRelativeToNowFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetPoseActionDataForNextFrameFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetSkeletalActionDataFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetDominantHandFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #SetDominantHandFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetBoneCountFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetBoneHierarchyFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetBoneNameFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetSkeletalReferenceTransformsFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetSkeletalTrackingLevelFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetSkeletalBoneDataFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetSkeletalSummaryDataFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetSkeletalBoneDataCompressedFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #DecompressSkeletalBoneDataFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #TriggerHapticVibrationActionFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetActionOriginsFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetOriginLocalizedNameFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetOriginTrackedDeviceInfoFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetActionBindingInfoFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #ShowActionOriginsFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #ShowBindingsForActionSetFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetComponentStateForBindingFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #IsUsingLegacyInputFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #OpenBindingUIFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetBindingVariantFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
 
   constructor(private ptr: Deno.PointerValue<IVRInput|unknown>) {
     if (this.ptr === null) throw new Error("IVRInput pointer is null");
@@ -15303,12 +15303,12 @@ export class IVRInput {
 }
 
 export class IVRIOBuffer {
-  readonly #OpenFn: Deno.UnsafeFnPointer<any>;
-  readonly #CloseFn: Deno.UnsafeFnPointer<any>;
-  readonly #ReadFn: Deno.UnsafeFnPointer<any>;
-  readonly #WriteFn: Deno.UnsafeFnPointer<any>;
-  readonly #PropertyContainerFn: Deno.UnsafeFnPointer<any>;
-  readonly #HasReadersFn: Deno.UnsafeFnPointer<any>;
+  readonly #OpenFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #CloseFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #ReadFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #WriteFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #PropertyContainerFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #HasReadersFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
 
   constructor(private ptr: Deno.PointerValue<IVRIOBuffer|unknown>) {
     if (this.ptr === null) throw new Error("IVRIOBuffer pointer is null");
@@ -15462,10 +15462,10 @@ export class IVRIOBuffer {
 }
 
 export class IVRSpatialAnchors {
-  readonly #CreateSpatialAnchorFromDescriptorFn: Deno.UnsafeFnPointer<any>;
-  readonly #CreateSpatialAnchorFromPoseFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetSpatialAnchorPoseFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetSpatialAnchorDescriptorFn: Deno.UnsafeFnPointer<any>;
+  readonly #CreateSpatialAnchorFromDescriptorFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #CreateSpatialAnchorFromPoseFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetSpatialAnchorPoseFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetSpatialAnchorDescriptorFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
 
   constructor(private ptr: Deno.PointerValue<IVRSpatialAnchors|unknown>) {
     if (this.ptr === null) throw new Error("IVRSpatialAnchors pointer is null");
@@ -15575,10 +15575,10 @@ export class IVRSpatialAnchors {
 }
 
 export class IVRDebug {
-  readonly #EmitVrProfilerEventFn: Deno.UnsafeFnPointer<any>;
-  readonly #BeginVrProfilerEventFn: Deno.UnsafeFnPointer<any>;
-  readonly #FinishVrProfilerEventFn: Deno.UnsafeFnPointer<any>;
-  readonly #DriverDebugRequestFn: Deno.UnsafeFnPointer<any>;
+  readonly #EmitVrProfilerEventFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #BeginVrProfilerEventFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #FinishVrProfilerEventFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #DriverDebugRequestFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
 
   constructor(private ptr: Deno.PointerValue<IVRDebug|unknown>) {
     if (this.ptr === null) throw new Error("IVRDebug pointer is null");
@@ -15680,8 +15680,8 @@ export class IVRDebug {
 }
 
 export class IVRNotifications {
-  readonly #CreateNotificationFn: Deno.UnsafeFnPointer<any>;
-  readonly #RemoveNotificationFn: Deno.UnsafeFnPointer<any>;
+  readonly #CreateNotificationFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #RemoveNotificationFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
 
   constructor(private ptr: Deno.PointerValue<IVRNotifications|unknown>) {
     if (this.ptr === null) throw new Error("IVRNotifications pointer is null");
@@ -15745,10 +15745,10 @@ export class IVRNotifications {
 }
 
 export class IVRProperties {
-  readonly #ReadPropertyBatchFn: Deno.UnsafeFnPointer<any>;
-  readonly #WritePropertyBatchFn: Deno.UnsafeFnPointer<any>;
-  readonly #GetPropErrorNameFromEnumFn: Deno.UnsafeFnPointer<any>;
-  readonly #TrackedDeviceToPropertyContainerFn: Deno.UnsafeFnPointer<any>;
+  readonly #ReadPropertyBatchFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #WritePropertyBatchFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #GetPropErrorNameFromEnumFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #TrackedDeviceToPropertyContainerFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
 
   constructor(private ptr: Deno.PointerValue<IVRProperties|unknown>) {
     if (this.ptr === null) throw new Error("IVRProperties pointer is null");
@@ -15851,10 +15851,10 @@ export class IVRProperties {
 }
 
 export class IVRPaths {
-  readonly #ReadPathBatchFn: Deno.UnsafeFnPointer<any>;
-  readonly #WritePathBatchFn: Deno.UnsafeFnPointer<any>;
-  readonly #StringToHandleFn: Deno.UnsafeFnPointer<any>;
-  readonly #HandleToStringFn: Deno.UnsafeFnPointer<any>;
+  readonly #ReadPathBatchFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #WritePathBatchFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #StringToHandleFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #HandleToStringFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
 
   constructor(private ptr: Deno.PointerValue<IVRPaths|unknown>) {
     if (this.ptr === null) throw new Error("IVRPaths pointer is null");
@@ -15964,15 +15964,15 @@ export class IVRPaths {
 }
 
 export class IVRBlockQueue {
-  readonly #CreateFn: Deno.UnsafeFnPointer<any>;
-  readonly #ConnectFn: Deno.UnsafeFnPointer<any>;
-  readonly #DestroyFn: Deno.UnsafeFnPointer<any>;
-  readonly #AcquireWriteOnlyBlockFn: Deno.UnsafeFnPointer<any>;
-  readonly #ReleaseWriteOnlyBlockFn: Deno.UnsafeFnPointer<any>;
-  readonly #WaitAndAcquireReadOnlyBlockFn: Deno.UnsafeFnPointer<any>;
-  readonly #AcquireReadOnlyBlockFn: Deno.UnsafeFnPointer<any>;
-  readonly #ReleaseReadOnlyBlockFn: Deno.UnsafeFnPointer<any>;
-  readonly #QueueHasReaderFn: Deno.UnsafeFnPointer<any>;
+  readonly #CreateFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #ConnectFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #DestroyFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #AcquireWriteOnlyBlockFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #ReleaseWriteOnlyBlockFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #WaitAndAcquireReadOnlyBlockFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #AcquireReadOnlyBlockFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #ReleaseReadOnlyBlockFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
+  readonly #QueueHasReaderFn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;
 
   constructor(private ptr: Deno.PointerValue<IVRBlockQueue|unknown>) {
     if (this.ptr === null) throw new Error("IVRBlockQueue pointer is null");

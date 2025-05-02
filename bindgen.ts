@@ -618,7 +618,7 @@ function generateMethods(methods: any[], defs: any[], enums: any[]) {
     for (const meth of methods) {
       if (meth.classname !== iface) continue;
       const methName = meth.methodname;
-      output += `  readonly #${methName}Fn: Deno.UnsafeFnPointer<any>;\n`;
+      output += `  readonly #${methName}Fn: Deno.UnsafeFnPointer<Deno.ForeignFunction<readonly Deno.NativeType[], Deno.NativeResultType, boolean>>;\n`;
     }
     output += `\n`;
 

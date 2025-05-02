@@ -3435,7 +3435,7 @@
 	"methodname": "SetSceneColor",
 	"returntype": "void",
 	"params": [ 
-{	"paramname": "color" ,"paramtype": "struct vr::HmdColor_t"}
+{	"paramname": "color" ,"paramtype": "struct vr::HmdColor_t *"}
 	 ]
 }
 ,{
@@ -4431,7 +4431,7 @@
 	"params": [ 
 {	"paramname": "ulOverlayHandle" ,"paramtype": "vr::VROverlayHandle_t"},
 {	"paramname": "eTrackingOrigin" ,"paramtype": "vr::ETrackingUniverseOrigin"},
-{	"paramname": "coordinatesInOverlay" ,"paramtype": "struct vr::HmdVector2_t"},
+{	"paramname": "coordinatesInOverlay" ,"paramtype": "struct vr::HmdVector2_t *"},
 {	"paramname": "pmatTransform" ,"paramtype": "struct vr::HmdMatrix34_t *"}
 	 ]
 }
@@ -4741,7 +4741,7 @@
 	"returntype": "void",
 	"params": [ 
 {	"paramname": "ulOverlayHandle" ,"paramtype": "vr::VROverlayHandle_t"},
-{	"paramname": "avoidRect" ,"paramtype": "struct vr::HmdRect2_t"}
+{	"paramname": "avoidRect" ,"paramtype": "struct vr::HmdRect2_t *"}
 	 ]
 }
 ,{
