@@ -49,6 +49,15 @@ const TYPEDEF_MAP: Record<string, string> = {
   // ... (other mappings)
 };
 
+const UNKNOWN_TYPES: Record<string, string> = {
+  "VkDevice_T": "unknown",
+  "VkPhysicalDevice_T": "unknown",
+  "VkInstance_T":"unknown",
+  "VkQueue_T":"unknown",
+  "ID3D12Resource":"unknown",
+  "ID3D12CommandQueue": "unknown"
+}
+
 const REDUNDANT_TYPEDEFS: Record<string, boolean> = {
   "TrackedDeviceClass": true,
   "ColorSpace": true,
@@ -162,7 +171,7 @@ function trimEnumName(name: string): string {
 }
 
 
-async function generateEnums(enums: any[]) {
+function generateEnums(enums: any[]) {
   let output = "// Enums\n\n";
   output += "//#region Enums\n";
   for (const e of enums) {
@@ -269,10 +278,20 @@ function fieldTypeConvert(name: string): string {
   }
 
   const coreName = tokens[st];
-  let coreType = TYPEDEF_MAP[coreName];
+  let coreType: string | undefined; 
+  // Check TYPEDEF_MAP first
+  coreType = TYPEDEF_MAP[coreName];
+
+  // If not found in TYPEDEF_MAP, check UNKNOWN_TYPES
   if (!coreType) {
-    coreType = trimEnumName(coreName);
-    coreType = trimStructName(coreType);
+    coreType = UNKNOWN_TYPES[coreName];
+  }
+
+  // If not found in either map, apply trimming as a fallback
+  if (!coreType) {
+    let trimmedName = trimEnumName(coreName);
+    trimmedName = trimStructName(trimmedName);
+    coreType = trimmedName; // Assign the trimmed name
   }
 
   // Adapt the result for TypeScript and Deno

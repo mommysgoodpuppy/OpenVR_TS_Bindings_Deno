@@ -2325,10 +2325,10 @@ export interface TrackedDevicePose {
 ]*/
 export interface VulkanTextureData {
   nImage: bigint;
-  pDevice: Deno.PointerValue<VkDevice_T>;
-  pPhysicalDevice: Deno.PointerValue<VkPhysicalDevice_T>;
-  pInstance: Deno.PointerValue<VkInstance_T>;
-  pQueue: Deno.PointerValue<VkQueue_T>;
+  pDevice: Deno.PointerValue<unknown>;
+  pPhysicalDevice: Deno.PointerValue<unknown>;
+  pInstance: Deno.PointerValue<unknown>;
+  pQueue: Deno.PointerValue<unknown>;
   nQueueFamilyIndex: number;
   nWidth: number;
   nHeight: number;
@@ -2368,8 +2368,8 @@ export interface VulkanTextureArrayData {
   }
 ]*/
 export interface D3D12TextureData {
-  pResource: Deno.PointerValue<ID3D12Resource>;
-  pCommandQueue: Deno.PointerValue<ID3D12CommandQueue>;
+  pResource: Deno.PointerValue<unknown>;
+  pCommandQueue: Deno.PointerValue<unknown>;
   nNodeMask: number;
 }
 
@@ -3840,10 +3840,10 @@ export interface OverlayView {
   }
 ]*/
 export interface VulkanDevice {
-  pInstance: Deno.PointerValue<VkInstance_T>;
-  pDevice: Deno.PointerValue<VkDevice_T>;
-  pPhysicalDevice: Deno.PointerValue<VkPhysicalDevice_T>;
-  pQueue: Deno.PointerValue<VkQueue_T>;
+  pInstance: Deno.PointerValue<unknown>;
+  pDevice: Deno.PointerValue<unknown>;
+  pPhysicalDevice: Deno.PointerValue<unknown>;
+  pQueue: Deno.PointerValue<unknown>;
   uQueueFamilyIndex: number;
 }
 
@@ -7082,7 +7082,7 @@ export class IVRSystem {
   Parameters: [{"paramname":"pnDevice","paramtype":"uint64_t *"},{"paramname":"textureType","paramtype":"vr::ETextureType"},{"paramname":"pInstance","paramtype":"struct VkInstance_T *"}]
   Return: void
   */
-  GetOutputDevice(pnDevice: Deno.PointerValue<bigint>, textureType: TextureType, pInstance: Deno.PointerValue<VkInstance_T>): void {
+  GetOutputDevice(pnDevice: Deno.PointerValue<bigint>, textureType: TextureType, pInstance: Deno.PointerValue<unknown>): void {
     if (this.ptr === null) throw new Error("IVRSystem pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRSystem>);
     const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(64))!;
@@ -9644,7 +9644,7 @@ export class IVRCompositor {
   Parameters: [{"paramname":"pPhysicalDevice","paramtype":"struct VkPhysicalDevice_T *"},{"paramname":"pchValue","out_string":" ","paramtype":"char *"},{"paramname":"unBufferSize","paramtype":"uint32_t"}]
   Return: uint32_t
   */
-  GetVulkanDeviceExtensionsRequired(pPhysicalDevice: Deno.PointerValue<VkPhysicalDevice_T>, pchValue: string, unBufferSize: number): number {
+  GetVulkanDeviceExtensionsRequired(pPhysicalDevice: Deno.PointerValue<unknown>, pchValue: string, unBufferSize: number): number {
     if (this.ptr === null) throw new Error("IVRCompositor pointer is null");
     const view = new Deno.UnsafePointerView(this.ptr as Deno.PointerObject<IVRCompositor>);
     const funcPtr = Deno.UnsafePointer.create(view.getBigUint64(328))!;
