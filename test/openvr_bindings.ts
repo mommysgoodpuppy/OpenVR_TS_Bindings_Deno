@@ -2276,8 +2276,8 @@ export interface TrackedDevicePose {
   vVelocity: HmdVector3;
   vAngularVelocity: HmdVector3;
   eTrackingResult: TrackingResult;
-  bPoseIsValid: number;
-  bDeviceIsConnected: number;
+  bPoseIsValid: boolean;
+  bDeviceIsConnected: boolean;
 }
 
 
@@ -2469,7 +2469,7 @@ export interface Event_Scroll {
   }
 ]*/
 export interface Event_TouchPadMove {
-  bFingerDown: number;
+  bFingerDown: boolean;
   flSecondsFingerDown: number;
   fValueXFirst: number;
   fValueYFirst: number;
@@ -2515,8 +2515,8 @@ export interface Event_Notification {
 export interface Event_Process {
   pid: number;
   oldPid: number;
-  bForced: number;
-  bConnectionLost: number;
+  bForced: boolean;
+  bConnectionLost: boolean;
 }
 
 
@@ -2659,7 +2659,7 @@ export interface Event_PerformanceTest {
   }
 ]*/
 export interface Event_SeatedZeroPoseReset {
-  bResetBySystemMenu: number;
+  bResetBySystemMenu: boolean;
 }
 
 
@@ -2941,7 +2941,7 @@ export interface Event_AudioVolumeControl {
   }
 ]*/
 export interface Event_AudioMuteControl {
-  bMute: number;
+  bMute: boolean;
 }
 
 
@@ -3638,9 +3638,9 @@ export interface Compositor_StageRenderSettings {
   flVignetteInnerRadius: number;
   flVignetteOuterRadius: number;
   flFresnelStrength: number;
-  bBackfaceCulling: number;
-  bGreyscale: number;
-  bWireframe: number;
+  bBackfaceCulling: boolean;
+  bGreyscale: boolean;
+  bWireframe: boolean;
 }
 
 
@@ -3954,7 +3954,7 @@ export interface RenderModel {
   }
 ]*/
 export interface RenderModel_ControllerMode_State {
-  bScrollWheelVisible: number;
+  bScrollWheelVisible: boolean;
 }
 
 
@@ -4034,7 +4034,7 @@ export interface CVRSettingHelper {
   }
 ]*/
 export interface InputAnalogActionData {
-  bActive: number;
+  bActive: boolean;
   activeOrigin: InputValueHandle;
   x: number;
   y: number;
@@ -4069,10 +4069,10 @@ export interface InputAnalogActionData {
   }
 ]*/
 export interface InputDigitalActionData {
-  bActive: number;
+  bActive: boolean;
   activeOrigin: InputValueHandle;
-  bState: number;
-  bChanged: number;
+  bState: boolean;
+  bChanged: boolean;
   fUpdateTime: number;
 }
 
@@ -4092,7 +4092,7 @@ export interface InputDigitalActionData {
   }
 ]*/
 export interface InputPoseActionData {
-  bActive: number;
+  bActive: boolean;
   activeOrigin: InputValueHandle;
   pose: TrackedDevicePose;
 }
@@ -4109,7 +4109,7 @@ export interface InputPoseActionData {
   }
 ]*/
 export interface InputSkeletalActionData {
-  bActive: number;
+  bActive: boolean;
   activeOrigin: InputValueHandle;
 }
 
@@ -4508,7 +4508,7 @@ export interface PathRead {
 //#endregion
 // Byte Type Structs
 
-import { SizedStruct, SizedArrayType, u8, i8, u16, u32, i32, f32, u64, f64} from "https://raw.githubusercontent.com/mommysgoodpuppy/byte_type_C/main/mod.ts";
+import { SizedStruct, SizedArrayType, u8, i8, u16, u32, i32, f32, u64, f64} from "@denosaurs/byte-type";
 
 /*vr::HmdMatrix34_t, [
   {

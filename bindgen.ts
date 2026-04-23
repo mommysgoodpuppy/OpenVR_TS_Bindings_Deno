@@ -1,6 +1,5 @@
 import { typeMapping } from "./utils.ts";
-import {  SizedArrayType } from "https://raw.githubusercontent.com/mommysgoodpuppy/byte_type_C/main/mod.ts";
-
+import {  SizedArrayType } from "@denosaurs/byte-type";
 
 const openvrApiJson = await Deno.readTextFile("openvr_api.json");
 const api = JSON.parse(openvrApiJson) as any;
@@ -38,7 +37,7 @@ const TYPEDEF_MAP: Record<string, string> = {
   "const void *": "Deno.PointerValue<unknown>",
   "void **": "Deno.PointerValue<Deno.PointerValue<unknown>>",
   "const void **": "Deno.PointerValue<Deno.PointerValue<unknown>>",
-  "_Bool": "number",
+  "_Bool": "boolean",
   "bool": "boolean",
   "char": "number",
   "float": "number",
@@ -366,7 +365,7 @@ function generateStructs(structs: any[]) {
 function generateByteTypeStructs(structs: any[], defs: any[]) {
   let output = "// Byte Type Structs\n\n";
 
-  output += "import { SizedStruct, SizedArrayType, u8, i8, u16, u32, i32, f32, u64, f64} from \"https://raw.githubusercontent.com/mommysgoodpuppy/byte_type_C/main/mod.ts\";\n\n";
+  output += "import { SizedStruct, SizedArrayType, u8, i8, u16, u32, i32, f32, u64, f64} from \"@denosaurs/byte-type\";\n\n";
 
   for (const str of structs) {
     const structName = str.struct;

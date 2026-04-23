@@ -100,11 +100,11 @@ export function readBufferStructured(view: DataView, template: any, offset = 0):
         } else if (Array.isArray(value)) {
             [result[key], offset] = readArrayStructured(view, value, offset);
             lastFieldType = 'array';
-        } else if (typeof value === 'object') {
+        } else if (typeof value === 'object' && value !== null) {
             result[key] = {};
             for (const [subKey, subValue] of Object.entries(value)) {
                 if (subKey === 'm' || subKey === 'v') {
-                    [result[key][subKey], offset] = subKey === 'm' ? readMatrix(view, subValue, offset) : readVector(view, subValue, offset);
+                    [result[key][subKey], offset] = subKey === 'm' ? readMatrix(view, subValue as number[][], offset) : readVector(view, subValue as number[], offset);
                 } else {
                     [result[key][subKey], offset] = readBufferStructured(view, { [subKey]: subValue }, offset);
                     result[key][subKey] = result[key][subKey][subKey];
@@ -133,12 +133,6 @@ function readMatrix(view: DataView, template: number[][], offset: number): [numb
     return [result, offset];
 }
 
-export function stringToPointer(str: string): Deno.PointerValue {
-    const encoder = new TextEncoder();
-    const view = encoder.encode(str + '\0');
-    return Deno.UnsafePointer.of(view);
-}
-
 function readVector(view: DataView, template: number[], offset: number): [number[], number] {
     const result = [];
     for (let i = 0; i < template.length; i++) {
@@ -147,6 +141,7 @@ function readVector(view: DataView, template: number[], offset: number): [number
     }
     return [result, offset];
 }
+
 function readArrayStructured(view: DataView, template: any[], offset: number): [any, number] {
     const result = [];
     for (const item of template) {
@@ -166,6 +161,69 @@ function readArrayStructured(view: DataView, template: any[], offset: number): [
     return [result, offset];
 }
 
+export function stringToPointer(str: string): Deno.PointerValue {
+    // Prefer createCString() when the pointer must stay valid across a call boundary.
+    const encoder = new TextEncoder();
+    const view = encoder.encode(str + "\0");
+    return Deno.UnsafePointer.of(view);
+}
+
+export type CStringHandle = Uint8Array<ArrayBuffer>;
+const TRANSIENT_CSTRING_CACHE_SIZE = 256;
+const transientCStringHandles: CStringHandle[] = [];
+
+export function createCString(str: string): [Deno.PointerValue<number>, CStringHandle] {
+    const handle = new TextEncoder().encode(`${str}\0`);
+    const pointer = Deno.UnsafePointer.of(handle) as Deno.PointerValue<number>;
+
+    if (pointer === null) {
+        throw new Error("Failed to create C string pointer");
+    }
+
+    return [pointer, handle];
+}
+
+export function cstr(str: string): Deno.PointerValue<number> {
+    const [pointer, handle] = createCString(str);
+    transientCStringHandles.push(handle);
+    if (transientCStringHandles.length > TRANSIENT_CSTRING_CACHE_SIZE) {
+        transientCStringHandles.shift();
+    }
+    return pointer;
+}
+
+export class P {
+    static Int8P<T>(): Deno.PointerObject<T> {
+        return Deno.UnsafePointer.of<T>(new Int8Array(1))!;
+    }
+    static Uint8P<T>(): Deno.PointerObject<T> {
+        return Deno.UnsafePointer.of<T>(new Uint8Array(1))!;
+    }
+    static Int16P<T>(): Deno.PointerObject<T> {
+        return Deno.UnsafePointer.of<T>(new Int16Array(1))!;
+    }
+    static Uint16P<T>(): Deno.PointerObject<T> {
+        return Deno.UnsafePointer.of<T>(new Uint16Array(1))!;
+    }
+    static Int32P<T>(): Deno.PointerObject<T> {
+        return Deno.UnsafePointer.of<T>(new Int32Array(1))!;
+    }
+    static Uint32P<T>(): Deno.PointerObject<T> {
+        return Deno.UnsafePointer.of<T>(new Uint32Array(1))!;
+    }
+    static BigInt64P<T>(): Deno.PointerObject<T> {
+        return Deno.UnsafePointer.of<T>(new BigInt64Array(1))!;
+    }
+    static BigUint64P<T>(): Deno.PointerObject<T> {
+        return Deno.UnsafePointer.of<T>(new BigUint64Array(1))!;
+    }
+    static Float32P<T>(): Deno.PointerObject<T> {
+        return Deno.UnsafePointer.of<T>(new Float32Array(1))!;
+    }
+    static Float64P<T>(): Deno.PointerObject<T> {
+        return Deno.UnsafePointer.of<T>(new Float64Array(1))!;
+    }
+}
 
 export function mapOpenVRTypeToDeno(type: string): string {
     // Remove 'vr::' prefix if present
