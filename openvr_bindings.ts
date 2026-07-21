@@ -1,6 +1,5 @@
 
-import { fromFileUrl } from "jsr:@std/path/windows/from-file-url";
-import { join } from "jsr:@std/path";
+import { fromFileUrl, isAbsolute } from "jsr:@std/path";
 //#region Entrypoints
 
 declare const brand: unique symbol;
@@ -27,9 +26,15 @@ let openvrLib: Deno.DynamicLibrary<typeof symbolDefinitions> | null = null;
  *                uses "openvr_api.dll" in the current working directory.
  * @returns Promise resolving to true if initialization was successful
  */
-export function initializeOpenVR(dllPath: string = "openvr_api.dll", base?: string | URL): boolean {
+export function initializeOpenVR(
+  dllPath: string = Deno.build.os === "windows" ? "openvr_api.dll" : "libopenvr_api.so",
+  base?: string | URL,
+): boolean {
   try {
-    const fullPath = join(fromFileUrl(base!), "../"+dllPath);
+    const isBareLibraryName = !dllPath.includes("/") && !dllPath.includes("\\");
+    const fullPath = base != null && !isAbsolute(dllPath) && !isBareLibraryName
+      ? fromFileUrl(new URL(dllPath, base))
+      : dllPath;
     openvrLib = Deno.dlopen(fullPath, symbolDefinitions);
     return true;
   } catch (error) {
