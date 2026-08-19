@@ -579,6 +579,50 @@ const INTERFACE_NAMES: string[] = [
   "vr::IVRBlockQueue",
 ]
 
+/**
+ * Flatten a struct's fields into the primitive list Deno's FFI wants for
+ * `{ struct: [...] }`, expanding fixed-size arrays (`float [3][4]` -> 12 f32).
+ */
+function structFfiFields(structName: string): string[] | null {
+  const str = api.structs.find((s: any) => s.struct === structName);
+  if (!str) return null;
+  const out: string[] = [];
+  for (const field of str.fields) {
+    const fieldtype: string = field.fieldtype;
+    const dims = (fieldtype.match(/\[(\d+)\]/g) ?? [])
+      .map((m: string) => parseInt(m.slice(1, -1)));
+    const count = dims.reduce((a: number, b: number) => a * b, 1);
+    const base = fieldtype.split("[")[0].trim();
+    let ffi: string;
+    if (base.includes("*")) {
+      ffi = "pointer";
+    } else {
+      const mapped = getFfiType(base);
+      if (typeof mapped !== "string") return null; // nested struct: not supported here
+      ffi = mapped;
+    }
+    for (let i = 0; i < count; i++) out.push(ffi);
+  }
+  return out;
+}
+
+/**
+ * Methods that return a struct by value need `result: { struct: [...] }`.
+ *
+ * Declaring them as `result: "pointer"` makes the callee write its return value
+ * through whatever happens to be in the first argument register — on SysV
+ * x86-64 a struct larger than 16 bytes is returned via a hidden pointer — which
+ * corrupts memory and crashes. Handing the field list to Deno lets libffi apply
+ * the platform ABI instead.
+ */
+function structReturnInfo(returntype: string) {
+  if (!returntype.startsWith("struct ") || returntype.includes("*")) return null;
+  const structName = returntype.slice("struct ".length).trim();
+  const fields = structFfiFields(structName);
+  if (!fields) return null;
+  return { structName, trimmed: trimStructName(structName), fields };
+}
+
 function getFfiType(type: string, defs?: any[], enums?: any[]): any {
   // Check if it's a basic type in typeMapping
   defs = api.typedefs;
@@ -644,7 +688,14 @@ function generateMethods(methods: any[], defs: any[], enums: any[]) {
         }
       }
       output += `      ],\n`;
-      output += `      result: "${getFfiType(methRet, defs, enums)}"\n`;
+      const retStruct = structReturnInfo(methRet);
+      if (retStruct) {
+        output += `      result: { struct: [${
+          retStruct.fields.map((f) => `"${f}"`).join(", ")
+        }] }\n`;
+      } else {
+        output += `      result: "${getFfiType(methRet, defs, enums)}"\n`;
+      }
       output += `    });\n`;
       methodIndex++;
     }
@@ -701,6 +752,19 @@ function generateMethods(methods: any[], defs: any[], enums: any[]) {
       output += `    );\n\n`;
 
       // Handle the result
+      const retStructInfo = structReturnInfo(methRet);
+      if (retStructInfo) {
+        // Deno hands back the raw struct bytes; decode with the generated
+        // byte-type struct so callers get the same shape as everywhere else.
+        output += `    const view = new DataView(\n`;
+        output += `      (result as Uint8Array).buffer,\n`;
+        output += `      (result as Uint8Array).byteOffset,\n`;
+        output += `      (result as Uint8Array).byteLength,\n`;
+        output += `    );\n`;
+        output += `    return ${retStructInfo.trimmed}Struct.read(view) as unknown as ${retType};\n`;
+        output += "  }\n\n";
+        continue;
+      }
       if (retType !== "void") {
         const ffiType = getFfiType(methRet, defs, enums);
         if (retType == "string") {
@@ -727,8 +791,7 @@ function generateMethods(methods: any[], defs: any[], enums: any[]) {
 
 function generateEntrypoints() {
   const entrypoints = `
-import { fromFileUrl } from "jsr:@std/path/windows/from-file-url";
-import { join } from "jsr:@std/path";
+import { fromFileUrl, isAbsolute } from "jsr:@std/path";
 //#region Entrypoints
 
 declare const brand: unique symbol;
@@ -755,9 +818,17 @@ let openvrLib: Deno.DynamicLibrary<typeof symbolDefinitions> | null = null;
  *                uses "openvr_api.dll" in the current working directory.
  * @returns Promise resolving to true if initialization was successful
  */
-export function initializeOpenVR(dllPath: string = "openvr_api.dll", base?: string | URL): boolean {
+export function initializeOpenVR(
+  dllPath: string = Deno.build.os === "windows" ? "openvr_api.dll" : "libopenvr_api.so",
+  base?: string | URL,
+): boolean {
   try {
-    const fullPath = join(fromFileUrl(base!), "../"+dllPath);
+    // A bare library name (no separators) must reach dlopen untouched so the
+    // system loader can resolve it; only relative paths are resolved against base.
+    const isBareLibraryName = !dllPath.includes("/") && !dllPath.includes("\\\\");
+    const fullPath = base != null && !isAbsolute(dllPath) && !isBareLibraryName
+      ? fromFileUrl(new URL(dllPath, base))
+      : dllPath;
     openvrLib = Deno.dlopen(fullPath, symbolDefinitions);
     return true;
   } catch (error) {

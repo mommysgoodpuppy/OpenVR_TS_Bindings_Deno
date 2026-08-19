@@ -1,6 +1,5 @@
 
-import { fromFileUrl } from "jsr:@std/path/windows/from-file-url";
-import { join } from "jsr:@std/path";
+import { fromFileUrl, isAbsolute } from "jsr:@std/path";
 //#region Entrypoints
 
 declare const brand: unique symbol;
@@ -27,9 +26,17 @@ let openvrLib: Deno.DynamicLibrary<typeof symbolDefinitions> | null = null;
  *                uses "openvr_api.dll" in the current working directory.
  * @returns Promise resolving to true if initialization was successful
  */
-export function initializeOpenVR(dllPath: string = "openvr_api.dll", base?: string | URL): boolean {
+export function initializeOpenVR(
+  dllPath: string = Deno.build.os === "windows" ? "openvr_api.dll" : "libopenvr_api.so",
+  base?: string | URL,
+): boolean {
   try {
-    const fullPath = join(fromFileUrl(base!), "../"+dllPath);
+    // A bare library name (no separators) must reach dlopen untouched so the
+    // system loader can resolve it; only relative paths are resolved against base.
+    const isBareLibraryName = !dllPath.includes("/") && !dllPath.includes("\\");
+    const fullPath = base != null && !isAbsolute(dllPath) && !isBareLibraryName
+      ? fromFileUrl(new URL(dllPath, base))
+      : dllPath;
     openvrLib = Deno.dlopen(fullPath, symbolDefinitions);
     return true;
   } catch (error) {
@@ -6941,7 +6948,7 @@ export class IVRSystem {
         "f32", //(float)  fNearZ
         "f32", //(float)  fFarZ
       ],
-      result: "pointer"
+      result: { struct: ["f32", "f32", "f32", "f32", "f32", "f32", "f32", "f32", "f32", "f32", "f32", "f32", "f32", "f32", "f32", "f32"] }
     });
     const GetProjectionRawFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(16))!;
     // @ts-expect-error - not fixing these
@@ -6972,7 +6979,7 @@ export class IVRSystem {
       parameters: [
         "i32", //(vr::EVREye)  eEye
       ],
-      result: "pointer"
+      result: { struct: ["f32", "f32", "f32", "f32", "f32", "f32", "f32", "f32", "f32", "f32", "f32", "f32"] }
     });
     const GetTimeSinceLastVsyncFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(40))!;
     // @ts-expect-error - not fixing these
@@ -7039,14 +7046,14 @@ export class IVRSystem {
     this.#GetSeatedZeroPoseToStandingAbsoluteTrackingPoseFn = new Deno.UnsafeFnPointer(GetSeatedZeroPoseToStandingAbsoluteTrackingPoseFuncPtr, {
       parameters: [
       ],
-      result: "pointer"
+      result: { struct: ["f32", "f32", "f32", "f32", "f32", "f32", "f32", "f32", "f32", "f32", "f32", "f32"] }
     });
     const GetRawZeroPoseToStandingAbsoluteTrackingPoseFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(104))!;
     // @ts-expect-error - not fixing these
     this.#GetRawZeroPoseToStandingAbsoluteTrackingPoseFn = new Deno.UnsafeFnPointer(GetRawZeroPoseToStandingAbsoluteTrackingPoseFuncPtr, {
       parameters: [
       ],
-      result: "pointer"
+      result: { struct: ["f32", "f32", "f32", "f32", "f32", "f32", "f32", "f32", "f32", "f32", "f32", "f32"] }
     });
     const GetSortedTrackedDeviceIndicesOfClassFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(112))!;
     // @ts-expect-error - not fixing these
@@ -7157,7 +7164,7 @@ export class IVRSystem {
         "i32", //(vr::ETrackedDeviceProperty)  prop
         "pointer", //(vr::ETrackedPropertyError *)  pError
       ],
-      result: "pointer"
+      result: { struct: ["f32", "f32", "f32", "f32", "f32", "f32", "f32", "f32", "f32", "f32", "f32", "f32"] }
     });
     const GetArrayTrackedDevicePropertyFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(208))!;
     // @ts-expect-error - not fixing these
@@ -7227,7 +7234,7 @@ export class IVRSystem {
         "i32", //(vr::EVREye)  eEye
         "i32", //(vr::EHiddenAreaMeshType)  type
       ],
-      result: "pointer"
+      result: { struct: ["pointer", "u32"] }
     });
     const GetControllerStateFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(264))!;
     // @ts-expect-error - not fixing these
@@ -7363,7 +7370,12 @@ export class IVRSystem {
       fFarZ,
     );
 
-    return result as unknown as HmdMatrix44;
+    const view = new DataView(
+      (result as Uint8Array).buffer,
+      (result as Uint8Array).byteOffset,
+      (result as Uint8Array).byteLength,
+    );
+    return HmdMatrix44Struct.read(view) as unknown as HmdMatrix44;
   }
 
   /*
@@ -7408,7 +7420,12 @@ export class IVRSystem {
       eEye,
     );
 
-    return result as unknown as HmdMatrix34;
+    const view = new DataView(
+      (result as Uint8Array).buffer,
+      (result as Uint8Array).byteOffset,
+      (result as Uint8Array).byteLength,
+    );
+    return HmdMatrix34Struct.read(view) as unknown as HmdMatrix34;
   }
 
   /*
@@ -7512,7 +7529,12 @@ export class IVRSystem {
     const result = this.#GetSeatedZeroPoseToStandingAbsoluteTrackingPoseFn.call(
     );
 
-    return result as unknown as HmdMatrix34;
+    const view = new DataView(
+      (result as Uint8Array).buffer,
+      (result as Uint8Array).byteOffset,
+      (result as Uint8Array).byteLength,
+    );
+    return HmdMatrix34Struct.read(view) as unknown as HmdMatrix34;
   }
 
   /*
@@ -7524,7 +7546,12 @@ export class IVRSystem {
     const result = this.#GetRawZeroPoseToStandingAbsoluteTrackingPoseFn.call(
     );
 
-    return result as unknown as HmdMatrix34;
+    const view = new DataView(
+      (result as Uint8Array).buffer,
+      (result as Uint8Array).byteOffset,
+      (result as Uint8Array).byteLength,
+    );
+    return HmdMatrix34Struct.read(view) as unknown as HmdMatrix34;
   }
 
   /*
@@ -7694,7 +7721,12 @@ export class IVRSystem {
       pError,
     );
 
-    return result as unknown as HmdMatrix34;
+    const view = new DataView(
+      (result as Uint8Array).buffer,
+      (result as Uint8Array).byteOffset,
+      (result as Uint8Array).byteLength,
+    );
+    return HmdMatrix34Struct.read(view) as unknown as HmdMatrix34;
   }
 
   /*
@@ -7801,7 +7833,12 @@ export class IVRSystem {
       type,
     );
 
-    return result as unknown as HiddenAreaMesh;
+    const view = new DataView(
+      (result as Uint8Array).buffer,
+      (result as Uint8Array).byteOffset,
+      (result as Uint8Array).byteLength,
+    );
+    return HiddenAreaMeshStruct.read(view) as unknown as HiddenAreaMesh;
   }
 
   /*
@@ -8824,7 +8861,7 @@ export class IVRCompositor {
       parameters: [
         "bool", //(bool)  bBackground
       ],
-      result: "pointer"
+      result: { struct: ["f32", "f32", "f32", "f32"] }
     });
     const FadeGridFuncPtr = Deno.UnsafePointer.create(view.getBigUint64(120))!;
     // @ts-expect-error - not fixing these
@@ -9327,7 +9364,12 @@ export class IVRCompositor {
       bBackground,
     );
 
-    return result as unknown as HmdColor;
+    const view = new DataView(
+      (result as Uint8Array).buffer,
+      (result as Uint8Array).byteOffset,
+      (result as Uint8Array).byteLength,
+    );
+    return HmdColorStruct.read(view) as unknown as HmdColor;
   }
 
   /*
