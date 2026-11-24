@@ -1,5 +1,5 @@
 
-import { fromFileUrl, isAbsolute } from "jsr:@std/path";
+import { fromFileUrl, isAbsolute } from "@std/path";
 //#region Entrypoints
 
 declare const brand: unique symbol;
